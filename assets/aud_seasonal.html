@@ -602,7 +602,7 @@
 
 <!-- ═══════════════════════════════════════════ COMBINED TABLE -->
 <div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
-<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown.</p>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
 
 <style>
   /* Accordion combined table */
@@ -667,6 +667,19 @@
 
   .signal-bar {
     display:flex; gap:6px; align-items:center;
+  }
+
+  /* Current month highlight */
+  .acc-row-month.current-month td:first-child::after {
+    content: 'NOW';
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--accent-combined);
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-left: 6px;
   }
 </style>
 
@@ -830,10 +843,13 @@ const stars = n => "★".repeat(n) + "☆".repeat(5-n);
 
 function buildAccordion() {
   const body = document.getElementById("acc-body");
+  const currentMonthIdx = new Date().getMonth(); // 0=Jan … 11=Dec
+
   MONTHS.forEach((m, i) => {
     // Month row
     const trMonth = document.createElement("tr");
     trMonth.className = "acc-row-month";
+    if (i === currentMonthIdx) trMonth.classList.add("current-month");
     trMonth.dataset.idx = i;
     trMonth.innerHTML = `
       <td><span class="chevron"></span>${m.month}</td>
@@ -886,12 +902,12 @@ function buildAccordion() {
     body.appendChild(trWeeks);
   });
 
-  // Auto-open April as it's the priority month
-  const aprMonth = body.querySelector('[data-idx="3"]');
-  const aprWeeks = body.querySelector('.acc-row-weeks[data-idx="3"]');
-  if (aprMonth && aprWeeks) {
-    aprMonth.classList.add("is-open");
-    aprWeeks.classList.add("is-open");
+  // Auto-open current month
+  const curMonth = body.querySelector(`[data-idx="${currentMonthIdx}"]`);
+  const curWeeks = body.querySelector(`.acc-row-weeks[data-idx="${currentMonthIdx}"]`);
+  if (curMonth && curWeeks) {
+    curMonth.classList.add("is-open");
+    curWeeks.classList.add("is-open");
   }
 }
 
