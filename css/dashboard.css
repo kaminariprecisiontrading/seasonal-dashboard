@@ -387,3 +387,17 @@ tbody td:first-child {
   border-top: 1px solid var(--border);
   padding-top: 16px;
 }
+
+.footnote .copyright {
+  display: block;
+  margin-top: 8px;
+  color: var(--dim);
+  letter-spacing: 0.5px;
+}
+
+.footnote .copyright {
+  display: block;
+  margin-top: 8px;
+  color: var(--dim);
+  letter-spacing: 0.5px;
+}
