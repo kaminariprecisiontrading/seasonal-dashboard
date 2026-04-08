@@ -1,7 +1,7 @@
 # Seasonal Trading Dashboard — Project Documentation
 
 **Project Start:** April 2026  
-**Current Status:** Active Development — AUD Prototype Complete, VSCode + GitHub configured  
+**Current Status:** Active Development — AUD, USD, JPY complete · Modular architecture live · GitHub Pages deployed  
 **Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode + Claude Code  
 **Data Source:** Moore Research Center seasonal charts  
 **Repository:** Private GitHub repo — `seasonal-dashboard`  
@@ -35,9 +35,11 @@ A live Claude AI analysis layer is embedded inside each dashboard, callable via 
 | Asset | Type | Timeframes | Dashboard Status |
 |-------|------|-----------|-----------------|
 | AUD/USD | Currency | 5-YR, 15-YR, 34-YR | ✅ Complete |
+| USD Index | Currency/Index | 5-YR, 15-YR, 35-YR | ✅ Complete |
+| JPY/USD | Currency | 5-YR, 15-YR, 40-YR | ✅ Complete |
 
 **Planned next** (from trading playbook):
-- GBP, CAD, JPY, NZD, USD, EUR, CHF (currencies)
+- GBP, CAD, NZD, EUR, CHF (currencies)
 - MXN, BRL (long-hold currencies)
 - XAU, XAG, Copper, Platinum, Palladium (metals)
 

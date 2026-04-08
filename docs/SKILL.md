@@ -174,36 +174,52 @@ Signal values map to CSS classes:
 
 ## Step 8 — File Output and Deployment
 
-Save the dashboard as: `[ASSET]_seasonal.html` in the root of the repository.
+The project uses a modular structure. Adding a new asset requires three files:
 
-Examples:
-- `aud_seasonal.html`
-- `gbp_seasonal.html`
-- `xau_seasonal.html`
+**1. Create `data/[asset].js`**
+Define `ASSET_CONFIG`, `MONTHS[]`, and `SEASONAL_DATA`. Copy `data/aud.js` as a template and replace all content. Key fields to update in `ASSET_CONFIG`:
 
-All files are self-contained single HTML files. No build process, no dependencies, no server required. Open directly in any browser, or via Live Server in VSCode for local development.
-
-**To deploy:** commit and push to the `main` branch. GitHub Pages will automatically publish the updated file at:
-`https://[username].github.io/seasonal-dashboard/[asset]_seasonal.html`
-
-**Git workflow per asset:**
-```bash
-# After creating or editing a dashboard file in VSCode:
-# 1. Open Source Control panel (branch icon in sidebar)
-# 2. Stage all changes with +
-# 3. Write commit message e.g. "Add GBP seasonal dashboard"
-# 4. Click Commit then Sync
+```javascript
+const ASSET_CONFIG = {
+  id:       "gbp",
+  name:     "GBP / USD",
+  sub:      "Seasonal Tendency Analysis · 5-YR · 15-YR · 34-YR · Moore Research Center",
+  footnote: "Moore Research Center © 2020 · GBP/USD CME · 34-Year Seasonal ...",
+  ltLabel:  "34-YR",    // ← update to match actual long-term TF
+  ltSigKey: "sig34",    // ← update to match (sig34 / sig35 / sig40 etc.)
+  ltKey:    "s34",      // ← update to match week-level key
+  ltAccent: "#2563eb",
+};
 ```
 
----
+**2. Create `assets/[asset].html`**
+Copy any existing asset shell (e.g. `assets/aud.html`). Update:
+- `<title>` tag
+- Header `<h1>` and `.sub` text
+- Legend long-term TF label
+- All three static TF tables (5-YR, 15-YR, long-term)
+- Section label for long-term table
+- Footnote text
+- The three `<script>` src tags — change `data/aud.js` to `data/[asset].js`
 
-## Prompting Tips
+Do not change `js/accordion.js` or `js/api.js` — they are shared.
 
-- Always tell Claude the long-term timeframe explicitly (e.g. "the blue line is 34-YR, not 40-YR")
-- If Claude merges months (e.g. "Aug–Sep" as one row), ask it to split them into individual months
-- If the AI button analysis is too brief, increase `max_tokens` to 3000 and add more detail to the TASK section
-- For assets with "choppy all month" designation (CHF, MXN), flag this explicitly so Claude treats every week with appropriate uncertainty
-- Multi-month hold trades (e.g. MXN sell April → early December) need a dedicated note in the combined table — they are not intra-month trades
+**3. Update `index.html`**
+Find the planned card for the new asset and:
+- Change `status-planned` to `status-complete`
+- Set `href="assets/[asset].html"`
+- Update the timeframe badges to reflect the actual TFs
+
+**To deploy:** commit all three files and push to `main`. GitHub Pages deploys automatically.
+
+```bash
+# Git workflow in VSCode:
+# 1. Source Control panel → stage all changes
+# 2. Commit message: "Add GBP seasonal dashboard"
+# 3. Click Sync / Push
+```
+
+**Local preview:** use Live Server in VSCode. The modular JS imports require a server context — the HTML files cannot be opened directly from the filesystem.
 
 ---
 
@@ -211,9 +227,11 @@ All files are self-contained single HTML files. No build process, no dependencie
 
 | Problem | Fix |
 |---------|-----|
-| Combined table shows flat rows, not accordion | Ask Claude to rewrite combined table as expandable accordion with Wk1-4 per month |
+| Accordion doesn't build / page blank | Check browser console. Usually means data file loaded after accordion.js — verify script order: data → accordion → api |
+| Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` in the data file matches what's in the TF tables |
+| AI button loading message says wrong TF | Check `ASSET_CONFIG.ltLabel` in the data file |
+| Live Server works but GitHub Pages doesn't | Check file paths — `../css/dashboard.css` requires assets to be in `assets/` subfolder |
 | AI button returns empty response | Check API key is active at console.anthropic.com |
-| AI button cuts off mid-analysis | Increase `max_tokens` from 1000 to 3000 |
-| Chart analysis peak timing is wrong | Correct Claude explicitly: "The 5-yr peaks in early April not late March" |
-| Weeks table missing for some months | Claude sometimes merges multi-month periods — ask it to expand each month individually |
-| April not auto-opening | Check `data-idx="3"` selector in buildAccordion() — April is index 3 (0-based) |
+| AI button cuts off mid-analysis | Raise `max_tokens` in `js/api.js` (currently 2500) |
+| Chart analysis peak timing is wrong | Correct Claude explicitly before building dashboard |
+| April not the open month | It shouldn't be — accordion now opens the current real month dynamically |

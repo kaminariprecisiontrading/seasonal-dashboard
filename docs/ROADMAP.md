@@ -7,11 +7,21 @@ Organised by priority and effort. Items at the top are quick wins; items lower d
 ## ✅ Completed
 
 - AUD/USD seasonal dashboard (5-YR, 15-YR, 34-YR tables + combined accordion)
-- Claude AI analysis button (in-dashboard API call)
+- USD Index seasonal dashboard (5-YR, 15-YR, 35-YR tables + combined accordion)
+- JPY/USD seasonal dashboard (5-YR, 15-YR, 40-YR tables + combined accordion)
+- Claude AI analysis button (in-dashboard API call) on all three dashboards
+- Dynamic current-month auto-open (replaces hardcoded April) + NOW badge
 - Full project documentation suite (README, SKILL, ARCHITECTURE, CHANGELOG, ROADMAP, PROMPTS)
 - VSCode development environment configured
 - GitHub private repository set up with SSH authentication
 - GitHub Pages deployment enabled
+- **Modular architecture (v0.6):**
+  - `css/dashboard.css` — shared styles extracted from all HTML files
+  - `js/accordion.js` — shared accordion logic, asset-agnostic via ASSET_CONFIG
+  - `js/api.js` — shared Claude API call
+  - `data/aud.js`, `data/usd.js`, `data/jpy.js` — per-asset data files
+  - `assets/aud.html`, `assets/usd.html`, `assets/jpy.html` — thin HTML shells
+  - `index.html` — landing page with asset card grid
 
 ---
 
