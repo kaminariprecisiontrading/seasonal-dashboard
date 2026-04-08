@@ -4,12 +4,13 @@ Complete technical documentation for the seasonal trading dashboard system.
 
 ---
 
-## File Structure
+## Repository Structure
 
-Currently everything lives in a single self-contained HTML file per asset:
+The project lives in a private GitHub repository and is deployed via GitHub Pages.
 
 ```
-outputs/
+seasonal-dashboard/          ← root of GitHub repo
+├── index.html               ← (planned) landing page / asset selector
 ├── aud_seasonal.html        ← AUD dashboard (complete)
 ├── gbp_seasonal.html        ← (planned)
 ├── xau_seasonal.html        ← (planned)
@@ -18,8 +19,15 @@ outputs/
     ├── SKILL.md
     ├── ARCHITECTURE.md      ← this file
     ├── CHANGELOG.md
-    └── ROADMAP.md
+    ├── ROADMAP.md
+    └── PROMPTS.md
 ```
+
+**Deployment:** GitHub Pages serves the repo directly from the `main` branch root.  
+Individual dashboards are accessible at:  
+`https://[username].github.io/seasonal-dashboard/aud_seasonal.html`
+
+**Local development:** Open folder in VSCode, use Live Server extension to preview with auto-refresh.
 
 ---
 

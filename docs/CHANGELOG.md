@@ -2,6 +2,37 @@
 
 ---
 
+## v0.4 — April 2026
+**Development Environment: VSCode + GitHub Setup**
+
+### What Was Set Up
+- Local project folder initialised as a Git repository inside VSCode
+- Private GitHub repository created: `seasonal-dashboard`
+- SSH authentication configured for GitHub (ED25519 key, Authentication type)
+- All project files pushed to `main` branch
+- GitHub Pages enabled — dashboard now accessible as a live URL
+- Claude Code (official Anthropic VSCode extension) installed and available for in-editor AI assistance
+
+### Key Decisions Made
+- GitHub Pages chosen for hosting: free, zero configuration, deploys directly from `main` branch
+- Private repo for now — can be made public if the project evolves into a public resource
+- SSH authentication chosen over Personal Access Token for long-term reliability
+- VSCode + Claude Code for code editing; Claude.ai for design and new asset generation
+
+### Authentication Notes
+- GitHub requires SSH key or Personal Access Token — passwords over HTTPS are not accepted
+- SSH key type: **Authentication Key** (not Signing Key)
+- Generated using `ssh-keygen -t ed25519`
+- Added to GitHub under Settings → SSH and GPG Keys
+
+### Workflow Going Forward
+1. Edit files locally in VSCode (with Claude Code assistance if needed)
+2. Preview changes instantly with Live Server extension
+3. Commit via VSCode Source Control panel
+4. Push to GitHub — GitHub Pages deploys automatically
+
+---
+
 ## v0.3 — April 2026
 **Combined Table: Accordion Expansion**
 

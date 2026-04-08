@@ -4,6 +4,17 @@ Organised by priority and effort. Items at the top are quick wins; items lower d
 
 ---
 
+## ✅ Completed
+
+- AUD/USD seasonal dashboard (5-YR, 15-YR, 34-YR tables + combined accordion)
+- Claude AI analysis button (in-dashboard API call)
+- Full project documentation suite (README, SKILL, ARCHITECTURE, CHANGELOG, ROADMAP, PROMPTS)
+- VSCode development environment configured
+- GitHub private repository set up with SSH authentication
+- GitHub Pages deployment enabled
+
+---
+
 ## Priority 1 — Quick Wins (Low Effort, High Impact)
 
 ### Increase AI Analysis Depth

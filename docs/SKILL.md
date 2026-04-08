@@ -1,3 +1,11 @@
+---
+name: seasonal-dashboard
+description: How to build a seasonal trading analysis dashboard from a Moore Research Center chart image. Covers chart analysis, dashboard generation, accordion table, Claude API button, and GitHub deployment. Use this skill whenever building or recreating an asset dashboard from scratch.
+version: 1.1.0
+updated: April 2026
+assets_covered: AUD/USD (complete), GBP, CAD, JPY, NZD, USD, EUR, CHF, MXN, BRL, XAU, XAG, Copper, Platinum, Palladium (planned)
+---
+
 # SKILL.md — How to Build a Seasonal Trading Dashboard
 
 This document is a complete recreation guide. If you are starting from scratch, follow these steps in order and you will reproduce any asset dashboard to the same standard as the AUD prototype.
@@ -10,6 +18,8 @@ This document is a complete recreation guide. If you are starting from scratch, 
 - Moore Research Center seasonal charts for your target asset
 - An Anthropic API account (console.anthropic.com) with billing enabled, for the in-dashboard AI button
 - A browser to view the output HTML file
+- VSCode with Live Server extension installed (for local development)
+- Git + GitHub account with SSH authentication configured (see CHANGELOG v0.4 for setup notes)
 
 ---
 
@@ -162,16 +172,28 @@ Signal values map to CSS classes:
 
 ---
 
-## Step 8 — File Output
+## Step 8 — File Output and Deployment
 
-Save the dashboard as: `[ASSET]_seasonal.html`
+Save the dashboard as: `[ASSET]_seasonal.html` in the root of the repository.
 
 Examples:
 - `aud_seasonal.html`
 - `gbp_seasonal.html`
 - `xau_seasonal.html`
 
-All files are self-contained single HTML files. No build process, no dependencies, no server required. Open directly in any browser.
+All files are self-contained single HTML files. No build process, no dependencies, no server required. Open directly in any browser, or via Live Server in VSCode for local development.
+
+**To deploy:** commit and push to the `main` branch. GitHub Pages will automatically publish the updated file at:
+`https://[username].github.io/seasonal-dashboard/[asset]_seasonal.html`
+
+**Git workflow per asset:**
+```bash
+# After creating or editing a dashboard file in VSCode:
+# 1. Open Source Control panel (branch icon in sidebar)
+# 2. Stage all changes with +
+# 3. Write commit message e.g. "Add GBP seasonal dashboard"
+# 4. Click Commit then Sync
+```
 
 ---
 

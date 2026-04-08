@@ -1,9 +1,11 @@
 # Seasonal Trading Dashboard — Project Documentation
 
 **Project Start:** April 2026  
-**Current Status:** Active Development — AUD Prototype Complete  
-**Primary Tool:** Claude (claude.ai) + Anthropic API  
-**Data Source:** Moore Research Center seasonal charts
+**Current Status:** Active Development — AUD Prototype Complete, VSCode + GitHub configured  
+**Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode + Claude Code  
+**Data Source:** Moore Research Center seasonal charts  
+**Repository:** Private GitHub repo — `seasonal-dashboard`  
+**Deployment:** GitHub Pages (static hosting, zero cost)
 
 ---
 
@@ -21,9 +23,10 @@ A live Claude AI analysis layer is embedded inside each dashboard, callable via 
 |------|---------|
 | `README.md` | This file. Project overview and navigation. |
 | `SKILL.md` | How to recreate any asset dashboard from scratch using Claude. Step-by-step prompt guide. |
-| `CHANGELOG.md` | Full version history of what was built and when. |
 | `ARCHITECTURE.md` | Technical deep-dive into the dashboard code structure, API integration, and data model. |
+| `CHANGELOG.md` | Full version history of what was built and when. |
 | `ROADMAP.md` | Planned enhancements and future development ideas. |
+| `PROMPTS.md` | Copy-paste prompt library for all key Claude interactions in this project. |
 
 ---
 
@@ -52,9 +55,22 @@ The dashboards are built around a monthly seasonal playbook. The April playbook 
 
 ---
 
-## Key Contacts / Tools
+## Tools & Environment
 
 - **Chart Source:** Moore Research Center (mooreres.com) — seasonal tendency overlays
-- **AI Engine:** Anthropic Claude (claude.ai for building, API for in-dashboard analysis)
-- **API Console:** console.anthropic.com
+- **AI Engine (building):** Claude via claude.ai — used for design, analysis, and generating dashboards
+- **AI Engine (in-dashboard):** Anthropic API — Claude Sonnet called via button inside each dashboard
+- **API Console:** console.anthropic.com — separate billing from Claude.ai subscription
 - **Model Used:** claude-sonnet-4-20250514 (in dashboard AI button)
+- **Code Editor:** Visual Studio Code
+- **AI Coding Assistant:** Claude Code (official Anthropic VSCode extension) — for editing files directly in the project
+- **Version Control:** Git + GitHub (private repository)
+- **Hosting:** GitHub Pages — static site, free, deployed from main branch
+- **Local Preview:** Live Server (VSCode extension) — auto-refreshes browser on file save
+
+## Two Ways to Work With Claude
+
+| Context | Tool | Best Used For |
+|---------|------|--------------|
+| Design & planning | Claude.ai (this chat) | New asset analysis, generating dashboards, architectural decisions |
+| Code editing | Claude Code in VSCode | Editing existing files, multi-file changes, commits, iterating on code |
