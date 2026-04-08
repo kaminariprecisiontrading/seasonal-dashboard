@@ -199,7 +199,18 @@ Copy any existing asset shell (e.g. `assets/aud.html`). Update:
 - Legend long-term TF label
 - All three static TF tables (5-YR, 15-YR, long-term)
 - Section label for long-term table
-- Footnote text
+- Footnote text — use this exact pattern, updating only the asset-specific data line:
+
+```html
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · [ASSET] · [XX]-Year Seasonal ([YEAR]–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+```
+
+**Important:** The copyright span uses inline styles, not a CSS class. This ensures it always renders correctly regardless of CSS load order or caching issues.
+
 - The three `<script>` src tags — change `data/aud.js` to `data/[asset].js`
 
 Do not change `js/accordion.js` or `js/api.js` — they are shared.

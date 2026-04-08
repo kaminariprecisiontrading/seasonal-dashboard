@@ -394,10 +394,3 @@ tbody td:first-child {
   color: var(--dim);
   letter-spacing: 0.5px;
 }
-
-.footnote .copyright {
-  display: block;
-  margin-top: 8px;
-  color: var(--dim);
-  letter-spacing: 0.5px;
-}
