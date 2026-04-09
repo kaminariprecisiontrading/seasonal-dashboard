@@ -13,6 +13,72 @@
   .current-month-label { font-size: 11px; color: var(--accent-combined); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 36px; margin-top: 10px; }
   .current-month-label span { color: var(--text); font-weight: 600; }
 
+  /* ── Sticky Nav ─────────────────────────────────────────────────────────── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,12,15,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    margin: 0 -24px 32px;
+    padding-left: 24px;
+    padding-right: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sticky-nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    min-width: max-content;
+  }
+
+  .nav-group-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 8px 0 4px;
+    border-right: 1px solid var(--border);
+    margin-right: 2px;
+    flex-shrink: 0;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--dim);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .nav-link:hover {
+    color: var(--text);
+    border-color: var(--border);
+    background: var(--surface2);
+  }
+  .nav-link.active {
+    color: var(--accent-combined);
+    border-color: rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.07);
+  }
+  .nav-sep {
+    width: 1px;
+    height: 16px;
+    background: var(--border);
+    flex-shrink: 0;
+    margin: 0 4px;
+  }
+
   .source-block { margin-bottom: 56px; }
 
   .source-heading {
@@ -82,14 +148,34 @@
 
 <div class="current-month-label">Current Month: <span id="month-name">—</span></div>
 
+<!-- ═══ Sticky Nav ═══ -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <span class="nav-group-label">Futures</span>
+    <a class="nav-link" href="#fut-currencies">Currencies</a>
+    <a class="nav-link" href="#fut-metals">Metals</a>
+    <a class="nav-link" href="#fut-energy">Energy</a>
+    <a class="nav-link" href="#fut-rates">Rates</a>
+    <a class="nav-link" href="#fut-indices">Indices</a>
+    <a class="nav-link" href="#fut-softs">Softs</a>
+    <a class="nav-link" href="#fut-grains">Grains</a>
+    <a class="nav-link" href="#fut-fiber">Fiber</a>
+    <a class="nav-link" href="#fut-meats">Meats</a>
+    <div class="nav-sep"></div>
+    <span class="nav-group-label">Forex</span>
+    <a class="nav-link" href="#fx-majors">Majors</a>
+    <a class="nav-link" href="#fx-minors">Minors</a>
+    <a class="nav-link" href="#fx-crosses">Crosses</a>
+  </div>
+</nav>
 
 <!-- ═══════════════════════════════ FUTURES SEASONALS ═══════════════════════════════ -->
-<div class="source-block">
+<div class="source-block" id="futures">
   <div class="source-heading">Futures Seasonals</div>
   <div class="source-meta">Source: Moore Research Center &nbsp;·&nbsp; CME · CBOT · NYBOT · ICE · NYMEX · EUREX · LIFFE · SFE · HKFE</div>
 
   <!-- Currencies -->
-  <div class="grid-section">Currencies</div>
+  <div class="grid-section" id="fut-currencies">Currencies</div>
   <div class="asset-grid">
 
     <a class="asset-card status-complete" href="assets/aud.html" style="--card-accent:#e040a0;">
@@ -129,7 +215,7 @@
   </div>
 
   <!-- Metals -->
-  <div class="grid-section">Metals</div>
+  <div class="grid-section" id="fut-metals">Metals</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">XAU</div><div class="card-name">Gold (CMX)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">XAG</div><div class="card-name">Silver (CMX)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -139,7 +225,7 @@
   </div>
 
   <!-- Energy -->
-  <div class="grid-section">Energy</div>
+  <div class="grid-section" id="fut-energy">Energy</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Crude Oil</div><div class="card-name">Crude Oil (NYM)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Brent</div><div class="card-name">Brent Crude Oil (ICE)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -150,7 +236,7 @@
   </div>
 
   <!-- Interest Rates -->
-  <div class="grid-section">Interest Rates</div>
+  <div class="grid-section" id="fut-rates">Interest Rates</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">T-Bond 30Y</div><div class="card-name">30-Year T-Bonds (CBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">T-Note 10Y</div><div class="card-name">10-Year T-Notes (CBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -169,7 +255,7 @@
   </div>
 
   <!-- Indices -->
-  <div class="grid-section">Indices</div>
+  <div class="grid-section" id="fut-indices">Indices</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">S&amp;P 500</div><div class="card-name">S&amp;P 500 (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">S&amp;P eMini</div><div class="card-name">S&amp;P 500 eMini (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -187,7 +273,7 @@
   </div>
 
   <!-- Softs -->
-  <div class="grid-section">Softs</div>
+  <div class="grid-section" id="fut-softs">Softs</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Coffee</div><div class="card-name">Coffee "C" (NYBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Sugar #11</div><div class="card-name">Sugar #11 (NYBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -200,7 +286,7 @@
   </div>
 
   <!-- Grains & Oilseeds -->
-  <div class="grid-section">Soybeans, Grains &amp; Oilseeds</div>
+  <div class="grid-section" id="fut-grains">Soybeans, Grains &amp; Oilseeds</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Soybeans</div><div class="card-name">Soybeans (CBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Soy Meal</div><div class="card-name">Soybean Meal (CBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -213,14 +299,14 @@
   </div>
 
   <!-- Fiber -->
-  <div class="grid-section">Fiber</div>
+  <div class="grid-section" id="fut-fiber">Fiber</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Cotton</div><div class="card-name">Cotton (NYBOT)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Lumber</div><div class="card-name">Lumber (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
   </div>
 
   <!-- Meats & Dairy -->
-  <div class="grid-section">Meats &amp; Dairy</div>
+  <div class="grid-section" id="fut-meats">Meats &amp; Dairy</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Live Cattle</div><div class="card-name">Live Cattle (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">Feeder Cattle</div><div class="card-name">Feeder Cattle (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">Long-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -232,12 +318,12 @@
 
 
 <!-- ═══════════════════════════════ FOREX SEASONALS ═══════════════════════════════ -->
-<div class="source-block">
+<div class="source-block" id="forex">
   <div class="source-heading">Forex Seasonals</div>
   <div class="source-meta">Derived from CME futures seasonal components &nbsp;·&nbsp; Spot FX pairs synthesised from underlying futures data</div>
 
   <!-- FX Majors -->
-  <div class="grid-section">FX Majors</div>
+  <div class="grid-section" id="fx-majors">FX Majors</div>
   <div class="asset-grid">
     <a class="asset-card status-complete" href="assets/fx-audusd.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUDUSD</div>
@@ -263,7 +349,7 @@
   </div>
 
   <!-- FX Minors -->
-  <div class="grid-section">FX Minors</div>
+  <div class="grid-section" id="fx-minors">FX Minors</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">AUDCAD</div><div class="card-name">Australian Dollar / Canadian Dollar</div><div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CAD CME</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">AUDCHF</div><div class="card-name">Australian Dollar / Swiss Franc</div><div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CHF CME</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -277,7 +363,7 @@
   </div>
 
   <!-- FX Crosses -->
-  <div class="grid-section">FX Crosses</div>
+  <div class="grid-section" id="fx-crosses">FX Crosses</div>
   <div class="asset-grid">
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">AUDJPY</div><div class="card-name">Australian Dollar / Japanese Yen</div><div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">JPY CME</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
     <a class="asset-card status-planned" href="#" style="--card-accent:#64748b;"><div class="card-ticker">CADCHF</div><div class="card-name">Canadian Dollar / Swiss Franc</div><div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">CHF CME</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span></div></a>
@@ -307,6 +393,24 @@
   const months = ["January","February","March","April","May","June",
                   "July","August","September","October","November","December"];
   document.getElementById('month-name').textContent = months[new Date().getMonth()];
+
+  // Sticky nav active state on scroll
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = Array.from(navLinks)
+    .map(l => document.querySelector(l.getAttribute('href')))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+
+  sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>

@@ -23,6 +23,35 @@
   <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
 </div>
 
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
 <!-- ═══ 5-YR TABLE ═══ -->
 <div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
 <div class="table-wrap">
@@ -231,35 +260,6 @@
     </tr>
   </tbody>
 </table>
-</div>
-
-<div class="divider"></div>
-
-<!-- ═══ COMBINED ACCORDION ═══ -->
-<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
-<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
-
-<div class="combined-wrap">
-<table class="acc-table">
-  <thead>
-    <tr>
-      <th style="width:120px">Month</th>
-      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
-      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
-    </tr>
-  </thead>
-  <tbody id="acc-body"></tbody>
-</table>
-</div>
-
-<div class="divider"></div>
-
-<!-- ═══ AI PANEL ═══ -->
-<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
-<div class="ai-panel">
-  <div class="ai-label">Claude Sonnet · Live Analysis</div>
-  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
-  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
 </div>
 
 <div class="footnote">
