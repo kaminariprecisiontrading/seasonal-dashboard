@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAD/USD Seasonal Dashboard — Kaminari Precision Trading</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="back-link"><a href="../index.html">← All Assets</a></div>
+    <h1>CAD / USD</h1>
+    <p class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#e040a0"></span>5-YR Seasonal</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#8b3a2a"></span>15-YR Seasonal</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#2563eb"></span>40-YR Seasonal (1980–2019)</span>
+    </div>
+  </div>
+</div>
+
+<!-- COMBINED ACCORDION — first, most actionable -->
+<div class="section">
+  <div class="section-label">Combined Seasonal Bias — All Timeframes</div>
+  <p class="section-desc">Click any month to expand week-by-week breakdown. Current month opens automatically.</p>
+  <table class="acc-table">
+    <thead>
+      <tr>
+        <th style="width:32px"></th>
+        <th>Month</th>
+        <th>5-YR</th>
+        <th>15-YR</th>
+        <th id="acc-lt-header">40-YR</th>
+        <th>Combined</th>
+        <th>Conv.</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody id="accordion-body"></tbody>
+  </table>
+</div>
+
+<!-- AI ANALYSIS PANEL -->
+<div class="section ai-section">
+  <div class="section-label">AI Seasonal Analysis</div>
+  <p class="section-desc">Generate a written week-by-week bias report using all three timeframes.</p>
+  <button class="ai-btn" id="ai-btn" onclick="runAnalysis()">▶ Generate Analysis</button>
+  <div id="ai-loading" class="ai-loading" style="display:none">
+    <span class="ai-spinner"></span> Analysing CAD/USD seasonal data across 5-YR · 15-YR · 40-YR…
+  </div>
+  <div id="ai-output" class="ai-output" style="display:none"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 5-YR TABLE -->
+<div class="section">
+  <div class="section-label" style="color:#e040a0">5-Year Seasonal Tendency</div>
+  <table class="tf-table">
+    <thead>
+      <tr><th>Month</th><th>Bias</th><th>Overview</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Spikes to ~95 at open then collapses immediately. Full waterfall.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Sell the Jan 1 spike. No longs.</td></tr>
+      <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Continuing waterfall from Jan collapse.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td>Late Feb stabilising — watch for early turn.</td></tr>
+      <tr><td>March</td><td><span class="chop-tag">CHOP</span></td><td>Bottoms late Feb/early Mar. Recovery begins.</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>5-YR trough and turn — early long signal.</td></tr>
+      <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Spikes sharply to ~85–90 mid-Apr. Strong rally.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="chop-cell">~</td><td class="bear-cell">↓</td><td>Peak ~85–90 Wk2. Begin fading late Apr.</td></tr>
+      <tr><td>May</td><td><span class="bear-tag">BEAR</span></td><td>Collapses from Apr peak to ~25–30 by month end.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Waterfall all month. Short from Apr peak.</td></tr>
+      <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Near absolute trough ~25. Depressed all month.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>Late Jun possible base — watch for Jul turn.</td></tr>
+      <tr><td>July</td><td><span class="bull-tag">BULL</span></td><td>Spikes sharply to ~90–95 early Jul. Powerful recovery.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="chop-cell">~</td><td>5-YR leads Jul recovery aggressively.</td></tr>
+      <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>At or near peak ~90–95. Rolling Wk3–4.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="chop-cell">~</td><td class="bear-cell">↓</td><td>Wk1–2 long, then 5-YR peaks and fades.</td></tr>
+      <tr><td>September</td><td><span class="bear-tag">BEAR</span></td><td>5-YR already declining while 40-YR still rising.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>5-YR peaks before 40-YR — early warning to trim.</td></tr>
+      <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Falling post-Sep. Broad decline.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts from Sep flip.</td></tr>
+      <tr><td>November</td><td><span class="bear-tag">BEAR</span></td><td>Low and falling toward Dec lows.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>Late Nov stabilising — approach Dec base.</td></tr>
+      <tr><td>December</td><td><span class="chop-tag">CHOP</span></td><td>Near annual lows. Very late Dec upturn begins.</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td>Wk4 only — early positioning for Jan cycle.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 15-YR TABLE -->
+<div class="section">
+  <div class="section-label" style="color:#8b3a2a">15-Year Seasonal Tendency</div>
+  <table class="tf-table">
+    <thead>
+      <tr><th>Month</th><th>Bias</th><th>Overview</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Declining from low start ~25–35. Broad weakness.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Low all month. Full bear.</td></tr>
+      <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Grinding lower ~15–25. Continued seasonal weakness.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Near absolute low zone.</td></tr>
+      <tr><td>March</td><td><span class="bear-tag">BEAR</span></td><td>Still weak but stabilising late Mar. Lagging 40-YR recovery.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>15-YR lags 40-YR in recovery timing.</td></tr>
+      <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Recovering — bouncing into mid-range alongside other TFs.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="chop-cell">~</td><td>Recovery confirmation — long bias.</td></tr>
+      <tr><td>May</td><td><span class="bear-tag">BEAR</span></td><td>Peaking and rolling over with 40-YR mid-May.</td><td class="chop-cell">~</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Peak early May then waterfall.</td></tr>
+      <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Low and declining. Depressed seasonal zone.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td>Hold shorts. Late Jun possible turn.</td></tr>
+      <tr><td>July</td><td><span class="bull-tag">BULL</span></td><td>Rising — bull recovery alongside 40-YR and 5-YR.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>All TFs recovering Jul — strong alignment.</td></tr>
+      <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Continuing higher toward Sep simultaneous peak.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>15-YR climbing to Sep peak alongside 40-YR.</td></tr>
+      <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>Peaks ~100 simultaneously with 40-YR mid-Sep. Then collapses.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Peak mid-Sep — flip short on confirmation.</td></tr>
+      <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Sharp decline post-Sep peak. Full waterfall.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts. No bounce expected.</td></tr>
+      <tr><td>November</td><td><span class="bear-tag">BEAR</span></td><td>Low and falling. Continued post-Sep decline.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>Late Nov stabilisation only.</td></tr>
+      <tr><td>December</td><td><span class="chop-tag">CHOP</span></td><td>Near lows. Late stabilisation. No strong recovery yet.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>15-YR slow to turn — year-end base building.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 40-YR TABLE -->
+<div class="section">
+  <div class="section-label" style="color:#2563eb">40-Year Seasonal Tendency (1980–2019)</div>
+  <table class="tf-table">
+    <thead>
+      <tr><th>Month</th><th>Bias</th><th>Overview</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Opens ~75 and declines all month. Broad seasonal bear.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>No long bias. Structural bear.</td></tr>
+      <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Continuing lower toward ~50. Structural weakness.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td>Late Feb base starting to form.</td></tr>
+      <tr><td>March</td><td><span class="bull-tag">BULL</span></td><td>Recovery begins. 40-YR leads the turn — the first TF to recover.</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>40-YR leads recovery ahead of 5-YR and 15-YR.</td></tr>
+      <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising. Bull phase building into May.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>All-month long bias on 40-YR.</td></tr>
+      <tr><td>May</td><td><span class="bear-tag">BEAR</span></td><td>Peaks mid-May (~85) then rolls over sharply. End of Q2 rally.</td><td class="bull-cell">↑</td><td class="chop-cell">~</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Peak Wk1–2 then waterfall Wk3–4.</td></tr>
+      <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Declining. Seasonal trough zone building toward Jul bottom.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts from May rollover.</td></tr>
+      <tr><td>July</td><td><span class="bull-tag">BULL</span></td><td>Strong recovery. Rising from ~55 toward 70+. Leads Jul bull.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>40-YR in strong uptrend all Jul — high conviction long.</td></tr>
+      <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Continuing higher toward Sep absolute peak.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>All-month long on 40-YR. Peak comes in Sep.</td></tr>
+      <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>ABSOLUTE ANNUAL PEAK ~100 mid-Sep. Then full reversal.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Peak mid-Sep. Flip short Wk2–3 — highest conviction signal.</td></tr>
+      <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Sharp post-peak waterfall. Drops from 100 toward ~75.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Full waterfall all month. Hold all shorts.</td></tr>
+      <tr><td>November</td><td><span class="bear-tag">BEAR</span></td><td>Continued decline toward ~50. No recovery yet.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>40-YR still falling. Dec base not yet in view.</td></tr>
+      <tr><td>December</td><td><span class="bear-tag">BEAR</span></td><td>Near annual lows. Base forming only at very end of Dec.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td>Late Dec Wk4 only — watch for very early Jan positioning.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Canadian Dollar (CAD/USD) CME · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<script src="../data/cad.js"></script>
+<script src="../js/accordion.js"></script>
+<script src="../js/api.js"></script>
+</body>
+</html>
