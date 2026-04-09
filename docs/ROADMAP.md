@@ -1,150 +1,143 @@
-# ROADMAP.md — Future Development Ideas
-
-Organised by priority and effort. Items at the top are quick wins; items lower down are larger projects.
+# ROADMAP.md — Development Roadmap
 
 ---
 
 ## ✅ Completed
 
-- AUD/USD seasonal dashboard (5-YR, 15-YR, 34-YR tables + combined accordion)
-- USD Index seasonal dashboard (5-YR, 15-YR, 35-YR tables + combined accordion)
-- JPY/USD seasonal dashboard (5-YR, 15-YR, 40-YR tables + combined accordion)
-- Claude AI analysis button (in-dashboard API call) on all three dashboards
-- Dynamic current-month auto-open (replaces hardcoded April) + NOW badge
-- Full project documentation suite (README, SKILL, ARCHITECTURE, CHANGELOG, ROADMAP, PROMPTS)
-- VSCode development environment configured
-- GitHub private repository set up with SSH authentication
-- GitHub Pages deployment enabled
-- **Modular architecture (v0.6):**
-  - `css/dashboard.css` — shared styles extracted from all HTML files
-  - `js/accordion.js` — shared accordion logic, asset-agnostic via ASSET_CONFIG
-  - `js/api.js` — shared Claude API call
-  - `data/aud.js`, `data/usd.js`, `data/jpy.js` — per-asset data files
-  - `assets/aud.html`, `assets/usd.html`, `assets/jpy.html` — thin HTML shells
-  - `index.html` — landing page with asset card grid
+### Infrastructure
+- Modular architecture (v0.6): `css/dashboard.css` · `js/accordion.js` · `js/api.js` · per-asset `data/` files · thin HTML shells in `assets/`
+- `index.html` landing page with full asset directory (Futures + Forex sections)
+- Sticky navigation bar with 13 section jump links + IntersectionObserver active state
+- GitHub private repo + SSH authentication + GitHub Pages deployment
+- Claude Code (VSCode extension) installed and available
+- Dynamic current-month auto-open + NOW badge
+- Copyright: dual attribution (Moore Research Center + Kaminari Precision Trading) with inline styles
+
+### Futures Dashboards Live
+- AUD/USD (CME) — 5-YR · 15-YR · 34-YR
+- USD Index (ICE) — 5-YR · 15-YR · 35-YR
+- JPY/USD (CME) — 5-YR · 15-YR · 40-YR
+- GBP/USD (CME) — 5-YR · 15-YR · 40-YR
+
+### Forex Dashboards Live
+- AUDUSD — derived from AUD CME + USD ICE
+- USDJPY — derived from USD ICE + JPY CME
+- GBPUSD — derived from GBP CME + USD ICE
+
+### UI Fixes (v0.7)
+- Combined accordion moved to top of all asset pages (most actionable content first)
+- AI panel immediately below accordion
+- Individual TF tables moved below divider as supporting detail
 
 ---
 
-## Priority 1 — Quick Wins (Low Effort, High Impact)
+## Phase 1 — Remaining Futures Assets (Next Priority)
 
-### Increase AI Analysis Depth
-**What:** Raise `max_tokens` from 1000 to 3000 in the API call  
-**Why:** Current output is truncated — Claude runs out of tokens before completing all 4 sections  
-**How:** In `aud_seasonal.html`, change `max_tokens: 1000` to `max_tokens: 3000`  
-**Cost impact:** Triples output cost per press, still ~$0.05 per press — negligible  
+Build these in order — each requires a Moore Research Center chart image:
 
-### Style the AI Output
-**What:** Instead of rendering plain text, parse Claude's response as markdown and apply CSS formatting  
-**Why:** Currently the AI panel shows unformatted text. Headers, bold, and tables would make it much more readable  
-**How:** Use a lightweight markdown parser (e.g. `marked.js` from cdnjs) and set `innerHTML` instead of `textContent`  
+| Asset | Exchange | Why Next |
+|-------|---------|---------|
+| CAD/USD | CME | April playbook asset, enables USDCAD + AUDCAD + CADJPY forex |
+| NZD/USD | CME | April playbook asset, enables NZDUSD + AUDNZD + NZDJPY forex |
+| EUR/USD | CME | Major currency, enables EURUSD + EURGBP + EURJPY forex |
+| CHF/USD | CME | Enables USDCHF + AUDCHF + EURCHF forex |
+| MXN | CME | Long-hold trade (Apr → Dec), unique structure |
+| BRL | CME | Long-hold trade (Apr → mid-May) |
+| XAU (Gold) | CMX | Metals — Apr Wk2 sell, high trader interest |
+| XAG (Silver) | CMX | Metals — Apr Wk3/4 sell |
+| Copper | CMX | Metals — Apr Wk4 sell |
+| Platinum | CMX | Metals |
+| Palladium | CMX | Metals — Apr Wk1 buy + Wk4 sell |
 
-### Streaming Response
-**What:** Show Claude's response appearing word-by-word as it generates  
-**Why:** Currently there is a 5–10 second blank wait before text appears all at once. Streaming feels alive.  
-**How:** Use the Anthropic streaming API (`stream: true`) and process `text_delta` events via `EventSource`  
+As each futures asset is completed, corresponding forex pairs unlock automatically.
+
+---
+
+## Phase 2 — CSV Price Data Layer
+
+**What:** Upload a raw MT5 OHLCV CSV export → compare actual price behaviour vs seasonal model.
+
+**Scope:** Pure price data only. No annotation, no indicator interpretation. The tool calculates statistics from the raw numbers and overlays them against seasonal tendency.
+
+**Key outputs:**
+- Average return by month / week-of-month across the dataset
+- Percentage of years the seasonal signal was correct (historical win rate)
+- Current year's price path overlaid against the seasonal curve
+- Simple visual: are we tracking the seasonal or diverging from it?
+
+**Tech stack:**
+- PapaParse (already in project's available libraries) for CSV parsing
+- Chart.js or lightweight-charts for rendering
+- All processing client-side — no backend required
+- Claude API button can then compare the CSV statistics against seasonal data
+
+**Effort:** Medium — 2–3 sessions. Hardest part is deciding which statistics are most useful.
+
+---
+
+## Phase 3 — Macro Data Layer
+
+**What:** Economic calendar and macro data indicators per asset — NFP, CPI, PPI, interest rate decisions, central bank sentiment.
+
+**Sources (free/low cost):**
+- ForexFactory embedded calendar widget (zero effort, instant)
+- FRED API (US macro: free, comprehensive)
+- Tradingeconomics.com (free tier: limited calls/month, good FX coverage)
+- BarchartS.com (broader commodity coverage)
+
+**Start with:** ForexFactory iframe embed in a new "Macro" tab on each asset page. This is a 30-minute implementation with immediate value.
+
+**Evolve to:** API-driven panel that filters relevant events per asset and shows them alongside the seasonal signal with a confluence note.
+
+---
+
+## Phase 4 — Live Price Context
+
+**Quick win (immediate):** TradingView embedded widget — real-time chart, zero code, professional quality. Add as a "Price" tab on each asset page.
+
+**Better option (medium effort):** Twelve Data API (free tier: 800 req/day, 15-min delay) with lightweight-charts rendering native OHLC candlesticks. Allows timeframe selector (1H, 4H, D, W).
+
+**Killer feature (harder):** Overlay the seasonal tendency line directly on the live price chart — so the trader sees both current price position and seasonal expectation on the same chart. This is the genuinely differentiated feature.
+
+---
+
+## Phase 5 — AI Synthesis Upgrade
+
+**What:** Upgrade the Claude API button from "analyse seasonal data only" to "synthesise all available layers."
+
+When Phases 2–4 are built, the AI button reads:
+- Seasonal data (already built)
+- CSV statistics (Phase 2)
+- Upcoming macro events for this asset (Phase 3)
+- Current price position relative to seasonal model (Phase 4)
+
+And produces a single weekly bias verdict: what the confluence is saying, where layers agree, where they conflict, and the highest-probability scenario.
+
+---
+
+## Quick Wins — Can Be Done Anytime
+
+### Markdown Rendering in AI Output
+Replace `output.textContent = text` with a lightweight markdown parser (`marked.js` from cdnjs) and `output.innerHTML`. Headers and bold in Claude's response will render properly.
+
+### Streaming AI Response
+Use Anthropic streaming API (`stream: true`) — response appears word by word instead of all at once after a 5–10 second blank wait.
+
+### Month Quick-Jump Buttons
+A row of month buttons (Jan–Dec) above the accordion. Click → scrolls to that month row + auto-opens it. Useful as asset count grows.
 
 ### Dynamic SEASONAL_DATA Generation
-**What:** Auto-generate the `SEASONAL_DATA` string from the `MONTHS[]` JavaScript array instead of hand-writing it  
-**Why:** Currently the data is entered twice — once in `MONTHS[]` for the tables, and once as a text string for the API. They can drift out of sync.  
-**How:** Write a `buildSeasonalPrompt()` function that iterates `MONTHS[]` and formats it as text  
-
----
-
-## Priority 2 — Medium Effort, High Value
-
-### Follow-Up Question Box
-**What:** After the AI generates its analysis, show a text input where the user can ask follow-up questions  
-**Why:** Enables interactive dialogue — "What if I want to hold the April short into June?" or "Rank the top 3 setups by risk/reward"  
-**How:** Maintain a `conversationHistory[]` array, append user + assistant turns, send full history each time  
-
-### Asset Selector / Multi-Asset Dashboard
-**What:** A single HTML file that can switch between multiple assets (AUD, GBP, XAU, etc.)  
-**Why:** Currently one file per asset — harder to navigate. A unified dashboard is cleaner.  
-**How:** Store all assets in a master `ASSETS{}` object, render the correct asset on sidebar click  
-**Note:** This is a significant refactor — consider doing it after 3–4 more individual assets are built  
-
-### Playbook Integration Panel
-**What:** A dedicated section showing the April trading playbook signals (Buy/Sell/Choppy) cross-referenced with the seasonal data  
-**Why:** The playbook is the original trading plan. The seasonal data either confirms or challenges it. Showing them side-by-side adds value.  
-**How:** Add a new table section: Playbook Signal | Seasonal Confirmation | Conviction | Notes  
-
-### Conviction Score Bar
-**What:** Replace the star rating (★★★★☆) with a visual horizontal progress bar  
-**Why:** More scannable at a glance  
-**How:** CSS `width` percentage on a coloured bar div  
-
-### Month Quick-Jump
-**What:** A row of month buttons (Jan Feb Mar Apr...) at the top of the combined table  
-**Why:** Scrolling to find a specific month in a 12-row table is fine now, but will become slower as more assets are added  
-**How:** `scrollIntoView()` on the target row + auto-open that month's accordion  
-
----
-
-## Priority 3 — Larger Projects
-
-### Master Playbook Dashboard
-**What:** A top-level overview showing all assets side-by-side for a specific month (e.g. "April Overview: all assets, all signals")  
-**Why:** The trading playbook covers ~15 assets. Seeing all of them on one screen for the current month is more operationally useful than navigating 15 individual files  
-**How:** A separate `playbook.html` file that imports signal data from each asset and renders a grid  
-
-### Metals-Specific Adjustments
-**What:** Metals (XAU, XAG, Copper, Platinum, Palladium) have different seasonal characteristics than currencies and need slightly different table notes  
-**Why:** Metals don't have the same "choppy all month" designations as CHF or MXN. The language needs to reflect commodity-specific patterns (supply cycles, industrial demand, etc.)  
-**How:** Flag metals assets in data and conditionally render additional context rows  
-
-### Long-Hold Trade Tracker
-**What:** A dedicated panel for multi-month hold trades (MXN sell Apr → Dec, BRL sell Apr → mid-May)  
-**Why:** These are not intra-month trades — they need to be tracked differently. Easy to forget the exit timing.  
-**How:** A "Live Positions" panel with entry month, expected hold duration, exit target, and a visual timeline bar  
+Auto-generate the `SEASONAL_DATA` prompt string from `MONTHS[]` instead of maintaining it separately. Prevents the two from drifting out of sync.
 
 ### Print / Export to PDF
-**What:** A "Print / Save PDF" button that renders the dashboard cleanly for printing or saving  
-**Why:** Useful for offline reference during trading sessions  
-**How:** CSS `@media print` styles to hide the AI panel and buttons, show clean tables only  
-
-### Notes / Annotation Layer
-**What:** Allow the user to add personal notes to any week cell — saved to localStorage  
-**Why:** Enables real-time annotation as trades develop ("Entered short Apr Wk2 @ 0.6420")  
-**How:** Click-to-edit on week cells, save to `localStorage` keyed by asset + month + week  
+CSS `@media print` styles — hide AI panel and buttons, render clean tables only for offline reference.
 
 ---
 
-## Priority 4 — Advanced / Future
+## Scope Boundary (Deliberately Excluded)
 
-### Live Price Overlay
-**What:** Pull in the current price of the asset and show it alongside the seasonal bias  
-**Why:** Contextualises whether the asset is currently at a seasonal high/low  
-**How:** Connect to a free FX data API (e.g. exchangerate.host or Alpha Vantage free tier)  
+- **Annotated chart interpretation** (Elliott waves, Fibonacci retracements, market structure identification) — too subjective, requires the user's own framework, better handled in Claude.ai or ChatGPT directly
+- **ML/AI pattern recognition on price charts** — different class of engineering problem, not in scope
+- **Broker integration / live position tracking** — possible future addition but not priority
 
-### Multi-Year Backtesting Panel
-**What:** Show how often the seasonal signal was correct in each year of the dataset  
-**Why:** A signal that worked 9 out of 10 years is more trustworthy than one that worked 6 out of 10  
-**How:** Would require raw historical data from Moore Research Center — may not be available in this format  
-
-### Claude Code / Automated Build
-**What:** Use Claude Code (CLI) to auto-generate a new asset dashboard from a text description alone  
-**Why:** Removes the need to manually paste chart images — just describe the asset's seasonal pattern in text  
-**How:** A template script that accepts asset name + seasonal readings and outputs a complete HTML file  
-
----
-
-## Assets Remaining to Build
-
-In recommended order (by trading priority):
-
-| Asset | Type | Playbook Complexity | Notes |
-|-------|------|--------------------|----|
-| GBP/USD | Currency | Medium | Clean signals, Wk1 buy / Wk4 sell |
-| CAD/USD | Currency | Medium | Wk1 buy, Wk2-4 sell — long bear |
-| JPY/USD | Currency | Medium | Wk1 buy, end Wk2 sell + re-entry |
-| NZD/USD | Currency | Simple | Mirrors AUD broadly |
-| USD | Currency/Index | Complex | Multiple re-entries, Wk4 buy strong |
-| EUR/USD | Currency | Complex | Choppy Wk1-3, very strong Wk4 buy |
-| CHF | Currency | Very Choppy | Choppy all month, hardest to trade |
-| MXN | Currency | Long hold | High of year Apr, hold short to Dec |
-| BRL | Currency | Long hold | Wk1-3, hold to mid-May |
-| XAU (Gold) | Metal | Simple | Wk2 sell |
-| XAG (Silver) | Metal | Simple | Wk3/4 sell |
-| Copper | Metal | Simple | Wk4 sell |
-| Platinum | Metal | Simple | Wk2/3 sell |
-| Palladium | Metal | Mixed | Wk1 buy, Wk4 sell |
+The tool provides **objective data confluence**. The trader brings their own execution framework to the final entry decision.
