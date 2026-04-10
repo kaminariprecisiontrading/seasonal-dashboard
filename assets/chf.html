@@ -14,118 +14,113 @@
     <div class="back-link"><a href="../index.html">← All Assets</a></div>
     <h1>CHF / USD</h1>
     <p class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</p>
-    <div class="legend">
-      <span class="legend-item"><span class="legend-dot" style="background:#e040a0"></span>5-YR Seasonal</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#8b3a2a"></span>15-YR Seasonal</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2563eb"></span>40-YR Seasonal (1980–2019)</span>
-    </div>
   </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
 </div>
 
 <!-- COMBINED ACCORDION — first, most actionable -->
 <div class="section">
-  <div class="section-label">Combined Seasonal Bias — All Timeframes</div>
+  <div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes</div>
   <p class="section-desc">Click any month to expand week-by-week breakdown. Current month opens automatically.</p>
   <table class="acc-table">
     <thead>
       <tr>
-        <th style="width:32px"></th>
-        <th>Month</th>
+        <th style="width:120px">Month</th>
         <th>5-YR</th>
         <th>15-YR</th>
         <th id="acc-lt-header">40-YR</th>
-        <th>Combined</th>
-        <th>Conv.</th>
-        <th>Notes</th>
+        <th>Signal</th>
+        <th>Conviction</th>
+        <th>Trade Note</th>
       </tr>
     </thead>
-    <tbody id="accordion-body"></tbody>
+    <tbody id="acc-body"></tbody>
   </table>
 </div>
 
-<!-- AI ANALYSIS PANEL -->
-<div class="section ai-section">
-  <div class="section-label">AI Seasonal Analysis</div>
-  <p class="section-desc">Generate a written week-by-week bias report using all three timeframes.</p>
-  <button class="ai-btn" id="ai-btn" onclick="runAnalysis()">▶ Generate Analysis</button>
-  <div id="ai-loading" class="ai-loading" style="display:none">
-    <span class="ai-spinner"></span> Analysing CHF/USD seasonal data across 5-YR · 15-YR · 40-YR…
-  </div>
-  <div id="ai-output" class="ai-output" style="display:none"></div>
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
 </div>
 
 <div class="divider"></div>
 
 <!-- 5-YR TABLE -->
-<div class="section">
-  <div class="section-label" style="color:#e040a0">5-Year Seasonal Tendency</div>
-  <table class="tf-table">
-    <thead>
-      <tr><th>Month</th><th>Bias</th><th>Overview</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Notes</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Opens ~70 and drops sharply all month.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>No long bias. Full Jan waterfall.</td></tr>
-      <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Continuing decline. Approaching trough with 40-YR.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td>Late Feb possible stabilisation.</td></tr>
-      <tr><td>March</td><td><span class="bull-tag">BULL</span></td><td>Recovers with 40-YR and 15-YR from Mar trough.</td><td class="bear-cell">↓</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>Flip long Wk2 on trough confirmation.</td></tr>
-      <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising. Building toward May spike.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>All-month long. May is the peak.</td></tr>
-      <tr><td>May</td><td><span class="bull-tag">BULL</span></td><td>SPIKES TO ~100 mid-May — absolute annual peak. Flip short.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Wk1–2 long then FLIP SHORT on ~100 peak.</td></tr>
-      <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Collapses from May peak. Broad post-peak waterfall.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts from May flip all Jun.</td></tr>
-      <tr><td>July</td><td><span class="bear-tag">BEAR</span></td><td>Still depressed. Near multi-month lows.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td>Late Jul 5-YR begins turning toward Aug.</td></tr>
-      <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Recovery underway. Rising toward Sep spike.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>5-YR in recovery all Aug. Hold longs.</td></tr>
-      <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>Spikes to highs before 15-YR peaks. Early warning to flip.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>5-YR peaks before 15-YR mid-Sep. Use as flip signal.</td></tr>
-      <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Declining post-Sep. Following 15-YR rollover.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts. No relief.</td></tr>
-      <tr><td>November</td><td><span class="bear-tag">BEAR</span></td><td>Low but stabilising late Nov as 40-YR turns up.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>Late Nov base — prepare for Dec long.</td></tr>
-      <tr><td>December</td><td><span class="bull-tag">BULL</span></td><td>Recovering with 40-YR and 15-YR in year-end surge.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>All-month recovery. Hold longs into year close.</td></tr>
-    </tbody>
-  </table>
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Tendency</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Opens ~70 and drops sharply all month.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>No long bias. Full Jan waterfall.</td></tr>
+    <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Continuing decline. Approaching trough with 40-YR.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td><td>Late Feb possible stabilisation.</td></tr>
+    <tr><td>March</td><td><span class="bull-tag">BULL</span></td><td>Recovers with 40-YR and 15-YR from Mar trough.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>Flip long Wk2 on trough confirmation.</td></tr>
+    <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising. Building toward May spike.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>All-month long. May is the peak.</td></tr>
+    <tr><td>May</td><td><span class="bull-tag">BULL</span></td><td>SPIKES TO ~100 mid-May — absolute annual peak. Flip short.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Wk1–2 long then FLIP SHORT on ~100 peak.</td></tr>
+    <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Collapses from May peak. Broad post-peak waterfall.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Hold shorts from May flip all Jun.</td></tr>
+    <tr><td>July</td><td><span class="bear-tag">BEAR</span></td><td>Still depressed. Near multi-month lows.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>Late Jul 5-YR begins turning toward Aug.</td></tr>
+    <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Recovery underway. Rising toward Sep spike.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>5-YR in recovery all Aug. Hold longs.</td></tr>
+    <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>Spikes to highs before 15-YR peaks. Early warning to flip.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>5-YR peaks before 15-YR mid-Sep. Use as flip signal.</td></tr>
+    <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Declining post-Sep. Following 15-YR rollover.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Hold shorts. No relief.</td></tr>
+    <tr><td>November</td><td><span class="bear-tag">BEAR</span></td><td>Low but stabilising late Nov as 40-YR turns up.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td><td>Late Nov base — prepare for Dec long.</td></tr>
+    <tr><td>December</td><td><span class="bull-tag">BULL</span></td><td>Recovering with 40-YR and 15-YR in year-end surge.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>All-month recovery. Hold longs into year close.</td></tr>
+  </tbody>
+</table>
 </div>
 
 <!-- 15-YR TABLE -->
-<div class="section">
-  <div class="section-label" style="color:#8b3a2a">15-Year Seasonal Tendency</div>
-  <table class="tf-table">
-    <thead>
-      <tr><th>Month</th><th>Bias</th><th>Overview</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Notes</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>January</td><td><span class="chop-tag">CHOP</span></td><td>Low and choppy. Declining gradually.</td><td class="chop-cell">~</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Weak all month. No directional edge early Jan.</td></tr>
-      <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Grinding lower. Approaching trough with 40-YR.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td>Near lows. Watch for Mar turn.</td></tr>
-      <tr><td>March</td><td><span class="bull-tag">BULL</span></td><td>Bottoms with 40-YR mid-Mar. Recovery follows.</td><td class="bear-cell">↓</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>Flip long Wk2 with trough confirmation.</td></tr>
-      <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising. Building toward May peak.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>15-YR in uptrend all Apr.</td></tr>
-      <tr><td>May</td><td><span class="bull-tag">BULL</span></td><td>Peaks ~75 mid-May. Rolling over Wk3–4.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Peak Wk2 ~75. Confirms short entry with 5-YR peak.</td></tr>
-      <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Declining post-May. Following broad waterfall.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts. No Jun bounce on 15-YR.</td></tr>
-      <tr><td>July</td><td><span class="bear-tag">BEAR</span></td><td>Depressed. Near multi-month lows.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td>Late Jul beginning to base.</td></tr>
-      <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Bounce beginning. Recovery building toward Sep.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>15-YR recovering all Aug.</td></tr>
-      <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>PEAKS ~100 mid-Sep — highest conviction flip signal.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Peak ~100 Wk2–3. Flip short immediately.</td></tr>
-      <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Rolling over from Sep peak. Full waterfall.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts. No Oct bounce on 15-YR.</td></tr>
-      <tr><td>November</td><td><span class="chop-tag">CHOP</span></td><td>Stabilising. Beginning to turn up late Nov with 40-YR.</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>Late Nov turn — 15-YR joins 40-YR year-end rally.</td></tr>
-      <tr><td>December</td><td><span class="bull-tag">BULL</span></td><td>Surging to ~90. Strong year-end recovery with 40-YR.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>15-YR reaches ~90 year-end. High conviction long.</td></tr>
-    </tbody>
-  </table>
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Tendency</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>January</td><td><span class="chop-tag">CHOP</span></td><td>Low and choppy. Declining gradually.</td><td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Weak all month. No directional edge early Jan.</td></tr>
+    <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Grinding lower. Approaching trough with 40-YR.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td><td>Near lows. Watch for Mar turn.</td></tr>
+    <tr><td>March</td><td><span class="bull-tag">BULL</span></td><td>Bottoms with 40-YR mid-Mar. Recovery follows.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>Flip long Wk2 with trough confirmation.</td></tr>
+    <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising. Building toward May peak.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>15-YR in uptrend all Apr.</td></tr>
+    <tr><td>May</td><td><span class="bull-tag">BULL</span></td><td>Peaks ~75 mid-May. Rolling over Wk3–4.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Peak Wk2 ~75. Confirms short entry with 5-YR peak.</td></tr>
+    <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Declining post-May. Following broad waterfall.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Hold shorts. No Jun bounce on 15-YR.</td></tr>
+    <tr><td>July</td><td><span class="bear-tag">BEAR</span></td><td>Depressed. Near multi-month lows.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td><td>Late Jul beginning to base.</td></tr>
+    <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Bounce beginning. Recovery building toward Sep.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>15-YR recovering all Aug.</td></tr>
+    <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>PEAKS ~100 mid-Sep — highest conviction flip signal.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Peak ~100 Wk2–3. Flip short immediately.</td></tr>
+    <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Rolling over from Sep peak. Full waterfall.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Hold shorts. No Oct bounce on 15-YR.</td></tr>
+    <tr><td>November</td><td><span class="chop-tag">CHOP</span></td><td>Stabilising. Beginning to turn up late Nov with 40-YR.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>Late Nov turn — 15-YR joins 40-YR year-end rally.</td></tr>
+    <tr><td>December</td><td><span class="bull-tag">BULL</span></td><td>Surging to ~90. Strong year-end recovery with 40-YR.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>15-YR reaches ~90 year-end. High conviction long.</td></tr>
+  </tbody>
+</table>
 </div>
 
 <!-- 40-YR TABLE -->
-<div class="section">
-  <div class="section-label" style="color:#2563eb">40-Year Seasonal Tendency (1980–2019)</div>
-  <table class="tf-table">
-    <thead>
-      <tr><th>Month</th><th>Bias</th><th>Overview</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Notes</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Opens ~75 and declines. Full bear month.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Structural decline all Jan.</td></tr>
-      <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Continues lower toward ~20–25. Near annual lows late Feb.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Approaching absolute trough.</td></tr>
-      <tr><td>March</td><td><span class="flip">FLIP</span></td><td>ANNUAL TROUGH ~5–10 mid-Mar. Sharp reversal follows.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>40-YR hits absolute low mid-Mar. Flip long Wk2–3.</td></tr>
-      <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising from Mar trough. Recovery building.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>All-month long on 40-YR.</td></tr>
-      <tr><td>May</td><td><span class="bull-tag">BULL</span></td><td>Continuing higher. More moderate rise vs 5-YR spike.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="chop-cell">~</td><td>40-YR doesn't peak in May — stays elevated. Follow 5-YR for flip signal.</td></tr>
-      <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Declining. Post-May pullback.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>Hold shorts from May 5-YR flip signal.</td></tr>
-      <tr><td>July</td><td><span class="bear-tag">BEAR</span></td><td>Near lows ~15–20. Trough zone building.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td>40-YR bottoms Jul. Late Jul turn up begins.</td></tr>
-      <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Beginning to turn up. Recovery building toward Sep.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>40-YR in recovery all Aug.</td></tr>
-      <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>Rising strongly. 15-YR peaks ~100 mid-Sep on 40-YR momentum.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td>40-YR powers Sep rally. Flip short when 15-YR peaks ~100.</td></tr>
-      <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Post-Sep decline. Pulling back from Sep highs.</td><td class="bear-cell">↓</td><td class="bear-cell">↓</td><td class="chop-cell">~</td><td class="bear-cell">↓</td><td>Short bias. Mid-Oct minor stabilisation only.</td></tr>
-      <tr><td>November</td><td><span class="bull-tag">BULL</span></td><td>BEGINS MASSIVE YEAR-END RALLY. 40-YR turns up decisively.</td><td class="chop-cell">~</td><td class="chop-cell">~</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>Nov Wk3–4 is the entry for the Dec year-end surge.</td></tr>
-      <tr><td>December</td><td><span class="bull-tag">BULL</span></td><td>ABSOLUTE ANNUAL PEAK ~100 at Dec 31. Highest conviction long.</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td class="bull-cell">↑</td><td>40-YR rockets to 100 Dec 31. Maximum seasonal tailwind.</td></tr>
-    </tbody>
-  </table>
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-Year Seasonal Tendency (1980–2019)</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>January</td><td><span class="bear-tag">BEAR</span></td><td>Opens ~75 and declines. Full bear month.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Structural decline all Jan.</td></tr>
+    <tr><td>February</td><td><span class="bear-tag">BEAR</span></td><td>Continues lower toward ~20–25. Near annual lows late Feb.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Approaching absolute trough.</td></tr>
+    <tr><td>March</td><td><span class="chop-tag">FLIP</span></td><td>ANNUAL TROUGH ~5–10 mid-Mar. Sharp reversal follows.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>40-YR hits absolute low mid-Mar. Flip long Wk2–3.</td></tr>
+    <tr><td>April</td><td><span class="bull-tag">BULL</span></td><td>Rising from Mar trough. Recovery building.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>All-month long on 40-YR.</td></tr>
+    <tr><td>May</td><td><span class="bull-tag">BULL</span></td><td>Continuing higher. More moderate rise vs 5-YR spike.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td><td>40-YR doesn't peak in May — stays elevated. Follow 5-YR for flip signal.</td></tr>
+    <tr><td>June</td><td><span class="bear-tag">BEAR</span></td><td>Declining. Post-May pullback.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Hold shorts from May 5-YR flip signal.</td></tr>
+    <tr><td>July</td><td><span class="bear-tag">BEAR</span></td><td>Near lows ~15–20. Trough zone building.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>40-YR bottoms Jul. Late Jul turn up begins.</td></tr>
+    <tr><td>August</td><td><span class="bull-tag">BULL</span></td><td>Beginning to turn up. Recovery building toward Sep.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>40-YR in recovery all Aug.</td></tr>
+    <tr><td>September</td><td><span class="bull-tag">BULL</span></td><td>Rising strongly. 15-YR peaks ~100 mid-Sep on 40-YR momentum.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>40-YR powers Sep rally. Flip short when 15-YR peaks ~100.</td></tr>
+    <tr><td>October</td><td><span class="bear-tag">BEAR</span></td><td>Post-Sep decline. Pulling back from Sep highs.</td><td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td><td>Short bias. Mid-Oct minor stabilisation only.</td></tr>
+    <tr><td>November</td><td><span class="bull-tag">BULL</span></td><td>BEGINS MASSIVE YEAR-END RALLY. 40-YR turns up decisively.</td><td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>Nov Wk3–4 is the entry for the Dec year-end surge.</td></tr>
+    <tr><td>December</td><td><span class="bull-tag">BULL</span></td><td>ABSOLUTE ANNUAL PEAK ~100 at Dec 31. Highest conviction long.</td><td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td><td>40-YR rockets to 100 Dec 31. Maximum seasonal tailwind.</td></tr>
+  </tbody>
+</table>
 </div>
 
 <div class="footnote">
