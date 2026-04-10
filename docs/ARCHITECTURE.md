@@ -14,6 +14,10 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── usd.html             ← USD futures dashboard shell
 │   ├── jpy.html             ← JPY futures dashboard shell
 │   ├── gbp.html             ← GBP futures dashboard shell
+│   ├── cad.html             ← CAD futures dashboard shell
+│   ├── eur.html             ← EUR futures dashboard shell
+│   ├── chf.html             ← CHF futures dashboard shell
+│   ├── nzd.html             ← NZD futures dashboard shell
 │   ├── fx-audusd.html       ← AUDUSD forex dashboard shell
 │   ├── fx-usdjpy.html       ← USDJPY forex dashboard shell
 │   ├── fx-gbpusd.html       ← GBPUSD forex dashboard shell
@@ -28,6 +32,10 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── usd.js               ← USD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
 │   ├── jpy.js               ← JPY: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
 │   ├── gbp.js               ← GBP: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
+│   ├── cad.js               ← CAD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
+│   ├── eur.js               ← EUR: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
+│   ├── chf.js               ← CHF: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
+│   ├── nzd.js               ← NZD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
 │   ├── fx-audusd.js         ← AUDUSD forex: derived synthesis data
 │   ├── fx-usdjpy.js         ← USDJPY forex: derived synthesis data
 │   ├── fx-gbpusd.js         ← GBPUSD forex: derived synthesis data
@@ -150,6 +158,10 @@ Each section has `id` attributes on all subsections matching the nav link `href`
 - `status-planned` — greyed out (opacity 0.45), pointer-events none, shows "PLANNED" badge
 - Forex cards show `card-badge derived` pills for each component futures dataset
 
+**Status badge rule:** The badge inside `.card-signal` must always use `<span class="bull-tag">Live</span>` for all live assets. Do NOT hardcode signal labels (BEAR, BULL, CHOP) as they go stale immediately. Dynamic signal derivation is a planned feature (see ROADMAP.md — Phase 6: Dynamic Status Badges).
+
+**Available signal tag classes:** `.bull-tag` (green) · `.bear-tag` (red) · `.chop-tag` (amber) · `.neutral-tag` (grey, for PLANNED)
+
 ---
 
 ## Data Model
@@ -242,14 +254,32 @@ Every asset footnote must use this exact pattern:
 
 ---
 
+## Critical ID Requirements
+
+`accordion.js` and `api.js` are shared files that target specific hard-coded element IDs. Every asset HTML shell must have these exactly:
+
+| Element | Required ID / class | Used by |
+|---------|-------------------|---------|
+| Accordion tbody | `id="acc-body"` | `accordion.js` |
+| AI button | `id="run-btn"` + `class="run-btn"` | `api.js` |
+| AI output div | `id="ai-output"` | `api.js` |
+| LT column header | `id="acc-lt-header"` | `accordion.js` (auto-populated from `ASSET_CONFIG.ltLabel`) |
+
+**Common failure mode:** If a new asset page is copied from an older template (pre-v0.6), it may have `id="accordion-body"` and `id="ai-btn"` — both wrong. The accordion builds silently empty and the AI button does nothing. Always verify IDs when a page looks broken.
+
+---
+
 ## Common Errors and Fixes
 
 | Problem | Fix |
 |---------|-----|
-| Accordion doesn't build / page blank | Check browser console. Script load order must be: data → accordion → api |
-| Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` matches the HTML `id="acc-lt-header"` context |
+| Accordion table empty / not building | `accordion.js` targets `id="acc-body"` — check the `<tbody>` has exactly this ID (not `accordion-body` or anything else) |
+| AI button does nothing | `api.js` targets `id="run-btn"` — check the button has `id="run-btn"` and `class="run-btn"` (not `ai-btn`) |
+| AI button unstyled | `.ai-btn` is NOT defined in `dashboard.css`. Must use `class="run-btn"` |
+| Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` matches `ltSigKey` / `ltKey` keys used in `MONTHS[]` |
 | AI button cuts off mid-analysis | Raise `max_tokens` in `js/api.js` (currently 2500) |
 | Copyright not showing | Ensure `<span>` uses inline styles, not CSS class only |
 | Live Server works but GitHub Pages doesn't | Check relative paths — `../css/dashboard.css` requires assets in `assets/` subfolder |
 | AI button returns empty | Check API key active at console.anthropic.com |
 | Sticky nav doesn't highlight | Check section `id` attributes match nav link `href` values exactly |
+| Index card shows wrong signal (BEAR/BULL on live asset) | Hardcoded signal tags go stale — always use `<span class="bull-tag">Live</span>` until dynamic status is implemented |

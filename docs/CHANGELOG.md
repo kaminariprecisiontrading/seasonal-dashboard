@@ -2,6 +2,69 @@
 
 ---
 
+## v0.8 — April 2026
+**CAD, EUR, CHF Fixes + NZD Dashboard + Wk-Grid Pill Badges**
+
+### CAD / EUR / CHF — Bug Fixes
+
+Three critical ID mismatches were causing silent failures on all three dashboards:
+
+1. **Empty Combined Bias table** — `accordion.js` targets `id="acc-body"` but CAD/EUR/CHF had `id="accordion-body"`. Fixed by renaming the tbody IDs.
+2. **Broken AI button** — `api.js` targets `id="run-btn"` but files had `id="ai-btn"`. Class `.ai-btn` is also undefined in `dashboard.css`. Fixed by replacing the AI section with the AUD pattern: `id="run-btn"`, `class="run-btn"`, `id="ai-output"`.
+3. **Column count mismatch in accordion** — CAD/EUR/CHF had 8 `<th>` elements (separate chevron column) but `accordion.js` generates 7 `<td>` cells (chevron embedded in month cell). Fixed by removing the extra empty `<th>`.
+4. **Unstyled legend** — legend items had no colour dots and were missing the 7th item (Combined). Fixed by expanding to 7 items using CSS variable colours matching `dashboard.css` tokens.
+5. **Section label dot missing** — `.section-label span` requires an 8px dot element. Added where missing.
+
+Root cause: CAD/EUR/CHF were built from an older template predating the modular JS refactor in v0.6.
+
+### Wk-Grid Pill Badges (CAD, EUR, CHF, NZD)
+
+All TF-specific seasonal tables (5-YR, 15-YR, long-term) on CAD, EUR, CHF updated to use the same `.wk-grid` / `.wk-cell` / `.wk-bull` / `.wk-bear` / `.wk-chop` pill badge system as AUD, replacing plain unstyled `<td class="bear-cell">↓</td>` cells.
+
+Tables also rebuilt: `<div class="section"><table class="tf-table">` → `<div class="table-wrap"><table>` with 5-column headers (Period | Bias | Monthly Overview | Wk1–Wk4 | Notes), matching AUD's structure.
+
+### NZD/USD Futures Dashboard (new)
+
+New dashboard built from scratch from Moore Research Center chart image (23-Year seasonal 1997–2019).
+
+**Key NZD seasonal narrative:**
+- Jan: Spike-and-collapse from Dec highs — structural bear open
+- Mar: Annual trough flip — 23-YR troughs Wk1–2, then sharp reversal
+- Apr: All TFs rallying — highest conviction LONG window
+- May: Most critical flip month — 23-YR peaks ~85–90 early May, all TFs collapse by Wk2 (highest conviction short of the year)
+- Jun: Absolute trough zone — hold shorts from May flip
+- Jul: Counter-trend bounce (23-YR and 15-YR), 5-YR muted — cautious long available
+- Sep: Secondary peak → Wk3 flip short
+- Nov Wk4 → Dec: Year-end surge to ~95–100 on 23-YR
+
+Files created: `data/nzd.js` + `assets/nzd.html`
+
+### Index Page
+- NZD card: `status-planned` → `status-complete`, `href="#"` → `href="assets/nzd.html"`, timeframe badges updated to 5-YR / 15-YR / 23-YR
+- NZD card status corrected from hardcoded `BEAR` → `Live` (the BEAR label was incorrect; Apr Wk 2 NZD is bullish)
+
+### Status System Design Discussion
+
+Established design principles for a future dynamic status badge system on index cards (not yet implemented):
+
+**Two distinct dimensions:**
+- **Operational status** (PLANNED / LIVE / MAINTENANCE) — manual, managed via a central `data/status.js` config file. Only the developer knows when maintenance is in progress.
+- **Seasonal signal** (BULL / BEAR / CHOP) — derivable from each asset's existing `MONTHS[]` data: read `MONTHS[currentMonth].weeks[currentWeek].com`. Fully automatic once the index page loads asset data files.
+
+**Hybrid recommended approach:** Operational status in central config (manual); seasonal signal computed live from `MONTHS` data. `PLANNED` and `MAINTENANCE` override the signal. Index page currently loads no asset data files — this is the architectural bloat to solve when implementing.
+
+**Important:** Signal labels on index cards must NOT be hardcoded (e.g. `<span class="bear-tag">BEAR</span>`) as they go stale immediately. Use `Live` for all current assets until dynamic derivation is implemented.
+
+### Files Changed
+- `assets/cad.html` — ID fixes, legend fix, section label fix, all 3 TF tables rebuilt with wk-grid
+- `assets/eur.html` — same fixes, adapted for 22-YR long-term TF
+- `assets/chf.html` — same fixes, adapted for 40-YR long-term TF
+- `assets/nzd.html` — created (23-YR long-term TF)
+- `data/nzd.js` — created
+- `index.html` — NZD card live, status corrected to Live
+
+---
+
 ## v0.7 — April 2026
 **UI Improvements: Sticky Nav + Section Reorder**
 

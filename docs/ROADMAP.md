@@ -18,6 +18,10 @@
 - USD Index (ICE) — 5-YR · 15-YR · 35-YR
 - JPY/USD (CME) — 5-YR · 15-YR · 40-YR
 - GBP/USD (CME) — 5-YR · 15-YR · 40-YR
+- CAD/USD (CME) — 5-YR · 15-YR · 40-YR
+- EUR/USD (CME) — 5-YR · 15-YR · 22-YR (launched 1999)
+- CHF/USD (CME) — 5-YR · 15-YR · 40-YR
+- NZD/USD (CME) — 5-YR · 15-YR · 23-YR
 
 ### Forex Dashboards Live
 - AUDUSD — derived from AUD CME + USD ICE
@@ -37,10 +41,6 @@ Build these in order — each requires a Moore Research Center chart image:
 
 | Asset | Exchange | Why Next |
 |-------|---------|---------|
-| CAD/USD | CME | April playbook asset, enables USDCAD + AUDCAD + CADJPY forex |
-| NZD/USD | CME | April playbook asset, enables NZDUSD + AUDNZD + NZDJPY forex |
-| EUR/USD | CME | Major currency, enables EURUSD + EURGBP + EURJPY forex |
-| CHF/USD | CME | Enables USDCHF + AUDCHF + EURCHF forex |
 | MXN | CME | Long-hold trade (Apr → Dec), unique structure |
 | BRL | CME | Long-hold trade (Apr → mid-May) |
 | XAU (Gold) | CMX | Metals — Apr Wk2 sell, high trader interest |
@@ -48,6 +48,8 @@ Build these in order — each requires a Moore Research Center chart image:
 | Copper | CMX | Metals — Apr Wk4 sell |
 | Platinum | CMX | Metals |
 | Palladium | CMX | Metals — Apr Wk1 buy + Wk4 sell |
+
+CAD, NZD, EUR, CHF are complete (moved to ✅ Completed above).
 
 As each futures asset is completed, corresponding forex pairs unlock automatically.
 
@@ -116,6 +118,21 @@ And produces a single weekly bias verdict: what the confluence is saying, where 
 ---
 
 ## Quick Wins — Can Be Done Anytime
+
+### Dynamic Status Badges on Index Cards
+
+Currently all live asset cards show a hardcoded `<span class="bull-tag">Live</span>`. The enhancement: automatically show the current seasonal signal (BULL / BEAR / CHOP) derived from each asset's `MONTHS[]` data.
+
+**Design (two distinct layers):**
+
+- **Operational status** (PLANNED / LIVE / MAINTENANCE) — managed via a central `data/status.js` config. Manual update when an asset is under maintenance or being rebuilt. Always overrides the signal.
+- **Seasonal signal** (BULL / BEAR / CHOP) — computed at runtime: read `MONTHS[currentMonth].weeks[currentWeek].com` from each asset's data file and render the appropriate tag class.
+
+**Architectural constraint:** `index.html` currently loads no asset data files. To compute signals, either (a) load all `data/*.js` files on the index page (12+ script tags — verbose), or (b) consolidate current signal into `data/status.js` (manual but clean). Option (b) is recommended as a first step — one file to update at each month/week turn.
+
+**Tag classes available:** `.bull-tag` (green) · `.bear-tag` (red) · `.chop-tag` (amber)
+
+---
 
 ### Markdown Rendering in AI Output
 Replace `output.textContent = text` with a lightweight markdown parser (`marked.js` from cdnjs) and `output.innerHTML`. Headers and bold in Claude's response will render properly.

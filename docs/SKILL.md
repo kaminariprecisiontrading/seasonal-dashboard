@@ -3,7 +3,7 @@ name: seasonal-dashboard
 description: How to build a seasonal trading analysis dashboard from a Moore Research Center chart image. Covers chart analysis, dashboard generation, accordion table, Claude API button, and GitHub deployment. Use this skill whenever building or recreating an asset dashboard from scratch.
 version: 1.2.0
 updated: April 2026
-futures_complete: AUD/USD (34-YR), USD Index (35-YR), JPY/USD (40-YR), GBP/USD (40-YR)
+futures_complete: AUD/USD (34-YR), USD Index (35-YR), JPY/USD (40-YR), GBP/USD (40-YR), CAD/USD (40-YR), EUR/USD (22-YR), CHF/USD (40-YR), NZD/USD (23-YR)
 forex_complete: AUDUSD, USDJPY, GBPUSD
 ---
 
@@ -241,11 +241,27 @@ Forex pairs that can be built from current futures data:
 
 ---
 
+## Critical IDs — Do Not Get These Wrong
+
+Every asset HTML shell must have these element IDs exactly. Both `accordion.js` and `api.js` are shared and hard-code these targets:
+
+| Element | Required |
+|---------|---------|
+| Accordion `<tbody>` | `id="acc-body"` |
+| AI run button | `id="run-btn"` + `class="run-btn"` |
+| AI output div | `id="ai-output"` |
+
+If you copy from an old template (pre-v0.6), it may have `id="accordion-body"` and `id="ai-btn"` — both wrong. The accordion will build empty and the AI button will do nothing with no console error.
+
+---
+
 ## Common Errors and Fixes
 
 | Problem | Fix |
 |---------|-----|
-| Accordion doesn't build / page blank | Script load order must be: data → accordion → api. Check browser console. |
+| Accordion table empty (no rows) | `<tbody>` must have exactly `id="acc-body"` — not `accordion-body`, not anything else |
+| AI button does nothing | Button needs `id="run-btn"` and `class="run-btn"` (not `ai-btn`) |
+| AI button unstyled / looks plain | `.ai-btn` is undefined in `dashboard.css` — must use `class="run-btn"` |
 | Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` and `ltSigKey` / `ltKey` match the month data keys |
 | AI button loading message says wrong TF | Check `ASSET_CONFIG.ltLabel` |
 | Live Server works but GitHub Pages doesn't | Check relative paths — `../css/dashboard.css` requires `assets/` subfolder |
@@ -254,3 +270,4 @@ Forex pairs that can be built from current futures data:
 | Copyright not showing | Ensure `<span>` has inline styles — do not rely on CSS class alone |
 | Sticky nav not highlighting | Verify section `id` attributes match nav `href` values exactly |
 | Chart analysis peak timing wrong | Correct Claude explicitly before building dashboard |
+| Index card showing wrong signal label | Never hardcode BEAR/BULL on index cards — use `<span class="bull-tag">Live</span>` for all live assets |

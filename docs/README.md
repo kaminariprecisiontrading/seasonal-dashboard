@@ -2,7 +2,7 @@
 
 **Project:** Kaminari Precision Trading — Seasonal Confluence Engine  
 **Project Start:** April 2026  
-**Current Status:** v0.7 — AUD, USD, JPY, GBP futures complete · AUDUSD, GBPUSD, USDJPY forex complete · Sticky nav + section reorder live · GitHub Pages deployed  
+**Current Status:** v0.8 — AUD, USD, JPY, GBP, CAD, EUR, CHF, NZD futures complete · AUDUSD, GBPUSD, USDJPY forex complete · Sticky nav + section reorder live · GitHub Pages deployed  
 **Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode + Claude Code  
 **Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex)  
 **Repository:** Private GitHub repo — `seasonal-dashboard`  
@@ -47,6 +47,10 @@ A live Claude AI analysis layer is embedded inside each dashboard, callable via 
 | USD Index | `assets/usd.html` + `data/usd.js` | 5-YR, 15-YR, 35-YR | Double cycle: Feb/Mar peak→May trough→Jul bounce→Oct trough→Nov/Dec peak |
 | JPY/USD | `assets/jpy.html` + `data/jpy.js` | 5-YR, 15-YR, 40-YR | Mar bull, Jul–Aug peak, Sep highest conviction SHORT |
 | GBP/USD | `assets/gbp.html` + `data/gbp.js` | 5-YR, 15-YR, 40-YR | Feb trough→Mar–Apr unanimous peak ~100→May waterfall→Sep trough→Oct–Nov bull→Dec weak |
+| CAD/USD | `assets/cad.html` + `data/cad.js` | 5-YR, 15-YR, 40-YR | Jan spike-and-collapse, Apr Wk1 bull→Wk2 flip short, May–Jun waterfall |
+| EUR/USD | `assets/eur.html` + `data/eur.js` | 5-YR, 15-YR, 22-YR | EUR launched 1999 (22-YR only); strong Q1 bull, Apr Wk4 highest conviction LONG |
+| CHF/USD | `assets/chf.html` + `data/chf.js` | 5-YR, 15-YR, 40-YR | May ~100 peak; Dec year-end secondary peak on 40-YR; CHF all month choppy Apr |
+| NZD/USD | `assets/nzd.html` + `data/nzd.js` | 5-YR, 15-YR, 23-YR | Jan waterfall, May Wk2 highest conviction short, Nov Wk4→Dec year-end surge |
 
 ## Forex Seasonals — Live Assets
 
@@ -58,7 +62,7 @@ A live Claude AI analysis layer is embedded inside each dashboard, callable via 
 
 ## Futures Seasonals — Planned
 
-**Currencies:** CAD, NZD, EUR, CHF, MXN, BRL  
+**Currencies:** MXN, BRL  
 **Metals:** XAU, XAG, Copper, Platinum, Palladium  
 **Energy:** Crude Oil, Brent, Natural Gas, Heating Oil, Gasoline, Gas Oil  
 **Interest Rates:** T-Bond 30Y, T-Note 10Y/5Y/2Y, Eurodollar, Fed Funds, Aus T-Bonds/T-Bills, Long Gilt, Short Sterling, Euro-Bund, Euro-Bobl, Euro-Yen  
