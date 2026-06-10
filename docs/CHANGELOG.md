@@ -2,6 +2,228 @@
 
 ---
 
+## v1.1 — June 2026
+**UI Layer Complete — Tab System, Sub-Tabs, Dynamic TF Tables, Topbar**
+
+### Summary
+
+Post-completion UI pass adding a full shared interaction layer via a new `js/ui.js` file, dynamic TF table generation for the 70 generator-built pages, and secondary timeframe sub-tabs within the Seasonals panel.
+
+---
+
+### New: `js/ui.js` — Shared UI Enhancements
+
+New shared JavaScript file loaded on all 97 asset pages. Handles four independent features:
+
+**1. Topbar — Date Chip + Prev/Next Navigation**
+- Injects a live date chip (`WK N · MON YYYY`) into the topbar, computed from `new Date()`
+- Injects `← Prev` / `Next →` navigation buttons for within-category asset browsing
+- Derives prev/next IDs from a full `ASSET_CATEGORIES` map (97 assets across 11 categories)
+- Auto-populates empty topbar titles on hand-built pages from `<h1>` text
+
+**2. Legend Collapsible Toggle**
+- Adds a Hide / Legend toggle button above the legend strip
+- Collapses/expands the legend with a single click — saves screen space on mobile
+
+**3. Primary Tab Layout — Seasonals · Chart · Analysis**
+- Scans the page for `.combined-wrap`, `.ai-panel`, and `#tv-chart-section`
+- Tags all discovered content elements with `data-kpt-panel` attributes (`seasonals` / `analysis` / `chart`)
+- Builds a `kpt-tabs` bar and injects it before the first panel element
+- Active tab shown/hidden via `.kpt-panel-active` CSS class; only tabs with content are rendered
+- Falls back gracefully on pages without a given panel (e.g. FX pages without a TradingView section)
+
+**4. Secondary TF Sub-Tabs — Combined · 5-YR · 15-YR · Long-term**
+- Builds a secondary `kpt-tabs kpt-subtabs` bar within the Seasonals panel
+- Four sub-tabs: Combined (green) · 5-YR (pink) · 15-YR (brown) · Long-term (asset-specific accent)
+- Long-term label and accent pulled from `ASSET_CONFIG.ltLabel` / `ASSET_CONFIG.ltAccent`
+- Sub-tab bar only visible when Seasonals is the active primary tab
+- Selected sub-tab persisted to `localStorage` as `kpt-sub-{assetId}` — restored on next visit
+- Hand-built pages (no `data-tf-section` attributes): tagged by DOM position at runtime
+- **Insertion fix (v1.1):** `subBar` inserted immediately after `tabBar` (not before the "Combined Bias" section-label) — corrects an inverted visual hierarchy where secondary tabs appeared above primary tabs
+
+---
+
+### New: `buildTFTables()` in `accordion.js`
+
+Dynamically generates the three individual timeframe tables (5-YR, 15-YR, Long-term) for the 70 generator-built futures pages that had no static TF tables.
+
+- **Skip guard:** `if (document.querySelectorAll('.table-wrap').length > 0) return;` — silently skips the 27 hand-built pages that already have static tables; safe to load on all 97 pages
+- **Columns:** Period | Yearly Bias | Monthly Overview | Weekly Detail | Notes — matches the hand-built AUD/GBP/etc. format exactly
+- **Weekly Detail:** Rendered as a `wk-grid` of 4 `wk-cell` pill badges with directional arrows (↑ ↓ ± ⇄), matching the hand-built pages' visual system
+- **`data-tf-section` tags:** `'five'` / `'fifteen'` / `'lt'` set on both the section-label and table-wrap — used by the secondary sub-tab system in `ui.js`
+- **Insertion:** Injected before `#tv-chart-section` (fallback: `.footnote`), after the AI panel and divider
+- **Keys:** Uses two keys per TF — `mSigKey` (month-level, e.g. `sig5`) for Yearly Bias and `wSigKey` (week-level, e.g. `s5`) for Weekly Detail
+
+---
+
+### New: `buildQuickJump()` in `accordion.js`
+
+Month Quick-Jump bar — a row of 12 month buttons (Jan–Dec) inserted above the combined accordion. Clicking any month opens and scrolls to that accordion row. Current month button highlighted via `.qj-current`. Inserted via `wrap.parentElement.insertBefore(nav, wrap)` so it sits immediately above `.combined-wrap`.
+
+---
+
+### CSS Additions (`css/dashboard.css`)
+
+- `.kpt-tabs` — primary tab bar; `border-bottom: 1px solid var(--border)`; active button: `border-bottom: 2px solid var(--accent-combined)` with `color` override
+- `.kpt-subtabs` — secondary sub-tab bar; `margin-top: -28px` (cancels `kpt-tabs` bottom-margin so both rows sit flush); `padding-left: 8px` (subtle indent signals hierarchy)
+- `.kpt-subtab-btn.active` — fallback active colour; overridden inline per TF accent by JS
+- `.kpt-panel-active` — `display: block` for active panels; `[data-kpt-panel]:not(.kpt-panel-active)` hides others
+- `.kpt-divider-hidden` — hides `.divider` elements when tabs are active (tabs replace visual separation)
+- `.table-wrap tr.current-month` — subtle green tint + bold month name on the current calendar month row in TF tables
+- `.month-quickjump` / `.qj-btn` / `.qj-current` — quick-jump bar pill buttons
+
+---
+
+### `.gitignore` Created
+
+`seasonal-dashboard/.gitignore` added covering OS files (`.DS_Store`, `Thumbs.db`, `desktop.ini`), editor files (`.vscode/`, `*.swp`), and `node_modules/`.
+
+---
+
+### GitHub Version Control Initialised
+
+Git repository initialised in `seasonal-dashboard/` and connected to a private GitHub remote. Deployment workflow via GitHub Desktop: stage → commit with a descriptive summary → Push origin. To revert: right-click any commit in GitHub Desktop history → Revert Changes in Commit.
+
+---
+
+### Files Changed
+- `js/ui.js` — created (new shared UI file, 404 lines)
+- `js/accordion.js` — `buildTFTables()` and `buildQuickJump()` added (file extended from 118 to 289 lines)
+- `css/dashboard.css` — tab system styles, subtabs, quickjump, current-month highlight added
+- `.gitignore` — created
+
+---
+
+## v1.0 — June 2026
+**ALL ASSETS COMPLETE — 97 Dashboards Live · Dynamic Index Signals**
+
+### Summary
+
+Version 1.0 marks the completion of the full planned asset roster. Every futures asset across all categories has been built and verified — grains, indices, rates, softs, metals, energy, currencies, fiber, and meats. The index landing page now displays live runtime signals (BULL / BEAR / CHOP / FLIP) on every asset card, derived at page-load from each asset's seasonal data.
+
+**Total assets live: 97** (70 futures + 27 derived FX pairs)
+
+---
+
+### Futures Completions (this milestone)
+
+**Grains — 8 assets (CBOT)**
+- Soybeans, Soy Meal, Soy Oil, Wheat (CBOT), Wheat (KCBT), Wheat (MGE), Corn, Oats
+- All 40-YR datasets (1980–2019). Generator handles all 8 via `gen_futures_v2.js`.
+
+**Indices — 13 assets**
+- S&P 500 (CME 39-YR), S&P eMini (CME 23-YR), Russell 2000 (CME 17-YR), DJIA eMini (CBOT 23-YR), Nasdaq 100 (CME 24-YR), S&P 400 Mid-Cap (CME 29-YR), GSCI (CME 29-YR)
+- Nikkei 225 (SIMEX 34-YR), FTSE 100 (LIFFE 37-YR), SPI 200 (SFE 21-YR), DAX (EUREX 30-YR), CAC 40 (MATIF 32-YR), Hang Seng (HKFE 34-YR)
+
+**US Interest Rates — 5 assets (CBOT/CME)**
+- T-Bonds 40-YR, T-Notes 10Y 39-YR, T-Notes 5Y 33-YR, T-Notes 2Y 30-YR, Eurodollar 39-YR
+
+**SFE/LIFFE Rates — 5 assets**
+- Aus T-Bonds 10Y (SFE 36-YR), Aus T-Bonds 3Y (SFE 33-YR), Aus T-Bills 3M (SFE 40-YR), Long Gilt (LIFFE 38-YR), Short Sterling (LIFFE 38-YR)
+
+**EUREX/SGX/CBOT Rates — 4 assets**
+- Euro-Bund (EUREX 30-YR), Euro-Bobl (EUREX 23-YR), Euro-Yen (SGX 31-YR), Fed Funds (CBOT 32-YR)
+- Notable: Fed Funds is an inverted instrument (shorter TFs highest in January). Euro-Yen has the most dramatic single-month move in the entire rates complex (Feb 31-YR: 1→100).
+
+**ICE Softs — 4 assets**
+- Coffee "C" (ICE 40-YR), Sugar #11 (ICE 40-YR), Cocoa (ICE 40-YR), Orange Juice (ICE 40-YR)
+- Notable: Sugar #11 has dual troughs (Jun + Sep). Cocoa has extreme TF divergence (May 40-YR at 0 while 5-YR/15-YR at 100). OJ has a 5-YR annual HIGH on January 1.
+
+**LCE/CBOT Final Batch — 4 assets (completes all planned)**
+- Rough Rice (CBOT 34-YR) — annual high at Dec/Jan cursor (~99); crashes immediately Jan 3; best long at April near-0 trough
+- London Sugar (LCE 30-YR) — June 30-YR annual high (~95-100) is the most dramatic single-month LCE surge; August annual trough near 0
+- London Cocoa (LCE 34-YR) — 34-YR visits near 0 FOUR times per year (Jan, Apr, Aug, Oct); most volatile soft in the dashboard
+- Robusta Coffee (LCE 29-YR) — year ENDS at trough (29-YR ~31, 15-YR ~27, 5-YR ~17); February 29-YR annual high (~95-100); October annual low near 0
+
+**Previously completed (MXN, BRL, Metals, Energy, Cotton, Lumber, Meats)**
+- MXN (CME), BRL (CME)
+- XAU, XAG, Copper, Platinum, Palladium
+- Crude Oil (NYMEX), Brent Crude (ICE), Natural Gas (NYMEX), Heating Oil/ULSD (NYMEX), Gasoline/RBOB (NYMEX), Gas Oil (ICE)
+- Cotton (NYBOT), Lumber (CME), Live Cattle (CME), Feeder Cattle (CME), Lean Hogs (CME), Class III Milk (CME)
+
+---
+
+### Quick Win — Dynamic Index Signals
+
+**Problem:** All status-complete cards in `index.html` showed a hardcoded `<span class="bull-tag">Live</span>` that never changed regardless of the current seasonal signal.
+
+**Solution implemented:**
+
+1. **`gen_signals_manifest.js`** — new build script that reads all 97 data files (via `vm.createContext`), extracts the `com` string for every month × week, and writes `data/signals_manifest.js`.
+
+2. **`data/signals_manifest.js`** — auto-generated file containing `SIGNALS_MANIFEST = { "aud": [...48 strings...], ... }`. Each asset gets a 48-element flat array (12 months × 4 weeks, Jan-Wk1 first). Regenerate by running `node gen_signals_manifest.js`.
+
+3. **`index.html` injection** — two script blocks added before `</body>`:
+   - `<script src="data/signals_manifest.js">` loads the manifest
+   - Inline IIFE computes `currentMonth` and `currentWeek` from `new Date()`, then replaces `.card-signal` innerHTML on every `.asset-card.status-complete` card
+
+4. **`comToTag()` mapper** — maps `com` string prefix to CSS class and label:
+   - `LONG...` → `.bull-tag` / BULL
+   - `SHORT...` → `.bear-tag` / BEAR
+   - `FLIP...` → `.chop-tag` / FLIP
+   - `AVOID...` → `.neutral-tag` / AVOID
+   - `HOLD / NEUTRAL / MIXED / WATCH / CHOP...` → `.chop-tag` / CHOP
+
+The 97 hardcoded `Live` spans remain in source HTML as a static fallback (for users with JavaScript disabled). All users with JS enabled see the runtime-derived signal.
+
+---
+
+### Generator State
+
+- `gen_futures_v2.js`: GRAINS (8) + INDICES (13) + RATES (14) + SOFTS (8) = **43/43** HTML files generated
+- `gen_signals_manifest.js`: **97/97** assets processed → `data/signals_manifest.js`
+
+### Files Changed
+- `data/roughrice.js` · `assets/roughrice.html` — created
+- `data/londonsugar.js` · `assets/londonsugar.html` — created
+- `data/londoncocoa.js` · `assets/londoncocoa.html` — created
+- `data/robusta.js` · `assets/robusta.html` — created
+- `gen_futures_v2.js` — SOFTS array expanded to 8 entries
+- `gen_signals_manifest.js` — created (new build tool)
+- `data/signals_manifest.js` — created (auto-generated, 97 assets)
+- `index.html` — 4 planned cards converted to status-complete; signals IIFE injected
+
+---
+
+## v0.9 — June 2026
+**Full Forex Pairs Roster Complete — 27 Derived FX Dashboards Live**
+
+### Summary
+
+Completed the build-out of every planned derived FX pair, taking the Forex Seasonals section from 3 live pairs (AUDUSD, USDJPY, GBPUSD, shipped in v0.6.1) to **27 live pairs** spanning majors, minors, and crosses. Work was tracked across an 8-task list (#1 reading source futures data, #2–#6 building pairs in batches, #7 wiring the index/docs, #8 verification).
+
+**Majors (3 new):** EURUSD, USDCAD, USDCHF — completing the 6-pair major roster alongside the existing AUDUSD/GBPUSD/USDJPY.
+
+**Minors (9 new):** AUDCAD, AUDCHF, AUDNZD, EURAUD (batch 1) · EURCHF, EURGBP, GBPAUD, GBPCHF, NZDUSD (batch 2).
+
+**Crosses (12 new):** AUDJPY, CADCHF, CADJPY, EURCAD, EURJPY, EURNZD (batch 1) · GBPCAD, GBPJPY, GBPNZD, NZDCAD, NZDCHF, NZDJPY (batch 2).
+
+### Cross Pairs Batch 2 (this session) — GBPCAD, GBPJPY, GBPNZD, NZDCAD, NZDCHF, NZDJPY
+
+Each pair derived as base-currency-direct + quote-currency-inverted from the existing CME futures component datasets (no new chart images required). Narrative variety achieved through fresh thematic devices layered onto the established framework:
+
+- **GBPCAD / GBPJPY:** Sustained Oct–Nov double-alignment LONG runs; GBPJPY also features a rare "dual trough" (Feb) and "dual flip" (Apr) month.
+- **GBPNZD:** Two genuine defining collisions — May (both currencies' single highest-conviction trade of the year colliding head-on) and a remarkable December where both currencies' year-end defining moves coincidentally point the *same* direction, producing the calendar's cleanest alignment close.
+- **NZDCAD:** Framed around "two similarly-cyclical commodity-bloc currencies" — an unusually high frequency of near-mirrored "coin-flip" months, a rare September dual-flip collision, and a clean single-component LONG dominance in December.
+- **NZDCHF:** The most dramatic cross in the roster — THREE genuine maximum-conviction collisions (May, September, December), with December standing as the calendar's ultimate coin-flip: both currencies' single highest-conviction trades of their entire years firing in the same month, in directly opposing directions.
+- **NZDJPY:** Clean resolving double-alignment windows in April and August (as JPY declines from its own historic flips), a defining September collision (NZD's secondary flip vs JPY's highest-conviction short of its year), and a December year-end stand-off between two strong, oppositely-aimed seasonal moves.
+
+Two internal-consistency errors caught and corrected mid-build (self-contradictory signal/note pairings in GBPNZD's May section and NZDCAD's September Wk1) by re-deriving the correct combined-signal logic and rewriting the affected week blocks.
+
+### Index & Docs Sync (Task #7)
+
+- `index.html`: All 27 FX pair cards converted from `status-planned` (greyed, `href="#"`, "Planned" tag) to `status-complete` (`href="assets/fx-*.html"`, "Live" tag, accent colour matched to the base currency's brand colour — e.g. GBP pairs use `#22c55e`, NZD pairs use `#10b981`).
+- `docs/README.md`: Forex Seasonals "Live Assets" table expanded from 3 to 27 entries (split into Majors / Minors / Crosses sub-tables with file paths, components, and key-signal summaries); the now-empty "Forex Seasonals — Planned" section replaced with a status summary.
+- `docs/CHANGELOG.md`: This entry.
+
+### Files Changed
+- `index.html` — 27 FX cards updated (status, href, badges, signal tag, accent colour)
+- `docs/README.md` — Forex Seasonals tables rebuilt and expanded; Planned section removed
+- `docs/CHANGELOG.md` — v0.9 entry added
+- `data/fx-{gbpcad,gbpjpy,gbpnzd,nzdcad,nzdchf,nzdjpy}.js` + `assets/fx-{...}.html` — created (batch 2, this session)
+
+---
+
 ## v0.8 — April 2026
 **CAD, EUR, CHF Fixes + NZD Dashboard + Wk-Grid Pill Badges**
 

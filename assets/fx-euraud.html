@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EURAUD — Forex Seasonal</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+<style>
+  .derived-note {
+    background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.18);
+    border-radius: 6px; padding: 14px 18px; margin-bottom: 24px;
+    font-size: 11px; color: var(--dim); line-height: 1.7;
+  }
+  .derived-note strong { color: var(--accent-combined); }
+  .component-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .component-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; }
+  .component-card .label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .component-card .asset { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #fff; }
+  .component-card .detail { font-size: 10px; color: var(--muted); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">EUR / AUD</span>
+</div>
+
+
+
+<div class="header">
+  <h1>EUR / AUD</h1>
+  <div class="sub">Forex Seasonal &nbsp;·&nbsp; Derived from EUR CME + AUD CME Futures &nbsp;·&nbsp; Kaminari Precision Trading</div>
+</div>
+
+<div class="derived-note">
+  <strong>Methodology:</strong> This Forex seasonal is synthesised from two underlying CME futures seasonal datasets. The EURAUD directional bias is derived by combining the EUR/USD CME futures seasonal tendency (direct — EUR is the base currency) with the inverse of the AUD/USD CME futures seasonal tendency (AUD is the quote currency). Conviction is highest when both components are aligned — January–February stand out as a clean double-alignment short window, while November emerges as the single standout month of the year (EUR's highest-conviction trade of its own year, virtually uncontested), and May pits both currencies' most decisive moves of their own years directly against one another.
+</div>
+
+<div class="component-grid">
+  <div class="component-card">
+    <div class="label">Long Component (Direct)</div>
+    <div class="asset">EUR / USD</div>
+    <div class="detail">CME Futures · 22-Year · 15-YR · 5-YR</div>
+  </div>
+  <div class="component-card">
+    <div class="label">Short Component (Inverted)</div>
+    <div class="asset">AUD / USD</div>
+    <div class="detail">CME Futures · 34-Year · 15-YR · 5-YR</div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Combined</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Combined</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> Long-Term Combined</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Net Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy / Mixed</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Net Seasonal Bias — All Timeframes</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">Long-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · EUR/USD CME (22-YR) · AUD/USD CME (34-YR) · 15-YR · 5-YR overlays.<br>
+  Forex seasonal derived by Kaminari Precision Trading from underlying CME futures component data. Historical patterns only. Not financial advice.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<script src="../data/fx-euraud.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

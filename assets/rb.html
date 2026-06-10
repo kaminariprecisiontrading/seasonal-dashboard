@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RBOB Gasoline (NYM) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">RBOB Gasoline (NYM)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>RBOB Gasoline (NYM)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 35-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 35-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">35-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs near annual lows (5–15 range). The post-holiday gasoline demand slump. 35-YR, 15-YR, and 5-YR all depressed. Not a high-conviction month in either direction, but the seasonal bias is clearly downward from here — wait for the explosive March rally.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>NEAR ANNUAL LOWS — worst time to be long gasoline</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Early February brief dip (35-YR near 0), then all TFs begin recovering. This is the final seasonal base before the explosive spring driving-season rally. Key month to confirm position: if price lifts with TFs, the March/April setup is loading.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BASING — early-Feb dip then recovery begins; setup for March</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE explosive month for gasoline. 15-YR surges from ~10 to ~70 — a +60 point single-month move, the largest single-month seasonal move for any TF across all energy assets. 35-YR from ~5 to ~50–55. 5-YR also surges. Buy the dip early March and hold into April peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — EXPLOSIVE spring driving-season rally; 15-YR +60 pts in one month</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE most precise seasonal peak in all energy. ALL THREE TFs (35-YR, 15-YR, 5-YR) reach 100 simultaneously in April — the cleanest, most extreme peak convergence in the energy complex. This is both the year's highest-conviction LONG (early April) AND its highest-conviction SHORT entry (peak of April). Do NOT miss this reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>THREE-WAY 100 PEAK → FLIP SHORT; cleanest peak in energy complex</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Orderly post-peak decline. All three TFs falling from April 100. 15-YR from ~80 to ~65. 35-YR from ~80 to ~65. 5-YR from ~70 to ~55–60. The driving season is fully priced in April; May is the seasonal unwinding. Short bias throughout.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — orderly decline from April peak; driving-season pricing complete</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from the April peak. 35-YR falls from ~65 to ~60. 15-YR from ~65 to ~60. 5-YR from ~55 to ~45–50. The summer gasoline bear continues as the driving season premium fades. July 5-YR annual low approaching.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — continued summer bear; all TFs declining toward July low</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR hits its annual low (~25) in July — extreme short-term weakness. 35-YR and 15-YR however are broadly flat around 60–65, providing a supportive backdrop. The end-of-summer dynamic creates mixed TF signals. Not a high-conviction period.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>MIXED — 5-YR annual low (~25); 35-YR and 15-YR broadly flat</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>End of driving season creates a broadly flat/choppy seasonal for all TFs. 35-YR and 15-YR hover around 60–65. 5-YR recovering slightly from July lows. No strong directional bias — this is the 'death zone' before the October-December seasonal bear.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — end-of-driving-season sideways; 35-YR and 15-YR flat</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Autumn bear acceleration. All three TFs declining from their summer flat zone toward October's extreme lows. 35-YR from ~60 toward ~30–35. 15-YR from ~60 toward ~40. This is the entry for the extended autumn-winter short position.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — autumn bear acceleration begins; all TFs declining</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>THE most extreme autumn sell in gasoline. 35-YR CRASHES to near 0 in October — the year's annual low for the long-term seasonal. 15-YR falls to ~30–35. 5-YR also near ~35–40. This is the most extreme single-month seasonal collapse in the energy complex after April's three-way peak. Maximum short conviction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — 35-YR CRASHES to near 0; highest-conviction short of H2</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued extended bear. 35-YR at very low levels (15–25). 15-YR at ~25–30. 5-YR at ~25–30. All three declining or flat near annual lows. The winter driving season is no match for the post-driving-season structural seasonal weakness.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended autumn bear; 35-YR at very low levels</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>35-YR continues its late-year decline, touching near 0 in mid-December before a slight recovery. This is one of the most bearish year-end seasonals in the complex. Year ends with 35-YR=29.5, 15-YR=41.59, 5-YR=37.04 — all well below mid-range. Winter is the weakest structural period for gasoline.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — 35-YR near 0 mid-Dec; year ends at 29.5/41.59/37.04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs near annual lows (5–15 range). The post-holiday gasoline demand slump. 35-YR, 15-YR, and 5-YR all depressed. Not a high-conviction month in either direction, but the seasonal bias is clearly downward from here — wait for the explosive March rally.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>NEAR ANNUAL LOWS — worst time to be long gasoline</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Early February brief dip (35-YR near 0), then all TFs begin recovering. This is the final seasonal base before the explosive spring driving-season rally. Key month to confirm position: if price lifts with TFs, the March/April setup is loading.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BASING — early-Feb dip then recovery begins; setup for March</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE explosive month for gasoline. 15-YR surges from ~10 to ~70 — a +60 point single-month move, the largest single-month seasonal move for any TF across all energy assets. 35-YR from ~5 to ~50–55. 5-YR also surges. Buy the dip early March and hold into April peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — EXPLOSIVE spring driving-season rally; 15-YR +60 pts in one month</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE most precise seasonal peak in all energy. ALL THREE TFs (35-YR, 15-YR, 5-YR) reach 100 simultaneously in April — the cleanest, most extreme peak convergence in the energy complex. This is both the year's highest-conviction LONG (early April) AND its highest-conviction SHORT entry (peak of April). Do NOT miss this reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>THREE-WAY 100 PEAK → FLIP SHORT; cleanest peak in energy complex</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Orderly post-peak decline. All three TFs falling from April 100. 15-YR from ~80 to ~65. 35-YR from ~80 to ~65. 5-YR from ~70 to ~55–60. The driving season is fully priced in April; May is the seasonal unwinding. Short bias throughout.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — orderly decline from April peak; driving-season pricing complete</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from the April peak. 35-YR falls from ~65 to ~60. 15-YR from ~65 to ~60. 5-YR from ~55 to ~45–50. The summer gasoline bear continues as the driving season premium fades. July 5-YR annual low approaching.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — continued summer bear; all TFs declining toward July low</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR hits its annual low (~25) in July — extreme short-term weakness. 35-YR and 15-YR however are broadly flat around 60–65, providing a supportive backdrop. The end-of-summer dynamic creates mixed TF signals. Not a high-conviction period.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>MIXED — 5-YR annual low (~25); 35-YR and 15-YR broadly flat</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>End of driving season creates a broadly flat/choppy seasonal for all TFs. 35-YR and 15-YR hover around 60–65. 5-YR recovering slightly from July lows. No strong directional bias — this is the 'death zone' before the October-December seasonal bear.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — end-of-driving-season sideways; 35-YR and 15-YR flat</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Autumn bear acceleration. All three TFs declining from their summer flat zone toward October's extreme lows. 35-YR from ~60 toward ~30–35. 15-YR from ~60 toward ~40. This is the entry for the extended autumn-winter short position.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — autumn bear acceleration begins; all TFs declining</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>THE most extreme autumn sell in gasoline. 35-YR CRASHES to near 0 in October — the year's annual low for the long-term seasonal. 15-YR falls to ~30–35. 5-YR also near ~35–40. This is the most extreme single-month seasonal collapse in the energy complex after April's three-way peak. Maximum short conviction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — 35-YR CRASHES to near 0; highest-conviction short of H2</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued extended bear. 35-YR at very low levels (15–25). 15-YR at ~25–30. 5-YR at ~25–30. All three declining or flat near annual lows. The winter driving season is no match for the post-driving-season structural seasonal weakness.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended autumn bear; 35-YR at very low levels</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>35-YR continues its late-year decline, touching near 0 in mid-December before a slight recovery. This is one of the most bearish year-end seasonals in the complex. Year ends with 35-YR=29.5, 15-YR=41.59, 5-YR=37.04 — all well below mid-range. Winter is the weakest structural period for gasoline.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — 35-YR near 0 mid-Dec; year ends at 29.5/41.59/37.04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 35-YR (1985–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs near annual lows (5–15 range). The post-holiday gasoline demand slump. 35-YR, 15-YR, and 5-YR all depressed. Not a high-conviction month in either direction, but the seasonal bias is clearly downward from here — wait for the explosive March rally.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>NEAR ANNUAL LOWS — worst time to be long gasoline</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Early February brief dip (35-YR near 0), then all TFs begin recovering. This is the final seasonal base before the explosive spring driving-season rally. Key month to confirm position: if price lifts with TFs, the March/April setup is loading.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BASING — early-Feb dip then recovery begins; setup for March</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE explosive month for gasoline. 15-YR surges from ~10 to ~70 — a +60 point single-month move, the largest single-month seasonal move for any TF across all energy assets. 35-YR from ~5 to ~50–55. 5-YR also surges. Buy the dip early March and hold into April peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — EXPLOSIVE spring driving-season rally; 15-YR +60 pts in one month</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE most precise seasonal peak in all energy. ALL THREE TFs (35-YR, 15-YR, 5-YR) reach 100 simultaneously in April — the cleanest, most extreme peak convergence in the energy complex. This is both the year's highest-conviction LONG (early April) AND its highest-conviction SHORT entry (peak of April). Do NOT miss this reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>THREE-WAY 100 PEAK → FLIP SHORT; cleanest peak in energy complex</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Orderly post-peak decline. All three TFs falling from April 100. 15-YR from ~80 to ~65. 35-YR from ~80 to ~65. 5-YR from ~70 to ~55–60. The driving season is fully priced in April; May is the seasonal unwinding. Short bias throughout.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — orderly decline from April peak; driving-season pricing complete</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from the April peak. 35-YR falls from ~65 to ~60. 15-YR from ~65 to ~60. 5-YR from ~55 to ~45–50. The summer gasoline bear continues as the driving season premium fades. July 5-YR annual low approaching.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — continued summer bear; all TFs declining toward July low</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR hits its annual low (~25) in July — extreme short-term weakness. 35-YR and 15-YR however are broadly flat around 60–65, providing a supportive backdrop. The end-of-summer dynamic creates mixed TF signals. Not a high-conviction period.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>MIXED — 5-YR annual low (~25); 35-YR and 15-YR broadly flat</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>End of driving season creates a broadly flat/choppy seasonal for all TFs. 35-YR and 15-YR hover around 60–65. 5-YR recovering slightly from July lows. No strong directional bias — this is the 'death zone' before the October-December seasonal bear.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — end-of-driving-season sideways; 35-YR and 15-YR flat</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Autumn bear acceleration. All three TFs declining from their summer flat zone toward October's extreme lows. 35-YR from ~60 toward ~30–35. 15-YR from ~60 toward ~40. This is the entry for the extended autumn-winter short position.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — autumn bear acceleration begins; all TFs declining</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>THE most extreme autumn sell in gasoline. 35-YR CRASHES to near 0 in October — the year's annual low for the long-term seasonal. 15-YR falls to ~30–35. 5-YR also near ~35–40. This is the most extreme single-month seasonal collapse in the energy complex after April's three-way peak. Maximum short conviction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — 35-YR CRASHES to near 0; highest-conviction short of H2</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued extended bear. 35-YR at very low levels (15–25). 15-YR at ~25–30. 5-YR at ~25–30. All three declining or flat near annual lows. The winter driving season is no match for the post-driving-season structural seasonal weakness.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended autumn bear; 35-YR at very low levels</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>35-YR continues its late-year decline, touching near 0 in mid-December before a slight recovery. This is one of the most bearish year-end seasonals in the complex. Year ends with 35-YR=29.5, 15-YR=41.59, 5-YR=37.04 — all well below mid-range. Winter is the weakest structural period for gasoline.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — 35-YR near 0 mid-Dec; year ends at 29.5/41.59/37.04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · RBOB Gasoline NYMEX (RB) · 35-Year Seasonal (1985–2019) · 15-Year · 5-Year overlays. Reference: 35-YR=29.5, 15-YR=41.59, 5-YR=37.04 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/rb.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

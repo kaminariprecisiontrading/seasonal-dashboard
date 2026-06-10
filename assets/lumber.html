@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumber (CME) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Lumber (CME)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Lumber (CME)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>OPPOSITE of most commodities: 40-YR begins the year at ~90 and 15-YR near ~90 — these are the ANNUAL HIGHS. 5-YR starts lower (~50) and continues declining. The January sell-from-highs setup is the most unique feature of lumber's seasonal — a year-start short, not a long.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — 40-YR and 15-YR start at annual highs; immediate SELL</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR declining from ~90 to ~70. 15-YR declining from ~90 to ~70. 5-YR weak around ~40–45. Post-winter-peak bear in full force. The housing/construction demand has peaked going into winter and lumber begins pricing in the shoulder-season slowdown.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-peak bear continues; 40-YR declining from 90</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR continuing to decline to ~60. 15-YR stabilizing around ~60–65. 5-YR beginning to base around ~45. Mixed signals as the spring construction season approaches but the long-term bear continues. Not a clean entry month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — 40-YR continuing down; 5-YR and 15-YR stabilizing</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR falls to ~50. 15-YR at ~55. 5-YR begins recovering to ~55. Divergence month — 5-YR picking up spring construction momentum while 40-YR long-term bear continues. No clean combined signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — 5-YR begins spring surge; 40-YR and 15-YR flat/declining</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>5-YR recovering strongly toward ~65–70. 15-YR recovering to ~60. 40-YR flat/recovering around ~50–55. Spring construction season drives near-term TFs. Begin scaling into longs — June 5-YR spike to 100 approaching.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 5-YR spring surge; 15-YR recovering; 40-YR flat</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining June move: 5-YR spikes to NEAR 100 — the annual high for the near-term timeframe. 15-YR at ~80. 40-YR recovering to ~65–70. Spring/summer construction season at full throttle. EXIT LONGS by mid-June before the September trough sets up. The peak is sharp and fast.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK — 5-YR SPIKES TO 100; exit June; September trough incoming</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All TFs declining post-peak. 5-YR falling from ~100 to ~55. 40-YR falling from ~65 to ~45. 15-YR falling from ~80 to ~55. Summer construction ends and the seasonal bear accelerates. September will mark the annual low for all three TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-June-peak bear; all TFs declining toward September trough</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued decline toward September's near-0 trough. 5-YR to ~30. 15-YR to ~30. 40-YR to ~25–30. The construction season is fully priced, lumber inventory builds, and mills cut prices. Short bias throughout with trough expected in September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — all TFs declining toward September annual low</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs reach near 0 simultaneously in September — the annual low for all timeframes. 5-YR to ~5–10. 15-YR to ~5–10. 40-YR to ~5–10. This is the year's floor. Do not add new shorts here; the October-December recovery will be explosive from these levels.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>ANNUAL TROUGH — all three TFs near 0; year's lowest point</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong October recovery from September near-0 trough. All three TFs surge from ~5 to ~35–45. 5-YR to ~40. 15-YR to ~45. 40-YR to ~40. The pre-winter construction demand and mill restocking drives the seasonal rebound. Hold longs through December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — explosive recovery from September trough; all TFs surging</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery continuation. 5-YR approaches ~60–65. 15-YR approaches ~55–60. 40-YR approaches ~55. December targets: 40-YR=61.47, 15-YR=64.03, 5-YR=73.42. Hold longs built in October.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — recovery continues; all TFs heading to year-end reference</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end recovery completes and extends toward annual highs. 40-YR=61.47 (reference). 15-YR=64.03 (reference). 5-YR=73.42 — approaching the annual high zone that was the January start point. December buyers hold into the January SELL setup. The lumber cycle completes: Jan high → Sep trough → Dec high again.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → YEAR-END HIGH; 5-YR=73.42 near annual high; hold into Jan top</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>OPPOSITE of most commodities: 40-YR begins the year at ~90 and 15-YR near ~90 — these are the ANNUAL HIGHS. 5-YR starts lower (~50) and continues declining. The January sell-from-highs setup is the most unique feature of lumber's seasonal — a year-start short, not a long.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — 40-YR and 15-YR start at annual highs; immediate SELL</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR declining from ~90 to ~70. 15-YR declining from ~90 to ~70. 5-YR weak around ~40–45. Post-winter-peak bear in full force. The housing/construction demand has peaked going into winter and lumber begins pricing in the shoulder-season slowdown.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-peak bear continues; 40-YR declining from 90</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR continuing to decline to ~60. 15-YR stabilizing around ~60–65. 5-YR beginning to base around ~45. Mixed signals as the spring construction season approaches but the long-term bear continues. Not a clean entry month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 40-YR continuing down; 5-YR and 15-YR stabilizing</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR falls to ~50. 15-YR at ~55. 5-YR begins recovering to ~55. Divergence month — 5-YR picking up spring construction momentum while 40-YR long-term bear continues. No clean combined signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — 5-YR begins spring surge; 40-YR and 15-YR flat/declining</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>5-YR recovering strongly toward ~65–70. 15-YR recovering to ~60. 40-YR flat/recovering around ~50–55. Spring construction season drives near-term TFs. Begin scaling into longs — June 5-YR spike to 100 approaching.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 5-YR spring surge; 15-YR recovering; 40-YR flat</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining June move: 5-YR spikes to NEAR 100 — the annual high for the near-term timeframe. 15-YR at ~80. 40-YR recovering to ~65–70. Spring/summer construction season at full throttle. EXIT LONGS by mid-June before the September trough sets up. The peak is sharp and fast.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK — 5-YR SPIKES TO 100; exit June; September trough incoming</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All TFs declining post-peak. 5-YR falling from ~100 to ~55. 40-YR falling from ~65 to ~45. 15-YR falling from ~80 to ~55. Summer construction ends and the seasonal bear accelerates. September will mark the annual low for all three TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-June-peak bear; all TFs declining toward September trough</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued decline toward September's near-0 trough. 5-YR to ~30. 15-YR to ~30. 40-YR to ~25–30. The construction season is fully priced, lumber inventory builds, and mills cut prices. Short bias throughout with trough expected in September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — all TFs declining toward September annual low</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs reach near 0 simultaneously in September — the annual low for all timeframes. 5-YR to ~5–10. 15-YR to ~5–10. 40-YR to ~5–10. This is the year's floor. Do not add new shorts here; the October-December recovery will be explosive from these levels.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>ANNUAL TROUGH — all three TFs near 0; year's lowest point</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong October recovery from September near-0 trough. All three TFs surge from ~5 to ~35–45. 5-YR to ~40. 15-YR to ~45. 40-YR to ~40. The pre-winter construction demand and mill restocking drives the seasonal rebound. Hold longs through December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — explosive recovery from September trough; all TFs surging</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery continuation. 5-YR approaches ~60–65. 15-YR approaches ~55–60. 40-YR approaches ~55. December targets: 40-YR=61.47, 15-YR=64.03, 5-YR=73.42. Hold longs built in October.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — recovery continues; all TFs heading to year-end reference</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end recovery completes and extends toward annual highs. 40-YR=61.47 (reference). 15-YR=64.03 (reference). 5-YR=73.42 — approaching the annual high zone that was the January start point. December buyers hold into the January SELL setup. The lumber cycle completes: Jan high → Sep trough → Dec high again.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → YEAR-END HIGH; 5-YR=73.42 near annual high; hold into Jan top</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>OPPOSITE of most commodities: 40-YR begins the year at ~90 and 15-YR near ~90 — these are the ANNUAL HIGHS. 5-YR starts lower (~50) and continues declining. The January sell-from-highs setup is the most unique feature of lumber's seasonal — a year-start short, not a long.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — 40-YR and 15-YR start at annual highs; immediate SELL</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR declining from ~90 to ~70. 15-YR declining from ~90 to ~70. 5-YR weak around ~40–45. Post-winter-peak bear in full force. The housing/construction demand has peaked going into winter and lumber begins pricing in the shoulder-season slowdown.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-peak bear continues; 40-YR declining from 90</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR continuing to decline to ~60. 15-YR stabilizing around ~60–65. 5-YR beginning to base around ~45. Mixed signals as the spring construction season approaches but the long-term bear continues. Not a clean entry month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR continuing down; 5-YR and 15-YR stabilizing</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR falls to ~50. 15-YR at ~55. 5-YR begins recovering to ~55. Divergence month — 5-YR picking up spring construction momentum while 40-YR long-term bear continues. No clean combined signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 5-YR begins spring surge; 40-YR and 15-YR flat/declining</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR recovering strongly toward ~65–70. 15-YR recovering to ~60. 40-YR flat/recovering around ~50–55. Spring construction season drives near-term TFs. Begin scaling into longs — June 5-YR spike to 100 approaching.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 5-YR spring surge; 15-YR recovering; 40-YR flat</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining June move: 5-YR spikes to NEAR 100 — the annual high for the near-term timeframe. 15-YR at ~80. 40-YR recovering to ~65–70. Spring/summer construction season at full throttle. EXIT LONGS by mid-June before the September trough sets up. The peak is sharp and fast.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK — 5-YR SPIKES TO 100; exit June; September trough incoming</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All TFs declining post-peak. 5-YR falling from ~100 to ~55. 40-YR falling from ~65 to ~45. 15-YR falling from ~80 to ~55. Summer construction ends and the seasonal bear accelerates. September will mark the annual low for all three TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-June-peak bear; all TFs declining toward September trough</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued decline toward September's near-0 trough. 5-YR to ~30. 15-YR to ~30. 40-YR to ~25–30. The construction season is fully priced, lumber inventory builds, and mills cut prices. Short bias throughout with trough expected in September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — all TFs declining toward September annual low</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs reach near 0 simultaneously in September — the annual low for all timeframes. 5-YR to ~5–10. 15-YR to ~5–10. 40-YR to ~5–10. This is the year's floor. Do not add new shorts here; the October-December recovery will be explosive from these levels.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>ANNUAL TROUGH — all three TFs near 0; year's lowest point</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong October recovery from September near-0 trough. All three TFs surge from ~5 to ~35–45. 5-YR to ~40. 15-YR to ~45. 40-YR to ~40. The pre-winter construction demand and mill restocking drives the seasonal rebound. Hold longs through December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — explosive recovery from September trough; all TFs surging</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery continuation. 5-YR approaches ~60–65. 15-YR approaches ~55–60. 40-YR approaches ~55. December targets: 40-YR=61.47, 15-YR=64.03, 5-YR=73.42. Hold longs built in October.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — recovery continues; all TFs heading to year-end reference</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end recovery completes and extends toward annual highs. 40-YR=61.47 (reference). 15-YR=64.03 (reference). 5-YR=73.42 — approaching the annual high zone that was the January start point. December buyers hold into the January SELL setup. The lumber cycle completes: Jan high → Sep trough → Dec high again.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → YEAR-END HIGH; 5-YR=73.42 near annual high; hold into Jan top</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Lumber CME · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays. Reference: 40-YR=61.47, 15-YR=64.03, 5-YR=73.42 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/lumber.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold (XAU) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Gold (XAU)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Gold (XAU)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs rise from their year-end lows into January — the classic gold new-year seasonal bid, led by the 40-YR surging from near 0.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR OPENS STRONG</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR peaks early in the month and enters a long multi-month decline. 15-YR continues higher while 5-YR gets volatile — the first major divergence of the year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK / MIXED — CAUTION</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR continues its major multi-month decline toward near-zero readings. 5-YR is extremely volatile (huge swings, 40–75 range). 15-YR chops. No clean directional edge.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR IN FREEFALL</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR is near the bottom of its multi-month drawdown (approaching near zero). 5-YR erratic. 15-YR ranging. No confirmed direction — the definition of a seasonal dead zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR NEAR ANNUAL LOWS</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs now pointing lower as gold approaches the classic summer trough. 40-YR at its absolute lowest readings of the year. 15-YR has also turned down. 5-YR accelerating lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — HEADING FOR THE SUMMER LOW</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The classic gold summer low — 40-YR at its absolute nadir for the year, 5-YR also crashing toward near zero. The trough forms in late June / early July and sets up the year's best long trade.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — SUMMER TROUGH FORMING</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>THE YEAR'S DEFINING TRADE — 5-YR crashes to its absolute annual low in Wk1–2, then REVERSES explosively. 40-YR confirms the turn. 15-YR leads higher. The multi-month bull run to the year-end highs launches from here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — THE SUMMER-LOW REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>PEAK SEASONAL ALIGNMENT — all three TFs in a powerful, synchronized uptrend. 5-YR rockets to 85–90. 15-YR surges. 40-YR accelerates. This is the single highest-conviction long window in gold's entire seasonal year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR'S STRONGEST WINDOW</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Continued strong uptrend — 5-YR and 15-YR approach their October peaks, 40-YR keeps climbing. The rally begins to show signs of maturity late in the month as 5-YR tops out.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — APPROACHING PEAK</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR peaks and corrects sharply (from ~90 toward ~45–50). 40-YR also pulls back from its high. 15-YR holds relatively well, creating a notable divergence — the long-term seasonal is stickier here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>MIXED — 5-YR CORRECTION</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs in a sideways basing pattern — digesting the October correction and coiling for the December year-end surge. No clean directional edge but the long bias is building beneath the surface.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CONSOLIDATION — BEFORE YEAR-END SURGE</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>ALL THREE TFs rocket to their annual reference highs simultaneously — 40-YR to 73.69, 15-YR to 100, 5-YR to 71.61. The single sharpest and most synchronized year-end seasonal in gold's 40-year record. The only month that rivals July/August for outright conviction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END SURGE TO SEASONAL HIGHS</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs rise from their year-end lows into January — the classic gold new-year seasonal bid, led by the 40-YR surging from near 0.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR OPENS STRONG</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR peaks early in the month and enters a long multi-month decline. 15-YR continues higher while 5-YR gets volatile — the first major divergence of the year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>PEAK / MIXED — CAUTION</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR continues its major multi-month decline toward near-zero readings. 5-YR is extremely volatile (huge swings, 40–75 range). 15-YR chops. No clean directional edge.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 40-YR IN FREEFALL</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR is near the bottom of its multi-month drawdown (approaching near zero). 5-YR erratic. 15-YR ranging. No confirmed direction — the definition of a seasonal dead zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 40-YR NEAR ANNUAL LOWS</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs now pointing lower as gold approaches the classic summer trough. 40-YR at its absolute lowest readings of the year. 15-YR has also turned down. 5-YR accelerating lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — HEADING FOR THE SUMMER LOW</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The classic gold summer low — 40-YR at its absolute nadir for the year, 5-YR also crashing toward near zero. The trough forms in late June / early July and sets up the year's best long trade.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — SUMMER TROUGH FORMING</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE YEAR'S DEFINING TRADE — 5-YR crashes to its absolute annual low in Wk1–2, then REVERSES explosively. 40-YR confirms the turn. 15-YR leads higher. The multi-month bull run to the year-end highs launches from here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — THE SUMMER-LOW REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>PEAK SEASONAL ALIGNMENT — all three TFs in a powerful, synchronized uptrend. 5-YR rockets to 85–90. 15-YR surges. 40-YR accelerates. This is the single highest-conviction long window in gold's entire seasonal year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR'S STRONGEST WINDOW</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Continued strong uptrend — 5-YR and 15-YR approach their October peaks, 40-YR keeps climbing. The rally begins to show signs of maturity late in the month as 5-YR tops out.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — APPROACHING PEAK</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR peaks and corrects sharply (from ~90 toward ~45–50). 40-YR also pulls back from its high. 15-YR holds relatively well, creating a notable divergence — the long-term seasonal is stickier here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>MIXED — 5-YR CORRECTION</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs in a sideways basing pattern — digesting the October correction and coiling for the December year-end surge. No clean directional edge but the long bias is building beneath the surface.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CONSOLIDATION — BEFORE YEAR-END SURGE</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>ALL THREE TFs rocket to their annual reference highs simultaneously — 40-YR to 73.69, 15-YR to 100, 5-YR to 71.61. The single sharpest and most synchronized year-end seasonal in gold's 40-year record. The only month that rivals July/August for outright conviction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END SURGE TO SEASONAL HIGHS</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs rise from their year-end lows into January — the classic gold new-year seasonal bid, led by the 40-YR surging from near 0.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR OPENS STRONG</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR peaks early in the month and enters a long multi-month decline. 15-YR continues higher while 5-YR gets volatile — the first major divergence of the year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK / MIXED — CAUTION</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR continues its major multi-month decline toward near-zero readings. 5-YR is extremely volatile (huge swings, 40–75 range). 15-YR chops. No clean directional edge.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR IN FREEFALL</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR is near the bottom of its multi-month drawdown (approaching near zero). 5-YR erratic. 15-YR ranging. No confirmed direction — the definition of a seasonal dead zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR NEAR ANNUAL LOWS</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs now pointing lower as gold approaches the classic summer trough. 40-YR at its absolute lowest readings of the year. 15-YR has also turned down. 5-YR accelerating lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — HEADING FOR THE SUMMER LOW</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The classic gold summer low — 40-YR at its absolute nadir for the year, 5-YR also crashing toward near zero. The trough forms in late June / early July and sets up the year's best long trade.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — SUMMER TROUGH FORMING</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE YEAR'S DEFINING TRADE — 5-YR crashes to its absolute annual low in Wk1–2, then REVERSES explosively. 40-YR confirms the turn. 15-YR leads higher. The multi-month bull run to the year-end highs launches from here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — THE SUMMER-LOW REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>PEAK SEASONAL ALIGNMENT — all three TFs in a powerful, synchronized uptrend. 5-YR rockets to 85–90. 15-YR surges. 40-YR accelerates. This is the single highest-conviction long window in gold's entire seasonal year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR'S STRONGEST WINDOW</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Continued strong uptrend — 5-YR and 15-YR approach their October peaks, 40-YR keeps climbing. The rally begins to show signs of maturity late in the month as 5-YR tops out.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — APPROACHING PEAK</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR peaks and corrects sharply (from ~90 toward ~45–50). 40-YR also pulls back from its high. 15-YR holds relatively well, creating a notable divergence — the long-term seasonal is stickier here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>MIXED — 5-YR CORRECTION</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs in a sideways basing pattern — digesting the October correction and coiling for the December year-end surge. No clean directional edge but the long bias is building beneath the surface.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CONSOLIDATION — BEFORE YEAR-END SURGE</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>ALL THREE TFs rocket to their annual reference highs simultaneously — 40-YR to 73.69, 15-YR to 100, 5-YR to 71.61. The single sharpest and most synchronized year-end seasonal in gold's 40-year record. The only month that rivals July/August for outright conviction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END SURGE TO SEASONAL HIGHS</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Gold CMX Futures · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/xau.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

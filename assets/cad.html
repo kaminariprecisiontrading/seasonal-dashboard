@@ -8,6 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">CAD / USD</span>
+</div>
+
+
 
 <div class="header">
   <div class="header-inner">
@@ -123,14 +129,26 @@
 </table>
 </div>
 
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
 <div class="footnote">
   Seasonal data source: Moore Research Center © 2020 · Canadian Dollar (CAD/USD) CME · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
   This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
   <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
 </div>
 
-<script src="../data/cad.js"></script>
-<script src="../js/accordion.js"></script>
-<script src="../js/api.js"></script>
+<script src="../data/cad.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>

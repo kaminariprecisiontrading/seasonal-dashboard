@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MXN / USD — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">MXN / USD</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>MXN / USD</h1>
+  <div class="sub">Seasonal Tendency Analysis &nbsp;·&nbsp; 5-YR · 15-YR · 26-YR &nbsp;·&nbsp; Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 26-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">26-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ 5-YR TABLE ═══ -->
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td><td><span class="chop-tag">CHOP → BULL</span></td>
+      <td>Choppy base-building from the mid-60s; drifts higher through the month, joining the broader turn late.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Early-stage long bias building — confirmation comes by Wk4.</td>
+    </tr>
+    <tr>
+      <td>February</td><td><span class="bull-tag">BULL</span></td>
+      <td>Climbs from the low-60s toward 75 — a steady, sustained uptrend all month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Hold longs — building toward the year's strongest rally window.</td>
+    </tr>
+    <tr>
+      <td>March</td><td><span class="bull-tag">BULL — PEAK</span></td>
+      <td>Explosive rally — hits the absolute yearly peak near 95–100 by Wk2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑↑</div><div class="wk-cell wk-bull">Wk2 ↑ Peak</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Yearly peak made here — first TF to top. Begin watching for the flip.</td>
+    </tr>
+    <tr>
+      <td>April</td><td><span class="bear-tag">FLIP — ROLLING TOP</span></td>
+      <td>Stalls near its March highs then turns down decisively — first TF to flip short, leading the reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-bear">Wk4 ↓↓</div></div></td>
+      <td>Defining flip — 5-YR leads the rollover. Exit longs, flip short.</td>
+    </tr>
+    <tr>
+      <td>May</td><td><span class="bear-tag">BEAR</span></td>
+      <td>Full waterfall continuation — sheds ~15–20 points toward the June trough.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>Hold shorts — clean continuation of the April flip.</td>
+    </tr>
+    <tr>
+      <td>June</td><td><span class="bear-tag">BEAR → TURN</span></td>
+      <td>Probes the mid-year trough near 33–38 then stages a sharp V-shaped rebound off the low.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓ Trough</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Cover shorts at the trough — turn confirms by Wk4.</td>
+    </tr>
+    <tr>
+      <td>July</td><td><span class="bull-tag">BULL (counter-trend)</span></td>
+      <td>Strong rally off the June low pushes into the mid-70s before flattening late in the month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>Counter-trend long — take profits as momentum fades late month.</td>
+    </tr>
+    <tr>
+      <td>August</td><td><span class="bear-tag">FLIP — SHARP REVERSAL</span></td>
+      <td>Already declining as 15-YR makes its secondary peak — leads the next leg sharply lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>5-YR leads 15-YR's collapse lower — stay short.</td>
+    </tr>
+    <tr>
+      <td>September</td><td><span class="chop-tag">CHOP</span></td>
+      <td>Choppy basing near 35–48; a modest bounce attempt mid-month fails to gain traction.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>No clean edge — stand aside or trade the range cautiously.</td>
+    </tr>
+    <tr>
+      <td>October</td><td><span class="bear-tag">WEAK BOUNCE → FAIL</span></td>
+      <td>Pushes higher off the September base early, but the bounce stalls and fails outright by Wk4.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓↓</div></div></td>
+      <td>Fade the bounce — Wk4 failure opens the door to November's collapse.</td>
+    </tr>
+    <tr>
+      <td>November</td><td><span class="bear-tag">BEAR — HIGHEST CONVICTION</span></td>
+      <td>The sharpest, deepest decline of the year — collapses toward single digits across the board.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓↓</div><div class="wk-cell wk-bear">Wk2 ↓↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-chop">Wk4 ~ Low</div></div></td>
+      <td>Highest-conviction short window of the year — hold through the capitulation low.</td>
+    </tr>
+    <tr>
+      <td>December</td><td><span class="chop-tag">CHOP / BASE</span></td>
+      <td>Choppy, uneven bottoming process; drifts modestly higher to close the year near 19.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Directionless — cover remaining shorts into the new year's open.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══ 15-YR TABLE ═══ -->
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td><td><span class="bull-tag">BULL</span></td>
+      <td>Steady climb from the mid-40s toward the low-60s — already trending higher at the open.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Leads the early-year turn — first TF to confirm the long.</td>
+    </tr>
+    <tr>
+      <td>February</td><td><span class="bull-tag">BULL</span></td>
+      <td>Continuation higher into the low-60s, tracking with 5-YR and 26-YR.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Sustained alignment — hold longs into March.</td>
+    </tr>
+    <tr>
+      <td>March</td><td><span class="bull-tag">BULL</span></td>
+      <td>Strong rally pushes into the high-70s/80s, converging with the other timeframes.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Full alignment with 5-YR and 26-YR — high conviction long.</td>
+    </tr>
+    <tr>
+      <td>April</td><td><span class="chop-tag">FLIP — ROLLOVER</span></td>
+      <td>Still rising early in the month, then rolls over mid-month as the broad rally tops out.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑ Peak</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>Confirms the rolling top — the second TF to flip, mid-month.</td>
+    </tr>
+    <tr>
+      <td>May</td><td><span class="bear-tag">BEAR</span></td>
+      <td>Sharp decline toward the mid-year trough near 38 — full alignment with 5-YR and 26-YR lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>Hold shorts — broad waterfall confirmed across all TFs.</td>
+    </tr>
+    <tr>
+      <td>June</td><td><span class="bear-tag">BEAR → TURN</span></td>
+      <td>Declines to the mid-year low near 38, then turns up sharply alongside the other timeframes.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓ Trough</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Cover shorts at the trough; the rebound here is the sharpest of the three TFs.</td>
+    </tr>
+    <tr>
+      <td>July</td><td><span class="bull-tag">BULL — LEADING RALLY</span></td>
+      <td>Strongest counter-trend bounce of the three TFs — leads the charge toward its own secondary peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑↑</div><div class="wk-cell wk-bull">Wk2 ↑↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>The standout long trade of the year — 15-YR leads decisively.</td>
+    </tr>
+    <tr>
+      <td>August</td><td><span class="bear-tag">SECONDARY PEAK → FLIP</span></td>
+      <td>SECONDARY YEARLY PEAK ~88–90 in Wk1 — even as 5-YR is already falling — then collapses violently toward the low-20s. The single sharpest reversal of MXN's year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑ Peak</div><div class="wk-cell wk-bear">Wk2 ↓↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>Defining divergence top — secondary peak collides with 5-YR's existing decline. Flip short hard.</td>
+    </tr>
+    <tr>
+      <td>September</td><td><span class="chop-tag">CHOP</span></td>
+      <td>Slips toward the mid-30s/40s and consolidates — directionless after the August collapse.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Range-bound — wait for October's clearer signal.</td>
+    </tr>
+    <tr>
+      <td>October</td><td><span class="bear-tag">WEAK BOUNCE → FAIL</span></td>
+      <td>Attempts a recovery early in the month but stalls and rolls back over by Wk4.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓↓</div></div></td>
+      <td>Fade the failed bounce — confirms the November setup.</td>
+    </tr>
+    <tr>
+      <td>November</td><td><span class="bear-tag">BEAR — ANNUAL LOW</span></td>
+      <td>Collapses toward the annual low alongside 5-YR — among the steepest declines on the calendar.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓↓</div><div class="wk-cell wk-bear">Wk2 ↓↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-chop">Wk4 ~ Low</div></div></td>
+      <td>Hold the short into the capitulation low alongside 5-YR.</td>
+    </tr>
+    <tr>
+      <td>December</td><td><span class="chop-tag">CHOP → RECOVERY</span></td>
+      <td>Uneven recovery off the November floor; closes the year near 15.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Modest base-building — cover remaining shorts.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══ 26-YR TABLE ═══ -->
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 26-Year Seasonal Outlook (1994–2019)</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td><td><span class="chop-tag">CHOP</span></td>
+      <td>Opens near 50–65, choppy, with a brief dip toward 50 mid-month before turning up late.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Lags the other TFs early — confirmation comes late in the month.</td>
+    </tr>
+    <tr>
+      <td>February</td><td><span class="bull-tag">BULL</span></td>
+      <td>Joins the broad rally, climbing from the 60s toward the 70s.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Now aligned with 5-YR and 15-YR — broad confluence.</td>
+    </tr>
+    <tr>
+      <td>March</td><td><span class="bull-tag">BULL</span></td>
+      <td>Continues climbing into the 80s–90s, converging with the shorter TFs near their peaks.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Approaching its own absolute peak — building toward April's top.</td>
+    </tr>
+    <tr>
+      <td>April</td><td><span class="bull-tag">BULL — ABSOLUTE PEAK</span></td>
+      <td>ABSOLUTE YEARLY PEAK ~100 reached mid-month — the last TF to top, confirming the rolling-top reversal already underway on 5-YR and 15-YR.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑ Peak</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓↓</div></div></td>
+      <td>The long-term confirms the top right as the shorter TFs are already falling — definitive flip signal.</td>
+    </tr>
+    <tr>
+      <td>May</td><td><span class="bear-tag">BEAR</span></td>
+      <td>Declines toward the mid-year trough near 33–38, alongside 5-YR and 15-YR.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓↓</div><div class="wk-cell wk-bear">Wk2 ↓↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>Confirms the broad waterfall — full three-TF alignment lower.</td>
+    </tr>
+    <tr>
+      <td>June</td><td><span class="bear-tag">BEAR → TURN</span></td>
+      <td>Bottoms in the high-30s alongside the other timeframes, then turns up with the broad rebound.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~ Trough</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Bottoms in step with 5-YR and 15-YR — confirms the mid-year low.</td>
+    </tr>
+    <tr>
+      <td>July</td><td><span class="bull-tag">BULL — RECOVERY</span></td>
+      <td>Counter-trend recovery toward the high-70s/80s, tracking the broader bounce.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>Solid counter-trend long — fades alongside the others late month.</td>
+    </tr>
+    <tr>
+      <td>August</td><td><span class="bear-tag">BEAR — ROLLS OVER</span></td>
+      <td>Rolls over with 15-YR's secondary-peak collapse, declining from the high-70s toward the 40s.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓↓</div><div class="wk-cell wk-bear">Wk3 ↓↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>Confirms 15-YR's reversal one week behind — broad alignment lower resumes.</td>
+    </tr>
+    <tr>
+      <td>September</td><td><span class="bear-tag">BEAR — YEARLY LOW</span></td>
+      <td>Slips to its own yearly low near 28 — the weakest reading of any TF this month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓ Low</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>Marks its own low here — tentative turn begins late month.</td>
+    </tr>
+    <tr>
+      <td>October</td><td><span class="chop-tag">CHOP — FAILS TO CONFIRM</span></td>
+      <td>Fails to confirm the 5-YR/15-YR bounce — stays capped near 30–37 all month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>The divergence here is the tell — the bounce on shorter TFs isn't trustworthy.</td>
+    </tr>
+    <tr>
+      <td>November</td><td><span class="bear-tag">BEAR — SINGLE DIGITS</span></td>
+      <td>Declines into the single digits alongside the other timeframes — among the year's deepest readings.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓↓</div><div class="wk-cell wk-bear">Wk2 ↓↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~ Low</div></div></td>
+      <td>Confirms the annual capitulation low alongside 5-YR and 15-YR.</td>
+    </tr>
+    <tr>
+      <td>December</td><td><span class="chop-tag">CHOP — SPIKE & FADE</span></td>
+      <td>Stages a sharp but brief spike toward 28 early in the month, then fades to close the year near 8–9 — the lowest reading of any TF at year-end.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑ Spike</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>Don't chase the early-month spike — it fades into a weak close.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Mexican Peso (MXN/USD) CME Futures · 26-Year Seasonal (1994–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/mxn.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

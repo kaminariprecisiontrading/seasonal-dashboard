@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Cattle (CME) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Live Cattle (CME)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Live Cattle (CME)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR rises from ~55 to ~75. 15-YR surging strongly upward from ~45 to ~75. 5-YR more muted around ~40–50. Q1 cattle demand premium begins building. The January bull sets up the March-April VERTICAL CRASH — hold longs from Jan through late March then exit.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 40-YR rising from ~55 to ~75; 15-YR surging; Q1 bull setup</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong Q1 bull continuation. 40-YR rising from ~75 to ~85. 15-YR rising from ~75 to ~90. 5-YR rising from ~50 to ~60. All three TFs in strong uptrend. Hold longs — the crash is coming in late March/April but February is a clean bull month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — all TFs rising; approaching Q1 peak at ~90</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE most dramatic seasonal event in the cattle dataset — and arguably in the entire futures complex. 40-YR reaches ~90 in early March. 15-YR at ~95–100. Then: VERTICAL CRASH from 90 to 25 for 40-YR in the space of one month. This is the single most extreme intra-month reversal in the dataset. Exit ALL longs by March Wk1-Wk2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK → VERTICAL CRASH — 40-YR at 90; most dramatic crash in dataset</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Post-crash consolidation at lows. 40-YR at ~25. 15-YR at ~25. 5-YR at ~25. All three TFs crashed and holding lows. The summer cattle bear phase begins from here. No recovery until October-November. Hold shorts.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-crash; 40-YR at ~25; hold short through summer</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs remain at depressed levels. 40-YR around ~20–25. 15-YR around ~20–25. 5-YR around ~20. Summer cattle demand weak; feedlot placement cycle creating supply pressure. Hold shorts into the summer trough.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — summer bear; all TFs at lows around ~20–25</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued summer bear. 40-YR at ~20–25. 15-YR at ~20. 5-YR at ~20. The summer slaughter-season supply pressure keeps cattle seasonally weak. No early October recovery signal yet.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended summer low; all TFs near trough zone</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Slight recovery from absolute lows. 40-YR to ~30–35. 15-YR to ~25–30. 5-YR beginning to recover to ~30–35. Mixed signals — not a clean entry month. Partial short cover appropriate.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — slight recovery; 5-YR begins firming; no clean direction</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Mid-range consolidation. 40-YR at ~35–40. 15-YR at ~35–40. 5-YR at ~35–40. Waiting for the October-November year-end bull setup. No clean seasonal edge in August.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — mid-range consolidation; all TFs around 35–45</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Q4 bull phase begins. 40-YR recovering from ~40 to ~55. 15-YR recovering from ~40 to ~65. 5-YR recovering from ~40 to ~55. The year-end cattle demand premium begins building. November-December will see the 15-YR approach 100 (its annual high).</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — Q4 bull begins; all TFs recovering toward year-end highs</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>High conviction Q4 bull. 40-YR rises to ~70. 15-YR rises to ~85. 5-YR rises to ~60. The year-end bull is the highest-conviction long period in the cattle seasonal. 15-YR's target of ~100 at year-end is in sight. Add to longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong Q4 bull; 40-YR to ~70; 15-YR to ~85</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR approaches or reaches 100 — the ANNUAL HIGH for 15-YR, which occurs at YEAR-END (opposite of most assets). 40-YR to ~80. 5-YR to ~65. The year-end cattle demand premium peaks with holiday beef demand. December will be the exit month for longs. 15-YR=99.78 reference is reached at year-end.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR approaching 100; 40-YR at 80; year-end premium</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end completes at the ANNUAL HIGH for 15-YR (99.78) and near-annual highs for 40-YR (81.92) and 5-YR (72.37). Live Cattle is UNIQUE: its annual high occurs at YEAR-END, not mid-year. The strongest seasonal month for 15-YR in the entire dataset. Hold longs through December 31 before January reassessment.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → YEAR-END; settles at 40-YR=81.92/15-YR=99.78/5-YR=72.37 — ANNUAL HIGH</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR rises from ~55 to ~75. 15-YR surging strongly upward from ~45 to ~75. 5-YR more muted around ~40–50. Q1 cattle demand premium begins building. The January bull sets up the March-April VERTICAL CRASH — hold longs from Jan through late March then exit.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 40-YR rising from ~55 to ~75; 15-YR surging; Q1 bull setup</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong Q1 bull continuation. 40-YR rising from ~75 to ~85. 15-YR rising from ~75 to ~90. 5-YR rising from ~50 to ~60. All three TFs in strong uptrend. Hold longs — the crash is coming in late March/April but February is a clean bull month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — all TFs rising; approaching Q1 peak at ~90</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE most dramatic seasonal event in the cattle dataset — and arguably in the entire futures complex. 40-YR reaches ~90 in early March. 15-YR at ~95–100. Then: VERTICAL CRASH from 90 to 25 for 40-YR in the space of one month. This is the single most extreme intra-month reversal in the dataset. Exit ALL longs by March Wk1-Wk2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK → VERTICAL CRASH — 40-YR at 90; most dramatic crash in dataset</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Post-crash consolidation at lows. 40-YR at ~25. 15-YR at ~25. 5-YR at ~25. All three TFs crashed and holding lows. The summer cattle bear phase begins from here. No recovery until October-November. Hold shorts.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-crash; 40-YR at ~25; hold short through summer</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs remain at depressed levels. 40-YR around ~20–25. 15-YR around ~20–25. 5-YR around ~20. Summer cattle demand weak; feedlot placement cycle creating supply pressure. Hold shorts into the summer trough.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — summer bear; all TFs at lows around ~20–25</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued summer bear. 40-YR at ~20–25. 15-YR at ~20. 5-YR at ~20. The summer slaughter-season supply pressure keeps cattle seasonally weak. No early October recovery signal yet.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended summer low; all TFs near trough zone</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Slight recovery from absolute lows. 40-YR to ~30–35. 15-YR to ~25–30. 5-YR beginning to recover to ~30–35. Mixed signals — not a clean entry month. Partial short cover appropriate.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — slight recovery; 5-YR begins firming; no clean direction</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Mid-range consolidation. 40-YR at ~35–40. 15-YR at ~35–40. 5-YR at ~35–40. Waiting for the October-November year-end bull setup. No clean seasonal edge in August.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — mid-range consolidation; all TFs around 35–45</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Q4 bull phase begins. 40-YR recovering from ~40 to ~55. 15-YR recovering from ~40 to ~65. 5-YR recovering from ~40 to ~55. The year-end cattle demand premium begins building. November-December will see the 15-YR approach 100 (its annual high).</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — Q4 bull begins; all TFs recovering toward year-end highs</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>High conviction Q4 bull. 40-YR rises to ~70. 15-YR rises to ~85. 5-YR rises to ~60. The year-end bull is the highest-conviction long period in the cattle seasonal. 15-YR's target of ~100 at year-end is in sight. Add to longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong Q4 bull; 40-YR to ~70; 15-YR to ~85</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR approaches or reaches 100 — the ANNUAL HIGH for 15-YR, which occurs at YEAR-END (opposite of most assets). 40-YR to ~80. 5-YR to ~65. The year-end cattle demand premium peaks with holiday beef demand. December will be the exit month for longs. 15-YR=99.78 reference is reached at year-end.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR approaching 100; 40-YR at 80; year-end premium</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end completes at the ANNUAL HIGH for 15-YR (99.78) and near-annual highs for 40-YR (81.92) and 5-YR (72.37). Live Cattle is UNIQUE: its annual high occurs at YEAR-END, not mid-year. The strongest seasonal month for 15-YR in the entire dataset. Hold longs through December 31 before January reassessment.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → YEAR-END; settles at 40-YR=81.92/15-YR=99.78/5-YR=72.37 — ANNUAL HIGH</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR rises from ~55 to ~75. 15-YR surging strongly upward from ~45 to ~75. 5-YR more muted around ~40–50. Q1 cattle demand premium begins building. The January bull sets up the March-April VERTICAL CRASH — hold longs from Jan through late March then exit.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 40-YR rising from ~55 to ~75; 15-YR surging; Q1 bull setup</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong Q1 bull continuation. 40-YR rising from ~75 to ~85. 15-YR rising from ~75 to ~90. 5-YR rising from ~50 to ~60. All three TFs in strong uptrend. Hold longs — the crash is coming in late March/April but February is a clean bull month.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — all TFs rising; approaching Q1 peak at ~90</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE most dramatic seasonal event in the cattle dataset — and arguably in the entire futures complex. 40-YR reaches ~90 in early March. 15-YR at ~95–100. Then: VERTICAL CRASH from 90 to 25 for 40-YR in the space of one month. This is the single most extreme intra-month reversal in the dataset. Exit ALL longs by March Wk1-Wk2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK → VERTICAL CRASH — 40-YR at 90; most dramatic crash in dataset</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Post-crash consolidation at lows. 40-YR at ~25. 15-YR at ~25. 5-YR at ~25. All three TFs crashed and holding lows. The summer cattle bear phase begins from here. No recovery until October-November. Hold shorts.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — post-crash; 40-YR at ~25; hold short through summer</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs remain at depressed levels. 40-YR around ~20–25. 15-YR around ~20–25. 5-YR around ~20. Summer cattle demand weak; feedlot placement cycle creating supply pressure. Hold shorts into the summer trough.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — summer bear; all TFs at lows around ~20–25</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued summer bear. 40-YR at ~20–25. 15-YR at ~20. 5-YR at ~20. The summer slaughter-season supply pressure keeps cattle seasonally weak. No early October recovery signal yet.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended summer low; all TFs near trough zone</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Slight recovery from absolute lows. 40-YR to ~30–35. 15-YR to ~25–30. 5-YR beginning to recover to ~30–35. Mixed signals — not a clean entry month. Partial short cover appropriate.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — slight recovery; 5-YR begins firming; no clean direction</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Mid-range consolidation. 40-YR at ~35–40. 15-YR at ~35–40. 5-YR at ~35–40. Waiting for the October-November year-end bull setup. No clean seasonal edge in August.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — mid-range consolidation; all TFs around 35–45</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Q4 bull phase begins. 40-YR recovering from ~40 to ~55. 15-YR recovering from ~40 to ~65. 5-YR recovering from ~40 to ~55. The year-end cattle demand premium begins building. November-December will see the 15-YR approach 100 (its annual high).</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — Q4 bull begins; all TFs recovering toward year-end highs</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>High conviction Q4 bull. 40-YR rises to ~70. 15-YR rises to ~85. 5-YR rises to ~60. The year-end bull is the highest-conviction long period in the cattle seasonal. 15-YR's target of ~100 at year-end is in sight. Add to longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong Q4 bull; 40-YR to ~70; 15-YR to ~85</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR approaches or reaches 100 — the ANNUAL HIGH for 15-YR, which occurs at YEAR-END (opposite of most assets). 40-YR to ~80. 5-YR to ~65. The year-end cattle demand premium peaks with holiday beef demand. December will be the exit month for longs. 15-YR=99.78 reference is reached at year-end.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR approaching 100; 40-YR at 80; year-end premium</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end completes at the ANNUAL HIGH for 15-YR (99.78) and near-annual highs for 40-YR (81.92) and 5-YR (72.37). Live Cattle is UNIQUE: its annual high occurs at YEAR-END, not mid-year. The strongest seasonal month for 15-YR in the entire dataset. Hold longs through December 31 before January reassessment.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → YEAR-END; settles at 40-YR=81.92/15-YR=99.78/5-YR=72.37 — ANNUAL HIGH</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Live Cattle CME (LC) · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays. Reference: 40-YR=81.92, 15-YR=99.78, 5-YR=72.37 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/lc.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

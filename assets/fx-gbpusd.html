@@ -16,6 +16,12 @@
 </style>
 </head>
 <body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">GBP / USD</span>
+</div>
+
+
 
 <div class="header">
   <h1>GBP / USD</h1>
@@ -76,14 +82,26 @@
   <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
 </div>
 
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
 <div class="footnote">
   Seasonal data source: Moore Research Center © 2020 · British Pound CME (40-YR, 1980–2019) · USD Index ICE (35-YR, 1985–2019) · 15-YR · 5-YR overlays.<br>
   Forex seasonal derived by Kaminari Precision Trading from underlying CME futures component data. Historical patterns only. Not financial advice.
   <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
 </div>
 
-<script src="../data/fx-gbpusd.js"></script>
-<script src="../js/accordion.js"></script>
-<script src="../js/api.js"></script>
+<script src="../data/fx-gbpusd.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>

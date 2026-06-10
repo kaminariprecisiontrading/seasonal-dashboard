@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silver (XAG) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Silver (XAG)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Silver (XAG)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's defining divergence opens it: 15-YR starts at or near its ANNUAL PEAK (~90–95) and crashes through the month, while 40-YR and 5-YR are rising off their lows. No reliable directional edge with TFs pulling in opposite directions.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — MAJOR DIVERGENCE</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR peaks near 95–100 and ROLLS OVER sharply. 40-YR also crests and turns down. 15-YR continues its decline from the January high. All three TFs are now pointing lower by month-end — a broad rolling-top reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK / REVERSAL — CAUTION</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>SECONDARY DIVERGENCE — 15-YR stages a powerful counter-trend rally from ~35 back toward ~75 (a major bounce within its downtrend) while 40-YR and 5-YR continue declining. The 15-YR's March bounce is the most notable intra-year counter-move in silver's seasonal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 15-YR COUNTER-TREND SPIKE</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>15-YR PEAKS NEAR 90–95 then collapses — the same rolling-top structure seen in other assets. 5-YR and 40-YR already declining, so when the 15-YR finally rolls over here, it creates the year's highest-conviction short setup as all three TFs align lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — 15-YR SECONDARY PEAK COLLAPSE</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs in clean alignment lower — the waterfall from April's secondary peak accelerates. 40-YR heading toward its annual low, 15-YR and 5-YR also in freefall. One of silver's clearest sustained short windows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL TO THE TROUGH</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs crash to near zero — the absolute annual low for silver, more severe than gold's summer trough. This is the single most extreme seasonal low in the metals complex. Cover shorts at the trough; the reversal from here can be violent.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — ABSOLUTE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>THE DEFINING REVERSAL — near-zero readings give way to an explosive rally. 5-YR SURGES from its trough toward 50+ in a matter of weeks. 15-YR leads steadily. 40-YR turns up. This is silver's highest-conviction long setup of the year — and the reversal is often violent and fast.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — SUMMER-LOW REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Full three-way alignment in the strongest silver rally window of the year. 5-YR rockets toward 85–90. 15-YR surges from its July lows. 40-YR continues building. Mirrors gold's August strength but often with more explosive short-term moves.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONGEST RALLY WINDOW</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Continued rally — 5-YR and 15-YR both approach their seasonal highs (~90–95 for 5-YR). 40-YR still climbing. A strong month overall but the peaks for 5-YR and 15-YR form here, requiring position management into October.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG — PEAK APPROACHING</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR falls sharply from its September peak. 15-YR also reverses. 40-YR weakens. Unlike gold, silver's autumn correction is more severe — the 40-YR falls toward its November lows near 5–10, making October a genuine short window for silver.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN CORRECTION</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs falling toward their annual nadir — 40-YR near 5–10 (its absolute yearly low), 5-YR also near 5–10. A sustained, high-conviction bearish window. Unlike gold (which consolidates in November), silver keeps declining into year-end weakness.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — APPROACHING ANNUAL LOWS</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery from the November lows — all three TFs rise toward their year-end reference values (40-YR to 23.06, 15-YR to 77.09, 5-YR to 54.96). Less explosive than gold's December but still a clean seasonal tailwind. 15-YR's year-end recovery to 77 is the standout here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RECOVERY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The year's defining divergence opens it: 15-YR starts at or near its ANNUAL PEAK (~90–95) and crashes through the month, while 40-YR and 5-YR are rising off their lows. No reliable directional edge with TFs pulling in opposite directions.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — MAJOR DIVERGENCE</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR peaks near 95–100 and ROLLS OVER sharply. 40-YR also crests and turns down. 15-YR continues its decline from the January high. All three TFs are now pointing lower by month-end — a broad rolling-top reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK / REVERSAL — CAUTION</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>SECONDARY DIVERGENCE — 15-YR stages a powerful counter-trend rally from ~35 back toward ~75 (a major bounce within its downtrend) while 40-YR and 5-YR continue declining. The 15-YR's March bounce is the most notable intra-year counter-move in silver's seasonal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — 15-YR COUNTER-TREND SPIKE</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>15-YR PEAKS NEAR 90–95 then collapses — the same rolling-top structure seen in other assets. 5-YR and 40-YR already declining, so when the 15-YR finally rolls over here, it creates the year's highest-conviction short setup as all three TFs align lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — 15-YR SECONDARY PEAK COLLAPSE</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs in clean alignment lower — the waterfall from April's secondary peak accelerates. 40-YR heading toward its annual low, 15-YR and 5-YR also in freefall. One of silver's clearest sustained short windows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL TO THE TROUGH</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs crash to near zero — the absolute annual low for silver, more severe than gold's summer trough. This is the single most extreme seasonal low in the metals complex. Cover shorts at the trough; the reversal from here can be violent.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — ABSOLUTE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE DEFINING REVERSAL — near-zero readings give way to an explosive rally. 5-YR SURGES from its trough toward 50+ in a matter of weeks. 15-YR leads steadily. 40-YR turns up. This is silver's highest-conviction long setup of the year — and the reversal is often violent and fast.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — SUMMER-LOW REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Full three-way alignment in the strongest silver rally window of the year. 5-YR rockets toward 85–90. 15-YR surges from its July lows. 40-YR continues building. Mirrors gold's August strength but often with more explosive short-term moves.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONGEST RALLY WINDOW</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Continued rally — 5-YR and 15-YR both approach their seasonal highs (~90–95 for 5-YR). 40-YR still climbing. A strong month overall but the peaks for 5-YR and 15-YR form here, requiring position management into October.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — PEAK APPROACHING</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR falls sharply from its September peak. 15-YR also reverses. 40-YR weakens. Unlike gold, silver's autumn correction is more severe — the 40-YR falls toward its November lows near 5–10, making October a genuine short window for silver.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN CORRECTION</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs falling toward their annual nadir — 40-YR near 5–10 (its absolute yearly low), 5-YR also near 5–10. A sustained, high-conviction bearish window. Unlike gold (which consolidates in November), silver keeps declining into year-end weakness.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — APPROACHING ANNUAL LOWS</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery from the November lows — all three TFs rise toward their year-end reference values (40-YR to 23.06, 15-YR to 77.09, 5-YR to 54.96). Less explosive than gold's December but still a clean seasonal tailwind. 15-YR's year-end recovery to 77 is the standout here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RECOVERY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's defining divergence opens it: 15-YR starts at or near its ANNUAL PEAK (~90–95) and crashes through the month, while 40-YR and 5-YR are rising off their lows. No reliable directional edge with TFs pulling in opposite directions.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — MAJOR DIVERGENCE</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR peaks near 95–100 and ROLLS OVER sharply. 40-YR also crests and turns down. 15-YR continues its decline from the January high. All three TFs are now pointing lower by month-end — a broad rolling-top reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK / REVERSAL — CAUTION</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>SECONDARY DIVERGENCE — 15-YR stages a powerful counter-trend rally from ~35 back toward ~75 (a major bounce within its downtrend) while 40-YR and 5-YR continue declining. The 15-YR's March bounce is the most notable intra-year counter-move in silver's seasonal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 15-YR COUNTER-TREND SPIKE</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>15-YR PEAKS NEAR 90–95 then collapses — the same rolling-top structure seen in other assets. 5-YR and 40-YR already declining, so when the 15-YR finally rolls over here, it creates the year's highest-conviction short setup as all three TFs align lower.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — 15-YR SECONDARY PEAK COLLAPSE</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs in clean alignment lower — the waterfall from April's secondary peak accelerates. 40-YR heading toward its annual low, 15-YR and 5-YR also in freefall. One of silver's clearest sustained short windows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL TO THE TROUGH</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs crash to near zero — the absolute annual low for silver, more severe than gold's summer trough. This is the single most extreme seasonal low in the metals complex. Cover shorts at the trough; the reversal from here can be violent.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — ABSOLUTE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE DEFINING REVERSAL — near-zero readings give way to an explosive rally. 5-YR SURGES from its trough toward 50+ in a matter of weeks. 15-YR leads steadily. 40-YR turns up. This is silver's highest-conviction long setup of the year — and the reversal is often violent and fast.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — SUMMER-LOW REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Full three-way alignment in the strongest silver rally window of the year. 5-YR rockets toward 85–90. 15-YR surges from its July lows. 40-YR continues building. Mirrors gold's August strength but often with more explosive short-term moves.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONGEST RALLY WINDOW</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Continued rally — 5-YR and 15-YR both approach their seasonal highs (~90–95 for 5-YR). 40-YR still climbing. A strong month overall but the peaks for 5-YR and 15-YR form here, requiring position management into October.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — PEAK APPROACHING</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR falls sharply from its September peak. 15-YR also reverses. 40-YR weakens. Unlike gold, silver's autumn correction is more severe — the 40-YR falls toward its November lows near 5–10, making October a genuine short window for silver.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN CORRECTION</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs falling toward their annual nadir — 40-YR near 5–10 (its absolute yearly low), 5-YR also near 5–10. A sustained, high-conviction bearish window. Unlike gold (which consolidates in November), silver keeps declining into year-end weakness.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — APPROACHING ANNUAL LOWS</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery from the November lows — all three TFs rise toward their year-end reference values (40-YR to 23.06, 15-YR to 77.09, 5-YR to 54.96). Less explosive than gold's December but still a clean seasonal tailwind. 15-YR's year-end recovery to 77 is the standout here.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RECOVERY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Silver CMX Futures · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/xag.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

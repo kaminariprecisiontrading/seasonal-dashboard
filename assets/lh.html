@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lean Hogs (CME) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Lean Hogs (CME)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Lean Hogs (CME)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs at depressed levels (~15–25). Lean hogs begins the year in the 'dead zone' — flat lows from January through March. No bull signal. No clean short either — it's already been sold. Avoid trading hogs in January. Worst seasonal window in the complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — all TFs flat near low; Jan-Mar worst period in hogs</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continuation of January's dead zone. ALL THREE TFs flat around 15–25. No directional edge. The hog seasonal is binary — it is either in the dead zone (Jan-Mar and Jul-Dec) or at the annual high (Apr-Jun). February is deep dead zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — flat low; avoid</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Dead zone continues through early-mid March. Then: THE STEP-UP. All three TFs move from ~15–25 to ~100 in a near-vertical move in late March. This is the most binary step-function in any commodity — from dead flat to annual high in days. BUY late March Wk3/Wk4.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>DEAD ZONE EXIT — late-March STEP-UP loading; buy late March</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>ALL THREE TFs at or near 100 in April — the annual high for all timeframes simultaneously. The step-up is complete and the plateau begins. Unlike most assets where the peak is a sell, the hog plateau holds through June. Hold longs — the step-DOWN won't come until late June/July.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — all TFs at ~100; step-up peak; hold longs through June</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The plateau continues. ALL THREE TFs remain near 100 throughout May. BBQ/grilling season demand and the spring hog supply cycle keep the seasonal elevated. Hold longs — the step-DOWN begins in late June.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — plateau holding; all TFs near 100; hold into June peak</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's most dramatic event in lean hogs: ALL THREE TFs plateau near 100 in early June, then THE STEP-DOWN occurs. All three TFs crash from ~100 to near 0 in late June — a vertical drop as sudden as the step-up was. EXIT ALL LONGS by June Wk1-Wk2. This is the cleanest flip signal in the meats complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>ANNUAL PEAK → STEP-DOWN; all TFs at ~100 then VERTICAL DROP to near 0</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs at near 0 — the step-down is complete. July through December is the second dead zone. Unlike the January dead zone, the July start is from a confirmed peak, so the bears are intact but there's little further downside. Year-end reference values are 40-YR=23.07, 15-YR=27.48, 5-YR=34.33.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — all TFs near 0 again; second dead zone begins</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Dead zone continues. ALL THREE TFs flat near 0–25. No directional edge. The hog seasonal H2 is a flat grind at low levels. Year-end won't reach prior highs — reference values confirm: 40-YR=23.07, 15-YR=27.48, 5-YR=34.33 (all below 40).</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — flat near 0 through year-end</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Slight recovery from absolute lows. All TFs at ~20–30. Some modest near-term recovery in 5-YR. Not a clean entry month — the dead zone grind continues. The year-end reference values are approaching (~23/27/34) but the move is small.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — slight recovery from dead zone lows; no directional edge</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Dead zone grind. All TFs at ~20–30 — approaching year-end reference values. No clear direction. 5-YR at ~30, approaching 34.33 reference. 40-YR at ~22, approaching 23.07. The hog year is essentially done after the June step-down.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — dead zone; approaching year-end reference values</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Dead zone continuation. All TFs at ~23–34 — at or near year-end reference values. Hog seasonals in H2 are notoriously flat. No entry signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — dead zone; near year-end reference; no edge</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Year-end close in the dead zone. 40-YR=23.07. 15-YR=27.48. 5-YR=34.33. ALL reference values are below 40 — confirming that lean hogs spends the majority of the year below 40 on the seasonal scale, with only a brief peak Apr-Jun. The most binary commodity seasonal in the dataset.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>YEAR-END — settles at 40-YR=23.07/15-YR=27.48/5-YR=34.33; dead zone</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs at depressed levels (~15–25). Lean hogs begins the year in the 'dead zone' — flat lows from January through March. No bull signal. No clean short either — it's already been sold. Avoid trading hogs in January. Worst seasonal window in the complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — all TFs flat near low; Jan-Mar worst period in hogs</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continuation of January's dead zone. ALL THREE TFs flat around 15–25. No directional edge. The hog seasonal is binary — it is either in the dead zone (Jan-Mar and Jul-Dec) or at the annual high (Apr-Jun). February is deep dead zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — flat low; avoid</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Dead zone continues through early-mid March. Then: THE STEP-UP. All three TFs move from ~15–25 to ~100 in a near-vertical move in late March. This is the most binary step-function in any commodity — from dead flat to annual high in days. BUY late March Wk3/Wk4.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>DEAD ZONE EXIT — late-March STEP-UP loading; buy late March</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>ALL THREE TFs at or near 100 in April — the annual high for all timeframes simultaneously. The step-up is complete and the plateau begins. Unlike most assets where the peak is a sell, the hog plateau holds through June. Hold longs — the step-DOWN won't come until late June/July.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — all TFs at ~100; step-up peak; hold longs through June</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The plateau continues. ALL THREE TFs remain near 100 throughout May. BBQ/grilling season demand and the spring hog supply cycle keep the seasonal elevated. Hold longs — the step-DOWN begins in late June.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — plateau holding; all TFs near 100; hold into June peak</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's most dramatic event in lean hogs: ALL THREE TFs plateau near 100 in early June, then THE STEP-DOWN occurs. All three TFs crash from ~100 to near 0 in late June — a vertical drop as sudden as the step-up was. EXIT ALL LONGS by June Wk1-Wk2. This is the cleanest flip signal in the meats complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>ANNUAL PEAK → STEP-DOWN; all TFs at ~100 then VERTICAL DROP to near 0</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs at near 0 — the step-down is complete. July through December is the second dead zone. Unlike the January dead zone, the July start is from a confirmed peak, so the bears are intact but there's little further downside. Year-end reference values are 40-YR=23.07, 15-YR=27.48, 5-YR=34.33.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — all TFs near 0 again; second dead zone begins</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Dead zone continues. ALL THREE TFs flat near 0–25. No directional edge. The hog seasonal H2 is a flat grind at low levels. Year-end won't reach prior highs — reference values confirm: 40-YR=23.07, 15-YR=27.48, 5-YR=34.33 (all below 40).</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — flat near 0 through year-end</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Slight recovery from absolute lows. All TFs at ~20–30. Some modest near-term recovery in 5-YR. Not a clean entry month — the dead zone grind continues. The year-end reference values are approaching (~23/27/34) but the move is small.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — slight recovery from dead zone lows; no directional edge</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Dead zone grind. All TFs at ~20–30 — approaching year-end reference values. No clear direction. 5-YR at ~30, approaching 34.33 reference. 40-YR at ~22, approaching 23.07. The hog year is essentially done after the June step-down.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — dead zone; approaching year-end reference values</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Dead zone continuation. All TFs at ~23–34 — at or near year-end reference values. Hog seasonals in H2 are notoriously flat. No entry signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — dead zone; near year-end reference; no edge</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Year-end close in the dead zone. 40-YR=23.07. 15-YR=27.48. 5-YR=34.33. ALL reference values are below 40 — confirming that lean hogs spends the majority of the year below 40 on the seasonal scale, with only a brief peak Apr-Jun. The most binary commodity seasonal in the dataset.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>YEAR-END — settles at 40-YR=23.07/15-YR=27.48/5-YR=34.33; dead zone</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs at depressed levels (~15–25). Lean hogs begins the year in the 'dead zone' — flat lows from January through March. No bull signal. No clean short either — it's already been sold. Avoid trading hogs in January. Worst seasonal window in the complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — all TFs flat near low; Jan-Mar worst period in hogs</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continuation of January's dead zone. ALL THREE TFs flat around 15–25. No directional edge. The hog seasonal is binary — it is either in the dead zone (Jan-Mar and Jul-Dec) or at the annual high (Apr-Jun). February is deep dead zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — flat low; avoid</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Dead zone continues through early-mid March. Then: THE STEP-UP. All three TFs move from ~15–25 to ~100 in a near-vertical move in late March. This is the most binary step-function in any commodity — from dead flat to annual high in days. BUY late March Wk3/Wk4.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>DEAD ZONE EXIT — late-March STEP-UP loading; buy late March</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>ALL THREE TFs at or near 100 in April — the annual high for all timeframes simultaneously. The step-up is complete and the plateau begins. Unlike most assets where the peak is a sell, the hog plateau holds through June. Hold longs — the step-DOWN won't come until late June/July.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — all TFs at ~100; step-up peak; hold longs through June</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The plateau continues. ALL THREE TFs remain near 100 throughout May. BBQ/grilling season demand and the spring hog supply cycle keep the seasonal elevated. Hold longs — the step-DOWN begins in late June.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — plateau holding; all TFs near 100; hold into June peak</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's most dramatic event in lean hogs: ALL THREE TFs plateau near 100 in early June, then THE STEP-DOWN occurs. All three TFs crash from ~100 to near 0 in late June — a vertical drop as sudden as the step-up was. EXIT ALL LONGS by June Wk1-Wk2. This is the cleanest flip signal in the meats complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>ANNUAL PEAK → STEP-DOWN; all TFs at ~100 then VERTICAL DROP to near 0</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ALL THREE TFs at near 0 — the step-down is complete. July through December is the second dead zone. Unlike the January dead zone, the July start is from a confirmed peak, so the bears are intact but there's little further downside. Year-end reference values are 40-YR=23.07, 15-YR=27.48, 5-YR=34.33.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — all TFs near 0 again; second dead zone begins</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Dead zone continues. ALL THREE TFs flat near 0–25. No directional edge. The hog seasonal H2 is a flat grind at low levels. Year-end won't reach prior highs — reference values confirm: 40-YR=23.07, 15-YR=27.48, 5-YR=34.33 (all below 40).</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>DEAD ZONE — flat near 0 through year-end</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Slight recovery from absolute lows. All TFs at ~20–30. Some modest near-term recovery in 5-YR. Not a clean entry month — the dead zone grind continues. The year-end reference values are approaching (~23/27/34) but the move is small.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — slight recovery from dead zone lows; no directional edge</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Dead zone grind. All TFs at ~20–30 — approaching year-end reference values. No clear direction. 5-YR at ~30, approaching 34.33 reference. 40-YR at ~22, approaching 23.07. The hog year is essentially done after the June step-down.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — dead zone; approaching year-end reference values</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Dead zone continuation. All TFs at ~23–34 — at or near year-end reference values. Hog seasonals in H2 are notoriously flat. No entry signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — dead zone; near year-end reference; no edge</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Year-end close in the dead zone. 40-YR=23.07. 15-YR=27.48. 5-YR=34.33. ALL reference values are below 40 — confirming that lean hogs spends the majority of the year below 40 on the seasonal scale, with only a brief peak Apr-Jun. The most binary commodity seasonal in the dataset.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>YEAR-END — settles at 40-YR=23.07/15-YR=27.48/5-YR=34.33; dead zone</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Lean Hogs CME (HE) · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays. Reference: 40-YR=23.07, 15-YR=27.48, 5-YR=34.33 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/lh.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

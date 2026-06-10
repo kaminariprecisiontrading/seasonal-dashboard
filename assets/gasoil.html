@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Oil (ICE) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Gas Oil (ICE)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Gas Oil (ICE)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 34-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 34-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">34-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>34-YR begins January around ~20 and falls toward its annual low. 15-YR near 5–10 and declining. 5-YR starts at ~25 but also declining. All three heading toward the February trough. Gas Oil is a middle-distillate contract closely correlated with ULSD — same pattern, different exchange.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — 34-YR falling toward annual low; 15-YR and 5-YR weak</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>34-YR hits its annual low (~5–10) in early February. 15-YR near 0. 5-YR near 0. This is the deepest seasonal trough for Gas Oil's long-term average — identical timing to ULSD. Recovery begins mid-month. Confirm the turn before initiating longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — 34-YR annual low ~5–10; all three at annual lows</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery gains momentum. 34-YR climbs from ~10 to ~30–35. 15-YR surges aggressively from ~5 to ~55–60. 5-YR recovering from near 0 to ~20–25. Spring diesel/heating demand drives the recovery. Build position for the April-May peak zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H1 spring recovery; 15-YR surges strongly</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR peaks at ~85–90 in April. 34-YR still rising toward ~50. 5-YR approaching ~100 in early May. April is the peak zone for the 15-YR — manage longs tightly in the second half of April. The May 5-YR spike is the final seasonal high.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG → TOP WATCH — 15-YR peaks ~85–90; 5-YR approaching ~100</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR spikes to ~100 in very early May then crashes hard — identical to the CL pattern. 15-YR falling from its April peak. 34-YR choppy. This is the most treacherous month for Gas Oil — stay flat. The H1 seasonal bull is over.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>VOLATILE — 5-YR spikes to ~100 early May then crashes</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>H1 trough. 34-YR at ~30–35. 15-YR at ~25–35. 5-YR at ~30–35. All three at local lows. The H2 winter heating demand recovery is being set up. Late June / early July is the inflection point — watch for the reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>H1 TROUGH — all three at seasonal lows; July reversal setup</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery begins as the market prices in winter heating demand. 34-YR rising from ~30 toward ~55. 15-YR from ~30 toward ~50. 5-YR also recovering. This is the H2 long entry — hold through the October annual peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 heating demand recovery; all TFs rising from June lows</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 heating demand surge in full force. 15-YR approaches ~80 by end of August. 34-YR climbing toward ~70–75. 5-YR also strong. October annual peak is the target. Very similar to ULSD's August pattern.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 surge accelerates; 15-YR approaching ~80</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>September is the peak acceleration month for Gas Oil's H2 bull. 15-YR surges toward 90–95. 34-YR surging strongly toward ~85–90. 5-YR at ~65–70. Full TF alignment. The October annual peak for both 15-YR and 34-YR is approaching. Highest conviction long of H2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — primary H2 bull; 15-YR and 34-YR surging toward 100</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Both the 15-YR AND 34-YR hit 100 simultaneously in October — a dual annual peak that is the most important seasonal moment for Gas Oil. 5-YR also peaks at ~75–80. Exit longs when 15-YR/34-YR reach 100 and flip short. The winter demand premium is fully priced. Rollover is swift.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>15-YR AND 34-YR BOTH AT 100 → FLIP SHORT; dual annual peak</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from October's dual 100 peak. 34-YR falls from ~100 to ~70–75. 15-YR from ~100 to ~70–75. 5-YR from ~75 to ~55–60. All three declining. The winter demand premium has been fully sold out of the seasonal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — sustained rollover from October dual peak</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued orderly seasonal decline. 34-YR falls to ~66.32 by year-end. 15-YR to ~62.43. 5-YR to ~46.77. The decline is moderate and orderly — same pattern as ULSD, reflecting the shared middle-distillate seasonal structure. Year ends at mid-to-high range.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — moderate year-end decline; 34-YR settles at 66.32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>34-YR begins January around ~20 and falls toward its annual low. 15-YR near 5–10 and declining. 5-YR starts at ~25 but also declining. All three heading toward the February trough. Gas Oil is a middle-distillate contract closely correlated with ULSD — same pattern, different exchange.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — 34-YR falling toward annual low; 15-YR and 5-YR weak</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>34-YR hits its annual low (~5–10) in early February. 15-YR near 0. 5-YR near 0. This is the deepest seasonal trough for Gas Oil's long-term average — identical timing to ULSD. Recovery begins mid-month. Confirm the turn before initiating longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — 34-YR annual low ~5–10; all three at annual lows</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery gains momentum. 34-YR climbs from ~10 to ~30–35. 15-YR surges aggressively from ~5 to ~55–60. 5-YR recovering from near 0 to ~20–25. Spring diesel/heating demand drives the recovery. Build position for the April-May peak zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H1 spring recovery; 15-YR surges strongly</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR peaks at ~85–90 in April. 34-YR still rising toward ~50. 5-YR approaching ~100 in early May. April is the peak zone for the 15-YR — manage longs tightly in the second half of April. The May 5-YR spike is the final seasonal high.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG → TOP WATCH — 15-YR peaks ~85–90; 5-YR approaching ~100</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR spikes to ~100 in very early May then crashes hard — identical to the CL pattern. 15-YR falling from its April peak. 34-YR choppy. This is the most treacherous month for Gas Oil — stay flat. The H1 seasonal bull is over.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>VOLATILE — 5-YR spikes to ~100 early May then crashes</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>H1 trough. 34-YR at ~30–35. 15-YR at ~25–35. 5-YR at ~30–35. All three at local lows. The H2 winter heating demand recovery is being set up. Late June / early July is the inflection point — watch for the reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>H1 TROUGH — all three at seasonal lows; July reversal setup</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery begins as the market prices in winter heating demand. 34-YR rising from ~30 toward ~55. 15-YR from ~30 toward ~50. 5-YR also recovering. This is the H2 long entry — hold through the October annual peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 heating demand recovery; all TFs rising from June lows</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 heating demand surge in full force. 15-YR approaches ~80 by end of August. 34-YR climbing toward ~70–75. 5-YR also strong. October annual peak is the target. Very similar to ULSD's August pattern.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 surge accelerates; 15-YR approaching ~80</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>September is the peak acceleration month for Gas Oil's H2 bull. 15-YR surges toward 90–95. 34-YR surging strongly toward ~85–90. 5-YR at ~65–70. Full TF alignment. The October annual peak for both 15-YR and 34-YR is approaching. Highest conviction long of H2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — primary H2 bull; 15-YR and 34-YR surging toward 100</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Both the 15-YR AND 34-YR hit 100 simultaneously in October — a dual annual peak that is the most important seasonal moment for Gas Oil. 5-YR also peaks at ~75–80. Exit longs when 15-YR/34-YR reach 100 and flip short. The winter demand premium is fully priced. Rollover is swift.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>15-YR AND 34-YR BOTH AT 100 → FLIP SHORT; dual annual peak</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from October's dual 100 peak. 34-YR falls from ~100 to ~70–75. 15-YR from ~100 to ~70–75. 5-YR from ~75 to ~55–60. All three declining. The winter demand premium has been fully sold out of the seasonal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — sustained rollover from October dual peak</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued orderly seasonal decline. 34-YR falls to ~66.32 by year-end. 15-YR to ~62.43. 5-YR to ~46.77. The decline is moderate and orderly — same pattern as ULSD, reflecting the shared middle-distillate seasonal structure. Year ends at mid-to-high range.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — moderate year-end decline; 34-YR settles at 66.32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 34-YR (1986–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>34-YR begins January around ~20 and falls toward its annual low. 15-YR near 5–10 and declining. 5-YR starts at ~25 but also declining. All three heading toward the February trough. Gas Oil is a middle-distillate contract closely correlated with ULSD — same pattern, different exchange.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — 34-YR falling toward annual low; 15-YR and 5-YR weak</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>34-YR hits its annual low (~5–10) in early February. 15-YR near 0. 5-YR near 0. This is the deepest seasonal trough for Gas Oil's long-term average — identical timing to ULSD. Recovery begins mid-month. Confirm the turn before initiating longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — 34-YR annual low ~5–10; all three at annual lows</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery gains momentum. 34-YR climbs from ~10 to ~30–35. 15-YR surges aggressively from ~5 to ~55–60. 5-YR recovering from near 0 to ~20–25. Spring diesel/heating demand drives the recovery. Build position for the April-May peak zone.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H1 spring recovery; 15-YR surges strongly</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR peaks at ~85–90 in April. 34-YR still rising toward ~50. 5-YR approaching ~100 in early May. April is the peak zone for the 15-YR — manage longs tightly in the second half of April. The May 5-YR spike is the final seasonal high.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG → TOP WATCH — 15-YR peaks ~85–90; 5-YR approaching ~100</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR spikes to ~100 in very early May then crashes hard — identical to the CL pattern. 15-YR falling from its April peak. 34-YR choppy. This is the most treacherous month for Gas Oil — stay flat. The H1 seasonal bull is over.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>VOLATILE — 5-YR spikes to ~100 early May then crashes</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>H1 trough. 34-YR at ~30–35. 15-YR at ~25–35. 5-YR at ~30–35. All three at local lows. The H2 winter heating demand recovery is being set up. Late June / early July is the inflection point — watch for the reversal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>H1 TROUGH — all three at seasonal lows; July reversal setup</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery begins as the market prices in winter heating demand. 34-YR rising from ~30 toward ~55. 15-YR from ~30 toward ~50. 5-YR also recovering. This is the H2 long entry — hold through the October annual peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 heating demand recovery; all TFs rising from June lows</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 heating demand surge in full force. 15-YR approaches ~80 by end of August. 34-YR climbing toward ~70–75. 5-YR also strong. October annual peak is the target. Very similar to ULSD's August pattern.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 surge accelerates; 15-YR approaching ~80</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>September is the peak acceleration month for Gas Oil's H2 bull. 15-YR surges toward 90–95. 34-YR surging strongly toward ~85–90. 5-YR at ~65–70. Full TF alignment. The October annual peak for both 15-YR and 34-YR is approaching. Highest conviction long of H2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — primary H2 bull; 15-YR and 34-YR surging toward 100</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Both the 15-YR AND 34-YR hit 100 simultaneously in October — a dual annual peak that is the most important seasonal moment for Gas Oil. 5-YR also peaks at ~75–80. Exit longs when 15-YR/34-YR reach 100 and flip short. The winter demand premium is fully priced. Rollover is swift.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>15-YR AND 34-YR BOTH AT 100 → FLIP SHORT; dual annual peak</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from October's dual 100 peak. 34-YR falls from ~100 to ~70–75. 15-YR from ~100 to ~70–75. 5-YR from ~75 to ~55–60. All three declining. The winter demand premium has been fully sold out of the seasonal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — sustained rollover from October dual peak</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued orderly seasonal decline. 34-YR falls to ~66.32 by year-end. 15-YR to ~62.43. 5-YR to ~46.77. The decline is moderate and orderly — same pattern as ULSD, reflecting the shared middle-distillate seasonal structure. Year ends at mid-to-high range.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — moderate year-end decline; 34-YR settles at 66.32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Gas Oil ICE (G) · 34-Year Seasonal (1986–2019) · 15-Year · 5-Year overlays. Reference: 34-YR=66.32, 15-YR=62.43, 5-YR=46.77 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/gasoil.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

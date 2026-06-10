@@ -7,6 +7,12 @@
 <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">AUD / USD</span>
+</div>
+
+
 
 <div class="header">
   <h1>AUD / USD</h1>
@@ -202,6 +208,16 @@
 </table>
 </div>
 
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
 <div class="footnote">
   Seasonal data source: Moore Research Center © 2020 · AUD/USD CME Futures · 34-Year Seasonal (1986–2019) · 15-Year · 5-Year overlays.<br>
   This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
@@ -209,8 +225,10 @@
 </div>
 
 <!-- Asset data must load before shared JS -->
-<script src="../data/aud.js"></script>
-<script src="../js/accordion.js"></script>
-<script src="../js/api.js"></script>
+<script src="../data/aud.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>

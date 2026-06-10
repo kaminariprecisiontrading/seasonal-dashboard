@@ -298,6 +298,15 @@ tbody td:first-child {
   margin-left: 6px;
 }
 
+/* Current month row in TF tables (5-YR, 15-YR, long-term) */
+.table-wrap tr.current-month td:first-child {
+  color: var(--accent-combined);
+  font-weight: 600;
+}
+.table-wrap tr.current-month {
+  background: rgba(34, 197, 94, 0.04);
+}
+
 /* ── AI Panel ──────────────────────────────────────────────────────────────── */
 .ai-panel {
   background: var(--surface);
@@ -394,3 +403,320 @@ tbody td:first-child {
   color: var(--dim);
   letter-spacing: 0.5px;
 }
+
+/* ── Topbar (asset pages) ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,12,15,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  margin: -32px -24px 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  transition: color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.back-link:hover { color: var(--text); }
+
+.topbar-title {
+  color: var(--dim);
+  font-size: 11px;
+  letter-spacing: 1px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-date-chip {
+  font-size: 9px;
+  color: var(--accent-combined);
+  letter-spacing: 1.5px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Container (max-width centering on generated pages) ───────────────────── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Prev / Next navigation ────────────────────────────────────────────────── */
+.asset-nav {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.asset-nav-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.4;
+}
+.asset-nav-btn:hover {
+  color: var(--text);
+  border-color: var(--dim);
+  background: var(--surface2);
+}
+
+/* ── Tab Navigation (asset pages) ─────────────────────────────────────────── */
+.kpt-tabs {
+  display: flex;
+  gap: 0;
+  margin: 0 0 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.kpt-tab-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+.kpt-tab-btn:hover { color: var(--text); }
+.kpt-tab-btn.active {
+  color: var(--accent-combined);
+  border-bottom-color: var(--accent-combined);
+}
+
+[data-kpt-panel] { display: none; }
+[data-kpt-panel].kpt-panel-active { display: block; }
+
+/* Dividers hidden when tabs are active */
+.kpt-divider-hidden { display: none; }
+
+/* ── Secondary TF sub-tabs (within Seasonals panel) ───────────────────────── */
+/* Sits immediately after the primary tab bar in DOM — cancel its 28px bottom-margin
+   so the two rows sit flush, then indent slightly to signal subordination. */
+.kpt-subtabs {
+  margin-top: -28px;   /* cancel kpt-tabs margin-bottom so subBar sits flush under tabBar */
+  margin-bottom: 28px;
+  padding-left: 8px;   /* subtle indent signals secondary hierarchy */
+  /* no border-top — tabBar's border-bottom already provides the dividing line */
+}
+/* Active state for sub-tabs uses per-button inline color (set by JS).
+   The .active class here only sets the border-bottom width/style;
+   color and border-bottom-color are overridden inline per TF accent. */
+.kpt-subtab-btn.active {
+  border-bottom-color: var(--accent-combined); /* fallback; overridden inline */
+  color: var(--accent-combined);               /* fallback; overridden inline */
+}
+
+/* ── Month Quick-Jump ──────────────────────────────────────────────────────── */
+.month-quickjump {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.qj-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.qj-btn:hover {
+  color: var(--text);
+  border-color: var(--dim);
+  background: var(--surface2);
+}
+.qj-btn.qj-current {
+  color: var(--accent-combined);
+  border-color: rgba(34,197,94,0.35);
+  background: rgba(34,197,94,0.07);
+}
+
+/* ── Conviction Pips (replaces ★☆ text in accordion) ─────────────────────── */
+.conv-pips {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.conv-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.conv-pip.filled { background: var(--accent-combined); }
+
+/* Conviction pips on index cards */
+.card-signal .conv-pips { margin-left: auto; }
+
+/* ── Legend Collapsible ────────────────────────────────────────────────────── */
+.legend-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  gap: 12px;
+}
+
+.legend-toggle-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 9px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.legend-toggle-btn:hover { color: var(--text); }
+
+.legend { transition: opacity 0.2s; }
+.legend-collapsed .legend { display: none; }
+
+/* ── TradingView Skeleton Loader ───────────────────────────────────────────── */
+.tv-skeleton {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: linear-gradient(90deg,
+    var(--surface) 0%,
+    var(--surface2) 50%,
+    var(--surface) 100%);
+  background-size: 200% 100%;
+  animation: kpt-shimmer 1.6s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes kpt-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.tradingview-widget-container { position: relative; }
+
+/* ── Sticky first column on TF tables ─────────────────────────────────────── */
+.table-wrap table thead th:first-child,
+.table-wrap table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.5);
+}
+.table-wrap table thead th:first-child {
+  background: var(--surface2);
+  z-index: 3;
+}
+.table-wrap table tbody td:first-child {
+  background: var(--surface);
+}
+.table-wrap table tbody tr:hover td:first-child {
+  background: var(--surface2);
+}
+
+/* ── AI Panel Hint Text ────────────────────────────────────────────────────── */
+.ai-hint {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* ── Search Bar (index page) ───────────────────────────────────────────────── */
+.search-wrap {
+  margin: 0 0 24px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  padding: 11px 60px 11px 38px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input::placeholder { color: var(--muted); }
+.search-input:focus { border-color: rgba(34,197,94,0.4); box-shadow: 0 0 0 1px rgba(34,197,94,0.1); }
+
+.search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 14px;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.search-count {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.asset-card.search-hidden { display: none !important; }
+.grid-section.section-all-hidden { opacity: 0.25; }
+
+/* ── Defer / Performance ───────────────────────────────────────────────────── */
+/* (scripts use defer — no style changes needed here) */
+/* This Week accordion styles are in index.html <style> block (index-only) */

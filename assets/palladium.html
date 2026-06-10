@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palladium (PA) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Palladium (PA)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Palladium (PA)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR rockets upward from near zero in the first dramatic move of the year. 15-YR also rises moderately. 5-YR is at its WEAKEST point of the year — near zero, offering no confirmation. The January signal is powerful on the 40-YR alone but not confirmed by the shorter TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 40-YR SURGES, 5-YR LAGGING</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR approaches its FIRST ANNUAL PEAK (~70–75) — the most significant early-year move in palladium's seasonal. 15-YR continues to rise moderately. 5-YR STILL extremely weak (near 10–25). The divergence between the 40-YR's dramatic surge and the 5-YR's persistent weakness is the defining feature of palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>40-YR PEAKS — PARTIAL LONG ONLY</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR pushes to its ABSOLUTE ANNUAL HIGH (~85–90) before the multi-month decline begins. 15-YR moderately building. 5-YR still extremely weak (~15–20). No clean three-way alignment exists; the 40-YR's annual peak in March-April is the clearest signal in palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 40-YR MAKES ITS ANNUAL HIGH</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR drops sharply from its March peak — from ~85 toward ~30–35. 15-YR also weakens. 5-YR finally shows a clear directional signal (also declining). The first broad three-way bearish alignment of the year is the clearest short setup in palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — 40-YR SHARP DECLINE</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>The most directionless month of palladium's year — 40-YR volatile and choppy (~40–60), 15-YR ranging (~35–50), 5-YR near its absolute lows (~15–25). No reliable trade setup exists in May. The asset is in a seasonal no-man's-land.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — NO EDGE</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR makes its absolute annual low (~20) — the weakest reading of the year for the shortest TF. 40-YR volatile and choppy in the 40–55 range. 15-YR ranging. No clean directional edge but the 5-YR's trough here sets up the first phase of the multi-month year-end surge.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 5-YR AT ANNUAL LOW</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs near their mid-year lows — 40-YR volatile ~25–50, 15-YR ~25–30, 5-YR ~20. The foundation for the year-end surge is forming but no reliable trade exists yet. The patience required through May-July separates the best palladium seasonal traders from the rest.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — BUILDING PHASE BEGINS</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs now pointing higher — the year-end rally is confirmed. 5-YR rising clearly off its June lows, 40-YR climbing, 15-YR also moving up. The signal is real but still early; the most explosive part of the year-end move comes in October-December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RALLY BEGINS</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs continue rising with gathering momentum. 5-YR now at ~35–40 (after spending most of the year near 20), 15-YR at ~40–45, 40-YR at ~50–55. The year-end convergence toward 100 is becoming visible on all TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — ACCELERATION BUILDING</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year-end surge accelerates — 40-YR from ~50 toward ~75-80, 15-YR from ~40 toward ~60-65, 5-YR from ~40 toward ~65. All three TFs are in strong agreement and gathering pace. October is the month where the convergence becomes unmistakable.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — SURGE ACCELERATES</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs in a powerful final surge toward 100 — the year-end convergence is the single most extreme seasonal concentration in any commodity. 40-YR from ~75 toward ~90+, 15-YR and 5-YR both accelerating. Hold maximum size into December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — FINAL PUSH TO 100</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE MOST EXTREME SEASONAL CONCENTRATION IN ANY ASSET — all three TFs reach 100 simultaneously at 02 Jan 2020 (40-YR=100, 15-YR=100, 5-YR=100). No other asset in the project has this. Palladium's year-end convergence is a phenomenon: a 5-YR that spent most of the year near 20 arrives at 100 alongside a 40-YR that traced a completely different path. The December long is the highest-conviction seasonal trade in the entire project.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — ALL TFs CONVERGE TO 100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR rockets upward from near zero in the first dramatic move of the year. 15-YR also rises moderately. 5-YR is at its WEAKEST point of the year — near zero, offering no confirmation. The January signal is powerful on the 40-YR alone but not confirmed by the shorter TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — 40-YR SURGES, 5-YR LAGGING</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR approaches its FIRST ANNUAL PEAK (~70–75) — the most significant early-year move in palladium's seasonal. 15-YR continues to rise moderately. 5-YR STILL extremely weak (near 10–25). The divergence between the 40-YR's dramatic surge and the 5-YR's persistent weakness is the defining feature of palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>40-YR PEAKS — PARTIAL LONG ONLY</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR pushes to its ABSOLUTE ANNUAL HIGH (~85–90) before the multi-month decline begins. 15-YR moderately building. 5-YR still extremely weak (~15–20). No clean three-way alignment exists; the 40-YR's annual peak in March-April is the clearest signal in palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 40-YR MAKES ITS ANNUAL HIGH</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR drops sharply from its March peak — from ~85 toward ~30–35. 15-YR also weakens. 5-YR finally shows a clear directional signal (also declining). The first broad three-way bearish alignment of the year is the clearest short setup in palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — 40-YR SHARP DECLINE</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>The most directionless month of palladium's year — 40-YR volatile and choppy (~40–60), 15-YR ranging (~35–50), 5-YR near its absolute lows (~15–25). No reliable trade setup exists in May. The asset is in a seasonal no-man's-land.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — NO EDGE</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR makes its absolute annual low (~20) — the weakest reading of the year for the shortest TF. 40-YR volatile and choppy in the 40–55 range. 15-YR ranging. No clean directional edge but the 5-YR's trough here sets up the first phase of the multi-month year-end surge.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 5-YR AT ANNUAL LOW</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs near their mid-year lows — 40-YR volatile ~25–50, 15-YR ~25–30, 5-YR ~20. The foundation for the year-end surge is forming but no reliable trade exists yet. The patience required through May-July separates the best palladium seasonal traders from the rest.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — BUILDING PHASE BEGINS</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs now pointing higher — the year-end rally is confirmed. 5-YR rising clearly off its June lows, 40-YR climbing, 15-YR also moving up. The signal is real but still early; the most explosive part of the year-end move comes in October-December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RALLY BEGINS</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs continue rising with gathering momentum. 5-YR now at ~35–40 (after spending most of the year near 20), 15-YR at ~40–45, 40-YR at ~50–55. The year-end convergence toward 100 is becoming visible on all TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — ACCELERATION BUILDING</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year-end surge accelerates — 40-YR from ~50 toward ~75-80, 15-YR from ~40 toward ~60-65, 5-YR from ~40 toward ~65. All three TFs are in strong agreement and gathering pace. October is the month where the convergence becomes unmistakable.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — SURGE ACCELERATES</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs in a powerful final surge toward 100 — the year-end convergence is the single most extreme seasonal concentration in any commodity. 40-YR from ~75 toward ~90+, 15-YR and 5-YR both accelerating. Hold maximum size into December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — FINAL PUSH TO 100</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE MOST EXTREME SEASONAL CONCENTRATION IN ANY ASSET — all three TFs reach 100 simultaneously at 02 Jan 2020 (40-YR=100, 15-YR=100, 5-YR=100). No other asset in the project has this. Palladium's year-end convergence is a phenomenon: a 5-YR that spent most of the year near 20 arrives at 100 alongside a 40-YR that traced a completely different path. The December long is the highest-conviction seasonal trade in the entire project.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — ALL TFs CONVERGE TO 100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR rockets upward from near zero in the first dramatic move of the year. 15-YR also rises moderately. 5-YR is at its WEAKEST point of the year — near zero, offering no confirmation. The January signal is powerful on the 40-YR alone but not confirmed by the shorter TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — 40-YR SURGES, 5-YR LAGGING</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR approaches its FIRST ANNUAL PEAK (~70–75) — the most significant early-year move in palladium's seasonal. 15-YR continues to rise moderately. 5-YR STILL extremely weak (near 10–25). The divergence between the 40-YR's dramatic surge and the 5-YR's persistent weakness is the defining feature of palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>40-YR PEAKS — PARTIAL LONG ONLY</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR pushes to its ABSOLUTE ANNUAL HIGH (~85–90) before the multi-month decline begins. 15-YR moderately building. 5-YR still extremely weak (~15–20). No clean three-way alignment exists; the 40-YR's annual peak in March-April is the clearest signal in palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR MAKES ITS ANNUAL HIGH</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR drops sharply from its March peak — from ~85 toward ~30–35. 15-YR also weakens. 5-YR finally shows a clear directional signal (also declining). The first broad three-way bearish alignment of the year is the clearest short setup in palladium's first half.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — 40-YR SHARP DECLINE</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>The most directionless month of palladium's year — 40-YR volatile and choppy (~40–60), 15-YR ranging (~35–50), 5-YR near its absolute lows (~15–25). No reliable trade setup exists in May. The asset is in a seasonal no-man's-land.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — NO EDGE</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR makes its absolute annual low (~20) — the weakest reading of the year for the shortest TF. 40-YR volatile and choppy in the 40–55 range. 15-YR ranging. No clean directional edge but the 5-YR's trough here sets up the first phase of the multi-month year-end surge.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — 5-YR AT ANNUAL LOW</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs near their mid-year lows — 40-YR volatile ~25–50, 15-YR ~25–30, 5-YR ~20. The foundation for the year-end surge is forming but no reliable trade exists yet. The patience required through May-July separates the best palladium seasonal traders from the rest.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — BUILDING PHASE BEGINS</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs now pointing higher — the year-end rally is confirmed. 5-YR rising clearly off its June lows, 40-YR climbing, 15-YR also moving up. The signal is real but still early; the most explosive part of the year-end move comes in October-December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RALLY BEGINS</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs continue rising with gathering momentum. 5-YR now at ~35–40 (after spending most of the year near 20), 15-YR at ~40–45, 40-YR at ~50–55. The year-end convergence toward 100 is becoming visible on all TFs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — ACCELERATION BUILDING</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year-end surge accelerates — 40-YR from ~50 toward ~75-80, 15-YR from ~40 toward ~60-65, 5-YR from ~40 toward ~65. All three TFs are in strong agreement and gathering pace. October is the month where the convergence becomes unmistakable.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — SURGE ACCELERATES</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs in a powerful final surge toward 100 — the year-end convergence is the single most extreme seasonal concentration in any commodity. 40-YR from ~75 toward ~90+, 15-YR and 5-YR both accelerating. Hold maximum size into December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — FINAL PUSH TO 100</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE MOST EXTREME SEASONAL CONCENTRATION IN ANY ASSET — all three TFs reach 100 simultaneously at 02 Jan 2020 (40-YR=100, 15-YR=100, 5-YR=100). No other asset in the project has this. Palladium's year-end convergence is a phenomenon: a 5-YR that spent most of the year near 20 arrives at 100 alongside a 40-YR that traced a completely different path. The December long is the highest-conviction seasonal trade in the entire project.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — ALL TFs CONVERGE TO 100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Palladium NYMEX Futures · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/palladium.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

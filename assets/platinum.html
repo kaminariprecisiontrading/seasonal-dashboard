@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platinum (PL) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Platinum (PL)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Platinum (PL)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs climb strongly from year-end lows. The broad early-year seasonal bid (shared with gold and copper) is clear and consistent — platinum rises from the 25–35 range toward 65–75 by late January.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONG YEAR OPENER</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>FIRST OF TWO ANNUAL PEAKS — 5-YR spikes to near 100 in early February, then COLLAPSES sharply in what is the first defining reversal of platinum's double-peaked year. 15-YR and 40-YR hold up better but also show weakness after the peak. Then all three rally again toward the April secondary peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — FIRST PEAK AND PULLBACK</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>After the February correction, ALL THREE TFs re-rally strongly toward their second annual peak — the defining 'double-peak' structure of platinum's year. This is the setup for April's highest-conviction reversal: the more powerful the March re-rally, the sharper the April collapse.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — RE-RALLY TO SECOND PEAK</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>THE YEAR'S MOST POWERFUL TRADE — all three TFs SIMULTANEOUSLY peak near 100 in early April and then CRASH toward 25–35 by month-end. Platinum's April reversal is among the most extreme seasonal events in any commodity: from triple-TF readings near 100 to the mid-20s in a single month. The highest-conviction flip in the metals complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — THE DEFINING REVERSAL</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Full continuation of April's collapse — all three TFs declining toward the June-July absolute trough (25–35 range). The waterfall is sustained, clean, and reliable. One of the highest-conviction short windows in the precious metals complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL CONTINUATION</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining toward the mid-year trough (~25–35). Platinum's trough is less extreme than gold/silver (doesn't approach zero) but is still a clear seasonal low. Cover shorts in the trough window; the July-August reversal is reliable.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — APPROACHING THE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs reverse cleanly from the June trough — a sharper, more synchronized reversal than copper's messy July. 5-YR leads the charge. This is a high-conviction seasonal long entry, launching the July-September bull run.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONG SUMMER REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The summer bull run continues — 15-YR leads toward its seasonal high near 85–90. 5-YR also strong. 40-YR still climbing. All three approaching their late-summer peaks simultaneously, making this the highest-conviction long window of H2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — PEAK OF THE SUMMER RALLY</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>The last gasps of the summer bull run — 15-YR and 40-YR push toward their September highs while 5-YR begins to stall. The October collapse begins from this window, so vigilant position management is critical.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG — APPROACHING THE FINAL PEAK</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>PLATINUM'S DEFINING AUTUMN SIGNATURE — unlike gold/silver (which consolidate or hold in October), platinum COLLAPSES sharply from its September highs all the way toward the year-end lows. The October waterfall is among the sharpest single-month seasonal moves in the dataset for any metal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN COLLAPSE (PLATINUM-SPECIFIC)</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs continue declining toward the year-end lows — platinum is the ONLY metal that is persistently BEARISH into December. No year-end seasonal surge here; the weakness continues through the final months. This is platinum's most distinctive seasonal feature versus gold/silver.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — YEAR-END WEAKNESS CONTINUES</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>PLATINUM'S MOST COUNTERINTUITIVE PATTERN — while gold, silver, and copper all have strong year-end seasonal surges in December, platinum reaches its ANNUAL LOWS in December (40-YR=27.55, 15-YR=41.45, 5-YR=32.21). Never confuse platinum's December with gold's. The year closes weak and sets up January's new bull run.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — SEASONAL YEAR-END LOWS (UNIQUE)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs climb strongly from year-end lows. The broad early-year seasonal bid (shared with gold and copper) is clear and consistent — platinum rises from the 25–35 range toward 65–75 by late January.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONG YEAR OPENER</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>FIRST OF TWO ANNUAL PEAKS — 5-YR spikes to near 100 in early February, then COLLAPSES sharply in what is the first defining reversal of platinum's double-peaked year. 15-YR and 40-YR hold up better but also show weakness after the peak. Then all three rally again toward the April secondary peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — FIRST PEAK AND PULLBACK</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>After the February correction, ALL THREE TFs re-rally strongly toward their second annual peak — the defining 'double-peak' structure of platinum's year. This is the setup for April's highest-conviction reversal: the more powerful the March re-rally, the sharper the April collapse.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — RE-RALLY TO SECOND PEAK</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>THE YEAR'S MOST POWERFUL TRADE — all three TFs SIMULTANEOUSLY peak near 100 in early April and then CRASH toward 25–35 by month-end. Platinum's April reversal is among the most extreme seasonal events in any commodity: from triple-TF readings near 100 to the mid-20s in a single month. The highest-conviction flip in the metals complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — THE DEFINING REVERSAL</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Full continuation of April's collapse — all three TFs declining toward the June-July absolute trough (25–35 range). The waterfall is sustained, clean, and reliable. One of the highest-conviction short windows in the precious metals complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL CONTINUATION</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining toward the mid-year trough (~25–35). Platinum's trough is less extreme than gold/silver (doesn't approach zero) but is still a clear seasonal low. Cover shorts in the trough window; the July-August reversal is reliable.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — APPROACHING THE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs reverse cleanly from the June trough — a sharper, more synchronized reversal than copper's messy July. 5-YR leads the charge. This is a high-conviction seasonal long entry, launching the July-September bull run.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONG SUMMER REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The summer bull run continues — 15-YR leads toward its seasonal high near 85–90. 5-YR also strong. 40-YR still climbing. All three approaching their late-summer peaks simultaneously, making this the highest-conviction long window of H2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — PEAK OF THE SUMMER RALLY</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The last gasps of the summer bull run — 15-YR and 40-YR push toward their September highs while 5-YR begins to stall. The October collapse begins from this window, so vigilant position management is critical.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG — APPROACHING THE FINAL PEAK</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>PLATINUM'S DEFINING AUTUMN SIGNATURE — unlike gold/silver (which consolidate or hold in October), platinum COLLAPSES sharply from its September highs all the way toward the year-end lows. The October waterfall is among the sharpest single-month seasonal moves in the dataset for any metal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN COLLAPSE (PLATINUM-SPECIFIC)</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs continue declining toward the year-end lows — platinum is the ONLY metal that is persistently BEARISH into December. No year-end seasonal surge here; the weakness continues through the final months. This is platinum's most distinctive seasonal feature versus gold/silver.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — YEAR-END WEAKNESS CONTINUES</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>PLATINUM'S MOST COUNTERINTUITIVE PATTERN — while gold, silver, and copper all have strong year-end seasonal surges in December, platinum reaches its ANNUAL LOWS in December (40-YR=27.55, 15-YR=41.45, 5-YR=32.21). Never confuse platinum's December with gold's. The year closes weak and sets up January's new bull run.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — SEASONAL YEAR-END LOWS (UNIQUE)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs climb strongly from year-end lows. The broad early-year seasonal bid (shared with gold and copper) is clear and consistent — platinum rises from the 25–35 range toward 65–75 by late January.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONG YEAR OPENER</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>FIRST OF TWO ANNUAL PEAKS — 5-YR spikes to near 100 in early February, then COLLAPSES sharply in what is the first defining reversal of platinum's double-peaked year. 15-YR and 40-YR hold up better but also show weakness after the peak. Then all three rally again toward the April secondary peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — FIRST PEAK AND PULLBACK</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>After the February correction, ALL THREE TFs re-rally strongly toward their second annual peak — the defining 'double-peak' structure of platinum's year. This is the setup for April's highest-conviction reversal: the more powerful the March re-rally, the sharper the April collapse.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — RE-RALLY TO SECOND PEAK</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>THE YEAR'S MOST POWERFUL TRADE — all three TFs SIMULTANEOUSLY peak near 100 in early April and then CRASH toward 25–35 by month-end. Platinum's April reversal is among the most extreme seasonal events in any commodity: from triple-TF readings near 100 to the mid-20s in a single month. The highest-conviction flip in the metals complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — THE DEFINING REVERSAL</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Full continuation of April's collapse — all three TFs declining toward the June-July absolute trough (25–35 range). The waterfall is sustained, clean, and reliable. One of the highest-conviction short windows in the precious metals complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL CONTINUATION</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining toward the mid-year trough (~25–35). Platinum's trough is less extreme than gold/silver (doesn't approach zero) but is still a clear seasonal low. Cover shorts in the trough window; the July-August reversal is reliable.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — APPROACHING THE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs reverse cleanly from the June trough — a sharper, more synchronized reversal than copper's messy July. 5-YR leads the charge. This is a high-conviction seasonal long entry, launching the July-September bull run.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — STRONG SUMMER REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The summer bull run continues — 15-YR leads toward its seasonal high near 85–90. 5-YR also strong. 40-YR still climbing. All three approaching their late-summer peaks simultaneously, making this the highest-conviction long window of H2.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — PEAK OF THE SUMMER RALLY</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The last gasps of the summer bull run — 15-YR and 40-YR push toward their September highs while 5-YR begins to stall. The October collapse begins from this window, so vigilant position management is critical.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG — APPROACHING THE FINAL PEAK</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>PLATINUM'S DEFINING AUTUMN SIGNATURE — unlike gold/silver (which consolidate or hold in October), platinum COLLAPSES sharply from its September highs all the way toward the year-end lows. The October waterfall is among the sharpest single-month seasonal moves in the dataset for any metal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN COLLAPSE (PLATINUM-SPECIFIC)</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs continue declining toward the year-end lows — platinum is the ONLY metal that is persistently BEARISH into December. No year-end seasonal surge here; the weakness continues through the final months. This is platinum's most distinctive seasonal feature versus gold/silver.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — YEAR-END WEAKNESS CONTINUES</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>PLATINUM'S MOST COUNTERINTUITIVE PATTERN — while gold, silver, and copper all have strong year-end seasonal surges in December, platinum reaches its ANNUAL LOWS in December (40-YR=27.55, 15-YR=41.45, 5-YR=32.21). Never confuse platinum's December with gold's. The year closes weak and sets up January's new bull run.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — SEASONAL YEAR-END LOWS (UNIQUE)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Platinum NYMEX Futures · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/platinum.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

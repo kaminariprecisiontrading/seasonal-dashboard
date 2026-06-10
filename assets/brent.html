@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brent Crude (ICE) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Brent Crude (ICE)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Brent Crude (ICE)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 31-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 31-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">31-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All TFs begin the year near annual lows (5–15 range). No seasonal edge. Very similar to CL but with slightly more aggressive selling in early January. Flat or short bias.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>AVOID — annual lows zone, all TFs depressed</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Annual trough for all TFs in early February. 31-YR dips near 0. Recovery building from Wk2 onward but conviction low. Brent's 5-YR can touch 0 — more extreme trough than CL.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — annual low forms, recovery begins mid-month</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong broad bull — identical dynamic to CL. All three TFs rising steeply from February lows. 31-YR reaches ~45–55 by month end. Primary seasonal long entry of H1. Buy the dips.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — primary H1 bull, broad TF alignment</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR approaches its H1 peak (~95–100) in mid-April. 31-YR at ~75–80. 5-YR still rising. Late April sees top formation begin. Manage longs tightly; Brent's 15-YR peaking is the primary caution signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG (early) → TOP WATCH — 15-YR peaks mid-April ~100</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Extreme May volatility matching CL. 5-YR spikes to ~100 in early May then crashes. 15-YR falling from April peak. 31-YR choppy. Brent's 5-YR summer weakness is more pronounced than CL's. No directional edge — stay flat.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>VOLATILE — 5-YR spike/crash; conflicting TF signals</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Brent's 5-YR is more bearish in June (~30–35) than CL's equivalent. 31-YR and 15-YR have a secondary bounce but it fades. Summer low approaches. Brent summer weakness is the most extreme of the crude complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>WEAK — 5-YR more bearish than CL; secondary bounce fades</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Brent's 5-YR summer low (~20) is MORE extreme than CL's (~40) — a key differentiating feature. 31-YR and 15-YR also dip. Late-July reversal is the H2 long setup. The extreme 5-YR weakness makes the eventual reversal more powerful.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>SUMMER LOW — 5-YR hits ~20 (more extreme than CL); reversal late July</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery. 31-YR rises from ~55 to ~80. 15-YR and 5-YR also recovering. The bull builds toward the 31-YR seasonal high in September. Identical structure to CL's August recovery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 recovery rally, all TFs rising toward Sep peak</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's primary seasonal long trade. 31-YR surges to annual high (~95–100) in late September. 15-YR peaks ~75–80. 5-YR at ~70–75. Full alignment identical to CL. Late September 31-YR peaks and reversal begins. Brent's 31-YR high is the definitive seasonal moment.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — 31-YR annual high; peak seasonal long of the year</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Identical to CL — major reversal from September's annual high. 31-YR falls from 100 to ~50–55 (a larger move than CL's 100→65, making Brent's October the stronger short). High conviction. Bear is broad and sustained.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — major rollover from September annual high</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline. Brent's 31-YR falls harder than CL's (reaching ~35–40 vs CL's ~50). 15-YR ~60. 5-YR ~40–45. All three declining into December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — sustained bear; 31-YR falls to ~35–40</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>KEY DIFFERENCE FROM CL: Brent's 31-YR recovers to 62.72 at year-end (vs CL's 46.27). The 31-YR trough is less extreme, and the recovery more complete. Still choppy overall. Year ends with 31-YR=62.72, 15-YR=67.17, 5-YR=48.81.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP/RECOVERY — 31-YR recovers to 62.72; higher than CL year-end</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All TFs begin the year near annual lows (5–15 range). No seasonal edge. Very similar to CL but with slightly more aggressive selling in early January. Flat or short bias.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>AVOID — annual lows zone, all TFs depressed</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Annual trough for all TFs in early February. 31-YR dips near 0. Recovery building from Wk2 onward but conviction low. Brent's 5-YR can touch 0 — more extreme trough than CL.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — annual low forms, recovery begins mid-month</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong broad bull — identical dynamic to CL. All three TFs rising steeply from February lows. 31-YR reaches ~45–55 by month end. Primary seasonal long entry of H1. Buy the dips.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — primary H1 bull, broad TF alignment</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR approaches its H1 peak (~95–100) in mid-April. 31-YR at ~75–80. 5-YR still rising. Late April sees top formation begin. Manage longs tightly; Brent's 15-YR peaking is the primary caution signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG (early) → TOP WATCH — 15-YR peaks mid-April ~100</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extreme May volatility matching CL. 5-YR spikes to ~100 in early May then crashes. 15-YR falling from April peak. 31-YR choppy. Brent's 5-YR summer weakness is more pronounced than CL's. No directional edge — stay flat.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>VOLATILE — 5-YR spike/crash; conflicting TF signals</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Brent's 5-YR is more bearish in June (~30–35) than CL's equivalent. 31-YR and 15-YR have a secondary bounce but it fades. Summer low approaches. Brent summer weakness is the most extreme of the crude complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>WEAK — 5-YR more bearish than CL; secondary bounce fades</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Brent's 5-YR summer low (~20) is MORE extreme than CL's (~40) — a key differentiating feature. 31-YR and 15-YR also dip. Late-July reversal is the H2 long setup. The extreme 5-YR weakness makes the eventual reversal more powerful.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>SUMMER LOW — 5-YR hits ~20 (more extreme than CL); reversal late July</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery. 31-YR rises from ~55 to ~80. 15-YR and 5-YR also recovering. The bull builds toward the 31-YR seasonal high in September. Identical structure to CL's August recovery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 recovery rally, all TFs rising toward Sep peak</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's primary seasonal long trade. 31-YR surges to annual high (~95–100) in late September. 15-YR peaks ~75–80. 5-YR at ~70–75. Full alignment identical to CL. Late September 31-YR peaks and reversal begins. Brent's 31-YR high is the definitive seasonal moment.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — 31-YR annual high; peak seasonal long of the year</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Identical to CL — major reversal from September's annual high. 31-YR falls from 100 to ~50–55 (a larger move than CL's 100→65, making Brent's October the stronger short). High conviction. Bear is broad and sustained.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — major rollover from September annual high</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline. Brent's 31-YR falls harder than CL's (reaching ~35–40 vs CL's ~50). 15-YR ~60. 5-YR ~40–45. All three declining into December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — sustained bear; 31-YR falls to ~35–40</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>KEY DIFFERENCE FROM CL: Brent's 31-YR recovers to 62.72 at year-end (vs CL's 46.27). The 31-YR trough is less extreme, and the recovery more complete. Still choppy overall. Year ends with 31-YR=62.72, 15-YR=67.17, 5-YR=48.81.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP/RECOVERY — 31-YR recovers to 62.72; higher than CL year-end</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 31-YR (1989–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All TFs begin the year near annual lows (5–15 range). No seasonal edge. Very similar to CL but with slightly more aggressive selling in early January. Flat or short bias.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>AVOID — annual lows zone, all TFs depressed</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Annual trough for all TFs in early February. 31-YR dips near 0. Recovery building from Wk2 onward but conviction low. Brent's 5-YR can touch 0 — more extreme trough than CL.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — annual low forms, recovery begins mid-month</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong broad bull — identical dynamic to CL. All three TFs rising steeply from February lows. 31-YR reaches ~45–55 by month end. Primary seasonal long entry of H1. Buy the dips.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — primary H1 bull, broad TF alignment</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR approaches its H1 peak (~95–100) in mid-April. 31-YR at ~75–80. 5-YR still rising. Late April sees top formation begin. Manage longs tightly; Brent's 15-YR peaking is the primary caution signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG (early) → TOP WATCH — 15-YR peaks mid-April ~100</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Extreme May volatility matching CL. 5-YR spikes to ~100 in early May then crashes. 15-YR falling from April peak. 31-YR choppy. Brent's 5-YR summer weakness is more pronounced than CL's. No directional edge — stay flat.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>VOLATILE — 5-YR spike/crash; conflicting TF signals</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Brent's 5-YR is more bearish in June (~30–35) than CL's equivalent. 31-YR and 15-YR have a secondary bounce but it fades. Summer low approaches. Brent summer weakness is the most extreme of the crude complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>WEAK — 5-YR more bearish than CL; secondary bounce fades</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Brent's 5-YR summer low (~20) is MORE extreme than CL's (~40) — a key differentiating feature. 31-YR and 15-YR also dip. Late-July reversal is the H2 long setup. The extreme 5-YR weakness makes the eventual reversal more powerful.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>SUMMER LOW — 5-YR hits ~20 (more extreme than CL); reversal late July</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery. 31-YR rises from ~55 to ~80. 15-YR and 5-YR also recovering. The bull builds toward the 31-YR seasonal high in September. Identical structure to CL's August recovery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 recovery rally, all TFs rising toward Sep peak</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The year's primary seasonal long trade. 31-YR surges to annual high (~95–100) in late September. 15-YR peaks ~75–80. 5-YR at ~70–75. Full alignment identical to CL. Late September 31-YR peaks and reversal begins. Brent's 31-YR high is the definitive seasonal moment.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — 31-YR annual high; peak seasonal long of the year</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Identical to CL — major reversal from September's annual high. 31-YR falls from 100 to ~50–55 (a larger move than CL's 100→65, making Brent's October the stronger short). High conviction. Bear is broad and sustained.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — major rollover from September annual high</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline. Brent's 31-YR falls harder than CL's (reaching ~35–40 vs CL's ~50). 15-YR ~60. 5-YR ~40–45. All three declining into December.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — sustained bear; 31-YR falls to ~35–40</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>KEY DIFFERENCE FROM CL: Brent's 31-YR recovers to 62.72 at year-end (vs CL's 46.27). The 31-YR trough is less extreme, and the recovery more complete. Still choppy overall. Year ends with 31-YR=62.72, 15-YR=67.17, 5-YR=48.81.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP/RECOVERY — 31-YR recovers to 62.72; higher than CL year-end</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Brent Crude Oil ICE · 31-Year Seasonal (1989–2019) · 15-Year · 5-Year overlays. Reference: 31-YR=62.72, 15-YR=67.17, 5-YR=48.81 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/brent.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

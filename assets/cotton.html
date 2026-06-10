@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotton (ICE) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Cotton (ICE)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Cotton (ICE)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs around 35–40. 5-YR has a brief early-January spike then falls back to ~30. No strong directional bias — the market is in transition between the prior year's cotton cycle and the new crop planting season pressure building in February.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — all TFs mid-range, no clean seasonal edge</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining February move: 15-YR surges from ~35 to ~80–85 — new crop planting-season demand drives the seasonal. 40-YR also rises to ~50. 5-YR recovers to ~55–60. The long-term seasonal is powered by new-crop positioning ahead of Southern US planting. High conviction long.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR surges to ~80–85; new crop planting season demand</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR holds around 80. 40-YR rises to ~80–85. 5-YR at ~55–65. The planting season bull is in full force. Longs from February should be held. Begin planning the April exit when 5-YR approaches 100.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — broad bull maintained; all TFs at elevated levels</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE seasonal peak for cotton. 5-YR spikes to near 100. 40-YR at ~85. 15-YR at ~80–85. All three TFs at elevated levels simultaneously — the planting-season premium is fully priced. The May-September extended bear begins from this peak. Exit longs aggressively in April and flip short.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK → FLIP SHORT — 5-YR spikes to ~100; multi-TF seasonal top</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extended bear phase begins post-peak. All three TFs declining from their April highs. 40-YR from ~85 toward ~65. 15-YR from ~80 toward ~60. 5-YR crashing from 100. The harvest-season supply build begins to be priced in.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended bear begins; planting complete, supply builds</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extended bear continues. 40-YR falling from ~65 to ~50. 15-YR from ~60 to ~50. 5-YR weak (~25–30). Crop condition reports drive seasonal pressure as summer growing season reveals potential yield. Short bias throughout.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — mid-bear; 40-YR falling toward 50; crop report pressure</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Harvest season bear acceleration. 40-YR falls to ~40–45. 15-YR to ~45–50. 5-YR to ~35–40. The approach to September's annual low continues. Cotton's extended bear is unique in the commodity complex — 5 consecutive months of decline.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — harvest season bear; all TFs continuing lower</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining toward the September annual low. 40-YR falls to ~20–25. 15-YR to ~20–25. 5-YR to ~15–20. The harvest is being picked and supply fears peak. Almost at the seasonal floor.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — near-trough; all three heading to September annual low</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs at near-annual lows (~10–15). The extended bear is exhausting itself. Late September marks the final leg down before October's explosive reversal. Do not initiate new shorts here — the reversal risk is extreme.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>NEAR TROUGH — all TFs approaching absolute annual lows</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE year's most extreme reversal. ALL THREE TFs crash to near 0 simultaneously in early October, then EXPLODE upward. 40-YR from ~5 to ~35–40. 15-YR from near 0 to ~55. 5-YR from near 0 to ~40. The harvest is complete, supply fears recede, and new-crop demand begins. Buy the October trough aggressively.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>THREE-WAY NEAR-0 → EXPLOSIVE RECOVERY; highest-conviction reversal</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong year-end recovery continuation. 40-YR from ~35 to ~45–50. 15-YR from ~55 to ~65. 5-YR from ~40 to ~50. All three TFs recovering strongly. December target values are 40-YR=53.11, 15-YR=72.54, 5-YR=52.95.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong recovery continues; all TFs heading to year-end reference</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end recovery completes. 40-YR reaches ~53.11 (reference). 15-YR reaches ~72.54 (above mid-range — new crop demand still elevated). 5-YR reaches ~52.95. All three TFs settled at mid-to-high levels. The cotton seasonal year ends with the new crop demand premium priced in for January delivery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — year-end recovery; settles at 53.11/72.54/52.95</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs around 35–40. 5-YR has a brief early-January spike then falls back to ~30. No strong directional bias — the market is in transition between the prior year's cotton cycle and the new crop planting season pressure building in February.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — all TFs mid-range, no clean seasonal edge</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining February move: 15-YR surges from ~35 to ~80–85 — new crop planting-season demand drives the seasonal. 40-YR also rises to ~50. 5-YR recovers to ~55–60. The long-term seasonal is powered by new-crop positioning ahead of Southern US planting. High conviction long.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR surges to ~80–85; new crop planting season demand</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR holds around 80. 40-YR rises to ~80–85. 5-YR at ~55–65. The planting season bull is in full force. Longs from February should be held. Begin planning the April exit when 5-YR approaches 100.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — broad bull maintained; all TFs at elevated levels</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE seasonal peak for cotton. 5-YR spikes to near 100. 40-YR at ~85. 15-YR at ~80–85. All three TFs at elevated levels simultaneously — the planting-season premium is fully priced. The May-September extended bear begins from this peak. Exit longs aggressively in April and flip short.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK → FLIP SHORT — 5-YR spikes to ~100; multi-TF seasonal top</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extended bear phase begins post-peak. All three TFs declining from their April highs. 40-YR from ~85 toward ~65. 15-YR from ~80 toward ~60. 5-YR crashing from 100. The harvest-season supply build begins to be priced in.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended bear begins; planting complete, supply builds</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extended bear continues. 40-YR falling from ~65 to ~50. 15-YR from ~60 to ~50. 5-YR weak (~25–30). Crop condition reports drive seasonal pressure as summer growing season reveals potential yield. Short bias throughout.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — mid-bear; 40-YR falling toward 50; crop report pressure</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Harvest season bear acceleration. 40-YR falls to ~40–45. 15-YR to ~45–50. 5-YR to ~35–40. The approach to September's annual low continues. Cotton's extended bear is unique in the commodity complex — 5 consecutive months of decline.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — harvest season bear; all TFs continuing lower</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining toward the September annual low. 40-YR falls to ~20–25. 15-YR to ~20–25. 5-YR to ~15–20. The harvest is being picked and supply fears peak. Almost at the seasonal floor.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — near-trough; all three heading to September annual low</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs at near-annual lows (~10–15). The extended bear is exhausting itself. Late September marks the final leg down before October's explosive reversal. Do not initiate new shorts here — the reversal risk is extreme.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>NEAR TROUGH — all TFs approaching absolute annual lows</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE year's most extreme reversal. ALL THREE TFs crash to near 0 simultaneously in early October, then EXPLODE upward. 40-YR from ~5 to ~35–40. 15-YR from near 0 to ~55. 5-YR from near 0 to ~40. The harvest is complete, supply fears recede, and new-crop demand begins. Buy the October trough aggressively.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>THREE-WAY NEAR-0 → EXPLOSIVE RECOVERY; highest-conviction reversal</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong year-end recovery continuation. 40-YR from ~35 to ~45–50. 15-YR from ~55 to ~65. 5-YR from ~40 to ~50. All three TFs recovering strongly. December target values are 40-YR=53.11, 15-YR=72.54, 5-YR=52.95.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong recovery continues; all TFs heading to year-end reference</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end recovery completes. 40-YR reaches ~53.11 (reference). 15-YR reaches ~72.54 (above mid-range — new crop demand still elevated). 5-YR reaches ~52.95. All three TFs settled at mid-to-high levels. The cotton seasonal year ends with the new crop demand premium priced in for January delivery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — year-end recovery; settles at 53.11/72.54/52.95</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>All three TFs around 35–40. 5-YR has a brief early-January spike then falls back to ~30. No strong directional bias — the market is in transition between the prior year's cotton cycle and the new crop planting season pressure building in February.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — all TFs mid-range, no clean seasonal edge</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining February move: 15-YR surges from ~35 to ~80–85 — new crop planting-season demand drives the seasonal. 40-YR also rises to ~50. 5-YR recovers to ~55–60. The long-term seasonal is powered by new-crop positioning ahead of Southern US planting. High conviction long.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR surges to ~80–85; new crop planting season demand</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR holds around 80. 40-YR rises to ~80–85. 5-YR at ~55–65. The planting season bull is in full force. Longs from February should be held. Begin planning the April exit when 5-YR approaches 100.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — broad bull maintained; all TFs at elevated levels</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE seasonal peak for cotton. 5-YR spikes to near 100. 40-YR at ~85. 15-YR at ~80–85. All three TFs at elevated levels simultaneously — the planting-season premium is fully priced. The May-September extended bear begins from this peak. Exit longs aggressively in April and flip short.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>PEAK → FLIP SHORT — 5-YR spikes to ~100; multi-TF seasonal top</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extended bear phase begins post-peak. All three TFs declining from their April highs. 40-YR from ~85 toward ~65. 15-YR from ~80 toward ~60. 5-YR crashing from 100. The harvest-season supply build begins to be priced in.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — extended bear begins; planting complete, supply builds</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Extended bear continues. 40-YR falling from ~65 to ~50. 15-YR from ~60 to ~50. 5-YR weak (~25–30). Crop condition reports drive seasonal pressure as summer growing season reveals potential yield. Short bias throughout.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — mid-bear; 40-YR falling toward 50; crop report pressure</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Harvest season bear acceleration. 40-YR falls to ~40–45. 15-YR to ~45–50. 5-YR to ~35–40. The approach to September's annual low continues. Cotton's extended bear is unique in the commodity complex — 5 consecutive months of decline.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — harvest season bear; all TFs continuing lower</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining toward the September annual low. 40-YR falls to ~20–25. 15-YR to ~20–25. 5-YR to ~15–20. The harvest is being picked and supply fears peak. Almost at the seasonal floor.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — near-trough; all three heading to September annual low</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs at near-annual lows (~10–15). The extended bear is exhausting itself. Late September marks the final leg down before October's explosive reversal. Do not initiate new shorts here — the reversal risk is extreme.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>NEAR TROUGH — all TFs approaching absolute annual lows</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE year's most extreme reversal. ALL THREE TFs crash to near 0 simultaneously in early October, then EXPLODE upward. 40-YR from ~5 to ~35–40. 15-YR from near 0 to ~55. 5-YR from near 0 to ~40. The harvest is complete, supply fears recede, and new-crop demand begins. Buy the October trough aggressively.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>THREE-WAY NEAR-0 → EXPLOSIVE RECOVERY; highest-conviction reversal</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong year-end recovery continuation. 40-YR from ~35 to ~45–50. 15-YR from ~55 to ~65. 5-YR from ~40 to ~50. All three TFs recovering strongly. December target values are 40-YR=53.11, 15-YR=72.54, 5-YR=52.95.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong recovery continues; all TFs heading to year-end reference</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Year-end recovery completes. 40-YR reaches ~53.11 (reference). 15-YR reaches ~72.54 (above mid-range — new crop demand still elevated). 5-YR reaches ~52.95. All three TFs settled at mid-to-high levels. The cotton seasonal year ends with the new crop demand premium priced in for January delivery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — year-end recovery; settles at 53.11/72.54/52.95</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Cotton ICE (CT) · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays. Reference: 40-YR=53.11, 15-YR=72.54, 5-YR=52.95 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/cotton.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

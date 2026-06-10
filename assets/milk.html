@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class III Milk (CME) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Class III Milk (CME)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Class III Milk (CME)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 25-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 25-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">25-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Recovering from December's catastrophic crash. 25-YR at ~20–25 (depressed). 15-YR at ~30. 5-YR at near-0 after December crash. February annual low in sight. The milk seasonal begins the year at depressed levels and the annual low is in February.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — post-December-crash lows; 5-YR near 0; 25-YR depressed</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ANNUAL LOW: All three TFs at their year's lowest point in February. 25-YR at ~15–20. 15-YR at ~20–25. 5-YR at near-0. Winter milk production cycle drives seasonal weakness. The September THREE-WAY peak of ~100 is the target from this February trough — a 100-point recovery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>ANNUAL LOW — all TFs at year's lowest point; trough then recovery</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong recovery from February annual low. 25-YR from ~15 to ~35. 15-YR from ~20 to ~40. 5-YR from near-0 to ~20. The spring flush period — increased milk production but forward demand premium builds. Hold longs from February through September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — recovery from February trough; all TFs recovering strongly</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Spring bull continuation. 25-YR from ~35 to ~50. 15-YR from ~40 to ~55. 5-YR from ~20 to ~35. The extended bull from February through September is one of the longest sustained directional moves in the dairy complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — spring bull; all TFs recovering toward mid-range</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Bull acceleration. 25-YR from ~50 to ~65. 15-YR from ~55 to ~70. 5-YR from ~35 to ~55. Cheese and butter demand builds into summer. September three-way peak is approaching. Hold longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — bull acceleration; all TFs heading toward June-September peak zone</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>25-YR from ~65 to ~80. 15-YR from ~70 to ~85. 5-YR from ~55 to ~70. All three TFs approaching high territory. September's three-way simultaneous peak of ~100 is the seasonal target. Hold all longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong bull; all TFs approaching 80+; September 100 loading</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Final surge toward September three-way peak. 25-YR from ~80 to ~90. 15-YR from ~85 to ~95. 5-YR from ~70 to ~85. All three TFs approach 100. The September exit is one month away. Hold maximum longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — final surge to September peak; all TFs at 85–90</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs at or approaching 100. The seasonal high is very close. 25-YR at ~95+. 15-YR at ~95+. 5-YR at ~90+. Hold longs — the September simultaneous three-way peak is the exit. Don't exit early in August; hold for the September signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — at peak zone; all TFs near 100; hold for September exit</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining seasonal event in Class III Milk. ALL THREE TFs simultaneously hit 100 in September — the year's absolute peak. Then THE CATASTROPHIC CRASH begins. 5-YR crashes from 100 to 5.99 at year-end (essentially 0). 25-YR falls from 100 to 18.63. 15-YR falls from 100 to 26.41. EXIT ALL LONGS at September peak; FLIP SHORT aggressively.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>THREE-WAY 100 → CATASTROPHIC CRASH; December 5-YR = 5.99</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Catastrophic crash continues. 5-YR from ~80 to ~30. 25-YR from ~80 to ~50. 15-YR from ~80 to ~55. December's 5-YR=5.99 target is in sight. The post-September collapse is one of the most extreme seasonal moves in the agricultural complex. Hold shorts.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — catastrophic crash continues; 5-YR heading to near 0</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Final crash leg. 5-YR from ~30 to ~10. 25-YR from ~50 to ~25. 15-YR from ~55 to ~30. December's catastrophic year-end close is imminent. Hold shorts into December. 5-YR at 5.99 by year-end is one of the most extreme reference values in the entire dataset.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — crash final leg; 5-YR heading to near 0</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>YEAR-END CATASTROPHIC CLOSE. 5-YR=5.99 — essentially 0. This is the most extreme year-end reference value in the entire seasonal dataset. 25-YR=18.63. 15-YR=26.41. The milk seasonal year ends in collapse. February will be the annual low (all TFs at ~15–20), and then the entire 100-point recovery begins again.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>YEAR-END CATASTROPHE — 5-YR=5.99 (essentially 0); 25-YR=18.63; 15-YR=26.41</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Recovering from December's catastrophic crash. 25-YR at ~20–25 (depressed). 15-YR at ~30. 5-YR at near-0 after December crash. February annual low in sight. The milk seasonal begins the year at depressed levels and the annual low is in February.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — post-December-crash lows; 5-YR near 0; 25-YR depressed</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ANNUAL LOW: All three TFs at their year's lowest point in February. 25-YR at ~15–20. 15-YR at ~20–25. 5-YR at near-0. Winter milk production cycle drives seasonal weakness. The September THREE-WAY peak of ~100 is the target from this February trough — a 100-point recovery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>ANNUAL LOW — all TFs at year's lowest point; trough then recovery</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong recovery from February annual low. 25-YR from ~15 to ~35. 15-YR from ~20 to ~40. 5-YR from near-0 to ~20. The spring flush period — increased milk production but forward demand premium builds. Hold longs from February through September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — recovery from February trough; all TFs recovering strongly</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Spring bull continuation. 25-YR from ~35 to ~50. 15-YR from ~40 to ~55. 5-YR from ~20 to ~35. The extended bull from February through September is one of the longest sustained directional moves in the dairy complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — spring bull; all TFs recovering toward mid-range</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Bull acceleration. 25-YR from ~50 to ~65. 15-YR from ~55 to ~70. 5-YR from ~35 to ~55. Cheese and butter demand builds into summer. September three-way peak is approaching. Hold longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — bull acceleration; all TFs heading toward June-September peak zone</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>25-YR from ~65 to ~80. 15-YR from ~70 to ~85. 5-YR from ~55 to ~70. All three TFs approaching high territory. September's three-way simultaneous peak of ~100 is the seasonal target. Hold all longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong bull; all TFs approaching 80+; September 100 loading</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Final surge toward September three-way peak. 25-YR from ~80 to ~90. 15-YR from ~85 to ~95. 5-YR from ~70 to ~85. All three TFs approach 100. The September exit is one month away. Hold maximum longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — final surge to September peak; all TFs at 85–90</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs at or approaching 100. The seasonal high is very close. 25-YR at ~95+. 15-YR at ~95+. 5-YR at ~90+. Hold longs — the September simultaneous three-way peak is the exit. Don't exit early in August; hold for the September signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — at peak zone; all TFs near 100; hold for September exit</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining seasonal event in Class III Milk. ALL THREE TFs simultaneously hit 100 in September — the year's absolute peak. Then THE CATASTROPHIC CRASH begins. 5-YR crashes from 100 to 5.99 at year-end (essentially 0). 25-YR falls from 100 to 18.63. 15-YR falls from 100 to 26.41. EXIT ALL LONGS at September peak; FLIP SHORT aggressively.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>THREE-WAY 100 → CATASTROPHIC CRASH; December 5-YR = 5.99</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Catastrophic crash continues. 5-YR from ~80 to ~30. 25-YR from ~80 to ~50. 15-YR from ~80 to ~55. December's 5-YR=5.99 target is in sight. The post-September collapse is one of the most extreme seasonal moves in the agricultural complex. Hold shorts.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — catastrophic crash continues; 5-YR heading to near 0</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Final crash leg. 5-YR from ~30 to ~10. 25-YR from ~50 to ~25. 15-YR from ~55 to ~30. December's catastrophic year-end close is imminent. Hold shorts into December. 5-YR at 5.99 by year-end is one of the most extreme reference values in the entire dataset.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — crash final leg; 5-YR heading to near 0</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>YEAR-END CATASTROPHIC CLOSE. 5-YR=5.99 — essentially 0. This is the most extreme year-end reference value in the entire seasonal dataset. 25-YR=18.63. 15-YR=26.41. The milk seasonal year ends in collapse. February will be the annual low (all TFs at ~15–20), and then the entire 100-point recovery begins again.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>YEAR-END CATASTROPHE — 5-YR=5.99 (essentially 0); 25-YR=18.63; 15-YR=26.41</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 25-YR (1995–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Recovering from December's catastrophic crash. 25-YR at ~20–25 (depressed). 15-YR at ~30. 5-YR at near-0 after December crash. February annual low in sight. The milk seasonal begins the year at depressed levels and the annual low is in February.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — post-December-crash lows; 5-YR near 0; 25-YR depressed</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>ANNUAL LOW: All three TFs at their year's lowest point in February. 25-YR at ~15–20. 15-YR at ~20–25. 5-YR at near-0. Winter milk production cycle drives seasonal weakness. The September THREE-WAY peak of ~100 is the target from this February trough — a 100-point recovery.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>ANNUAL LOW — all TFs at year's lowest point; trough then recovery</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Strong recovery from February annual low. 25-YR from ~15 to ~35. 15-YR from ~20 to ~40. 5-YR from near-0 to ~20. The spring flush period — increased milk production but forward demand premium builds. Hold longs from February through September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — recovery from February trough; all TFs recovering strongly</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Spring bull continuation. 25-YR from ~35 to ~50. 15-YR from ~40 to ~55. 5-YR from ~20 to ~35. The extended bull from February through September is one of the longest sustained directional moves in the dairy complex.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — spring bull; all TFs recovering toward mid-range</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Bull acceleration. 25-YR from ~50 to ~65. 15-YR from ~55 to ~70. 5-YR from ~35 to ~55. Cheese and butter demand builds into summer. September three-way peak is approaching. Hold longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — bull acceleration; all TFs heading toward June-September peak zone</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>25-YR from ~65 to ~80. 15-YR from ~70 to ~85. 5-YR from ~55 to ~70. All three TFs approaching high territory. September's three-way simultaneous peak of ~100 is the seasonal target. Hold all longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — strong bull; all TFs approaching 80+; September 100 loading</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Final surge toward September three-way peak. 25-YR from ~80 to ~90. 15-YR from ~85 to ~95. 5-YR from ~70 to ~85. All three TFs approach 100. The September exit is one month away. Hold maximum longs.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — final surge to September peak; all TFs at 85–90</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs at or approaching 100. The seasonal high is very close. 25-YR at ~95+. 15-YR at ~95+. 5-YR at ~90+. Hold longs — the September simultaneous three-way peak is the exit. Don't exit early in August; hold for the September signal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — at peak zone; all TFs near 100; hold for September exit</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE defining seasonal event in Class III Milk. ALL THREE TFs simultaneously hit 100 in September — the year's absolute peak. Then THE CATASTROPHIC CRASH begins. 5-YR crashes from 100 to 5.99 at year-end (essentially 0). 25-YR falls from 100 to 18.63. 15-YR falls from 100 to 26.41. EXIT ALL LONGS at September peak; FLIP SHORT aggressively.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>THREE-WAY 100 → CATASTROPHIC CRASH; December 5-YR = 5.99</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Catastrophic crash continues. 5-YR from ~80 to ~30. 25-YR from ~80 to ~50. 15-YR from ~80 to ~55. December's 5-YR=5.99 target is in sight. The post-September collapse is one of the most extreme seasonal moves in the agricultural complex. Hold shorts.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — catastrophic crash continues; 5-YR heading to near 0</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Final crash leg. 5-YR from ~30 to ~10. 25-YR from ~50 to ~25. 15-YR from ~55 to ~30. December's catastrophic year-end close is imminent. Hold shorts into December. 5-YR at 5.99 by year-end is one of the most extreme reference values in the entire dataset.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — crash final leg; 5-YR heading to near 0</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>YEAR-END CATASTROPHIC CLOSE. 5-YR=5.99 — essentially 0. This is the most extreme year-end reference value in the entire seasonal dataset. 25-YR=18.63. 15-YR=26.41. The milk seasonal year ends in collapse. February will be the annual low (all TFs at ~15–20), and then the entire 100-point recovery begins again.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>YEAR-END CATASTROPHE — 5-YR=5.99 (essentially 0); 25-YR=18.63; 15-YR=26.41</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Class III Milk CME (DC) · 25-Year Seasonal (1995–2019) · 15-Year · 5-Year overlays. Reference: 25-YR=18.63, 15-YR=26.41, 5-YR=5.99 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/milk.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

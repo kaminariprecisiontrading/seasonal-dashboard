@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copper (HG) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">Copper (HG)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>Copper (HG)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs climb strongly from year-end lows. 15-YR leads with a dramatic surge from near zero, 40-YR rises from ~50 toward ~80, 5-YR climbs toward the mid-60s. The year's strong Q1 bull run begins in force.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — BROAD EARLY-YEAR SURGE</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE STRONGEST MONTH — all three TFs near their respective annual highs simultaneously (~85–100 range). 15-YR approaches 100. 5-YR near 85–90. 40-YR near 85. The Q1 peak forms in this window. Highest-conviction long of the first half of the year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — MAXIMUM ALIGNMENT, APPROACHING PEAK</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Still bullish overall but the top is forming. 15-YR and 5-YR both push to final highs around late March before the April waterfall begins. 40-YR also at its annual high zone. The bull continues into early-to-mid March, then distribution accelerates.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG — PEAK ZONE (LATE MARCH TOPS)</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>THE MOST DRAMATIC REVERSAL IN COPPER'S YEAR — all three TFs CRASH from the March/April highs toward near zero. The speed and magnitude of the April collapse is the defining feature of copper's seasonal: from ~85–100 to ~10–15 in a single month. This is the highest-conviction flip of any CMX metal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — THE DEFINING REVERSAL</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Full continuation of April's collapse — all three TFs declining in unison toward the June absolute low. One of the cleanest, most sustained short windows in all of commodity seasonals. No meaningful bounce; the bears are in full control.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL CONTINUES</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The absolute annual low for copper — all three TFs near or at zero. More extreme than the gold/silver summer low in terms of cross-TF uniformity. Cover shorts in this window; the reversal from the trough is often sharp but the recovery quality is lower than precious metals.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — ABSOLUTE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>The summer low and reversal — 40-YR turns up cleanly, 5-YR and 15-YR more volatile as they bounce off near-zero readings. The recovery quality is messier than precious metals; expect chop and false starts before the trend establishes.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>FLIP — SUMMER TROUGH REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Unlike precious metals, copper's summer recovery is unreliable. 40-YR continues climbing but 5-YR and 15-YR are volatile and choppy. The three-way alignment of the July reversal quickly breaks down into an uneven, frustrating recovery pattern.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — RECOVERY IS MESSY</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR grinds steadily higher while 5-YR and 15-YR continue their volatile, untrustworthy recovery. Unlike the clean bull signals in precious metals this month, copper remains a frustrating, low-conviction trade in September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR STEADY BUT OTHERS NOISY</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining in the October-November weakness window. 40-YR falls toward its November nadir (~10). Unlike precious metals, copper's autumn weakness is sustained and clean — a reliable secondary short window after April-May.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN WEAKNESS</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR still declining toward its annual low near 10. 15-YR stages a modest recovery. 5-YR choppy. The typical November pattern shows a brief TF divergence as the autumn low forms — similar to precious metals but less extreme.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>MIXED — AUTUMN LOW FORMING</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs recover to their year-end reference values (40-YR to 55.91, 15-YR to 68.97, 5-YR to 69.77). The recovery is real and reliable but more moderate than precious metals. A solid seasonal tailwind for longs into the new year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RECOVERY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs climb strongly from year-end lows. 15-YR leads with a dramatic surge from near zero, 40-YR rises from ~50 toward ~80, 5-YR climbs toward the mid-60s. The year's strong Q1 bull run begins in force.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — BROAD EARLY-YEAR SURGE</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE STRONGEST MONTH — all three TFs near their respective annual highs simultaneously (~85–100 range). 15-YR approaches 100. 5-YR near 85–90. 40-YR near 85. The Q1 peak forms in this window. Highest-conviction long of the first half of the year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — MAXIMUM ALIGNMENT, APPROACHING PEAK</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Still bullish overall but the top is forming. 15-YR and 5-YR both push to final highs around late March before the April waterfall begins. 40-YR also at its annual high zone. The bull continues into early-to-mid March, then distribution accelerates.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — PEAK ZONE (LATE MARCH TOPS)</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>THE MOST DRAMATIC REVERSAL IN COPPER'S YEAR — all three TFs CRASH from the March/April highs toward near zero. The speed and magnitude of the April collapse is the defining feature of copper's seasonal: from ~85–100 to ~10–15 in a single month. This is the highest-conviction flip of any CMX metal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — THE DEFINING REVERSAL</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Full continuation of April's collapse — all three TFs declining in unison toward the June absolute low. One of the cleanest, most sustained short windows in all of commodity seasonals. No meaningful bounce; the bears are in full control.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL CONTINUES</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The absolute annual low for copper — all three TFs near or at zero. More extreme than the gold/silver summer low in terms of cross-TF uniformity. Cover shorts in this window; the reversal from the trough is often sharp but the recovery quality is lower than precious metals.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>BEAR — ABSOLUTE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="chop-tag">FLIP</span></td>
+      <td>The summer low and reversal — 40-YR turns up cleanly, 5-YR and 15-YR more volatile as they bounce off near-zero readings. The recovery quality is messier than precious metals; expect chop and false starts before the trend establishes.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>FLIP — SUMMER TROUGH REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>Unlike precious metals, copper's summer recovery is unreliable. 40-YR continues climbing but 5-YR and 15-YR are volatile and choppy. The three-way alignment of the July reversal quickly breaks down into an uneven, frustrating recovery pattern.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>CHOP — RECOVERY IS MESSY</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR grinds steadily higher while 5-YR and 15-YR continue their volatile, untrustworthy recovery. Unlike the clean bull signals in precious metals this month, copper remains a frustrating, low-conviction trade in September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR STEADY BUT OTHERS NOISY</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining in the October-November weakness window. 40-YR falls toward its November nadir (~10). Unlike precious metals, copper's autumn weakness is sustained and clean — a reliable secondary short window after April-May.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN WEAKNESS</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR still declining toward its annual low near 10. 15-YR stages a modest recovery. 5-YR choppy. The typical November pattern shows a brief TF divergence as the autumn low forms — similar to precious metals but less extreme.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>MIXED — AUTUMN LOW FORMING</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs recover to their year-end reference values (40-YR to 55.91, 15-YR to 68.97, 5-YR to 69.77). The recovery is real and reliable but more moderate than precious metals. A solid seasonal tailwind for longs into the new year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RECOVERY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs climb strongly from year-end lows. 15-YR leads with a dramatic surge from near zero, 40-YR rises from ~50 toward ~80, 5-YR climbs toward the mid-60s. The year's strong Q1 bull run begins in force.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — BROAD EARLY-YEAR SURGE</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>THE STRONGEST MONTH — all three TFs near their respective annual highs simultaneously (~85–100 range). 15-YR approaches 100. 5-YR near 85–90. 40-YR near 85. The Q1 peak forms in this window. Highest-conviction long of the first half of the year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — MAXIMUM ALIGNMENT, APPROACHING PEAK</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Still bullish overall but the top is forming. 15-YR and 5-YR both push to final highs around late March before the April waterfall begins. 40-YR also at its annual high zone. The bull continues into early-to-mid March, then distribution accelerates.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG — PEAK ZONE (LATE MARCH TOPS)</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>THE MOST DRAMATIC REVERSAL IN COPPER'S YEAR — all three TFs CRASH from the March/April highs toward near zero. The speed and magnitude of the April collapse is the defining feature of copper's seasonal: from ~85–100 to ~10–15 in a single month. This is the highest-conviction flip of any CMX metal.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>FLIP — THE DEFINING REVERSAL</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Full continuation of April's collapse — all three TFs declining in unison toward the June absolute low. One of the cleanest, most sustained short windows in all of commodity seasonals. No meaningful bounce; the bears are in full control.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — WATERFALL CONTINUES</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The absolute annual low for copper — all three TFs near or at zero. More extreme than the gold/silver summer low in terms of cross-TF uniformity. Cover shorts in this window; the reversal from the trough is often sharp but the recovery quality is lower than precious metals.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>BEAR — ABSOLUTE TROUGH</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>The summer low and reversal — 40-YR turns up cleanly, 5-YR and 15-YR more volatile as they bounce off near-zero readings. The recovery quality is messier than precious metals; expect chop and false starts before the trend establishes.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>FLIP — SUMMER TROUGH REVERSAL</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Unlike precious metals, copper's summer recovery is unreliable. 40-YR continues climbing but 5-YR and 15-YR are volatile and choppy. The three-way alignment of the July reversal quickly breaks down into an uneven, frustrating recovery pattern.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>CHOP — RECOVERY IS MESSY</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR grinds steadily higher while 5-YR and 15-YR continue their volatile, untrustworthy recovery. Unlike the clean bull signals in precious metals this month, copper remains a frustrating, low-conviction trade in September.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>CHOP — 40-YR STEADY BUT OTHERS NOISY</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>All three TFs declining in the October-November weakness window. 40-YR falls toward its November nadir (~10). Unlike precious metals, copper's autumn weakness is sustained and clean — a reliable secondary short window after April-May.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — AUTUMN WEAKNESS</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR still declining toward its annual low near 10. 15-YR stages a modest recovery. 5-YR choppy. The typical November pattern shows a brief TF divergence as the autumn low forms — similar to precious metals but less extreme.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>MIXED — AUTUMN LOW FORMING</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>All three TFs recover to their year-end reference values (40-YR to 55.91, 15-YR to 68.97, 5-YR to 69.77). The recovery is real and reliable but more moderate than precious metals. A solid seasonal tailwind for longs into the new year.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — YEAR-END RECOVERY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · Copper CMX Futures · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/copper.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

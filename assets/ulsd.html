@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NY Harbor ULSD (NYM) — Seasonal Analysis</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <a class="back-link" href="../index.html">&#8592; All Assets</a>
+  <span class="topbar-title">NY Harbor ULSD (NYM)</span>
+</div>
+
+
+
+<div class="header">
+  <a href="../index.html" style="font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;display:block;margin-bottom:10px;">← All Assets</a>
+  <h1>NY Harbor ULSD (NYM)</h1>
+  <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 40-YR · Moore Research Center</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-lt)"></div> 40-YR Seasonal</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+</div>
+
+<!-- ═══ COMBINED ACCORDION ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+<div class="combined-wrap">
+<table class="acc-table">
+  <thead>
+    <tr>
+      <th style="width:120px">Month</th>
+      <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">40-YR</th>
+      <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+    </tr>
+  </thead>
+  <tbody id="acc-body"></tbody>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ AI PANEL ═══ -->
+<div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+<div class="ai-panel">
+  <div class="ai-label">Claude Sonnet · Live Analysis</div>
+  <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+  <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+</div>
+
+<div class="divider"></div>
+
+
+<div class="section-label"><span style="background:var(--accent-5yr)"></span> 5-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR starts January at a mid-range ~50 but falls rapidly toward its annual low. 15-YR starts very low (~5–10). 5-YR also near lows (~15). All three TFs declining through January. The year begins bearishly for ULSD — unlike crude which just idles low, ULSD is actively falling.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — 40-YR falls from ~50 toward annual low; all declining</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR hits its ANNUAL LOW (~5–8) in early February. 15-YR also near 0. 5-YR near 0. This is the most extreme trough zone for ULSD's long-term seasonal. Recovery begins mid-month. This is the H1 long entry setup — confirm before acting.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — 40-YR hits annual low ~5; all three at annual lows</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery gains traction. 40-YR climbs from ~5 to ~15–20. 15-YR surges more aggressively toward 40–50. 5-YR recovering steadily. The April 5-YR peak is the target — build position in March.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H1 spring recovery; 15-YR leads, 40-YR climbing</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>5-YR surges to its ANNUAL HIGH (~100) in early April. 15-YR also peaks at ~80–85 in April. 40-YR less extreme but also rising to ~35–45. The spring diesel demand surge. Longs should be tightened by mid-April when the 5-YR peak is confirmed — sharp reversal follows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG → PEAK — 5-YR spikes to 100 early April; 15-YR ~80–85</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR crashes hard from its April 100 peak. 15-YR also falling. 40-YR is more resilient but choppy. This is the classic refinery maintenance → injection season transition. 40-YR holds better because the long-term demand profile remains supported.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>TRANSITION — 5-YR crashes from April 100 peak; 40-YR still elevated</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The H1 trough. 40-YR falls to ~20 (its local seasonal low). 15-YR at ~50–55. 5-YR at ~25. This is the summer doldrums for heating oil/diesel. The H2 recovery entry is being set up — late June / early July is the inflection.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>H1 TROUGH — 40-YR hits ~20; all three at local lows</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery gains traction as the market looks ahead to winter heating demand. 40-YR rises from ~20 to ~50. 15-YR from ~50 to ~65. 5-YR from ~25 to ~35–40. All three TFs recovering in sync. Build position for the September-October annual peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 recovery begins; heating demand season approaching</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 heating demand surge accelerates. 15-YR approaches ~80 by end of August. 40-YR rising toward ~60–65. 5-YR also strong. September-October annual peak is the target. Conviction high.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 surge; 15-YR approaches ~80; September peak loading</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR hits near 100 in September — its annual high. 40-YR surging strongly toward its October peak. 5-YR also near peak (~80). This is the highest-conviction long window of H2 for ULSD. Full TF alignment driven by winter heating demand.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR near 100; 40-YR surging toward October annual peak</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR hits its ANNUAL HIGH (~100) in early-to-mid October. 15-YR also near 100. 5-YR peaks ~80. This is the ULSD seasonal high — the year's most critical reversal point. Exit longs at 40-YR 100 and flip short. The winter demand is fully priced in; rollover follows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>40-YR ANNUAL HIGH ~100 → FLIP SHORT; winter demand peak</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from October's annual high. 40-YR falls from ~100 to ~70–75. 15-YR from ~95 to ~65–70. 5-YR from ~80 to ~55. All three declining. The winter demand is fully priced; seasonal selling takes over.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — rollover from October annual high; all TFs declining</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued moderate seasonal decline. 40-YR falls to ~68.24 by year-end. 15-YR to ~67.33. 5-YR to ~53.78. The decline is orderly — less dramatic than CL's December. Year ends at mid-to-high range for 40-YR and 15-YR, reflecting the structural winter demand support.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — moderate year-end decline; 40-YR settles at 68.24</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-15yr)"></span> 15-Year Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR starts January at a mid-range ~50 but falls rapidly toward its annual low. 15-YR starts very low (~5–10). 5-YR also near lows (~15). All three TFs declining through January. The year begins bearishly for ULSD — unlike crude which just idles low, ULSD is actively falling.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — 40-YR falls from ~50 toward annual low; all declining</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR hits its ANNUAL LOW (~5–8) in early February. 15-YR also near 0. 5-YR near 0. This is the most extreme trough zone for ULSD's long-term seasonal. Recovery begins mid-month. This is the H1 long entry setup — confirm before acting.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — 40-YR hits annual low ~5; all three at annual lows</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery gains traction. 40-YR climbs from ~5 to ~15–20. 15-YR surges more aggressively toward 40–50. 5-YR recovering steadily. The April 5-YR peak is the target — build position in March.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H1 spring recovery; 15-YR leads, 40-YR climbing</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>5-YR surges to its ANNUAL HIGH (~100) in early April. 15-YR also peaks at ~80–85 in April. 40-YR less extreme but also rising to ~35–45. The spring diesel demand surge. Longs should be tightened by mid-April when the 5-YR peak is confirmed — sharp reversal follows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>LONG → PEAK — 5-YR spikes to 100 early April; 15-YR ~80–85</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>5-YR crashes hard from its April 100 peak. 15-YR also falling. 40-YR is more resilient but choppy. This is the classic refinery maintenance → injection season transition. 40-YR holds better because the long-term demand profile remains supported.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>TRANSITION — 5-YR crashes from April 100 peak; 40-YR still elevated</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The H1 trough. 40-YR falls to ~20 (its local seasonal low). 15-YR at ~50–55. 5-YR at ~25. This is the summer doldrums for heating oil/diesel. The H2 recovery entry is being set up — late June / early July is the inflection.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>H1 TROUGH — 40-YR hits ~20; all three at local lows</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery gains traction as the market looks ahead to winter heating demand. 40-YR rises from ~20 to ~50. 15-YR from ~50 to ~65. 5-YR from ~25 to ~35–40. All three TFs recovering in sync. Build position for the September-October annual peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 recovery begins; heating demand season approaching</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 heating demand surge accelerates. 15-YR approaches ~80 by end of August. 40-YR rising toward ~60–65. 5-YR also strong. September-October annual peak is the target. Conviction high.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 surge; 15-YR approaches ~80; September peak loading</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR hits near 100 in September — its annual high. 40-YR surging strongly toward its October peak. 5-YR also near peak (~80). This is the highest-conviction long window of H2 for ULSD. Full TF alignment driven by winter heating demand.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR near 100; 40-YR surging toward October annual peak</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR hits its ANNUAL HIGH (~100) in early-to-mid October. 15-YR also near 100. 5-YR peaks ~80. This is the ULSD seasonal high — the year's most critical reversal point. Exit longs at 40-YR 100 and flip short. The winter demand is fully priced in; rollover follows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>40-YR ANNUAL HIGH ~100 → FLIP SHORT; winter demand peak</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from October's annual high. 40-YR falls from ~100 to ~70–75. 15-YR from ~95 to ~65–70. 5-YR from ~80 to ~55. All three declining. The winter demand is fully priced; seasonal selling takes over.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — rollover from October annual high; all TFs declining</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued moderate seasonal decline. 40-YR falls to ~68.24 by year-end. 15-YR to ~67.33. 5-YR to ~53.78. The decline is orderly — less dramatic than CL's December. Year ends at mid-to-high range for 40-YR and 15-YR, reflecting the structural winter demand support.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — moderate year-end decline; 40-YR settles at 68.24</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-label"><span style="background:var(--accent-lt)"></span> 40-YR (1980–2019) Seasonal Outlook</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Month</th><th>Bias</th><th>Overview</th><th>Weekly Detail</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>40-YR starts January at a mid-range ~50 but falls rapidly toward its annual low. 15-YR starts very low (~5–10). 5-YR also near lows (~15). All three TFs declining through January. The year begins bearishly for ULSD — unlike crude which just idles low, ULSD is actively falling.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — 40-YR falls from ~50 toward annual low; all declining</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>40-YR hits its ANNUAL LOW (~5–8) in early February. 15-YR also near 0. 5-YR near 0. This is the most extreme trough zone for ULSD's long-term seasonal. Recovery begins mid-month. This is the H1 long entry setup — confirm before acting.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>TROUGH — 40-YR hits annual low ~5; all three at annual lows</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>Recovery gains traction. 40-YR climbs from ~5 to ~15–20. 15-YR surges more aggressively toward 40–50. 5-YR recovering steadily. The April 5-YR peak is the target — build position in March.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H1 spring recovery; 15-YR leads, 40-YR climbing</td>
+    </tr>
+    <tr>
+      <td>April</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>5-YR surges to its ANNUAL HIGH (~100) in early April. 15-YR also peaks at ~80–85 in April. 40-YR less extreme but also rising to ~35–45. The spring diesel demand surge. Longs should be tightened by mid-April when the 5-YR peak is confirmed — sharp reversal follows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-chop">Wk4 ~</div></div></td>
+      <td>LONG → PEAK — 5-YR spikes to 100 early April; 15-YR ~80–85</td>
+    </tr>
+    <tr>
+      <td>May</td>
+      <td><span class="chop-tag">CHOP</span></td>
+      <td>5-YR crashes hard from its April 100 peak. 15-YR also falling. 40-YR is more resilient but choppy. This is the classic refinery maintenance → injection season transition. 40-YR holds better because the long-term demand profile remains supported.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-chop">Wk1 ~</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>TRANSITION — 5-YR crashes from April 100 peak; 40-YR still elevated</td>
+    </tr>
+    <tr>
+      <td>June</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>The H1 trough. 40-YR falls to ~20 (its local seasonal low). 15-YR at ~50–55. 5-YR at ~25. This is the summer doldrums for heating oil/diesel. The H2 recovery entry is being set up — late June / early July is the inflection.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-chop">Wk3 ~</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>H1 TROUGH — 40-YR hits ~20; all three at local lows</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 recovery gains traction as the market looks ahead to winter heating demand. 40-YR rises from ~20 to ~50. 15-YR from ~50 to ~65. 5-YR from ~25 to ~35–40. All three TFs recovering in sync. Build position for the September-October annual peak.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 recovery begins; heating demand season approaching</td>
+    </tr>
+    <tr>
+      <td>August</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>H2 heating demand surge accelerates. 15-YR approaches ~80 by end of August. 40-YR rising toward ~60–65. 5-YR also strong. September-October annual peak is the target. Conviction high.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — H2 surge; 15-YR approaches ~80; September peak loading</td>
+    </tr>
+    <tr>
+      <td>September</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>15-YR hits near 100 in September — its annual high. 40-YR surging strongly toward its October peak. 5-YR also near peak (~80). This is the highest-conviction long window of H2 for ULSD. Full TF alignment driven by winter heating demand.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-bull">Wk2 ↑</div><div class="wk-cell wk-bull">Wk3 ↑</div><div class="wk-cell wk-bull">Wk4 ↑</div></div></td>
+      <td>LONG — 15-YR near 100; 40-YR surging toward October annual peak</td>
+    </tr>
+    <tr>
+      <td>October</td>
+      <td><span class="bull-tag">BULL</span></td>
+      <td>40-YR hits its ANNUAL HIGH (~100) in early-to-mid October. 15-YR also near 100. 5-YR peaks ~80. This is the ULSD seasonal high — the year's most critical reversal point. Exit longs at 40-YR 100 and flip short. The winter demand is fully priced in; rollover follows.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bull">Wk1 ↑</div><div class="wk-cell wk-chop">Wk2 ~</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>40-YR ANNUAL HIGH ~100 → FLIP SHORT; winter demand peak</td>
+    </tr>
+    <tr>
+      <td>November</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued seasonal decline from October's annual high. 40-YR falls from ~100 to ~70–75. 15-YR from ~95 to ~65–70. 5-YR from ~80 to ~55. All three declining. The winter demand is fully priced; seasonal selling takes over.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>SHORT — rollover from October annual high; all TFs declining</td>
+    </tr>
+    <tr>
+      <td>December</td>
+      <td><span class="bear-tag">BEAR</span></td>
+      <td>Continued moderate seasonal decline. 40-YR falls to ~68.24 by year-end. 15-YR to ~67.33. 5-YR to ~53.78. The decline is orderly — less dramatic than CL's December. Year ends at mid-to-high range for 40-YR and 15-YR, reflecting the structural winter demand support.</td>
+      <td><div class="wk-grid"><div class="wk-cell wk-bear">Wk1 ↓</div><div class="wk-cell wk-bear">Wk2 ↓</div><div class="wk-cell wk-bear">Wk3 ↓</div><div class="wk-cell wk-bear">Wk4 ↓</div></div></td>
+      <td>BEAR — moderate year-end decline; 40-YR settles at 68.24</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+<div class="footnote">
+  Seasonal data source: Moore Research Center © 2020 · NY Harbor ULSD NYMEX (HO/ULSD) · 40-Year Seasonal (1980–2019) · 15-Year · 5-Year overlays. Reference: 40-YR=68.24, 15-YR=67.33, 5-YR=53.78 at 02 Jan 2020.<br>
+  This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+</div>
+
+<!-- Asset data must load before shared JS -->
+<script src="../data/ulsd.js" defer></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>

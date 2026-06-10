@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAC 40 (MATIF) — Seasonal Dashboard</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+  <div class="topbar">
+    <a class="back-link" href="../index.html">← All Assets</a>
+    <span class="topbar-title">CAC 40 (MATIF)</span>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h1>CAC 40 (MATIF)</h1>
+      <div class="sub">Seasonal Tendency Analysis · 5-YR · 15-YR · 32-YR · Moore Research Center</div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-5yr)"></div> 5-Year Seasonal</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-15yr)"></div> 15-Year Seasonal</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div> 32-YR Seasonal</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-combined)"></div> Combined Bias</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bull)"></div> Bullish</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bear)"></div> Bearish</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--chop)"></div> Choppy</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COMBINED ACCORDION -->
+    <div class="section-label"><span style="background:var(--accent-combined)"></span> Combined Bias — All Timeframes Aligned</div>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:0.5px;">Click any month row to expand week-by-week breakdown. Current month opens automatically.</p>
+
+    <div class="combined-wrap">
+    <table class="acc-table">
+      <thead>
+        <tr>
+          <th style="width:120px">Month</th>
+          <th>5-YR</th><th>15-YR</th><th id="acc-lt-header">32-YR</th>
+          <th>Signal</th><th>Conviction</th><th>Trade Note</th>
+        </tr>
+      </thead>
+      <tbody id="acc-body"></tbody>
+    </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- AI ANALYSIS -->
+    <div class="section-label"><span style="background:var(--accent-combined)"></span> Claude AI — Week-by-Week Bias Analysis</div>
+    <div class="ai-panel">
+      <div class="ai-label">Claude Sonnet · Live Analysis</div>
+      <div class="ai-output" id="ai-output"><span class="loading">Awaiting analysis run...</span></div>
+      <button class="run-btn" id="run-btn" onclick="runAnalysis()">▶ &nbsp; Generate Week-by-Week Bias</button>
+    </div>
+
+    <!-- TRADINGVIEW PRICE CHART -->
+    <div id="tv-chart-section" style="margin:0 0 28px 0;">
+      <div class="section-label"><span style="background:var(--bull)"></span> Live Price Chart &nbsp;·&nbsp; <span style="color:var(--muted);font-weight:400;letter-spacing:0.3px;">TradingView — Weekly</span></div>
+      <div class="tradingview-widget-container" style="height:430px;border-radius:8px;overflow:hidden;background:#131722;">
+        <div class="tv-widget-inner" style="height:100%;width:100%;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:5px;letter-spacing:0.4px;">Chart by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank" style="color:var(--muted);text-decoration:underline;">TradingView</a></div>
+    </div>
+
+    <!-- FOOTNOTE -->
+    <div class="footnote">
+      Moore Research Center © 2020 · CAC 40 MATIF (FCE) · 32-Year Seasonal (1988–2019) · 15-Year · 5-Year overlays. Reference: 32-YR=100, 15-YR=98.72, 5-YR=75.43 at 02 Jan 2020.<br>
+      This analysis is based on historical seasonal tendencies only and does not constitute financial advice. Past seasonals do not guarantee future performance.
+      <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">© 2026 Kaminari Precision Trading. All rights reserved. &nbsp;·&nbsp; Dashboard interface design and analysis framework by Kaminari Precision Trading. Seasonal tendency data sourced from Moore Research Center.</span>
+    </div>
+  </div>
+
+  <script src="../data/cac.js" defer></script>
+  <script src="../js/accordion.js" defer></script>
+  <script src="../js/api.js" defer></script>
+  <script src="../js/tradingview.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+</html>
