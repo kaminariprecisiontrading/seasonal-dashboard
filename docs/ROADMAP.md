@@ -71,33 +71,39 @@ See `docs/README.md` for the full per-pair file listing, components, and key-sig
 
 ---
 
-## Phase 2 — CSV Price Data Layer
+## ✅ Phase 2 — CSV Price Data Layer (Complete — v1.2)
 
-**What:** Upload a raw MT5 OHLCV CSV export → compare actual price behaviour vs seasonal model.
+**What was built:** A fully client-side CSV analysis engine embedded in every asset dashboard. Upload an MT5 D1 CSV → three-section results panel rendered instantly in the browser. No backend, no dependencies beyond Chart.js (loaded on demand from cdnjs).
 
-**Scope:** Pure price data only. No annotation, no indicator interpretation. The tool calculates statistics from the raw numbers and overlays them against seasonal tendency.
+**Three results sections (in order):**
+1. **Raw Price Tendency** — model-agnostic heatmap showing % of years price rose per (month, week) cell. Green ≥60%, amber 40–59%, red ≤39%. The baseline: what the market actually did.
+2. **Win Rate by Period** — how often the seasonal signal was directionally correct. Green ≥65%, amber 50–64%, red <50%. Chop/Flip cells show `~`. Stricter threshold than Raw Tendency because validating model accuracy requires a higher bar than observing raw price frequency.
+3. **Average Weekly Return by Month** — Chart.js bar chart showing average weekly move magnitude per month. Pairs with Win Rate: high win rate + tall bar = reliable and meaningful.
 
-**Architectural decisions (confirmed):**
-- **Primary metric first:** Win-rate by signal (% of years the BULL/BEAR/CHOP signal was correct). Most intuitive and immediately actionable. Other metrics (avg return, drawdown, etc.) added afterwards.
-- **Per-asset scope:** CSV upload is embedded in each individual asset dashboard (not a standalone tool). Once general logic is down, notes on building a standalone tool can be added.
+**Key technical decisions:**
+- Pure client-side. D1 CSV is ~430KB — well within browser limits.
+- Parser handles D1 and sub-daily formats (M1/H1/H4) with automatic aggregation to daily closes.
+- Computed stats stored in `localStorage` keyed by asset ID — results persist across page reloads without re-uploading.
+- MT5 export guide built into the upload screen (7-step numbered instructions).
+- Collapsible "How to read this" toggles on each section (closed by default).
 
-**Key outputs — build order:**
-1. Win-rate by signal — "In X% of years, the BULL signal in April Wk2 was followed by positive price action"
-2. Average return by month / week-of-month across the dataset
-3. Current year's price path overlaid against the seasonal curve
-4. Simple visual: are we tracking the seasonal or diverging from it?
+**Files:** `js/backtest.js` (new, ~330 lines) · `patch_add_backtest.js` (one-shot patch) · `css/dashboard.css` (backtest styles) · all 97 `assets/*.html` (script tag added by patch script)
 
-**Preparation before building:**
-- Export 2–3 MT5 CSV files (one currency, one commodity, one index) — daily bars, 10+ years of history
-- Paste one to Claude to establish the exact format before building the parser
+---
 
-**Tech stack:**
-- PapaParse for CSV parsing
-- Chart.js or lightweight-charts for rendering
-- All processing client-side — no backend required
-- Claude API button can then compare the CSV statistics against seasonal data
+### Phase 2.5 — Intraday Bias Tool *(planned, not yet built)*
 
-**Effort:** Medium — 2–3 sessions. Hardest part is deciding which statistics are most useful.
+**Idea:** The D1 backtest gives week-level historical context. A companion intraday tool would show where price sits *within the current session* — helping align intraday entries with the broader daily and seasonal bias.
+
+**How it differs from the D1 backtest:**
+- D1 data answers: "Was this week historically bullish?" — a week-level question.
+- Intraday data answers: "Given I am in Wk3 of a bearish seasonal, is this hour's price action aligned or diverging from that bias?" — a session-level question.
+
+**Data format:** Would require H1 or H4 CSV, not D1. D1 bars have no intraday structure. H1 is ~6k rows/year; H4 ~1.5k rows/year — both manageable client-side. M1 is ~100k rows for just 3.5 months — too heavy for browser processing at scale.
+
+**Seasonal model compatibility:** The existing week-level signals (BULL/BEAR/CHOP) are directly applicable — directional bias is timeframe-agnostic. Basis differences between CME futures and spot are negligible for directional analysis.
+
+**Scope when built:** Likely a separate tab or sub-panel within the Backtest section. Upload an H1 or H4 CSV → see intraday price distribution by time-of-day or session, overlaid with the current week's seasonal signal.
 
 ---
 
@@ -182,6 +188,12 @@ And produces a single weekly bias verdict: what the confluence is saying, where 
 **GitHub Version Control** ✅ Complete:
 - `.gitignore` created; git repo initialised in `seasonal-dashboard/`; private GitHub remote connected
 - Deployment workflow: GitHub Desktop → stage → commit → Push origin
+
+**Price Backtest Tool** ✅ Complete (Phase 2):
+- `js/backtest.js` created — full CSV engine, three-section results panel, Chart.js bar chart
+- MT5 export guide on upload screen, collapsible "How to read this" per section
+- localStorage persistence per asset; sub-daily CSV auto-aggregated to D1
+- All 97 asset pages patched with `backtest.js` script tag via `patch_add_backtest.js`
 
 **ForexFactory Calendar**: see Phase 3 below. Most relevant for FX/currency pages only; deferred to dedicated Phase 3 implementation.
 

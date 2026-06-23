@@ -720,3 +720,286 @@ tbody td:first-child {
 /* ── Defer / Performance ───────────────────────────────────────────────────── */
 /* (scripts use defer — no style changes needed here) */
 /* This Week accordion styles are in index.html <style> block (index-only) */
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   BACKTEST PANEL  (js/backtest.js)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Upload area (initial / empty state) ─────────────────────────────────── */
+.bt-upload-area {
+  padding: 40px 28px;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  margin-bottom: 32px;
+}
+.bt-desc {
+  color: var(--dim);
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto 24px;
+}
+.bt-upload-btn {
+  display: inline-block;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent-combined);
+  border: none;
+  border-radius: 4px;
+  padding: 9px 20px;
+  transition: opacity 0.15s;
+}
+.bt-upload-btn:hover { opacity: 0.85; }
+.bt-hint {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  margin: 14px 0 0;
+  line-height: 1.6;
+}
+
+/* ── Results container ───────────────────────────────────────────────────── */
+.bt-results { margin-bottom: 32px; }
+
+/* ── Summary chips ───────────────────────────────────────────────────────── */
+.bt-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.bt-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: var(--accent-combined);
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 3px;
+  padding: 4px 10px;
+}
+
+/* ── Section sub-headings ────────────────────────────────────────────────── */
+.bt-section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 28px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Section interpretive text ───────────────────────────────────────────── */
+.bt-section-desc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: #94a3b8;
+  margin: 0 0 14px;
+}
+.bt-section-desc strong { color: #cbd5e1; }
+.bt-section-desc em     { color: #94a3b8; font-style: normal; opacity: 0.8; }
+
+.bt-threshold-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #64748b;
+  border-left: 2px solid #1e2430;
+  padding: 6px 0 6px 12px;
+  margin: 0 0 14px;
+}
+
+/* ── Collapsible "How to read this" toggle ───────────────────────────────── */
+.bt-desc-toggle {
+  margin: 0 0 14px;
+}
+.bt-desc-toggle summary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #475569;
+  cursor: pointer;
+  list-style: none;           /* hide default marker */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  margin-bottom: 10px;
+}
+.bt-desc-toggle summary::before {
+  content: '▶';
+  font-size: 8px;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+.bt-desc-toggle[open] summary::before {
+  transform: rotate(90deg);
+}
+.bt-desc-toggle summary:hover { color: #94a3b8; }
+.bt-desc-toggle summary::-webkit-details-marker { display: none; }
+
+/* ── Upload guide steps ──────────────────────────────────────────────────── */
+.bt-upload-steps {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  line-height: 1.85;
+  color: #64748b;
+  margin: 16px auto 24px;
+  max-width: 540px;
+  text-align: left;
+  counter-reset: step-counter;
+  list-style: none;
+  padding: 0 0 0 28px;   /* indent for the absolute numbers */
+  position: relative;
+}
+.bt-upload-steps li {
+  position: relative;
+  margin-bottom: 5px;
+}
+.bt-upload-steps li::before {
+  content: counter(step-counter) '.';
+  counter-increment: step-counter;
+  position: absolute;
+  left: -24px;
+  color: #2d3f55;
+  font-size: 10.5px;
+}
+.bt-upload-steps strong { color: #7dd3fc; font-weight: normal; }
+
+/* ── Heatmap legend ──────────────────────────────────────────────────────── */
+.bt-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bt-leg-item {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+.bt-leg-bull  { color: #22c55e; }
+.bt-leg-mid   { color: #f59e0b; }
+.bt-leg-bear  { color: #ef4444; }
+.bt-leg-chop  { color: var(--muted); }
+
+/* ── Win-rate heatmap table ──────────────────────────────────────────────── */
+.bt-heatmap-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.bt-table {
+  border-collapse: collapse;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  width: 100%;
+  min-width: 600px;
+  margin-bottom: 4px;
+}
+.bt-table thead th {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  padding: 6px 4px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+.bt-corner { width: 46px; }
+
+.bt-row-label {
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  color: var(--dim);
+  padding: 0 8px 0 0;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: right;
+}
+
+/* ── Heatmap cells ───────────────────────────────────────────────────────── */
+.bt-cell {
+  text-align: center;
+  padding: 5px 2px;
+  border: 1px solid var(--border);
+  vertical-align: middle;
+  cursor: default;
+  min-width: 44px;
+}
+.bt-cell:hover { filter: brightness(1.15); }
+
+.bt-arrow {
+  display: block;
+  font-size: 10px;
+  line-height: 1.3;
+}
+.bt-rate {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Cell colour variants */
+.bt-cell-bull {
+  background: rgba(34,197,94,0.12);
+  color: #22c55e;
+}
+.bt-cell-mid {
+  background: rgba(245,158,11,0.10);
+  color: #f59e0b;
+}
+.bt-cell-bear {
+  background: rgba(239,68,68,0.10);
+  color: #ef4444;
+}
+.bt-cell-chop {
+  background: var(--surface);
+  color: var(--muted);
+}
+.bt-cell-nodata {
+  background: var(--surface);
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+/* ── Monthly return chart ─────────────────────────────────────────────────── */
+.bt-chart-wrap {
+  position: relative;
+  height: 220px;
+  margin-bottom: 20px;
+}
+
+/* ── Footer note + clear button ──────────────────────────────────────────── */
+.bt-note {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 20px;
+}
+.bt-clear-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.bt-clear-btn:hover {
+  color: #ef4444;
+  border-color: rgba(239,68,68,0.4);
+}

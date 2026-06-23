@@ -224,8 +224,9 @@
   // Build the tab bar
   var tabs = [
     { id: 'seasonals', label: 'Seasonals' },
-    { id: 'chart',     label: 'Chart' },
-    { id: 'analysis',  label: 'Analysis' }
+    { id: 'backtest',  label: 'Backtest'  },
+    { id: 'chart',     label: 'Chart'     },
+    { id: 'analysis',  label: 'Analysis'  }
   ];
 
   // Only include tabs that have content
@@ -385,6 +386,10 @@
     });
     // Show secondary tab bar only while Seasonals is active
     if (subBar) subBar.style.display = (panelId === 'seasonals') ? 'flex' : 'none';
+    // Resize Chart.js canvas when Backtest tab becomes visible
+    if (panelId === 'backtest' && typeof window.kptBtRefresh === 'function') {
+      window.kptBtRefresh();
+    }
     // When switching to chart tab — re-trigger layout so TradingView iframe renders
     if (panelId === 'chart' && tvSection) {
       var inner = tvSection.querySelector('.tv-widget-inner');

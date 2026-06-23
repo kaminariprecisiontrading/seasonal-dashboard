@@ -2,6 +2,138 @@
 
 ---
 
+## v1.2 — June 2026
+**Phase 2 Complete — CSV Backtest Tool · Three-Section Results Panel · UI Polish**
+
+### Summary
+
+Adds the Price Backtest tab to all 97 asset pages — a fully client-side CSV analysis engine that validates the seasonal model against real MT5 price history. Results are presented in three ordered sections: Raw Price Tendency (model-agnostic baseline), Win Rate by Period (model accuracy), and Average Weekly Return by Month (return magnitude). All processing runs in the browser with no backend required.
+
+---
+
+### New: `js/backtest.js`
+
+New shared JavaScript file (~330 lines), loaded on all 97 asset pages immediately before `ui.js`. Self-contained IIFE. Key components:
+
+**Panel injection**
+- Creates a `<section id="backtest-section" data-kpt-panel="backtest">` and inserts it before `.footnote` (fallback: appends to `.container`)
+- `ui.js` discovers this element at DOM-scan time and automatically adds a Backtest tab to the primary tab bar — no HTML changes needed
+
+**CSV parser (`parseCSV`)**
+- Auto-detects separator (tab or comma)
+- Auto-detects D1 vs sub-daily format by checking whether `cols[1]` looks like a time value (`HH:MM`)
+- Sub-daily files (M1, H1, H4) are automatically aggregated to one daily close per calendar day — the parser is timeframe-agnostic
+- Date format: `YYYY.MM.DD` (MT5 default) or `YYYY-MM-DD`
+- Validates year range (1970–2100) and rejects non-numeric rows
+
+**Signal extractor (`getSignal`)**
+- Reads `MONTHS[monthIdx].weeks[wkIdx].com` — the existing week-level combined bias text
+- Strips star characters (`★☆`) then checks if the string begins with `LONG`/`BUY` (→ `bull`) or `SHORT`/`SELL` (→ `bear`); everything else → `chop`
+
+**Stats engine (`computeStats`)**
+- Builds `weeklyCloses` map keyed `"year-month-wkSlot"` → last close of that week
+- Week-slot mapping: days 1–7 → slot 0, 8–14 → slot 1, 15–21 → slot 2, 22+ → slot 3
+- `prevKey()` helper wraps correctly across month and year boundaries (Dec Wk4 → Nov Wk3)
+- Builds three outputs from a single weekly-return loop:
+  - `rawTendency[m][w]` — `{ up, total, upPct }` (model-agnostic; all 48 cells always populated)
+  - `matrix[m][w]` — `{ signal, wins, total, winRate, avgReturn }` (only bull/bear cells have win counts)
+  - `monthlyAvg[m]` — average weekly return across all four week-slots per month
+
+**Render layer**
+- `renderRawHeatmap(rawTendency)` — 12×4 table; green ≥60%, amber 40–59%, red ≤39%; ▲/▼ arrow per cell; tooltip shows raw count
+- `renderHeatmap(matrix)` — 12×4 table; green ≥65%, amber 50–64%, red <50%; `~` for Chop/Flip; tooltip shows wins/total
+- `renderChart(monthlyAvg)` — Chart.js 4.4.0 bar chart loaded dynamically from cdnjs on first use; green/red bars by sign; previous instance destroyed before redraw
+
+**localStorage persistence**
+- Key: `kpt-bt-{assetId}` — stores the computed `stats` object (not raw bars)
+- On page load: reads stored stats and calls `displayResults()` if valid — CSV does not need to be re-uploaded
+- On upload: overwrites stored stats with freshly computed values
+- Includes `rawTendency` in the stored object (validated on restore with `stats.rawTendency && stats.matrix && stats.yearRange` guard)
+
+**Tab-activation refresh hook**
+- `window.kptBtRefresh()` — called by `ui.js` when the Backtest tab is activated
+- Calls `btChartInstance.resize()` to fix Chart.js canvas sizing after the panel becomes visible from `display:none`
+
+---
+
+### Three-Section Results Layout
+
+Results are displayed in this fixed order after a CSV is uploaded (or restored from localStorage):
+
+**1. Raw Price Tendency**
+What price actually did, independent of any model signal. For each (month, week) cell, counts how many years out of the total had positive weekly return. Threshold: green ≥60%, amber 40–59%, red ≤39%. All 48 cells always show a value (no model dependency).
+
+**2. Win Rate by Period**
+How often the seasonal signal was directionally correct. Only bull/bear cells have win rates — chop/flip cells show `~`. Threshold: green ≥65% (stricter than Raw Tendency because validating a model requires a higher bar than observing raw frequency). Tooltip shows `N / total years correct`.
+
+**3. Average Weekly Return by Month (%)**
+Average magnitude of weekly price moves per calendar month across all years. Bar chart; green = positive average drift, red = negative. Used in conjunction with Win Rate: high win rate + tall bar = both reliable and meaningful.
+
+Each section has a collapsible "How to read this" toggle (`<details>`) that is closed by default. Win Rate's toggle also contains the threshold-difference explanation (65% vs 60%).
+
+---
+
+### New: MT5 Export Guide (upload screen)
+
+The upload screen now shows a numbered 7-step guide explaining how to export a D1 CSV from MetaTrader 5:
+1. Open MetaTrader 5
+2. View → Symbols
+3. Go to the Bars tab
+4. Select asset / D1 / start–end date / click Request
+5. Click Export Bars in the bottom toolbar
+6. Save to a known location (e.g. Downloads)
+7. Click Choose D1 CSV to upload
+
+---
+
+### New: `patch_add_backtest.js`
+
+One-shot Node.js script that inserted `<script src="../js/backtest.js" defer></script>` before `<script src="../js/ui.js" defer></script>` in all 97 HTML files. Result: 97 patched, 0 skipped. Script preserved for future re-patching if needed.
+
+**Updated script load order (all 97 asset pages):**
+```html
+<script src="../data/[asset].js"></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+<script src="../js/tradingview.js" defer></script>
+<script src="../js/backtest.js" defer></script>   ← NEW
+<script src="../js/ui.js" defer></script>
+```
+
+`backtest.js` must load before `ui.js` so the injected `#backtest-section` exists in the DOM when `ui.js` scans for `[data-kpt-panel]` elements.
+
+---
+
+### CSS Additions (`css/dashboard.css`)
+
+Full backtest panel styles added at end of file:
+
+- `.bt-upload-area` — dashed-border upload state container
+- `.bt-desc` / `.bt-hint` — upload screen intro and hint text
+- `.bt-upload-steps` — numbered MT5 export guide; `position: absolute` step numbers avoid the flex/grid wrapping bug where `<strong>` elements become separate grid items
+- `.bt-results` / `.bt-summary` / `.bt-chip` — results container and summary chips
+- `.bt-section-title` — section sub-heading with inline legend
+- `.bt-legend` / `.bt-leg-item` / `.bt-leg-bull/mid/bear/chop` — colour-coded heatmap legend
+- `.bt-desc-toggle` / `summary` — collapsible "How to read this" using native `<details>`; `::before` triangle rotates 90° on open
+- `.bt-section-desc` — interpretive paragraph text; no `max-width` (matches full table width)
+- `.bt-threshold-note` — left-bordered callout explaining the 65% vs 60% threshold difference
+- `.bt-heatmap-scroll` — horizontal scroll wrapper for narrow viewports
+- `.bt-table` / `.bt-corner` / `.bt-row-label` / `.bt-cell` / `.bt-arrow` / `.bt-rate` — heatmap table layout
+- `.bt-cell-bull/mid/bear/chop/nodata` — cell colour variants
+- `.bt-chart-wrap` — Chart.js canvas container (height 260px)
+- `.bt-note` — spot-vs-futures basis disclaimer
+- `.bt-clear-btn` — clear uploaded data button
+
+---
+
+### Files Changed
+- `js/backtest.js` — created (~330 lines)
+- `patch_add_backtest.js` — created (one-shot, can be deleted)
+- `css/dashboard.css` — backtest panel styles added
+- `assets/*.html` (all 97) — `backtest.js` script tag inserted by patch script
+
+---
+
 ## v1.1 — June 2026
 **UI Layer Complete — Tab System, Sub-Tabs, Dynamic TF Tables, Topbar**
 

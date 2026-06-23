@@ -83,7 +83,7 @@ Key variables:
 
 Typography: `Bebas Neue` (headings) + `IBM Plex Mono` (body/data)
 
-### Layer 2 — Shared JavaScript (`js/accordion.js`, `js/api.js`, `js/tradingview.js`, `js/ui.js`)
+### Layer 2 — Shared JavaScript (`js/accordion.js`, `js/api.js`, `js/tradingview.js`, `js/backtest.js`, `js/ui.js`)
 
 **`accordion.js`** reads `ASSET_CONFIG` to determine:
 - `ltKey` — week-level signal key (`"s34"` / `"s35"` / `"s40"` / `"sLt"`)
@@ -95,6 +95,8 @@ Injects `ltLabel` into `id="acc-lt-header"`. Handles current month detection. Au
 **`api.js`** reads `SEASONAL_DATA` and `ASSET_CONFIG.ltLabel`. Calls Claude API (`claude-sonnet-4-20250514`, `max_tokens: 2500`). Streams response via SSE; re-renders as Markdown on completion via dynamically loaded `marked.js`.
 
 **`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Chart tab activation to force iframe render.
+
+**`backtest.js`** is a self-contained CSV price history analysis engine. It injects a `<section data-kpt-panel="backtest">` before the footnote, which `ui.js` discovers and adds as a Backtest tab. Must load before `ui.js`. See the Backtest Panel section below.
 
 **`ui.js`** is a shared UI enhancement layer loaded on all asset pages. It is a single IIFE with four independent features — see the Tab Layout System and Topbar sections below.
 
@@ -139,10 +141,11 @@ Thin HTML files (~120–150 lines). Content order (v1.1):
 <script src="../js/accordion.js"></script>    <!-- reads ASSET_CONFIG; runs buildAccordion(), buildTFTables() -->
 <script src="../js/api.js"></script>          <!-- reads SEASONAL_DATA; wires AI button -->
 <script src="../js/tradingview.js"></script>  <!-- injects TradingView widget -->
+<script src="../js/backtest.js"></script>     <!-- injects #backtest-section before ui.js scans for panels -->
 <script src="../js/ui.js"></script>           <!-- must be last — builds tabs after all content is in DOM -->
 ```
 
-`ui.js` must load last because it scans the fully-built DOM for `.combined-wrap`, `.ai-panel`, `.table-wrap`, and `#tv-chart-section` to construct the tab system.
+`backtest.js` must load before `ui.js` so the injected `#backtest-section[data-kpt-panel="backtest"]` is in the DOM when `ui.js` scans for panel elements. `ui.js` must load last because it scans the fully-built DOM for `.combined-wrap`, `.ai-panel`, `.table-wrap`, `#tv-chart-section`, and `[data-kpt-panel]` elements to construct the tab system.
 
 ---
 
@@ -203,6 +206,66 @@ Builds a `kpt-tabs kpt-subtabs` bar for the four timeframe views: Combined · 5-
 **`data-tf-section` tags:** Each generated section-label and table-wrap receives `data-tf-section="five|fifteen|lt"`. The secondary sub-tab system in `ui.js` reads these to show/hide the correct content.
 
 **Insertion:** All generated elements are appended before `#tv-chart-section` (fallback: `.footnote`) to maintain the canonical section order.
+
+---
+
+## Backtest Panel (`js/backtest.js`)
+
+A fully client-side CSV analysis engine injected on all 97 asset pages. No backend required — all processing runs in the browser.
+
+### Panel Injection
+
+`backtest.js` creates a `<section id="backtest-section" data-kpt-panel="backtest">` and inserts it before `.footnote` (fallback: appends to `.container`). Because `ui.js` dynamically scans for `[data-kpt-panel]` elements, the Backtest tab appears automatically in the primary tab bar with zero HTML changes.
+
+### CSV Format
+
+Expects MT5 D1 tab-separated export:
+```
+<DATE>  <OPEN>  <HIGH>  <LOW>  <CLOSE>  <TICKVOL>  <VOL>  <SPREAD>
+1993.05.12  1.53700  1.54450  ...
+```
+
+The parser also accepts sub-daily files (M1, H1, H4 — detected by the presence of a `TIME` column). Sub-daily bars are automatically aggregated to one daily close per calendar day, so the engine always works on D1-equivalent data regardless of input timeframe.
+
+### Week-Slot Mapping
+
+Days within a month are assigned to four week slots:
+
+| Days | Slot | Label |
+|------|------|-------|
+| 1–7  | 0    | Wk 1  |
+| 8–14 | 1    | Wk 2  |
+| 15–21| 2    | Wk 3  |
+| 22+  | 3    | Wk 4  |
+
+### Three-Section Results
+
+**1. Raw Price Tendency** — for each (month, week) cell, the percentage of years in the dataset where the weekly return was positive. Completely model-agnostic. Thresholds: green ≥60%, amber 40–59%, red ≤39%. All 48 cells always have a value.
+
+**2. Win Rate by Period** — for directional (bull/bear) cells only: percentage of years the seasonal signal was correct. Chop/Flip cells show `~` (nothing to validate). Threshold: green ≥65%. The 65% bar is intentionally stricter than the 60% used in Raw Tendency — raw frequency just needs a meaningful lean, while model accuracy needs a genuinely reliable signal.
+
+**3. Average Weekly Return by Month (%)** — average magnitude of weekly price moves per month across all years. Chart.js 4.4.0 bar chart, loaded dynamically from cdnjs on first use. Green bars = positive average drift; red bars = negative drift.
+
+### `computeStats()` Output
+
+```javascript
+{
+  rawTendency: [ /* [12][4] — { up, total, upPct } */ ],
+  matrix:      [ /* [12][4] — { signal, wins, total, winRate, avgReturn } */ ],
+  monthlyAvg:  [ /* [12] — average weekly return per month */ ],
+  yearRange:   [firstYear, lastYear],
+  yearsCount:  Number,
+  totalBars:   Number
+}
+```
+
+### localStorage
+
+Key: `kpt-bt-{assetId}`. Stores the full `stats` object (not raw bars — typically <50KB). On page load, if a stored stats object exists and passes the `rawTendency && matrix && yearRange` guard, results are restored without requiring re-upload. The CSV upload itself is not cached.
+
+### `window.kptBtRefresh()`
+
+Called by `ui.js` each time the Backtest tab is activated. Calls `btChartInstance.resize()` so the Chart.js canvas renders at the correct size after being revealed from `display:none`. If no chart instance exists but `lastStats` is available, re-renders the chart from stored stats.
 
 ---
 
@@ -361,3 +424,8 @@ Every asset footnote must use this exact pattern:
 | Sub-tabs appear above primary tabs | The subBar insertion must use `tabBar.parentElement.insertBefore(subBar, tabBar.nextSibling)` — inserting before `combinedGroupEls[0]` places it above the primary tabs |
 | TF tables generated twice | The `buildTFTables()` skip guard checks `.table-wrap` count — if static tables exist in HTML, generation is skipped |
 | Prev/Next nav links wrong category | Check that `ASSET_CONFIG.id` exactly matches the ID string in the `ASSET_CATEGORIES` map in `ui.js` |
+| Backtest tab missing from tab bar | `backtest.js` must load before `ui.js` — the `[data-kpt-panel="backtest"]` element must exist when `ui.js` scans the DOM |
+| Backtest chart not visible on tab activate | `window.kptBtRefresh()` is called by `ui.js` on tab activation; check `kptBtRefresh` is defined in `backtest.js` and `backtest.js` loads before `ui.js` |
+| "Only N valid bars found" alert on valid CSV | Check the file is D1 (not tick data); check separator is tab or comma; ensure date format is `YYYY.MM.DD` or `YYYY-MM-DD` |
+| Backtest results lost on page reload | localStorage key is `kpt-bt-{assetId}` — check `ASSET_CONFIG.id` is set correctly in the data file |
+| `<strong>` text in upload guide breaks to new line | `.bt-upload-steps li` uses `position: absolute` for the step number — do not change to `display: grid` or `display: flex`, which turns `<strong>` inline elements into separate grid/flex items |
