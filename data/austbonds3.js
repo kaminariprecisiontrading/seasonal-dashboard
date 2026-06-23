@@ -13,135 +13,135 @@ const ASSET_CONFIG = {
 
 const MONTHS = [
   {
-    month: "January", sig5: "bear", sig15: "bear", sig33: "bear",
-    combined: "bear", combinedLabel: "SHORT", stars: 3,
-    note: "Year opens elevated (33-YR ~84, 15-YR ~40, 5-YR ~49). All TFs declining from year-end highs toward the March trough. Sell-into-strength environment.",
+    month: "January", sig5: "chop", sig15: "chop", sig33: "chop",
+    combined: "chop", combinedLabel: "CHOP", stars: 2,
+    note: "Year opens at seasonal lows — all TFs near the bottom (33-YR ~15–25, 15-YR ~5–15, 5-YR ~5–15). Sideways with no meaningful direction. No trade.",
     weeks: [
-      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★", note: "New year opens high; all TFs begin seasonal decline" },
-      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★", note: "Continued selling from elevated levels; trend down" },
-      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★",  note: "Mid-Jan weakness; sell rallies" },
-      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★", note: "Late-Jan pressure builds; approaching Feb bear phase" },
+      { wk: "Wk 1", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "All TFs at annual lows; flat — no directional signal" },
+      { wk: "Wk 2", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "Marginal drift; no conviction" },
+      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "5-YR slightly volatile but range-bound" },
+      { wk: "Wk 4", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "Flat into February; stand aside" },
     ],
   },
   {
-    month: "February", sig5: "bear", sig15: "bear", sig33: "bear",
-    combined: "bear", combinedLabel: "SHORT", stars: 4,
-    note: "Strong seasonal bear month; all TFs declining decisively. 5-YR selling is aggressive, dragging 15-YR and 33-YR lower. High conviction short.",
+    month: "February", sig5: "bull", sig15: "bull", sig33: "bull",
+    combined: "bull", combinedLabel: "LONG", stars: 3,
+    note: "First directional move of the year — all TFs rise from lows, 5-YR leads toward ~35–40 by mid-month. Bull conviction is strongest early February; fades second half.",
     weeks: [
-      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★",  note: "Feb bear in full swing; sell any strength" },
-      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★★", note: "Steepest decline of the year; maximum short conviction" },
-      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★",  note: "Continued heavy selling; nearing March trough zone" },
-      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",   note: "Late-Feb lows approaching; watch for early exhaustion signals" },
+      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "All TFs rising off Jan lows; early Feb bull leg" },
+      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "5-YR approaching ~35–40 peak; hold" },
+      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "5-YR at peak; topping action — reduce longs" },
+      { wk: "Wk 4", s5: "bear", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "5-YR turning down; transition toward March trough begins" },
     ],
   },
   {
     month: "March", sig5: "bear", sig15: "bear", sig33: "bear",
-    combined: "bear", combinedLabel: "SHORT", stars: 3,
-    note: "Annual seasonal trough — all TFs crash to near 0 in early/mid March. Brief oversold bounce possible but primary trend is down. Flip to long at low.",
+    combined: "bear", combinedLabel: "SHORT", stars: 4,
+    note: "Annual trough — 5-YR crashes sharply to near 0 (more aggressive than the 10-YR equivalent). 15-YR and 33-YR follow. Deepest bear month of the year.",
     weeks: [
-      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★", note: "Annual low zone; all TFs at or near 0" },
-      { wk: "Wk 2", s5: "bear", s15: "chop", s33: "chop", com: "CHOP",      note: "Trough forming; 33-YR and 15-YR stabilising near lows" },
-      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "chop", com: "CHOP",      note: "Oversold base; wait for recovery signal" },
-      { wk: "Wk 4", s5: "bull", s15: "chop", s33: "chop", com: "CHOP",      note: "5-YR leading early recovery; begin scaling into longs" },
+      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "Decline accelerating from Feb highs; all TFs falling" },
+      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★", note: "5-YR dropping hard toward near 0; strong short" },
+      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★", note: "5-YR near annual low; trough zone" },
+      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "Bottom forming; close shorts and prepare April recovery long" },
     ],
   },
   {
     month: "April", sig5: "bull", sig15: "bull", sig33: "bull",
     combined: "bull", combinedLabel: "LONG", stars: 3,
-    note: "Recovery month; all TFs rising from March lows. 5-YR leads with a strong spike from near-zero base. Build long positions on any dip.",
+    note: "Recovery from March trough — all TFs begin rising. 5-YR leads the rebound. Conviction builds as month progresses; May continues the stronger bull run.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★", note: "Recovery confirmation; add longs off March base" },
-      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★", note: "5-YR breakout; 15-YR and 33-YR joining" },
-      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★", note: "Sustained strength across all TFs" },
-      { wk: "Wk 4", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★", note: "Month-end continuation into May strength" },
+      { wk: "Wk 1", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",   note: "Near trough; very early tentative recovery — wait for confirmation" },
+      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "Recovery confirmed; all TFs rising" },
+      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "Continued bull recovery" },
+      { wk: "Wk 4", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★", note: "Strong April close; momentum building for May surge" },
     ],
   },
   {
     month: "May", sig5: "bull", sig15: "bull", sig33: "bull",
     combined: "bull", combinedLabel: "LONG", stars: 5,
-    note: "5-YR spikes dramatically to ~75–80 — strongest short-term signal of the year. 15-YR at ~55, 33-YR at ~55. All TFs aligned bullish. High-conviction long month.",
+    note: "Outstanding bull month — 5-YR surges to ~75+ (stronger than the 10-YR equivalent). All TFs in strong agreement. Maximum conviction long; hold throughout May.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "5-YR explosive spike to ~75; maximum buy signal for shorter TFs" },
-      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "Highest conviction bull week; 5-YR near 75–80" },
-      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Momentum sustains; 15-YR and 33-YR climbing" },
-      { wk: "Wk 4", s5: "chop", s15: "bull", s33: "bull", com: "LONG ★★★",   note: "5-YR may plateau late May; hold via 15/33-YR strength" },
+      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Bull continuation from April; accelerating surge" },
+      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "5-YR surging strongly toward ~75; maximum long" },
+      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "5-YR near monthly peak ~75+; all TFs in sync" },
+      { wk: "Wk 4", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "May peak forming; tighten stops ahead of June reversal" },
     ],
   },
   {
-    month: "June", sig5: "chop", sig15: "bull", sig33: "bull",
-    combined: "bull", combinedLabel: "LONG", stars: 3,
-    note: "5-YR volatile with mid-June pullback from May spike. 15-YR and 33-YR continuing higher. Dip-and-recover dynamic — buy mid-month weakness.",
+    month: "June", sig5: "bear", sig15: "bear", sig33: "bear",
+    combined: "bear", combinedLabel: "SHORT", stars: 4,
+    note: "Sharp bear reversal — 5-YR drops from ~75 to ~35–50, 15-YR and 33-YR confirm. Second significant trough of the year. Sets up the July surge.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "Month starts strong; 15-YR and 33-YR leading now" },
-      { wk: "Wk 2", s5: "chop", s15: "bull", s33: "bull", com: "LONG ★★",   note: "5-YR mid-June dip; 33-YR holds and leads" },
-      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★", note: "Recovery from dip; buy the weakness before July surge" },
-      { wk: "Wk 4", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "Month-end; all TFs aligned into explosive July" },
+      { wk: "Wk 1", s5: "flip", s15: "chop", s33: "chop", com: "FLIP ★★★",   note: "May highs reversing; rotate from long to short" },
+      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★", note: "Sharp drop across all TFs; short confirmed" },
+      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★", note: "5-YR near June lows; maintain short" },
+      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "Near trough; close shorts — July surge imminent" },
     ],
   },
   {
     month: "July", sig5: "bull", sig15: "bull", sig33: "bull",
     combined: "bull", combinedLabel: "LONG", stars: 5,
-    note: "Explosive bull month; all TFs surging to 70–90+ range. 5-YR, 15-YR, and 33-YR all heading toward 100. Peak zone forming late July. Hold maximum longs.",
+    note: "Strongest seasonal month of the year — 5-YR surges from ~35 to ~80–100, all TFs in lockstep. Maximum conviction long. Hold throughout July.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "July surge begins; all three TFs surging together" },
-      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "Peak conviction; 5-YR near 80, 33-YR approaching 80+" },
-      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Near-peak; tighten stops as all three approach 90–100" },
-      { wk: "Wk 4", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Late-July: approaching annual peaks; hold but prepare to exit" },
+      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Explosive reversal from June lows; enter long aggressively" },
+      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "Surge accelerating; maximum long position" },
+      { wk: "Wk 3", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "5-YR approaching ~80–100; near year peak" },
+      { wk: "Wk 4", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Sustained near highs; hold but monitor for reversal" },
     ],
   },
   {
     month: "August", sig5: "bull", sig15: "bull", sig33: "bull",
-    combined: "bull", combinedLabel: "LONG", stars: 4,
-    note: "ALL THREE TFs peak at ~100 — including 33-YR (annual high). This is the single most powerful seasonal peak. Scale out aggressively after the August climax.",
+    combined: "bull", combinedLabel: "LONG", stars: 5,
+    note: "Year peak — all TFs at 80–100. 5-YR peaks and reverses aggressively in late August (sharper than 10-YR). 33-YR peaks in September. Take profits into month-end.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "All three TFs at or near 100; annual seasonal climax" },
-      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★",  note: "Peak zone; begin scaling out of longs aggressively" },
-      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "chop", com: "CHOP",       note: "All TFs at exhaustion highs; hold tight stops" },
-      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "Reversal confirmed; all TFs rolling over from 100 — flip short" },
+      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "All TFs at year highs; fully long" },
+      { wk: "Wk 2", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★★★", note: "Peak zone — hold maximum longs" },
+      { wk: "Wk 3", s5: "flip", s15: "bull", s33: "bull", com: "FLIP ★★★",   note: "5-YR beginning sharp reversal; reduce long exposure quickly" },
+      { wk: "Wk 4", s5: "bear", s15: "flip", s33: "bull", com: "FLIP ★★★",   note: "5-YR dropping hard; close longs, prepare September short" },
     ],
   },
   {
-    month: "September", sig5: "bear", sig15: "bear", sig33: "bear",
-    combined: "bear", combinedLabel: "SHORT", stars: 4,
-    note: "Post-peak decline across all TFs from August highs. 5-YR falls sharply from 100 to ~45. 15-YR and 33-YR also declining significantly. Strong bear phase.",
+    month: "September", sig5: "bear", sig15: "bear", sig33: "flip",
+    combined: "flip", combinedLabel: "FLIP", stars: 4,
+    note: "Sharp reversal — 5-YR drops aggressively from highs (more severe than 10-YR). 33-YR peaks then turns. Flip to short quickly; this is not a gradual decline.",
     weeks: [
-      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★",  note: "Post-August peak selloff; all TFs falling hard" },
-      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★",  note: "Decline accelerates; sell rallies aggressively" },
-      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★★", note: "Deepening decline; 5-YR at ~50, 33-YR falling from 100" },
-      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",   note: "Late-Sep lows; watch for early October stabilisation" },
+      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bull", com: "FLIP ★★★★",  note: "33-YR peaking; 5-YR/15-YR in sharp decline — flip to short now" },
+      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "All TFs declining; hold short" },
+      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★★", note: "Seasonal decline in force; continue short" },
+      { wk: "Wk 4", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "Continued decline into October" },
     ],
   },
   {
     month: "October", sig5: "bear", sig15: "bear", sig33: "bear",
     combined: "bear", combinedLabel: "SHORT", stars: 3,
-    note: "Continued post-peak decline; 33-YR at ~45–55, 5-YR at ~40. All TFs still bearing. Sell-into-any-rally setup until November recovery begins.",
+    note: "Post-peak decline — all TFs falling from September highs. 33-YR still relatively elevated but declining. Sell rallies throughout the month.",
     weeks: [
-      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★", note: "Oct bear continues; 33-YR falling from 100 toward 50" },
-      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★", note: "Continued weakness; sell rallies" },
-      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "chop", com: "CHOP",      note: "Mid-month stabilisation; base building for Nov recovery" },
-      { wk: "Wk 4", s5: "chop", s15: "bull", s33: "bull", com: "LONG ★★",   note: "Late-Oct early recovery; 33-YR bottoming near 45–50" },
+      { wk: "Wk 1", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "Continued decline from September; hold short" },
+      { wk: "Wk 2", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "All TFs falling; sell bounces" },
+      { wk: "Wk 3", s5: "bear", s15: "bear", s33: "bear", com: "SHORT ★★★",  note: "5-YR at low levels; 33-YR declining from elevated levels" },
+      { wk: "Wk 4", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",   note: "Decline slowing; stabilisation possible into November" },
     ],
   },
   {
-    month: "November", sig5: "chop", sig15: "bull", sig33: "bull",
-    combined: "bull", combinedLabel: "LONG", stars: 4,
-    note: "33-YR surges to 90–95 (second annual high). 15-YR also recovering well. 5-YR lags but stable. Strong November — buy October weakness for November rally.",
+    month: "November", sig5: "chop", sig15: "chop", sig33: "chop",
+    combined: "chop", combinedLabel: "CHOP", stars: 2,
+    note: "Mixed — 33-YR holds elevated while 5-YR and 15-YR drift lower. No clean directional signal; stand aside.",
     weeks: [
-      { wk: "Wk 1", s5: "chop", s15: "bull", s33: "bull", com: "LONG ★★★★", note: "33-YR powering higher; strong secondary bull signal" },
-      { wk: "Wk 2", s5: "chop", s15: "bull", s33: "bull", com: "LONG ★★★★", note: "33-YR and 15-YR aligned; add longs on any dip" },
-      { wk: "Wk 3", s5: "chop", s15: "bull", s33: "bull", com: "LONG ★★★",  note: "33-YR reaching 90–95; hold into month-end" },
-      { wk: "Wk 4", s5: "chop", s15: "chop", s33: "bull", com: "LONG ★★",   note: "Month-end; 33-YR at secondary high, preparing Dec carry" },
+      { wk: "Wk 1", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "Mixed TF signals; no clear trade" },
+      { wk: "Wk 2", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "5-YR attempting partial recovery; 15-YR declining" },
+      { wk: "Wk 3", s5: "chop", s15: "bear", s33: "chop", com: "CHOP ★★",  note: "15-YR declining; 33-YR holding — mixed" },
+      { wk: "Wk 4", s5: "chop", s15: "chop", s33: "chop", com: "CHOP ★★",  note: "Month ends flat; no signal" },
     ],
   },
   {
     month: "December", sig5: "chop", sig15: "chop", sig33: "bull",
-    combined: "bull", combinedLabel: "LONG", stars: 2,
-    note: "33-YR at ~75–85 (year-end carry), wrapping back toward January ~84. 15-YR at ~40, 5-YR at ~49. Moderate year-end; hold 33-YR positions into January.",
+    combined: "chop", combinedLabel: "CHOP", stars: 2,
+    note: "TF divergence — 33-YR holds elevated (~84), 5-YR and 15-YR continue declining. No clean combined signal. 33-YR year-end seasonal level resets toward January lows.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s33: "bull", com: "LONG ★★★", note: "Early Dec strength; 33-YR carries high year-end" },
-      { wk: "Wk 2", s5: "chop", s15: "chop", s33: "bull", com: "LONG ★★",  note: "Mid-month pause; 33-YR stable ~80–84" },
-      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "bull", com: "LONG ★★",  note: "Year-end consolidation; 33-YR holding elevated" },
-      { wk: "Wk 4", s5: "chop", s15: "chop", s33: "bull", com: "LONG ★★",  note: "Final week; 33-YR at ~84 ready for January seasonal reset" },
+      { wk: "Wk 1", s5: "chop", s15: "chop", s33: "bull", com: "CHOP ★★",  note: "33-YR elevated; shorter TFs declining — no trade" },
+      { wk: "Wk 2", s5: "chop", s15: "chop", s33: "bull", com: "CHOP ★★",  note: "TF divergence continues; 33-YR stable near ~84" },
+      { wk: "Wk 3", s5: "chop", s15: "chop", s33: "bull", com: "CHOP ★★",  note: "Year-end consolidation; mixed" },
+      { wk: "Wk 4", s5: "chop", s15: "chop", s33: "bull", com: "CHOP ★★",  note: "33-YR closes year elevated; resets for January low" },
     ],
   },
 ];
@@ -161,33 +161,35 @@ Asset: 3-Year Aus T-Bonds (SFE)
 Exchange: SFE | Seasonal History: 33-Year (1987–2019)
 
 YEARLY ARC:
-Year opens elevated (33-YR ~84, 15-YR ~40, 5-YR ~49). All TFs decline Jan–Mar to annual trough.
-Mar: Annual low — all near 0. Recovery begins.
-Apr–May: 5-YR spikes dramatically to ~75–80, strongest short-term reading.
-May–Aug: All three TFs rising strongly; all reach ~100 in August.
-Aug: Annual HIGH for ALL three TFs simultaneously — the peak month.
-Sep–Oct: Post-peak decline; all TFs falling from August highs.
-Nov: 33-YR secondary surge to ~90–95. Second bull window.
-Dec: 33-YR holds ~75–85. Year closes near starting levels.
+Year opens at seasonal LOWS (33-YR ~15–25, 15-YR ~5–15, 5-YR ~5–15).
+Jan: Flat — no signal.
+Feb: First bull leg; 5-YR rises to ~35–40.
+Mar: Annual trough — 5-YR crashes to near 0 (sharper than 10-YR).
+Apr–May: Recovery surge — 5-YR surges to ~75+ (stronger than 10-YR equivalent).
+Jun: Second trough — sharp drop.
+Jul–Aug: Strongest seasonal period — 5-YR surges to ~80–100.
+Sep: Sharp peak and reversal (more aggressive than 10-YR).
+Oct: Post-peak decline.
+Nov–Dec: Mixed; 33-YR elevated, shorter TFs declining.
 
 MONTHLY SIGNALS:
-Jan  — SHORT ★★★   | All TFs declining from year-end highs
-Feb  — SHORT ★★★★  | Strong bear; all TFs falling decisively
-Mar  — SHORT ★★★   | Annual trough; all TFs near 0, then recovery
-Apr  — LONG  ★★★   | Recovery month; 5-YR leads from lows
-May  — LONG  ★★★★★ | 5-YR spikes to ~75–80; all TFs strong
-Jun  — LONG  ★★★   | 5-YR dip mid-month; 33-YR and 15-YR continue
-Jul  — LONG  ★★★★★ | All three surging toward 100; max conviction
-Aug  — LONG  ★★★★  | ALL TFs peak at ~100 — August annual high
-Sep  — SHORT ★★★★  | Post-August decline; all TFs falling sharply
-Oct  — SHORT ★★★   | Continued decline; late-month recovery begins
-Nov  — LONG  ★★★★  | 33-YR secondary surge to 90–95
-Dec  — LONG  ★★    | Year-end carry; 33-YR holds ~75–85
+Jan  — CHOP  ★★    | All TFs at lows; no trade
+Feb  — LONG  ★★★   | First bull leg; 5-YR leads to ~35–40
+Mar  — SHORT ★★★★  | Annual trough; 5-YR crashes to near 0
+Apr  — LONG  ★★★   | Recovery from March lows
+May  — LONG  ★★★★★ | Outstanding bull; 5-YR surges to ~75+ — stronger than 10-YR
+Jun  — SHORT ★★★★  | Sharp drop; sets up July explosion
+Jul  — LONG  ★★★★★ | Strongest month; 5-YR surges to ~80–100
+Aug  — LONG  ★★★★★ | Year peak; 5-YR reverses aggressively late month
+Sep  — FLIP  ★★★★  | Sharp reversal — flip to short quickly
+Oct  — SHORT ★★★   | Post-peak decline
+Nov  — CHOP  ★★    | Mixed; stand aside
+Dec  — CHOP  ★★    | 33-YR elevated; shorter TFs declining
 
 KEY OBSERVATIONS:
-- Unlike 10-YR Aus Bonds, ALL THREE TFs peak simultaneously in August (not staggered)
-- 5-YR has an extreme early spike in May (~75–80) before the July-August surge
-- The March trough is the annual setup point for the year's best trade: long Apr–Aug
-- November second peak is significant (33-YR to 90–95) — trade separately from Aug peak
-- 33-YR lags slightly vs. 5-YR/15-YR on the recovery but matches on the August peak
+- Very similar to 10-YR but more volatile 5-YR with stronger May surge (~75+ vs ~65–70)
+- September reversal is sharper — act quickly when flip signal appears
+- 33-YR and 15-YR move closely together; 5-YR diverges more at extremes
+- Two annual trough windows: March (deepest) and June
+- Two bull windows: Apr–May and Jul–Aug (both high conviction)
 `;

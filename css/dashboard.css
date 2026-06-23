@@ -1003,3 +1003,243 @@ tbody td:first-child {
   color: #ef4444;
   border-color: rgba(239,68,68,0.4);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MACRO PANEL — ForexFactory calendar embed
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.macro-panel {
+  padding: 0;
+  margin-bottom: 32px;
+}
+
+/* ── Header row ─────────────────────────────────────────────────────────── */
+.macro-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.macro-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.macro-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.macro-currencies {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.macro-currency-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: #7dd3fc;
+  background: rgba(125,211,252,0.08);
+  border: 1px solid rgba(125,211,252,0.2);
+  border-radius: 3px;
+  padding: 2px 7px;
+}
+
+.macro-links {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.macro-open-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 14px;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.macro-open-btn:hover {
+  color: #7dd3fc;
+  border-color: rgba(125,211,252,0.35);
+}
+
+/* ── Two-column body ─────────────────────────────────────────────────────── */
+.macro-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* ── Embed container (left column, fixed width) ──────────────────────────── */
+.macro-embed-outer {
+  flex: 0 0 680px;
+  height: 560px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.macro-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  filter: invert(1) hue-rotate(180deg);
+  color-scheme: dark;
+}
+
+/* ── Guide panel (right column, fills remaining space) ───────────────────── */
+.macro-guide {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Guide toggle (<details>) ────────────────────────────────────────────── */
+.macro-guide-toggle {
+  margin: 0;
+}
+
+.macro-guide-toggle > summary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #475569;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  margin-bottom: 18px;
+}
+
+.macro-guide-toggle > summary::before {
+  content: '▶';
+  font-size: 8px;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+
+.macro-guide-toggle[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.macro-guide-toggle > summary:hover { color: #94a3b8; }
+.macro-guide-toggle > summary::-webkit-details-marker { display: none; }
+
+/* ── Guide content sections ──────────────────────────────────────────────── */
+.macro-guide-section {
+  margin-bottom: 22px;
+}
+
+.macro-guide-section--impact {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.macro-guide-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #334155;
+  margin-bottom: 10px;
+}
+
+/* ── Impact legend rows ──────────────────────────────────────────────────── */
+.macro-impact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.macro-imp {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  border-radius: 3px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+.macro-imp-high { background: rgba(239,68,68,0.12);  color: #ef4444; }
+.macro-imp-med  { background: rgba(245,158,11,0.12); color: #f59e0b; }
+.macro-imp-low  { background: rgba(100,116,139,0.12); color: #64748b; }
+
+.macro-imp-desc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #475569;
+  line-height: 1.55;
+}
+
+/* ── Guide body text + lists ─────────────────────────────────────────────── */
+.macro-guide-body-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #475569;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.macro-guide-body-text strong { color: #64748b; font-weight: 500; }
+.macro-guide-body-text em     { color: #7dd3fc; font-style: normal; }
+
+.macro-guide-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.macro-guide-item {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #475569;
+  line-height: 1.65;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.macro-guide-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #334155;
+}
+
+.macro-guide-item strong { color: #64748b; font-weight: 500; }
+
+/* ── Responsive: stack columns below 1100px ──────────────────────────────── */
+@media (max-width: 1100px) {
+  .macro-body { flex-direction: column; }
+  .macro-embed-outer { flex: none; width: 100%; max-width: 700px; }
+}
+
+/* ── Source note ─────────────────────────────────────────────────────────── */
+.macro-source {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #334155;
+}

@@ -226,6 +226,7 @@
     { id: 'seasonals', label: 'Seasonals' },
     { id: 'backtest',  label: 'Backtest'  },
     { id: 'chart',     label: 'Chart'     },
+    { id: 'macro',     label: 'Macro'     },
     { id: 'analysis',  label: 'Analysis'  }
   ];
 

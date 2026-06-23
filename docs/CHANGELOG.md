@@ -2,6 +2,154 @@
 
 ---
 
+## v1.3 — June 2026
+**Phase 3 Complete — Macro Events Tab · SFE/LIFFE Data Files · Investing.com Calendar Embed**
+
+### Summary
+
+Adds a Macro tab to all 97 asset pages — an Investing.com economic calendar embed filtered by the currencies relevant to each asset, with a two-column layout pairing the calendar with a collapsible asset-class-specific interpretation guide. Also completes the five remaining SFE/LIFFE interest rates data files with correct seasonal analysis.
+
+---
+
+### New: `js/macro.js`
+
+New shared JavaScript file (~200 lines), loaded on all 97 asset pages between `backtest.js` and `ui.js`. Self-contained IIFE. Key components:
+
+**Panel injection**
+- Creates `<section data-kpt-panel="macro">` and inserts it before `.footnote`
+- `ui.js` discovers it and adds a Macro tab automatically — no HTML changes needed
+
+**Currency and country mapping**
+- `FF_CURRENCIES` — maps all 97 asset IDs to relevant currency arrays (e.g. `longgilt → ['GBP']`, `fx-audusd → ['AUD','USD']`)
+- `CC` — maps currencies to Investing.com country ID strings (e.g. `EUR → '17,26,22'` for Eurozone + Germany + France)
+- Deduplicates country IDs so multi-currency assets don't repeat countries
+
+**Investing.com embed**
+- Source: `sslecal2.investing.com` (Investing.com's free webmaster calendar widget)
+- URL parameters: `columns`, `features=datepicker,timezone,filters`, `countries` (per-asset), `importance=2,3` (medium + high default), `calType=week`, `timeZone=20` (UTC), `lang=1`
+- `filters` feature exposes an in-widget importance toggle — user can switch between All / High / Medium / Low without leaving the page
+- ForexFactory was the original target but blocks embedding via X-Frame-Options
+
+**Two-column layout**
+- Left column: Investing.com iframe (680px fixed, CSS `filter: invert(1) hue-rotate(180deg)` for pseudo dark-mode)
+- Right column: collapsible guide panel (flex: 1, fills remaining space)
+
+**Currency chips + external links**
+- Currency chips displayed in the header (e.g. `GBP`, `AUD · USD`)
+- Two external link buttons: `Investing.com ↗` and `ForexFactory ↗`
+- Source note: `Default: Medium & High · use filter bar to adjust · allow ~30 sec to load`
+
+**Asset-class guide (collapsible, open by default)**
+- `ASSET_CLASS` — maps all 97 asset IDs to one of 6 categories: `fx`, `rates`, `indices`, `metals`, `energy`, `ags`
+- `GUIDE` — six category entries, each with 3 sections: key events, how to interpret the data, and a category-specific note (timing / macro regimes / further research)
+- Impact legend (HIGH / MED / LOW badges with plain-English descriptions) appears at the top of every guide
+- Guide content is asset-class aware: FX assets see central bank / CPI / employment guidance; rates assets see bond-specific inversion logic; energy assets see EIA inventory interpretation; agricultural assets note the USDA WASDE report; etc.
+- `<details open>` with rotating `▶` arrow; collapses to a single summary row
+
+---
+
+### New: `patch_add_macro.js`
+
+One-shot Node.js script that inserted `<script src="../js/macro.js" defer></script>` before `<script src="../js/ui.js" defer></script>` in all 97 HTML files. Result: 97 patched, 0 skipped.
+
+**Updated script load order (all 97 asset pages — now 7 scripts):**
+```html
+<script src="../data/[asset].js"></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+<script src="../js/tradingview.js" defer></script>
+<script src="../js/backtest.js" defer></script>
+<script src="../js/macro.js" defer></script>    ← NEW
+<script src="../js/ui.js" defer></script>
+```
+
+`macro.js` must load before `ui.js` so the injected `[data-kpt-panel="macro"]` element exists when `ui.js` scans for panels.
+
+---
+
+### Updated: `js/ui.js` — Macro Tab Added
+
+The tabs array now has five entries:
+```javascript
+{ id: 'seasonals', label: 'Seasonals' }
+{ id: 'backtest',  label: 'Backtest'  }
+{ id: 'chart',     label: 'Chart'     }
+{ id: 'macro',     label: 'Macro'     }  ← NEW
+{ id: 'analysis',  label: 'Analysis'  }
+```
+
+---
+
+### CSS Additions (`css/dashboard.css`)
+
+- `.macro-panel` — top-level section container
+- `.macro-header` / `.macro-header-left` / `.macro-links` — header row with label, currency chips, and external link buttons
+- `.macro-label` / `.macro-source` — monospace label and source note text
+- `.macro-currency-chip` — light-blue chip badges (e.g. GBP, AUD)
+- `.macro-open-btn` — external link buttons (Investing.com / ForexFactory)
+- `.macro-body` — flex container for two-column layout
+- `.macro-embed-outer` — left column (flex: 0 0 680px, height: 560px, white background for iframe)
+- `.macro-iframe` — iframe with `filter: invert(1) hue-rotate(180deg)` for pseudo dark-mode
+- `.macro-guide` — right column (flex: 1, min-width: 0)
+- `.macro-guide-toggle` — `<details>` with rotating `▶` summary arrow (same pattern as `.bt-desc-toggle`)
+- `.macro-guide-section` / `.macro-guide-heading` — content block and heading
+- `.macro-guide-section--impact` — impact legend section with bottom border separator
+- `.macro-impact-row` / `.macro-imp` / `.macro-imp-high/med/low` / `.macro-imp-desc` — impact level rows with coloured badges
+- `.macro-guide-body-text` / `.macro-guide-list` / `.macro-guide-item` — body text and bulleted list styles
+- `@media (max-width: 1100px)` — stacks columns vertically on narrow screens
+
+---
+
+### SFE/LIFFE Data Files Completed
+
+Five interest rates data files rewritten with correct seasonal analysis from Moore Research Center chart images:
+
+**`data/austbonds10.js`** — 10-YR Aus T-Bonds (SFE), 36-YR (1984–2019)
+- January starts at LOWS (~5–10 on 36-YR) — NOT the year-end highs shown in the legend
+- Bull windows: Feb, Apr, May, Jul (★★★★★), Aug (★★★★★ — year peak)
+- Bear windows: Mar (annual trough), Jun, Sep FLIP (36-YR peaks ~100)
+- Key insight: legend values at "02 Jan 2020" represent the YEAR-END cursor position, not January starting levels
+
+**`data/austbonds3.js`** — 3-YR Aus T-Bonds (SFE), 33-YR (1987–2019)
+- Very similar structure to 10-YR but May is stronger (★★★★★ vs ★★★★) and 5-YR more volatile
+- Sep reversal sharper on shorter TFs
+
+**`data/austbills3m.js`** — 3-Mth Aus T-Bills (SFE), 40-YR (1980–2019)
+- Inverted structure vs T-Bonds: 40-YR starts LOW, 15-YR/5-YR start HIGH in January
+- Trough: Feb–Mar (15-YR/5-YR crash to near 0); Peak: Jun (★★★★★, 15-YR ~90–95)
+- Rare second convergence in October (all TFs at ~90–100 simultaneously)
+- Jul–Sep complex TF divergence: 40-YR still rising while shorter TFs diverge
+
+**`data/longgilt.js`** — Long Gilt (LIFFE), 38-YR (1982–2019)
+- Defining feature: ALL three TFs crash to near 0 simultaneously in June (★★★★★)
+- July is the mirror — massive surge from near 0, all TFs (★★★★★)
+- August: all TFs near 95–100 (annual peak)
+- December: extreme TF divergence — 38-YR near 100, 5-YR at ~30–35
+
+**`data/shortsterling.js`** — 3-Mth Short Sterling (LIFFE), 38-YR (1982–2019)
+- Most complex chart: extreme TF divergences throughout (15-YR starts Jan at ~75–80 while 38-YR is at ~25)
+- Two devastating bear months: March (all crash, ★★★★★) and September (15-YR/5-YR crash from ~90 to near 0, ★★★★★)
+- May: all TFs converge at ~90–100 (★★★★★ — peak month)
+- June: intra-month FLIP — all high early, then 15-YR/5-YR crash while 38-YR holds
+
+**TradingView symbols for SFE/LIFFE assets** remain as original exchange symbols (`ASX:XT1!`, `ICEEUR:R1!`, etc.) — free proxy alternatives were investigated but equally paywalled; exchange symbols at least show historical data.
+
+---
+
+### Files Changed
+- `js/macro.js` — created (~200 lines)
+- `js/ui.js` — Macro tab added to tabs array
+- `patch_add_macro.js` — created (one-shot, can be deleted)
+- `css/dashboard.css` — macro panel styles added (~120 lines)
+- `assets/*.html` (all 97) — `macro.js` script tag inserted by patch script
+- `data/austbonds10.js` — completely rewritten with correct chart analysis
+- `data/austbonds3.js` — completely rewritten with correct chart analysis
+- `data/austbills3m.js` — completely rewritten with correct chart analysis
+- `data/longgilt.js` — completely rewritten with correct chart analysis
+- `data/shortsterling.js` — completely rewritten with correct chart analysis
+
+---
+
 ## v1.2 — June 2026
 **Phase 2 Complete — CSV Backtest Tool · Three-Section Results Panel · UI Polish**
 

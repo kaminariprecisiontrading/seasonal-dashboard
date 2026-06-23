@@ -107,19 +107,21 @@ See `docs/README.md` for the full per-pair file listing, components, and key-sig
 
 ---
 
-## Phase 3 — Macro Data Layer
+## ✅ Phase 3 — Macro Data Layer (Complete — v1.3)
 
-**What:** Economic calendar and macro data indicators per asset — NFP, CPI, PPI, interest rate decisions, central bank sentiment.
+**What was built:** An Investing.com economic calendar embed + collapsible asset-class interpretation guide, injected as a Macro tab on all 97 asset pages.
 
-**Sources (free/low cost):**
-- ForexFactory embedded calendar widget (zero effort, instant)
-- FRED API (US macro: free, comprehensive)
-- Tradingeconomics.com (free tier: limited calls/month, good FX coverage)
-- Barchart.com (broader commodity coverage)
+**ForexFactory:** Was the original target but blocks iframe embedding (`X-Frame-Options: SAMEORIGIN`). Investing.com's `sslecal2.investing.com` webmaster widget is used instead — free, embeddable, filterable by country and importance, with built-in datepicker and timezone controls.
 
-**Start with:** ForexFactory iframe embed in a new "Macro" tab on each asset page. This is a 30-minute implementation with immediate value.
+**Per-asset filtering:** `macro.js` contains a 97-entry `FF_CURRENCIES` map (asset ID → currency codes) and a `CC` map (currency → Investing.com country IDs). Each embed URL is constructed dynamically for the specific asset loaded.
 
-**Evolve to:** API-driven panel that filters relevant events per asset and shows them alongside the seasonal signal with a confluence note.
+**Two-column layout:** 680px-fixed Investing.com iframe on the left, collapsible asset-class guide on the right. Six guide templates (fx / rates / indices / metals / energy / ags), each covering key events, interpretation advice, and a category-specific note. Impact legend (HIGH / MED / LOW) at the top of every guide.
+
+**Features:** `importance=2,3` default (medium + high); `features=...,filters` exposes in-widget importance toggle; pseudo dark-mode via CSS `filter: invert(1) hue-rotate(180deg)`; loading time note in header (~30 sec for cold load); external links to Investing.com and ForexFactory.
+
+**Delivered:** `js/macro.js` (new, ~200 lines) · `js/ui.js` updated (Macro tab added) · `css/dashboard.css` updated (~120 lines of macro styles) · all 97 `assets/*.html` patched via `patch_add_macro.js`
+
+**To evolve:** Phase 5 (AI Synthesis) can query the macro context programmatically when Investing.com provides an API, or integrate FRED/Tradingeconomics for deeper event data per asset.
 
 ---
 
@@ -195,7 +197,13 @@ And produces a single weekly bias verdict: what the confluence is saying, where 
 - localStorage persistence per asset; sub-daily CSV auto-aggregated to D1
 - All 97 asset pages patched with `backtest.js` script tag via `patch_add_backtest.js`
 
-**ForexFactory Calendar**: see Phase 3 below. Most relevant for FX/currency pages only; deferred to dedicated Phase 3 implementation.
+**Macro Calendar** ✅ Complete (Phase 3):
+- `js/macro.js` created — Investing.com embed, per-asset currency/country filtering, two-column guide layout
+- All 97 asset pages patched with `macro.js` script tag via `patch_add_macro.js`
+
+**All 97 data files complete** ✅ (v1.3):
+- All 5 SFE/LIFFE interest rates data files written (`austbonds10`, `austbonds3`, `austbills3m`, `longgilt`, `shortsterling`)
+- Correct seasonal analysis from Moore Research Center charts, including complex TF divergence patterns and inverted T-Bill structure
 
 ---
 
