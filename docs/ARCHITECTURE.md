@@ -26,8 +26,12 @@ seasonal-dashboard/          ← root of GitHub repo
 │   └── dashboard.css        ← ALL shared styles — one file governs every dashboard
 ├── js/
 │   ├── accordion.js         ← shared accordion builder + buildTFTables() + buildQuickJump()
-│   ├── api.js               ← shared Claude API call (max_tokens: 2500)
+│   ├── api.js               ← multi-provider AI panel (Claude / Gemini / Ollama); enriched context
 │   ├── tradingview.js       ← TradingView widget injector (97-entry symbol table)
+│   ├── backtest.js          ← CSV price history analysis engine (D1 / sub-daily)
+│   ├── macro.js             ← Investing.com economic calendar embed + asset-class guide
+│   ├── seasonal-chart.js    ← seasonal bias curve chart (Chart.js, 48-point cumulative)
+│   ├── intraday.js          ← intraday bias tool (H1/H4 CSV → session/DoW stats)
 │   └── ui.js                ← shared UI layer: tabs, sub-tabs, topbar, legend toggle
 ├── data/
 │   ├── aud.js               ← AUD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
@@ -92,7 +96,9 @@ Typography: `Bebas Neue` (headings) + `IBM Plex Mono` (body/data)
 
 Injects `ltLabel` into `id="acc-lt-header"`. Handles current month detection. Auto-opens current real calendar month. Also runs `buildQuickJump()` (month quick-jump bar above the accordion) and `buildTFTables()` (dynamic TF table generation — see dedicated section below).
 
-**`api.js`** reads `SEASONAL_DATA` and `ASSET_CONFIG.ltLabel`. Calls Claude API (`claude-sonnet-4-20250514`, `max_tokens: 2500`). Streams response via SSE; re-renders as Markdown on completion via dynamically loaded `marked.js`.
+**`api.js`** is the multi-provider AI analysis engine. Gathers up to four context layers (seasonal, curve, backtest, intraday) before calling the selected provider. Supports Claude Sonnet (Anthropic SSE), Gemini Flash (Google SSE), and Ollama (local NDJSON streaming). Config and API keys stored in `localStorage` under `kpt-cfg-*` keys. Injects the provider selector, settings panel, and context bar before `#run-btn` at page load. Dynamically overwrites the panel heading and subtitle at runtime so the label reflects the active provider without requiring HTML changes to any of the 97 asset files. Output streamed token-by-token; rendered as Markdown via dynamically loaded `marked.js`. AI response cached per `kpt-ai-{id}-{provider}-{year}-w{week}`.
+
+**`intraday.js`** is the intraday bias tool. Accepts H1 or H4 MT5 CSV exports; auto-detects timeframe. Produces three result sections: average return by hour (Chart.js bar chart with session shading), by trading session (stat cards with occurrence counts), and by day of week (stat cards with occurrence counts). A signal filter (All / Bull / Bear / Chop) isolates bars from weeks matching the current seasonal signal. Session hours use broker server time (EET, UTC+2). Cache stored as `kpt-idt-{id}` with `schemaVer: 2` — old-format cache is discarded on load so session boundary changes take effect without manual clearing. Injects `<section data-kpt-panel="intraday">` before `ui.js` runs.
 
 **`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Chart tab activation to force iframe render.
 
@@ -137,38 +143,42 @@ Thin HTML files (~120–150 lines). Content order (v1.3):
 9. Footnote with inline-styled copyright
 10. **Seven `<script>` tags** in load order (see below)
 
-**Script load order is critical (7 scripts as of v1.3):**
+**Script load order is critical (9 scripts as of v1.5):**
 ```html
-<script src="../data/[asset].js"></script>    <!-- must be first — defines ASSET_CONFIG, MONTHS, SEASONAL_DATA -->
-<script src="../js/accordion.js"></script>    <!-- reads ASSET_CONFIG; runs buildAccordion(), buildTFTables() -->
-<script src="../js/api.js"></script>          <!-- reads SEASONAL_DATA; wires AI button -->
-<script src="../js/tradingview.js"></script>  <!-- injects TradingView widget -->
-<script src="../js/backtest.js"></script>     <!-- injects [data-kpt-panel="backtest"] before ui.js scans -->
-<script src="../js/macro.js" defer></script>  <!-- injects [data-kpt-panel="macro"] before ui.js scans -->
-<script src="../js/ui.js"></script>           <!-- must be last — builds tabs after all content is in DOM -->
+<script src="../data/[asset].js"></script>           <!-- must be first — defines ASSET_CONFIG, MONTHS, SEASONAL_DATA -->
+<script src="../js/accordion.js" defer></script>     <!-- reads ASSET_CONFIG; runs buildAccordion(), buildTFTables() -->
+<script src="../js/api.js" defer></script>           <!-- multi-provider AI panel; gathers context from MONTHS, backtest, intraday -->
+<script src="../js/tradingview.js" defer></script>   <!-- injects TradingView widget -->
+<script src="../js/backtest.js" defer></script>      <!-- injects [data-kpt-panel="backtest"] before ui.js scans -->
+<script src="../js/macro.js" defer></script>         <!-- injects [data-kpt-panel="macro"] before ui.js scans -->
+<script src="../js/seasonal-chart.js" defer></script><!-- injects [data-kpt-panel="scurve"] before ui.js scans -->
+<script src="../js/intraday.js" defer></script>      <!-- injects [data-kpt-panel="intraday"] before ui.js scans -->
+<script src="../js/ui.js" defer></script>            <!-- must be last — builds tabs after all content is in DOM -->
 ```
 
-`backtest.js` and `macro.js` must both load before `ui.js` so their injected `[data-kpt-panel]` elements are in the DOM when `ui.js` scans for panels. `ui.js` must load last because it scans the fully-built DOM for `.combined-wrap`, `.ai-panel`, `.table-wrap`, `#tv-chart-section`, and `[data-kpt-panel]` elements to construct the tab system.
+`backtest.js`, `macro.js`, `seasonal-chart.js`, and `intraday.js` must all load before `ui.js` so their injected `[data-kpt-panel]` elements are in the DOM when `ui.js` scans for panels. `ui.js` must load last because it scans the fully-built DOM for `.combined-wrap`, `.ai-panel`, `.table-wrap`, `#tv-chart-section`, and `[data-kpt-panel]` elements to construct the tab system.
 
 ---
 
-## Dashboard Section Order (v1.3)
+## Dashboard Section Order (v1.5)
 
 The combined accordion and AI panel are **first** on every asset page. Individual TF tables are below the divider as supporting reference detail. TradingView chart is last before the footnote.
 
 ```
 Header + Legend (toggle)
-[TAB BAR: Seasonals · Backtest · Chart · Macro · Analysis]  ← injected by ui.js
-  [SUB-TAB BAR: Combined · 5-YR · 15-YR · LT]              ← only on Seasonals tab
-  Month quick-jump bar                                       ← injected by accordion.js
+[TAB BAR: Seasonals · Trend · Price · History · Sessions · Macro · Analysis]  ← injected by ui.js
+  [SUB-TAB BAR: Combined · 5-YR · 15-YR · LT]   ← only on Seasonals tab
+  Month quick-jump bar                            ← injected by accordion.js
   Combined accordion
   AI panel
   ── divider ──
-  5-YR table | 15-YR table | LT table                       ← switched by sub-tabs
-[Backtest panel: CSV upload + results]
-[Chart panel: TradingView widget]
+  5-YR table | 15-YR table | LT table            ← switched by sub-tabs
+[Trend panel: seasonal bias curve chart (scurve)]
+[Price panel: TradingView widget (chart)]
+[History panel: CSV backtest tool (backtest)]
+[Sessions panel: H1/H4 intraday bias tool (intraday)]
 [Macro panel: Investing.com calendar + guide]
-[Analysis panel: AI output]
+[Analysis panel: multi-provider AI output]
 Footnote + copyright
 ```
 
@@ -185,7 +195,19 @@ Injects a live date chip (`WK N · MON YYYY`) and Prev / Next asset navigation b
 Inserts a Hide / Legend toggle button above `.legend`. Collapse state is not persisted (resets on page load).
 
 ### Primary Tab Bar
-Scans for three content anchors: `.combined-wrap` (Seasonals), `.ai-panel` (Analysis), `#tv-chart-section` (Chart). Tags all related elements with `data-kpt-panel="seasonals|analysis|chart"` using `collectPreceding()` to also tag immediately preceding `.section-label` and `<p>` elements. Builds a `kpt-tabs` bar and inserts it before the first `[data-kpt-panel]` element. Tab switching applies/removes `.kpt-panel-active` (CSS handles visibility). If fewer than 2 panels are found, aborts gracefully.
+Scans for all `[data-kpt-panel]` elements in the DOM. The full ordered tab list (v1.5):
+
+| Panel ID | Tab label | Injected by |
+|----------|-----------|-------------|
+| `seasonals` | Seasonals | `ui.js` (tags `.combined-wrap`) |
+| `scurve` | Trend | `seasonal-chart.js` |
+| `chart` | Price | `ui.js` (tags `#tv-chart-section`) |
+| `backtest` | History | `backtest.js` |
+| `intraday` | Sessions | `intraday.js` |
+| `macro` | Macro | `macro.js` |
+| `analysis` | Analysis | `ui.js` (tags `.ai-panel`) |
+
+Only tabs whose panel element exists in the DOM are rendered. Tags discovered elements with `data-kpt-panel` using `collectPreceding()` to also capture immediately preceding `.section-label` and `<p>` elements. Builds a `kpt-tabs` bar and inserts it before the first `[data-kpt-panel]` element. Tab switching applies/removes `.kpt-panel-active` (CSS handles visibility). If fewer than 2 panels are found, aborts gracefully.
 
 **Key detail — `.month-quickjump` interrupt:** `collectPreceding()` stops at any non-section-label element. The quickjump bar sits between the "Combined Bias" section-label and `.combined-wrap`, so that label does not get `data-kpt-panel`. This is handled by building `combinedGroupEls` differently (walking back from the quickjump element itself, then appending quickjump + combined-wrap). The orphaned label is a known minor cosmetic issue on Chart/Analysis tabs.
 
@@ -369,6 +391,168 @@ The panel header shows:
 
 ---
 
+## Sessions Panel (`js/intraday.js`)
+
+A fully client-side intraday bias analysis tool. Accepts H1 or H4 MT5 CSV exports and produces three result sections: average return by hour, by trading session, and by day of week. Results can be filtered to bars from Bull, Bear, or Chop seasonal weeks.
+
+### Panel Injection
+
+`intraday.js` creates a `<section data-kpt-panel="intraday">` and inserts it before `.footnote`. Because `ui.js` dynamically scans for `[data-kpt-panel]` elements, the Sessions tab appears automatically in the primary tab bar with zero HTML changes. `intraday.js` must load before `ui.js`.
+
+### CSV Format
+
+Expects MT5 H1 or H4 tab-separated export with a TIME column:
+```
+<DATE>  <TIME>  <OPEN>  <HIGH>  <LOW>  <CLOSE>  ...
+2024.01.02  00:00  ...
+```
+
+Timeframe is auto-detected from the TIME values: if hour values include 01, 02, 03 etc., it's H1 (24-bucket); if all TIME values end in `:00` with hours only at 00, 04, 08, 12, 16, 20, it's H4 (6-bucket).
+
+### Session Definitions (UTC+2 Broker Offset)
+
+All session hours are in **broker server time (EET: UTC+2 winter / UTC+3 summer)**. MT5 exports use the broker's server clock. 00:00 broker = 22:00 UTC (winter standard offset).
+
+**H1 sessions:**
+
+| Session | Hours (broker) | UTC (winter) |
+|---------|---------------|--------------|
+| Late NY | 00–01 | 22–23 UTC |
+| Asian | 02–09 | 00–07 UTC |
+| London | 10–14 | 08–12 UTC |
+| L/NY Overlap | 15–18 | 13–16 UTC |
+| New York | 19–22 | 17–20 UTC |
+| After-hours | 23 | 21 UTC |
+
+**H4 sessions:** `00` (Late NY/Sydney) · `04,08` (Asian) · `12` (London) · `16` (L/NY Overlap) · `20` (New York)
+
+### Signal Filter
+
+Each bar is classified using `MONTHS[month].weeks[wkSlot].com`:
+- `LONG…` → `bull`
+- `SHORT…` → `bear`
+- Everything else → `chop`
+
+Filter buttons (All / Bull / Bear / Chop) re-render all three result sections from the same stored stats object — no re-parsing required.
+
+### Three Result Sections
+
+**1. By Hour** — Chart.js bar chart. H1: 24 hourly bars. H4: 6 bars (00, 04, 08, 12, 16, 20). Session zones rendered as coloured background rectangles behind the bars. Green bars = positive average return; red = negative.
+
+**2. By Session** — One stat card per session zone. Each card shows: session name + hour range sublabel, average return percentage, directional arrow (▲ / ▼), and occurrence count (`N / total bars`).
+
+**3. By Day of Week** — One stat card per trading day (Mon–Fri). Same layout as session cards: avg return, arrow, occurrence count.
+
+### `computeStats()` Output
+
+```javascript
+{
+  schemaVer: 2,               // cache discriminator — MUST be 2 for restore to succeed
+  meta: { tf, tfType, totalBars, filteredBars, filter },
+  hourList: [ /* 24 or 6 floats — avg return per hour slot */ ],
+  groups: {                   // by-session results
+    lateNY:  { avg, posCount, count },
+    asian:   { avg, posCount, count },
+    london:  { avg, posCount, count },
+    overlap: { avg, posCount, count },
+    ny:      { avg, posCount, count },
+    late:    { avg, posCount, count }   // H1 only
+  },
+  dow: [
+    { day: 'Mon', avg, posCount, count },
+    ...
+  ]
+}
+```
+
+**Critical:** `sessionDefs` is NOT stored in the stats object. `renderChart()` and `renderSessions()` always derive session definitions from the live `SESSIONS_H1` / `SESSIONS_H4` module-level variables using `stats.tfType`. This prevents stale session boundaries surviving a code update.
+
+### `schemaVer` Cache Invalidation
+
+On page load, the stored `kpt-idt-{id}` object is checked:
+```javascript
+if (s && s.schemaVer === 2 && s.meta && s.groups && s.hourList) {
+  lastStats = s; renderResults(s);
+} else if (s) {
+  localStorage.removeItem(STORE_KEY); // discard old-format cache silently
+}
+```
+
+When session boundary definitions change in future, increment `schemaVer` to force all users to re-upload their CSVs.
+
+### `window.kptIdtRefresh()`
+
+Called by `ui.js` each time the Sessions tab is activated. Calls `chartInstance.resize()` so the Chart.js canvas renders at the correct size after being revealed from `display:none`. If no chart instance exists but `lastStats` is available, re-renders from stored stats.
+
+### localStorage
+
+Key: `kpt-idt-{assetId}`. Stores the full stats object (not raw bars — typically <30KB). Restore guard: `schemaVer === 2 && meta && groups && hourList`.
+
+---
+
+## Analysis Panel (`js/api.js`)
+
+A multi-provider AI analysis engine that gathers seasonal, curve, backtest, and intraday context before calling the selected model.
+
+### Provider Support
+
+| Provider | Model | Endpoint | Streaming |
+|----------|-------|----------|-----------|
+| Claude | claude-sonnet-4-20250514 | `api.anthropic.com/v1/messages` | SSE (`text_stream`) |
+| Gemini | gemini-1.5-flash | `generativelanguage.googleapis.com/…/streamGenerateContent?alt=sse` | SSE |
+| Ollama | user-configured | `{url}/api/generate` | NDJSON line-by-line |
+
+Config stored in localStorage: `kpt-cfg-claude-key`, `kpt-cfg-gemini-key`, `kpt-cfg-ollama-url`, `kpt-cfg-ollama-model`.
+
+### Context Layers
+
+`runAnalysis()` gathers four context layers before building the prompt:
+
+**1. Seasonal** (always) — reads `MONTHS[]` directly; extracts month-level combined signal and top/bottom 3 months by conviction stars.
+
+**2. Curve** (`_gatherCurveCtx()`) — converts `MONTHS[]` to a 48-point cumulative directional curve (same algorithm as `seasonal-chart.js`). Returns:
+- `curVal` — current cumulative value at today's week slot
+- `trend4w` — change over last 4 weeks (`up` / `down` / `flat`)
+- `pctRange` — current value as % of the annual min–max range
+
+**3. History** (`_gatherBacktestCtx(assetId)`) — reads `kpt-bt-{id}`. Returns overall win rate, plus top 2 months by win rate and top 2 months by avg return (and their bottom counterparts). Returns `null` if no backtest data uploaded.
+
+**4. Sessions** (`_gatherIntradayCtx(assetId)`) — reads `kpt-idt-{id}`. Rejects if `schemaVer !== 2`. Returns best and worst session (by avg return) and best and worst day of week. Returns `null` if no intraday data uploaded or cache is stale.
+
+### UI Injection (`_injectUI()`)
+
+Called once at page load. Inserts before `#run-btn`:
+- Provider pill buttons (Claude · Gemini · Ollama)
+- Settings gear toggle → expandable panel with key/URL/model inputs + Save button
+- Context bar chips (✓ Seasonal · ✓ Curve · ✓/○ History · ✓/○ Sessions)
+- Hint text showing which provider is active
+
+### Dynamic Panel Headings (`_updatePanelHeadings(prov)`)
+
+Rewrites two DOM elements at runtime on every provider switch and on page load:
+- The `.section-label` immediately preceding `.ai-panel` → `"Seasonal Bias Analysis"` (preserving the coloured dot span)
+- `.ai-panel .ai-label` → `_providerLabel(prov) + ' · Live Analysis'`
+
+`_providerLabel()` returns `"Claude Sonnet"` / `"Gemini Flash"` / `"Ollama · {model}"`.
+
+This allows all 97 HTML files to keep their original hardcoded heading text as a static fallback — the JS overwrites it on every load. No HTML patch required.
+
+### Prompt Structure
+
+`_buildPrompt(curveCtx, btCtx, idtCtx)` assembles a structured prompt with:
+1. Asset identity (name, current date, current seasonal signal)
+2. Full 12-month seasonal grid (month · combined signal · stars · week-level detail)
+3. Curve position (current value · trend · % of annual range)
+4. Backtest stats (if available)
+5. Intraday bias (if available)
+6. Explicit output format instructions (VERDICT heading, data table, outlook, trade notes)
+
+### AI Cache
+
+Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider — switching models produces a fresh call. Cached response is restored on page load if the week matches.
+
+---
+
 ## Index Page (`index.html`)
 
 ### Sticky Navigation Bar
@@ -450,7 +634,7 @@ Three files required:
 - Legend long-term TF label
 - All three static TF tables (hand-built pages only; generator pages use `buildTFTables()`)
 - Footnote — use exact pattern with inline-styled copyright span (see SKILL.md)
-- Script src tags in correct order: `data/[asset].js` → `accordion.js` → `api.js` → `tradingview.js` → `backtest.js` → `macro.js` → `ui.js` (7 scripts total — `patch_add_macro.js` handles bulk insertion if not already present)
+- Script src tags in correct order: `data/[asset].js` → `accordion.js` → `api.js` → `tradingview.js` → `backtest.js` → `macro.js` → `seasonal-chart.js` → `intraday.js` → `ui.js` (9 scripts total)
 
 **3. `index.html`** — find the planned card, change:
 - `status-planned` → `status-complete`
@@ -533,3 +717,13 @@ Every asset footnote must use this exact pattern:
 | Macro embed white theme clashing with dark dashboard | `filter: invert(1) hue-rotate(180deg)` on `.macro-iframe` — check it hasn't been removed from `dashboard.css` |
 | Macro guide shows wrong content | Check `ASSET_CLASS` map in `macro.js` has the correct asset ID mapped to one of: fx, rates, indices, metals, energy, ags |
 | New asset has no macro tab | Add the new asset ID to both `FF_CURRENCIES` and `ASSET_CLASS` in `macro.js`; ensure `macro.js` script tag is in the asset HTML before `ui.js` |
+| Sessions tab missing from tab bar | `intraday.js` must load before `ui.js` — the `[data-kpt-panel="intraday"]` element must exist when `ui.js` scans the DOM |
+| Sessions chart not visible on tab activate | `window.kptIdtRefresh()` is called by `ui.js` on activation; check `kptIdtRefresh` is defined in `intraday.js` and `intraday.js` loads before `ui.js` |
+| Sessions shows old session shading after timezone fix | Old cache used `stats.sessionDefs` (stale). Fix: cache now requires `schemaVer: 2`; session defs are always derived at render time from live `SESSIONS_H1`/`SESSIONS_H4` variables |
+| Sessions upload shows "only N valid bars" on H1 CSV | Verify the TIME column is present and format is `HH:MM`; separator must be tab or comma |
+| Session filter (Bull/Bear/Chop) shows no bars | CSV uploaded when `MONTHS[]` data was unavailable or `ASSET_CONFIG` undefined — re-upload; check data file loads before `intraday.js` |
+| AI panel says "Claude AI" instead of active provider | `_updatePanelHeadings()` is called at init — check `api.js` loads and `#run-btn` exists in the DOM; the function rewrites `.ai-label` at startup |
+| AI Settings panel not appearing | `_injectUI()` targets `#run-btn` — check the AI button has `id="run-btn"` (not `id="ai-btn"`) |
+| Ollama "Failed to fetch" | (1) Ollama not running — run `start_kpt.bat`; (2) CORS not enabled — must use `set OLLAMA_ORIGINS=* && ollama serve` in same process; (3) Wrong URL — use `http://localhost:11434`, not `…/v1` |
+| Gemini / Claude returns 401 | Check API key is saved via the Settings gear icon; key stored in `kpt-cfg-{provider}-key` in localStorage |
+| AI response not cached (re-calls on every page load) | Cache key is `kpt-ai-{id}-{provider}-{year}-w{week}` — check `ASSET_CONFIG.id` is set correctly; cache expires automatically when the week changes |

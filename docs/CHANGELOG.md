@@ -2,6 +2,189 @@
 
 ---
 
+## v1.5 — June 2026
+**Phase 2.5 — Sessions Panel · Phase 5 — Multi-Provider AI Synthesis**
+
+### Summary
+
+Two major feature additions. Phase 2.5 adds the Sessions intraday bias tool — upload an H1 or H4 MT5 CSV to see average return by hour of day, by trading session, and by day of week, all filterable by the current seasonal signal. Phase 5 upgrades the Analysis tab's AI engine from a Claude-only button to a provider-agnostic panel supporting Claude Sonnet, Gemini Flash, and Ollama local models, with enriched context drawn from backtest and intraday data.
+
+---
+
+### New: `js/intraday.js` — Sessions (Intraday Bias) Panel
+
+New shared JavaScript file (~600 lines), loaded on all 97 asset pages between `seasonal-chart.js` and `ui.js`. Self-contained IIFE.
+
+**Panel injection**
+- Creates `<section data-kpt-panel="intraday">` and inserts it before `.footnote`
+- `ui.js` discovers it and adds a Sessions tab — no HTML changes required
+
+**CSV format**
+- Expects MT5 H1 or H4 tab-separated export with a TIME column (`YYYY.MM.DD HH:MM`)
+- Auto-detects timeframe: H1 (24-bucket) vs H4 (6-bucket: 00, 04, 08, 12, 16, 20)
+- Same separator auto-detection and date validation as `backtest.js`
+
+**Signal filter**
+- Filter buttons: All bars / Bull weeks / Bear weeks / Chop weeks
+- Reads `MONTHS[month].weeks[wkSlot].com` to classify each bar by seasonal context
+- Allows isolating intraday patterns within specific seasonal conditions
+
+**Three result sections**
+1. **By Hour** — 24-bar (H1) or 6-bar (H4) Chart.js bar chart of average return per hour; green/red by sign; session shading overlay matches session colours
+2. **By Session** — stat cards for each session zone; shows avg return, direction arrow, and occurrence count (`N / total bars`)
+3. **By Day of Week** — stat cards for Mon–Fri; avg return, direction arrow, occurrence count (`N / total bars`)
+
+**Session definitions (UTC+2 broker offset)**
+All hours are in broker server time (EET: UTC+2 winter / UTC+3 summer):
+
+| Session | H1 hours (broker) | UTC equivalent |
+|---------|-------------------|----------------|
+| Late NY | 00–01 | 22–23 UTC |
+| Asian | 02–09 | 00–07 UTC |
+| London | 10–14 | 08–12 UTC |
+| L/NY Overlap | 15–18 | 13–16 UTC |
+| New York | 19–22 | 17–20 UTC |
+| After-hours | 23 | 21 UTC |
+
+H4 maps to: `00` (Late NY/Sydney), `04–08` (Asian), `12` (London), `16` (L/NY Overlap), `20` (New York).
+
+**`schemaVer: 2` cache invalidation**
+- Stored stats objects include `schemaVer: 2`; `sessionDefs` is NOT stored (prevents stale session boundaries surviving across code updates)
+- On page load, cache is rejected unless `schemaVer === 2 && meta && groups && hourList` — old-format cache is discarded silently
+- `renderChart()` and `renderSessions()` always derive session defs from the live `SESSIONS_H1` / `SESSIONS_H4` variables based on `stats.tfType`
+
+**`window.kptIdtRefresh()`**
+- Called by `ui.js` on Sessions tab activation
+- Triggers Chart.js `resize()` so the canvas renders at the correct size after `display:none`
+
+**localStorage key:** `kpt-idt-{assetId}` (schemaVer 2 format)
+
+---
+
+### Updated: `js/ui.js` — Tab Rename + Sessions Tab
+
+All tab labels renamed for clarity. Tabs array now has seven entries:
+
+```javascript
+{ id: 'seasonals', label: 'Seasonals' }
+{ id: 'scurve',    label: 'Trend'     }  ← was 'Curve'
+{ id: 'chart',     label: 'Price'     }  ← was 'Chart'
+{ id: 'backtest',  label: 'History'   }  ← was 'Backtest'
+{ id: 'intraday',  label: 'Sessions'  }  ← NEW (Phase 2.5)
+{ id: 'macro',     label: 'Macro'     }
+{ id: 'analysis',  label: 'Analysis'  }
+```
+
+Panel IDs are unchanged — only display labels changed. `activateTab` logic is unaffected.
+
+**Updated script load order (all 97 asset pages — now 9 scripts):**
+```html
+<script src="../data/[asset].js"></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+<script src="../js/tradingview.js" defer></script>
+<script src="../js/backtest.js" defer></script>
+<script src="../js/macro.js" defer></script>
+<script src="../js/seasonal-chart.js" defer></script>
+<script src="../js/intraday.js" defer></script>    ← NEW
+<script src="../js/ui.js" defer></script>
+```
+
+---
+
+### Bug Fix: Session chips and shading used stale cached definitions after timezone correction
+
+**Problem:** `sessionDefs` was serialised into the stats object stored in localStorage. After the UTC+2 timezone correction, users with a previously uploaded CSV saw old session boundaries in chart shading and legend chips — the cache was restored and `stats.sessionDefs` (the stale cached copy) was used instead of the updated `SESSIONS_H1`/`SESSIONS_H4` constants.
+
+**Fix:** `sessionDefs` removed from the stored stats object; `schemaVer: 2` added as a discriminator; cache restore guard rejects any object without `schemaVer === 2`; render functions always derive session defs from live module-level variables.
+
+---
+
+### Phase 5 — `js/api.js` Complete Rewrite
+
+`api.js` rebuilt from scratch. Replaces the single-provider Claude button with a provider-agnostic multi-model AI panel.
+
+**Three providers**
+
+| Provider | Model | API |
+|----------|-------|-----|
+| Claude | claude-sonnet-4-20250514 | Anthropic SSE (`/v1/messages`) |
+| Gemini | gemini-1.5-flash | Google SSE (`streamGenerateContent?alt=sse`) |
+| Ollama | user-configured | Local NDJSON (`/api/generate`) |
+
+Config stored in `localStorage` under `kpt-cfg-{provider}-key`, `kpt-cfg-ollama-url`, `kpt-cfg-ollama-model`. Settings panel toggled via a gear icon — no page reload required.
+
+**Four context layers**
+
+Each AI call gathers up to four layers before building the prompt:
+
+1. **Seasonal** (always) — `MONTHS[]` week-level signals for the full year
+2. **Curve** (always) — computed from `MONTHS[]`; current 48-point cumulative value, 4-week trend direction, position as % of annual range
+3. **History** (if available) — reads `kpt-bt-{id}` from localStorage; overall win rate, top/bottom months by accuracy and avg return
+4. **Sessions** (if available, schemaVer 2 only) — reads `kpt-idt-{id}`; best/worst session and day of week
+
+**Context bar chips** — displayed below the provider row; green tick (✓) if data is present, hollow circle (○) if not:
+```
+✓ Seasonal   ✓ Curve   ✓ History   ○ Sessions
+```
+
+**Structured verdict output**
+The prompt forces the model to produce:
+- `## VERDICT: [LONG / SHORT / NEUTRAL / WAIT]` heading
+- 5-row data table (current position, 4-wk trend, backtest win rate, best session, key risk)
+- 3-month outlook paragraph
+- 3 trade note bullets
+
+**AI cache key:** `kpt-ai-{id}-{provider}-{year}-w{week}` — includes provider so switching models produces a fresh analysis.
+
+**Dynamic panel headings**
+`_updatePanelHeadings(prov)` overwrites two elements at runtime on every provider switch:
+- `.section-label` preceding `.ai-panel` → `"Seasonal Bias Analysis"` (preserving the coloured dot span)
+- `.ai-panel .ai-label` → `_providerLabel(prov) + ' · Live Analysis'`
+
+`_providerLabel()` returns: `"Claude Sonnet"` / `"Gemini Flash"` / `"Ollama · {model}"`. The hardcoded heading text in all 97 HTML files is overridden at runtime — no HTML patch required.
+
+**Streaming:**
+- Claude + Gemini: shared `_readSSE(resp, output, extractor)` reader
+- Ollama: NDJSON line-by-line via `_callOllama()`
+- Output rendered as Markdown on completion via dynamically loaded `marked.js`
+
+---
+
+### New: `start_kpt.bat` — Local Server Launcher
+
+Starts Ollama with browser CORS enabled, then starts Docker Desktop and Odysseus containers:
+
+```batch
+start "Ollama Server" /min cmd /c "set OLLAMA_ORIGINS=* && ollama serve"
+```
+
+**Ollama CORS requirement:** `OLLAMA_ORIGINS=*` must be set in the same `cmd` process as `ollama serve` — both commands joined with `&&` inside a single `cmd /c "..."` call. Setting the variable in a parent shell then calling `ollama serve` separately does not inherit the variable.
+
+**Ollama URL:** `http://localhost:11434` — no `/v1` suffix (endpoint is `/api/generate`, not `/v1/api/generate`).
+
+---
+
+### CSS Additions (`css/dashboard.css`)
+
+**Phase 2.5 — Sessions panel:**
+`.idt-panel`, `.idt-header`, `.idt-header-left`, `.idt-label`, `.idt-sub`, `.idt-signal-chip`, `.idt-filter-row`, `.idt-filter-btn` (+ `.active`), `.idt-chart-wrap`, `.idt-section-title`, `.idt-cards`, `.idt-card`, `.idt-card-label`, `.idt-card-sublabel`, `.idt-card-val`, `.idt-card-arrow`, `.idt-card-count` (9px, `#4a5568`)
+
+**Phase 5 — AI provider panel:**
+`.ai-provider-row`, `.ai-provider-label`, `.ai-provider-btns`, `.ai-provider-btn` (+ `.active`), `.ai-settings-toggle`, `.ai-settings-panel`, `.ai-settings-grid`, `.ai-sett-label`, `.ai-sett-input`, `.ai-sett-footer`, `.ai-sett-save`, `.ai-sett-saved`, `.ai-sett-note`, `.ai-ctx-bar`, `.ai-ctx-label`, `.ai-ctx-chip` (+ `.ai-ctx-ok`, `.ai-ctx-na`), `.ai-output` markdown styles (`h2`, `table`, `th`, `td`, `td:first-child`, `strong`, `em`, `p`, `ul`, `li`)
+
+---
+
+### Files Changed
+- `js/intraday.js` — created (~600 lines)
+- `js/ui.js` — Sessions tab added; Trend / Price / History labels applied
+- `js/api.js` — completely rewritten for Phase 5 multi-provider support
+- `css/dashboard.css` — Sessions panel styles + Phase 5 AI panel styles added
+- `assets/*.html` (all 97) — `intraday.js` script tag inserted
+- `start_kpt.bat` — created
+
+---
+
 ## v1.4 — June 2026
 **Phase 4 — Seasonal Curve Tab**
 
