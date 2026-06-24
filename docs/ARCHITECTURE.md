@@ -98,7 +98,7 @@ Injects `ltLabel` into `id="acc-lt-header"`. Handles current month detection. Au
 
 **`api.js`** is the multi-provider AI analysis engine. Gathers up to four context layers (seasonal, curve, backtest, intraday) before calling the selected provider. Supports Claude Sonnet (Anthropic SSE), Gemini Flash (Google SSE), and Ollama (local NDJSON streaming). Config and API keys stored in `localStorage` under `kpt-cfg-*` keys. Injects the provider selector, settings panel, and context bar before `#run-btn` at page load. Dynamically overwrites the panel heading and subtitle at runtime so the label reflects the active provider without requiring HTML changes to any of the 97 asset files. Output streamed token-by-token; rendered as Markdown via dynamically loaded `marked.js`. AI response cached per `kpt-ai-{id}-{provider}-{year}-w{week}`.
 
-**`intraday.js`** is the intraday bias tool. Accepts H1 or H4 MT5 CSV exports; auto-detects timeframe. Produces three result sections: average return by hour (Chart.js bar chart with session shading), by trading session (stat cards with occurrence counts), and by day of week (stat cards with occurrence counts). A signal filter (All / Bull / Bear / Chop) isolates bars from weeks matching the current seasonal signal. Session hours use broker server time (EET, UTC+2). Cache stored as `kpt-idt-{id}` with `schemaVer: 2` — old-format cache is discarded on load so session boundary changes take effect without manual clearing. Injects `<section data-kpt-panel="intraday">` before `ui.js` runs.
+**`intraday.js`** is the intraday bias tool. Accepts H1 or H4 MT5 CSV exports; auto-detects timeframe. Produces three result sections: average return by hour (Chart.js bar chart with session shading), by trading session (stat cards with occurrence counts), and by day of week (stat cards with occurrence counts). A signal filter (All / Bull / Bear / Chop) isolates bars from weeks matching the current seasonal signal. Session hours use broker server time (EET, UTC+2). Cache stored as `kpt-idt-{id}` with `schemaVer: 3` — old-format cache is discarded on load so session boundary changes take effect without manual clearing. Session and DoW slots are day-level (one data point per session occurrence / trading day); hourly slots are bar-level. Injects `<section data-kpt-panel="intraday">` before `ui.js` runs.
 
 **`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Chart tab activation to force iframe render.
 
@@ -447,7 +447,7 @@ Filter buttons (All / Bull / Bear / Chop) re-render all three result sections fr
 
 ```javascript
 {
-  schemaVer: 2,               // cache discriminator — MUST be 2 for restore to succeed
+  schemaVer: 3,               // cache discriminator — MUST be 3 for restore to succeed
   meta: { tf, tfType, totalBars, filteredBars, filter },
   hourList: [ /* 24 or 6 floats — avg return per hour slot */ ],
   groups: {                   // by-session results
@@ -471,7 +471,7 @@ Filter buttons (All / Bull / Bear / Chop) re-render all three result sections fr
 
 On page load, the stored `kpt-idt-{id}` object is checked:
 ```javascript
-if (s && s.schemaVer === 2 && s.meta && s.groups && s.hourList) {
+if (s && s.schemaVer === 3 && s.meta && s.groups && s.hourList) {
   lastStats = s; renderResults(s);
 } else if (s) {
   localStorage.removeItem(STORE_KEY); // discard old-format cache silently
@@ -486,7 +486,7 @@ Called by `ui.js` each time the Sessions tab is activated. Calls `chartInstance.
 
 ### localStorage
 
-Key: `kpt-idt-{assetId}`. Stores the full stats object (not raw bars — typically <30KB). Restore guard: `schemaVer === 2 && meta && groups && hourList`.
+Key: `kpt-idt-{assetId}`. Stores the full stats object (not raw bars — typically <30KB). Restore guard: `schemaVer === 3 && meta && groups && hourList`.
 
 ---
 
@@ -517,7 +517,7 @@ Config stored in localStorage: `kpt-cfg-claude-key`, `kpt-cfg-gemini-key`, `kpt-
 
 **3. History** (`_gatherBacktestCtx(assetId)`) — reads `kpt-bt-{id}`. Returns overall win rate, plus top 2 months by win rate and top 2 months by avg return (and their bottom counterparts). Returns `null` if no backtest data uploaded.
 
-**4. Sessions** (`_gatherIntradayCtx(assetId)`) — reads `kpt-idt-{id}`. Rejects if `schemaVer !== 2`. Returns best and worst session (by avg return) and best and worst day of week. Returns `null` if no intraday data uploaded or cache is stale.
+**4. Sessions** (`_gatherIntradayCtx(assetId)`) — reads `kpt-idt-{id}`. Rejects if `schemaVer !== 3`. Returns best and worst session (by avg return) and best and worst day of week. Returns `null` if no intraday data uploaded or cache is stale.
 
 ### UI Injection (`_injectUI()`)
 
@@ -719,7 +719,7 @@ Every asset footnote must use this exact pattern:
 | New asset has no macro tab | Add the new asset ID to both `FF_CURRENCIES` and `ASSET_CLASS` in `macro.js`; ensure `macro.js` script tag is in the asset HTML before `ui.js` |
 | Sessions tab missing from tab bar | `intraday.js` must load before `ui.js` — the `[data-kpt-panel="intraday"]` element must exist when `ui.js` scans the DOM |
 | Sessions chart not visible on tab activate | `window.kptIdtRefresh()` is called by `ui.js` on activation; check `kptIdtRefresh` is defined in `intraday.js` and `intraday.js` loads before `ui.js` |
-| Sessions shows old session shading after timezone fix | Old cache used `stats.sessionDefs` (stale). Fix: cache now requires `schemaVer: 2`; session defs are always derived at render time from live `SESSIONS_H1`/`SESSIONS_H4` variables |
+| Sessions shows old session shading after timezone fix | Old cache used `stats.sessionDefs` (stale). Fix: cache now requires `schemaVer: 3`; session defs are always derived at render time from live `SESSIONS_H1`/`SESSIONS_H4` variables |
 | Sessions upload shows "only N valid bars" on H1 CSV | Verify the TIME column is present and format is `HH:MM`; separator must be tab or comma |
 | Session filter (Bull/Bear/Chop) shows no bars | CSV uploaded when `MONTHS[]` data was unavailable or `ASSET_CONFIG` undefined — re-upload; check data file loads before `intraday.js` |
 | AI panel says "Claude AI" instead of active provider | `_updatePanelHeadings()` is called at init — check `api.js` loads and `#run-btn` exists in the DOM; the function rewrites `.ai-label` at startup |

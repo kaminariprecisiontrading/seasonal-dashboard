@@ -231,8 +231,8 @@
   (function () {
     try {
       var s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
-      // schemaVer 2: sessionDefs removed from cache; old entries are incompatible.
-      if (s && s.schemaVer === 2 && s.meta && s.groups && s.hourList) {
+      // schemaVer 3: sessions/DoW now day-level; old bar-level caches are incompatible.
+      if (s && s.schemaVer === 3 && s.meta && s.groups && s.hourList) {
         lastStats = s; renderResults(s);
       } else if (s) {
         // Stale cache (old session IDs) — discard silently so user sees upload prompt
@@ -345,39 +345,84 @@
 
     var groups = { all: makeGroup(), bull: makeGroup(), bear: makeGroup(), chop: makeGroup() };
 
-    /* Pass 3: accumulate stats */
+    /* Pass 3a: bar-level hourly accumulation (chart only) */
     for (var n = 0; n < intradayBars.length; n++) {
       var bar    = intradayBars[n];
       var ret    = (bar.close - bar.open) / bar.open * 100;
       var signal = getSignal(bar.month, bar.day);
-      var dow    = new Date(bar.year, bar.month, bar.day).getDay(); // 0=Sun
 
-      /* Hourly */
       if (groups.all.hourly[bar.hour]) {
         accumulate(groups.all.hourly[bar.hour], ret);
         if (groups[signal]) accumulate(groups[signal].hourly[bar.hour], ret);
       }
+    }
 
-      /* Sessions */
-      sessionDefs.forEach(function (s) {
-        if (s.hours.indexOf(bar.hour) !== -1) {
-          accumulate(groups.all.sessions[s.id], ret);
-          if (groups[signal]) accumulate(groups[signal].sessions[s.id], ret);
+    /* Pass 3b: day-level accumulation for sessions and DoW.
+     *
+     * The unit of analysis here is the trading DAY, not the individual bar.
+     * For Sessions: one data point per session per day (net return = sum of all
+     *   bars in that session window on that date). posCount = days where the
+     *   session's net return was positive.
+     * For DoW: one data point per trading day (net return = sum of ALL bars on
+     *   that date). posCount = days where the whole day's return was positive.
+     *
+     * This gives interpretable denominators: ~50 Mondays/year rather than
+     * ~50 × 24 hourly Monday bars/year.
+     */
+    var byDate = {};
+    for (var bi = 0; bi < intradayBars.length; bi++) {
+      var b = intradayBars[bi];
+      if (!byDate[b.dateKey]) {
+        byDate[b.dateKey] = {
+          signal: getSignal(b.month, b.day),
+          dow:    new Date(b.year, b.month, b.day).getDay(),   // 0=Sun
+          bars:   []
+        };
+      }
+      byDate[b.dateKey].bars.push({ hour: b.hour, ret: (b.close - b.open) / b.open * 100 });
+    }
+
+    var dayKeys = Object.keys(byDate);
+    for (var di = 0; di < dayKeys.length; di++) {
+      var dk   = dayKeys[di];
+      var date = byDate[dk];
+      var sig  = date.signal;
+      var dow  = date.dow;
+      var bars = date.bars;
+
+      /* Day's total return (sum of all bars) — used for DoW */
+      var dayRet = 0;
+      for (var ri = 0; ri < bars.length; ri++) dayRet += bars[ri].ret;
+
+      if (dow >= 1 && dow <= 5) {
+        accumulate(groups.all.dow[dow], dayRet);
+        if (groups[sig]) accumulate(groups[sig].dow[dow], dayRet);
+      }
+
+      /* Per-session net return for this date — sum of bars whose hour is in
+       * the session window. Only counted if the session had at least one bar
+       * (handles holidays / early closes where a session window is empty). */
+      sessionDefs.forEach(function (sess) {
+        var sessRet  = 0;
+        var hasBars  = false;
+        for (var si = 0; si < bars.length; si++) {
+          if (sess.hours.indexOf(bars[si].hour) !== -1) {
+            sessRet += bars[si].ret;
+            hasBars  = true;
+          }
+        }
+        if (hasBars) {
+          accumulate(groups.all.sessions[sess.id], sessRet);
+          if (groups[sig]) accumulate(groups[sig].sessions[sess.id], sessRet);
         }
       });
-
-      /* Day of week (Mon=1 … Fri=5) */
-      if (dow >= 1 && dow <= 5) {
-        accumulate(groups.all.dow[dow], ret);
-        if (groups[signal]) accumulate(groups[signal].dow[dow], ret);
-      }
     }
 
     /* Date range */
     var dateKeys = Object.keys(barsPerDate).sort();
 
     return {
-      schemaVer:  2,          // bump when session IDs change — forces old cache to discard
+      schemaVer:  3,          // v3: sessions/DoW now day-level (not bar-level) — forces old cache to discard
       groups:     groups,
       hourList:   hourList,
       tfType:     tfType,
@@ -640,8 +685,8 @@
         '<span class="idt-card-name">' + sess.label + '</span>' +
         '<span class="idt-card-sub">' + sess.sublabel + ' server time</span>' +
         '<span class="idt-card-return">' + (avg >= 0 ? '+' : '') + avg.toFixed(4) + '%</span>' +
-        '<span class="idt-card-pct">' + pct.toFixed(0) + '% positive</span>' +
-        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' bars</span>' +
+        '<span class="idt-card-pct">' + pct.toFixed(0) + '% of sessions up</span>' +
+        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' sessions</span>' +
         '</div>';
     });
     html += '</div>';
@@ -665,8 +710,8 @@
       html += '<div class="idt-dow-card ' + cls + '">' +
         '<span class="idt-card-name">' + DAY_NAMES[d] + '</span>' +
         '<span class="idt-card-return">' + (avg >= 0 ? '+' : '') + avg.toFixed(4) + '%</span>' +
-        '<span class="idt-card-pct">' + pct.toFixed(0) + '% pos</span>' +
-        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + '</span>' +
+        '<span class="idt-card-pct">' + pct.toFixed(0) + '% of days up</span>' +
+        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' days</span>' +
         '</div>';
     });
     html += '</div>';

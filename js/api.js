@@ -8,7 +8,7 @@
  *                        (falls back to SEASONAL_DATA string if MONTHS unavailable)
  *   · Seasonal curve   — computed live from MONTHS[] (always available)
  *   · Backtest stats   — from localStorage kpt-bt-{id} if uploaded
- *   · Intraday bias    — from localStorage kpt-idt-{id} if uploaded (schemaVer 2)
+ *   · Intraday bias    — from localStorage kpt-idt-{id} if uploaded (schemaVer 3)
  *
  * Provider config stored in localStorage (shared across all asset pages):
  *   kpt-cfg-provider   — 'claude' | 'gemini' | 'ollama'
@@ -187,7 +187,7 @@ function _gatherBacktestCtx(assetId) {
 function _gatherIntradayCtx(assetId) {
   try {
     var s = JSON.parse(localStorage.getItem('kpt-idt-' + assetId) || 'null');
-    if (!s || s.schemaVer !== 2 || !s.groups || !s.groups.all) return null;
+    if (!s || s.schemaVer !== 3 || !s.groups || !s.groups.all) return null;
 
     var grp = s.groups.all;
 
@@ -670,7 +670,7 @@ async function _readSSE(resp, output, extractor) {
     var hasIdt = (function () {
       try {
         var parsed = JSON.parse(localStorage.getItem('kpt-idt-' + id) || 'null');
-        return !!(parsed && parsed.schemaVer === 2);
+        return !!(parsed && parsed.schemaVer === 3);
       } catch (_) { return false; }
     }());
 
