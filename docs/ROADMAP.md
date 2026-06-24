@@ -125,13 +125,17 @@ See `docs/README.md` for the full per-pair file listing, components, and key-sig
 
 ---
 
-## Phase 4 — Live Price Context
+## ✅ Phase 4 — Seasonal Curve Tab (Complete — v1.4)
 
-**Quick win (immediate):** TradingView embedded widget — real-time chart, zero code, professional quality. Add as a "Price" tab on each asset page.
+**What was built:** A Chart.js seasonal curve chart injected as a "Curve" tab on all 97 asset pages. Shows the seasonal year as a cumulative directional-bias line derived entirely from `MONTHS[]` data — no external API or price feed required.
 
-**Better option (medium effort):** Twelve Data API (free tier: 800 req/day, 15-min delay) with lightweight-charts rendering native OHLC candlesticks. Allows timeframe selector (1H, 4H, D, W).
+**Curve generation:** Each week's signal (bull/bear/chop/flip) is converted to ±1 / 0 and accumulated across 48 weekly slots. The result is a curve showing the net seasonal trend: rising = tailwind, falling = headwind. Four curves rendered: 5-YR (pink), 15-YR (brown), LT (asset accent), Combined (green, filled).
 
-**Killer feature (harder):** Overlay the seasonal tendency line directly on the live price chart — so the trader sees both current price position and seasonal expectation on the same chart. This is the genuinely differentiated feature.
+**Visual features:** Monthly background shading (green/red/amber reflecting combined signal), amber dashed vertical line at today's position, zero baseline, NOW badge in the header showing current month/week + signal, cross-hair tooltip with signal detail per TF.
+
+**Delivered:** `js/seasonal-chart.js` (~230 lines) · `js/ui.js` (Curve tab added) · `css/dashboard.css` (~80 lines of curve styles) · all 97 HTML files patched via `patch_add_seasonal_chart.js` · load order now 8 scripts.
+
+**Live price overlay (future):** The TradingView iframe is cross-origin and cannot accept injected overlays. To overlay price and seasonal on the same chart, replace TradingView with Lightweight Charts + a price data API (e.g. Twelve Data free tier: 800 req/day). The seasonal curve would then be a second dataset on the same chart instance. Requires an API key.
 
 ---
 

@@ -1243,3 +1243,543 @@ tbody td:first-child {
   letter-spacing: 0.5px;
   color: #334155;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEASONAL CURVE PANEL (Phase 4 — js/seasonal-chart.js)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.scurve-panel {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0 0 24px;
+}
+
+/* ── Header ── */
+.sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sc-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sc-label {
+  font-family: 'Bebas Neue', cursive, sans-serif;
+  font-size: 20px;
+  color: #f1f5f9;
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+
+.sc-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.4px;
+}
+
+/* ── "NOW" badge ── */
+.sc-now {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 4px;
+  padding: 6px 12px;
+  flex-shrink: 0;
+}
+
+.sc-now-dot {
+  color: #f59e0b;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.sc-now-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #f59e0b;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.sc-now-signal {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #94a3b8;
+  border-left: 1px solid rgba(245, 158, 11, 0.25);
+  padding-left: 10px;
+  margin-left: 2px;
+  white-space: nowrap;
+}
+
+/* ── Canvas wrapper ── */
+.sc-chart-wrap {
+  position: relative;
+  height: 250px;
+  width: 100%;
+}
+
+/* ── Explainer (inside bt-desc-toggle) ── */
+.sc-explainer {
+  margin-bottom: 18px;
+}
+
+.sc-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .sc-exp-grid { grid-template-columns: 1fr; }
+}
+
+.sc-exp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sc-exp-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #64748b;
+  margin: 0 0 4px;
+  border-bottom: 1px solid #1e2430;
+  padding-bottom: 6px;
+}
+
+.sc-exp-body {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.sc-exp-body strong { color: #94a3b8; font-weight: 500; }
+.sc-exp-body em     { color: #94a3b8; font-style: normal; }
+
+.sc-exp-legend {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #64748b;
+  line-height: 1.55;
+}
+
+.sc-exp-legend strong { color: #94a3b8; font-weight: 500; }
+
+.sc-exp-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Dashed swatch for the "today" amber line */
+.sc-exp-swatch--dashed {
+  background: transparent;
+  border-top: 2px dashed #f59e0b;
+  border-radius: 0;
+  height: 2px;
+  margin-top: 7px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INTRADAY BIAS PANEL (Phase 2.5 — js/intraday.js)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.idt-panel {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0 0 24px;
+}
+
+/* ── Header ── */
+.idt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.idt-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.idt-label {
+  font-family: 'Bebas Neue', cursive, sans-serif;
+  font-size: 20px;
+  color: #f1f5f9;
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+
+.idt-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.4px;
+}
+
+/* ── Current signal badge ── */
+.idt-now {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.idt-now-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #475569;
+  letter-spacing: 0.4px;
+}
+
+.idt-now-sig {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.idt-now-week {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* ── Explainer ── */
+.idt-explainer {
+  margin-bottom: 4px;
+}
+
+.idt-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .idt-exp-grid { grid-template-columns: 1fr; }
+}
+
+.idt-exp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── Upload area ── */
+.idt-upload-area {
+  border: 1px dashed #1e2430;
+  border-radius: 6px;
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  margin-bottom: 20px;
+}
+
+.idt-upload-area:hover,
+.idt-upload-area.idt-drag {
+  border-color: #334155;
+  background: rgba(30,36,48,0.4);
+}
+
+.idt-upload-inner { cursor: pointer; }
+
+.idt-upload-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.idt-upload-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.idt-upload-hint {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #475569;
+  letter-spacing: 0.3px;
+}
+
+/* ── Meta row ── */
+.idt-meta-row {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #475569;
+  margin-bottom: 16px;
+  letter-spacing: 0.4px;
+}
+
+/* ── Controls row (filter + clear) ── */
+.idt-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.idt-filter-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #475569;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.idt-filter-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.idt-filter-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 4px 12px;
+  border: 1px solid #1e2430;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: 0.4px;
+  transition: color 0.1s, background 0.1s, border-color 0.1s;
+}
+
+.idt-filter-btn:hover { color: #94a3b8; border-color: #334155; }
+
+.idt-filter-btn.active {
+  background: #1e2430;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+/* Ring on the button matching the current seasonal signal */
+.idt-filter-btn--current {
+  box-shadow: 0 0 0 1px #f59e0b;
+}
+
+.idt-clear-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border: 1px solid #1e2430;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: auto;
+  transition: color 0.1s, border-color 0.1s;
+}
+
+.idt-clear-btn:hover { color: #ef4444; border-color: #ef4444; }
+
+/* ── Hourly chart ── */
+.idt-chart-section { margin-bottom: 24px; }
+
+.idt-chart-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.idt-chart-wrap {
+  position: relative;
+  height: 260px;
+  width: 100%;
+}
+
+/* ── Session shading legend ── */
+.idt-session-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.idt-sess-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: #94a3b8;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  letter-spacing: 0.3px;
+}
+
+/* ── Lower section (sessions + DoW side by side) ── */
+.idt-lower {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .idt-lower { grid-template-columns: 1fr; }
+}
+
+.idt-section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Session cards ── */
+.idt-sess-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.idt-sess-card {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  border-left-width: 3px;
+}
+
+.idt-card--bull { border-left-color: #22c55e; }
+.idt-card--bear { border-left-color: #ef4444; }
+
+.idt-card-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+.idt-card-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: #475569;
+}
+
+.idt-card-return {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.idt-card--bull .idt-card-return { color: #22c55e; }
+.idt-card--bear .idt-card-return { color: #ef4444; }
+
+.idt-card-pct,
+.idt-card-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* Session cards: adjust grid for cards without sub-label (DoW cards) */
+.idt-sess-card.idt-dow-card {
+  grid-template-columns: 60px auto auto;
+}
+
+/* ── Day-of-week cards ── */
+.idt-dow-cards {
+  display: flex;
+  gap: 8px;
+}
+
+.idt-dow-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  border-top-width: 3px;
+  text-align: center;
+}
+
+.idt-dow-card.idt-card--bull { border-top-color: #22c55e; }
+.idt-dow-card.idt-card--bear { border-top-color: #ef4444; }
+
+.idt-dow-card .idt-card-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.idt-dow-card .idt-card-return {
+  font-size: 11px;
+}
+
+.idt-dow-card .idt-card-pct {
+  font-size: 9px;
+}
+
+.idt-dow-card .idt-card-count {
+  font-size: 9px;
+  color: #4a5568;
+}
+
+/* ── Status message ── */
+.idt-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #f59e0b;
+  margin-top: 12px;
+  display: none;
+}
+
+/* ── Footer note ── */
+.sc-footer {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #334155;
+  margin: 10px 0 0;
+  text-align: center;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+}

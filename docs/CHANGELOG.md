@@ -2,6 +2,92 @@
 
 ---
 
+## v1.4 — June 2026
+**Phase 4 — Seasonal Curve Tab**
+
+### Summary
+
+Adds a Curve tab to all 97 asset pages — a Chart.js line chart that visualises the full seasonal year as a cumulative directional-bias curve derived from `MONTHS[]` data. Shows three timeframe lines (5-YR / 15-YR / LT) plus a Combined line, monthly background shading, a horizontal zero baseline, and an amber dashed marker at today's position. No external data source or API key required.
+
+---
+
+### New: `js/seasonal-chart.js`
+
+New shared JavaScript file (~230 lines), loaded on all 97 asset pages between `macro.js` and `ui.js`. Self-contained IIFE.
+
+**Curve generation**
+- Converts week-level signals to ±1 (bull/long = +1, bear/short = −1, chop/flip = 0) and accumulates them across all 48 weekly slots
+- Produces four 48-point datasets: 5-YR (pink), 15-YR (brown), LT (asset accent), Combined (green)
+- Reads `ASSET_CONFIG.ltKey` to select the correct long-term signal key (`s34`, `s35`, `s40`, `sLt` etc.)
+- Works on all data file formats (futures with `s34/s35/s40` and forex with `sLt`)
+
+**Panel injection**
+- Creates `<section data-kpt-panel="scurve">` and inserts it before `.footnote`
+- `ui.js` discovers it and adds a Curve tab — no HTML changes required
+
+**Visual features**
+- Monthly background shading: green (bull months), red (bear months), amber (chop)
+- Amber dashed vertical line at today's weekly slot
+- Horizontal zero baseline (dashed)
+- "NOW" badge in the header showing current month/week and combined signal
+- Tooltip on hover: month + week + combined signal + per-TF values
+- Combined line is filled (translucent green) and rendered in front
+
+**Chart.js**
+- Loads `Chart.js 4.4.0` from cdnjs on demand (shared with `backtest.js`)
+- If `window.Chart` already exists (e.g. Backtest tab was opened first), renders immediately without a second network request
+
+---
+
+### Updated: `js/ui.js` — Curve Tab Added
+
+Tabs array now has six entries:
+```javascript
+{ id: 'seasonals', label: 'Seasonals' }
+{ id: 'backtest',  label: 'Backtest'  }
+{ id: 'chart',     label: 'Chart'     }
+{ id: 'scurve',    label: 'Curve'     }  ← NEW
+{ id: 'macro',     label: 'Macro'     }
+{ id: 'analysis',  label: 'Analysis'  }
+```
+
+---
+
+### New: `patch_add_seasonal_chart.js`
+
+One-shot Node.js patch script. Inserts `<script src="../js/seasonal-chart.js" defer></script>` before `<script src="../js/ui.js" defer></script>` in all 97 HTML files. Result: 97 patched, 0 skipped, 0 errors.
+
+**Updated script load order (all 97 asset pages — now 8 scripts):**
+```html
+<script src="../data/[asset].js"></script>
+<script src="../js/accordion.js" defer></script>
+<script src="../js/api.js" defer></script>
+<script src="../js/tradingview.js" defer></script>
+<script src="../js/backtest.js" defer></script>
+<script src="../js/macro.js" defer></script>
+<script src="../js/seasonal-chart.js" defer></script>    ← NEW
+<script src="../js/ui.js" defer></script>
+```
+
+### CSS Additions (`css/dashboard.css`)
+
+- `.scurve-panel` — panel container (matching `.bt-panel` surface/border style)
+- `.sc-header` / `.sc-header-left` — flex header row
+- `.sc-label` — Bebas Neue title ("SEASONAL CURVE")
+- `.sc-sub` — IBM Plex Mono subtitle with asset name
+- `.sc-now` / `.sc-now-dot` / `.sc-now-text` / `.sc-now-signal` — amber "NOW" badge showing current month/week and combined signal
+- `.sc-chart-wrap` — 250px high canvas container
+- `.sc-footer` — bottom note explaining curve interpretation
+
+### Files Changed
+- `js/seasonal-chart.js` — created (~230 lines)
+- `js/ui.js` — Curve tab added
+- `patch_add_seasonal_chart.js` — created (one-shot, can be deleted)
+- `css/dashboard.css` — seasonal curve styles added (~80 lines)
+- `assets/*.html` (all 97) — `seasonal-chart.js` script tag inserted
+
+---
+
 ## v1.3 — June 2026
 **Phase 3 Complete — Macro Events Tab · SFE/LIFFE Data Files · Investing.com Calendar Embed**
 

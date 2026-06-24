@@ -224,8 +224,10 @@
   // Build the tab bar
   var tabs = [
     { id: 'seasonals', label: 'Seasonals' },
-    { id: 'backtest',  label: 'Backtest'  },
-    { id: 'chart',     label: 'Chart'     },
+    { id: 'scurve',    label: 'Trend'     },
+    { id: 'chart',     label: 'Price'     },
+    { id: 'backtest',  label: 'History'   },
+    { id: 'intraday',  label: 'Sessions'  },
     { id: 'macro',     label: 'Macro'     },
     { id: 'analysis',  label: 'Analysis'  }
   ];
@@ -390,6 +392,10 @@
     // Resize Chart.js canvas when Backtest tab becomes visible
     if (panelId === 'backtest' && typeof window.kptBtRefresh === 'function') {
       window.kptBtRefresh();
+    }
+    // Resize Chart.js canvas when Intraday tab becomes visible
+    if (panelId === 'intraday' && typeof window.kptIdtRefresh === 'function') {
+      window.kptIdtRefresh();
     }
     // When switching to chart tab — re-trigger layout so TradingView iframe renders
     if (panelId === 'chart' && tvSection) {
