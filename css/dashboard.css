@@ -1575,7 +1575,7 @@ tbody td:first-child {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 12px;
   margin-bottom: 20px;
 }
@@ -1584,6 +1584,7 @@ tbody td:first-child {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .sc-label {
