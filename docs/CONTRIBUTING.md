@@ -80,7 +80,7 @@ Open the page via Live Server (not by opening the file directly — relative pat
 
 ### 6. Deploy
 
-Commit and push via GitHub Desktop (or `git add` / `git commit` / `git push`). GitHub Pages deploys automatically within ~60 seconds.
+Commit and push via GitHub Desktop (or `git add` / `git commit` / `git push`). Netlify detects the push and auto-deploys within ~60 seconds. Live URL: https://kpt-seasonals.netlify.app/
 
 ---
 

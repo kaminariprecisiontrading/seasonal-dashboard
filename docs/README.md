@@ -6,7 +6,7 @@
 **Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode  
 **Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex)  
 **Repository:** Private GitHub repo — `seasonal-dashboard`  
-**Deployment:** Cloudflare Pages / Netlify (free static hosting — GitHub Pages requires public repo)
+**Deployment:** Netlify — https://kpt-seasonals.netlify.app/ (free static hosting; auto-deploys from private GitHub repo on push)
 
 ---
 
@@ -295,7 +295,7 @@ The dashboard provides objective confluence data. Entry trigger, position sizing
 - **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
 - **Code Editor:** Visual Studio Code
 - **Version Control:** Git + GitHub (private repository)
-- **Hosting:** Cloudflare Pages or Netlify — free static hosting; auto-deploys from private GitHub repo on push (GitHub Pages requires a public repo on the free plan)
+- **Hosting:** Netlify — https://kpt-seasonals.netlify.app/ · free tier · auto-deploys from private GitHub repo on every push · HTTPS included
 - **Local Preview:** Live Server (VSCode extension) — required for correct `http://` context; do not open HTML files directly via `file://`
 - **Local AI server:** Ollama — requires `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat` automates this
 

@@ -330,7 +330,7 @@ If you copy from an old template (pre-v0.6), it may have `id="accordion-body"` a
 | AI button unstyled / looks plain | `.ai-btn` is undefined in `dashboard.css` — must use `class="run-btn"` |
 | Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` and `ltSigKey` / `ltKey` match the month data keys |
 | AI button loading message says wrong TF | Check `ASSET_CONFIG.ltLabel` |
-| Live Server works but GitHub Pages doesn't | Check relative paths — `../css/dashboard.css` requires `assets/` subfolder |
+| Live Server works but Netlify deploy doesn't render correctly | Check relative paths — `../css/dashboard.css` requires `assets/` subfolder; never use absolute paths starting with `/` |
 | AI button returns empty | Check API key active at console.anthropic.com |
 | AI button cuts off | Raise `max_tokens` in `js/api.js` (currently 2500) |
 | Copyright not showing | Ensure `<span>` has inline styles — do not rely on CSS class alone |

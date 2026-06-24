@@ -246,12 +246,13 @@ Provider, API keys, and Ollama URL/model stored in `localStorage` under `kpt-cfg
 
 ## Phase 6 — Mobile Access & Deployment (Planned)
 
-### 6A — Static Hosting Migration (Free)
-Move deployment from private GitHub (Pages blocked on private repos) to **Cloudflare Pages** or **Netlify** — both support private GitHub repos on free tier, auto-deploy on `git push`, and provide HTTPS out of the box. No code changes required.
+### 6A — Static Hosting Migration (Free) — ✅ Complete
 
-- **Cloudflare Pages:** Connect GitHub repo, set publish directory to `/seasonal-dashboard`, deploy. URL: `your-project.pages.dev`.
-- **Netlify:** Same approach. URL: `your-project.netlify.app`.
-- Custom domain (`kpt.app` or similar) is a low-cost future upgrade via either service.
+Deployed to **Netlify** — connected to the private GitHub repo, auto-deploys on every push to `main`. No code changes were required.
+
+- **Live URL:** https://kpt-seasonals.netlify.app/
+- GitHub Pages was not viable (requires public repo on the free plan)
+- Custom domain (`kpt.app` or similar) is a low-cost future upgrade
 
 ### 6B — Progressive Web App (PWA)
 Adds installability and offline support. Requires three files, no framework, no build step:

@@ -64,8 +64,9 @@ seasonal-dashboard/          ← root of GitHub repo
     └── DATA_DICTIONARY.md   ← ASSET_CONFIG and MONTHS[] field reference
 ```
 
-**Deployment:** GitHub Pages serves from `main` branch root.
-- Landing page: `https://[username].github.io/seasonal-dashboard/`
+**Deployment:** Netlify — connected to the private GitHub repo, auto-deploys on every push to `main`.
+- Live URL: https://kpt-seasonals.netlify.app/
+- GitHub Pages is not used (requires public repo on the free plan)
 - Dashboards: `https://[username].github.io/seasonal-dashboard/assets/aud.html`
 
 **Local development:** Use **Live Server** in VSCode. Modular JS imports require a server context — opening HTML files directly from the filesystem fails silently.
@@ -677,7 +678,7 @@ Three files required:
 
 **4. If using the generator (`gen_futures_v2.js`):** Add the new asset config to the relevant category array and re-run `node gen_futures_v2.js`. Re-run `node gen_signals_manifest.js` to update the index signals.
 
-Deploy: commit all changed files, push to `main`. GitHub Pages deploys automatically.
+Deploy: commit all changed files, push to `main`. Netlify detects the push and auto-deploys within ~60 seconds.
 
 ---
 
@@ -731,7 +732,7 @@ Every asset footnote must use this exact pattern:
 | Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` matches `ltSigKey` / `ltKey` keys used in `MONTHS[]` |
 | AI button cuts off mid-analysis | Raise `max_tokens` in `js/api.js` (currently 2500) |
 | Copyright not showing | Ensure `<span>` uses inline styles, not CSS class only |
-| Live Server works but GitHub Pages doesn't | Check relative paths — `../css/dashboard.css` requires assets in `assets/` subfolder |
+| Live Server works but Netlify deploy doesn't render correctly | Check relative paths — `../css/dashboard.css` requires assets in `assets/` subfolder; do not use absolute paths starting with `/` |
 | AI button returns empty | Check API key active at console.anthropic.com |
 | Sticky nav doesn't highlight | Check section `id` attributes match nav link `href` values exactly |
 | Index card shows wrong signal (BEAR/BULL on live asset) | Hardcoded signal tags go stale — always use `<span class="bull-tag">Live</span>` until dynamic status is implemented |
