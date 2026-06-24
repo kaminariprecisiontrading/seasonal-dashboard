@@ -130,6 +130,21 @@
     }
   }
 
+  // "Print this tab" button — triggers single-panel print mode
+  if (topbar) {
+    var printBtn = document.createElement('button');
+    printBtn.className = 'topbar-print-btn';
+    printBtn.title = 'Print current tab only (use browser Print for all panels)';
+    printBtn.innerHTML = '&#128438; Print tab';
+    printBtn.addEventListener('click', function () {
+      document.body.classList.add('print-single-tab');
+      window.print();
+      // Remove class after print dialog closes (slight delay for Safari)
+      setTimeout(function () { document.body.classList.remove('print-single-tab'); }, 1000);
+    });
+    topbar.appendChild(printBtn);
+  }
+
   /* ─── 2. LEGEND COLLAPSIBLE ────────────────────────────────────────────── */
   var legend = document.querySelector('.legend');
   if (legend) {

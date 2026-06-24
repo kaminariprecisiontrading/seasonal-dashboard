@@ -2,6 +2,63 @@
 
 ---
 
+## v1.6 — June 2026
+**Polish & Tooling — Project structure, new docs, UI improvements, code fixes**
+
+### Summary
+
+Refinement release with no new data features. Improves maintainability (scripts/ folder, three new reference documents), fixes the Gemini provider label, and adds five user-facing improvements: index signal filter, AI cache clear button, broker timezone selector, ⓘ tooltips on session cards, and a single-tab print mode.
+
+---
+
+### Project Structure
+
+- **`scripts/` folder** — Moved all four patch scripts (`patch_add_backtest.js`, `patch_add_intraday.js`, `patch_add_macro.js`, `patch_add_seasonal_chart.js`) from project root to `scripts/`. Root now contains only `index.html`, `assets/`, `css/`, `js/`, `data/`, `docs/`, and `scripts/`.
+- **`scripts/README.md`** — New. Documents all patch and generator scripts: purpose, run command, status (one-shot vs maintenance), and instructions for writing new patch scripts.
+
+### New Documentation
+
+- **`docs/DATA_DICTIONARY.md`** — Complete field-by-field reference for `ASSET_CONFIG` and `MONTHS[]`. Covers all field names, types, allowed values, and which JS files consume each field. Especially clarifies the frequently-confused `ltKey`/`ltSigKey`/`sLt`/`sigLt` variants and the `com` field parsing convention used by `intraday.js`.
+- **`docs/CONTRIBUTING.md`** — Single authoritative add-an-asset checklist. Covers new futures assets, FX pairs, updating existing data, editing shared JS, and adding new tabs. Replaces guidance previously spread across SKILL.md and ARCHITECTURE.md.
+- **`docs/USER_GUIDE.md`** — End-user guide (no coding required). Covers all seven tabs, CSV upload steps, AI provider setup (Claude/Gemini/Ollama), and how to interpret all outputs (Win Rate heatmap, By Session/DoW cards, Trend curve, AI VERDICT block).
+
+### `js/api.js` — AI Analysis Tab
+
+- **Gemini label updated** — Provider button and all display labels changed from "Gemini Flash" → "Gemini 2.0 Flash" to match the current model (`gemini-2.0-flash` model string was already correct in v1.5).
+- **AI cache clear button** — When a cached result is loaded on page open, a bar now appears above the output showing "Cached result for this week" and a "✕ Clear & re-run" button. Clicking clears `localStorage` for the current cache key and immediately re-runs analysis. Fixes the problem where new CSV uploads wouldn't be reflected until the weekly cache expired. CSS: `.ai-cache-bar`, `.ai-cache-note`, `.ai-cache-clear-btn`.
+
+### `js/intraday.js` — Sessions Tab
+
+- **Broker timezone selector** — New UTC offset dropdown (UTC+0 / UTC+1 / UTC+2 / UTC+3) added below the upload area. Default remains UTC+2 (EET). Stored per asset as `kpt-tz-{id}`. Changing the offset clears the cached stats and prompts re-upload, since the hour normalisation changes. Session defs remain in EET; raw hours from the CSV are shifted by `(rawHour - (offset - 2) + 24) % 24` to normalise before stat accumulation.
+- **ⓘ tooltips on session/DoW count labels** — "N / M sessions" and "N / M days" labels now include a hoverable ⓘ icon with explanatory tooltip text. CSS: `.idt-count-tip`.
+
+### `js/tradingview.js` — Price Tab
+
+- **`tvSymbol` ASSET_CONFIG override** — `tradingview.js` now checks `ASSET_CONFIG.tvSymbol` before looking up the built-in 97-entry symbol table. Set this field in any data file to override the default symbol without editing the shared JS file (e.g. to use a CFD ticker or a different contract).
+
+### `js/ui.js` — Shared UI
+
+- **"Print this tab" button** — New button added to topbar. Clicking adds `.print-single-tab` to `<body>`, calls `window.print()`, then removes the class after 1 second. When `.print-single-tab` is active, `@media print` shows only the active panel (`.kpt-panel-active`) instead of all seven. The existing browser Print (Ctrl+P) without the button continues to print all panels.
+
+### `index.html` — Landing Page
+
+- **Signal filter bar** — New filter row added between the search bar and sticky nav: "All / Bull / Bear / Other" buttons. On click, hides `.asset-card.status-complete` elements whose `data-sig-type` doesn't match the selection. Requires `SIGNALS_MANIFEST` to be loaded (signals manifest provides the type per card). CSS: `.signal-filter-bar`, `.sig-filter-btn`, `.signal-filter-count`.
+- **"Signal data as of" timestamp** — When `SIGNALS_GENERATED` is defined in `signals_manifest.js`, a formatted date note appears at the bottom of the This Week panel. Makes manifest staleness visible without opening developer tools.
+- **`data/signals_manifest.js`** — Added `const SIGNALS_GENERATED = '…'` variable (previously only a comment). `index.html` reads this to display the freshness note.
+
+### `css/dashboard.css` — Shared Styles
+
+New CSS additions in v1.6:
+- `.ai-cache-bar`, `.ai-cache-note`, `.ai-cache-clear-btn` — AI cache indicator bar
+- `.idt-count-tip` — Session/DoW ⓘ tooltip icon
+- `.idt-tz-row`, `.idt-tz-label`, `.idt-tz-select`, `.idt-tz-note` — Broker timezone selector row
+- `.topbar-print-btn` — Print this tab button
+- `.signal-filter-bar`, `.sig-filter-btn` variants, `.signal-filter-count` — Index filter bar
+- `.asset-card.sig-hidden` — Hidden state for signal-filtered cards
+- `body.print-single-tab [data-kpt-panel]` / `.kpt-panel-active` — Single-tab print mode
+
+---
+
 ## v1.5 — June 2026
 **Phase 2.5 — Sessions Panel · Phase 5 — Multi-Provider AI Synthesis**
 

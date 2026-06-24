@@ -341,6 +341,36 @@ tbody td:first-child {
   50%       { opacity: 0.3; }
 }
 
+/* ── AI cache bar (shown above cached result) ── */
+.ai-cache-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1e2430;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.ai-cache-note {
+  font-size: 10px;
+  color: #475569;
+  letter-spacing: 0.4px;
+}
+.ai-cache-clear-btn {
+  background: transparent;
+  border: 1px solid #334155;
+  color: #64748b;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.ai-cache-clear-btn:hover { color: #94a3b8; border-color: #475569; }
+
 .ai-output {
   color: var(--dim);
   line-height: 1.8;
@@ -956,7 +986,50 @@ tbody td:first-child {
 }
 
 .asset-card.search-hidden { display: none !important; }
+.asset-card.sig-hidden    { display: none !important; }
 .grid-section.section-all-hidden { opacity: 0.25; }
+
+/* ── Signal filter bar ─────────────────────────────────────────────────────── */
+.signal-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto 12px;
+  max-width: 900px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+.signal-filter-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+.sig-filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.sig-filter-btn:hover        { color: var(--text); border-color: #334155; }
+.sig-filter-btn.active       { color: var(--text); border-color: #475569; background: rgba(255,255,255,0.04); }
+.sig-filter-btn.bull-filter.active { border-color: #22c55e; color: #22c55e; background: rgba(34,197,94,0.06); }
+.sig-filter-btn.bear-filter.active { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.06); }
+.sig-filter-btn.chop-filter.active { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.06); }
+.signal-filter-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: 4px;
+}
 
 /* ── Defer / Performance ───────────────────────────────────────────────────── */
 /* (scripts use defer — no style changes needed here) */
@@ -1777,6 +1850,38 @@ tbody td:first-child {
   letter-spacing: 0.3px;
 }
 
+/* ── Timezone selector row ── */
+.idt-tz-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 4px;
+  flex-wrap: wrap;
+}
+.idt-tz-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.idt-tz-select {
+  background: #0d1117;
+  border: 1px solid #1e2430;
+  color: #94a3b8;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.idt-tz-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #475569;
+  letter-spacing: 0.2px;
+}
+
 /* ── Meta row ── */
 .idt-meta-row {
   font-family: 'IBM Plex Mono', monospace;
@@ -1959,6 +2064,17 @@ tbody td:first-child {
   color: #64748b;
   white-space: nowrap;
 }
+.idt-count-tip {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 9px;
+  color: #475569;
+  cursor: help;
+  vertical-align: middle;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.idt-count-tip:hover { opacity: 1; }
 
 /* Session cards: adjust grid for cards without sub-label (DoW cards) */
 .idt-sess-card.idt-dow-card {
@@ -2162,4 +2278,34 @@ tbody td:first-child {
 
   a { color: #000 !important; text-decoration: none !important; }
 
+  /* ── Single-tab print mode (triggered by "Print this tab" button) ──────── */
+  /* When .print-single-tab is on <body>, hide ALL panels except the active one */
+  body.print-single-tab [data-kpt-panel] {
+    display: none !important;
+  }
+  body.print-single-tab [data-kpt-panel].kpt-panel-active {
+    display: block !important;
+  }
+  /* Also hide the Print tab button itself */
+  .topbar-print-btn { display: none !important; }
+
+}
+
+/* ── Print tab button (screen only) ─────────────────────────────────────── */
+.topbar-print-btn {
+  background: transparent;
+  border: 1px solid #1e2430;
+  color: #64748b;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.topbar-print-btn:hover {
+  color: #94a3b8;
+  border-color: #334155;
 }

@@ -18,7 +18,25 @@
 
   var ASSET_ID  = ASSET_CONFIG.id;
   var STORE_KEY = 'kpt-idt-' + ASSET_ID;
+  var TZ_KEY    = 'kpt-tz-' + ASSET_ID;
   var DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  /* ── Broker UTC offset ───────────────────────────────────────────────────
+   * Session defs use EET (UTC+2 winter) hours. If broker is UTC+X,
+   * hours are shifted so that (rawHour - (brokerOffset - 2) + 24) % 24
+   * normalises to EET. Default 2 = no shift.
+   * ─────────────────────────────────────────────────────────────────────── */
+  function _getBrokerOffset() {
+    try { var v = parseInt(localStorage.getItem(TZ_KEY), 10); if (!isNaN(v)) return v; } catch(_) {}
+    return 2; // default EET (UTC+2)
+  }
+  function _saveBrokerOffset(v) {
+    try { localStorage.setItem(TZ_KEY, String(v)); } catch(_) {}
+  }
+  function _normHour(rawHour) {
+    var offset = _getBrokerOffset();
+    return (rawHour - (offset - 2) + 24) % 24;
+  }
 
   /* ── Current seasonal signal ─────────────────────────────────────────── */
 
@@ -146,6 +164,16 @@
     '      <div class="idt-upload-hint">Drag &amp; drop or click &nbsp;·&nbsp; MT5 H1 / H4 history export &nbsp;·&nbsp; Same export steps as Backtest tab</div>',
     '    </div>',
     '  </div>',
+    '  <div class="idt-tz-row">',
+    '    <label class="idt-tz-label" for="idt-tz-select">Broker server time (UTC offset):</label>',
+    '    <select class="idt-tz-select" id="idt-tz-select">',
+    '      <option value="0">UTC+0</option>',
+    '      <option value="1">UTC+1</option>',
+    '      <option value="2" selected>UTC+2 (EET winter — default)</option>',
+    '      <option value="3">UTC+3 (EET summer / Moscow)</option>',
+    '    </select>',
+    '    <span class="idt-tz-note">Session hour boundaries are mapped to UTC+2 (EET). Change this if your broker uses a different offset.</span>',
+    '  </div>',
     '</div>',
 
     /* ── Results (hidden until data loaded) ── */
@@ -226,6 +254,26 @@
     setStatus('');
   });
 
+  /* ── Broker timezone selector ─────────────────────────────────────────── */
+  var tzSel = document.getElementById('idt-tz-select');
+  if (tzSel) {
+    // Restore saved offset
+    tzSel.value = String(_getBrokerOffset());
+    tzSel.addEventListener('change', function () {
+      var newOffset = parseInt(tzSel.value, 10);
+      _saveBrokerOffset(newOffset);
+      // Clear cached stats — they were computed with old offset
+      localStorage.removeItem(STORE_KEY);
+      lastStats = null;
+      chartInstance = null;
+      document.getElementById('idt-results').style.display = 'none';
+      document.getElementById('idt-upload-wrap').style.display = '';
+      activeFilter = 'all';
+      document.querySelectorAll('.idt-filter-btn').forEach(function (b, i) { b.classList.toggle('active', i === 0); });
+      setStatus('Timezone changed — please re-upload your CSV to recompute.');
+    });
+  }
+
   /* ── Restore from localStorage ───────────────────────────────────────── */
 
   (function () {
@@ -303,7 +351,7 @@
       var year  = parseInt(dateParts[0], 10);
       var month = parseInt(dateParts[1], 10) - 1;   // 0–11
       var day   = parseInt(dateParts[2], 10);
-      var hour  = parseInt(timeParts[0], 10) || 0;
+      var hour  = _normHour(parseInt(timeParts[0], 10) || 0);
       var open  = parseFloat(cols[2]);
       var close = parseFloat(cols[5]);
 
@@ -686,7 +734,8 @@
         '<span class="idt-card-sub">' + sess.sublabel + ' server time</span>' +
         '<span class="idt-card-return">' + (avg >= 0 ? '+' : '') + avg.toFixed(4) + '%</span>' +
         '<span class="idt-card-pct">' + pct.toFixed(0) + '% of sessions up</span>' +
-        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' sessions</span>' +
+        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' sessions' +
+          '<span class="idt-count-tip" title="Days where this session closed positive / Total trading days where this session had data">ⓘ</span></span>' +
         '</div>';
     });
     html += '</div>';
@@ -711,7 +760,8 @@
         '<span class="idt-card-name">' + DAY_NAMES[d] + '</span>' +
         '<span class="idt-card-return">' + (avg >= 0 ? '+' : '') + avg.toFixed(4) + '%</span>' +
         '<span class="idt-card-pct">' + pct.toFixed(0) + '% of days up</span>' +
-        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' days</span>' +
+        '<span class="idt-card-count">' + s.posCount.toLocaleString() + ' / ' + s.count.toLocaleString() + ' days' +
+          '<span class="idt-count-tip" title="Days closing positive / Total trading days falling on this weekday">ⓘ</span></span>' +
         '</div>';
     });
     html += '</div>';

@@ -4,7 +4,9 @@
 // com strings: "LONG ★★★★", "SHORT ★★★", "CHOP", "FLIP ★★" etc.
 // index.html reads [currentMonth * 4 + currentWeek] to derive the live signal.
 
-/* global SIGNALS_MANIFEST */
+/* global SIGNALS_MANIFEST, SIGNALS_GENERATED */
+const SIGNALS_GENERATED = '2026-06-09T22:46:58.021Z';
+
 const SIGNALS_MANIFEST = {
   "aud": [
     "LONG ★★★★★", "LONG ★★★★★", "LONG ★★★★★", "LONG ★★★★★",

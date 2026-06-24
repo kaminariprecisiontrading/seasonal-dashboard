@@ -301,6 +301,16 @@
   <span class="search-count" id="search-count"></span>
 </div>
 
+<!-- ═══ Signal Filter Bar ═══ -->
+<div class="signal-filter-bar" id="signal-filter-bar" style="display:none">
+  <span class="signal-filter-label">Filter by signal:</span>
+  <button class="sig-filter-btn active" data-filter="all">All</button>
+  <button class="sig-filter-btn bull-filter" data-filter="bull">Bull</button>
+  <button class="sig-filter-btn bear-filter" data-filter="bear">Bear</button>
+  <button class="sig-filter-btn chop-filter" data-filter="chop">Other</button>
+  <span class="signal-filter-count" id="sig-filter-count"></span>
+</div>
+
 <!-- ═══ Sticky Nav ═══ -->
 <nav class="sticky-nav">
   <div class="nav-inner">
@@ -340,6 +350,7 @@
     <div class="tw-body-inner" id="tw-cols">
       <!-- built by IIFE after SIGNALS_MANIFEST loads -->
     </div>
+    <div id="signal-freshness" style="display:none;font-size:10px;color:#475569;text-align:right;padding:4px 12px 6px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;"></div>
   </div>
 </div>
 
@@ -1225,6 +1236,8 @@
         '<span class="' + t.cls + '">' + t.label + '</span>' +
         convPips(stars);
     }
+    // Tag card with signal type for the filter bar
+    card.dataset.sigType = t.type;
 
     var ticker = (card.querySelector('.card-ticker') || {}).textContent || id;
     var entry  = { id: id, href: href, ticker: ticker, stars: stars };
@@ -1294,6 +1307,52 @@
 
   // Show panel
   panel.style.display = '';
+
+  /* ── Signal data freshness note ── */
+  var freshEl = document.getElementById('signal-freshness');
+  if (freshEl && typeof SIGNALS_GENERATED !== 'undefined') {
+    try {
+      var d = new Date(SIGNALS_GENERATED);
+      var fmt = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      freshEl.textContent = 'Signal data as of ' + fmt;
+      freshEl.style.display = '';
+    } catch(_) {}
+  }
+
+  /* ── Signal filter bar ── */
+  var filterBar = document.getElementById('signal-filter-bar');
+  if (filterBar) {
+    filterBar.style.display = '';
+    var filterBtns = filterBar.querySelectorAll('.sig-filter-btn');
+    var filterCountEl = document.getElementById('sig-filter-count');
+    var activeFilter = 'all';
+
+    function applySignalFilter(filter) {
+      activeFilter = filter;
+      var visible = 0, total = 0;
+      var allComplete = document.querySelectorAll('.asset-card.status-complete');
+      allComplete.forEach(function (card) {
+        total++;
+        var show = filter === 'all' || card.dataset.sigType === filter;
+        card.classList.toggle('sig-hidden', !show);
+        if (show) visible++;
+      });
+      // Dim sections where all cards are hidden
+      document.querySelectorAll('.grid-section').forEach(function (gs) {
+        var grid = gs.nextElementSibling;
+        if (!grid || !grid.classList.contains('asset-grid')) return;
+        var anyVis = Array.from(grid.querySelectorAll('.asset-card.status-complete'))
+                         .some(function (c) { return !c.classList.contains('sig-hidden') && !c.classList.contains('search-hidden'); });
+        gs.classList.toggle('section-all-hidden', !anyVis);
+      });
+      if (filterCountEl) filterCountEl.textContent = filter === 'all' ? '' : visible + ' / ' + total;
+      filterBtns.forEach(function (b) { b.classList.toggle('active', b.dataset.filter === filter); });
+    }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () { applySignalFilter(btn.dataset.filter); });
+    });
+  }
 
   /* ── Accordion toggle ── */
   var toggle   = document.getElementById('tw-toggle');

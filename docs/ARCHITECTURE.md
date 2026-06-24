@@ -46,13 +46,22 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── fx-usdjpy.js         ← USDJPY forex: derived synthesis data
 │   ├── fx-gbpusd.js         ← GBPUSD forex: derived synthesis data
 │   └── [asset].js           ← future assets follow same pattern
+├── scripts/
+│   ├── README.md                    ← documents all scripts (purpose, run command, status)
+│   ├── patch_add_backtest.js        ← one-shot: inserted backtest.js into all 97 HTML files
+│   ├── patch_add_macro.js           ← one-shot: inserted macro.js into all 97 HTML files
+│   ├── patch_add_seasonal_chart.js  ← one-shot: inserted seasonal-chart.js into all 97 HTML files
+│   └── patch_add_intraday.js        ← one-shot: inserted intraday.js into all 97 HTML files
 └── docs/
     ├── README.md
     ├── SKILL.md
     ├── ARCHITECTURE.md      ← this file
     ├── CHANGELOG.md
     ├── ROADMAP.md
-    └── PROMPTS.md
+    ├── PROMPTS.md
+    ├── CONTRIBUTING.md      ← add-an-asset checklist; update/maintain guide
+    ├── USER_GUIDE.md        ← end-user guide (CSV upload, AI setup, reading outputs)
+    └── DATA_DICTIONARY.md   ← ASSET_CONFIG and MONTHS[] field reference
 ```
 
 **Deployment:** GitHub Pages serves from `main` branch root.
@@ -409,9 +418,19 @@ Expects MT5 H1 or H4 tab-separated export with a TIME column:
 
 Timeframe is auto-detected from the TIME values: if hour values include 01, 02, 03 etc., it's H1 (24-bucket); if all TIME values end in `:00` with hours only at 00, 04, 08, 12, 16, 20, it's H4 (6-bucket).
 
+### Broker Timezone Offset (v1.6)
+
+A UTC offset dropdown (UTC+0 / UTC+1 / UTC+2 / UTC+3) appears below the upload area. Default is UTC+2 (EET winter). Stored per asset as `kpt-tz-{id}` in localStorage.
+
+Raw hour values from the CSV are normalised to EET before stat accumulation using:
+```javascript
+normHour = (rawHour - (brokerOffset - 2) + 24) % 24
+```
+Changing the offset invalidates the cached stats (`localStorage.removeItem(STORE_KEY)`) and requires re-upload.
+
 ### Session Definitions (UTC+2 Broker Offset)
 
-All session hours are in **broker server time (EET: UTC+2 winter / UTC+3 summer)**. MT5 exports use the broker's server clock. 00:00 broker = 22:00 UTC (winter standard offset).
+All session hours are in **broker server time (EET: UTC+2 winter / UTC+3 summer)**. MT5 exports use the broker's server clock. 00:00 broker = 22:00 UTC (winter standard offset). The `normHour` function normalises CSV hours to this basis regardless of which broker offset the user selects.
 
 **H1 sessions:**
 
@@ -486,7 +505,10 @@ Called by `ui.js` each time the Sessions tab is activated. Calls `chartInstance.
 
 ### localStorage
 
-Key: `kpt-idt-{assetId}`. Stores the full stats object (not raw bars — typically <30KB). Restore guard: `schemaVer === 3 && meta && groups && hourList`.
+| Key | Contents |
+|-----|----------|
+| `kpt-idt-{assetId}` | Full stats object (schemaVer 3, ~<30KB). Restore guard: `schemaVer === 3 && meta && groups && hourList`. |
+| `kpt-tz-{assetId}` | Broker UTC offset integer (0–3). Default 2 (EET). Written by the timezone selector dropdown. |
 
 ---
 
@@ -551,6 +573,8 @@ This allows all 97 HTML files to keep their original hardcoded heading text as a
 
 Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider — switching models produces a fresh call. Cached response is restored on page load if the week matches.
 
+**Cache clear button (v1.6):** When a cached response is loaded on page open, a `.ai-cache-bar` element is inserted above the output. It contains a "✕ Clear & re-run" button that calls `localStorage.removeItem(_cacheKey())` and immediately re-runs analysis. This allows users to incorporate newly uploaded CSV data without waiting for the weekly cache expiry.
+
 ---
 
 ## Index Page (`index.html`)
@@ -574,7 +598,17 @@ Each section has `id` attributes on all subsections matching the nav link `href`
 - `status-planned` — greyed out (opacity 0.45), pointer-events none, shows "PLANNED" badge
 - Forex cards show `card-badge derived` pills for each component futures dataset
 
-**Status badge rule:** The badge inside `.card-signal` must always use `<span class="bull-tag">Live</span>` for all live assets. Do NOT hardcode signal labels (BEAR, BULL, CHOP) as they go stale immediately. Dynamic signal derivation is a planned feature (see ROADMAP.md — Phase 6: Dynamic Status Badges).
+**Status badge rule:** The badge inside `.card-signal` must always use `<span class="bull-tag">Live</span>` for all live assets initially. At page load, the signal injection IIFE replaces this with the live signal from `SIGNALS_MANIFEST`.
+
+**Signal type tagging (v1.6):** The signal injection loop also sets `card.dataset.sigType = t.type` (`bull` / `bear` / `chop`) on each card. The signal filter bar reads this attribute to show/hide cards without re-querying the manifest.
+
+### Signal Filter Bar (v1.6)
+
+An "All / Bull / Bear / Other" filter strip between the search bar and sticky nav. Implemented as a small IIFE at the end of the signal injection `<script>`. On click, toggles `.sig-hidden` on cards whose `data-sig-type` doesn't match. Also dims grid section headers where all cards are hidden (`.section-all-hidden`). The filter bar is hidden until `SIGNALS_MANIFEST` loads (`panel.style.display = ''`).
+
+### Signals Manifest Freshness (v1.6)
+
+`data/signals_manifest.js` now exports `const SIGNALS_GENERATED = '…ISO date…'` in addition to `SIGNALS_MANIFEST`. The signal injection IIFE reads this and shows a "Signal data as of [date]" note inside the This Week panel. Allows users to see when the manifest was last rebuilt without opening DevTools.
 
 **Available signal tag classes:** `.bull-tag` (green) · `.bear-tag` (red) · `.chop-tag` (amber) · `.neutral-tag` (grey, for PLANNED)
 
@@ -727,3 +761,11 @@ Every asset footnote must use this exact pattern:
 | Ollama "Failed to fetch" | (1) Ollama not running — run `start_kpt.bat`; (2) CORS not enabled — must use `set OLLAMA_ORIGINS=* && ollama serve` in same process; (3) Wrong URL — use `http://localhost:11434`, not `…/v1` |
 | Gemini / Claude returns 401 | Check API key is saved via the Settings gear icon; key stored in `kpt-cfg-{provider}-key` in localStorage |
 | AI response not cached (re-calls on every page load) | Cache key is `kpt-ai-{id}-{provider}-{year}-w{week}` — check `ASSET_CONFIG.id` is set correctly; cache expires automatically when the week changes |
+| AI cached result doesn't reflect new CSV data | Click the "✕ Clear & re-run" button in the cache bar above the AI output; it removes the localStorage entry and re-runs `runAnalysis()` immediately |
+| Signal filter bar missing or shows no buttons | `data/signals_manifest.js` must be loaded in `index.html` before the signal injection `<script>` block; the filter bar is hidden until `SIGNALS_MANIFEST` is defined |
+| Signal filter shows "0 assets" for a category | The `data-sig-type` attribute is only set during the manifest injection loop — if a card was added to `index.html` without a matching entry in `SIGNALS_MANIFEST`, it will not be tagged and will never show under a filter |
+| Signals freshness note is missing or shows wrong date | `SIGNALS_GENERATED` must be exported as a `const` (not just a comment) in `signals_manifest.js` — run the manifest generator script and verify `const SIGNALS_GENERATED = '…'` is present |
+| Sessions tab: changing timezone shows "re-upload" prompt | Expected behaviour — timezone offset is applied at parse time, so existing cached data cannot be reused; re-upload the CSV to recalculate with the new offset |
+| Sessions hour bars shifted by 1 after broker TZ change | Check `_normHour()` in `intraday.js` — formula is `(rawHour - (offset - 2) + 24) % 24`; offset is stored in `kpt-tz-{id}` localStorage key; EET (UTC+2) → offset 2 = zero shift |
+| TradingView chart shows wrong instrument | Add `tvSymbol: "EXCHANGE:SYMBOL"` to the asset's `ASSET_CONFIG` in its data file; `tradingview.js` checks `ASSET_CONFIG.tvSymbol` first, then falls back to the built-in `TV_SYMBOLS` table |
+| "Print tab" button shows all tabs in print output | `body.print-single-tab` class must be present during the print call; `ui.js` adds it, opens `window.print()`, then removes it in a `setTimeout(1000)` — if the class is stuck (e.g. from a crash), open DevTools console and run `document.body.classList.remove('print-single-tab')` |

@@ -526,7 +526,7 @@ async function _readSSE(resp, output, extractor) {
     '<span class="ai-provider-label">Provider</span>',
     '<div class="ai-provider-btns" id="ai-prov-btns">',
     '  <button class="ai-provider-btn" data-prov="claude">Claude</button>',
-    '  <button class="ai-provider-btn" data-prov="gemini">Gemini Flash</button>',
+    '  <button class="ai-provider-btn" data-prov="gemini">Gemini 2.0 Flash</button>',
     '  <button class="ai-provider-btn" data-prov="ollama">Ollama</button>',
     '</div>',
     '<button class="ai-settings-toggle" id="ai-settings-toggle" title="API key settings">⚙ Settings</button>'
@@ -573,7 +573,7 @@ async function _readSSE(resp, output, extractor) {
 
   /* ── Provider display names ── */
   function _providerLabel(prov) {
-    if (prov === 'gemini') return 'Gemini Flash';
+    if (prov === 'gemini') return 'Gemini 2.0 Flash';
     if (prov === 'ollama') return 'Ollama · ' + _getOllamaModel();
     return 'Claude Sonnet';
   }
@@ -653,7 +653,7 @@ async function _readSSE(resp, output, extractor) {
   function _updateHint(prov) {
     var el = document.getElementById('ai-hint-text');
     if (!el) return;
-    var provLabel = prov === 'gemini' ? 'Gemini Flash (Google)' :
+    var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash (Google)' :
                     prov === 'ollama' ? 'Ollama (local — ' + _getOllamaModel() + ')' :
                                        'Claude (Anthropic)';
     el.textContent = provLabel + ' · seasonal + curve + backtest + session context · cached per week';
@@ -702,12 +702,34 @@ async function _readSSE(resp, output, extractor) {
   var btn    = document.getElementById('run-btn');
   if (!output || !btn) return;
 
+  function _showCached(text) {
+    btn.textContent = '↺  Cached — Re-run';
+    // Inject a clear-cache button above the output
+    var existingClearBar = document.getElementById('ai-cache-bar');
+    if (!existingClearBar) {
+      var bar = document.createElement('div');
+      bar.id = 'ai-cache-bar';
+      bar.className = 'ai-cache-bar';
+      bar.innerHTML =
+        '<span class="ai-cache-note">Cached result for this week</span>' +
+        '<button class="ai-cache-clear-btn" id="ai-cache-clear">✕ Clear &amp; re-run</button>';
+      output.parentNode.insertBefore(bar, output);
+      document.getElementById('ai-cache-clear').addEventListener('click', function () {
+        try { localStorage.removeItem(_cacheKey()); } catch(_) {}
+        bar.remove();
+        output.innerHTML = '';
+        btn.textContent = '▶  Run Analysis';
+        runAnalysis();
+      });
+    }
+  }
+
   _ensureMarked().then(function () {
     output.innerHTML = window.marked.parse(cached);
-    btn.textContent  = '↺  Cached — Re-run';
+    _showCached(cached);
   }).catch(function () {
     output.textContent = cached;
-    btn.textContent    = '↺  Cached — Re-run';
+    _showCached(cached);
   });
 }());
 
@@ -728,7 +750,7 @@ async function runAnalysis() {
   var prompt = _buildPrompt(curveCtx, btCtx, idtCtx);
 
   /* Loading state */
-  var provLabel = prov === 'gemini' ? 'Gemini Flash' : prov === 'ollama' ? 'Ollama' : 'Claude';
+  var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama' : 'Claude';
   var ctxLayers = ['seasonal', 'curve'];
   if (btCtx)  ctxLayers.push('backtest');
   if (idtCtx) ctxLayers.push('session');

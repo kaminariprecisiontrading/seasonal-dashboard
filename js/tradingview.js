@@ -180,7 +180,8 @@
 
   /* ─── Resolve asset ID and symbol ───────────────────────────────────── */
   var id       = (typeof ASSET_CONFIG !== 'undefined') ? ASSET_CONFIG.id : null;
-  var symbol   = id ? TV_SYMBOLS[id] : null;
+  // ASSET_CONFIG.tvSymbol overrides the built-in table (e.g. to use a CFD or spot ticker)
+  var symbol   = id ? (ASSET_CONFIG.tvSymbol || TV_SYMBOLS[id] || null) : null;
   var wrap     = document.getElementById('tv-chart-section');
   var inverted = id && TV_INVERTED[id] ? TV_INVERTED[id] : null;
   var proxy    = id && TV_PROXY[id]    ? TV_PROXY[id]    : null;
