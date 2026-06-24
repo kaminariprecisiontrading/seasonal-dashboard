@@ -2,11 +2,11 @@
 
 **Project:** Kaminari Precision Trading — Seasonal Confluence Engine  
 **Project Start:** April 2026  
-**Current Status:** v1.5 — All 5 build phases complete · 97 assets · 7 tabs per dashboard  
+**Current Status:** v1.6 — All 5 build phases complete · 97 assets · 7 tabs per dashboard  
 **Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode  
 **Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex)  
 **Repository:** Private GitHub repo — `seasonal-dashboard`  
-**Deployment:** GitHub Pages (static hosting, zero cost)
+**Deployment:** Cloudflare Pages / Netlify (free static hosting — GitHub Pages requires public repo)
 
 ---
 
@@ -37,11 +37,14 @@ The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP /
 | File | Purpose |
 |------|---------|
 | `README.md` | This file. Project overview, asset roster, vision. |
-| `SKILL.md` | How to recreate any asset dashboard from scratch. Step-by-step prompt guide. |
 | `ARCHITECTURE.md` | Technical deep-dive: code structure, file layout, ASSET_CONFIG pattern, adding new assets. |
 | `CHANGELOG.md` | Full version history of what was built and when. |
 | `ROADMAP.md` | Completed items + prioritised future development. |
+| `DATA_DICTIONARY.md` | Complete schema reference — ASSET_CONFIG fields, MONTHS[] structure, signal vocabulary, localStorage keys. |
+| `CONTRIBUTING.md` | Step-by-step checklists for adding new assets, updating data, and adding new tabs. |
+| `USER_GUIDE.md` | End-user guide — how to use every tab, upload CSVs, configure AI providers, and print. |
 | `PROMPTS.md` | Copy-paste prompt library for all key Claude interactions. |
+| `SKILL.md` | How to recreate any asset dashboard from scratch. Step-by-step prompt guide for Claude sessions. |
 
 **Recommended Claude project files** (load these at the start of every new session):
 - `README.md` — what the project is and where it stands
@@ -152,7 +155,7 @@ The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP /
 | Corn | `assets/corn.html` | CBOT | 40-YR | Jun/Jul annual high; Sep harvest pressure trough |
 | Oats | `assets/oats.html` | CBOT | 40-YR | Feb/Mar peak; Oct trough; thinner market |
 
-### Fiber, Meats & Dairy (8)
+### Fiber, Meats & Dairy (6)
 
 | Asset | File | Exchange | Key Finding |
 |-------|------|---------|-------------|
@@ -217,11 +220,13 @@ All 27 derived FX pairs are complete. Each pair combines two CME futures seasona
 
 Each status-complete card on the landing page shows a runtime-derived signal computed at page load from `data/signals_manifest.js`. The manifest contains the full 12-month × 4-week `com` string for all 97 assets. The landing page reads `currentMonth` and `currentWeek` from the system clock and maps the relevant entry to BULL / BEAR / CHOP / FLIP / AVOID.
 
+A **signal filter bar** (All / Bull / Bear / Other) allows filtering the index by signal type. Each card is tagged with `data-sig-type` during the manifest injection pass. A **manifest freshness note** below the filter bar shows when the manifest was last regenerated, sourced from `const SIGNALS_GENERATED` in `signals_manifest.js`.
+
 **To regenerate the manifest** (after updating any data file):
 ```
 node gen_signals_manifest.js
 ```
-Run from the project root. The script reads all 97 data files and overwrites `data/signals_manifest.js`.
+Run from the `scripts/` directory. The script reads all 97 data files and overwrites `data/signals_manifest.js`.
 
 ---
 
@@ -239,17 +244,44 @@ Run from the project root. The script reads all 97 data files and overwrites `da
 
 **All seven layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, backtest win rates, and intraday session bias — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet, Gemini Flash, or any local Ollama model.
 
+**v1.6 additions (UX layer):** Configurable broker timezone offset on Sessions tab · AI cache clear button · TradingView symbol override (`tvSymbol`) · Single-tab print mode · Signal filter bar + manifest freshness on index · Three new reference docs (DATA_DICTIONARY, CONTRIBUTING, USER_GUIDE) · `scripts/` folder with utility script documentation.
+
 **Scope boundary:** No annotated chart interpretation (Elliott waves, Fibonacci, market structure). The tool provides objective data confluence. The trader applies their own execution framework.
 
 ---
 
-## The Trading Playbook (April — Source Context)
+## Building a Trade Idea — Step-by-Step Workflow
 
-**BUY (April):** AUD Wk1, GBP Wk1, CAD Wk1, USD end Wk4, EUR very strong Wk4, JPY Wk1, CHF end Wk3/early Wk4, NZD Wk1, Palladium Wk1
+The dashboard is designed to be worked through in layer order, from broad seasonal context down to execution timing. Each step narrows the picture.
 
-**SELL (April):** AUD Wk2/3, GBP Wk4, CAD Wk2–4, USD Wk1/2 + re-entry Wk4, JPY end Wk2/early Wk3 + re-entry Wk4, CHF Wk1 + early Wk4, MXN anytime Wk1–4 hold to early Dec, NZD Wk2–4, BRL Wk1–3 hold to mid-May, XAU Wk2, XAG Wk3/4, Copper Wk4, Platinum Wk2/3, Palladium Wk4
+**1. Scan the index for current-week bias.**
+Open `index.html`. Every asset card shows a live signal (BULL / BEAR / CHOP / FLIP) for the current week, derived from the signals manifest. Use the filter bar to isolate all BULL or BEAR assets at a glance. The freshness note shows when the manifest was last regenerated.
 
-**CHOPPY (April):** EUR Wk1–3, CHF all month, MXN all month, BRL Wk1–3
+**2. Open an asset and check the Seasonals tab.**
+The combined accordion auto-opens to the current month. Read the week-level combined signal and conviction stars (★★★★★ = maximum confluence across all three timeframes). Expand adjacent weeks to see whether the bias is building or fading. Use the quick-jump buttons to check the broader monthly arc.
+
+**3. Confirm direction on the Trend tab.**
+The seasonal curve shows the cumulative directional bias across the year. The NOW marker shows where the asset sits in its seasonal cycle today. A rising curve confirms a bullish seasonal; a curve already past its peak is a caution signal even if the week reads BULL.
+
+**4. Check current price on the Price tab.**
+The live TradingView chart shows where price is trading relative to recent structure. Seasonal bias is directional context — not an entry signal. Price should be approaching a logical level before acting.
+
+**5. Validate the edge on the History tab.**
+Upload a D1 CSV export from MT5 (see `USER_GUIDE.md` for the 7-step export process). The backtest panel shows raw tendency, win rate, and average return for each month and week historically. A seasonal signal with a 35% win rate over 30 years is much less interesting than one with 70%.
+
+**6. Find the timing window on the Sessions tab.**
+Upload an H1 or H4 CSV. The Sessions panel breaks down average return by hour of day, by session (London / New York / Asian / Pacific), and by day of week. This answers "given the seasonal is bullish this week, *when* in the week has price historically moved?" Filter the session cards by seasonal signal to isolate the relevant subset.
+
+**7. Check for macro risk on the Macro tab.**
+The Investing.com calendar is pre-filtered to the currencies and events most relevant to the asset. A high-impact event mid-week can override any seasonal tendency. The interpretation guide explains which event types matter most for each asset class.
+
+**8. Run the AI synthesis on the Analysis tab.**
+Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant.
+
+**9. Apply your own execution framework.**
+The dashboard provides objective confluence data. Entry trigger, position sizing, stop placement, and trade management are the trader's own decisions. The tool's job is to ensure every angle has been considered before a bias is formed.
+
+> For detailed usage instructions on any tab, see `docs/USER_GUIDE.md`.
 
 ---
 
@@ -258,13 +290,13 @@ Run from the project root. The script reads all 97 data files and overwrites `da
 - **Chart Source:** Moore Research Center (mooreres.com) — seasonal tendency overlays
 - **AI Engine (building):** Claude via claude.ai (Cowork) — design, analysis, dashboard generation
 - **AI Engine (in-dashboard, option 1):** Anthropic API — Claude Sonnet (`claude-sonnet-4-20250514`)
-- **AI Engine (in-dashboard, option 2):** Google AI Studio API — Gemini Flash (`gemini-1.5-flash`)
+- **AI Engine (in-dashboard, option 2):** Google AI Studio API — Gemini Flash (`gemini-2.0-flash`)
 - **AI Engine (in-dashboard, option 3):** Ollama — any local model (e.g. `mistral:latest`)
 - **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
 - **Code Editor:** Visual Studio Code
 - **Version Control:** Git + GitHub (private repository)
-- **Hosting:** GitHub Pages — static site, free, deployed from main branch
-- **Local Preview:** Live Server (VSCode extension)
+- **Hosting:** Cloudflare Pages or Netlify — free static hosting; auto-deploys from private GitHub repo on push (GitHub Pages requires a public repo on the free plan)
+- **Local Preview:** Live Server (VSCode extension) — required for correct `http://` context; do not open HTML files directly via `file://`
 - **Local AI server:** Ollama — requires `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat` automates this
 
 | Context | Tool | Best Used For |

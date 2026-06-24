@@ -244,6 +244,100 @@ Provider, API keys, and Ollama URL/model stored in `localStorage` under `kpt-cfg
 
 ---
 
+## Phase 6 — Mobile Access & Deployment (Planned)
+
+### 6A — Static Hosting Migration (Free)
+Move deployment from private GitHub (Pages blocked on private repos) to **Cloudflare Pages** or **Netlify** — both support private GitHub repos on free tier, auto-deploy on `git push`, and provide HTTPS out of the box. No code changes required.
+
+- **Cloudflare Pages:** Connect GitHub repo, set publish directory to `/seasonal-dashboard`, deploy. URL: `your-project.pages.dev`.
+- **Netlify:** Same approach. URL: `your-project.netlify.app`.
+- Custom domain (`kpt.app` or similar) is a low-cost future upgrade via either service.
+
+### 6B — Progressive Web App (PWA)
+Adds installability and offline support. Requires three files, no framework, no build step:
+
+1. **`manifest.json`** — app name, icons (192px + 512px PNG), `display: standalone`, `start_url: ./index.html`
+2. **`service-worker.js`** — cache-first strategy: caches all HTML/CSS/JS/data files on install, serves from cache on fetch
+3. **Registration snippet** in `index.html` `<head>`: `navigator.serviceWorker.register('./service-worker.js')`
+4. **iOS install banner** — dismissible first-visit prompt explaining Share → "Add to Home Screen" (iOS does not show native install prompts)
+
+PWA benefits: full-screen native-app feel on iPhone/iPad, instant load from cache, works offline (localStorage AI cache + all seasonals data remain accessible).
+
+### 6C — Mobile-Responsive Layout (Planned)
+The dashboard was built desktop-first. Responsive work required:
+- Horizontal tab bar → scrollable strip on narrow screens
+- Accordion table columns → collapse to combined signal only on mobile; tap to expand TF detail
+- TradingView chart panel → constrained height on narrow screens
+- AI output panel → readable single-column layout
+- Signal filter bar → icon-only on mobile
+- Implementation approach: CSS `@media (max-width: 768px)` blocks added to `dashboard.css`; no JS changes expected
+
+---
+
+## Phase 7 — UI Theme System (Planned)
+
+### 7A — Dark / Light Mode Toggle (Simple, Priority)
+Dashboard already uses CSS custom properties throughout, making theme switching straightforward:
+
+- **Auto (system):** `@media (prefers-color-scheme: light)` CSS block redefines `:root` variables — zero JS, no UI needed
+- **Manual toggle:** Sun/moon icon button in topbar (added by `ui.js`); writes `body.light-mode` class + `localStorage` preference key
+- **Combined (recommended):** Respect system default, allow user override stored in `localStorage`
+- Light theme requires careful design — not just an inversion, but a considered warm-neutral palette with readable signal colours on white backgrounds
+
+### 7B — Custom Themes (Future)
+Theme selector in settings panel; themes stored as CSS variable preset objects in a `themes.js` file. Initial theme options could include: Terminal Dark (current), Terminal Warm, High Contrast, Solarised. User selection persisted to `localStorage`.
+
+### 7C — Time-Based / Session-Based Theme Switching (Future / Optional)
+Auto-switch theme based on market session (London open → light, US close → dark) or local time (sunrise/sunset). Noted as a feature concept; likely too surprising as default behaviour; better as an opt-in setting.
+
+---
+
+## Phase 8 — AI Chat & Context Layer (Planned)
+
+### 8A — Basic In-App Chat (Phase 1)
+Extend the Analysis tab with a multi-turn chat interface below the existing one-shot analysis output. Same API providers (Claude / Gemini / Ollama). Conversation history maintained as a JS array; full thread sent with each request. Implementation:
+- "Continue in chat" collapsible section below AI output
+- Chat input + Send button
+- Message thread rendered as alternating user/assistant bubbles
+- Thread stored in `localStorage` per asset (`kpt-chat-{id}`)
+
+### 8B — Context Window Management + Chat Compaction (Phase 1, same unit)
+At N messages before estimated context limit (N-3 as early warning), trigger a compaction workflow:
+- Warning appears in thread: "Chat approaching context limit."
+- "Compact & Continue" button fires a summarisation prompt to the AI: produces a structured handoff document (conclusions reached, key signals highlighted, open questions)
+- Handoff doc displayed in thread with "Copy" button
+- Thread resets; input pre-populated with compaction template for user to paste summary and resume
+- Handoff doc also saved to `localStorage` (`kpt-chat-summary-{id}`) so it survives accidental tab close
+
+### 8C — Cross-Asset Queries (Phase 2)
+Allow questions that reference more than one asset (e.g. "compare AUDUSD and NZDUSD in September"). Requires lazy-loading data files for referenced assets on demand (`<script>` injection from `data/*.js`). AI receives combined context block for both assets.
+
+### 8D — Image / Chart Input (Phase 3)
+Accept pasted or uploaded images in the chat input (TradingView screenshots, chart annotations). Base64-encode and include in the messages array. Supported by Claude and Gemini APIs natively. Ollama: only available if a multimodal model (LLaVA etc.) is loaded — degrade gracefully with a clear message when not supported.
+
+### 8E — Portfolio & Relationship Queries (Phase 4)
+"If AUDUSD is bearish in November, what does that imply for NZDUSD and AUDJPY?" Pure prompt engineering once Phase 2 data loading exists. No new architecture required; context builder aggregates all requested asset data blocks automatically.
+
+---
+
+## Phase 9 — Statistical Depth (Planned)
+
+Inspired by platforms like Rise Statistics (risestatistics.app / risestatistics.com) — statistical probability dashboards for financial markets. Features in that class of tool that would add meaningful value to KPT:
+
+### 9A — Explicit Win-Rate Percentages in Accordion (Priority)
+The raw material already exists in `MONTHS[]` via star ratings and signal values, but win-rate is not surfaced as an explicit percentage. Add a "Win Rate" column or tooltip to each accordion week row: e.g. "73% bullish over 15 years." Data would need to be added to the `MONTHS[]` schema as a `wr5`, `wr15`, `wrLt` field per week, populated when data files are written or updated.
+
+### 9B — Heatmap Visualisation Mode (Priority)
+A 12×4 grid (months × weeks) colour-coded by signal strength / win rate. Extremely readable at a glance — far more scannable than the accordion for full-year pattern recognition. Implemented as a toggle on the Seasonals tab ("Accordion / Heatmap" view switch); no data changes required, just a new rendering mode in `accordion.js`.
+
+### 9C — Backtesting Equity Curve (Medium)
+The History tab currently shows per-trade backtest results as a bar chart. Extend with a cumulative equity curve: running P&L if every seasonal signal had been traded with a fixed lot size. Makes the historical edge visually compelling. Implemented in `backtest.js` as a second Chart.js dataset on the existing chart or a separate chart below.
+
+### 9D — Cross-Asset Correlation Explorer (Larger)
+A dedicated view (index page or new analysis page) showing signal confluence across all 97 assets in a matrix. "In September, which assets are all aligned bullish?" Requires a manifest-style aggregation of all monthly signals — similar in concept to `signals_manifest.js` but covering all months × weeks, not just the current week.
+
+---
+
 ---
 
 ## Scope Boundary (Deliberately Excluded)
