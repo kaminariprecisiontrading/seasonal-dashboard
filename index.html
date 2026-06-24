@@ -1220,7 +1220,7 @@
   var cards = document.querySelectorAll('.asset-card.status-complete');
   cards.forEach(function (card) {
     var href = card.getAttribute('href') || '';
-    var m    = href.match(/assets\/(.+)\.html/);
+    var m    = href.match(/assets\/([^./?#]+)/);
     if (!m) return;
     var id   = m[1];
     var sigs = SIGNALS_MANIFEST[id];
