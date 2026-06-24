@@ -118,71 +118,32 @@ Replace the combined table with an accordion. Requirements:
 
 ## 5. SEASONAL_DATA Template (for AI Button)
 
-**Used for:** Populating the `SEASONAL_DATA` string in the JavaScript that gets sent to the Claude API  
-**Adapt the readings to match your specific asset analysis**
+> **Note (v1.5):** The `SEASONAL_DATA` string is no longer the source of truth for the AI button. `api.js` now calls `_buildSeasonalSummary()` which generates an equivalent structured text live from `MONTHS[]` at runtime. This means the AI prompt is always in sync with the data — you do not need to maintain `SEASONAL_DATA` separately. The static string in each data file is retained as a legacy fallback for pages where `MONTHS` might be unavailable, but it is never read when `MONTHS` is present (which is all 97 current pages).
+>
+> The template below documents the format that `_buildSeasonalSummary()` produces dynamically, and remains useful as a reference for what the AI receives.
 
-```javascript
-const SEASONAL_DATA = `
-[ASSET NAME] — SEASONAL TENDENCY ANALYSIS
-Source: Moore Research Center, [XX]-Year ([START YEAR]–[END YEAR]), 15-Year, 5-Year overlays.
-
-=== 5-YEAR SEASONAL ===
-Jan–Mar: [description]
-Apr Wk1: [description]
-Apr Wk2: [description]
-Apr Wk3–4: [description]
-May–Jun: [description]
-Jul: [description]
-Aug–Sep: [description]
-Oct–Nov: [description]
-Dec: [description]
-
-=== 15-YEAR SEASONAL ===
-Jan–Mar: [description]
-Apr Wk1: [description]
-Apr Wk2–4: [description]
-May–Jun: [description]
-Jul Wk1–2: [description]
-Jul Wk3–4: [description]
-Aug–Sep: [description]
-Oct–Nov: [description]
-Dec: [description]
-
-=== [XX]-YEAR SEASONAL ===
-Jan–Mar: [description]
-Apr Wk1: [description]
-Apr Wk2: [description]
-Apr Wk3–4: [description]
-May–Jun: [description]
-Jul: [description]
-Aug–Sep: [description]
-Oct–Dec: [description]
-
-=== PLAYBOOK SIGNALS ===
-[ASSET] BUY: [week reference]
-[ASSET] SELL: [week reference]
-[Note any multi-month holds or special conditions]
-
-=== TASK ===
-You are a professional trading analyst and seasonal specialist.
-
-Using the seasonal data above, provide:
-
-1. YEARLY BIAS SUMMARY — One paragraph covering the full-year seasonal arc.
-
-2. MONTH-BY-MONTH BIAS — Jan through Dec. For each: directional bias, best entry timing, key caveat.
-
-3. WEEK-BY-WEEK [PRIORITY MONTH] BIAS — For each week of [month]: bias direction, reasoning from all timeframes, specific trade action.
-
-4. TOP 3 SEASONAL TRADE SETUPS — Entry month/week, expected duration, conviction level, key risk.
-
-Format clearly with headers. Be specific. Use exact week references. Base everything on the seasonal data provided.
-`;
 ```
+[ASSET NAME] — SEASONAL TENDENCY ANALYSIS
+Asset: [name]
+Timeframes: 5-YR  ·  15-YR  ·  [XX]-YR
+
+Month-by-month combined bias (all 12 months, Wk1–4 detail):
+
+JANUARY  Combined: LONG  ★★★★★  — [note]
+  Wk 1:  5YR=bull  15YR=bull  [XX]-YR=bull  → LONG ★★★★★ | [action note]
+  Wk 2:  ...
+  ...
+
+FEBRUARY  Combined: BEAR  ★★★☆☆  — [note]
+  Wk 1:  ...
+  ...
+```
+
+This format is generated automatically. The data file's `SEASONAL_DATA` string is only used as a fallback.
 
 ---
 
-## 6. Asset Addition Prompt (for Multi-Asset Dashboard)
+## 6. Asset Addition Prompt (Legacy — for Multi-Asset Dashboard)
 
 **Used for:** When building a unified multi-asset dashboard (future feature)
 
@@ -204,14 +165,57 @@ Do not break the existing [PREVIOUS ASSET] data — it should remain accessible 
 
 ---
 
+## 7. AI Provider Setup (in-dashboard)
+
+**Used for:** Configuring the Analysis tab's multi-provider AI panel on first use.
+
+The Analysis tab supports three providers. Select via the pill buttons at the top of the panel, then click ⚙ to enter your credentials.
+
+**Claude (Anthropic)**
+- API key from: console.anthropic.com → API Keys
+- Stored in localStorage as `kpt-cfg-claude-key`
+- Model: `claude-sonnet-4-20250514` (hardcoded)
+
+**Gemini (Google)**
+- API key from: aistudio.google.com → Get API Key
+- Stored in localStorage as `kpt-cfg-gemini-key`
+- Model: `gemini-1.5-flash` (hardcoded)
+
+**Ollama (local)**
+- Run `start_kpt.bat` (or manually: `set OLLAMA_ORIGINS=* && ollama serve` in cmd)
+- Default URL: `http://localhost:11434` — do NOT add `/v1`
+- Model: whatever you have pulled (e.g. `mistral:latest`, `llama3.2`)
+- Stored as `kpt-cfg-ollama-url` and `kpt-cfg-ollama-mdl`
+
+**Context chips** below the provider row show ✓ or ○ for each data layer. Upload a D1 CSV on the History tab and an H1/H4 CSV on the Sessions tab to unlock all four context layers before running analysis.
+
+---
+
+## 8. Intraday CSV Upload Steps
+
+**Used for:** Getting the right CSV from MT5 for the Sessions tab.
+
+The Sessions tab accepts **H1 or H4** exports from MetaTrader 5. Steps:
+1. Open MetaTrader 5
+2. View → Symbols → select your asset
+3. Go to the **Bars** tab
+4. Select timeframe: **H1** (or H4) — NOT D1, NOT M1
+5. Set start and end date (all available history recommended)
+6. Click **Request**, then **Export Bars** in the bottom toolbar
+7. Save as CSV, then drag-and-drop onto the Sessions tab upload area
+
+**Important:** The file must include a TIME column (`HH:MM`). The same steps used for the History tab (D1) apply — just change the timeframe selection.
+
+---
+
 ## Notes on Prompting
 
 **Be explicit about timeframes.** Always state the long-term TF number (34-YR, not just "long-term"). Claude cannot always read the chart legend precisely.
 
-**Correct immediately.** If Claude gets a peak timing wrong, correct it before proceeding to the dashboard build. Errors in the analysis propagate into all downstream tables and the AI prompt.
+**Correct immediately.** If Claude gets a peak timing wrong, correct it before proceeding to the dashboard build. Errors in the analysis propagate into all downstream tables.
 
-**Name the priority month.** In any session, tell Claude which month is the priority (usually the current month or the next major seasonal turn). This affects what auto-opens and what the AI button focuses on.
+**Name the priority month.** In any session, tell Claude which month is the priority (usually the current month or the next major seasonal turn). This affects what auto-opens in the accordion.
 
 **Batching images.** 4–6 per message. Always include the asset name and timeframe labels with each image upload.
 
-**Session continuity.** Claude has no memory between sessions. Start each new session with Prompt #1 (Initial Context) and reference the CHANGELOG so Claude knows what has already been built.
+**Session continuity (Cowork / Claude Code).** When continuing across sessions in Cowork or Claude Code, load `README.md`, `ARCHITECTURE.md`, and `CHANGELOG.md` at the start of the session to restore context. The CHANGELOG tells Claude exactly what has already been built and what the current state of each file is.

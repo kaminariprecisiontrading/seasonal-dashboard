@@ -2,8 +2,8 @@
 
 **Project:** Kaminari Precision Trading — Seasonal Confluence Engine  
 **Project Start:** April 2026  
-**Current Status:** v1.0 — ALL 97 ASSETS COMPLETE · Dynamic index signals live  
-**Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode + Claude Code  
+**Current Status:** v1.5 — All 5 build phases complete · 97 assets · 7 tabs per dashboard  
+**Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode  
 **Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex)  
 **Repository:** Private GitHub repo — `seasonal-dashboard`  
 **Deployment:** GitHub Pages (static hosting, zero cost)
@@ -14,11 +14,21 @@
 
 A personal trading confluence engine that converts Moore Research Center seasonal tendency charts into structured, interactive HTML dashboards. Each dashboard provides directional bias — Bullish, Bearish, or Choppy — broken down by timeframe (5-YR, 15-YR, long-term) and by granularity (yearly arc → monthly → weekly Wk1–4).
 
-A live Claude AI analysis layer is embedded inside each dashboard, callable via button, which synthesises all timeframe data into written trade guidance.
+**All five confluence layers are now live.** Every asset dashboard has seven tabs:
+
+| Tab | Panel | What it does |
+|-----|-------|-------------|
+| Seasonals | Accordion | Combined + individual TF tables; month quick-jump; current month auto-opens |
+| Trend | Seasonal curve | Cumulative directional-bias chart from `MONTHS[]`; NOW marker; monthly shading |
+| Price | TradingView | Embedded live/delayed price chart |
+| History | Backtest | Upload MT5 D1 CSV → raw tendency, win-rate, and avg-return heatmaps vs the seasonal model |
+| Sessions | Intraday bias | Upload MT5 H1/H4 CSV → average return by hour, by session, by day of week; filterable by seasonal signal |
+| Macro | Calendar | Investing.com economic calendar filtered per asset + collapsible interpretation guide |
+| Analysis | AI synthesis | Claude Sonnet / Gemini Flash / Ollama — structured LONG/SHORT/NEUTRAL/WAIT verdict drawing on all available data layers |
 
 The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP / FLIP) on every asset card, derived from each asset's `MONTHS[]` data via `data/signals_manifest.js` at page load.
 
-**Long-term vision:** Expand beyond seasonals into a full trading confluence platform — layering seasonal tendency + macro data (NFP, CPI, PPI, interest rates) + raw price comparison (CSV from MT5) + live/delayed price charts — giving traders a single destination to build a high-confidence directional bias on any asset before entering a trade.
+**Vision achieved:** A single-destination confluence tool — seasonal tendency + historical validation + macro calendar + intraday timing + AI synthesis — where the trader brings their own execution framework and the dashboard provides objective data from every relevant angle.
 
 ---
 
@@ -215,15 +225,19 @@ Run from the project root. The script reads all 97 data files and overwrites `da
 
 ---
 
-## Product Vision — Confluence Engine Layers
+## Confluence Engine — Build Status
 
-| Layer | Status | Description |
-|-------|--------|-------------|
-| 1 — Seasonal Tendency | ✅ Complete | Structural long-term bias. 97 assets live. The tide. |
-| 2 — Price Data (CSV) | 🔲 Phase 2 next | Upload raw MT5 OHLCV CSV. Compare actual price behaviour vs seasonal model. No annotation — pure data. |
-| 3 — Macro Data | 🔲 Phase 3 | NFP, CPI, PPI, interest rates. ForexFactory embed → API (Tradingeconomics / FRED). |
-| 4 — Live Price Context | 🔲 Phase 4 | TradingView embedded widget (quick win) then Twelve Data API for native OHLC charts. |
-| 5 — AI Synthesis | 🔲 Phase 5 | Claude reads all layers and produces a single consolidated weekly bias verdict. |
+| Layer | Phase | Status | Tab |
+|-------|-------|--------|-----|
+| Seasonal tendency | Phase 1 | ✅ Complete (v1.0) | Seasonals |
+| Seasonal curve chart | Phase 4 | ✅ Complete (v1.4) | Trend |
+| Live price chart | Quick win | ✅ Complete (v1.1) | Price |
+| D1 price backtest | Phase 2 | ✅ Complete (v1.2) | History |
+| H1/H4 intraday bias | Phase 2.5 | ✅ Complete (v1.5) | Sessions |
+| Macro calendar | Phase 3 | ✅ Complete (v1.3) | Macro |
+| AI synthesis | Phase 5 | ✅ Complete (v1.5) | Analysis |
+
+**All seven layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, backtest win rates, and intraday session bias — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet, Gemini Flash, or any local Ollama model.
 
 **Scope boundary:** No annotated chart interpretation (Elliott waves, Fibonacci, market structure). The tool provides objective data confluence. The trader applies their own execution framework.
 
@@ -242,20 +256,22 @@ Run from the project root. The script reads all 97 data files and overwrites `da
 ## Tools & Environment
 
 - **Chart Source:** Moore Research Center (mooreres.com) — seasonal tendency overlays
-- **AI Engine (building):** Claude via claude.ai — design, analysis, dashboard generation
-- **AI Engine (in-dashboard):** Anthropic API — Claude Sonnet called via button
-- **API Console:** console.anthropic.com — separate billing from Claude.ai subscription
-- **Model Used:** `claude-sonnet-4-20250514` (in dashboard AI button)
+- **AI Engine (building):** Claude via claude.ai (Cowork) — design, analysis, dashboard generation
+- **AI Engine (in-dashboard, option 1):** Anthropic API — Claude Sonnet (`claude-sonnet-4-20250514`)
+- **AI Engine (in-dashboard, option 2):** Google AI Studio API — Gemini Flash (`gemini-1.5-flash`)
+- **AI Engine (in-dashboard, option 3):** Ollama — any local model (e.g. `mistral:latest`)
+- **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
 - **Code Editor:** Visual Studio Code
-- **AI Coding Assistant:** Claude Code (official Anthropic VSCode extension)
 - **Version Control:** Git + GitHub (private repository)
 - **Hosting:** GitHub Pages — static site, free, deployed from main branch
 - **Local Preview:** Live Server (VSCode extension)
+- **Local AI server:** Ollama — requires `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat` automates this
 
 | Context | Tool | Best Used For |
 |---------|------|--------------|
-| Design & planning | Claude.ai (this chat) | New asset analysis, generating dashboards, architectural decisions |
-| Code editing | Claude Code in VSCode | Editing existing files, multi-file changes, commits, iterating on code |
+| Design & planning | Claude.ai / Cowork | New asset analysis, architectural decisions, doc updates |
+| Dashboard AI (cloud) | Claude API / Gemini API | Production weekly analysis with structured verdict output |
+| Dashboard AI (local) | Ollama | Offline analysis; no API costs; model choice (mistral, llama3, etc.) |
 
 ---
 

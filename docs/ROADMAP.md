@@ -91,19 +91,27 @@ See `docs/README.md` for the full per-pair file listing, components, and key-sig
 
 ---
 
-### Phase 2.5 — Intraday Bias Tool *(planned, not yet built)*
+### Phase 2.5 — Intraday Bias Tool (Sessions) — ✅ Complete (v1.5)
 
-**Idea:** The D1 backtest gives week-level historical context. A companion intraday tool would show where price sits *within the current session* — helping align intraday entries with the broader daily and seasonal bias.
+**What was built:** A fully client-side intraday bias tool injected as a Sessions tab on all 97 asset pages. Upload an H1 or H4 MT5 CSV → three result sections rendered instantly in the browser.
 
-**How it differs from the D1 backtest:**
-- D1 data answers: "Was this week historically bullish?" — a week-level question.
-- Intraday data answers: "Given I am in Wk3 of a bearish seasonal, is this hour's price action aligned or diverging from that bias?" — a session-level question.
+**Three results sections:**
+1. **By Hour** — Chart.js bar chart (24 hourly slots for H1, 6 for H4) showing average return per time slot; amber line overlay for % positive; session shading backdrop
+2. **By Session** — Stat cards for each session zone (Late NY / Asian / London / L/NY Overlap / New York / After-hours); avg return and occurrence count expressed as *days* (e.g. "847 / 1,653 sessions"), not individual bars
+3. **By Day of Week** — Stat cards for Mon–Fri; avg return and *day-level* occurrence count (e.g. "682 / 1,654 days"), not bar counts
 
-**Data format:** Would require H1 or H4 CSV, not D1. D1 bars have no intraday structure. H1 is ~6k rows/year; H4 ~1.5k rows/year — both manageable client-side. M1 is ~100k rows for just 3.5 months — too heavy for browser processing at scale.
+**Signal filter:** All weeks / Bull (Long) weeks / Bear (Short) weeks / Chop weeks — narrows the dataset to bars from weeks matching the current seasonal signal, derived from `MONTHS[]`.
 
-**Seasonal model compatibility:** The existing week-level signals (BULL/BEAR/CHOP) are directly applicable — directional bias is timeframe-agnostic. Basis differences between CME futures and spot are negligible for directional analysis.
+**Session timezone:** All session hours in broker server time (EET, UTC+2 winter). Corrected from original UTC assumption: Asian starts 02:00 broker (not 00:00), London 10:00 broker (not 08:00).
 
-**Scope when built:** Likely a separate tab or sub-panel within the Backtest section. Upload an H1 or H4 CSV → see intraday price distribution by time-of-day or session, overlaid with the current week's seasonal signal.
+**Occurrence-count methodology:** Session and DoW cards count *distinct day occurrences*, not individual bars. A session occurrence is one aggregated data point per session per trading day (net return = sum of all bars in that session window on that date). A day occurrence is one trading day. This gives immediately interpretable denominators — ~50 Mondays/year rather than ~50 × 24 H1 bars/year. Hourly chart retains bar-level counts (since a bar is the natural atomic unit for an hour slot).
+
+**Key technical decisions:**
+- `schemaVer: 3` discriminator in cached stats; old caches automatically discarded on page load
+- `sessionDefs` never stored in cache — always derived live from module-level constants so session boundary changes take effect without re-upload
+- `window.kptIdtRefresh()` called by `ui.js` on tab activation to resize the Chart.js canvas
+
+**Files:** `js/intraday.js` (new, ~700 lines) · `js/ui.js` updated (Sessions tab added; Trend/Price/History labels applied) · `css/dashboard.css` updated (Sessions panel styles + Phase 5 AI panel styles) · all 97 `assets/*.html` (script tag added) · `start_kpt.bat` created
 
 ---
 
@@ -133,23 +141,48 @@ See `docs/README.md` for the full per-pair file listing, components, and key-sig
 
 **Visual features:** Monthly background shading (green/red/amber reflecting combined signal), amber dashed vertical line at today's position, zero baseline, NOW badge in the header showing current month/week + signal, cross-hair tooltip with signal detail per TF.
 
-**Delivered:** `js/seasonal-chart.js` (~230 lines) · `js/ui.js` (Curve tab added) · `css/dashboard.css` (~80 lines of curve styles) · all 97 HTML files patched via `patch_add_seasonal_chart.js` · load order now 8 scripts.
+**Delivered:** `js/seasonal-chart.js` (~230 lines) · `js/ui.js` (Trend tab added — was Curve) · `css/dashboard.css` (~80 lines of curve styles) · all 97 HTML files patched via `patch_add_seasonal_chart.js` · load order now 8 scripts (9 after Phase 2.5).
 
 **Live price overlay (future):** The TradingView iframe is cross-origin and cannot accept injected overlays. To overlay price and seasonal on the same chart, replace TradingView with Lightweight Charts + a price data API (e.g. Twelve Data free tier: 800 req/day). The seasonal curve would then be a second dataset on the same chart instance. Requires an API key.
 
 ---
 
-## Phase 5 — AI Synthesis Upgrade
+## ✅ Phase 5 — AI Synthesis Upgrade (Complete — v1.5)
 
-**What:** Upgrade the Claude API button from "analyse seasonal data only" to "synthesise all available layers."
+**What was built:** `js/api.js` completely rewritten. The single-provider Claude button is replaced with a provider-agnostic multi-model AI panel injected dynamically at page load.
 
-When Phases 2–4 are built, the AI button reads:
-- Seasonal data (already built)
-- CSV statistics (Phase 2)
-- Upcoming macro events for this asset (Phase 3)
-- Current price position relative to seasonal model (Phase 4)
+**Three providers:**
+- **Claude Sonnet** (`claude-sonnet-4-20250514`) — Anthropic SSE streaming
+- **Gemini Flash** (`gemini-1.5-flash`) — Google SSE streaming
+- **Ollama** — any locally running model (e.g. `mistral:latest`); NDJSON streaming; requires `OLLAMA_ORIGINS=*` for browser CORS
 
-And produces a single weekly bias verdict: what the confluence is saying, where layers agree, where they conflict, and the highest-probability scenario.
+Provider, API keys, and Ollama URL/model stored in `localStorage` under `kpt-cfg-*` keys. Settings panel toggled via a gear icon. No page reload required when switching providers.
+
+**Four context layers gathered before every call:**
+1. **Seasonal** — generated live from `MONTHS[]` by `_buildSeasonalSummary()` (replaces the static `SEASONAL_DATA` string — can never drift from the actual data)
+2. **Curve** — computed live from `MONTHS[]`; returns current cumulative value, 4-week trend direction, position as % of annual range
+3. **History** — reads `kpt-bt-{id}` from localStorage; overall signal win rate, top/bottom months by accuracy and avg return (`null` if no backtest uploaded)
+4. **Sessions** — reads `kpt-idt-{id}` (`schemaVer: 3` only); best/worst session and day of week (`null` if no intraday data uploaded)
+
+**Context bar:** Chips below the provider selector show ✓ (data available) or ○ (not available) for each layer, so users know which data is feeding the analysis.
+
+**Structured verdict output:** Prompt forces the model to produce `## VERDICT: [LONG / SHORT / NEUTRAL / WAIT]`, a 5-row data table, a 3-month outlook paragraph, and 3 trade note bullets.
+
+**Dynamic panel headings:** `_updatePanelHeadings()` rewrites the section label and subtitle at runtime on every provider switch. No changes to any of the 97 HTML files required.
+
+**AI cache key:** `kpt-ai-{id}-{provider}-{year}-w{week}` — provider-scoped and weekly; switching models produces a fresh call; old provider caches auto-expire when the week rolls over.
+
+---
+
+### Additional Quick Wins — ✅ Complete (v1.5)
+
+**Tab Rename (v1.5):** All four content tabs renamed for clarity — Curve→**Trend**, Chart→**Price**, Backtest→**History**, Intraday→**Sessions**. Panel IDs unchanged; only display labels changed. All 97 pages updated via `ui.js` tabs array.
+
+**Dynamic SEASONAL_DATA (v1.5):** `_buildSeasonalSummary()` added to `api.js`. Generates a structured month-by-month text from `MONTHS[]` at runtime, replacing the static `SEASONAL_DATA` string in each data file as the source of truth. Falls back to `SEASONAL_DATA` if `MONTHS` is unavailable. The AI prompt now always reflects the current data — static strings in data files are kept as legacy fallback only.
+
+**Print / PDF Export (v1.5):** `@media print` block (~90 lines) added to `dashboard.css`. Shows all panels regardless of tab state, hides navigation/buttons/iframes, inverts dark theme to white background with readable colours, adjusts signal tags and heatmap cells, adds page breaks between major panels.
+
+**Session occurrence-count fix (v1.5):** By Session and By Day of Week cards now show *day-level* occurrence counts (distinct session days / distinct trading days) rather than individual bar counts. Denominators are now ~1,650 for a 33-year dataset rather than ~1,650 × 24 (H1 bars per weekday). `schemaVer` bumped 2→3.
 
 ---
 
@@ -210,14 +243,6 @@ And produces a single weekly bias verdict: what the confluence is saying, where 
 - Correct seasonal analysis from Moore Research Center charts, including complex TF divergence patterns and inverted T-Bill structure
 
 ---
-
-## Remaining Quick Wins
-
-### Dynamic SEASONAL_DATA Generation
-Auto-generate the `SEASONAL_DATA` prompt string from `MONTHS[]` instead of maintaining it separately. Prevents the two from drifting out of sync.
-
-### Print / Export to PDF
-CSS `@media print` styles — hide AI panel and buttons, render clean tables only for offline reference.
 
 ---
 
