@@ -6,7 +6,9 @@ A plain-English guide to using the KPT Seasonal Dashboard. No coding knowledge r
 
 ## Opening a Dashboard
 
-Open the index page in your browser via **Live Server** in VSCode. Do not open the HTML files directly from File Explorer — the relative paths (CSS, JS, data) require a local web server to resolve correctly.
+The dashboard is hosted at **[https://kpt-seasonals.netlify.app/](https://kpt-seasonals.netlify.app/)** — open this URL in any browser to access it directly, with no local setup required. The site auto-updates within ~60 seconds of any push to GitHub.
+
+If you are working on the project locally (adding new assets, editing data), open the index page via **Live Server** in VSCode instead. Do not open the HTML files directly from File Explorer — the relative paths (CSS, JS, data) require a local web server to resolve correctly.
 
 From the index page, click any asset card marked **Live** to open its dashboard.
 

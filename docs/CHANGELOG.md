@@ -2,6 +2,29 @@
 
 ---
 
+## v1.6.2 — June 2026
+**Deployment & Hosting — Netlify migration, Netlify bug fixes**
+
+### Summary
+
+Migrated hosting from GitHub Pages (unavailable on private repos) to Netlify free tier. Fixed two production bugs exposed by the Netlify environment: signal injection failing due to Pretty URLs rewriting hrefs, and the Trend tab NOW badge wrapping caused by the scrollbar narrowing the viewport.
+
+---
+
+### Deployment
+
+- **Netlify hosting** — Dashboard now live at `https://kpt-seasonals.netlify.app/`. Netlify was chosen over GitHub Pages (requires public repo on free plan) and Cloudflare Pages (Workers UI confusion). Netlify free tier supports private GitHub repos and auto-deploys on push within ~60 seconds.
+
+### `index.html` — Signal Injection Regex
+
+- **Netlify Pretty URLs compatibility** — Netlify's Pretty URLs feature rewrites `href="assets/aud.html"` to `href="/assets/aud"` in the served HTML, stripping the `.html` extension and making the path absolute. The signal injection regex `/assets\/(.+)\.html/` failed to match. Fixed to `/assets\/([^./?#]+)/` which handles both the local `assets/aud.html` format and the Netlify `/assets/aud` format.
+
+### `css/dashboard.css` — Trend Tab Layout
+
+- **sc-header flex-wrap fix** — The NOW badge in the Trend tab header was wrapping to a second line on Netlify, overlapping the "How to Read This" section. Root cause: `flex-wrap: wrap` on `.sc-header` combined with Netlify pages having a vertical scrollbar (~17px narrower than the local `file://` view). Fixed with `flex-wrap: nowrap` on `.sc-header` and `min-width: 0` on `.sc-header-left` to prevent the left column from expanding beyond available width.
+
+---
+
 ## v1.6 — June 2026
 **Polish & Tooling — Project structure, new docs, UI improvements, code fixes**
 
