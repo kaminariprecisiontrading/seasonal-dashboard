@@ -16,7 +16,7 @@
 <div class="stat-grid" id="stat-grid"></div>
 
 <div class="section-label">Range Distribution</div>
-<div class="section-note">Daily/weekly/monthly/yearly range percentile<span class="glossary-icon" data-glossary-key="percentile">?</span> strips (p05&ndash;p95), IQR<span class="glossary-icon" data-glossary-key="iqr">?</span> boxed, median<span class="glossary-icon" data-glossary-key="median">?</span> marked. Dashed lines mark the compression<span class="glossary-icon" data-glossary-key="compression">?</span> (p20) / expansion<span class="glossary-icon" data-glossary-key="expansion">?</span> (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window<span class="glossary-icon" data-glossary-key="lookback_window">?</span> affects the daily/weekly/monthly charts (not yearly &mdash; see below).</div>
+<div class="section-note">Daily/weekly/monthly/yearly range percentile<span class="glossary-icon" data-glossary-key="percentile">?</span> strips (p05&ndash;p95), IQR<span class="glossary-icon" data-glossary-key="iqr">?</span> boxed, median<span class="glossary-icon" data-glossary-key="median">?</span> marked. Dashed lines mark the compression<span class="glossary-icon" data-glossary-key="compression">?</span> (p20) / expansion<span class="glossary-icon" data-glossary-key="expansion">?</span> (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window<span class="glossary-icon" data-glossary-key="lookback_window">?</span> affects the daily/weekly/monthly charts &mdash; not the yearly chart, which only has ~20 samples total and always shows full history.</div>
 <div class="dial" id="dial"></div>
 
 <div class="panel">
@@ -39,6 +39,13 @@
     <div class="mode-note" id="range-monthly-mode-note"></div>
   </div>
 </div>
+<div class="panel">
+  <div class="panel-title">Yearly Range</div>
+  <div class="range-strip-wrap"><div id="range-yearly"></div></div>
+  <div class="range-strip-caption" id="range-yearly-caption"></div>
+  <div class="mode-note" id="range-yearly-mode-note"></div>
+  <div class="section-note" id="range-yearly-sample-note" style="margin-top:10px;margin-bottom:0;"></div>
+</div>
 
 <div class="section-label">Time of Extreme</div>
 <div class="section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean<span class="glossary-icon" data-glossary-key="circular_mean">?</span>. Bars are coloured by FX session<span class="glossary-icon" data-glossary-key="session">?</span>. The badge shows how tightly clustered (concentrated<span class="glossary-icon" data-glossary-key="concentration">?</span>) the timing actually is &mdash; hover any bar for its exact time window.</div>
@@ -56,8 +63,8 @@
   <div class="session-legend"></div>
 </div>
 
-<div class="section-label">Weekly &amp; Monthly Extremes</div>
-<div class="section-note">Which weekday the week's high/low falls on; which week-of-month the month's high/low falls on. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count.</div>
+<div class="section-label">Weekly, Monthly and Yearly Extremes</div>
+<div class="section-note">Which weekday the week's high/low falls on; which week-of-month the month's high/low falls on; which calendar month the year's high/low falls in. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count. The yearly charts are built from only ~20 yearly samples &mdash; the weakest-sample charts on this page, shown anyway for completeness rather than left out.</div>
 <div class="two-col">
   <div class="panel">
     <div class="panel-title">Week High &mdash; Day of Week</div>
@@ -77,16 +84,6 @@
     <div class="panel-title">Month Low &mdash; Week of Month</div>
     <div id="wom-low-chart"></div>
   </div>
-</div>
-
-<div class="section-label">Yearly Extremes</div>
-<div class="section-note">Yearly range distribution, and which calendar month the year's high/low tends to fall in. Built from only ~20 yearly samples &mdash; the weakest-sample section on this page, shown anyway for completeness rather than left out.</div>
-<div class="panel">
-  <div class="panel-title">Yearly Range</div>
-  <div class="range-strip-wrap"><div id="range-yearly"></div></div>
-  <div class="range-strip-caption" id="range-yearly-caption"></div>
-  <div class="mode-note" id="range-yearly-mode-note"></div>
-  <div class="section-note" id="range-yearly-sample-note" style="margin-top:10px;margin-bottom:0;"></div>
 </div>
 <div class="two-col">
   <div class="panel">
