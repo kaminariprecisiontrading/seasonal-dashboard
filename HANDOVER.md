@@ -67,6 +67,7 @@ first step in Claude Code.
 | `gbpusd_daily_profiles_2000_2019.csv` / `eurusd_daily_profiles_2000_2019.csv` | Per-day profile labels + underlying features, both assets — the labeled historical dataset for backtesting/dashboard use. |
 | `gbpusd_profile_summary.json` / `eurusd_profile_summary.json` | Profile distribution counts/percentages, avg range per profile, extreme-timing breakdown per profile — sanity-check + dashboard input. |
 | `build_dashboard_data.py` | Phase 3 pipeline: bundles one asset's `*_stats.json` + `*_profile_summary.json` into a single `dashboard/data/<asset>.js` (a plain `const <ASSET>_DATA = {...}` global) — same data-as-JS-file pattern as the sibling Seasonals Dashboard, so the dashboard works from a plain `file://` open with no server/build step. Re-run this (after re-running `stats_engine.py`/`profile_taxonomy.py`) any time the underlying data changes — the `dashboard/data/*.js` files are generated, not hand-edited. |
+| `export_profile_examples.py` | Phase 3 pipeline: picks one real "typical" exemplar day per profile (closest to that profile's own average range) per asset, extracts its M1 bars from the raw export, resamples to M15, and writes `dashboard/data/profile-examples/<asset>.js` — the real-chart data behind the profile detail pages. Re-run if the raw CSV, `profile_taxonomy.py`, or its thresholds change. |
 | `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
 ---
@@ -150,6 +151,29 @@ API and a database (if/when migrating off static files) are evaluated later — 
   wired into every chart element and every glossary icon. Verified via the same headless-Edge
   Playwright approach, including simulated hovers on tooltip-bearing elements — caught and fixed
   one real bug (mode-note captions said "% of days" even for weekly/monthly/yearly ranges).
+- **Yearly Extremes folded into existing sections** (user request, post-build): the Yearly Range
+  strip now lives inside Range Distribution (alongside daily/weekly/monthly), and the Year
+  High/Low — Month charts now live inside a renamed "Weekly, Monthly and Yearly Extremes"
+  section — no standalone "Yearly Extremes" section anymore. Pure markup reorganization;
+  `dashboard.js` renders by element ID regardless of DOM position, so no JS changed.
+- **Profile detail pages + stylized icons (implemented, `dashboard/profiles/detail.html`):** one
+  templated page (`?p=<slug>` query param, not 8 duplicated files) showing each profile's rule,
+  "why this name" copy (reused from spec §4.2), cross-asset stats, and — the core of the
+  original ask — a **real illustrative candlestick chart** per asset. Exemplar day = the real
+  historical day within that profile whose range is closest to the profile's own average (a
+  typical day, not a cherry-picked extreme); `pipeline/export_profile_examples.py` picks it and
+  exports M15 bars via `clean_mt5_csv.py`'s own `load_raw()`/`to_utc()`. Spot-checked by eye: the
+  chosen Trend Day (Up) examples for both assets visibly show the exact "early low, late push to
+  new highs" signature the copy describes — good evidence the selection method produces
+  genuinely representative days. Profile cards on each asset dashboard now link to their detail
+  page and show the same stylized shape icon (`dashboard/js/profile-meta.js`, shared with the
+  detail pages so they can't drift apart). Full design rationale: spec §5.3.
+- **Real bug hit + fixed, worth remembering for any future multi-bundle page:** `window.GBPUSD_DATA`
+  is `undefined` even after `data/gbpusd.js` has loaded — a top-level `const X` in a classic
+  `<script>` creates a global *lexical* binding (visible as the bare identifier `X` to later
+  script tags), not a `window` property. The asset pages sidestep this with an explicit
+  `window.ASSET_DATA = GBPUSD_DATA;`; `profile-detail.js` (which needs both assets' data
+  simultaneously) references the bare identifiers directly instead.
 
 ---
 
@@ -176,33 +200,32 @@ API and a database (if/when migrating off static files) are evaluated later — 
 ## 7. Next step
 
 The Phase 3 dashboard is built and verified working for both assets, including the usability
-pass — jargon glossary/tooltips, both mode types, yearly extremes, full chart interactivity
-(§5 above). Per the agreed sequencing, in order:
+pass and the profile detail pages (§5 above). Per the agreed sequencing, in order:
 
 **Built:** time-of-extreme heatmap (session-colored, mode + concentration badge, lookback
 dial), daily/weekly/monthly/yearly range-distribution percentile strips (lookback dial for
 daily/weekly/monthly; yearly is full-history only), weekday/week-of-month/month-of-year
 extreme-location bar charts, profile-classification panel (distribution + avg range + dominant
 timing tag per profile), glossary tooltips on every jargon term, hover tooltips on every chart
-element.
+element, and profile detail pages (rule/why copy, cross-asset stats, real illustrative M15
+candlestick chart per asset, stylized shape icon, cross-profile nav) linked from every profile
+card.
 
-**Next up, in the agreed order (spec §5.2/§5.3 have the design notes for each):**
+**Next up, in the agreed order (spec §5.2 has the design notes):**
 
-1. **Profile detail pages + stylized icons** — the descriptive content is already written
-   (spec §4.2); needs a page/template per profile, a small hand-drawn shape icon per profile
-   (no data dependency), and one real illustrative example-day chart per profile (needs a small
-   scoped-down slice of the OHLC viewer work — just ~8 exemplar days, not the full history).
-2. **Calendar feature** — its own architecture decision (year-chunked data files, persisted
+1. **Calendar feature** — its own architecture decision (year-chunked data files, persisted
    weekly/monthly tables with dates); start simple, both a cross-asset homepage view and a
    per-asset drill-down. Design notes: spec §5.2.
-3. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
+2. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
    dashboard is a historical-statistics browser until then.
-4. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
+3. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
    days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic).
-5. **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
+4. **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
    `dashboard/index.html` directly or serving the `dashboard/` folder.
-6. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
+5. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
    tries it against a real morning routine.
+6. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
+   days per asset; viewing an arbitrary historical day still needs the full per-day export.
 
 **Noted for later, not actionable now:** a possible future merge with the sibling Seasonals
 Dashboard (Seasonals = top-level macro view, this dashboard = zoomed-in daily/weekly view) —

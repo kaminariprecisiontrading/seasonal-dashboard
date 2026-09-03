@@ -13,16 +13,8 @@
   const WEEKDAY_ORDER = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  const PROFILE_COLOR = {
-    "Trend Day (Up)": "var(--bull)",
-    "Trend Day (Down)": "var(--bear)",
-    "Volatile Day": "var(--expansion)",
-    "Volatile Reversal Day": "var(--chop)",
-    "Quiet Drift Day (Up)": "var(--bull)",
-    "Quiet Drift Day (Down)": "var(--bear)",
-    "Compression Day": "var(--compression)",
-    "Normal Day": "var(--normal)",
-  };
+  // Profile colors/icons/slugs are shared with the profile detail pages —
+  // see dashboard/js/profile-meta.js (must load before this file).
 
   function concentrationBadge(R) {
     // Cutoffs chosen from the observed R range across both assets/windows
@@ -240,16 +232,23 @@
         ? Object.entries(timing[name]).sort((a, b) => b[1] - a[1])[0]
         : null;
       const range = avgRange[name];
-      const div = document.createElement("div");
-      div.className = "profile-card";
-      div.style.setProperty("--card-accent", PROFILE_COLOR[name] || "var(--muted)");
-      div.innerHTML = `
-        <div class="profile-name">${name}</div>
-        <div class="profile-pct">${v.pct}%</div>
+      const a = document.createElement("a");
+      a.className = "profile-card";
+      a.href = `../profiles/detail.html?p=${kptProfileSlug(name)}`;
+      a.style.setProperty("--card-accent", KPT_PROFILE_COLOR[name] || "var(--muted)");
+      a.innerHTML = `
+        <div class="profile-card-top">
+          <div>
+            <div class="profile-name">${name}</div>
+            <div class="profile-pct">${v.pct}%</div>
+          </div>
+          ${kptProfileIconSvg(name, 46)}
+        </div>
         <div class="profile-meta">
           n=${v.n} days${range ? ` · avg range ${range.mean} pips` : ""}${topTiming ? `<br>most common timing${kptGlossaryIcon("extreme_timing")}: ${topTiming[0].replace("_", " ")} (${topTiming[1]})` : ""}
-        </div>`;
-      grid.appendChild(div);
+        </div>
+        <div class="profile-card-link">See profile details &rarr;</div>`;
+      grid.appendChild(a);
     });
     kptAttachGlossaryIcons(grid);
 

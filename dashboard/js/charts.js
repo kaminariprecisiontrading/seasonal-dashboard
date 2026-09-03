@@ -247,5 +247,60 @@ const KPTCharts = (() => {
     container.appendChild(svg);
   }
 
-  return { renderRangeStrip, renderTimeHeatmap, renderBarChart, sessionTag };
+  // ── Candlestick chart (illustrative real example days on profile pages) ────
+  // bars: [{t: ISO string, o, h, l, c}, ...] M15 bars for one trading day.
+  // Evenly spaced by index (not true elapsed time) — simpler to read than
+  // gapped time-axis spacing for a single compact day, and every bar here is
+  // already a fixed 15-minute step.
+  function renderCandlestick(container, bars) {
+    clear(container);
+    if (!bars || !bars.length) {
+      container.textContent = "No intraday data available for this example day.";
+      return;
+    }
+    const W = 1000, H = 320, padL = 46, padR = 10, padT = 16, padB = 24;
+    const lo = Math.min(...bars.map((b) => b.l));
+    const hi = Math.max(...bars.map((b) => b.h));
+    const scaleY = (v) => padT + (1 - (v - lo) / (hi - lo)) * (H - padT - padB);
+    const n = bars.length;
+    const slotW = (W - padL - padR) / n;
+    const bodyW = Math.max(2, slotW * 0.6);
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, class: "candlestick-svg" });
+
+    // y-axis gridlines/labels (5 evenly spaced price levels)
+    for (let i = 0; i <= 4; i++) {
+      const v = lo + (hi - lo) * (i / 4);
+      const y = scaleY(v);
+      svg.appendChild(el("line", { x1: padL, x2: W - padR, y1: y, y2: y, stroke: "var(--border)", "stroke-width": 1 }));
+      const t = el("text", { x: padL - 6, y: y + 3, "font-size": 9, fill: "var(--muted)", "text-anchor": "end" });
+      t.textContent = v.toFixed(4);
+      svg.appendChild(t);
+    }
+
+    bars.forEach((b, i) => {
+      const x = padL + i * slotW + slotW / 2;
+      const up = b.c >= b.o;
+      const color = up ? "var(--bull)" : "var(--bear)";
+      const wick = el("line", { x1: x, x2: x, y1: scaleY(b.h), y2: scaleY(b.l), stroke: color, "stroke-width": 1.2 });
+      svg.appendChild(wick);
+      const yOpen = scaleY(b.o), yClose = scaleY(b.c);
+      const bodyTop = Math.min(yOpen, yClose);
+      const bodyH = Math.max(1, Math.abs(yClose - yOpen));
+      const body = el("rect", { x: x - bodyW / 2, y: bodyTop, width: bodyW, height: bodyH, fill: color, opacity: 0.9 });
+      const time = b.t.slice(11, 16);
+      hover(body, `<b>${time} UTC</b><br>O ${b.o.toFixed(4)} &middot; H ${b.h.toFixed(4)}<br>L ${b.l.toFixed(4)} &middot; C ${b.c.toFixed(4)}`);
+      svg.appendChild(body);
+
+      if (i % 4 === 0) {
+        const t = el("text", { x, y: H - padB + 12, "font-size": 8, fill: "var(--muted)", "text-anchor": "middle" });
+        t.textContent = time;
+        svg.appendChild(t);
+      }
+    });
+
+    container.appendChild(svg);
+  }
+
+  return { renderRangeStrip, renderTimeHeatmap, renderBarChart, renderCandlestick, sessionTag };
 })();

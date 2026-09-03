@@ -40,6 +40,10 @@ function kptAttachGlossaryIcons(root) {
     const text = KPT_GLOSSARY[key] || "No description available.";
     const label = key.replace(/_/g, " ");
     KPTTooltip.attach(iconEl, `<b>${label}</b><br>${text}`);
+    // Icons can sit inside a clickable card (e.g. profile cards link to
+    // their detail page) — a tap/click on the icon itself should only show
+    // the tooltip, never also trigger the parent link's navigation.
+    iconEl.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); });
   });
 }
 

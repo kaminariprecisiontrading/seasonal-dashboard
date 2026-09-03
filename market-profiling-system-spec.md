@@ -312,22 +312,40 @@ before building, flagged here so the "start simple" build doesn't paint into a c
   dates. Needs its own output artifact (the actual weekly/monthly table, dated) so "click a date → see
   its week and month too" has something to look up.
 
-### 5.3 Profile detail pages (planned, not yet built)
+### 5.3 Profile detail pages (implemented — `dashboard/profiles/detail.html`)
 
 Goal per the original feature request: a trader should be able to look at a real price chart later and
 recognize "that's a Trend Day" — both a descriptive and a visual understanding of each profile, so the
 taxonomy becomes intuitive rather than just a label.
 
-- **Descriptive part** is effectively already written — §4.2's table is the page copy.
-- **Stylized icon per profile** (a small hand-drawn shape glyph — e.g. an upward-sloping line for
-  Trend Day) shown under each profile card on the asset dashboard, so the shape is visible at a glance
-  before a trader clicks through. No real data dependency — purely a mnemonic, separate from the
-  illustrative chart below.
-- **Illustrative real example chart** — one real historical day, picked as a strong exemplar of each
-  profile, shown as an actual candlestick/line chart on that profile's detail page. This depends on
-  the OHLC chart viewer's per-day chart data (§5.1) — rather than block on building that for all 5,185
-  days, scope it down to just the ~8 exemplar days needed here first, reusing the same resampling code
-  the full viewer will eventually need.
+- **Descriptive part** reuses §4.2 directly — `dashboard/js/profile-meta.js`'s `KPT_PROFILE_META` holds
+  the rule/why/timing-signature copy for each profile, kept in sync with this document by hand (no
+  auto-generation — if one changes, update the other).
+- **Stylized icon per profile** — a small hand-drawn SVG sparkline shape (`KPT_PROFILE_ICON_PATH` in
+  the same file), shown on both the asset dashboard's profile cards and the detail page header. No real
+  data dependency — purely a visual mnemonic, distinct from the real chart below.
+- **Illustrative real example chart** — one real historical day per asset, shown as an actual M15
+  candlestick chart. Exemplar-selection method (`pipeline/export_profile_examples.py`): for each
+  profile, pick the real day within that profile whose `daily_range_pips` is **closest to the
+  profile's own average** (from `profile_summary.json`) — a *typical* day, not a cherry-picked
+  extreme. Validated by inspection: the chosen Trend Day (Up) example for both assets visibly shows
+  the exact "low forms early, grinds to new highs into the close" signature described in §4.3's
+  `Late_Push` timing tag — the method produces genuinely representative examples, not odd edge cases.
+  Scoped down from the full OHLC viewer (§5.1) to just the ~8×2 exemplar days needed here, reusing
+  `clean_mt5_csv.py`'s `load_raw()`/`to_utc()` for the UTC conversion and trading-day boundary so that
+  logic stays in exactly one place. Output: `dashboard/data/profile-examples/<asset>.js`.
+- **One-page template, not 8 static files** — `dashboard/profiles/detail.html` reads which profile to
+  show from a `?p=<slug>` query param (via `dashboard/js/profile-detail.js`) rather than being
+  duplicated 8 times, so the page structure/styling only needs to be maintained in one place. A pill
+  nav of all 8 profiles at the bottom of every detail page gives cross-navigation without needing a
+  separate hub/index page.
+- **A real gotcha hit and fixed during this build, worth remembering for any future page that loads
+  several `data/*.js` bundles at once:** a top-level `const X = ...` in a classic `<script>` tag
+  creates a global *lexical* binding (visible to other script tags in the same document as the bare
+  identifier `X`), **not** a property on `window` — so `window.GBPUSD_DATA` is `undefined` even right
+  after `data/gbpusd.js` has loaded. The asset dashboard pages avoid this by explicitly doing
+  `window.ASSET_DATA = GBPUSD_DATA;` inline; `profile-detail.js` (which needs both assets' data at
+  once, so can't use that single-variable pattern) instead references the bare identifiers directly.
 
 ---
 
