@@ -220,6 +220,37 @@ above, so the taxonomy stays self-consistent and auditable rather than growing a
    versions are true mirror images (as with Trend Day and Quiet Drift Day) — this avoids doubling the
    taxonomy size for no added distinction.
 
+### 4.5 Future profile families (ideas, not yet built)
+
+Two more taxonomy axes the user wants developed at the appropriate time — noted now so they aren't
+lost, not designed in detail yet. Both must go through the same empirical-validation-first process as
+§4.4 before becoming real profiles (distribution/cross-tab analysis first, exact thresholds derived
+from real data, not assumed from the description below).
+
+**Session-defined extreme profiles.** Classify a day by *which FX session(s) contained its high and
+low* — candidate buckets, in session order (Asian → London → New York): **Asian-only**,
+**Asian-London**, **Asian-New York**, **London-only**, **London-New York**, **New York-only** (a day
+whose high and low both fall within one session, or whose extremes span two adjacent/overlapping
+sessions). "Non-outliers" per the user's note — i.e. this is meant to describe the ordinary case, so
+extreme/outlier days (the largest historic ranges — Brexit, GFC days, etc.) should likely be excluded
+or handled separately rather than distorting the buckets. Exact rule (e.g. does "spans two sessions"
+mean the high is in one and the low in the other, specifically, or something looser) needs to be
+nailed down empirically when this is built — the six-bucket list above is the starting shape, not a
+locked definition. The cleaned daily CSV already has `high_time_session`/`low_time_session` per day
+(§2.3), so the raw inputs for this already exist; no new pipeline data is needed to prototype it.
+
+**News-release-timing profiles.** Profiles tied to *when scheduled macro events are typically
+released* — e.g. an **NFP profile** (first Friday of the month, 8:30am NY time) and a more generic
+"8:30 NY news embargo" profile (any scheduled high-impact release at that standard slot), with a
+short, plain name that still captures the essence. This is explicitly **dependent on the news/event
+annotation layer (§2.4)**, which is manual/curated and deliberately out of scope for the v1 pipeline —
+this profile family can't be built (beyond the recurring, calendar-computable case of NFP, which
+doesn't need the manual layer since "first Friday of the month" is derivable directly from the date)
+until that layer has real data to join against for the general case. Naming judgment call: standard
+macro-calendar shorthand like "NFP" is common financial vocabulary, not proprietary trading-education
+jargon (like ICT terms) — the naming rule in §4.4.5 is about avoiding a specific school-of-trading's
+invented terminology, not about avoiding all abbreviations a trader would already recognize.
+
 ---
 
 ## 5. Dashboard

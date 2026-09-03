@@ -227,10 +227,17 @@ card.
 6. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
    days per asset; viewing an arbitrary historical day still needs the full per-day export.
 
-**Noted for later, not actionable now:** a possible future merge with the sibling Seasonals
-Dashboard (Seasonals = top-level macro view, this dashboard = zoomed-in daily/weekly view) —
-kept in mind for navigation/data-format decisions so a merge stays a consolidation rather than
-a rewrite. See spec §5.0b.
+**Noted for later, not actionable now:**
+
+- A possible future merge with the sibling Seasonals Dashboard (Seasonals = top-level macro
+  view, this dashboard = zoomed-in daily/weekly view) — kept in mind for navigation/data-format
+  decisions so a merge stays a consolidation rather than a rewrite. See spec §5.0b.
+- Two more profile families the user wants eventually: **session-defined extreme profiles**
+  (Asian-only / Asian-London / Asian-New York / London-only / London-New York / New York-only,
+  by which session(s) contained the day's high and low) and **news-release-timing profiles**
+  (an NFP profile, a generic "8:30 NY news embargo" profile) — the latter depends on the
+  news/event annotation layer (§2.4) for the general case. Full notes, including the
+  empirical-validation-first requirement before either becomes a real profile: spec §4.5.
 
 EURUSD data cleaning is done (§3 table) — both assets are first-class throughout, not
 GBPUSD-only with EURUSD bolted on later.
