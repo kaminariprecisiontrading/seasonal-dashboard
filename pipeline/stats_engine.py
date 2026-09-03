@@ -371,7 +371,7 @@ def main():
         "yearly_low_month": yearly["low_month"].value_counts().sort_index().to_dict(),
     }
 
-    with open(args.output_json, "w") as f:
+    with open(args.output_json, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, default=str)
 
     # console summary for spot-checking

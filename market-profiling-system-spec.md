@@ -326,22 +326,40 @@ Architecture implication this creates, noted here so it's designed for rather th
 - This is a natural extension of the existing cleaning pipeline (`clean_mt5_csv.py` already parses and
   UTC-normalizes the M1 data before aggregating it away) rather than a separate system.
 
-### 5.2 Calendar feature (planned, not yet built)
+### 5.2 Calendar feature (implemented — `dashboard/calendar/`)
 
-Pick a specific date and see that day's (and its containing week's/month's) stats for one asset, plus
-a cross-asset "all assets on this day" view from the homepage. Two architecture decisions to make
-before building, flagged here so the "start simple" build doesn't paint into a corner:
+Pick a specific date and see that day's (and its containing week's/month's) stats for one asset
+(`dashboard/calendar/asset.html?a=GBPUSD`), plus a cross-asset "all assets on this day" view from the
+homepage (`dashboard/calendar/index.html`). Both architecture decisions flagged when this was planned
+resolved as follows:
 
-- **Data shape.** The current dashboard embeds one small summary JSON per asset (~56KB). A calendar
-  needs per-day lookups across all ~5,185 days per asset — too much to embed in one file upfront
-  without a heavy initial page load. Plan: chunk by year (one small JS file per asset per year),
-  dynamically injected via a `<script>` tag only when the user navigates to that year — stays on the
-  same "no server, no fetch()" file-based pattern (fetch()/XHR is CORS-blocked on `file://`; a plain
-  `<script src>` tag isn't).
-- **Week/month context for a selected day.** `stats_engine.py` currently only *aggregates* the
-  weekly/monthly tables in memory (§ Weekly / monthly aggregation) — it doesn't persist them with
-  dates. Needs its own output artifact (the actual weekly/monthly table, dated) so "click a date → see
-  its week and month too" has something to look up.
+- **Data shape — chunked by year, as planned.** `pipeline/export_calendar_data.py` writes one JS file
+  per asset per year (`dashboard/data/calendar/<asset>/<year>.js`), loaded on demand via a
+  dynamically-injected `<script>` tag only when the calendar UI navigates to that year
+  (`dashboard/js/calendar.js`'s `loadYear()`). **One real gotcha found while building this:** unlike
+  the static per-page data files (`data/<asset>.js`), which can rely on the bare-identifier trick (see
+  §5.3's note on `const` vs. `window` properties) because the consuming script always knows the exact
+  variable name up front, the calendar loader needs to look up a file by a **runtime-constructed**
+  asset+year — and `window["KPT_CALENDAR_GBPUSD_2016"]` would be `undefined` for the exact same reason
+  `window.GBPUSD_DATA` was. Fixed by having the generated files assign onto a namespaced
+  `window.KPT_CALENDAR[asset][year]` object instead of declaring a `const`, which *does* create a
+  real, dynamically-lookupable `window` property.
+- **Week/month context — solved via a merge, not a new stats_engine.py output.** Rather than adding a
+  new persisted-with-dates output to `stats_engine.py`, `export_calendar_data.py` imports
+  `build_weekly()`/`build_monthly()` directly from `stats_engine.py` and merges their result back onto
+  the daily table by re-deriving the same ISO-week/month grouping keys — so the week/month aggregation
+  logic still lives in exactly one place, and `stats_engine.py` itself didn't need to change.
+
+**Scope actually built** (the "start simple" version): month-grid browser (prev/next + direct
+year/month jump), each day colored by its profile (reusing `KPT_PROFILE_COLOR`), click a day for its
+full OHLC/range/profile plus its week's and month's context. The homepage's cross-asset view colors
+the grid by GBPUSD's profile (as the primary/first-listed asset — a single cell can't show two assets'
+colors at once) and shows both assets' stats side by side when a day is clicked. **Not done:** a
+split/dual-color day cell for the cross-asset view (deferred as unnecessary complexity for v1); a
+visual legibility pass — "Normal Day" (grey, the majority-share profile by design, §4.2) renders as a
+fairly low-contrast cell, close in appearance to an empty/no-data cell, which is arguably fine (the
+eye is drawn to the "interesting" minority-share days instead) but is worth a second look once someone
+actually uses this day to day.
 
 ### 5.3 Profile detail pages (implemented — `dashboard/profiles/detail.html`)
 

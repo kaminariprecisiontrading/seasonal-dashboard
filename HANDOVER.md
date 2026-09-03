@@ -36,16 +36,25 @@ KPT-Market-Profiling/
 ├── pipeline/
 │   ├── clean_mt5_csv.py
 │   ├── stats_engine.py
-│   └── profile_taxonomy.py
+│   ├── profile_taxonomy.py
+│   ├── build_dashboard_data.py
+│   ├── export_profile_examples.py
+│   └── export_calendar_data.py
 ├── output/
 │   ├── gbpusd_stats.json / eurusd_stats.json
 │   └── gbpusd_profile_summary.json / eurusd_profile_summary.json
 └── dashboard/                           (Phase 3 — built, see §3/§5/§7)
     ├── index.html
     ├── assets/gbpusd.html, eurusd.html
-    ├── data/gbpusd.js, eurusd.js       (generated — do not hand-edit, see build_dashboard_data.py)
+    ├── profiles/detail.html             (?p=<slug> template, all 8 profiles)
+    ├── calendar/asset.html, index.html  (?a=<ASSET> template + cross-asset home view)
+    ├── data/                            (generated — do not hand-edit)
+    │   ├── gbpusd.js, eurusd.js
+    │   ├── profile-examples/gbpusd.js, eurusd.js
+    │   └── calendar/gbpusd/, calendar/eurusd/   (one <year>.js per year + manifest.js)
     ├── css/dashboard.css
-    └── js/charts.js, dashboard.js
+    └── js/                              (charts, tooltip, glossary, profile-meta,
+                                           calendar, and one controller per page type)
 ```
 
 Move the files listed in §3 below into this structure (or your own equivalent) as the
@@ -68,6 +77,7 @@ first step in Claude Code.
 | `gbpusd_profile_summary.json` / `eurusd_profile_summary.json` | Profile distribution counts/percentages, avg range per profile, extreme-timing breakdown per profile — sanity-check + dashboard input. |
 | `build_dashboard_data.py` | Phase 3 pipeline: bundles one asset's `*_stats.json` + `*_profile_summary.json` into a single `dashboard/data/<asset>.js` (a plain `const <ASSET>_DATA = {...}` global) — same data-as-JS-file pattern as the sibling Seasonals Dashboard, so the dashboard works from a plain `file://` open with no server/build step. Re-run this (after re-running `stats_engine.py`/`profile_taxonomy.py`) any time the underlying data changes — the `dashboard/data/*.js` files are generated, not hand-edited. |
 | `export_profile_examples.py` | Phase 3 pipeline: picks one real "typical" exemplar day per profile (closest to that profile's own average range) per asset, extracts its M1 bars from the raw export, resamples to M15, and writes `dashboard/data/profile-examples/<asset>.js` — the real-chart data behind the profile detail pages. Re-run if the raw CSV, `profile_taxonomy.py`, or its thresholds change. |
+| `export_calendar_data.py` | Phase 3 pipeline: builds the calendar feature's per-day data — one JS file per asset per year (`dashboard/data/calendar/<asset>/<year>.js`, chunked so the dashboard doesn't load all ~5,185 days upfront) plus a manifest of available years. Imports `build_weekly()`/`build_monthly()` from `stats_engine.py` so each day's week/month context reuses that logic rather than duplicating it. |
 | `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
 ---
@@ -174,6 +184,27 @@ API and a database (if/when migrating off static files) are evaluated later — 
   script tags), not a `window` property. The asset pages sidestep this with an explicit
   `window.ASSET_DATA = GBPUSD_DATA;`; `profile-detail.js` (which needs both assets' data
   simultaneously) references the bare identifiers directly instead.
+- **Generated-file encoding bug found and fixed (affected every pipeline script that writes a
+  file):** every `open(path, "w")` in the pipeline was relying on Windows' default `cp1252`
+  file encoding rather than UTF-8, which mangled the em dash in each file's own
+  "auto-generated, do not edit" header comment (`—` → `�`). JSON outputs escaped it away
+  automatically (`json.dump`'s default `ensure_ascii=True`), so this was invisible in
+  `*_stats.json`/`*_profile_summary.json`, but it was live in every dashboard `.js` bundle.
+  Fixed by adding `encoding="utf-8"` to every `open()` call across all five pipeline scripts
+  that write output, and re-ran the full pipeline for both assets to regenerate every affected
+  file. Worth remembering for any new script: **always pass `encoding="utf-8"` explicitly** —
+  don't rely on the platform default, which differs between Windows and Linux/macOS.
+- **Calendar feature (implemented, `dashboard/calendar/`):** month-grid browser per asset
+  (`asset.html?a=GBPUSD`) plus a cross-asset "all assets on this day" homepage view
+  (`calendar/index.html`), both colored by profile and showing full day/week/month context on
+  click. `pipeline/export_calendar_data.py` chunks the data by year (one JS file per asset per
+  year, loaded on demand) and reuses `stats_engine.py`'s `build_weekly()`/`build_monthly()`
+  rather than duplicating that logic. **A second instance of the `const`-vs-`window` gotcha**
+  above, in a form that actually broke the feature until caught: the calendar loader needs to
+  look up a data file by a runtime-constructed asset+year, so even the "reference the bare
+  identifier" workaround doesn't apply (the name isn't known until runtime) — fixed by having
+  the generated calendar files assign onto a namespaced `window.KPT_CALENDAR[asset][year]`
+  object instead of declaring a `const`. Full design rationale: spec §5.2.
 
 ---
 
@@ -200,32 +231,33 @@ API and a database (if/when migrating off static files) are evaluated later — 
 ## 7. Next step
 
 The Phase 3 dashboard is built and verified working for both assets, including the usability
-pass and the profile detail pages (§5 above). Per the agreed sequencing, in order:
+pass, the profile detail pages, and the calendar feature (§5 above).
 
 **Built:** time-of-extreme heatmap (session-colored, mode + concentration badge, lookback
 dial), daily/weekly/monthly/yearly range-distribution percentile strips (lookback dial for
 daily/weekly/monthly; yearly is full-history only), weekday/week-of-month/month-of-year
 extreme-location bar charts, profile-classification panel (distribution + avg range + dominant
 timing tag per profile), glossary tooltips on every jargon term, hover tooltips on every chart
-element, and profile detail pages (rule/why copy, cross-asset stats, real illustrative M15
+element, profile detail pages (rule/why copy, cross-asset stats, real illustrative M15
 candlestick chart per asset, stylized shape icon, cross-profile nav) linked from every profile
-card.
+card, and a calendar feature (per-asset month-grid + cross-asset homepage view, both colored by
+profile, click any day for its full day/week/month context).
 
-**Next up, in the agreed order (spec §5.2 has the design notes):**
+**Next up, in priority order:**
 
-1. **Calendar feature** — its own architecture decision (year-chunked data files, persisted
-   weekly/monthly tables with dates); start simple, both a cross-asset homepage view and a
-   per-asset drill-down. Design notes: spec §5.2.
-2. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
+1. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
    dashboard is a historical-statistics browser until then.
-3. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
+2. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
    days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic).
-4. **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
+3. **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
    `dashboard/index.html` directly or serving the `dashboard/` folder.
-5. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
-   tries it against a real morning routine.
-6. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
+4. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
+   tries it against a real morning routine. One known nit already flagged: "Normal Day" cells on
+   the calendar are low-contrast, close in appearance to empty/no-data cells (spec §5.2).
+5. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
    days per asset; viewing an arbitrary historical day still needs the full per-day export.
+6. **Session-defined extreme profiles + news-release-timing profiles** — two new profile
+   families the user wants eventually (spec §4.5), not designed in detail yet.
 
 **Noted for later, not actionable now:**
 

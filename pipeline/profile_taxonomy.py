@@ -188,7 +188,7 @@ def main():
 
     summary = summarize(result)
     summary["asset"] = args.asset
-    with open(args.output_json, "w") as f:
+    with open(args.output_json, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, default=str)
 
     print(f"\n=== {args.asset} profile taxonomy summary ===", file=sys.stderr)
