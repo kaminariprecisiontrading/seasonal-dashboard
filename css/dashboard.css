@@ -16,6 +16,15 @@
   --text: #e2e8f0;
   --muted: #64748b;
   --dim: #94a3b8;
+
+  /* Market Profiling tab (js/profiling.js) — .kptp- prefixed accents */
+  --kptp-compression: #2563eb;   /* blue */
+  --kptp-expansion: #e040a0;     /* pink */
+  --kptp-normal: #64748b;        /* muted grey */
+  --kptp-asian: #8b5cf6;
+  --kptp-london: #2563eb;
+  --kptp-ny: #22c55e;
+  --kptp-overlap: #f59e0b;
 }
 
 /* ── Reset ─────────────────────────────────────────────────────────────────── */
@@ -2310,3 +2319,415 @@ tbody td:first-child {
   color: #94a3b8;
   border-color: #334155;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Market Profiling tab (js/profiling.js, js/profiling-charts.js)
+   All classes below are namespaced .kptp- — ported from KPT-Market-Profiling's
+   dashboard/css/dashboard.css, which was seeded from an early ~11KB snapshot
+   of this file. Do not assume its class names still match this file's own —
+   audit before reusing. See docs/MARKET_PROFILING_INTEGRATION.md §5.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tab header row ────────────────────────────────────────────────────── */
+.kptp-tab-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.kptp-tab-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.kptp-tab-sub {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.kptp-calendar-link-btn {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-combined);
+  text-decoration: none;
+  border: 1px solid rgba(34,197,94,0.3);
+  background: rgba(34,197,94,0.07);
+  padding: 6px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.kptp-calendar-link-btn:hover { background: rgba(34,197,94,0.15); }
+
+/* ── Section labels / notes ────────────────────────────────────────────── */
+.kptp-section-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 40px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.kptp-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.kptp-section-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+
+/* ── Lookback dial ──────────────────────────────────────────────────────── */
+.kptp-dial {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.kptp-dial button {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: var(--surface);
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.kptp-dial button:last-child { border-right: none; }
+.kptp-dial button:hover { background: var(--surface2); color: var(--text); }
+.kptp-dial button.active { background: rgba(34,197,94,0.1); color: var(--bull); }
+
+/* ── Stat tiles ─────────────────────────────────────────────────────────── */
+.kptp-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.kptp-stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.kptp-stat-tile .kptp-stat-label {
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.kptp-stat-tile .kptp-stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.kptp-stat-tile .kptp-stat-value .kptp-unit {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 3px;
+  letter-spacing: 0;
+}
+
+/* ── Panel cards ────────────────────────────────────────────────────────── */
+.kptp-panel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+.kptp-panel-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 14px;
+}
+.kptp-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 720px) { .kptp-two-col { grid-template-columns: 1fr; } }
+
+/* ── Range distribution (percentile strip) ─────────────────────────────── */
+.kptp-range-strip-wrap { margin-bottom: 6px; }
+.kptp-range-strip-svg { width: 100%; height: 60px; display: block; }
+.kptp-range-strip-caption {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+.kptp-range-strip-caption .kptp-median-note { color: var(--text); }
+
+/* ── Time-of-extreme heatmap strip ─────────────────────────────────────── */
+.kptp-clock-svg { width: 100%; height: 70px; display: block; }
+.kptp-clock-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--dim);
+  margin-top: 8px;
+}
+.kptp-clock-caption b { color: var(--text); }
+
+.kptp-session-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 9.5px;
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+.kptp-session-legend .kptp-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+
+.kptp-concentration-badge {
+  display: inline-block;
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+.kptp-conc-low  { background: rgba(239,68,68,0.12); color: var(--bear); border: 1px solid rgba(239,68,68,0.25); }
+.kptp-conc-mid  { background: rgba(245,158,11,0.1); color: var(--chop); border: 1px solid rgba(245,158,11,0.25); }
+.kptp-conc-high { background: rgba(34,197,94,0.12); color: var(--bull); border: 1px solid rgba(34,197,94,0.25); }
+
+/* ── Bar charts (weekday / week-of-month / profile distribution) ─────────── */
+.kptp-bar-chart-svg { width: 100%; height: 160px; display: block; }
+
+/* ── Profile grid ───────────────────────────────────────────────────────── */
+.kptp-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.kptp-profile-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--card-accent, var(--muted));
+  display: block;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.kptp-profile-card:hover { background: var(--surface); border-color: var(--card-accent, var(--muted)); }
+.kptp-profile-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.kptp-profile-icon { flex-shrink: 0; opacity: 0.9; }
+.kptp-profile-card .kptp-profile-name { font-size: 12px; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+.kptp-profile-card .kptp-profile-pct { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #fff; letter-spacing: 1px; }
+.kptp-profile-card-link {
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--card-accent, var(--muted));
+  margin-top: 10px;
+}
+.kptp-profile-card .kptp-profile-meta { font-size: 10px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+/* ── Profile detail page (profiling-profiles/detail.html) ─────────────────── */
+.kptp-profile-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-left-color: var(--card-accent, var(--accent-combined));
+}
+.kptp-profile-icon-large { flex-shrink: 0; opacity: 0.95; }
+.kptp-profile-detail-text { font-size: 12px; color: var(--dim); line-height: 1.7; }
+.kptp-profile-detail-text b { color: var(--text); }
+.kptp-profile-detail-axes {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 10.5px;
+  color: var(--muted);
+}
+.kptp-profile-detail-axes b { color: var(--text); }
+.kptp-candlestick-svg { width: 100%; height: 240px; display: block; }
+.kptp-profile-nav-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.kptp-profile-nav-pill {
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+  color: var(--dim);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.15s;
+}
+.kptp-profile-nav-pill:hover { border-color: var(--pill-accent, var(--muted)); color: var(--text); }
+.kptp-profile-nav-pill.active { border-color: var(--pill-accent, var(--accent-combined)); color: var(--text); background: var(--surface2); }
+
+/* ── Calendar (profiling-calendar/) ────────────────────────────────────────── */
+.kptp-calendar-controls { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.kptp-calendar-nav-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.kptp-calendar-nav-btn:hover { border-color: var(--accent-combined); color: var(--text); }
+.kptp-calendar-select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.kptp-calendar-label { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1.5px; color: var(--muted); margin-left: 8px; }
+.kptp-calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 14px; }
+.kptp-calendar-header-cell { font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); text-align: center; padding-bottom: 4px; }
+.kptp-calendar-cell {
+  aspect-ratio: 1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--dim);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.kptp-calendar-cell.has-data {
+  cursor: pointer;
+  background: color-mix(in srgb, var(--cell-color) 18%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--cell-color) 45%, var(--border));
+  color: var(--text);
+  transition: all 0.15s;
+}
+.kptp-calendar-cell.has-data:hover { background: color-mix(in srgb, var(--cell-color) 32%, var(--surface)); border-color: var(--cell-color); }
+.kptp-calendar-cell.is-gap { background: repeating-linear-gradient(45deg, var(--surface), var(--surface) 4px, var(--surface2) 4px, var(--surface2) 8px); color: var(--muted); }
+.kptp-calendar-cell.no-data { opacity: 0.25; }
+.kptp-calendar-profile-legend { margin-bottom: 20px; }
+.kptp-calendar-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(30,36,48,0.6);
+}
+.kptp-calendar-detail-row b { color: var(--text); font-weight: 500; }
+.kptp-calendar-detail-row:last-child { border-bottom: none; }
+.kptp-muted-inline { color: var(--muted); font-size: 10px; }
+.kptp-calendar-context-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+.kptp-profile-link { display: inline-flex; align-items: center; gap: 6px; color: var(--card-accent, var(--text)); text-decoration: none; font-weight: 500; }
+.kptp-profile-link:hover { text-decoration: underline; }
+.kptp-profile-link svg { width: 18px; height: 18px; }
+
+/* ── Tooltip + glossary ─────────────────────────────────────────────────── */
+.kptp-tooltip {
+  position: fixed;
+  z-index: 1000;
+  display: none;
+  max-width: 260px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 11px;
+  font-size: 11px;
+  color: var(--dim);
+  line-height: 1.5;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  pointer-events: none;
+}
+.kptp-tooltip b { color: #fff; text-transform: capitalize; }
+.kptp-glossary-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1;
+  cursor: help;
+  margin-left: 4px;
+  vertical-align: 2px;
+  transition: all 0.15s;
+}
+.kptp-glossary-icon:hover, .kptp-glossary-icon:focus { border-color: var(--accent-combined); color: var(--accent-combined); outline: none; }
+.kptp-hoverable { cursor: pointer; }
+.kptp-hoverable:hover { opacity: 1 !important; filter: brightness(1.25); }
+
+/* ── Mode markers on range strips ──────────────────────────────────────── */
+.kptp-mode-note {
+  font-size: 9.5px;
+  color: var(--muted);
+  margin-top: 6px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.kptp-mode-note b { color: var(--text); font-weight: 500; }
+
+/* ── Panel-scoped footnote (mirrors .footnote without reusing the class) ─── */
+.kptp-footnote {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 36px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.kptp-footnote .copyright { display: block; margin-top: 8px; color: var(--dim); letter-spacing: 0.5px; }
+
+/* ── Back-link (profiling-calendar/ & profiling-profiles/ standalone pages) ── */
+.kptp-back-link {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 18px;
+}
+.kptp-back-link:hover { color: var(--dim); }

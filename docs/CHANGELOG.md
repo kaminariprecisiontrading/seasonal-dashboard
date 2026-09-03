@@ -2,6 +2,50 @@
 
 ---
 
+## v1.7 — September 2026
+**Market Profiling — 8th tab (Profiling), GBPUSD/EURUSD, ported from KPT-Market-Profiling**
+
+### Summary
+
+Adds a "Profiling" tab — statistical range distributions, time-of-extreme clustering, and a rule-based 8-profile daily taxonomy — ported from the sibling `KPT-Market-Profiling` repo onto the 4 pages with real ported data: `gbp.html`, `fx-gbpusd.html`, `eur.html`, `fx-eurusd.html`. Unlike every prior shared-tab addition, this one is **not** loaded on all 97 pages — only where Profiling data exists, per `docs/MARKET_PROFILING_INTEGRATION.md`. `KPT-Market-Profiling` becomes a pure data-pipeline repo going forward; this repo is the one deployed product. Data is 2019-vintage (matching the source pipeline's current output) — refreshed via the new sync script whenever fresher CSVs are uploaded and re-piped.
+
+### New: `js/profiling.js`, `js/profiling-charts.js`
+
+- `profiling-charts.js` — page-independent shared library: `KPTPTooltip` (hover tooltip), `KPTPCharts` (vanilla-SVG range strips, time-of-extreme heatmap, bar charts, candlesticks — no charting library), a plain-language glossary, and the 8-profile taxonomy's colour/icon/rule/why/timing metadata. No `ASSET_CONFIG` dependency — also loaded directly by the two new standalone pages below.
+- `profiling.js` — resolves `ASSET_CONFIG.id` to a Profiling data key (`gbp`/`fx-gbpusd` → `gbpusd`, `eur`/`fx-eurusd` → `eurusd`; early-returns/renders nothing if unmapped), builds `<section data-kpt-panel="profiling">` and all inner containers from scratch (the source's `dashboard.js` assumed a static HTML shell with ~15 fixed-ID containers — doesn't work inside one panel among seven other tabs), and reads from `window.KPT_PROFILING.<key>`.
+- `ui.js` — added `{ id: 'profiling', label: 'Profiling' }` to the `tabs` array (one line; existing filter logic handles pages without the panel automatically).
+
+### New: `data/profiling/` + `scripts/sync_profiling_data.js`
+
+`scripts/sync_profiling_data.js` reads `../KPT-Market-Profiling/dashboard/data/` and regenerates `data/profiling/{gbpusd,eurusd}.js`, `data/profiling/profile-examples/*.js`, `data/profiling/calendar/*/`, and `data/profiling/manifest.js` (per-asset freshness). Not a one-time port — re-run any time the pipeline is re-run. The source's asset/profile-example bundles declare a bare `const X = {...}` (a lexical binding, invisible to `window`); the sync script rewrites these onto `window.KPT_PROFILING.<key>` / `window.KPT_PROFILING_EXAMPLES.<key>` so `profiling.js` can resolve them by a runtime-constructed key — the same fix the source's own calendar loader already needed for its per-year files (calendar data is copied verbatim; it was already namespaced correctly).
+
+### New: `profiling-calendar/index.html`, `profiling-profiles/detail.html`
+
+Linked from inside the Profiling tab panel, not sub-tabs (mirrors how `assets/` sits outside the tab system).
+
+- `profiling-calendar/index.html` (+ `js/profiling-calendar.js`) — month-grid day browser. `?a=GBPUSD` shows that asset; no param shows a cross-asset "all assets on this day" home view. One merged controller (the source split this into three files; merged here since both views share one route).
+- `profiling-profiles/detail.html` (+ `js/profiling-profile-detail.js`) — one templated page for all 8 profiles (`?p=<slug>&a=<assetkey>`), showing rule/why/timing copy, cross-asset stats, and a real illustrative M15 candlestick example day per asset.
+
+### `css/dashboard.css` — `.kptp-` namespace
+
+The source `KPT-Market-Profiling/dashboard/css/dashboard.css` was seeded from an early, much smaller snapshot of this file — several of its class names (`.panel`, `.section-label`, `.header`, `.sub`, `.divider`, `.footnote`, `.dial`, `.mode-note`) now collide with this file's own, unrelated, already-load-bearing classes. Every class the Profiling feature introduces is prefixed `.kptp-` (blanket rule, not per-class judgment). Seven new CSS variables added to `:root` (`--kptp-compression`, `--kptp-expansion`, `--kptp-normal`, `--kptp-asian`, `--kptp-london`, `--kptp-ny`, `--kptp-overlap`); the 11 base tokens are reused directly since they're byte-for-byte identical between both repos.
+
+### Verified
+
+All 4 in-scope pages render the Profiling tab (stat tiles, 4 range-distribution charts, 2 time-of-extreme heatmaps, 8 profile cards) with a clean console; 3 out-of-scope pages (`aud.html`, `xau.html`, `fx-audusd.html`) correctly show no Profiling tab with no regressions; `profiling-calendar/index.html` (both modes) and `profiling-profiles/detail.html` render and are interactive (day click, candlestick charts) with a clean console; existing `kpt-sub-{id}` localStorage persistence confirmed unaffected by the `ui.js` tabs-array change.
+
+### Files Changed
+- `js/profiling.js`, `js/profiling-charts.js`, `js/profiling-calendar.js`, `js/profiling-profile-detail.js` — created
+- `js/ui.js` — Profiling tab added to `tabs` array
+- `css/dashboard.css` — 7 new CSS variables + full `.kptp-` styles block added
+- `scripts/sync_profiling_data.js` — created
+- `data/profiling/` — created (gbpusd.js, eurusd.js, profile-examples/, calendar/, manifest.js)
+- `profiling-calendar/index.html`, `profiling-profiles/detail.html` — created
+- `assets/gbp.html`, `assets/fx-gbpusd.html`, `assets/eur.html`, `assets/fx-eurusd.html` — 4 script tags added before `ui.js`
+- `docs/ARCHITECTURE.md`, `docs/CONTRIBUTING.md`, `scripts/README.md`, `docs/MARKET_PROFILING_INTEGRATION.md` — updated
+
+---
+
 ## v1.6.2 — June 2026
 **Deployment & Hosting — Netlify migration, Netlify bug fixes**
 

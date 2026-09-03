@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — Kaminari Precision Trading</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div id="kptp-profile-detail-root">
+<a href="../index.html" class="kptp-back-link">&larr; All Assets</a>
+
+<div class="header kptp-profile-detail-header">
+  <div id="kptp-profile-icon-large" class="kptp-profile-icon-large"></div>
+  <div>
+    <h1 id="kptp-profile-title">Profile</h1>
+    <div class="sub">Rule-based daily profile &middot; Market Profiling</div>
+  </div>
+</div>
+
+<div class="kptp-two-col">
+  <div class="kptp-panel-card">
+    <div class="kptp-panel-title">Classification Rule</div>
+    <div class="kptp-profile-detail-text" id="kptp-profile-rule"></div>
+    <div class="kptp-profile-detail-axes">
+      <span>Range regime: <b id="kptp-profile-axis-range"></b></span>
+      <span>Closing shape<span class="kptp-glossary-icon" data-glossary-key="closing_strength">?</span>: <b id="kptp-profile-axis-shape"></b></span>
+    </div>
+  </div>
+  <div class="kptp-panel-card">
+    <div class="kptp-panel-title">Why This Name</div>
+    <div class="kptp-profile-detail-text" id="kptp-profile-why"></div>
+  </div>
+</div>
+
+<div class="kptp-panel-card">
+  <div class="kptp-panel-title">Timing Signature<span class="kptp-glossary-icon" data-glossary-key="extreme_timing">?</span></div>
+  <div class="kptp-profile-detail-text" id="kptp-profile-timing"></div>
+</div>
+
+<div class="kptp-section-label">This Profile, By Asset</div>
+<div class="kptp-section-note">How often this profile occurs, its average range, and its most common timing tag — full history, across all Profiling assets.</div>
+<div class="kptp-stat-grid" id="kptp-cross-asset-stats"></div>
+
+<div class="kptp-section-label">See It In Action</div>
+<div class="kptp-section-note">A real historical day for each asset, picked as a typical example of this profile (close to the profile's own average range, not a cherry-picked extreme) — so the shape described above is recognizable on an actual chart.</div>
+<div id="kptp-example-charts"></div>
+
+<div class="kptp-section-label">All Profiles</div>
+<div class="kptp-profile-nav-pills" id="kptp-all-profiles-nav"></div>
+
+<div class="kptp-footnote">
+  Profile definitions and naming rationale: KPT-Market-Profiling's market-profiling-system-spec.md &sect;4. Historical data: TradersWay MT5 export.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">&copy; 2026 Kaminari Precision Trading. All rights reserved.</span>
+</div>
+</div>
+
+<script src="../data/profiling/gbpusd.js"></script>
+<script src="../data/profiling/eurusd.js"></script>
+<script src="../data/profiling/profile-examples/gbpusd.js"></script>
+<script src="../data/profiling/profile-examples/eurusd.js"></script>
+<script src="../js/profiling-charts.js"></script>
+<script src="../js/profiling-profile-detail.js"></script>
+</body>
+</html>

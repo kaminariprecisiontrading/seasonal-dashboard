@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profiling Calendar — Kaminari Precision Trading</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div id="kptp-calendar-root">
+<a href="../index.html" class="kptp-back-link">&larr; All Assets</a>
+<div class="header">
+  <h1><span id="kptp-calendar-title">Calendar</span></h1>
+  <div class="sub" id="kptp-calendar-sub"></div>
+</div>
+<div id="kptp-back-links" style="margin-bottom:20px;"></div>
+
+<div class="kptp-calendar-controls">
+  <button id="kptp-cal-prev" class="kptp-calendar-nav-btn" aria-label="Previous month">&larr;</button>
+  <select id="kptp-cal-month-select" class="kptp-calendar-select"></select>
+  <select id="kptp-cal-year-select" class="kptp-calendar-select"></select>
+  <button id="kptp-cal-next" class="kptp-calendar-nav-btn" aria-label="Next month">&rarr;</button>
+  <span class="kptp-calendar-label" id="kptp-cal-label"></span>
+</div>
+
+<div id="kptp-calendar-grid"></div>
+
+<div class="kptp-session-legend kptp-calendar-profile-legend" id="kptp-calendar-legend"></div>
+
+<div class="kptp-panel-card" id="kptp-calendar-detail" style="display:none;"></div>
+
+<div class="kptp-footnote">
+  Historical data: TradersWay MT5 export. Statistics are probability-weighted historical tendencies, not guaranteed outcomes.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">&copy; 2026 Kaminari Precision Trading. All rights reserved.</span>
+</div>
+</div>
+
+<script src="../js/profiling-charts.js"></script>
+<script src="../js/profiling-calendar.js"></script>
+</body>
+</html>

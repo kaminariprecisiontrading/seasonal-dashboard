@@ -244,6 +244,7 @@
     { id: 'backtest',  label: 'History'   },
     { id: 'intraday',  label: 'Sessions'  },
     { id: 'macro',     label: 'Macro'     },
+    { id: 'profiling', label: 'Profiling' },
     { id: 'analysis',  label: 'Analysis'  }
   ];
 

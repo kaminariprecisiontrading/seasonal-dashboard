@@ -146,6 +146,24 @@ To add a new tab to all 97 pages:
 7. Update `ARCHITECTURE.md` load order table
 8. Update `CHANGELOG.md` with the new version entry
 
+**Exception — tabs that don't apply to all 97 pages:** the Profiling tab (`js/profiling.js`, v1.7) only exists where ported Market Profiling data exists (currently `gbp.html`, `fx-gbpusd.html`, `eur.html`, `fx-eurusd.html`). For a tab like this, skip step 4's all-97 patch script — just add the script tags directly to the in-scope pages — and keep the tab's own JS module early-returning (rendering nothing) when the current page's `ASSET_CONFIG.id` has no data mapped, so it's harmless if a page is added to the list by mistake. See `docs/MARKET_PROFILING_INTEGRATION.md` and `ARCHITECTURE.md`'s Profiling Panel section for the full pattern.
+
+---
+
+## Adding a New Profiling Asset (Phase B)
+
+Once a new asset's MT5 CSV has been cleaned and run through `KPT-Market-Profiling`'s pipeline (`clean_mt5_csv.py` → `stats_engine.py` → `profile_taxonomy.py` → `build_dashboard_data.py`/`export_profile_examples.py`/`export_calendar_data.py`):
+
+1. Add the asset's lowercase key (e.g. `"audusd"`) to the `ASSETS` array in `scripts/sync_profiling_data.js`.
+2. Run `node scripts/sync_profiling_data.js` from `seasonal-dashboard/` root — regenerates `data/profiling/<key>.js`, `data/profiling/profile-examples/<key>.js`, `data/profiling/calendar/<key>/`, and `data/profiling/manifest.js`.
+3. Add the asset's id(s) to `js/profiling.js`'s `ASSET_MAP` (e.g. `{ aud: 'audusd', 'fx-audusd': 'audusd' }`) — decide which seasonal-dashboard page(s) should show this Profiling data using the same reasoning as `docs/MARKET_PROFILING_INTEGRATION.md` §2 (any page displaying related data for that currency/instrument, not just the most technically "correct" one).
+4. Add the corresponding reverse mapping to `js/profiling-calendar.js`'s `ASSET_PAGES` (for the "back to dashboard" links on the calendar page).
+5. Add `{ key: '<key>', label: '<LABEL>' }` to `js/profiling-profile-detail.js`'s `ASSETS` array, and add its two `<script>` tags (`data/profiling/<key>.js`, `data/profiling/profile-examples/<key>.js`) to `profiling-profiles/detail.html`.
+6. Add the 4 Profiling script tags (`data/profiling/manifest.js`, `data/profiling/<key>.js`, `js/profiling-charts.js`, `js/profiling.js`) before `ui.js` on each page identified in step 3.
+7. Update the attribution/footnote text if the new asset needs asset-specific sourcing notes.
+8. Test per the shared-JS-file checklist below, plus a manual check of `profiling-calendar/index.html` (with and without `?a=`) and a couple of `profiling-profiles/detail.html?p=<slug>&a=<key>` links.
+9. Update `CHANGELOG.md` and `docs/MARKET_PROFILING_INTEGRATION.md`'s rollout notes.
+
 ---
 
 ## Conventions
