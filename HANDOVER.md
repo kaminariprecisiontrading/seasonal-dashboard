@@ -243,27 +243,31 @@ candlestick chart per asset, stylized shape icon, cross-profile nav) linked from
 card, and a calendar feature (per-asset month-grid + cross-asset homepage view, both colored by
 profile, click any day for its full day/week/month context).
 
+**Merge into the Kaminari Seasonals Dashboard is now the plan for deployment** (superseding the
+old "push this dashboard to Netlify standalone" item) — see
+`../seasonal-dashboard/docs/MARKET_PROFILING_INTEGRATION.md` for the full execution brief. Repo
+roles going forward: **this repo becomes the data pipeline** (Python scripts stay here, and this
+remains the fast local testbed for pipeline/taxonomy changes without risking the live site); the
+standalone `dashboard/` here is a staging area to build/verify against, not the long-term
+deliverable — `seasonal-dashboard` is. That work happens in its own Claude Code session, anchored
+in that repo, per the user's explicit preference — not carried over from this session.
+
 **Next up, in priority order:**
 
 1. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
    dashboard is a historical-statistics browser until then.
 2. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
    days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic).
-3. **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
-   `dashboard/index.html` directly or serving the `dashboard/` folder.
-4. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
+3. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
    tries it against a real morning routine. One known nit already flagged: "Normal Day" cells on
    the calendar are low-contrast, close in appearance to empty/no-data cells (spec §5.2).
-5. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
+4. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
    days per asset; viewing an arbitrary historical day still needs the full per-day export.
-6. **Session-defined extreme profiles + news-release-timing profiles** — two new profile
+5. **Session-defined extreme profiles + news-release-timing profiles** — two new profile
    families the user wants eventually (spec §4.5), not designed in detail yet.
 
 **Noted for later, not actionable now:**
 
-- A possible future merge with the sibling Seasonals Dashboard (Seasonals = top-level macro
-  view, this dashboard = zoomed-in daily/weekly view) — kept in mind for navigation/data-format
-  decisions so a merge stays a consolidation rather than a rewrite. See spec §5.0b.
 - Two more profile families the user wants eventually: **session-defined extreme profiles**
   (Asian-only / Asian-London / Asian-New York / London-only / London-New York / New York-only,
   by which session(s) contained the day's high and low) and **news-release-timing profiles**
