@@ -1,0 +1,240 @@
+# Kaminari Market Profiling & Statistics Dashboard — Project Spec
+### v1.0 draft — agreed scope, architecture, and phased roadmap
+
+---
+
+## 1. Purpose
+
+A statistical decision-support system, built on the same static-dashboard pattern as the
+[Kaminari Seasonals Dashboard](https://kpt-seasonals.netlify.app/), that answers three questions
+from historical OHLC data:
+
+1. **When** does a given asset's daily/weekly/monthly high and low statistically tend to form?
+2. **How big** is the typical daily/weekly/monthly range, and how does today/this week compare to history?
+3. **What "shape"** is the current day/week most likely following, based on a rule-based taxonomy of
+   recurring, self-defined market profiles?
+
+The system is a **probability/confidence tool**, not a certainty machine. Every output should be framed
+as "highest statistically probable window/level," never as a guaranteed outcome. This framing applies to
+UI copy, documentation, and any trading logic built on top of it.
+
+Initial asset scope: **GBPUSD (GU) and EURUSD (EU)**. Architecture must generalize to JPY pairs,
+crypto, and stocks later without a rebuild (see §8).
+
+---
+
+## 2. Data Pipeline
+
+### 2.1 Source
+MT5 exports from TradersWay. Exact column layout to be confirmed against the first real sample CSV —
+do not assume a fixed schema until then.
+
+### 2.2 Timezone normalization (critical — done once, correctly, at ingest)
+- TradersWay/MT5 server time is **GMT+3**, and shifts in line with **US (New York) daylight saving
+  transitions** — not UK/EU DST dates. This means the broker's GMT offset relative to UK time is not
+  constant year-round (it steps between roughly GMT+2 and GMT+3-equivalent depending on which side of
+  the US DST boundary you're on, since UK and US DST changeover dates don't align).
+- **All timestamps are converted to UTC on ingest** and stored in UTC as the canonical value.
+- Session labels (Asian / London / New York / overlaps) are **derived columns**, computed from the UTC
+  timestamp against the correct current session boundaries for that calendar date — not hardcoded
+  offsets — so the DST step is handled once, centrally, in the pipeline.
+- "Trading day" boundary: to be finalized once we see real data, but default assumption is a
+  **midnight UTC open**, consistent with the common institutional/ICT convention, unless testing shows
+  broker-day (terminal) boundaries produce meaningfully different — and more useful — results.
+
+### 2.3 Cleaned output columns (v1)
+| Column | Notes |
+|---|---|
+| `date` | Trading day (UTC-anchored) |
+| `open`, `high`, `low`, `close` | Raw prices |
+| `daily_range_pips` | `(high - low)` converted to pips, asset-aware (see §2.5) |
+| `open_time`, `high_time`, `low_time`, `close_time` | UTC, plus derived session tag |
+| `is_week_high`, `is_week_low` | Boolean, **retrospective** — true only once the week has closed |
+| `is_month_high`, `is_month_low` | Boolean, retrospective |
+| `is_year_high`, `is_year_low` | Boolean, retrospective |
+| `week_high_so_far`, `week_low_so_far` | Running/live version for use during an in-progress week |
+| `month_high_so_far`, `month_low_so_far` | Running/live version |
+
+Retrospective flags and "so-far" running values are kept as **separate columns** — they serve different
+purposes (backtesting/labeling vs. live dashboard state) and conflating them was identified as a
+likely source of subtle bugs.
+
+### 2.4 News/event annotation layer
+- A separate, manually-curated table (`event_date`, `event_time_utc`, `category`, `description`,
+  `source_url`), kept deliberately simple to fill in.
+- Not auto-scraped. ForexFactory and Investing.com calendars are the natural reference sources for
+  scheduled macro events, but their terms of use generally don't permit direct scraping — proper
+  calendar APIs/feeds will be evaluated when this phase starts (§8).
+- For unscheduled/geopolitical shocks (wars, disruptive-tech news, etc.), this stays a manual entry —
+  no reliable automated classifier exists for "this headline moved this candle."
+- Out of scope for v1 pipeline build; the schema is defined now so the column exists to join against later.
+
+### 2.5 Asset-aware pip calculation
+- v1: standard 4/5-decimal FX pairs (GU, EU) — `1 pip = 0.0001`.
+- Architecture note: pip/point size, and eventually "typical unit of measure" (pips vs. points vs. %),
+  should be a **per-asset config value**, not hardcoded — so adding JPY pairs (`0.01`), crypto, or
+  stocks later is a config-table entry, not a code change.
+
+---
+
+## 3. Statistical Methodology
+
+### 3.1 Time-of-extreme statistics
+Clock time is circular (wraps at midnight), so naive mean/median produce nonsense when extremes
+cluster across the midnight boundary. Approach:
+- **Mode first** — bucket high/low times into fixed intervals (e.g., 15/30-min bins) and report the
+  modal bucket per session. This is the most intuitive measure and maps directly to a histogram/heatmap.
+- **Circular mean and circular median** (treating time-of-day as an angle on a 24h circle) as
+  supplementary measures, alongside a **concentration measure** (circular variance / von Mises
+  concentration parameter) so the dashboard can show not just *when* the high/low tends to form, but
+  *how reliable* that clustering actually is. A tight, high-confidence cluster and a wide, noisy spread
+  should look visibly different on the dashboard, not be flattened into a single number.
+
+### 3.2 Range statistics (daily / weekly / monthly)
+- Computed at **multiple lookback windows simultaneously** (e.g., full history, 5y, 1y, 3mo) rather
+  than a single fixed period, exposed as a **visible dial/selector on the dashboard** — this was
+  flagged as necessary to avoid silently mixing outdated regimes with current conditions, and confirmed
+  as a required feature rather than a nice-to-have.
+- Both **fixed-multiple** (e.g., "1.3x trailing ADR") and **percentile-based** (e.g., "top 20th
+  percentile of trailing-N-day ranges") threshold methods computed side by side, so thresholds can be
+  empirically tuned per asset rather than borrowed from generic retail-education defaults. Percentile-based
+  is the preferred default given it self-calibrates; fixed-multiple is kept as a comparison/sanity-check.
+- ADR/ATR-style window lengths (5, 14, 20-day, etc.) are configurable, not hardcoded — the "right"
+  window is a bias-variance tradeoff (shorter = more reactive but noisier; longer = smoother but
+  slower to reflect real regime change), not a fixed truth, and should be tunable per how the data
+  actually looks for GU/EU once we have it.
+
+### 3.3 Framing discipline
+Every statistical output surfaced to the UI is a **probability-weighted window or level**, with its
+supporting sample size and concentration/confidence measure shown alongside it — never a bare number
+presented as a guaranteed target.
+
+---
+
+## 4. Regime / Profile Taxonomy
+
+- **Rule-based first.** Explicit, human-readable, auditable rules (e.g., range percentile + directional
+  persistence + time-of-extreme location) define each profile. This mirrors the "reason before coding"
+  approach already used for indicator development.
+- **Own naming convention**, not ICT terminology — to be defined once we see how many distinct,
+  statistically-distinguishable shapes actually emerge from real GU/EU data (starting candidates:
+  one-sided/trend day, slow-ranging/compression day, volatile/choppy day, early-extreme day,
+  late-extreme day — final taxonomy TBD from data, not assumed upfront).
+- Applied **retrospectively** to build a labeled historical dataset (for backtesting "how often did
+  profile X actually play out"), and **live** to the current, in-progress day/week (showing which
+  profile(s) are still consistent with price action so far, and which have been invalidated).
+- **ML/clustering (e.g., k-means, HMM on range/directionality/time-of-extreme features) is a Phase 2+
+  validation step** — used to check whether the rule-based labels agree with what an unsupervised
+  method finds, not as the initial engine.
+
+---
+
+## 5. Dashboard
+
+- **Static-site architecture**, following the existing Seasonals Dashboard pattern (Netlify-hosted,
+  rebuilt from a data layer after each CSV upload) — no live backend/database in v1, per the stated
+  preference for free, low-maintenance tooling over an ambitious build.
+- Core views:
+  - Time-of-extreme histogram/heatmap, session-colored, with the mode called out and a
+    confidence/concentration indicator.
+  - Range-distribution chart (daily/weekly/monthly) with the current in-progress period's range
+    plotted live against the historical distribution.
+  - Lookback-window dial (§3.2) affecting all of the above.
+  - Profile-classification panel: current best-match profile(s) for today/this week, with the
+    supporting stats and an explicit "invalidated if..." condition.
+- **Screenshot-in-chart analysis is a later, secondary feature** (§8) — a qualitative sanity-check
+  layer for quick reads or less-technical use, explicitly **not** the source of truth. CSV-derived data
+  always takes priority.
+
+### 5.1 OHLC chart viewer (added after initial dashboard scoping)
+When viewing a specific day (e.g., drilling into a day flagged as a particular profile, or a historical
+day surfaced by the stats), the dashboard should let the user view that day's actual price action as a
+**candlestick or line chart**, not just the summary stats — seeing the shape of the day is often what
+confirms or contradicts a profile classification at a glance.
+
+Architecture implication this creates, noted here so it's designed for rather than retrofitted:
+- The daily-aggregate CSV (§2.3) only holds one OHLC bar *per day* — it has no intraday shape to plot.
+  Charting a single day requires the **intraday bars for that specific day**, sourced from the original
+  M1 export.
+- Shipping the full M1 history to a static site is impractical (the 2000–2019 GBPUSD M1 file alone is
+  ~7.1M rows / ~435MB). The pipeline should instead generate **small, per-day chart-ready files**
+  (e.g., one lightweight JSON per trading day, M1 resampled to a coarser granularity such as M5/M15 for
+  display) as an additional Phase-1-pipeline output, loaded by the dashboard on demand only for the
+  day(s) being viewed — not bundled into the main stats payload.
+- This is a natural extension of the existing cleaning pipeline (`clean_mt5_csv.py` already parses and
+  UTC-normalizes the M1 data before aggregating it away) rather than a separate system.
+
+---
+
+## 6. Accuracy Tracking / Feedback Loop
+
+- Each day's/week's predicted profile + predicted high/low window is logged before the outcome is known.
+- End-of-day (or end-of-week) CSV update is compared against the logged prediction to score accuracy.
+- Over time this becomes the evidence base for refining rule thresholds — and eventually for deciding
+  whether specific rules are actually adding predictive value or just noise.
+
+---
+
+## 7. Future: Migration to a Live Database
+
+Not needed for v1 — flagged here so the decision is easy to make later without re-architecting from
+scratch.
+
+**Trigger conditions to consider migrating:**
+- Static rebuild-per-CSV-upload becomes too slow or manual as history grows.
+- A need for true real-time (intraday, streaming) updates rather than end-of-day/end-of-week CSV batches.
+- Multi-asset scaling makes a flat-file/static-site data layer unwieldy.
+- Wanting the prediction-logging/accuracy-tracking loop (§6) to run automatically instead of manually.
+
+**Migration path (when the time comes):**
+1. Keep the cleaned-CSV schema (§2.3) as the canonical data contract — this means the ingest/cleaning
+   logic barely changes; only the *storage* layer changes.
+2. Move to a free-tier managed database (e.g., Supabase/Postgres or similar) that keeps hosting costs
+   at zero or near-zero for this scale of data.
+3. Rebuild the static dashboard's data-fetch layer to query the database instead of reading pre-built
+   JSON/CSV bundles — the frontend/visualization layer itself needs minimal changes if the data
+   contract (column names/types) stays stable.
+4. Add a lightweight ingest job (scheduled function or manual-trigger script) that replaces "re-run the
+   static build after CSV upload" with "upload CSV → auto-parse → auto-insert."
+5. This is the point where live/automated prediction-logging (§6) and, later, a live economic-calendar
+   feed (§2.4) become practical to fully automate.
+
+This is explicitly deferred — v1 optimizes for **free, easy-to-build-and-maintain, low time
+investment**, not for scalability headroom that isn't needed yet.
+
+---
+
+## 8. Multi-Asset & Future Feature Roadmap (not built in v1)
+
+- **Asset expansion:** JPY pairs, crypto, stocks — enabled by the per-asset pip/unit config (§2.5),
+  built when the first non-GU/EU CSV is provided.
+- **Economic calendar integration:** evaluate free/paid calendar APIs (not scraping ForexFactory/
+  Investing.com directly) once this phase is prioritized.
+- **News/geopolitical annotation layer:** manual, curated, kept simple — reliable sourcing
+  recommendations to be provided when this phase starts.
+- **Screenshot-based chart analysis:** secondary/qualitative feature for quick reads; never
+  authoritative over CSV-derived stats.
+- **ML-assisted regime clustering:** validation layer against the rule-based taxonomy (§4).
+
+---
+
+## 9. Phased Build Order
+
+1. CSV cleaning pipeline + timezone/UTC normalization + core stats engine (time-of-extreme, range
+   distributions, multi-window comparisons).
+2. Rule-based regime/profile taxonomy + retrospective labeling of historical GU/EU data.
+3. Static dashboard visualizing the above (Seasonals-Dashboard pattern).
+4. Live "current day/week" comparison against the model.
+5. Prediction logging + accuracy tracking (§6).
+6. Later: screenshot analysis, news-event correlation, multi-asset expansion, ML validation layer,
+   live-database migration if/when triggered (§7).
+
+---
+
+## 10. Open Items
+
+- **Sample MT5 CSV export** from TradersWay needed to finalize the exact source-column mapping (§2.1)
+  and confirm the trading-day boundary convention (§2.2).
+- Final profile taxonomy names/definitions to be derived from real data in Phase 2, not fixed in advance.
+- ADR/percentile threshold values to be empirically tuned per asset once real GU/EU history is loaded,
+  per the bias-variance discussion in §3.2.
