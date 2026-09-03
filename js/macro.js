@@ -243,7 +243,13 @@
   });
   var countryIds = Object.keys(countryIdSet).join(',');
 
-  /* ─── Build Investing.com embed URL ─────────────────────────────────── */
+  /* ─── Build Investing.com embed URL ───────────────────────────────────
+   * Currently unused below — sslecal2.investing.com now returns 403 with
+   * X-Frame-Options: sameorigin for third-party embeds (confirmed on the
+   * live deployed domain, a server-side change on their end). Kept
+   * computed here so the iframe can be restored in one line if they ever
+   * re-open embedding — see the fallback notice further down.
+   */
   var embedUrl = 'https://sslecal2.investing.com' +
     '?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous' +
     '&features=datepicker,timezone,filters' +
@@ -301,7 +307,7 @@
       '<div class="macro-header-left">' +
         '<div class="macro-label">Economic Calendar</div>' +
         '<div class="macro-currencies">' + chipsHtml + '</div>' +
-        '<div class="macro-source">Default: Medium &amp; High · use filter bar to adjust · <em>allow ~30 sec to load</em></div>' +
+        '<div class="macro-source">Embedded calendar currently unavailable (Investing.com-side restriction) — use the links to the right</div>' +
       '</div>' +
       '<div class="macro-links">' +
         '<a class="macro-open-btn" href="' + invUrl + '" target="_blank" rel="noopener">Investing.com ↗</a>' +
@@ -312,9 +318,18 @@
     /* Two-column body */
     '<div class="macro-body">' +
 
-      /* Left: calendar embed */
-      '<div class="macro-embed-outer">' +
-        '<iframe class="macro-iframe" src="' + embedUrl + '" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>' +
+      /* Left: calendar embed — Investing.com's sslecal2 widget now returns
+         HTTP 403 with X-Frame-Options: sameorigin for third-party embeds
+         (confirmed on the live deployed domain, not just local testing —
+         a server-side block on their end, nothing this page can override).
+         Fall back to a clear notice + the external links instead of a dead
+         blank iframe. If they ever re-open embedding, restore the iframe
+         line below (kept as a comment) rather than re-deriving embedUrl. */
+      '<div class="macro-embed-fallback">' +
+        '<div class="macro-embed-fallback-icon">&#128197;</div>' +
+        '<div class="macro-embed-fallback-title">Embedded calendar unavailable</div>' +
+        '<div class="macro-embed-fallback-text">Investing.com currently blocks this widget from being embedded on third-party sites. Use the links on the right to view the full calendar directly.</div>' +
+        '<a class="macro-open-btn" href="' + invUrl + '" target="_blank" rel="noopener" style="margin-top:14px;">Open Investing.com calendar &#8599;</a>' +
       '</div>' +
 
       /* Right: collapsible guide */

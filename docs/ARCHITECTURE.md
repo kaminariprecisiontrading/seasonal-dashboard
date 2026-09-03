@@ -348,9 +348,9 @@ https://sslecal2.investing.com
 
 The `filters` feature parameter exposes an in-widget importance toggle bar, so users can switch between High / Medium / Low / All without leaving the dashboard.
 
-**Loading time:** The iframe makes a cold HTTP request to Investing.com on each page load. Expect ~30 seconds on first reveal. The panel header notes this. Within-widget navigation (forward/back week) is fast once loaded.
+**Embedding currently blocked (found v1.7):** `sslecal2.investing.com` now returns **HTTP 403** with `X-Frame-Options: sameorigin` for this embed URL — confirmed on the live deployed domain, not just local testing, so this is a server-side change on Investing.com's end, not something any code here can override. `macro.js` now renders a `.macro-embed-fallback` notice (icon + explanation + an "Open Investing.com calendar ↗" button) in place of the iframe. `embedUrl` is still computed and kept in the source so the iframe line can be restored in one line if Investing.com ever reopens embedding — see the comment directly above the fallback markup in `macro.js`.
 
-**Dark-mode treatment:** The embed uses a white theme. `filter: invert(1) hue-rotate(180deg)` is applied to the iframe — inverts lightness to match the dark dashboard, and the 180° hue rotation corrects colour inversion (red stays red, green stays green).
+**Dark-mode treatment (historical, iframe currently unused):** The embed uses a white theme. `filter: invert(1) hue-rotate(180deg)` is applied to the iframe via `.macro-iframe` — inverts lightness to match the dark dashboard, and the 180° hue rotation corrects colour inversion (red stays red, green stays green). Left in place for when/if the iframe is restored.
 
 **ForexFactory:** Was the original target but blocks embedding via `X-Frame-Options: SAMEORIGIN`. A ForexFactory ↗ external link button is still provided for manual use.
 
@@ -811,7 +811,7 @@ Every asset footnote must use this exact pattern:
 | `<strong>` text in upload guide breaks to new line | `.bt-upload-steps li` uses `position: absolute` for the step number — do not change to `display: grid` or `display: flex`, which turns `<strong>` inline elements into separate grid/flex items |
 | Macro tab missing from tab bar | `macro.js` must load before `ui.js` — the `[data-kpt-panel="macro"]` element must exist when `ui.js` scans the DOM |
 | Macro calendar shows wrong country events | Check `FF_CURRENCIES` map in `macro.js` has the correct asset ID and currency codes; check `CC` map has the correct Investing.com country ID for that currency |
-| Macro embed shows blank white iframe | Investing.com calendar is loading — normal cold-load delay is ~30 seconds; refresh the tab if it never loads |
+| Macro tab shows "Embedded calendar unavailable" | Expected as of v1.7 — Investing.com's `sslecal2.investing.com` embed now returns 403 + `X-Frame-Options: sameorigin` site-wide (confirmed on the live domain). Not a bug in this repo; use the "Open Investing.com calendar ↗" button. If Investing.com ever reopens embedding, restore the iframe line in `js/macro.js` (kept commented/computed nearby). |
 | Macro embed white theme clashing with dark dashboard | `filter: invert(1) hue-rotate(180deg)` on `.macro-iframe` — check it hasn't been removed from `dashboard.css` |
 | Macro guide shows wrong content | Check `ASSET_CLASS` map in `macro.js` has the correct asset ID mapped to one of: fx, rates, indices, metals, energy, ags |
 | New asset has no macro tab | Add the new asset ID to both `FF_CURRENCIES` and `ASSET_CLASS` in `macro.js`; ensure `macro.js` script tag is in the asset HTML before `ui.js` |

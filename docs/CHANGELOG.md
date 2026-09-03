@@ -30,19 +30,28 @@ Linked from inside the Profiling tab panel, not sub-tabs (mirrors how `assets/` 
 
 The source `KPT-Market-Profiling/dashboard/css/dashboard.css` was seeded from an early, much smaller snapshot of this file — several of its class names (`.panel`, `.section-label`, `.header`, `.sub`, `.divider`, `.footnote`, `.dial`, `.mode-note`) now collide with this file's own, unrelated, already-load-bearing classes. Every class the Profiling feature introduces is prefixed `.kptp-` (blanket rule, not per-class judgment). Seven new CSS variables added to `:root` (`--kptp-compression`, `--kptp-expansion`, `--kptp-normal`, `--kptp-asian`, `--kptp-london`, `--kptp-ny`, `--kptp-overlap`); the 11 base tokens are reused directly since they're byte-for-byte identical between both repos.
 
+### Bug fix: broken Profiling link paths (found in user review)
+
+`js/profiling.js`'s "Browse … by date →" link and profile-card links were written without the `../` needed to reach `profiling-calendar/` and `profiling-profiles/` from inside `assets/<page>.html` — the calendar link also pointed at a `asset.html` filename that was never actually created (the real file is `profiling-calendar/index.html?a=…`). Both fixed; re-verified by actually clicking each link end-to-end rather than only navigating to the destination pages directly (the gap that let this ship in the first place).
+
+### Bug fix: Macro tab's Investing.com embed (found in user review, unrelated to Profiling)
+
+Discovered while checking the Macro tab for a related report: `sslecal2.investing.com` now returns **HTTP 403** with `X-Frame-Options: sameorigin` for the calendar embed — confirmed on the live deployed domain (`kpt-seasonals.netlify.app`), not just local testing, so this is a server-side change on Investing.com's end affecting all 97 pages, unrelated to the Profiling work above. `js/macro.js` now shows a `.macro-embed-fallback` notice (icon, explanation, "Open Investing.com calendar ↗" button) in place of the dead iframe; `embedUrl` is still computed so the iframe can be restored in one line if Investing.com ever reopens embedding. Panel header text and `docs/ARCHITECTURE.md`/`docs/USER_GUIDE.md` updated to match — the old "~30 sec to load" note no longer applies.
+
 ### Verified
 
-All 4 in-scope pages render the Profiling tab (stat tiles, 4 range-distribution charts, 2 time-of-extreme heatmaps, 8 profile cards) with a clean console; 3 out-of-scope pages (`aud.html`, `xau.html`, `fx-audusd.html`) correctly show no Profiling tab with no regressions; `profiling-calendar/index.html` (both modes) and `profiling-profiles/detail.html` render and are interactive (day click, candlestick charts) with a clean console; existing `kpt-sub-{id}` localStorage persistence confirmed unaffected by the `ui.js` tabs-array change.
+All 4 in-scope pages render the Profiling tab (stat tiles, 4 range-distribution charts, 2 time-of-extreme heatmaps, 8 profile cards) with a clean console; 3 out-of-scope pages (`aud.html`, `xau.html`, `fx-audusd.html`) correctly show no Profiling tab with no regressions; `profiling-calendar/index.html` (both modes) and `profiling-profiles/detail.html` render and are interactive (day click, candlestick charts) with a clean console; existing `kpt-sub-{id}` localStorage persistence confirmed unaffected by the `ui.js` tabs-array change; both Profiling links now navigate correctly end-to-end; Macro fallback confirmed rendering correctly on both an in-scope and an out-of-scope page.
 
 ### Files Changed
 - `js/profiling.js`, `js/profiling-charts.js`, `js/profiling-calendar.js`, `js/profiling-profile-detail.js` — created
 - `js/ui.js` — Profiling tab added to `tabs` array
-- `css/dashboard.css` — 7 new CSS variables + full `.kptp-` styles block added
+- `js/macro.js` — iframe embed replaced with a fallback notice (see above)
+- `css/dashboard.css` — 7 new CSS variables + full `.kptp-` styles block + `.macro-embed-fallback` styles added
 - `scripts/sync_profiling_data.js` — created
 - `data/profiling/` — created (gbpusd.js, eurusd.js, profile-examples/, calendar/, manifest.js)
 - `profiling-calendar/index.html`, `profiling-profiles/detail.html` — created
 - `assets/gbp.html`, `assets/fx-gbpusd.html`, `assets/eur.html`, `assets/fx-eurusd.html` — 4 script tags added before `ui.js`
-- `docs/ARCHITECTURE.md`, `docs/CONTRIBUTING.md`, `scripts/README.md`, `docs/MARKET_PROFILING_INTEGRATION.md` — updated
+- `docs/ARCHITECTURE.md`, `docs/CONTRIBUTING.md`, `docs/USER_GUIDE.md`, `scripts/README.md`, `docs/MARKET_PROFILING_INTEGRATION.md` — updated
 
 ---
 

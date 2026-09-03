@@ -166,7 +166,7 @@ The verdict reflects the seasonal tendency only — it does not account for curr
 
 Shows the Investing.com economic calendar, pre-filtered for the currencies and country events relevant to this asset. Useful for identifying upcoming high-impact events that may accelerate or disrupt the seasonal tendency.
 
-The calendar widget may take 20–30 seconds to load on first open (it is an embedded third-party iframe). Change the date range using the widget's own controls. The importance filter (High / Medium / Low) can be toggled within the widget.
+**As of v1.7, the embedded widget is unavailable** — Investing.com now blocks this calendar from being embedded on third-party sites. The tab shows a short notice with an "Open Investing.com calendar ↗" button that opens the full calendar in a new tab instead. The asset-class interpretation guide alongside it (impact legend, key events, how to interpret) is unaffected and still works normally.
 
 ---
 

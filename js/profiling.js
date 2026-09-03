@@ -112,7 +112,9 @@
   }
 
   /* ─── Build the panel markup ──────────────────────────────────────────── */
-  var calendarHref = 'profiling-calendar/asset.html?a=' + pairUpper;
+  // ../ because this panel is injected inside assets/<page>.html, but
+  // profiling-calendar/ and profiling-profiles/ live at the repo root.
+  var calendarHref = '../profiling-calendar/index.html?a=' + pairUpper;
   var freshness = meta.asOf ? ('Data as of ' + meta.asOf) : '';
 
   var panel = document.createElement('section');
@@ -358,7 +360,7 @@
       var range = avgRange[name];
       var a = document.createElement('a');
       a.className = 'kptp-profile-card';
-      a.href = 'profiling-profiles/detail.html?p=' + kptpProfileSlug(name) + '&a=' + assetKey;
+      a.href = '../profiling-profiles/detail.html?p=' + kptpProfileSlug(name) + '&a=' + assetKey;
       a.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
       a.innerHTML =
         '<div class="kptp-profile-card-top">' +
