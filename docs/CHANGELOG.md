@@ -34,19 +34,21 @@ The source `KPT-Market-Profiling/dashboard/css/dashboard.css` was seeded from an
 
 `js/profiling.js`'s "Browse … by date →" link and profile-card links were written without the `../` needed to reach `profiling-calendar/` and `profiling-profiles/` from inside `assets/<page>.html` — the calendar link also pointed at a `asset.html` filename that was never actually created (the real file is `profiling-calendar/index.html?a=…`). Both fixed; re-verified by actually clicking each link end-to-end rather than only navigating to the destination pages directly (the gap that let this ship in the first place).
 
-### Bug fix: Macro tab's Investing.com embed (found in user review, unrelated to Profiling)
+### Correction: Macro tab's Investing.com embed was NOT actually broken — reverted
 
-Discovered while checking the Macro tab for a related report: `sslecal2.investing.com` now returns **HTTP 403** with `X-Frame-Options: sameorigin` for the calendar embed — confirmed on the live deployed domain (`kpt-seasonals.netlify.app`), not just local testing, so this is a server-side change on Investing.com's end affecting all 97 pages, unrelated to the Profiling work above. `js/macro.js` now shows a `.macro-embed-fallback` notice (icon, explanation, "Open Investing.com calendar ↗" button) in place of the dead iframe; `embedUrl` is still computed so the iframe can be restored in one line if Investing.com ever reopens embedding. Panel header text and `docs/ARCHITECTURE.md`/`docs/USER_GUIDE.md` updated to match — the old "~30 sec to load" note no longer applies.
+An earlier pass in this same v1.7 branch replaced the Macro tab's Investing.com iframe with a permanent "unavailable" fallback, based on a **headless** Playwright check that got HTTP 403 + `X-Frame-Options: sameorigin` even on the live deployed domain. That diagnosis was wrong: user testing with a real browser confirmed the embed loads correctly on `kpt-seasonals.netlify.app` — the 403 was almost certainly Investing.com's bot-detection rejecting the automated/headless traffic itself, not a real embedding block. The fallback has been fully reverted; `js/macro.js` is back to its original iframe-based implementation, and the associated `.macro-embed-fallback` CSS was removed.
+
+The real, narrower issue: the embed does **not** load when testing via Live Server on `127.0.0.1` — most likely because Investing.com's free widget requires the parent domain to be registered with them, and localhost never would be. This is a local-testing-only caveat, not a bug, and is now documented as such in `ARCHITECTURE.md` and `USER_GUIDE.md` rather than "fixed" in code. Lesson for future automated verification on this project: a headless-browser check that fails against a live third-party embed is not sufficient evidence the embed is actually broken for real users — confirm with a real browser against the live domain before concluding a working feature needs replacing.
 
 ### Verified
 
-All 4 in-scope pages render the Profiling tab (stat tiles, 4 range-distribution charts, 2 time-of-extreme heatmaps, 8 profile cards) with a clean console; 3 out-of-scope pages (`aud.html`, `xau.html`, `fx-audusd.html`) correctly show no Profiling tab with no regressions; `profiling-calendar/index.html` (both modes) and `profiling-profiles/detail.html` render and are interactive (day click, candlestick charts) with a clean console; existing `kpt-sub-{id}` localStorage persistence confirmed unaffected by the `ui.js` tabs-array change; both Profiling links now navigate correctly end-to-end; Macro fallback confirmed rendering correctly on both an in-scope and an out-of-scope page.
+All 4 in-scope pages render the Profiling tab (stat tiles, 4 range-distribution charts, 2 time-of-extreme heatmaps, 8 profile cards) with a clean console; 3 out-of-scope pages (`aud.html`, `xau.html`, `fx-audusd.html`) correctly show no Profiling tab with no regressions; `profiling-calendar/index.html` (both modes, including all-asset back-links) and `profiling-profiles/detail.html` render and are interactive (day click, nav pills, candlestick charts) with a clean console, verified via a full click-through chain (tab → calendar → day → profile detail → nav pill → back to index), not just direct navigation to each destination; existing `kpt-sub-{id}` localStorage persistence confirmed unaffected by the `ui.js` tabs-array change; `js/macro.js` confirmed reverted to its original, working implementation.
 
 ### Files Changed
 - `js/profiling.js`, `js/profiling-charts.js`, `js/profiling-calendar.js`, `js/profiling-profile-detail.js` — created
 - `js/ui.js` — Profiling tab added to `tabs` array
-- `js/macro.js` — iframe embed replaced with a fallback notice (see above)
-- `css/dashboard.css` — 7 new CSS variables + full `.kptp-` styles block + `.macro-embed-fallback` styles added
+- `js/macro.js` — unchanged (a fallback was added and then reverted within this same release — see the correction above)
+- `css/dashboard.css` — 7 new CSS variables + full `.kptp-` styles block added
 - `scripts/sync_profiling_data.js` — created
 - `data/profiling/` — created (gbpusd.js, eurusd.js, profile-examples/, calendar/, manifest.js)
 - `profiling-calendar/index.html`, `profiling-profiles/detail.html` — created
