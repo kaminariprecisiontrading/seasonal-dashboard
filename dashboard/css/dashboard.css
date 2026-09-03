@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables (matches Kaminari Seasonals Dashboard tokens) ───────────── */
+:root {
+  --bg: #0a0c0f;
+  --surface: #111318;
+  --surface2: #181c23;
+  --border: #1e2430;
+  --accent-combined: #22c55e;
+  --bull: #22c55e;
+  --bear: #ef4444;
+  --chop: #f59e0b;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --dim: #94a3b8;
+
+  /* Market-profiling-specific accents */
+  --compression: #2563eb;   /* blue */
+  --expansion: #e040a0;     /* pink */
+  --normal: #64748b;        /* muted grey */
+  --asian: #8b5cf6;
+  --london: #2563eb;
+  --ny: #22c55e;
+  --overlap: #f59e0b;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 32px 24px;
+}
+
+a { color: inherit; }
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.header {
+  border-left: 4px solid var(--accent-combined);
+  padding-left: 20px;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  letter-spacing: 4px;
+  color: #fff;
+  line-height: 1;
+}
+
+.header .sub {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 18px;
+}
+.back-link:hover { color: var(--dim); }
+
+/* ── Section Labels ────────────────────────────────────────────────────────── */
+.section-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 40px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+
+/* ── Lookback Dial ─────────────────────────────────────────────────────────── */
+.dial {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.dial button {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: var(--surface);
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.dial button:last-child { border-right: none; }
+.dial button:hover { background: var(--surface2); color: var(--text); }
+.dial button.active {
+  background: rgba(34,197,94,0.1);
+  color: var(--bull);
+}
+
+/* ── Stat Tiles ────────────────────────────────────────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+
+.stat-tile .stat-label {
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.stat-tile .stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.stat-tile .stat-value .unit {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 3px;
+  letter-spacing: 0;
+}
+
+/* ── Panels ────────────────────────────────────────────────────────────────── */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 14px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ── Range distribution (percentile strip) ────────────────────────────────── */
+.range-strip-wrap { margin-bottom: 6px; }
+.range-strip-svg { width: 100%; height: 60px; display: block; }
+.range-strip-caption {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+.range-strip-caption .median-note { color: var(--text); }
+
+/* ── Time-of-extreme heatmap strip ────────────────────────────────────────── */
+.clock-svg { width: 100%; height: 70px; display: block; }
+.clock-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--dim);
+  margin-top: 8px;
+}
+.clock-caption b { color: var(--text); }
+
+.session-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 9.5px;
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+.session-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+
+.concentration-badge {
+  display: inline-block;
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+.conc-low  { background: rgba(239,68,68,0.12); color: var(--bear); border: 1px solid rgba(239,68,68,0.25); }
+.conc-mid  { background: rgba(245,158,11,0.1); color: var(--chop); border: 1px solid rgba(245,158,11,0.25); }
+.conc-high { background: rgba(34,197,94,0.12); color: var(--bull); border: 1px solid rgba(34,197,94,0.25); }
+
+/* ── Bar charts (weekday / week-of-month / profile distribution) ─────────── */
+.bar-chart-svg { width: 100%; height: 160px; display: block; }
+
+/* ── Profile grid ──────────────────────────────────────────────────────────── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.profile-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--card-accent, var(--muted));
+}
+
+.profile-card .profile-name {
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.profile-card .profile-pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.profile-card .profile-meta {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ── Tables ────────────────────────────────────────────────────────────────── */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+table { width: 100%; border-collapse: collapse; min-width: 480px; }
+thead tr { background: var(--surface2); }
+thead th {
+  padding: 9px 12px;
+  text-align: left;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--surface2); }
+tbody td { padding: 8px 12px; color: var(--dim); vertical-align: top; }
+tbody td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+
+/* ── Index page: asset cards ──────────────────────────────────────────────── */
+.asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-top: 8px; }
+
+.asset-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px 18px; text-decoration: none; display: block;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  position: relative; overflow: hidden;
+}
+.asset-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent-combined);
+  border-radius: 8px 0 0 8px;
+}
+.asset-card:hover { border-color: rgba(34,197,94,0.4); box-shadow: 0 0 20px rgba(34,197,94,0.06); background: var(--surface2); }
+
+.card-ticker { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: #fff; line-height: 1; margin-bottom: 3px; }
+.card-name { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.card-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.card-badge { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; background: rgba(100,116,139,0.12); color: var(--muted); border: 1px solid var(--border); }
+.card-signal { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--border); }
+.card-signal-label { font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
+
+.bull-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px;
+  font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  background: rgba(34,197,94,0.15); color: var(--bull); border: 1px solid rgba(34,197,94,0.3);
+}
+
+/* ── Utility ───────────────────────────────────────────────────────────────── */
+.divider { height: 1px; background: var(--border); margin: 44px 0; }
+
+.footnote {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 36px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.footnote .copyright { display: block; margin-top: 8px; color: var(--dim); letter-spacing: 0.5px; }

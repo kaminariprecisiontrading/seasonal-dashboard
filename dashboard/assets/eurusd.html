@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EURUSD — Kaminari Market Profiling</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<a href="../index.html" class="back-link">&larr; All Assets</a>
+<div class="header">
+  <h1>EURUSD</h1>
+  <div class="sub">Market Profiling &amp; Statistics &middot; Daily / Weekly / Monthly &middot; 2000&ndash;2019</div>
+</div>
+
+<div class="stat-grid" id="stat-grid"></div>
+
+<div class="section-label">Range Distribution</div>
+<div class="section-note">Daily/weekly/monthly range percentile strips (p05&ndash;p95), IQR boxed, median marked. Dashed lines mark the compression (p20) / expansion (p80) regime thresholds used by the profile taxonomy below. The lookback window affects every chart on this page.</div>
+<div class="dial" id="dial"></div>
+
+<div class="panel">
+  <div class="panel-title">Daily Range</div>
+  <div class="range-strip-wrap"><div id="range-daily"></div></div>
+  <div class="range-strip-caption" id="range-daily-caption"></div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Weekly Range</div>
+    <div class="range-strip-wrap"><div id="range-weekly"></div></div>
+    <div class="range-strip-caption" id="range-weekly-caption"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Monthly Range</div>
+    <div class="range-strip-wrap"><div id="range-monthly"></div></div>
+    <div class="range-strip-caption" id="range-monthly-caption"></div>
+  </div>
+</div>
+
+<div class="section-label">Time of Extreme</div>
+<div class="section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean. Bars are coloured by FX session.</div>
+
+<div class="panel">
+  <div class="panel-title">Daily High</div>
+  <div id="heatmap-high"></div>
+  <div class="clock-caption" id="heatmap-high-caption"></div>
+  <div class="session-legend"></div>
+</div>
+<div class="panel">
+  <div class="panel-title">Daily Low</div>
+  <div id="heatmap-low"></div>
+  <div class="clock-caption" id="heatmap-low-caption"></div>
+  <div class="session-legend"></div>
+</div>
+
+<div class="section-label">Weekly &amp; Monthly Extremes</div>
+<div class="section-note">Which weekday the week's high/low falls on; which week-of-month the month's high/low falls on. Full history — not affected by the lookback dial above.</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Week High &mdash; Day of Week</div>
+    <div id="weekday-high-chart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Week Low &mdash; Day of Week</div>
+    <div id="weekday-low-chart"></div>
+  </div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Month High &mdash; Week of Month</div>
+    <div id="wom-high-chart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Month Low &mdash; Week of Month</div>
+    <div id="wom-low-chart"></div>
+  </div>
+</div>
+
+<div class="section-label">Profile Taxonomy</div>
+<div class="section-note" id="profile-summary-note">Rule-based daily profile classification &mdash; see market-profiling-system-spec.md &sect;4 for full definitions and naming rationale.</div>
+<div class="profile-grid" id="profile-grid"></div>
+
+<div class="footnote">
+  Historical data: TradersWay MT5 export, EURUSD, 2000-01-03 &rarr; 2019-12-31 (see Trading Days tile above; data-gap days excluded from statistics). Statistics are probability-weighted historical tendencies, not guaranteed outcomes.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">&copy; 2026 Kaminari Precision Trading. All rights reserved.</span>
+</div>
+
+<script src="../data/eurusd.js"></script>
+<script>window.ASSET_DATA = EURUSD_DATA;</script>
+<script src="../js/charts.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

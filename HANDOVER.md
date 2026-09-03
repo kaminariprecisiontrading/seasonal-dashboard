@@ -40,7 +40,12 @@ KPT-Market-Profiling/
 ├── output/
 │   ├── gbpusd_stats.json / eurusd_stats.json
 │   └── gbpusd_profile_summary.json / eurusd_profile_summary.json
-└── dashboard/                           (not started yet — Phase 3)
+└── dashboard/                           (Phase 3 — built, see §3/§5/§7)
+    ├── index.html
+    ├── assets/gbpusd.html, eurusd.html
+    ├── data/gbpusd.js, eurusd.js       (generated — do not hand-edit, see build_dashboard_data.py)
+    ├── css/dashboard.css
+    └── js/charts.js, dashboard.js
 ```
 
 Move the files listed in §3 below into this structure (or your own equivalent) as the
@@ -61,6 +66,8 @@ first step in Claude Code.
 | `profile_taxonomy.py` | Phase 2 pipeline: reads the cleaned daily CSV, assigns each day one of 8 named profiles (see spec §4) from two independent, self-calibrating axes (range regime, closing shape) plus a secondary extreme-timing tag. |
 | `gbpusd_daily_profiles_2000_2019.csv` / `eurusd_daily_profiles_2000_2019.csv` | Per-day profile labels + underlying features, both assets — the labeled historical dataset for backtesting/dashboard use. |
 | `gbpusd_profile_summary.json` / `eurusd_profile_summary.json` | Profile distribution counts/percentages, avg range per profile, extreme-timing breakdown per profile — sanity-check + dashboard input. |
+| `build_dashboard_data.py` | Phase 3 pipeline: bundles one asset's `*_stats.json` + `*_profile_summary.json` into a single `dashboard/data/<asset>.js` (a plain `const <ASSET>_DATA = {...}` global) — same data-as-JS-file pattern as the sibling Seasonals Dashboard, so the dashboard works from a plain `file://` open with no server/build step. Re-run this (after re-running `stats_engine.py`/`profile_taxonomy.py`) any time the underlying data changes — the `dashboard/data/*.js` files are generated, not hand-edited. |
+| `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
 ---
 
@@ -115,6 +122,22 @@ API and a database (if/when migrating off static files) are evaluated later — 
   Trend Days have a validated timing signature (opposite extreme early, favored extreme late —
   tagged as `Late_Push` in the secondary `extreme_timing` field). Full definitions, naming
   rationale, and the logic for adding future profile names: spec §4.
+- **Phase 3 dashboard (built, `dashboard/`):** plain static HTML/CSS/JS, no build step, no
+  framework, no external chart library — same architectural pattern as the sibling Kaminari
+  Seasonals Dashboard (`../seasonal-dashboard`), including its CSS design tokens/fonts (Bebas
+  Neue + IBM Plex Mono, dark theme) for brand consistency, and its data-as-a-JS-global pattern
+  (`data/<asset>.js` defines `const <ASSET>_DATA = {...}`, loaded via a plain `<script>` tag —
+  avoids fetch()/CORS issues when opened straight from disk). Charts (range percentile strips,
+  time-of-extreme session-colored heatmaps, weekday/week-of-month bar charts) are hand-rolled
+  vanilla-JS SVG in `js/charts.js` — deliberately no charting library dependency. Verified
+  working end-to-end (both assets, all sections populated, lookback dial re-renders correctly)
+  via a headless-Edge Playwright check during the build — see spec §5 for the view list actually
+  implemented vs. deferred to a later phase.
+- **`stats_engine.py`'s circular time-of-day stats now also emit a full 48-bucket histogram**
+  (not just the mode bucket) — added specifically so the dashboard's time-of-extreme heatmap
+  could show the whole distribution shape, not just call out one winning bucket. Non-breaking
+  addition to the existing JSON structure; re-run `stats_engine.py` for both assets if you pull
+  an older `*_stats.json`.
 
 ---
 
@@ -138,21 +161,29 @@ API and a database (if/when migrating off static files) are evaluated later — 
 
 ---
 
-## 7. Next step: Phase 3 (dashboard) or extend Phase 2 to weekly
+## 7. Next step
 
-Phase 2's **daily** taxonomy is done for both assets (§5, §6 above; full definitions in spec
-§4). Two directions from here, not mutually exclusive:
+A first version of the Phase 3 dashboard is built and verified working for both assets (§5).
+What it covers, vs. what's still open, per the spec §5 view list:
 
-- **Extend Phase 2 to a weekly taxonomy.** The daily profile logic (`profile_taxonomy.py`)
-  only labels individual days; the spec's original scope (§4) also calls for a weekly "shape."
-  Would need its own empirical validation pass (per spec §4.4's naming logic) rather than
-  just re-running the daily rules on weekly bars — weekly range/closing-shape distributions
-  haven't been explored yet.
-- **Start Phase 3: the static dashboard** (spec §5), consuming `gbpusd_stats.json` /
-  `eurusd_stats.json` and the new `*_daily_profiles_2000_2019.csv` / `*_profile_summary.json`
-  outputs. `dashboard/` is currently empty — this is a from-scratch build following the
-  Seasonals Dashboard pattern.
+**Built:** time-of-extreme heatmap (session-colored, mode + concentration badge, lookback
+dial), daily/weekly/monthly range-distribution percentile strips (lookback dial), weekday/
+week-of-month extreme-location bar charts, profile-classification panel (distribution + avg
+range + dominant timing tag per profile).
 
-EURUSD data cleaning is done (§3 table) — both assets now have matching cleaned CSVs, stats
-JSON, and profile labels/summaries, so anything built from here should treat both as first-class
-from the start rather than GBPUSD-only with EURUSD bolted on later.
+**Not built yet — genuinely open:**
+
+- **OHLC chart viewer** (spec §5.1) — needs per-day intraday chart-ready files the pipeline
+  doesn't emit yet (see the OHLC chart viewer decision in §5 above).
+- **"Today's" live profile match** — out of scope until Phase 4 (a live/current data feed);
+  the dashboard is a historical-statistics browser for now, not a live one.
+- **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
+  days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic),
+  not just the daily rules re-run on weekly bars.
+- **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
+  `dashboard/index.html` directly or serving the `dashboard/` folder.
+- **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
+  tries it against a real morning routine.
+
+EURUSD data cleaning is done (§3 table) — both assets are first-class throughout, not
+GBPUSD-only with EURUSD bolted on later.

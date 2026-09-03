@@ -86,6 +86,18 @@ def circular_time_stats(time_series: pd.Series, bucket_minutes: int = 30) -> dic
         h, mm = divmod(int(round(m)) % MINUTES_PER_DAY, 60)
         return f"{h:02d}:{mm:02d}"
 
+    # Full per-bucket histogram (not just the mode) — needed by the Phase 3
+    # dashboard's time-of-extreme heatmap so it can show the whole
+    # distribution's shape, not just call out a single winning bucket.
+    histogram = [
+        {
+            "bucket_start_utc": fmt(b * bucket_minutes),
+            "count": int(counts[b]),
+            "pct": round(float(counts[b]) / n * 100, 2),
+        }
+        for b in range(n_buckets)
+    ]
+
     return {
         "n": int(n),
         "mode_bucket_start_utc": fmt(mode_start_min),
@@ -94,6 +106,7 @@ def circular_time_stats(time_series: pd.Series, bucket_minutes: int = 30) -> dic
         "circular_mean_utc": fmt(circ_mean_min),
         "circular_median_utc": fmt(circ_median_min),
         "concentration_R": round(R, 3),
+        "histogram": histogram,
     }
 
 
