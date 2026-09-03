@@ -116,16 +116,95 @@ presented as a guaranteed target.
 - **Rule-based first.** Explicit, human-readable, auditable rules (e.g., range percentile + directional
   persistence + time-of-extreme location) define each profile. This mirrors the "reason before coding"
   approach already used for indicator development.
-- **Own naming convention**, not ICT terminology — to be defined once we see how many distinct,
-  statistically-distinguishable shapes actually emerge from real GU/EU data (starting candidates:
-  one-sided/trend day, slow-ranging/compression day, volatile/choppy day, early-extreme day,
-  late-extreme day — final taxonomy TBD from data, not assumed upfront).
+- **Own naming convention**, not ICT terminology.
 - Applied **retrospectively** to build a labeled historical dataset (for backtesting "how often did
   profile X actually play out"), and **live** to the current, in-progress day/week (showing which
   profile(s) are still consistent with price action so far, and which have been invalidated).
 - **ML/clustering (e.g., k-means, HMM on range/directionality/time-of-extreme features) is a Phase 2+
   validation step** — used to check whether the rule-based labels agree with what an unsupervised
   method finds, not as the initial engine.
+
+**v1 daily taxonomy implemented and validated in `pipeline/profile_taxonomy.py`** — the final shapes
+below were derived from real GBPUSD/EURUSD distributions, not assumed upfront. §4.1–§4.4 document the
+definitions, so this stays the single source of truth for what each label means and why it exists.
+
+### 4.1 Two independent axes
+
+Direct analysis of both assets' full 2000–2019 daily history showed that **range size and directional
+closing behavior are genuinely independent** — compression (small-range) days show the *full spread* of
+closing shapes (median closing-strength ≈ 0.41, quartiles 0.20–0.64), not a cluster near "balanced" as
+might be assumed. So the taxonomy is built from two separate axes rather than one blended score:
+
+- **Range regime** — `Compression` / `Normal` / `Expansion`. From a **trailing rolling percentile rank**
+  of `daily_range_pips` (252-trading-day window ≈ 1y, minimum 60 days of history before a day is
+  eligible for a label), thresholds at the 20th/80th percentile — the same percentile-based,
+  self-calibrating philosophy as §3.2. A *trailing* window (not a single static full-history number) is
+  used deliberately: each day is judged only against data available up to that day, which avoids
+  look-ahead bias and keeps the classification regime-aware rather than blended across two decades of
+  changing volatility.
+- **Closing shape** — `Balanced` / `Mixed` / `Directional`. From the same trailing-rolling-percentile
+  method applied to **closing strength**, `cs = 2 × |close_position − 0.5|`, where
+  `close_position = (close − low) / (high − low)`. `cs = 0` means the day closed exactly at its own
+  range midpoint (it gave the move back); `cs = 1` means it closed right at one edge (it held the move).
+  Thresholds at the 25th/75th percentile.
+
+### 4.2 What each profile name means, and why it's named that way
+
+| Profile | Rule | Why this name |
+|---|---|---|
+| **Trend Day (Up / Down)** | Expansion + Directional | Big range **and** closed near an extreme — the move was both large and held. Matches the everyday trading sense of "trended persistently and didn't give it back." |
+| **Volatile Day** | Expansion + Mixed | Big range but closed only moderately off the midpoint — real two-way movement without a clean directional resolution. "Volatile," not "Trend," because size dominates the story, not direction. |
+| **Volatile Reversal Day** | Expansion + Balanced | Big range but closed essentially back at the midpoint — a big move that got substantially or fully retraced. "Reversal" captures the round-trip; split out from Volatile Day because the give-back, not just the size, is now the dominant fact about the day. |
+| **Quiet Drift Day (Up / Down)** | Compression + Directional | Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. "Drift" is the low-energy version of "Trend"; kept as a separate name (not folded into Trend Day) because the *amount* of conviction differs even though the *shape* (closed at an edge) is the same. |
+| **Compression Day** | Compression + Balanced/Mixed | Small range, closed near the middle — the "coiling," non-committal day. Default label for small-range days without a clear directional tilt. |
+| **Normal Day** | Normal range regime (20th–80th percentile), any shape | Deliberately the largest, least differentiated bucket (~57% of days on both assets). Most days are neither unusually big nor unusually small, so they don't earn a directional-shape label — see the naming principle in §4.4 about not over-labeling the majority case. |
+| **Insufficient_History** | First ~59 trading days of any asset's dataset | The trailing 252-day window hasn't filled yet, so the percentile rank can't self-calibrate — no label is assigned rather than one derived from a tiny, misleading sample. |
+| **Data_Gap** | Inherited from `is_data_gap` (§2.3 / Phase 1) | Feed-outage / dummy-tick days are excluded from classification entirely, same as they're excluded from period-high/low determination. |
+
+### 4.3 Secondary tag: extreme timing
+
+Independently of the primary profile name, every day also gets an `extreme_timing` tag describing
+*when* its high and low formed relative to each other, using `close_side_frac` / `far_side_frac` — the
+fraction of the trading day elapsed when the extreme **nearer** the close, and the extreme **farther**
+from the close, were each set:
+
+- **Late_Push** — the extreme the day closed *away* from formed early; the extreme it closed *near*
+  formed late. Price pushed to new extremes right into the close. This is the validated "textbook trend
+  day" signature: on Expansion+Directional days, median far-side fraction ≈ 30% into the day, median
+  close-side fraction ≈ 90%, confirmed independently on both GBPUSD and EURUSD.
+- **Early_Resolution** — both extremes formed in the first half of the day; the second half was
+  comparatively quiet.
+- **Late_Resolution** — both extremes formed in the second half; the day stayed undecided well into the
+  session.
+- **Fade_Risk** — the extreme the day closed near formed *early*, but price then pushed to a new extreme
+  on the other side *later* without breaking through to a new close-side extreme — a day that held its
+  early move but had a late scare.
+
+This tag is most informative layered on top of Trend Day / Quiet Drift Day (where "did the move hold or
+fade" is the key question), but is computed and reported for every labeled day.
+
+### 4.4 Logic for naming future profiles
+
+Any profile added later (weekly/monthly taxonomy, a third axis, etc.) should follow the same rules used
+above, so the taxonomy stays self-consistent and auditable rather than growing ad hoc:
+
+1. **A name describes a finished shape, not a prediction.** Names are hindsight descriptions of what a
+   day/week turned out to look like — never phrased as a forward-looking call ("Breakout Day" implies a
+   prediction; "Trend Day" just describes what happened).
+2. **Every name maps to an explicit, numeric rule stated in this document.** If the threshold can't be
+   written down, it isn't a profile yet — no name without a rule.
+3. **A new axis must be justified empirically before it's added** — run the same kind of
+   distribution/cross-tab analysis used to confirm range-regime and closing-shape were independent
+   (§4.1) before combining a new feature into the taxonomy. Don't add an axis just because it sounds
+   plausible.
+4. **Reserve descriptive names for statistically distinguishable, minority-share buckets.** The
+   majority/default case stays a plain, low-information label (like "Normal Day") — a rule that fires on
+   most days isn't adding decision value and shouldn't get an evocative name.
+5. **No ICT or third-party terminology** — names should describe the shape in plain language a
+   discretionary trader recognizes without needing outside jargon (per the original naming decision).
+6. **Directional variants are a name suffix, not a separate profile family**, when a profile's Up/Down
+   versions are true mirror images (as with Trend Day and Quiet Drift Day) — this avoids doubling the
+   taxonomy size for no added distinction.
 
 ---
 

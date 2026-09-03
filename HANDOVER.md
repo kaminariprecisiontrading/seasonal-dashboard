@@ -29,12 +29,17 @@ KPT-Market-Profiling/
 ├── data/
 │   ├── raw/                             (raw MT5 exports go here, e.g. the GBPUSD M1 CSV)
 │   └── clean/
-│       └── gbpusd_daily_clean_2000_2019.csv
+│       ├── gbpusd_daily_clean_2000_2019.csv
+│       ├── eurusd_daily_clean_2000_2019.csv
+│       ├── gbpusd_daily_profiles_2000_2019.csv
+│       └── eurusd_daily_profiles_2000_2019.csv
 ├── pipeline/
 │   ├── clean_mt5_csv.py
-│   └── stats_engine.py
+│   ├── stats_engine.py
+│   └── profile_taxonomy.py
 ├── output/
-│   └── gbpusd_stats.json
+│   ├── gbpusd_stats.json / eurusd_stats.json
+│   └── gbpusd_profile_summary.json / eurusd_profile_summary.json
 └── dashboard/                           (not started yet — Phase 3)
 ```
 
@@ -50,8 +55,12 @@ first step in Claude Code.
 | `market-profiling-system-spec.md` | Canonical project spec: goals, architecture, methodology, phased roadmap. **Source of truth for all design decisions.** |
 | `clean_mt5_csv.py` | Phase 1 pipeline: raw MT5 M1 CSV → UTC-normalized, cleaned daily OHLC CSV. Reusable for future CSV uploads/assets. |
 | `gbpusd_daily_clean_2000_2019.csv` | Cleaned daily output for GBPUSD, 2000-01-03 → 2019-12-31 (5,190 rows). |
+| `eurusd_daily_clean_2000_2019.csv` | Cleaned daily output for EURUSD, same date range (5,191 rows) — same pipeline, no code changes needed. |
 | `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, and weekly/monthly aggregates. |
-| `gbpusd_stats.json` | Stats engine output for GBPUSD — everything the dashboard (Phase 3) will consume. |
+| `gbpusd_stats.json` / `eurusd_stats.json` | Stats engine output per asset — everything the dashboard (Phase 3) will consume. |
+| `profile_taxonomy.py` | Phase 2 pipeline: reads the cleaned daily CSV, assigns each day one of 8 named profiles (see spec §4) from two independent, self-calibrating axes (range regime, closing shape) plus a secondary extreme-timing tag. |
+| `gbpusd_daily_profiles_2000_2019.csv` / `eurusd_daily_profiles_2000_2019.csv` | Per-day profile labels + underlying features, both assets — the labeled historical dataset for backtesting/dashboard use. |
+| `gbpusd_profile_summary.json` / `eurusd_profile_summary.json` | Profile distribution counts/percentages, avg range per profile, extreme-timing breakdown per profile — sanity-check + dashboard input. |
 
 ---
 
@@ -95,6 +104,17 @@ API and a database (if/when migrating off static files) are evaluated later — 
   line chart needs the day's *intraday* bars, which the daily-aggregate CSV doesn't contain.
   Plan is for the pipeline to also emit small per-day chart-ready files (M1 resampled to
   M5/M15) rather than shipping the full M1 history to the dashboard — see spec §5.1.
+- **Phase 2 daily taxonomy (implemented, `profile_taxonomy.py`):** two independent,
+  self-calibrating axes — range regime (Compression/Normal/Expansion) and closing shape
+  (Balanced/Mixed/Directional) — combine into 8 named profiles (Trend Day, Volatile Day,
+  Volatile Reversal Day, Quiet Drift Day, Compression Day, Normal Day, plus
+  Insufficient_History/Data_Gap). Both axes use a **trailing 252-day rolling percentile rank**
+  (not a static full-history threshold) specifically to avoid look-ahead bias and stay
+  regime-aware. Confirmed empirically that range size and closing shape are independent
+  (compression days show the full spread of closing shapes, not just "balanced"), and that
+  Trend Days have a validated timing signature (opposite extreme early, favored extreme late —
+  tagged as `Late_Push` in the secondary `extreme_timing` field). Full definitions, naming
+  rationale, and the logic for adding future profile names: spec §4.
 
 ---
 
@@ -118,12 +138,21 @@ API and a database (if/when migrating off static files) are evaluated later — 
 
 ---
 
-## 7. Next step: Phase 2
+## 7. Next step: Phase 3 (dashboard) or extend Phase 2 to weekly
 
-Per the spec's phased roadmap (§9): **rule-based regime/profile taxonomy** — defining and
-naming the recurring daily/weekly "shapes" (one-sided day, compression day, etc.), applying
-them retrospectively to the cleaned historical data, using the stats already computed in
-`gbpusd_stats.json` as the quantitative basis for the classification rules.
+Phase 2's **daily** taxonomy is done for both assets (§5, §6 above; full definitions in spec
+§4). Two directions from here, not mutually exclusive:
 
-EURUSD data cleaning (running the same `clean_mt5_csv.py` pipeline on an EU CSV once
-available) can happen in parallel or before Phase 2 — it's independent of the taxonomy work.
+- **Extend Phase 2 to a weekly taxonomy.** The daily profile logic (`profile_taxonomy.py`)
+  only labels individual days; the spec's original scope (§4) also calls for a weekly "shape."
+  Would need its own empirical validation pass (per spec §4.4's naming logic) rather than
+  just re-running the daily rules on weekly bars — weekly range/closing-shape distributions
+  haven't been explored yet.
+- **Start Phase 3: the static dashboard** (spec §5), consuming `gbpusd_stats.json` /
+  `eurusd_stats.json` and the new `*_daily_profiles_2000_2019.csv` / `*_profile_summary.json`
+  outputs. `dashboard/` is currently empty — this is a from-scratch build following the
+  Seasonals Dashboard pattern.
+
+EURUSD data cleaning is done (§3 table) — both assets now have matching cleaned CSVs, stats
+JSON, and profile labels/summaries, so anything built from here should treat both as first-class
+from the start rather than GBPUSD-only with EURUSD bolted on later.
