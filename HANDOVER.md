@@ -138,6 +138,18 @@ API and a database (if/when migrating off static files) are evaluated later — 
   could show the whole distribution shape, not just call out one winning bucket. Non-breaking
   addition to the existing JSON structure; re-run `stats_engine.py` for both assets if you pull
   an older `*_stats.json`.
+- **Dashboard usability pass (jargon layer, mode, yearly extremes, interactivity):** first-user
+  feedback was that the raw statistical framing is right for a professional but opaque to a
+  trader who just wants a quick correct read. Resolved additively, not by removing rigor — see
+  spec §5.0a. Also added: `range_distribution()` now reports **both binned mode and raw mode**
+  (spec §3.2 explains why continuous pip data needs the binned version to be meaningful, and how
+  the raw mode is flagged/suppressed when it isn't — e.g. yearly range, where all 20 samples are
+  distinct); a **Yearly Extremes** section (yearly range distribution + which month the yearly
+  high/low tends to fall in), built from the `is_year_high`/`is_year_low` flags Phase 1 already
+  computed but never surfaced; and a shared hover-tooltip component (`dashboard/js/tooltip.js`)
+  wired into every chart element and every glossary icon. Verified via the same headless-Edge
+  Playwright approach, including simulated hovers on tooltip-bearing elements — caught and fixed
+  one real bug (mode-note captions said "% of days" even for weekly/monthly/yearly ranges).
 
 ---
 
@@ -163,27 +175,39 @@ API and a database (if/when migrating off static files) are evaluated later — 
 
 ## 7. Next step
 
-A first version of the Phase 3 dashboard is built and verified working for both assets (§5).
-What it covers, vs. what's still open, per the spec §5 view list:
+The Phase 3 dashboard is built and verified working for both assets, including the usability
+pass — jargon glossary/tooltips, both mode types, yearly extremes, full chart interactivity
+(§5 above). Per the agreed sequencing, in order:
 
 **Built:** time-of-extreme heatmap (session-colored, mode + concentration badge, lookback
-dial), daily/weekly/monthly range-distribution percentile strips (lookback dial), weekday/
-week-of-month extreme-location bar charts, profile-classification panel (distribution + avg
-range + dominant timing tag per profile).
+dial), daily/weekly/monthly/yearly range-distribution percentile strips (lookback dial for
+daily/weekly/monthly; yearly is full-history only), weekday/week-of-month/month-of-year
+extreme-location bar charts, profile-classification panel (distribution + avg range + dominant
+timing tag per profile), glossary tooltips on every jargon term, hover tooltips on every chart
+element.
 
-**Not built yet — genuinely open:**
+**Next up, in the agreed order (spec §5.2/§5.3 have the design notes for each):**
 
-- **OHLC chart viewer** (spec §5.1) — needs per-day intraday chart-ready files the pipeline
-  doesn't emit yet (see the OHLC chart viewer decision in §5 above).
-- **"Today's" live profile match** — out of scope until Phase 4 (a live/current data feed);
-  the dashboard is a historical-statistics browser for now, not a live one.
-- **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
-  days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic),
-  not just the daily rules re-run on weekly bars.
-- **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
-  `dashboard/index.html` directly or serving the `dashboard/` folder.
-- **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
-  tries it against a real morning routine.
+1. **Profile detail pages + stylized icons** — the descriptive content is already written
+   (spec §4.2); needs a page/template per profile, a small hand-drawn shape icon per profile
+   (no data dependency), and one real illustrative example-day chart per profile (needs a small
+   scoped-down slice of the OHLC viewer work — just ~8 exemplar days, not the full history).
+2. **Calendar feature** — its own architecture decision (year-chunked data files, persisted
+   weekly/monthly tables with dates); start simple, both a cross-asset homepage view and a
+   per-asset drill-down. Design notes: spec §5.2.
+3. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
+   dashboard is a historical-statistics browser until then.
+4. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
+   days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic).
+5. **Deployment** — not yet pushed to Netlify/hosting; currently local-only, viewable by opening
+   `dashboard/index.html` directly or serving the `dashboard/` folder.
+6. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
+   tries it against a real morning routine.
+
+**Noted for later, not actionable now:** a possible future merge with the sibling Seasonals
+Dashboard (Seasonals = top-level macro view, this dashboard = zoomed-in daily/weekly view) —
+kept in mind for navigation/data-format decisions so a merge stays a consolidation rather than
+a rewrite. See spec §5.0b.
 
 EURUSD data cleaning is done (§3 table) — both assets are first-class throughout, not
 GBPUSD-only with EURUSD bolted on later.

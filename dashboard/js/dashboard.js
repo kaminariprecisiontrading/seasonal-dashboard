@@ -11,6 +11,7 @@
   ];
 
   const WEEKDAY_ORDER = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const PROFILE_COLOR = {
     "Trend Day (Up)": "var(--bull)",
@@ -32,8 +33,17 @@
     return { cls: "conc-low", label: "Weak clustering" };
   }
 
-  function orderedEntries(dict, order) {
-    return order.map((k) => ({ label: shortLabel(k), value: dict[k] || 0 }));
+  function orderedEntries(dict, order, contextFmt) {
+    const total = Object.values(dict).reduce((s, v) => s + v, 0) || 1;
+    return order.map((k) => {
+      const value = dict[k] || 0;
+      const pct = Math.round((value / total) * 1000) / 10;
+      return {
+        label: shortLabel(k),
+        value,
+        tooltip: contextFmt ? `<b>${k}</b><br>${contextFmt(value, pct)}` : undefined,
+      };
+    });
   }
 
   function shortLabel(k) {
@@ -41,10 +51,35 @@
     return map[k] || k;
   }
 
-  function numericSortedEntries(dict) {
+  function numericSortedEntries(dict, labelPrefix, contextFmt) {
+    const total = Object.values(dict).reduce((s, v) => s + v, 0) || 1;
     return Object.keys(dict)
       .sort((a, b) => Number(a) - Number(b))
-      .map((k) => ({ label: "Wk " + k, value: dict[k] }));
+      .map((k) => {
+        const value = dict[k];
+        const pct = Math.round((value / total) * 1000) / 10;
+        return {
+          label: (labelPrefix || "Wk ") + k,
+          value,
+          tooltip: contextFmt ? `<b>${(labelPrefix || "Wk ") + k}</b><br>${contextFmt(value, pct)}` : undefined,
+        };
+      });
+  }
+
+  function monthEntries(dict, contextFmt) {
+    const total = Object.values(dict).reduce((s, v) => s + v, 0) || 1;
+    return Object.keys(dict)
+      .sort((a, b) => Number(a) - Number(b))
+      .map((k) => {
+        const value = dict[k];
+        const pct = Math.round((value / total) * 1000) / 10;
+        const name = MONTH_NAMES[Number(k) - 1] || k;
+        return {
+          label: name,
+          value,
+          tooltip: contextFmt ? `<b>${name}</b><br>${contextFmt(value, pct)}` : undefined,
+        };
+      });
   }
 
   function renderStatTiles(data) {
@@ -54,19 +89,35 @@
     const adr = s.daily_range.latest_adr;
     const full = s.daily_range.windowed_distribution.full;
     const tiles = [
-      { label: "Trading Days", value: s.n_days, unit: "" },
-      { label: "ADR 20", value: adr.ADR_20 ?? "—", unit: "pips" },
-      { label: "ADR 5", value: adr.ADR_5 ?? "—", unit: "pips" },
-      { label: "Median Daily Range", value: full.median, unit: "pips" },
+      { label: "Trading Days", value: s.n_days, unit: "", glossary: "trading_days" },
+      { label: "ADR 20", value: adr.ADR_20 ?? "—", unit: "pips", glossary: "adr" },
+      { label: "ADR 5", value: adr.ADR_5 ?? "—", unit: "pips", glossary: "adr" },
+      { label: "Median Daily Range", value: full.median, unit: "pips", glossary: "median" },
       { label: "Data As Of", value: s.as_of, unit: "" },
     ];
     grid.innerHTML = "";
     tiles.forEach((t) => {
       const div = document.createElement("div");
       div.className = "stat-tile";
-      div.innerHTML = `<div class="stat-label">${t.label}</div><div class="stat-value">${t.value}<span class="unit">${t.unit}</span></div>`;
+      const icon = t.glossary ? kptGlossaryIcon(t.glossary) : "";
+      div.innerHTML = `<div class="stat-label">${t.label}${icon}</div><div class="stat-value">${t.value}<span class="unit">${t.unit}</span></div>`;
       grid.appendChild(div);
     });
+    kptAttachGlossaryIcons(grid);
+  }
+
+  function modeNoteHtml(dist, unitPlural) {
+    unitPlural = unitPlural || "days";
+    const parts = [];
+    if (dist.mode_binned) {
+      parts.push(`<span>Most common range${kptGlossaryIcon("mode_binned")}: <b>${dist.mode_binned.bin_low}&ndash;${dist.mode_binned.bin_high} pips</b> (${dist.mode_binned.pct_of_n}% of ${unitPlural})</span>`);
+    }
+    if (dist.mode_raw && dist.mode_raw.count > 1) {
+      parts.push(`<span>Exact repeated value${kptGlossaryIcon("mode_raw")}: <b>${dist.mode_raw.value} pips</b> (${dist.mode_raw.count} ${unitPlural}, ${dist.mode_raw.pct_of_n}%)</span>`);
+    } else {
+      parts.push(`<span>Exact repeated value${kptGlossaryIcon("mode_raw")}: <b>none</b> &mdash; every value in this window was unique</span>`);
+    }
+    return parts.join("");
   }
 
   function renderRangeSection(data, windowKey) {
@@ -75,21 +126,28 @@
     const weekly = s.weekly_range.windowed_distribution[windowKey];
     const monthly = s.monthly_range.windowed_distribution[windowKey];
 
-    [["range-daily", daily, "Daily"], ["range-weekly", weekly, "Weekly"], ["range-monthly", monthly, "Monthly"]].forEach(
-      ([id, dist, label]) => {
-        const container = document.getElementById(id);
-        if (!container) return;
-        KPTCharts.renderRangeStrip(container, dist);
-        const cap = document.getElementById(id + "-caption");
-        if (cap) {
-          if (dist && dist.n) {
-            cap.innerHTML = `<span>${label} range · n=${dist.n}</span><span class="median-note">median ${dist.median} pips (mean ${dist.mean})</span>`;
-          } else {
-            cap.innerHTML = `<span>${label} range · insufficient data in this window</span>`;
-          }
+    [
+      ["range-daily", daily, "Daily", "days"],
+      ["range-weekly", weekly, "Weekly", "weeks"],
+      ["range-monthly", monthly, "Monthly", "months"],
+    ].forEach(([id, dist, label, unitPlural]) => {
+      const container = document.getElementById(id);
+      if (!container) return;
+      KPTCharts.renderRangeStrip(container, dist);
+      const cap = document.getElementById(id + "-caption");
+      const modeNote = document.getElementById(id + "-mode-note");
+      if (cap) {
+        if (dist && dist.n) {
+          cap.innerHTML = `<span>${label} range · n=${dist.n}</span><span class="median-note">median ${dist.median} pips (mean ${dist.mean})</span>`;
+        } else {
+          cap.innerHTML = `<span>${label} range · insufficient data in this window</span>`;
         }
       }
-    );
+      if (modeNote) {
+        modeNote.innerHTML = dist && dist.n ? modeNoteHtml(dist, unitPlural) : "";
+        kptAttachGlossaryIcons(modeNote);
+      }
+    });
   }
 
   function renderTimeSection(data, windowKey) {
@@ -131,10 +189,41 @@
 
   function renderWeeklyMonthly(data) {
     const s = data.stats;
-    KPTCharts.renderBarChart(document.getElementById("weekday-high-chart"), orderedEntries(s.weekly_high_day, WEEKDAY_ORDER), { valueFmt: (v) => v + "×" });
-    KPTCharts.renderBarChart(document.getElementById("weekday-low-chart"), orderedEntries(s.weekly_low_day, WEEKDAY_ORDER), { valueFmt: (v) => v + "×" });
-    KPTCharts.renderBarChart(document.getElementById("wom-high-chart"), numericSortedEntries(s.monthly_high_week_of_month), { valueFmt: (v) => v + "×" });
-    KPTCharts.renderBarChart(document.getElementById("wom-low-chart"), numericSortedEntries(s.monthly_low_week_of_month), { valueFmt: (v) => v + "×" });
+    const fmt = (thing) => (v, pct) => `The week's ${thing} landed here on ${v} of ${s.n_weeks} weeks (${pct}%).`;
+    const fmtWom = (thing) => (v, pct) => `The month's ${thing} landed in this week-of-month on ${v} of ${s.n_months} months (${pct}%).`;
+    KPTCharts.renderBarChart(document.getElementById("weekday-high-chart"), orderedEntries(s.weekly_high_day, WEEKDAY_ORDER, fmt("high")), { valueFmt: (v) => v + "×" });
+    KPTCharts.renderBarChart(document.getElementById("weekday-low-chart"), orderedEntries(s.weekly_low_day, WEEKDAY_ORDER, fmt("low")), { valueFmt: (v) => v + "×" });
+    KPTCharts.renderBarChart(document.getElementById("wom-high-chart"), numericSortedEntries(s.monthly_high_week_of_month, "Wk ", fmtWom("high")), { valueFmt: (v) => v + "×" });
+    KPTCharts.renderBarChart(document.getElementById("wom-low-chart"), numericSortedEntries(s.monthly_low_week_of_month, "Wk ", fmtWom("low")), { valueFmt: (v) => v + "×" });
+  }
+
+  function renderYearlySection(data) {
+    const s = data.stats;
+    if (!s.yearly_range) return;
+    const dist = s.yearly_range.distribution;
+
+    const container = document.getElementById("range-yearly");
+    if (container) {
+      KPTCharts.renderRangeStrip(container, dist);
+      const cap = document.getElementById("range-yearly-caption");
+      if (cap && dist && dist.n) {
+        cap.innerHTML = `<span>Yearly range · n=${dist.n} years</span><span class="median-note">median ${dist.median} pips (mean ${dist.mean})</span>`;
+      }
+      const modeNote = document.getElementById("range-yearly-mode-note");
+      if (modeNote && dist && dist.n) {
+        modeNote.innerHTML = modeNoteHtml(dist, "years");
+        kptAttachGlossaryIcons(modeNote);
+      }
+      const smallSample = document.getElementById("range-yearly-sample-note");
+      if (smallSample) {
+        smallSample.innerHTML = `Built from only ${dist.n} years of history${kptGlossaryIcon("n_sample")} — treat this section as a much weaker signal than the daily/weekly/monthly ones above.`;
+        kptAttachGlossaryIcons(smallSample);
+      }
+    }
+
+    const fmtY = (thing) => (v, pct) => `The year's ${thing} landed in this month on ${v} of ${s.n_years} years (${pct}%).`;
+    KPTCharts.renderBarChart(document.getElementById("year-high-month-chart"), monthEntries(s.yearly_high_month, fmtY("high")), { valueFmt: (v) => v + "×" });
+    KPTCharts.renderBarChart(document.getElementById("year-low-month-chart"), monthEntries(s.yearly_low_month, fmtY("low")), { valueFmt: (v) => v + "×" });
   }
 
   function renderProfiles(data) {
@@ -158,10 +247,11 @@
         <div class="profile-name">${name}</div>
         <div class="profile-pct">${v.pct}%</div>
         <div class="profile-meta">
-          n=${v.n} days${range ? ` · avg range ${range.mean} pips` : ""}${topTiming ? `<br>most common timing: ${topTiming[0].replace("_", " ")} (${topTiming[1]})` : ""}
+          n=${v.n} days${range ? ` · avg range ${range.mean} pips` : ""}${topTiming ? `<br>most common timing${kptGlossaryIcon("extreme_timing")}: ${topTiming[0].replace("_", " ")} (${topTiming[1]})` : ""}
         </div>`;
       grid.appendChild(div);
     });
+    kptAttachGlossaryIcons(grid);
 
     const note = document.getElementById("profile-summary-note");
     if (note) {
@@ -199,6 +289,7 @@
     renderTimeSection(data, "full");
     renderSessionLegend();
     renderWeeklyMonthly(data);
+    renderYearlySection(data);
     renderProfiles(data);
   }
 

@@ -7,6 +7,7 @@ const GBPUSD_DATA = {
     "n_days": 5185,
     "n_weeks": 1040,
     "n_months": 240,
+    "n_years": 20,
     "daily_range": {
       "windowed_distribution": {
         "full": {
@@ -16,6 +17,18 @@ const GBPUSD_DATA = {
           "std": 75.9,
           "min": 8.0,
           "max": 1788.1,
+          "mode_binned": {
+            "bin_low": 108.0,
+            "bin_high": 118.2,
+            "count": 446,
+            "pct_of_n": 8.6
+          },
+          "mode_raw": {
+            "value": 100.0,
+            "count": 32,
+            "pct_of_n": 0.6,
+            "n_values_tied": 2
+          },
           "p05": 57.0,
           "p10": 67.0,
           "p20": 81.3,
@@ -35,6 +48,18 @@ const GBPUSD_DATA = {
           "std": 77.2,
           "min": 23.6,
           "max": 1788.1,
+          "mode_binned": {
+            "bin_low": 88.3,
+            "bin_high": 96.6,
+            "count": 116,
+            "pct_of_n": 9.1
+          },
+          "mode_raw": {
+            "value": 127.1,
+            "count": 7,
+            "pct_of_n": 0.5,
+            "n_values_tied": 1
+          },
           "p05": 55.1,
           "p10": 61.9,
           "p20": 73.1,
@@ -54,6 +79,18 @@ const GBPUSD_DATA = {
           "std": 49.5,
           "min": 23.6,
           "max": 323.4,
+          "mode_binned": {
+            "bin_low": 70.7,
+            "bin_high": 78.1,
+            "count": 31,
+            "pct_of_n": 11.9
+          },
+          "mode_raw": {
+            "value": 55.9,
+            "count": 2,
+            "pct_of_n": 0.8,
+            "n_values_tied": 19
+          },
           "p05": 48.4,
           "p10": 54.2,
           "p20": 63.1,
@@ -73,6 +110,18 @@ const GBPUSD_DATA = {
           "std": 61.2,
           "min": 39.5,
           "max": 299.2,
+          "mode_binned": {
+            "bin_low": 58.2,
+            "bin_high": 67.7,
+            "count": 12,
+            "pct_of_n": 18.2
+          },
+          "mode_raw": {
+            "value": 39.5,
+            "count": 1,
+            "pct_of_n": 1.5,
+            "n_values_tied": 66
+          },
           "p05": 48.7,
           "p10": 52.1,
           "p20": 59.3,
@@ -106,6 +155,18 @@ const GBPUSD_DATA = {
           "std": 164.9,
           "min": 76.6,
           "max": 2248.0,
+          "mode_binned": {
+            "bin_low": 188.3,
+            "bin_high": 207.9,
+            "count": 84,
+            "pct_of_n": 8.1
+          },
+          "mode_raw": {
+            "value": 216.0,
+            "count": 7,
+            "pct_of_n": 0.7,
+            "n_values_tied": 2
+          },
           "p05": 148.9,
           "p10": 167.4,
           "p20": 196.0,
@@ -125,6 +186,18 @@ const GBPUSD_DATA = {
           "std": 155.4,
           "min": 112.6,
           "max": 1788.1,
+          "mode_binned": {
+            "bin_low": 188.1,
+            "bin_high": 204.3,
+            "count": 27,
+            "pct_of_n": 10.5
+          },
+          "mode_raw": {
+            "value": 158.8,
+            "count": 2,
+            "pct_of_n": 0.8,
+            "n_values_tied": 9
+          },
           "p05": 139.8,
           "p10": 157.3,
           "p20": 180.5,
@@ -144,6 +217,18 @@ const GBPUSD_DATA = {
           "std": 98.8,
           "min": 112.6,
           "max": 511.4,
+          "mode_binned": {
+            "bin_low": 146.2,
+            "bin_high": 161.9,
+            "count": 5,
+            "pct_of_n": 9.4
+          },
+          "mode_raw": {
+            "value": 112.6,
+            "count": 1,
+            "pct_of_n": 1.9,
+            "n_values_tied": 53
+          },
           "p05": 130.5,
           "p10": 140.8,
           "p20": 160.6,
@@ -163,6 +248,18 @@ const GBPUSD_DATA = {
           "std": 137.5,
           "min": 123.4,
           "max": 511.4,
+          "mode_binned": {
+            "bin_low": 166.5,
+            "bin_high": 184.3,
+            "count": 2,
+            "pct_of_n": 14.3
+          },
+          "mode_raw": {
+            "value": 123.4,
+            "count": 1,
+            "pct_of_n": 7.1,
+            "n_values_tied": 14
+          },
           "p05": 131.0,
           "p10": 142.9,
           "p20": 165.7,
@@ -186,6 +283,18 @@ const GBPUSD_DATA = {
           "std": 296.2,
           "min": 216.5,
           "max": 2604.0,
+          "mode_binned": {
+            "bin_low": 559.3,
+            "bin_high": 595.6,
+            "count": 20,
+            "pct_of_n": 8.3
+          },
+          "mode_raw": {
+            "value": 388.0,
+            "count": 2,
+            "pct_of_n": 0.8,
+            "n_values_tied": 6
+          },
           "p05": 305.0,
           "p10": 358.8,
           "p20": 419.0,
@@ -205,6 +314,18 @@ const GBPUSD_DATA = {
           "std": 269.8,
           "min": 216.5,
           "max": 1897.4,
+          "mode_binned": {
+            "bin_low": 490.3,
+            "bin_high": 521.0,
+            "count": 8,
+            "pct_of_n": 13.3
+          },
+          "mode_raw": {
+            "value": 216.5,
+            "count": 1,
+            "pct_of_n": 1.7,
+            "n_values_tied": 60
+          },
           "p05": 275.8,
           "p10": 326.6,
           "p20": 404.7,
@@ -224,6 +345,18 @@ const GBPUSD_DATA = {
           "std": 196.5,
           "min": 216.5,
           "max": 817.3,
+          "mode_binned": {
+            "bin_low": 606.5,
+            "bin_high": 633.7,
+            "count": 3,
+            "pct_of_n": 23.1
+          },
+          "mode_raw": {
+            "value": 216.5,
+            "count": 1,
+            "pct_of_n": 7.7,
+            "n_values_tied": 13
+          },
           "p05": 253.0,
           "p10": 280.9,
           "p20": 309.0,
@@ -243,6 +376,18 @@ const GBPUSD_DATA = {
           "std": 252.5,
           "min": 216.5,
           "max": 817.3,
+          "mode_binned": {
+            "bin_low": 609.2,
+            "bin_high": 634.8,
+            "count": 2,
+            "pct_of_n": 50.0
+          },
+          "mode_raw": {
+            "value": 216.5,
+            "count": 1,
+            "pct_of_n": 25.0,
+            "n_values_tied": 4
+          },
           "p05": 276.8,
           "p10": 337.1,
           "p20": 457.6,
@@ -255,6 +400,37 @@ const GBPUSD_DATA = {
           "compression_threshold_pips": 457.6,
           "expansion_threshold_pips": 701.0
         }
+      }
+    },
+    "yearly_range": {
+      "distribution": {
+        "n": 20,
+        "mean": 2273.4,
+        "median": 2024.5,
+        "std": 1102.6,
+        "min": 1072.8,
+        "max": 6037.0,
+        "mode_binned": {
+          "bin_low": 1349.6,
+          "bin_high": 1465.5,
+          "count": 2,
+          "pct_of_n": 10.0
+        },
+        "mode_raw": {
+          "value": 1072.8,
+          "count": 1,
+          "pct_of_n": 5.0,
+          "n_values_tied": 20
+        },
+        "p05": 1349.6,
+        "p10": 1418.0,
+        "p20": 1539.4,
+        "p25": 1637.7,
+        "p50": 2024.5,
+        "p75": 2522.2,
+        "p80": 2636.6,
+        "p90": 3540.2,
+        "p95": 3666.5
       }
     },
     "daily_high_time": {
@@ -2352,6 +2528,29 @@ const GBPUSD_DATA = {
       "3": 36,
       "4": 46,
       "5": 34
+    },
+    "yearly_high_month": {
+      "1": 3,
+      "3": 2,
+      "4": 2,
+      "6": 2,
+      "7": 1,
+      "8": 1,
+      "9": 2,
+      "11": 1,
+      "12": 6
+    },
+    "yearly_low_month": {
+      "1": 5,
+      "3": 1,
+      "4": 2,
+      "5": 2,
+      "6": 1,
+      "7": 1,
+      "9": 2,
+      "10": 2,
+      "11": 1,
+      "12": 3
     }
   },
   "profiles": {

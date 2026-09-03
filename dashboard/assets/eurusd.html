@@ -10,35 +10,38 @@
 <a href="../index.html" class="back-link">&larr; All Assets</a>
 <div class="header">
   <h1>EURUSD</h1>
-  <div class="sub">Market Profiling &amp; Statistics &middot; Daily / Weekly / Monthly &middot; 2000&ndash;2019</div>
+  <div class="sub">Market Profiling &amp; Statistics &middot; Daily / Weekly / Monthly / Yearly &middot; 2000&ndash;2019</div>
 </div>
 
 <div class="stat-grid" id="stat-grid"></div>
 
 <div class="section-label">Range Distribution</div>
-<div class="section-note">Daily/weekly/monthly range percentile strips (p05&ndash;p95), IQR boxed, median marked. Dashed lines mark the compression (p20) / expansion (p80) regime thresholds used by the profile taxonomy below. The lookback window affects every chart on this page.</div>
+<div class="section-note">Daily/weekly/monthly/yearly range percentile<span class="glossary-icon" data-glossary-key="percentile">?</span> strips (p05&ndash;p95), IQR<span class="glossary-icon" data-glossary-key="iqr">?</span> boxed, median<span class="glossary-icon" data-glossary-key="median">?</span> marked. Dashed lines mark the compression<span class="glossary-icon" data-glossary-key="compression">?</span> (p20) / expansion<span class="glossary-icon" data-glossary-key="expansion">?</span> (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window<span class="glossary-icon" data-glossary-key="lookback_window">?</span> affects the daily/weekly/monthly charts (not yearly &mdash; see below).</div>
 <div class="dial" id="dial"></div>
 
 <div class="panel">
   <div class="panel-title">Daily Range</div>
   <div class="range-strip-wrap"><div id="range-daily"></div></div>
   <div class="range-strip-caption" id="range-daily-caption"></div>
+  <div class="mode-note" id="range-daily-mode-note"></div>
 </div>
 <div class="two-col">
   <div class="panel">
     <div class="panel-title">Weekly Range</div>
     <div class="range-strip-wrap"><div id="range-weekly"></div></div>
     <div class="range-strip-caption" id="range-weekly-caption"></div>
+    <div class="mode-note" id="range-weekly-mode-note"></div>
   </div>
   <div class="panel">
     <div class="panel-title">Monthly Range</div>
     <div class="range-strip-wrap"><div id="range-monthly"></div></div>
     <div class="range-strip-caption" id="range-monthly-caption"></div>
+    <div class="mode-note" id="range-monthly-mode-note"></div>
   </div>
 </div>
 
 <div class="section-label">Time of Extreme</div>
-<div class="section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean. Bars are coloured by FX session.</div>
+<div class="section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean<span class="glossary-icon" data-glossary-key="circular_mean">?</span>. Bars are coloured by FX session<span class="glossary-icon" data-glossary-key="session">?</span>. The badge shows how tightly clustered (concentrated<span class="glossary-icon" data-glossary-key="concentration">?</span>) the timing actually is &mdash; hover any bar for its exact time window.</div>
 
 <div class="panel">
   <div class="panel-title">Daily High</div>
@@ -54,7 +57,7 @@
 </div>
 
 <div class="section-label">Weekly &amp; Monthly Extremes</div>
-<div class="section-note">Which weekday the week's high/low falls on; which week-of-month the month's high/low falls on. Full history — not affected by the lookback dial above.</div>
+<div class="section-note">Which weekday the week's high/low falls on; which week-of-month the month's high/low falls on. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count.</div>
 <div class="two-col">
   <div class="panel">
     <div class="panel-title">Week High &mdash; Day of Week</div>
@@ -76,8 +79,28 @@
   </div>
 </div>
 
+<div class="section-label">Yearly Extremes</div>
+<div class="section-note">Yearly range distribution, and which calendar month the year's high/low tends to fall in. Built from only ~20 yearly samples &mdash; the weakest-sample section on this page, shown anyway for completeness rather than left out.</div>
+<div class="panel">
+  <div class="panel-title">Yearly Range</div>
+  <div class="range-strip-wrap"><div id="range-yearly"></div></div>
+  <div class="range-strip-caption" id="range-yearly-caption"></div>
+  <div class="mode-note" id="range-yearly-mode-note"></div>
+  <div class="section-note" id="range-yearly-sample-note" style="margin-top:10px;margin-bottom:0;"></div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Year High &mdash; Month</div>
+    <div id="year-high-month-chart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Year Low &mdash; Month</div>
+    <div id="year-low-month-chart"></div>
+  </div>
+</div>
+
 <div class="section-label">Profile Taxonomy</div>
-<div class="section-note" id="profile-summary-note">Rule-based daily profile classification &mdash; see market-profiling-system-spec.md &sect;4 for full definitions and naming rationale.</div>
+<div class="section-note" id="profile-summary-note">Rule-based daily profile classification, built from closing strength<span class="glossary-icon" data-glossary-key="closing_strength">?</span> and range regime. Hover a card's timing tag for what extreme timing<span class="glossary-icon" data-glossary-key="extreme_timing">?</span> means. See market-profiling-system-spec.md &sect;4 for full definitions and naming rationale.</div>
 <div class="profile-grid" id="profile-grid"></div>
 
 <div class="footnote">
@@ -87,6 +110,8 @@
 
 <script src="../data/eurusd.js"></script>
 <script>window.ASSET_DATA = EURUSD_DATA;</script>
+<script src="../js/tooltip.js"></script>
+<script src="../js/glossary.js"></script>
 <script src="../js/charts.js"></script>
 <script src="../js/dashboard.js"></script>
 </body>

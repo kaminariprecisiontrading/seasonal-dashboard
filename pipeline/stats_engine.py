@@ -120,6 +120,54 @@ def session_distribution(session_series: pd.Series) -> dict:
 # Range distribution statistics
 # ---------------------------------------------------------------------------
 
+MODE_HIST_BINS = 20
+
+
+def binned_mode(v: pd.Series) -> dict | None:
+    """The most frequent range *bucket*, not a single raw value — the
+    statistically meaningful version of "mode" for continuous pip data,
+    where almost every exact value occurs once or twice across ~5,000 days
+    and a raw mode would just be noise (see raw_mode() below, which is kept
+    for comparison since it was explicitly requested)."""
+    if len(v) == 0:
+        return None
+    lo, hi = float(v.quantile(0.05)), float(v.quantile(0.95))
+    if hi <= lo:
+        lo, hi = float(v.min()), float(v.max())
+    if hi <= lo:
+        return None
+    counts, edges = np.histogram(v, bins=MODE_HIST_BINS, range=(lo, hi))
+    if counts.sum() == 0:
+        return None
+    idx = int(counts.argmax())
+    return {
+        "bin_low": round(float(edges[idx]), 1),
+        "bin_high": round(float(edges[idx + 1]), 1),
+        "count": int(counts[idx]),
+        "pct_of_n": round(float(counts[idx]) / len(v) * 100, 1),
+    }
+
+
+def raw_mode(v: pd.Series) -> dict | None:
+    """The single most-repeated exact value. Explicitly requested alongside
+    binned_mode() for direct comparison — flagged in the UI as a weak signal
+    on continuous data since it's often based on a handful of coincidentally
+    identical days."""
+    if len(v) == 0:
+        return None
+    m = v.mode()
+    if len(m) == 0:
+        return None
+    val = float(m.iloc[0])
+    count = int((v == val).sum())
+    return {
+        "value": round(val, 1),
+        "count": count,
+        "pct_of_n": round(count / len(v) * 100, 1),
+        "n_values_tied": int(len(m)),
+    }
+
+
 def range_distribution(values: pd.Series) -> dict:
     v = values.dropna()
     if len(v) == 0:
@@ -133,6 +181,8 @@ def range_distribution(values: pd.Series) -> dict:
         "std": round(float(v.std()), 1),
         "min": round(float(v.min()), 1),
         "max": round(float(v.max()), 1),
+        "mode_binned": binned_mode(v),
+        "mode_raw": raw_mode(v),
     }
     for q in q_levels:
         out[f"p{int(q*100):02d}"] = round(float(pct[q]), 1)
@@ -238,6 +288,27 @@ def build_monthly(daily: pd.DataFrame, pip: float) -> pd.DataFrame:
     return monthly
 
 
+def build_yearly(daily: pd.DataFrame, pip: float) -> pd.DataFrame:
+    d = daily[~daily["is_data_gap"]].copy()
+    d["year"] = d["date"].dt.year
+
+    g = d.groupby("year")
+    high_idx = g["high"].idxmax()
+    low_idx = g["low"].idxmin()
+
+    yearly = pd.DataFrame({
+        "year_start": g["date"].min().values,
+        "year_end": g["date"].max().values,
+        "high": g["high"].max().values,
+        "low": g["low"].min().values,
+        "high_month": d.loc[high_idx, "date"].dt.month.values,
+        "low_month": d.loc[low_idx, "date"].dt.month.values,
+        "n_days": g.size().values,
+    })
+    yearly["range_pips"] = ((yearly["high"] - yearly["low"]) / pip).round(1)
+    return yearly
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -255,6 +326,7 @@ def main():
 
     weekly = build_weekly(daily, args.pip)
     monthly = build_monthly(daily, args.pip)
+    yearly = build_yearly(daily, args.pip)
 
     result = {
         "asset": args.asset,
@@ -262,6 +334,7 @@ def main():
         "n_days": int(len(daily_valid)),
         "n_weeks": int(len(weekly)),
         "n_months": int(len(monthly)),
+        "n_years": int(len(yearly)),
 
         "daily_range": {
             "windowed_distribution": windowed_range_stats(daily, "date", "daily_range_pips"),
@@ -272,6 +345,13 @@ def main():
         },
         "monthly_range": {
             "windowed_distribution": windowed_range_stats(monthly, "month_start", "range_pips"),
+        },
+        # Not windowed by lookback (unlike daily/weekly/monthly) — with only
+        # ~20 years of history, a "1Y"/"3mo" slice of yearly bars would be 0-1
+        # samples and meaningless. Always reflects the full history; the small
+        # n itself is shown in the UI rather than hidden behind a dial.
+        "yearly_range": {
+            "distribution": range_distribution(yearly["range_pips"]),
         },
 
         "daily_high_time": {
@@ -287,6 +367,8 @@ def main():
         "weekly_low_day": weekly["low_weekday"].value_counts().to_dict(),
         "monthly_high_week_of_month": monthly["high_week_of_month"].value_counts().sort_index().to_dict(),
         "monthly_low_week_of_month": monthly["low_week_of_month"].value_counts().sort_index().to_dict(),
+        "yearly_high_month": yearly["high_month"].value_counts().sort_index().to_dict(),
+        "yearly_low_month": yearly["low_month"].value_counts().sort_index().to_dict(),
     }
 
     with open(args.output_json, "w") as f:

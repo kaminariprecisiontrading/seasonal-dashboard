@@ -7,6 +7,7 @@ const EURUSD_DATA = {
     "n_days": 5185,
     "n_weeks": 1040,
     "n_months": 240,
+    "n_years": 20,
     "daily_range": {
       "windowed_distribution": {
         "full": {
@@ -16,6 +17,18 @@ const EURUSD_DATA = {
           "std": 59.4,
           "min": 5.0,
           "max": 548.0,
+          "mode_binned": {
+            "bin_low": 77.9,
+            "bin_high": 86.8,
+            "count": 439,
+            "pct_of_n": 8.5
+          },
+          "mode_raw": {
+            "value": 95.0,
+            "count": 42,
+            "pct_of_n": 0.8,
+            "n_values_tied": 1
+          },
           "p05": 42.4,
           "p10": 52.0,
           "p20": 64.9,
@@ -35,6 +48,18 @@ const EURUSD_DATA = {
           "std": 48.8,
           "min": 18.2,
           "max": 516.5,
+          "mode_binned": {
+            "bin_low": 69.4,
+            "bin_high": 76.1,
+            "count": 119,
+            "pct_of_n": 9.3
+          },
+          "mode_raw": {
+            "value": 89.7,
+            "count": 7,
+            "pct_of_n": 0.5,
+            "n_values_tied": 1
+          },
           "p05": 35.9,
           "p10": 41.6,
           "p20": 52.1,
@@ -54,6 +79,18 @@ const EURUSD_DATA = {
           "std": 24.8,
           "min": 18.2,
           "max": 171.5,
+          "mode_binned": {
+            "bin_low": 37.1,
+            "bin_high": 40.9,
+            "count": 27,
+            "pct_of_n": 10.4
+          },
+          "mode_raw": {
+            "value": 42.4,
+            "count": 4,
+            "pct_of_n": 1.5,
+            "n_values_tied": 1
+          },
           "p05": 25.7,
           "p10": 28.7,
           "p20": 35.7,
@@ -73,6 +110,18 @@ const EURUSD_DATA = {
           "std": 17.8,
           "min": 18.2,
           "max": 93.7,
+          "mode_binned": {
+            "bin_low": 39.8,
+            "bin_high": 42.4,
+            "count": 6,
+            "pct_of_n": 9.1
+          },
+          "mode_raw": {
+            "value": 28.2,
+            "count": 2,
+            "pct_of_n": 3.0,
+            "n_values_tied": 3
+          },
           "p05": 24.4,
           "p10": 26.0,
           "p20": 30.0,
@@ -106,6 +155,18 @@ const EURUSD_DATA = {
           "std": 122.2,
           "min": 50.6,
           "max": 1329.0,
+          "mode_binned": {
+            "bin_low": 165.9,
+            "bin_high": 183.6,
+            "count": 90,
+            "pct_of_n": 8.7
+          },
+          "mode_raw": {
+            "value": 158.0,
+            "count": 6,
+            "pct_of_n": 0.6,
+            "n_values_tied": 4
+          },
           "p05": 113.0,
           "p10": 127.5,
           "p20": 157.0,
@@ -125,6 +186,18 @@ const EURUSD_DATA = {
           "std": 94.9,
           "min": 50.6,
           "max": 564.5,
+          "mode_binned": {
+            "bin_low": 172.6,
+            "bin_high": 188.0,
+            "count": 35,
+            "pct_of_n": 13.6
+          },
+          "mode_raw": {
+            "value": 127.5,
+            "count": 3,
+            "pct_of_n": 1.2,
+            "n_values_tied": 2
+          },
           "p05": 95.7,
           "p10": 108.0,
           "p20": 129.0,
@@ -144,6 +217,18 @@ const EURUSD_DATA = {
           "std": 38.2,
           "min": 50.6,
           "max": 204.5,
+          "mode_binned": {
+            "bin_low": 118.9,
+            "bin_high": 125.3,
+            "count": 7,
+            "pct_of_n": 13.2
+          },
+          "mode_raw": {
+            "value": 108.0,
+            "count": 2,
+            "pct_of_n": 3.8,
+            "n_values_tied": 1
+          },
           "p05": 67.8,
           "p10": 82.5,
           "p20": 95.7,
@@ -163,6 +248,18 @@ const EURUSD_DATA = {
           "std": 35.2,
           "min": 50.6,
           "max": 174.8,
+          "mode_binned": {
+            "bin_low": 118.1,
+            "bin_high": 123.2,
+            "count": 3,
+            "pct_of_n": 21.4
+          },
+          "mode_raw": {
+            "value": 50.6,
+            "count": 1,
+            "pct_of_n": 7.1,
+            "n_values_tied": 14
+          },
           "p05": 61.7,
           "p10": 67.8,
           "p20": 76.5,
@@ -186,6 +283,18 @@ const EURUSD_DATA = {
           "std": 253.8,
           "min": 157.5,
           "max": 2167.0,
+          "mode_binned": {
+            "bin_low": 496.9,
+            "bin_high": 533.5,
+            "count": 21,
+            "pct_of_n": 8.8
+          },
+          "mode_raw": {
+            "value": 334.0,
+            "count": 3,
+            "pct_of_n": 1.2,
+            "n_values_tied": 1
+          },
           "p05": 241.0,
           "p10": 270.7,
           "p20": 326.6,
@@ -205,6 +314,18 @@ const EURUSD_DATA = {
           "std": 179.3,
           "min": 157.5,
           "max": 972.0,
+          "mode_binned": {
+            "bin_low": 260.8,
+            "bin_high": 289.6,
+            "count": 7,
+            "pct_of_n": 11.7
+          },
+          "mode_raw": {
+            "value": 157.5,
+            "count": 1,
+            "pct_of_n": 1.7,
+            "n_values_tied": 60
+          },
           "p05": 203.3,
           "p10": 215.4,
           "p20": 263.5,
@@ -224,6 +345,18 @@ const EURUSD_DATA = {
           "std": 44.5,
           "min": 157.5,
           "max": 310.8,
+          "mode_binned": {
+            "bin_low": 210.7,
+            "bin_high": 216.9,
+            "count": 2,
+            "pct_of_n": 15.4
+          },
+          "mode_raw": {
+            "value": 157.5,
+            "count": 1,
+            "pct_of_n": 7.7,
+            "n_values_tied": 13
+          },
           "p05": 179.5,
           "p10": 197.7,
           "p20": 213.5,
@@ -243,6 +376,18 @@ const EURUSD_DATA = {
           "std": 44.6,
           "min": 194.1,
           "max": 300.0,
+          "mode_binned": {
+            "bin_low": 221.6,
+            "bin_high": 226.2,
+            "count": 1,
+            "pct_of_n": 25.0
+          },
+          "mode_raw": {
+            "value": 194.1,
+            "count": 1,
+            "pct_of_n": 25.0,
+            "n_values_tied": 4
+          },
           "p05": 198.6,
           "p10": 203.2,
           "p20": 212.3,
@@ -255,6 +400,37 @@ const EURUSD_DATA = {
           "compression_threshold_pips": 212.3,
           "expansion_threshold_pips": 261.6
         }
+      }
+    },
+    "yearly_range": {
+      "distribution": {
+        "n": 20,
+        "mean": 1878.1,
+        "median": 1903.5,
+        "std": 665.8,
+        "min": 690.5,
+        "max": 3708.0,
+        "mode_binned": {
+          "bin_low": 1287.6,
+          "bin_high": 1369.0,
+          "count": 2,
+          "pct_of_n": 10.0
+        },
+        "mode_raw": {
+          "value": 690.5,
+          "count": 1,
+          "pct_of_n": 5.0,
+          "n_values_tied": 20
+        },
+        "p05": 1124.7,
+        "p10": 1239.8,
+        "p20": 1329.8,
+        "p25": 1417.7,
+        "p50": 1903.5,
+        "p75": 2122.8,
+        "p80": 2213.2,
+        "p90": 2689.2,
+        "p95": 2753.0
       }
     },
     "daily_high_time": {
@@ -2352,6 +2528,26 @@ const EURUSD_DATA = {
       "3": 37,
       "4": 52,
       "5": 32
+    },
+    "yearly_high_month": {
+      "1": 6,
+      "2": 2,
+      "5": 3,
+      "7": 1,
+      "9": 1,
+      "11": 2,
+      "12": 5
+    },
+    "yearly_low_month": {
+      "1": 4,
+      "2": 1,
+      "3": 2,
+      "4": 2,
+      "6": 1,
+      "7": 2,
+      "10": 3,
+      "11": 2,
+      "12": 3
     }
   },
   "profiles": {

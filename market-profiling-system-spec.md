@@ -103,6 +103,20 @@ cluster across the midnight boundary. Approach:
   window is a bias-variance tradeoff (shorter = more reactive but noisier; longer = smoother but
   slower to reflect real regime change), not a fixed truth, and should be tunable per how the data
   actually looks for GU/EU once we have it.
+- **Yearly range is computed too, but deliberately not windowed** the way daily/weekly/monthly are —
+  with only ~20 years of history, a "1Y"/"3mo" slice of yearly bars would be 0–1 samples and
+  meaningless. Yearly stats always reflect full history, and the dashboard shows the small sample
+  size explicitly rather than hiding it behind a dial that would otherwise imply the same rigor as
+  the daily/weekly/monthly sections.
+- **Mode is reported two ways, both computed in `stats_engine.py`'s `range_distribution()`:**
+  - **Binned mode** — the most frequent range *bucket* (20 bins spanning p05–p95). This is the
+    statistically meaningful version for continuous pip data, where at daily granularity almost
+    every exact value occurs once or twice across ~5,000 days.
+  - **Raw mode** — the single exact value that repeated most often, kept alongside the binned mode
+    for direct comparison since a literal "most common value" was explicitly requested. Flagged in
+    the UI as a weak signal (its sample count is always shown), and treated as not meaningful at all
+    when every value in a window is unique (e.g. yearly range, where 20 samples are essentially
+    guaranteed to be 20 distinct numbers) — shown as "none" rather than an arbitrary tie-break.
 
 ### 3.3 Framing discipline
 Every statistical output surfaced to the UI is a **probability-weighted window or level**, with its
@@ -210,20 +224,58 @@ above, so the taxonomy stays self-consistent and auditable rather than growing a
 
 ## 5. Dashboard
 
-- **Static-site architecture**, following the existing Seasonals Dashboard pattern (Netlify-hosted,
-  rebuilt from a data layer after each CSV upload) — no live backend/database in v1, per the stated
-  preference for free, low-maintenance tooling over an ambitious build.
-- Core views:
+- **Static-site architecture**, following the existing Seasonals Dashboard pattern (data-as-a-JS-file,
+  no build step, no framework, no external charting library — hand-rolled vanilla-JS SVG) — no live
+  backend/database in v1, per the stated preference for free, low-maintenance tooling over an
+  ambitious build. Shares the Seasonals Dashboard's CSS design tokens/fonts for brand consistency.
+- Core views (v1, implemented in `dashboard/`):
   - Time-of-extreme histogram/heatmap, session-colored, with the mode called out and a
     confidence/concentration indicator.
-  - Range-distribution chart (daily/weekly/monthly) with the current in-progress period's range
-    plotted live against the historical distribution.
-  - Lookback-window dial (§3.2) affecting all of the above.
-  - Profile-classification panel: current best-match profile(s) for today/this week, with the
-    supporting stats and an explicit "invalidated if..." condition.
+  - Range-distribution chart (daily/weekly/monthly/yearly — see §3.2 on why yearly isn't windowed)
+    with both **binned mode and raw mode** shown alongside the percentile/IQR view.
+  - Lookback-window dial (§3.2) affecting the daily/weekly/monthly charts.
+  - Profile-classification panel: full-history distribution, average range, and dominant
+    extreme-timing tag per profile. *Not yet built:* a live "today's best-match profile" view — this
+    needs a live/current data feed and is explicitly deferred to Phase 4 (§9), so v1 is a historical-
+    statistics browser, not a live one.
 - **Screenshot-in-chart analysis is a later, secondary feature** (§8) — a qualitative sanity-check
   layer for quick reads or less-technical use, explicitly **not** the source of truth. CSV-derived data
   always takes priority.
+
+### 5.0a Plain-language layer (jargon vs. rigor)
+
+Early user feedback: the raw statistical framing (percentiles, concentration/R, IQR, circular mean,
+etc.) is exactly right for a professional reading the numbers directly, but opaque to a trader who
+just wants a quick, correct read each morning. Resolved as an additive layer, not a rewrite:
+
+- **Every jargon term gets a small "?" info icon** (`.glossary-icon` in `dashboard/css/dashboard.css`,
+  content sourced from a single `KPT_GLOSSARY` dictionary in `dashboard/js/glossary.js`) that shows a
+  plain-English, one-line explanation on hover/tap. The underlying numbers, sample sizes, and
+  confidence measures are never removed or dumbed down — see §3.3 Framing discipline, which this
+  layer exists to make *accessible* rather than override.
+- **Every chart element is hoverable** (range-strip regions, time-of-extreme bars, weekday/week-of-
+  month/month-of-year bars) via a single shared tooltip component (`dashboard/js/tooltip.js`), so a
+  trader can point at any bar and get its exact value/date-range/context rather than having to
+  decode an axis. This was chosen over placing a small icon under every bar (e.g. 48 icons under a
+  time-of-extreme strip) — that many static icons would be visual noise; hover is the standard,
+  clean solution for "let me drill into one specific element."
+- Applies to any future addition too: new jargon gets a glossary entry before it ships, new chart
+  elements get a tooltip before they ship. This is a standing rule, not a one-time pass.
+
+### 5.0b Future: merge with the Kaminari Seasonals Dashboard
+
+Not planned for v1, but flagged now while it's cheap to keep the door open. Intended relationship:
+the Seasonals Dashboard gives the **top-level, macro/monthly-bias view**; this Market Profiling
+dashboard gives the **zoomed-in, daily/weekly/timing view** — a trader would land on a Seasonals
+asset page for the month's structural bias, then drill into this dashboard for "ok, but when in the
+day/week does it actually tend to move, and how big." Kept compatible on purpose:
+
+- Both are static/no-build-step/vanilla JS, both use the same data-as-a-JS-file loading pattern
+  (`data/<asset>.js` → `const <ASSET>_DATA = {...}`), and this dashboard reuses the Seasonals
+  Dashboard's CSS design tokens/fonts outright.
+- Any future navigation, URL structure, or data-format decision here should keep this relationship in
+  mind so a later merge is a consolidation (shared nav, shared asset picker, cross-links between the
+  two views) rather than a rewrite of either side.
 
 ### 5.1 OHLC chart viewer (added after initial dashboard scoping)
 When viewing a specific day (e.g., drilling into a day flagged as a particular profile, or a historical
@@ -242,6 +294,40 @@ Architecture implication this creates, noted here so it's designed for rather th
   day(s) being viewed — not bundled into the main stats payload.
 - This is a natural extension of the existing cleaning pipeline (`clean_mt5_csv.py` already parses and
   UTC-normalizes the M1 data before aggregating it away) rather than a separate system.
+
+### 5.2 Calendar feature (planned, not yet built)
+
+Pick a specific date and see that day's (and its containing week's/month's) stats for one asset, plus
+a cross-asset "all assets on this day" view from the homepage. Two architecture decisions to make
+before building, flagged here so the "start simple" build doesn't paint into a corner:
+
+- **Data shape.** The current dashboard embeds one small summary JSON per asset (~56KB). A calendar
+  needs per-day lookups across all ~5,185 days per asset — too much to embed in one file upfront
+  without a heavy initial page load. Plan: chunk by year (one small JS file per asset per year),
+  dynamically injected via a `<script>` tag only when the user navigates to that year — stays on the
+  same "no server, no fetch()" file-based pattern (fetch()/XHR is CORS-blocked on `file://`; a plain
+  `<script src>` tag isn't).
+- **Week/month context for a selected day.** `stats_engine.py` currently only *aggregates* the
+  weekly/monthly tables in memory (§ Weekly / monthly aggregation) — it doesn't persist them with
+  dates. Needs its own output artifact (the actual weekly/monthly table, dated) so "click a date → see
+  its week and month too" has something to look up.
+
+### 5.3 Profile detail pages (planned, not yet built)
+
+Goal per the original feature request: a trader should be able to look at a real price chart later and
+recognize "that's a Trend Day" — both a descriptive and a visual understanding of each profile, so the
+taxonomy becomes intuitive rather than just a label.
+
+- **Descriptive part** is effectively already written — §4.2's table is the page copy.
+- **Stylized icon per profile** (a small hand-drawn shape glyph — e.g. an upward-sloping line for
+  Trend Day) shown under each profile card on the asset dashboard, so the shape is visible at a glance
+  before a trader clicks through. No real data dependency — purely a mnemonic, separate from the
+  illustrative chart below.
+- **Illustrative real example chart** — one real historical day, picked as a strong exemplar of each
+  profile, shown as an actual candlestick/line chart on that profile's detail page. This depends on
+  the OHLC chart viewer's per-day chart data (§5.1) — rather than block on building that for all 5,185
+  days, scope it down to just the ~8 exemplar days needed here first, reusing the same resampling code
+  the full viewer will eventually need.
 
 ---
 
