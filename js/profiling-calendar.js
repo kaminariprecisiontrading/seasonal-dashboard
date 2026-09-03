@@ -212,7 +212,10 @@ var KPTPCalendar = (function () {
   function renderBackLinks() {
     var wrap = document.getElementById('kptp-back-links');
     if (!wrap) return;
-    var pages = ASSET_PAGES[primary] || [];
+    // Home mode covers every asset in ASSETS, not just the primary one used
+    // for grid coloring — show back-links for all of them so a EURUSD-only
+    // visitor isn't stuck with GBP-only links.
+    var pages = ASSETS.reduce(function (acc, a) { return acc.concat(ASSET_PAGES[a] || []); }, []);
     wrap.innerHTML = pages.map(function (p) {
       return '<a class="kptp-calendar-nav-btn" style="width:auto;padding:0 12px;font-size:10px;" href="../assets/' + p.id + '.html">' + p.label + ' &rarr;</a>';
     }).join(' ');
