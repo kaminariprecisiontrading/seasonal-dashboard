@@ -155,12 +155,49 @@ var KPTPCalendar = (function () {
       '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' pips</b></div>';
   }
 
+  // Full single-asset detail (asset mode, ?a=<ASSET>) — richer than the
+  // compact assetColumnHtml() above, which is sized for showing several
+  // assets side by side in the cross-asset home view. Ported from the
+  // source's calendar-page.js renderDetail(), which this file's
+  // assetColumnHtml() (from calendar-home.js) had wrongly replaced for both
+  // modes — the week/month context headers and Week/Month High-Low rows
+  // were silently dropped for single-asset view as a result.
+  function assetDetailHtml(assetKey, rec) {
+    if (!rec) return '<div class="kptp-section-note" style="margin:0;">No data for this date.</div>';
+    if (rec.is_data_gap) return '<div class="kptp-section-note" style="margin:0;">Data-gap day (feed outage / no trading).</div>';
+    var slug = kptpProfileSlug(rec.profile);
+    return '<div class="kptp-two-col">' +
+      '<div>' +
+        '<div class="kptp-calendar-detail-row"><span>Profile</span><a href="../profiling-profiles/detail.html?p=' + slug + '&a=' + assetKey.toLowerCase() + '" class="kptp-profile-link" style="--card-accent:' + (KPTP_PROFILE_COLOR[rec.profile] || 'var(--muted)') + '">' + kptpProfileIconSvg(rec.profile, 22) + ' ' + rec.profile + '</a></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Open / Close</span><b>' + rec.open + ' / ' + rec.close + '</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>High / Low</span><b>' + rec.high + ' / ' + rec.low + '</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Daily Range</span><b>' + rec.range_pips + ' pips</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>High Time</span><b>' + rec.high_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.high_session.replace(/_/g, ' ') + ')</span></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Low Time</span><b>' + rec.low_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.low_session.replace(/_/g, ' ') + ')</span></div>' +
+      '</div>' +
+      '<div>' +
+        '<div class="kptp-calendar-context-label">Week (' + rec.week.start + ' &rarr; ' + rec.week.end + ')</div>' +
+        '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' pips</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Week High / Low Day</span><b>' + rec.week.high_weekday + ' / ' + rec.week.low_weekday + '</b></div>' +
+        '<div class="kptp-calendar-context-label" style="margin-top:14px;">Month (' + rec.month.start + ' &rarr; ' + rec.month.end + ')</div>' +
+        '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' pips</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Month High / Low</span><b>' + rec.month.high + ' / ' + rec.month.low + '</b></div>' +
+      '</div>' +
+    '</div>';
+  }
+
   function renderDetail(dateStr) {
     var panel = document.getElementById('kptp-calendar-detail');
     panel.style.display = 'block';
     Promise.all(ASSETS.map(function (a) { return KPTPCalendar.loadYear(a, dateStr.slice(0, 4)); })).then(function () {
-      var cols = ASSETS.map(function (a) { return '<div>' + assetColumnHtml(a, KPTPCalendar.getDay(a, dateStr)) + '</div>'; }).join('');
-      panel.innerHTML = '<div class="kptp-panel-title">' + dateStr + ' &middot; ' + weekdayName(dateStr) + '</div><div class="kptp-two-col">' + cols + '</div>';
+      var bodyHtml;
+      if (isHome) {
+        var cols = ASSETS.map(function (a) { return '<div>' + assetColumnHtml(a, KPTPCalendar.getDay(a, dateStr)) + '</div>'; }).join('');
+        bodyHtml = '<div class="kptp-two-col">' + cols + '</div>';
+      } else {
+        bodyHtml = assetDetailHtml(primary, KPTPCalendar.getDay(primary, dateStr));
+      }
+      panel.innerHTML = '<div class="kptp-panel-title">' + dateStr + ' &middot; ' + weekdayName(dateStr) + '</div>' + bodyHtml;
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }
