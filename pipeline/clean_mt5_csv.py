@@ -31,7 +31,14 @@ MIN_BARS_FOR_VALID_DAY = 5
 PIP_SIZE = {
     "GBPUSD": 0.0001,
     "EURUSD": 0.0001,
-    # JPY pairs, crypto, stocks etc. added here as the system expands (see spec §2.5 / §8)
+    "AUDUSD": 0.0001,
+    "NZDUSD": 0.0001,
+    "USDCAD": 0.0001,
+    "USDCHF": 0.0001,
+    "USDJPY": 0.01,  # JPY pair — pip is 2 decimal places, not 4
+    # Fallback default only — pipeline/refresh_asset.py always passes --pip
+    # explicitly per its own registry, so this dict mainly matters for
+    # direct/manual invocation of this script without --pip.
 }
 
 
@@ -107,9 +114,42 @@ def to_utc(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def aggregate_daily(df: pd.DataFrame, asset: str) -> pd.DataFrame:
+def detect_daily_only_cutoff(daily: pd.DataFrame, min_bars: int,
+                              sustain_window: int = 20, sustain_frac: float = 0.9) -> "pd.Timestamp | None":
+    """Some brokers only have Daily-resolution history before their M1 feed
+    began (e.g. 1993-1998 on this dataset's broker, cutting over sharply on
+    1999.01.04) -- MT5's M1 export still emits one row per day for that era,
+    at n_bars == 1, indistinguishable from a real data gap on bar count
+    alone. Detects the date M1 coverage actually starts, so those early rows
+    can be trusted as real (if coarse) daily OHLC instead of excluded as gaps.
+
+    A "candidate" day (n_bars > min_bars) only counts as the real cutover if
+    at least `sustain_frac` of the following `sustain_window` days are also
+    dense -- guards against a single early spike (e.g. a busy news day)
+    being mistaken for the start of continuous M1 coverage. Returns None if
+    no such sustained transition exists (the file is M1-dense from its very
+    first day, e.g. an asset with no pre-M1 history at all).
+    """
+    daily = daily.sort_values("date").reset_index(drop=True)
+    dense = daily["n_bars"] > min_bars
+    # forward-looking fraction of dense days over the next `sustain_window`
+    # entries (reverse -> trailing rolling mean -> reverse back)
+    forward_frac = dense[::-1].rolling(sustain_window, min_periods=1).mean()[::-1]
+    candidates = daily.index[dense & (forward_frac >= sustain_frac)]
+    if len(candidates) == 0:
+        return None
+    return daily.loc[candidates[0], "date"]
+
+
+def aggregate_daily(df: pd.DataFrame, asset: str, pip: float = None) -> pd.DataFrame:
     t0 = time.time()
-    pip = PIP_SIZE[asset]
+    if pip is None:
+        if asset not in PIP_SIZE:
+            raise KeyError(
+                f"No pip size known for {asset!r} and none passed via --pip. "
+                f"Pass --pip explicitly (e.g. 0.01 for JPY pairs, 0.0001 otherwise)."
+            )
+        pip = PIP_SIZE[asset]
     df = df.sort_values("utc_dt").reset_index(drop=True)
 
     g = df.groupby("trading_day", sort=True)
@@ -132,9 +172,23 @@ def aggregate_daily(df: pd.DataFrame, asset: str) -> pd.DataFrame:
         "n_bars": g.size().values,
     })
 
-    daily["is_data_gap"] = daily["n_bars"] <= MIN_BARS_FOR_VALID_DAY
+    low_bar_count = daily["n_bars"] <= MIN_BARS_FOR_VALID_DAY
+
+    cutoff = detect_daily_only_cutoff(daily, MIN_BARS_FOR_VALID_DAY)
+    is_pre_cutoff = (daily["date"] < cutoff) if cutoff is not None else pd.Series(False, index=daily.index)
+
+    # Low-bar-count days before the detected M1-coverage cutoff are a real
+    # (if coarse) single daily bar, not a feed outage -- keep their OHLC/
+    # range trusted. Same low bar count at/after the cutoff is a genuine gap.
+    daily["is_daily_only"] = low_bar_count & is_pre_cutoff
+    daily["is_data_gap"] = low_bar_count & ~is_pre_cutoff
     daily["daily_range_pips"] = ((daily["high"] - daily["low"]) / pip).round(1)
     daily.loc[daily["is_data_gap"], "daily_range_pips"] = np.nan
+
+    if daily["is_daily_only"].any():
+        n_daily_only = int(daily["is_daily_only"].sum())
+        print(f"  daily-only historical era detected: {n_daily_only} days before {cutoff.date()} "
+              f"(single EOD bar/day, no intrabar granularity -- trusted, not treated as a gap)", file=sys.stderr)
 
     for col in ["open_time", "high_time", "low_time", "close_time"]:
         daily[col + "_session"] = pd.to_datetime(daily[col]).apply(session_tag)
@@ -196,12 +250,13 @@ def main():
     ap.add_argument("input_csv")
     ap.add_argument("output_csv")
     ap.add_argument("--asset", default="GBPUSD")
+    ap.add_argument("--pip", type=float, default=None, help="pip size for this asset, e.g. 0.01 for JPY pairs. Falls back to the PIP_SIZE table above if omitted.")
     args = ap.parse_args()
 
     print(f"Phase 1 cleaning: {args.asset}", file=sys.stderr)
     df = load_raw(args.input_csv)
     df = to_utc(df)
-    daily = aggregate_daily(df, args.asset)
+    daily = aggregate_daily(df, args.asset, args.pip)
     daily = add_period_flags(daily)
 
     col_order = [
@@ -211,7 +266,7 @@ def main():
         "is_week_high", "is_week_low", "week_high_so_far", "week_low_so_far",
         "is_month_high", "is_month_low", "month_high_so_far", "month_low_so_far",
         "is_year_high", "is_year_low", "year_high_so_far", "year_low_so_far",
-        "is_data_gap", "n_bars",
+        "is_data_gap", "is_daily_only", "n_bars",
     ]
     daily[col_order].to_csv(args.output_csv, index=False)
     print(f"  wrote {args.output_csv}", file=sys.stderr)

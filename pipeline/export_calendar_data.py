@@ -81,6 +81,7 @@ def row_to_record(row) -> dict:
     return {
         "profile": row["profile"],
         "is_data_gap": bool(row["is_data_gap"]),
+        "is_daily_only": bool(row.get("is_daily_only", False)),
         "open": _num(row["open"]),
         "high": _num(row["high"]),
         "low": _num(row["low"]),

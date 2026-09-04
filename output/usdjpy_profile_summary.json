@@ -1,0 +1,131 @@
+{
+  "n_labeled_days": 8681,
+  "n_data_gap_days": 7,
+  "n_insufficient_history_days": 59,
+  "profile_distribution": {
+    "Normal Day": {
+      "n": 4946,
+      "pct": 56.98
+    },
+    "Compression Day": {
+      "n": 1614,
+      "pct": 18.59
+    },
+    "Volatile Day": {
+      "n": 878,
+      "pct": 10.11
+    },
+    "Trend Day (Up)": {
+      "n": 370,
+      "pct": 4.26
+    },
+    "Trend Day (Down)": {
+      "n": 294,
+      "pct": 3.39
+    },
+    "Volatile Reversal Day": {
+      "n": 280,
+      "pct": 3.23
+    },
+    "Quiet Drift Day (Up)": {
+      "n": 179,
+      "pct": 2.06
+    },
+    "Quiet Drift Day (Down)": {
+      "n": 120,
+      "pct": 1.38
+    }
+  },
+  "extreme_timing_by_profile": {
+    "Normal Day": {
+      "Late_Push": 2590,
+      "Insufficient_History": 878,
+      "Late_Resolution": 531,
+      "Early_Resolution": 497,
+      "Fade_Risk": 450
+    },
+    "Compression Day": {
+      "Late_Push": 594,
+      "Early_Resolution": 350,
+      "Fade_Risk": 272,
+      "Insufficient_History": 206,
+      "Late_Resolution": 192
+    },
+    "Volatile Day": {
+      "Late_Push": 518,
+      "Insufficient_History": 196,
+      "Late_Resolution": 69,
+      "Early_Resolution": 67,
+      "Fade_Risk": 28
+    },
+    "Trend Day (Up)": {
+      "Late_Push": 273,
+      "Insufficient_History": 64,
+      "Late_Resolution": 28,
+      "Early_Resolution": 3,
+      "Fade_Risk": 2
+    },
+    "Trend Day (Down)": {
+      "Late_Push": 214,
+      "Insufficient_History": 48,
+      "Late_Resolution": 24,
+      "Early_Resolution": 8
+    },
+    "Volatile Reversal Day": {
+      "Late_Push": 107,
+      "Insufficient_History": 65,
+      "Early_Resolution": 54,
+      "Fade_Risk": 39,
+      "Late_Resolution": 15
+    },
+    "Quiet Drift Day (Up)": {
+      "Late_Push": 97,
+      "Insufficient_History": 32,
+      "Late_Resolution": 27,
+      "Early_Resolution": 15,
+      "Fade_Risk": 8
+    },
+    "Quiet Drift Day (Down)": {
+      "Late_Push": 66,
+      "Late_Resolution": 22,
+      "Insufficient_History": 14,
+      "Early_Resolution": 12,
+      "Fade_Risk": 6
+    }
+  },
+  "avg_range_pips_by_profile": {
+    "Compression Day": {
+      "mean": 54.2,
+      "median": 54.0
+    },
+    "Normal Day": {
+      "mean": 98.2,
+      "median": 95.0
+    },
+    "Quiet Drift Day (Down)": {
+      "mean": 56.9,
+      "median": 57.0
+    },
+    "Quiet Drift Day (Up)": {
+      "mean": 54.9,
+      "median": 57.0
+    },
+    "Trend Day (Down)": {
+      "mean": 190.1,
+      "median": 167.5
+    },
+    "Trend Day (Up)": {
+      "mean": 181.8,
+      "median": 163.2
+    },
+    "Volatile Day": {
+      "mean": 193.7,
+      "median": 174.0
+    },
+    "Volatile Reversal Day": {
+      "mean": 193.9,
+      "median": 170.6
+    }
+  },
+  "asset": "USDJPY"
+}

@@ -1,0 +1,124 @@
+{
+  "n_labeled_days": 6596,
+  "n_data_gap_days": 7,
+  "n_insufficient_history_days": 59,
+  "profile_distribution": {
+    "Normal Day": {
+      "n": 3818,
+      "pct": 57.88
+    },
+    "Compression Day": {
+      "n": 1222,
+      "pct": 18.53
+    },
+    "Volatile Day": {
+      "n": 635,
+      "pct": 9.63
+    },
+    "Trend Day (Up)": {
+      "n": 255,
+      "pct": 3.87
+    },
+    "Trend Day (Down)": {
+      "n": 253,
+      "pct": 3.84
+    },
+    "Volatile Reversal Day": {
+      "n": 200,
+      "pct": 3.03
+    },
+    "Quiet Drift Day (Down)": {
+      "n": 126,
+      "pct": 1.91
+    },
+    "Quiet Drift Day (Up)": {
+      "n": 87,
+      "pct": 1.32
+    }
+  },
+  "extreme_timing_by_profile": {
+    "Normal Day": {
+      "Late_Push": 2205,
+      "Early_Resolution": 697,
+      "Fade_Risk": 461,
+      "Late_Resolution": 455
+    },
+    "Compression Day": {
+      "Late_Push": 497,
+      "Early_Resolution": 326,
+      "Fade_Risk": 245,
+      "Late_Resolution": 154
+    },
+    "Volatile Day": {
+      "Late_Push": 445,
+      "Early_Resolution": 100,
+      "Late_Resolution": 55,
+      "Fade_Risk": 35
+    },
+    "Trend Day (Up)": {
+      "Late_Push": 196,
+      "Early_Resolution": 31,
+      "Late_Resolution": 25,
+      "Fade_Risk": 3
+    },
+    "Trend Day (Down)": {
+      "Late_Push": 183,
+      "Late_Resolution": 41,
+      "Early_Resolution": 26,
+      "Fade_Risk": 3
+    },
+    "Volatile Reversal Day": {
+      "Late_Push": 87,
+      "Early_Resolution": 60,
+      "Fade_Risk": 45,
+      "Late_Resolution": 8
+    },
+    "Quiet Drift Day (Down)": {
+      "Late_Push": 67,
+      "Late_Resolution": 32,
+      "Early_Resolution": 18,
+      "Fade_Risk": 9
+    },
+    "Quiet Drift Day (Up)": {
+      "Late_Push": 49,
+      "Late_Resolution": 23,
+      "Early_Resolution": 10,
+      "Fade_Risk": 5
+    }
+  },
+  "avg_range_pips_by_profile": {
+    "Compression Day": {
+      "mean": 43.5,
+      "median": 41.8
+    },
+    "Normal Day": {
+      "mean": 72.5,
+      "median": 68.0
+    },
+    "Quiet Drift Day (Down)": {
+      "mean": 42.2,
+      "median": 40.0
+    },
+    "Quiet Drift Day (Up)": {
+      "mean": 46.9,
+      "median": 44.0
+    },
+    "Trend Day (Down)": {
+      "mean": 133.2,
+      "median": 124.0
+    },
+    "Trend Day (Up)": {
+      "mean": 127.2,
+      "median": 113.5
+    },
+    "Volatile Day": {
+      "mean": 129.2,
+      "median": 116.2
+    },
+    "Volatile Reversal Day": {
+      "mean": 125.1,
+      "median": 110.0
+    }
+  },
+  "asset": "NZDUSD"
+}

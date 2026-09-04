@@ -139,7 +139,7 @@ def build_profiles(daily: pd.DataFrame) -> pd.DataFrame:
         "range_pctile", "cs_pctile", "range_regime", "shape",
         "close_side_frac", "far_side_frac", "extreme_timing", "profile",
     ]
-    result = daily[["date", "is_data_gap"]].merge(valid[out_cols], on="date", how="left")
+    result = daily[["date", "is_data_gap", "is_daily_only"]].merge(valid[out_cols], on="date", how="left")
     result.loc[result["is_data_gap"], "profile"] = "Data_Gap"
     result["profile"] = result["profile"].fillna("Data_Gap")
     return result
@@ -182,6 +182,9 @@ def main():
         parse_dates=["date", "open_time", "high_time", "low_time", "close_time"],
     )
     daily["is_data_gap"] = daily["is_data_gap"].astype(bool)
+    if "is_daily_only" not in daily.columns:
+        daily["is_daily_only"] = False
+    daily["is_daily_only"] = daily["is_daily_only"].astype(bool)
 
     result = build_profiles(daily)
     result.to_csv(args.output_csv, index=False)

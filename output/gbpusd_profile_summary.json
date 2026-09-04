@@ -1,122 +1,131 @@
 {
-  "n_labeled_days": 5126,
-  "n_data_gap_days": 5,
+  "n_labeled_days": 8588,
+  "n_data_gap_days": 6,
   "n_insufficient_history_days": 59,
   "profile_distribution": {
     "Normal Day": {
-      "n": 2950,
-      "pct": 57.55
+      "n": 4970,
+      "pct": 57.87
     },
     "Compression Day": {
-      "n": 966,
-      "pct": 18.85
+      "n": 1628,
+      "pct": 18.96
     },
     "Volatile Day": {
-      "n": 490,
-      "pct": 9.56
+      "n": 796,
+      "pct": 9.27
     },
     "Trend Day (Up)": {
-      "n": 222,
-      "pct": 4.33
+      "n": 373,
+      "pct": 4.34
     },
     "Trend Day (Down)": {
-      "n": 212,
-      "pct": 4.14
+      "n": 320,
+      "pct": 3.73
     },
     "Volatile Reversal Day": {
-      "n": 114,
-      "pct": 2.22
+      "n": 212,
+      "pct": 2.47
     },
     "Quiet Drift Day (Down)": {
-      "n": 106,
-      "pct": 2.07
+      "n": 153,
+      "pct": 1.78
     },
     "Quiet Drift Day (Up)": {
-      "n": 66,
-      "pct": 1.29
+      "n": 136,
+      "pct": 1.58
     }
   },
   "extreme_timing_by_profile": {
     "Normal Day": {
-      "Late_Push": 1848,
-      "Late_Resolution": 521,
-      "Fade_Risk": 357,
-      "Early_Resolution": 224
+      "Late_Push": 2552,
+      "Insufficient_History": 818,
+      "Late_Resolution": 799,
+      "Fade_Risk": 529,
+      "Early_Resolution": 272
     },
     "Compression Day": {
-      "Late_Push": 443,
-      "Fade_Risk": 212,
-      "Late_Resolution": 159,
-      "Early_Resolution": 152
+      "Late_Push": 610,
+      "Fade_Risk": 303,
+      "Insufficient_History": 273,
+      "Late_Resolution": 247,
+      "Early_Resolution": 195
     },
     "Volatile Day": {
-      "Late_Push": 370,
-      "Late_Resolution": 76,
-      "Fade_Risk": 24,
-      "Early_Resolution": 20
+      "Late_Push": 517,
+      "Insufficient_History": 119,
+      "Late_Resolution": 103,
+      "Fade_Risk": 30,
+      "Early_Resolution": 27
     },
     "Trend Day (Up)": {
-      "Late_Push": 188,
-      "Late_Resolution": 30,
+      "Late_Push": 247,
+      "Insufficient_History": 81,
+      "Late_Resolution": 40,
       "Early_Resolution": 3,
-      "Fade_Risk": 1
+      "Fade_Risk": 2
     },
     "Trend Day (Down)": {
-      "Late_Push": 178,
-      "Late_Resolution": 32,
-      "Early_Resolution": 2
+      "Late_Push": 235,
+      "Late_Resolution": 46,
+      "Insufficient_History": 36,
+      "Early_Resolution": 2,
+      "Fade_Risk": 1
     },
     "Volatile Reversal Day": {
-      "Late_Push": 63,
-      "Fade_Risk": 26,
-      "Early_Resolution": 17,
-      "Late_Resolution": 8
+      "Late_Push": 98,
+      "Fade_Risk": 38,
+      "Insufficient_History": 37,
+      "Early_Resolution": 23,
+      "Late_Resolution": 16
     },
     "Quiet Drift Day (Down)": {
-      "Late_Push": 68,
-      "Late_Resolution": 23,
-      "Early_Resolution": 9,
-      "Fade_Risk": 6
+      "Late_Push": 90,
+      "Late_Resolution": 33,
+      "Insufficient_History": 13,
+      "Early_Resolution": 10,
+      "Fade_Risk": 7
     },
     "Quiet Drift Day (Up)": {
-      "Late_Push": 32,
-      "Late_Resolution": 22,
-      "Fade_Risk": 8,
-      "Early_Resolution": 4
+      "Late_Push": 52,
+      "Late_Resolution": 34,
+      "Insufficient_History": 33,
+      "Fade_Risk": 11,
+      "Early_Resolution": 6
     }
   },
   "avg_range_pips_by_profile": {
     "Compression Day": {
-      "mean": 75.7,
-      "median": 71.0
+      "mean": 72.3,
+      "median": 69.0
     },
     "Normal Day": {
-      "mean": 127.5,
-      "median": 119.2
+      "mean": 120.7,
+      "median": 114.0
     },
     "Quiet Drift Day (Down)": {
-      "mean": 71.9,
-      "median": 66.2
+      "mean": 70.1,
+      "median": 65.0
     },
     "Quiet Drift Day (Up)": {
-      "mean": 76.9,
-      "median": 71.4
+      "mean": 72.6,
+      "median": 70.0
     },
     "Trend Day (Down)": {
-      "mean": 230.6,
-      "median": 208.1
+      "mean": 224.7,
+      "median": 206.4
     },
     "Trend Day (Up)": {
-      "mean": 221.9,
-      "median": 209.8
+      "mean": 215.4,
+      "median": 205.0
     },
     "Volatile Day": {
-      "mean": 225.4,
-      "median": 199.4
+      "mean": 216.7,
+      "median": 195.2
     },
     "Volatile Reversal Day": {
-      "mean": 224.1,
-      "median": 195.8
+      "mean": 208.0,
+      "median": 187.3
     }
   },
   "asset": "GBPUSD"

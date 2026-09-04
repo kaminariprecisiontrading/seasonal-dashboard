@@ -27,14 +27,15 @@ KPT-Market-Profiling/
 ├── HANDOVER.md                          (this file)
 ├── market-profiling-system-spec.md      (canonical spec — read this next)
 ├── data/
-│   ├── raw/                             (raw MT5 exports go here, e.g. the GBPUSD M1 CSV)
+│   ├── raw/                             (raw MT5 exports, gitignored — <ASSET>_M1_full.csv,
+│   │                                      one continuous full-history file per asset)
 │   └── clean/
-│       ├── gbpusd_daily_clean_2000_2019.csv
-│       ├── eurusd_daily_clean_2000_2019.csv
-│       ├── gbpusd_daily_profiles_2000_2019.csv
-│       └── eurusd_daily_profiles_2000_2019.csv
+│       ├── gbpusd_daily_clean.csv, gbpusd_daily_profiles.csv
+│       └── ... one pair per asset (eurusd, audusd, nzdusd, usdcad, usdchf, usdjpy)
 ├── pipeline/
 │   ├── clean_mt5_csv.py
+│   ├── concat_raw_csv.py                (merges a new raw export into <ASSET>_M1_full.csv)
+│   ├── refresh_asset.py                 (one-command runner for the 6-stage chain below)
 │   ├── stats_engine.py
 │   ├── profile_taxonomy.py
 │   ├── build_dashboard_data.py
@@ -67,16 +68,17 @@ first step in Claude Code.
 | File | Purpose |
 |---|---|
 | `market-profiling-system-spec.md` | Canonical project spec: goals, architecture, methodology, phased roadmap. **Source of truth for all design decisions.** |
-| `clean_mt5_csv.py` | Phase 1 pipeline: raw MT5 M1 CSV → UTC-normalized, cleaned daily OHLC CSV. Reusable for future CSV uploads/assets. |
-| `gbpusd_daily_clean_2000_2019.csv` | Cleaned daily output for GBPUSD, 2000-01-03 → 2019-12-31 (5,190 rows). |
-| `eurusd_daily_clean_2000_2019.csv` | Cleaned daily output for EURUSD, same date range (5,191 rows) — same pipeline, no code changes needed. |
+| `clean_mt5_csv.py` | Phase 1 pipeline: raw MT5 M1 CSV → UTC-normalized, cleaned daily OHLC CSV. Reusable for future CSV uploads/assets. Auto-detects a per-asset "daily-only" historical era (single EOD bar/day, before the broker's M1 feed began) and flags it `is_daily_only` rather than misclassifying it as `is_data_gap` — see §5. |
+| `concat_raw_csv.py` | Merges a new raw MT5 export into an asset's `<ASSET>_M1_full.csv`, auto-detecting append/prepend/both from the timestamp ranges (needed because MT5's Export Bars has a rolling ~20-year lookback cap, so a single from-scratch full-history export isn't always possible) — see §5. |
+| `refresh_asset.py` | One-command runner for the full 6-stage chain (`clean_mt5_csv.py` → `profile_taxonomy.py` → `stats_engine.py` → `build_dashboard_data.py` → `export_profile_examples.py` → `export_calendar_data.py`) for one asset. Looks up pip size from its own per-asset registry. Replaces manually invoking all 6 scripts in order — see §5. |
+| `<asset>_daily_clean.csv` | Cleaned daily output, one per asset, full available history (back to 1993 for most majors) — see §5's asset roster. File naming deliberately drops the date-range suffix these files originally had (`_2000_2019` etc.): the range keeps growing with every refresh, so a baked-in suffix would immediately go stale. Freshness is tracked via each output's own `as_of` field instead. |
 | `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, and weekly/monthly aggregates. |
-| `gbpusd_stats.json` / `eurusd_stats.json` | Stats engine output per asset — everything the dashboard (Phase 3) will consume. |
-| `profile_taxonomy.py` | Phase 2 pipeline: reads the cleaned daily CSV, assigns each day one of 8 named profiles (see spec §4) from two independent, self-calibrating axes (range regime, closing shape) plus a secondary extreme-timing tag. |
-| `gbpusd_daily_profiles_2000_2019.csv` / `eurusd_daily_profiles_2000_2019.csv` | Per-day profile labels + underlying features, both assets — the labeled historical dataset for backtesting/dashboard use. |
-| `gbpusd_profile_summary.json` / `eurusd_profile_summary.json` | Profile distribution counts/percentages, avg range per profile, extreme-timing breakdown per profile — sanity-check + dashboard input. |
+| `<asset>_stats.json` | Stats engine output, one per asset — everything the dashboard (Phase 3) will consume. |
+| `profile_taxonomy.py` | Phase 2 pipeline: reads the cleaned daily CSV, assigns each day one of 8 named profiles (see spec §4) from two independent, self-calibrating axes (range regime, closing shape) plus a secondary extreme-timing tag. `is_daily_only` days flow through normally (their OHLC-derived range regime/shape are real) but the intrabar-dependent `extreme_timing` tag naturally resolves to `Insufficient_History` for them (zero intraday time span) — no special-casing needed. |
+| `<asset>_daily_profiles.csv` | Per-day profile labels + underlying features, one per asset — the labeled historical dataset for backtesting/dashboard use. |
+| `<asset>_profile_summary.json` | Profile distribution counts/percentages, avg range per profile, extreme-timing breakdown per profile — sanity-check + dashboard input. |
 | `build_dashboard_data.py` | Phase 3 pipeline: bundles one asset's `*_stats.json` + `*_profile_summary.json` into a single `dashboard/data/<asset>.js` (a plain `const <ASSET>_DATA = {...}` global) — same data-as-JS-file pattern as the sibling Seasonals Dashboard, so the dashboard works from a plain `file://` open with no server/build step. Re-run this (after re-running `stats_engine.py`/`profile_taxonomy.py`) any time the underlying data changes — the `dashboard/data/*.js` files are generated, not hand-edited. |
-| `export_profile_examples.py` | Phase 3 pipeline: picks one real "typical" exemplar day per profile (closest to that profile's own average range) per asset, extracts its M1 bars from the raw export, resamples to M15, and writes `dashboard/data/profile-examples/<asset>.js` — the real-chart data behind the profile detail pages. Re-run if the raw CSV, `profile_taxonomy.py`, or its thresholds change. |
+| `export_profile_examples.py` | Phase 3 pipeline: picks one real "typical" exemplar day per profile (closest to that profile's own average range) per asset, extracts its M1 bars from the raw export, resamples to M15, and writes `dashboard/data/profile-examples/<asset>.js` — the real-chart data behind the profile detail pages. Excludes `is_daily_only` days from exemplar candidacy (a single EOD bar can't back a candlestick chart). Re-run if the raw CSV, `profile_taxonomy.py`, or its thresholds change. |
 | `export_calendar_data.py` | Phase 3 pipeline: builds the calendar feature's per-day data — one JS file per asset per year (`dashboard/data/calendar/<asset>/<year>.js`, chunked so the dashboard doesn't load all ~5,185 days upfront) plus a manifest of available years. Imports `build_weekly()`/`build_monthly()` from `stats_engine.py` so each day's week/month context reuses that logic rather than duplicating it. |
 | `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
@@ -205,6 +207,57 @@ API and a database (if/when migrating off static files) are evaluated later — 
   identifier" workaround doesn't apply (the name isn't known until runtime) — fixed by having
   the generated calendar files assign onto a namespaced `window.KPT_CALENDAR[asset][year]`
   object instead of declaring a `const`. Full design rationale: spec §5.2.
+- **Full asset roster + full-history data source correction (2026-09-04):** expanded from
+  GBPUSD/EURUSD-only (2000-2019) to all 7 majors — GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD,
+  USDCHF, USDJPY — each with the full history TradersWay's MT5 export makes available (back to
+  1993 for most; NZDUSD/USDCHF only have M1 history from 2001). Mid-effort, discovered that a
+  batch of freshly-downloaded raw exports (5 new assets' full history, plus a 2020-2026 tail for
+  GBPUSD/EURUSD) had accidentally come from an **IC Markets** MT5 account instead of TradersWay —
+  a different broker, not guaranteed to share the same EET/EEST timezone convention (§5 above)
+  or spread/tick conventions this pipeline's cleaning logic was validated against. Rather than
+  trying to reconcile two brokers' data, all of it was discarded and re-downloaded fresh from
+  TradersWay only, one continuous full-history file per asset. **Lesson: always confirm which
+  MT5 account/broker a raw export actually came from before feeding it into the pipeline** — the
+  file format gives no indication, and a wrong-broker file can pass every existing validation
+  check while still being subtly (or not so subtly) wrong.
+- **`concat_raw_csv.py` generalized to auto-detect append vs. prepend vs. both (2026-09-04):**
+  originally append-only (built to merge a fresh "up to today" export onto the end of an
+  existing file, for MT5's rolling ~20-year export cap). Generalized after realizing the same
+  need applies in reverse — discovering an earlier-history source after the fact (e.g. a file
+  that only goes back to 2007, then finding one that reaches back to 2000) needs prepending, not
+  appending. Auto-detects the direction per merge from the two files' timestamp ranges: an
+  append's trailing/most-recent date is still always dropped whole (a fresh export risks ending
+  mid-day); a prepend's boundary day is *not* auto-dropped (no "live now" edge on that side —
+  dropping it would delete real history), just reported with its bar count so the day can be
+  eyeballed for completeness. Overlap is always resolved in favor of the existing file on either
+  side. Regression-tested against the already-verified GBPUSD append merge (byte-identical
+  output) plus synthetic prepend/both-sides cases before rolling out to all 7 assets.
+- **`refresh_asset.py` orchestrator added (2026-09-04):** one command
+  (`python pipeline/refresh_asset.py <ASSET>`) replaces manually invoking all 6 pipeline scripts
+  in dependency order. Holds a per-asset pip-size registry (fails loudly, not silently, for an
+  asset not yet listed) and asset-keyed output paths with no date-range suffix baked in (see the
+  `<asset>_daily_clean.csv` row in §3) — freshness is tracked via each output's own `as_of`
+  field instead, so a re-run never leaves stale dated variants to track by hand.
+- **Daily-only historical era detected and handled (2026-09-04):** TradersWay's broker history
+  for most of these assets only has *Daily*-resolution bars before their M1 feed began — MT5's
+  M1 export still emits one row per day for that era (open==high time==low time==close time,
+  but real, meaningful OHLC — not a data-feed artifact). At bar-count == 1 this was
+  indistinguishable from `is_data_gap` under the original logic, silently discarding real,
+  usable history (1,469 days for GBPUSD alone; see the per-asset table in this session's commit).
+  Fixed in `clean_mt5_csv.py` (`detect_daily_only_cutoff()`): finds the date M1 coverage actually
+  becomes *sustained* (≥90% of the following 20 trading days also dense — guards against one
+  early spike day being mistaken for the real cutover), and reclassifies low-bar-count days
+  before that date as `is_daily_only` (trusted OHLC/range, eligible for period high/low, included
+  in `stats_engine.py`'s range distributions) rather than `is_data_gap` (excluded everywhere,
+  range set to NaN). Days at/after the cutover keep the original gap logic unchanged — confirmed
+  against a known later anomaly (GBPUSD 2018-02-26, a genuine 1-bar gap) still classifying
+  correctly. The cutover landed on **1999-01-04 for every asset that has one** (GBPUSD, EURUSD,
+  AUDUSD, USDCAD, USDJPY) — an industry-wide broker-history boundary, not an asset-specific
+  quirk — while NZDUSD/USDCHF (whose files only start in 2001) correctly show no daily-only era
+  at all. All other pipeline stages needed zero changes: `profile_taxonomy.py`,
+  `stats_engine.py`, and `export_calendar_data.py` all key exclusively off `is_data_gap`, so
+  narrowing that flag upstream was sufficient — the one genuine gap was `export_profile_examples.py`
+  needing to exclude `is_daily_only` days from exemplar candidacy (see its §3 row).
 
 ---
 
@@ -216,8 +269,11 @@ API and a database (if/when migrating off static files) are evaluated later — 
 - **Trading-day boundary** (NY 5pm) is a judgment call — reasonable and standard, but not
   the only valid convention. Revisit if downstream stats look off.
 - **`MIN_BARS_FOR_VALID_DAY = 5`** threshold in `clean_mt5_csv.py` was tuned on GBPUSD
-  2000–2019 specifically. Re-validate this threshold against the real bar-count distribution
-  before reusing it for EURUSD or any other asset/broker feed.
+  2000–2019 specifically, and now also does double duty as the daily-only-era detection
+  threshold (§5). It's held up across all 7 assets so far (the M1-coverage cutover detects
+  cleanly everywhere it should exist), but re-validate against the real bar-count distribution
+  before reusing it for a new asset/broker feed, especially one without a clean industry-wide
+  cutover date to sanity-check against.
 - Full history (20 years) shows **weak time-of-day clustering** for daily high/low
   (concentration R ≈ 0.14–0.18), tightening somewhat in shorter/recent windows
   (R ≈ 0.19–0.29). This is a real, honest finding — not a bug — and should inform how
@@ -230,7 +286,7 @@ API and a database (if/when migrating off static files) are evaluated later — 
 
 ## 7. Next step
 
-The Phase 3 dashboard is built and verified working for both assets, including the usability
+The Phase 3 dashboard is built and verified working for all 7 assets, including the usability
 pass, the profile detail pages, and the calendar feature (§5 above).
 
 **Built:** time-of-extreme heatmap (session-colored, mode + concentration badge, lookback
@@ -275,5 +331,6 @@ in that repo, per the user's explicit preference — not carried over from this 
   news/event annotation layer (§2.4) for the general case. Full notes, including the
   empirical-validation-first requirement before either becomes a real profile: spec §4.5.
 
-EURUSD data cleaning is done (§3 table) — both assets are first-class throughout, not
-GBPUSD-only with EURUSD bolted on later.
+All 7 assets (§3 table) are first-class throughout, sharing the same pipeline/orchestrator with
+no per-asset code branches — adding an 8th is a data download + a `PIP_REGISTRY` entry, not new
+code.

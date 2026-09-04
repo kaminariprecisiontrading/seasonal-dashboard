@@ -26,8 +26,13 @@ crypto, and stocks later without a rebuild (see §8).
 ## 2. Data Pipeline
 
 ### 2.1 Source
-MT5 exports from TradersWay. Exact column layout to be confirmed against the first real sample CSV —
-do not assume a fixed schema until then.
+MT5 exports from **TradersWay only**. Assets covered: GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD,
+USDCHF, USDJPY — one continuous full-history raw file per asset (`data/raw/<ASSET>_M1_full.csv`),
+back to 1993 for most majors (NZDUSD/USDCHF only have M1 history from 2001). A prior session
+mixed in a batch of raw exports from a different broker (IC Markets) by accident; that data was
+discarded and every asset re-downloaded from TradersWay exclusively — see HANDOVER.md §5. Always
+confirm which broker/account a raw export actually came from before feeding it into the pipeline;
+the file format itself gives no indication.
 
 ### 2.2 Timezone normalization (critical — done once, correctly, at ingest)
 - TradersWay/MT5 server time is **GMT+3**, and shifts in line with **US (New York) daylight saving
@@ -54,6 +59,9 @@ do not assume a fixed schema until then.
 | `is_year_high`, `is_year_low` | Boolean, retrospective |
 | `week_high_so_far`, `week_low_so_far` | Running/live version for use during an in-progress week |
 | `month_high_so_far`, `month_low_so_far` | Running/live version |
+| `n_bars` | Raw M1 bar count aggregated into this day — the basis for the two flags below |
+| `is_data_gap` | Boolean — `n_bars` at/below threshold *and* within the M1-coverage era (real feed outage/artifact). Range set to NaN, excluded from everything. |
+| `is_daily_only` | Boolean — `n_bars` at/below threshold but *before* the broker's M1 feed began (a genuine single EOD bar, not an artifact). Range/OHLC trusted and included everywhere that doesn't need intraday granularity (period highs/lows, range-distribution stats); excluded only where real intrabar timing is required (`extreme_timing` tag, candlestick chart exemplars). Auto-detected per asset, not a hardcoded date — see HANDOVER.md §5. |
 
 Retrospective flags and "so-far" running values are kept as **separate columns** — they serve different
 purposes (backtesting/labeling vs. live dashboard state) and conflating them was identified as a
@@ -70,10 +78,12 @@ likely source of subtle bugs.
 - Out of scope for v1 pipeline build; the schema is defined now so the column exists to join against later.
 
 ### 2.5 Asset-aware pip calculation
-- v1: standard 4/5-decimal FX pairs (GU, EU) — `1 pip = 0.0001`.
-- Architecture note: pip/point size, and eventually "typical unit of measure" (pips vs. points vs. %),
-  should be a **per-asset config value**, not hardcoded — so adding JPY pairs (`0.01`), crypto, or
-  stocks later is a config-table entry, not a code change.
+- Implemented as a per-asset config value, not hardcoded (`PIP_REGISTRY` in
+  `pipeline/refresh_asset.py`, mirrored as a fallback default in `clean_mt5_csv.py`):
+  `0.0001` for GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD, USDCHF; `0.01` for USDJPY (JPY pairs use
+  2 decimal places, not 4). Adding crypto, stocks, or another JPY-style pair later is a
+  registry entry, not a code change — confirmed by this asset roster expanding from 2 to 7
+  assets without touching the pip-calculation logic itself.
 
 ---
 

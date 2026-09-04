@@ -31,9 +31,12 @@ RESAMPLE_FREQ = "15min"
 def pick_exemplar_days(daily_profiles: pd.DataFrame, profile_summary: dict) -> dict:
     avg_range = profile_summary["avg_range_pips_by_profile"]
     exemplars = {}
+    has_intraday = ~daily_profiles.get("is_daily_only", False).astype(bool)
     for profile, stats in avg_range.items():
         target_mean = stats["mean"]
-        sub = daily_profiles[daily_profiles["profile"] == profile].copy()
+        # daily-only-era days (single EOD bar, no intrabar path) can't back a
+        # candlestick chart -- exclude them from exemplar candidacy
+        sub = daily_profiles[(daily_profiles["profile"] == profile) & has_intraday].copy()
         if sub.empty:
             continue
         sub["dist_from_mean"] = (sub["daily_range_pips"] - target_mean).abs()
