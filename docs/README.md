@@ -45,6 +45,8 @@ The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP /
 | `USER_GUIDE.md` | End-user guide — how to use every tab, upload CSVs, configure AI providers, and print. |
 | `PROMPTS.md` | Copy-paste prompt library for all key Claude interactions. |
 | `SKILL.md` | How to recreate any asset dashboard from scratch. Step-by-step prompt guide for Claude sessions. |
+| `MARKET_PROFILING_INTEGRATION.md` | Design + build record for the Profiling tab (v1.7): what shipped, how it works, near-term asset rollout. |
+| `PLATFORM_ROADMAP.md` | Current source of truth for platform-wide plans beyond the Profiling merge — quick wins, tab restructure, multi-timeframe profiles, parked ideas. |
 
 **Recommended Claude project files** (load these at the start of every new session):
 - `README.md` — what the project is and where it stands

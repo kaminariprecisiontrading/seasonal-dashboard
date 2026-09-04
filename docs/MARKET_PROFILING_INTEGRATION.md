@@ -1,9 +1,12 @@
 # MARKET_PROFILING_INTEGRATION.md — Plan for merging in the Market Profiling dashboard
 
-**Status (v1.7):** §1–§7 implemented — see the checklist in §8 for what's done. This doc remains the
-source of truth for the feature's design; §9 below captures the longer-term roadmap (all-asset
-rollout, statistically re-deriving Seasonals data, and the future prediction-accuracy loop) agreed
-after this v1 pass shipped — read it before starting any follow-on work.
+**Status (v1.7):** §1–§7 implemented and merged to `main`, live on Netlify — see the checklist in
+§8 for what's done. This doc remains the source of truth for the feature's design; §9 below
+captures the roadmap agreed immediately after merge (all-asset rollout, the prediction-accuracy
+loop). For the fuller platform-wide plan agreed after live review — including what §9.3 used to
+scope as "statistically re-deriving Seasonals," now folded into a larger multi-timeframe Profile
+idea — see **`docs/PLATFORM_ROADMAP.md`**, the current source of truth for everything beyond this
+merge.
 
 **Source project:** `KPT-Market-Profiling` (sibling repo, `../KPT-Market-Profiling`) — a statistical
 market-profiling system for GBPUSD/EURUSD spot FX (percentile range distributions, time-of-extreme
@@ -219,35 +222,16 @@ now. In particular, whether Profiling ever extends beyond FX spot pairs to futur
 so that's the easy/default path, but nothing here forecloses futures-direct data if/when it exists.
 Mechanics for adding an asset: `docs/CONTRIBUTING.md` → "Adding a New Profiling Asset".
 
-### 9.3 Statistically-derived Seasonals data (bigger, separate, later)
+### 9.3 Statistically-derived Seasonals data — superseded, see `docs/PLATFORM_ROADMAP.md`
 
-The Seasonals tab's `MONTHS[]` signal data — across all 97 assets — came from Claude *interpreting
-Moore Research chart images* (subjective, capped at 2019), not from statistical computation. The
-user's long-term goal is to replace/validate that with numbers computed from real MT5 price history,
-using the same rigor as the Profiling pipeline. This is explicitly **not** part of this merge —
-it's a separate, later, higher-blast-radius effort (touches the live signal on all 97 asset pages,
-the index page's BULL/BEAR chips, and the AI prompt) that needs its own design/approval pass.
-
-The algorithmic ancestor already exists and runs client-side today: `js/backtest.js`'s
-`computeStats()` already computes, per (month, week-slot) cell, the % of years with a positive
-weekly return (`rawTendency`) and the win-rate of the *current* signal against real price
-(`matrix`) — from a CSV the user uploads fresh each session, stored only in `localStorage`. The
-future work is essentially: run that same computation once, server-side (in KPT-Market-Profiling's
-pipeline, using its already-cleaned/UTC-normalized/gap-checked daily data), across lookback windows
-matching the existing 5-YR/15-YR/LT structure, and persist the result instead of recomputing it per
-visitor.
-
-Recommended sequencing when this is picked up (safety-first, given the blast radius):
-
-1. **Additive cross-check, not a replacement first.** Surface the statistically-computed win-rate/
-   tendency as a clearly-labeled *validation* layer next to the existing chart-derived signal — this
-   directly extends `ROADMAP.md`'s already-planned **Phase 9A** ("Explicit Win-Rate Percentages in
-   Accordion"), just pre-computed per-asset by the pipeline instead of requiring a manual upload.
-   Zero risk to the existing signal; purely additive.
-2. **Targeted correction, asset by asset**, only where the cross-check reveals a real, validated
-   disagreement — never a wholesale mechanical swap of all 97 files at once.
-3. Ties into §9.4 naturally: once a prediction-scoring loop exists for Profiling, the same mechanism
-   could extend to scoring the Seasonals weekly bias too, not just the daily profile predictions.
+**Update (2026-09-04):** this section originally scoped "statistically re-deriving Seasonals" as
+its own separate effort. After the Profiling merge shipped and was reviewed, that idea was folded
+into a larger one — multi-timeframe Profiles (Daily → Weekly → Monthly → Yearly), where the
+Yearly Profile *is* the statistical re-derivation of Seasonals, not a parallel workstream. Full
+current plan, including the sample-size/methodology concerns at yearly granularity and the
+recommended additive-cross-check-first sequencing (still the right approach, now under this
+merged framing): `docs/PLATFORM_ROADMAP.md` → **Tier 5**. Kept here only as a pointer so this
+section isn't read as a still-current, separate plan.
 
 ### 9.4 Live feed + prediction accuracy tracking (already spec'd elsewhere, unchanged)
 
