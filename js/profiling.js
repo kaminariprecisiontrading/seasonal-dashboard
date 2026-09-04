@@ -32,7 +32,18 @@
    */
   var ASSET_MAP = {
     gbp: 'gbpusd', 'fx-gbpusd': 'gbpusd',
-    eur: 'eurusd', 'fx-eurusd': 'eurusd'
+    eur: 'eurusd', 'fx-eurusd': 'eurusd',
+    aud: 'audusd', 'fx-audusd': 'audusd',
+    nzd: 'nzdusd', 'fx-nzdusd': 'nzdusd',
+    cad: 'usdcad', 'fx-usdcad': 'usdcad',
+    chf: 'usdchf', 'fx-usdchf': 'usdchf',
+    jpy: 'usdjpy', 'fx-usdjpy': 'usdjpy',
+    xau: 'xauusd',
+    brent: 'brent',
+    cl: 'wti',
+    sp500: 'us500',
+    nq: 'ustech',
+    ym: 'us30'
   };
 
   var assetKey = ASSET_MAP[ASSET_CONFIG.id];
@@ -46,6 +57,11 @@
 
   var pairUpper = assetKey.toUpperCase();
   var meta = (window.KPT_PROFILING_META && window.KPT_PROFILING_META[assetKey]) || {};
+  // Range-value display label — "pips" for actual currency pairs, "points"
+  // for everything else (metals, energies, indices, crypto). Comes from the
+  // pipeline (KPT-Market-Profiling/pipeline/refresh_asset.py's
+  // ASSET_REGISTRY); falls back to "pips" for any older bundle without it.
+  var unit = (bundle.stats && bundle.stats.unit) || 'pips';
 
   // Exposed so other shared scripts (js/api.js's Analysis context gatherer)
   // can find this page's resolved Profiling data without duplicating
@@ -130,10 +146,10 @@
     unitPlural = unitPlural || 'days';
     var parts = [];
     if (dist.mode_binned) {
-      parts.push('<span>Most common range' + kptpGlossaryIcon('mode_binned') + ': <b>' + dist.mode_binned.bin_low + '–' + dist.mode_binned.bin_high + ' pips</b> (' + dist.mode_binned.pct_of_n + '% of ' + unitPlural + ')</span>');
+      parts.push('<span>Most common range' + kptpGlossaryIcon('mode_binned') + ': <b>' + dist.mode_binned.bin_low + '–' + dist.mode_binned.bin_high + ' ' + unit + '</b> (' + dist.mode_binned.pct_of_n + '% of ' + unitPlural + ')</span>');
     }
     if (dist.mode_raw && dist.mode_raw.count > 1) {
-      parts.push('<span>Exact repeated value' + kptpGlossaryIcon('mode_raw') + ': <b>' + dist.mode_raw.value + ' pips</b> (' + dist.mode_raw.count + ' ' + unitPlural + ', ' + dist.mode_raw.pct_of_n + '%)</span>');
+      parts.push('<span>Exact repeated value' + kptpGlossaryIcon('mode_raw') + ': <b>' + dist.mode_raw.value + ' ' + unit + '</b> (' + dist.mode_raw.count + ' ' + unitPlural + ', ' + dist.mode_raw.pct_of_n + '%)</span>');
     } else {
       parts.push('<span>Exact repeated value' + kptpGlossaryIcon('mode_raw') + ': <b>none</b> — every value in this window was unique</span>');
     }
@@ -253,9 +269,9 @@
     var full = s.daily_range.windowed_distribution.full;
     var tiles = [
       { label: 'Trading Days', value: s.n_days, unit: '', glossary: 'trading_days' },
-      { label: 'ADR 20', value: (adr.ADR_20 != null ? adr.ADR_20 : '—'), unit: 'pips', glossary: 'adr' },
-      { label: 'ADR 5', value: (adr.ADR_5 != null ? adr.ADR_5 : '—'), unit: 'pips', glossary: 'adr' },
-      { label: 'Median Daily Range', value: full.median, unit: 'pips', glossary: 'median' },
+      { label: 'ADR 20', value: (adr.ADR_20 != null ? adr.ADR_20 : '—'), unit: unit, glossary: 'adr' },
+      { label: 'ADR 5', value: (adr.ADR_5 != null ? adr.ADR_5 : '—'), unit: unit, glossary: 'adr' },
+      { label: 'Median Daily Range', value: full.median, unit: unit, glossary: 'median' },
       { label: 'Data As Of', value: s.as_of, unit: '' }
     ];
     grid.innerHTML = '';
@@ -283,12 +299,12 @@
       var id = row[0], dist = row[1], label = row[2], unitPlural = row[3];
       var container = document.getElementById(id);
       if (!container) return;
-      KPTPCharts.renderRangeStrip(container, dist);
+      KPTPCharts.renderRangeStrip(container, dist, unit);
       var cap = document.getElementById(id + '-caption');
       var modeNote = document.getElementById(id + '-mode-note');
       if (cap) {
         if (dist && dist.n) {
-          cap.innerHTML = '<span>' + label + ' range &middot; n=' + dist.n + '</span><span class="kptp-median-note">median ' + dist.median + ' pips (mean ' + dist.mean + ')</span>';
+          cap.innerHTML = '<span>' + label + ' range &middot; n=' + dist.n + '</span><span class="kptp-median-note">median ' + dist.median + ' ' + unit + ' (mean ' + dist.mean + ')</span>';
         } else {
           cap.innerHTML = '<span>' + label + ' range &middot; insufficient data in this window</span>';
         }
@@ -355,10 +371,10 @@
 
     var container = document.getElementById('kptp-range-yearly');
     if (container) {
-      KPTPCharts.renderRangeStrip(container, dist);
+      KPTPCharts.renderRangeStrip(container, dist, unit);
       var cap = document.getElementById('kptp-range-yearly-caption');
       if (cap && dist && dist.n) {
-        cap.innerHTML = '<span>Yearly range &middot; n=' + dist.n + ' years</span><span class="kptp-median-note">median ' + dist.median + ' pips (mean ' + dist.mean + ')</span>';
+        cap.innerHTML = '<span>Yearly range &middot; n=' + dist.n + ' years</span><span class="kptp-median-note">median ' + dist.median + ' ' + unit + ' (mean ' + dist.mean + ')</span>';
       }
       var modeNote = document.getElementById('kptp-range-yearly-mode-note');
       if (modeNote && dist && dist.n) {
@@ -410,7 +426,7 @@
           kptpProfileIconSvg(name, 46) +
         '</div>' +
         '<div class="kptp-profile-meta">' +
-          'n=' + v.n + ' days' + (range ? (' &middot; avg range ' + range.mean + ' pips') : '') +
+          'n=' + v.n + ' days' + (range ? (' &middot; avg range ' + range.mean + ' ' + unit) : '') +
           (topTiming ? ('<br>most common timing' + kptpGlossaryIcon('extreme_timing') + ': ' + topTiming[0].replace('_', ' ') + ' (' + topTiming[1] + ')') : '') +
         '</div>' +
         '<div class="kptp-profile-card-link">See profile details &rarr;</div>';

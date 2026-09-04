@@ -2,6 +2,42 @@
 
 ---
 
+## v1.10 — September 2026
+**Profiling Phase B — 11 more assets wired in**
+
+### Summary
+
+Extends the Profiling tab (previously GBPUSD/EURUSD only) to 11 more assets, following
+`KPT-Market-Profiling`'s full-history TradersWay redownload (see that repo's `HANDOVER.md` §5):
+AUDUSD, NZDUSD, USDCAD, USDCHF, USDJPY (same futures+FX-pair page pattern as GBP/EUR), plus the
+first futures-direct instruments — XAUUSD, Brent crude, WTI crude, S&P 500, Nasdaq 100, DJIA —
+each on a single page (no FX-pair counterpart exists for these). 13 assets, 16 pages total.
+
+### Changes
+
+- **`scripts/sync_profiling_data.js`** — `ASSETS` list extended from 2 to 13.
+- **`js/profiling.js`** — `ASSET_MAP` extended with the 11 new page-id → asset-key mappings,
+  including translation for futures-direct pages whose filename doesn't match the pipeline's
+  asset key (`cl`→`wti`, `sp500`→`us500`, `nq`→`ustech`, `ym`→`us30`).
+- **`js/profiling-calendar.js`** — `ASSET_PAGES` (the reverse mapping, for calendar back-links and
+  the cross-asset calendar home view) extended to match.
+- **16 asset pages** — added the 4 Profiling script tags (`aud`/`fx-audusd`, `nzd`/`fx-nzdusd`,
+  `cad`/`fx-usdcad`, `chf`/`fx-usdchf`, `jpy`/`fx-usdjpy`, `xau`, `brent`, `cl`, `sp500`, `nq`,
+  `ym`). `profiling-profiles/detail.html` and `compare.html` needed no changes — both already load
+  asset data on demand from the manifest.
+- Verified console-clean on all 16 pages via headless-browser check.
+
+### Known follow-up (not fixed this pass)
+
+Stat-tile copy hardcodes "pips" as the unit throughout — reads oddly for the 3 index instruments
+(e.g. "ADR 20: 427.8 pips" on the DJIA page, where "points" is the natural term). See
+`docs/MARKET_PROFILING_INTEGRATION.md` §9.2 for the fix options.
+
+BTCUSD was cleaned in the pipeline this session but deliberately not wired in — no existing page
+covers crypto; a dedicated Cryptos category is planned instead (`docs/PLATFORM_ROADMAP.md` Tier 6).
+
+---
+
 ## v1.9 — September 2026
 **Tier 2 from `docs/PLATFORM_ROADMAP.md` — profile-detail asset-specific default view**
 

@@ -222,6 +222,32 @@ now. In particular, whether Profiling ever extends beyond FX spot pairs to futur
 so that's the easy/default path, but nothing here forecloses futures-direct data if/when it exists.
 Mechanics for adding an asset: `docs/CONTRIBUTING.md` → "Adding a New Profiling Asset".
 
+**Update (2026-09-04) — Phase B shipped:** 11 more assets wired in via the mechanics above,
+following the KPT-Market-Profiling repo's full-history TradersWay redownload (see that repo's
+HANDOVER.md §5): AUDUSD, NZDUSD, USDCAD, USDCHF, USDJPY (`aud`/`fx-audusd`, `nzd`/`fx-nzdusd`,
+`cad`/`fx-usdcad`, `chf`/`fx-usdchf`, `jpy`/`fx-usdjpy` — same futures+FX-pair page pattern as
+GBP/EUR), plus the first futures-direct instruments answering the "open question" above: XAUUSD
+(`xau`), Brent crude (`brent`), WTI crude (`cl`), S&P 500 (`sp500`), Nasdaq 100 (`nq`), and DJIA
+(`ym`) — each a single page, no FX-pair counterpart, since none of these have one. 13 assets, 16
+pages total. `js/profiling.js`'s `ASSET_MAP` and `js/profiling-calendar.js`'s `ASSET_PAGES` both
+needed a page-id → asset-key translation for the futures-direct instruments, since the page
+filename (e.g. `cl`, the CME/NYMEX ticker) doesn't match the pipeline's asset key (`wti`) —
+`sp500`→`us500`, `nq`→`ustech`, `ym`→`us30` similarly. Verified console-clean on all 16 pages via
+headless-browser check.
+
+**Known follow-up, not yet fixed:** stat-tile copy hardcodes the unit as "pips" throughout
+(`js/profiling.js`/`js/profiling-charts.js`) — reads fine for the FX pairs and passably for
+gold/oil, but odd for the three index instruments (e.g. "ADR 20: 427.8 pips" on the DJIA page,
+where "points" is the natural term). No `unit`/pip-size field is threaded through the pipeline's
+JSON output today, so fixing this needs either a small pipeline addition (stats_engine.py emitting
+a `unit_label`) or a dashboard-side per-asset lookup table. Not blocking — purely a wording nit —
+but worth fixing before these pages get real visibility.
+
+A **BTCUSD** raw export was also cleaned in KPT-Market-Profiling this session but deliberately
+**not** wired in here — no existing seasonal-dashboard page covers crypto, and the plan is a
+dedicated Cryptos category (`docs/PLATFORM_ROADMAP.md` Tier 6: synthetics/crypto/Deriv) rather than
+bolting it onto an ad hoc page. Revisit once that category is designed.
+
 ### 9.3 Statistically-derived Seasonals data — superseded, see `docs/PLATFORM_ROADMAP.md`
 
 **Update (2026-09-04):** this section originally scoped "statistically re-deriving Seasonals" as

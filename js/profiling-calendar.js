@@ -16,6 +16,15 @@
  * Depends on: js/profiling-charts.js (glossary, tooltip, KPTP_PROFILE_*).
  */
 
+// Per-asset range-value display label ("pips" for currency pairs, "points"
+// for everything else) — sourced from data/profiling/manifest.js, the same
+// single source of truth profiling.js reads. Top-level (not inside either
+// IIFE below) since both the grid renderer and the page controller need it.
+function kptpCalendarUnitFor(assetKey) {
+  var meta = window.KPT_PROFILING_META && window.KPT_PROFILING_META[assetKey.toLowerCase()];
+  return (meta && meta.unit) || 'pips';
+}
+
 /* ─── Shared grid-rendering + data-loading module ────────────────────────
  * (kept as its own object, KPTPCalendar, so it stays reusable if a future
  * page wants just the grid without this file's page-controller half.)
@@ -94,7 +103,7 @@ var KPTPCalendar = (function () {
         cell.style.setProperty('--cell-color', color);
         cell.classList.add('has-data');
         cell.innerHTML = '<span class="kptp-calendar-day-num">' + day + '</span>';
-        cell.title = rec.profile + ' — ' + rec.range_pips + ' pips';
+        cell.title = rec.profile + ' — ' + rec.range_pips + ' ' + kptpCalendarUnitFor(opts.assetKey);
         cell.addEventListener('click', function (dateStr, rec) { return function () { opts.onDayClick(dateStr, rec); }; }(dateStr, rec));
       } else if (rec && rec.is_data_gap) {
         cell.classList.add('is-gap');
@@ -119,7 +128,18 @@ var KPTPCalendar = (function () {
   // link back to each Profiling asset. Extend when Phase B adds an asset.
   var ASSET_PAGES = {
     GBPUSD: [{ id: 'gbp', label: 'GBP Futures' }, { id: 'fx-gbpusd', label: 'GBPUSD FX' }],
-    EURUSD: [{ id: 'eur', label: 'EUR Futures' }, { id: 'fx-eurusd', label: 'EURUSD FX' }]
+    EURUSD: [{ id: 'eur', label: 'EUR Futures' }, { id: 'fx-eurusd', label: 'EURUSD FX' }],
+    AUDUSD: [{ id: 'aud', label: 'AUD Futures' }, { id: 'fx-audusd', label: 'AUDUSD FX' }],
+    NZDUSD: [{ id: 'nzd', label: 'NZD Futures' }, { id: 'fx-nzdusd', label: 'NZDUSD FX' }],
+    USDCAD: [{ id: 'cad', label: 'CAD Futures' }, { id: 'fx-usdcad', label: 'USDCAD FX' }],
+    USDCHF: [{ id: 'chf', label: 'CHF Futures' }, { id: 'fx-usdchf', label: 'USDCHF FX' }],
+    USDJPY: [{ id: 'jpy', label: 'JPY Futures' }, { id: 'fx-usdjpy', label: 'USDJPY FX' }],
+    XAUUSD: [{ id: 'xau', label: 'Gold (XAU)' }],
+    BRENT: [{ id: 'brent', label: 'Brent Crude' }],
+    WTI: [{ id: 'cl', label: 'Crude Oil (WTI)' }],
+    US500: [{ id: 'sp500', label: 'S&P 500' }],
+    USTECH: [{ id: 'nq', label: 'Nasdaq 100' }],
+    US30: [{ id: 'ym', label: 'DJIA' }]
   };
 
   var params = new URLSearchParams(window.location.search);
@@ -144,16 +164,17 @@ var KPTPCalendar = (function () {
       return (label ? ('<div class="kptp-calendar-context-label">' + assetKey + '</div>') : '') + '<div class="kptp-section-note" style="margin:0;">Data-gap day (feed outage / no trading).</div>';
     }
     var slug = kptpProfileSlug(rec.profile);
+    var unit = kptpCalendarUnitFor(assetKey);
     return (label ? ('<div class="kptp-calendar-context-label">' + assetKey + '</div>') : '') +
       '<div class="kptp-calendar-detail-row"><span>Profile</span><a href="../profiling-profiles/detail.html?p=' + slug + '&a=' + assetKey.toLowerCase() + '" class="kptp-profile-link" style="--card-accent:' + (KPTP_PROFILE_COLOR[rec.profile] || 'var(--muted)') + '">' + kptpProfileIconSvg(rec.profile, 20) + ' ' + rec.profile + '</a></div>' +
       '<div class="kptp-calendar-detail-row"><span>Open / Close</span><b>' + rec.open + ' / ' + rec.close + '</b></div>' +
       '<div class="kptp-calendar-detail-row"><span>High / Low</span><b>' + rec.high + ' / ' + rec.low + '</b></div>' +
-      '<div class="kptp-calendar-detail-row"><span>Daily Range</span><b>' + rec.range_pips + ' pips</b></div>' +
+      '<div class="kptp-calendar-detail-row"><span>Daily Range</span><b>' + rec.range_pips + ' ' + unit + '</b></div>' +
       '<div class="kptp-calendar-detail-row"><span>High Time</span><b>' + rec.high_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.high_session.replace(/_/g, ' ') + ')</span></div>' +
       '<div class="kptp-calendar-detail-row"><span>Low Time</span><b>' + rec.low_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.low_session.replace(/_/g, ' ') + ')</span></div>' +
       '<div class="kptp-calendar-detail-row"><span>Week of Year</span><b>' + (rec.week.week_of_year != null ? rec.week.week_of_year : '—') + '</b></div>' +
-      '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' pips</b></div>' +
-      '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' pips</b></div>';
+      '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' ' + unit + '</b></div>' +
+      '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' ' + unit + '</b></div>';
   }
 
   // Full single-asset detail (asset mode, ?a=<ASSET>) — richer than the
@@ -167,21 +188,22 @@ var KPTPCalendar = (function () {
     if (!rec) return '<div class="kptp-section-note" style="margin:0;">No data for this date.</div>';
     if (rec.is_data_gap) return '<div class="kptp-section-note" style="margin:0;">Data-gap day (feed outage / no trading).</div>';
     var slug = kptpProfileSlug(rec.profile);
+    var unit = kptpCalendarUnitFor(assetKey);
     return '<div class="kptp-two-col">' +
       '<div>' +
         '<div class="kptp-calendar-detail-row"><span>Profile</span><a href="../profiling-profiles/detail.html?p=' + slug + '&a=' + assetKey.toLowerCase() + '" class="kptp-profile-link" style="--card-accent:' + (KPTP_PROFILE_COLOR[rec.profile] || 'var(--muted)') + '">' + kptpProfileIconSvg(rec.profile, 22) + ' ' + rec.profile + '</a></div>' +
         '<div class="kptp-calendar-detail-row"><span>Open / Close</span><b>' + rec.open + ' / ' + rec.close + '</b></div>' +
         '<div class="kptp-calendar-detail-row"><span>High / Low</span><b>' + rec.high + ' / ' + rec.low + '</b></div>' +
-        '<div class="kptp-calendar-detail-row"><span>Daily Range</span><b>' + rec.range_pips + ' pips</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Daily Range</span><b>' + rec.range_pips + ' ' + unit + '</b></div>' +
         '<div class="kptp-calendar-detail-row"><span>High Time</span><b>' + rec.high_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.high_session.replace(/_/g, ' ') + ')</span></div>' +
         '<div class="kptp-calendar-detail-row"><span>Low Time</span><b>' + rec.low_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.low_session.replace(/_/g, ' ') + ')</span></div>' +
       '</div>' +
       '<div>' +
         '<div class="kptp-calendar-context-label">Week' + (rec.week.week_of_year != null ? (' ' + rec.week.week_of_year) : '') + ' (' + rec.week.start + ' &rarr; ' + rec.week.end + ')</div>' +
-        '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' pips</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' ' + unit + '</b></div>' +
         '<div class="kptp-calendar-detail-row"><span>Week High / Low Day</span><b>' + rec.week.high_weekday + ' / ' + rec.week.low_weekday + '</b></div>' +
         '<div class="kptp-calendar-context-label" style="margin-top:14px;">Month (' + rec.month.start + ' &rarr; ' + rec.month.end + ')</div>' +
-        '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' pips</b></div>' +
+        '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' ' + unit + '</b></div>' +
         '<div class="kptp-calendar-detail-row"><span>Month High / Low</span><b>' + rec.month.high + ' / ' + rec.month.low + '</b></div>' +
       '</div>' +
     '</div>';

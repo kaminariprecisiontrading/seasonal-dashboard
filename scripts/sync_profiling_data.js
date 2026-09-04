@@ -17,7 +17,10 @@ const vm = require('vm');
 // Add asset keys here as their CSVs are cleaned and piped in KPT-Market-Profiling.
 // Keys are lowercase (e.g. "gbpusd") and must match that repo's dashboard/data/<key>.js
 // filename; the JS const inside is expected to be <KEY_UPPER>_DATA / _PROFILE_EXAMPLES.
-const ASSETS = ['gbpusd', 'eurusd'];
+const ASSETS = [
+  'gbpusd', 'eurusd', 'audusd', 'nzdusd', 'usdcad', 'usdchf', 'usdjpy',
+  'xauusd', 'brent', 'wti', 'us500', 'ustech', 'us30',
+];
 
 const SRC_ROOT = path.join(__dirname, '..', '..', 'KPT-Market-Profiling', 'dashboard', 'data');
 const OUT_ROOT = path.join(__dirname, '..', 'data', 'profiling');
@@ -92,7 +95,7 @@ for (const asset of ASSETS) {
     copyDir(calSrcDir, path.join(OUT_ROOT, 'calendar', asset));
   }
 
-  meta[asset] = { asOf: (data.stats && data.stats.as_of) || null };
+  meta[asset] = { asOf: (data.stats && data.stats.as_of) || null, unit: (data.stats && data.stats.unit) || 'pips' };
   synced++;
   console.log('SYNCED:', asset, '(as of ' + meta[asset].asOf + ')');
 }

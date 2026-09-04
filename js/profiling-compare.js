@@ -109,6 +109,7 @@
 
         var dist  = d && d.profiles.profile_distribution[name];
         var range = d && d.profiles.avg_range_pips_by_profile[name];
+        var unit = (d && d.stats && d.stats.unit) || 'pips';
         var timing = d && d.profiles.extreme_timing_by_profile[name];
         var timingEntries = timing ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
         var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
@@ -120,7 +121,7 @@
           : '<div class="kptp-stat-label">' + label + '</div>' +
             '<div class="kptp-stat-value">' + dist.pct + '<span class="kptp-unit">% of days (n=' + dist.n + ')</span></div>' +
             '<div class="kptp-profile-meta" style="margin-top:8px;">' +
-              (range ? ('Avg range: <b>' + range.mean + ' pips</b><br>') : '') +
+              (range ? ('Avg range: <b>' + range.mean + ' ' + unit + '</b><br>') : '') +
               (topTiming ? ('Most common timing: <b>' + topTiming[0].replace('_', ' ') + '</b> (' + topTiming[1] + ' days)') : '') +
             '</div>';
         statsWrap.appendChild(tile);
