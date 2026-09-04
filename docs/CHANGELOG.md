@@ -2,6 +2,86 @@
 
 ---
 
+## v1.7 — September 2026
+**Market Profiling — 8th tab (Profiling), GBPUSD/EURUSD, ported from KPT-Market-Profiling**
+
+### Summary
+
+Adds a "Profiling" tab — statistical range distributions, time-of-extreme clustering, and a rule-based 8-profile daily taxonomy — ported from the sibling `KPT-Market-Profiling` repo onto the 4 pages with real ported data: `gbp.html`, `fx-gbpusd.html`, `eur.html`, `fx-eurusd.html`. Unlike every prior shared-tab addition, this one is **not** loaded on all 97 pages — only where Profiling data exists, per `docs/MARKET_PROFILING_INTEGRATION.md`. `KPT-Market-Profiling` becomes a pure data-pipeline repo going forward; this repo is the one deployed product. Data is 2019-vintage (matching the source pipeline's current output) — refreshed via the new sync script whenever fresher CSVs are uploaded and re-piped.
+
+### New: `js/profiling.js`, `js/profiling-charts.js`
+
+- `profiling-charts.js` — page-independent shared library: `KPTPTooltip` (hover tooltip), `KPTPCharts` (vanilla-SVG range strips, time-of-extreme heatmap, bar charts, candlesticks — no charting library), a plain-language glossary, and the 8-profile taxonomy's colour/icon/rule/why/timing metadata. No `ASSET_CONFIG` dependency — also loaded directly by the two new standalone pages below.
+- `profiling.js` — resolves `ASSET_CONFIG.id` to a Profiling data key (`gbp`/`fx-gbpusd` → `gbpusd`, `eur`/`fx-eurusd` → `eurusd`; early-returns/renders nothing if unmapped), builds `<section data-kpt-panel="profiling">` and all inner containers from scratch (the source's `dashboard.js` assumed a static HTML shell with ~15 fixed-ID containers — doesn't work inside one panel among seven other tabs), and reads from `window.KPT_PROFILING.<key>`.
+- `ui.js` — added `{ id: 'profiling', label: 'Profiling' }` to the `tabs` array (one line; existing filter logic handles pages without the panel automatically).
+
+### New: `data/profiling/` + `scripts/sync_profiling_data.js`
+
+`scripts/sync_profiling_data.js` reads `../KPT-Market-Profiling/dashboard/data/` and regenerates `data/profiling/{gbpusd,eurusd}.js`, `data/profiling/profile-examples/*.js`, `data/profiling/calendar/*/`, and `data/profiling/manifest.js` (per-asset freshness). Not a one-time port — re-run any time the pipeline is re-run. The source's asset/profile-example bundles declare a bare `const X = {...}` (a lexical binding, invisible to `window`); the sync script rewrites these onto `window.KPT_PROFILING.<key>` / `window.KPT_PROFILING_EXAMPLES.<key>` so `profiling.js` can resolve them by a runtime-constructed key — the same fix the source's own calendar loader already needed for its per-year files (calendar data is copied verbatim; it was already namespaced correctly).
+
+### New: `profiling-calendar/index.html`, `profiling-profiles/detail.html`
+
+Linked from inside the Profiling tab panel, not sub-tabs (mirrors how `assets/` sits outside the tab system).
+
+- `profiling-calendar/index.html` (+ `js/profiling-calendar.js`) — month-grid day browser. `?a=GBPUSD` shows that asset; no param shows a cross-asset "all assets on this day" home view. One merged controller (the source split this into three files; merged here since both views share one route).
+- `profiling-profiles/detail.html` (+ `js/profiling-profile-detail.js`) — one templated page for all 8 profiles (`?p=<slug>&a=<assetkey>`), showing rule/why/timing copy, cross-asset stats, and a real illustrative M15 candlestick example day per asset.
+
+### `css/dashboard.css` — `.kptp-` namespace
+
+The source `KPT-Market-Profiling/dashboard/css/dashboard.css` was seeded from an early, much smaller snapshot of this file — several of its class names (`.panel`, `.section-label`, `.header`, `.sub`, `.divider`, `.footnote`, `.dial`, `.mode-note`) now collide with this file's own, unrelated, already-load-bearing classes. Every class the Profiling feature introduces is prefixed `.kptp-` (blanket rule, not per-class judgment). Seven new CSS variables added to `:root` (`--kptp-compression`, `--kptp-expansion`, `--kptp-normal`, `--kptp-asian`, `--kptp-london`, `--kptp-ny`, `--kptp-overlap`); the 11 base tokens are reused directly since they're byte-for-byte identical between both repos.
+
+### Bug fix: broken Profiling link paths (found in user review)
+
+`js/profiling.js`'s "Browse … by date →" link and profile-card links were written without the `../` needed to reach `profiling-calendar/` and `profiling-profiles/` from inside `assets/<page>.html` — the calendar link also pointed at a `asset.html` filename that was never actually created (the real file is `profiling-calendar/index.html?a=…`). Both fixed; re-verified by actually clicking each link end-to-end rather than only navigating to the destination pages directly (the gap that let this ship in the first place).
+
+### New: Week-of-Year — a bonus feature requested after the initial merge
+
+Added a "Year High/Low — Week of Year" bar-chart pair to the Profiling tab's "Weekly, Monthly and Yearly Extremes" section (alongside the existing Weekday / Week-of-Month / Month-of-Year charts), and surfaced the ISO week number in the calendar's day-detail panel (both single-asset and cross-asset home views).
+
+This required a small pipeline extension in `KPT-Market-Profiling`, not just a dashboard-side change — the underlying stats didn't previously track which week-of-year a yearly extreme fell in, only which month:
+- `stats_engine.py`'s `build_yearly()` now also captures the ISO week (1-53) of each yearly high/low, emitted as new `yearly_high_week`/`yearly_low_week` histograms (`isocalendar()` needed an explicit `.astype(int)` — its nullable `UInt32Dtype` scalars aren't valid JSON dict keys, unlike the plain `int64` `.dt.month` already produced).
+- `export_calendar_data.py` now includes `week_of_year` in every day's `week` sub-object — the ISO week was already computed as a merge key, just not previously carried through to the output record.
+- Re-ran `stats_engine.py`, `build_dashboard_data.py`, and `export_calendar_data.py` for both assets, then `node scripts/sync_profiling_data.js` to pull the new fields in.
+
+Dashboard-side:
+- `js/profiling-charts.js`'s `renderBarChart()` gained an optional `labelEvery` option — with 53 possible week buckets (vs. 12 months / 7 weekdays / 5 weeks-of-month), labeling every bar would overlap illegibly; every bar still renders and hovers for its exact count, only the text label is thinned (every 4th bar). Existing callers are unaffected (default `labelEvery: 1`).
+- `js/profiling.js` added a `weekOfYearEntries()` helper that zero-fills all 53 ISO weeks (unlike the existing `numericSortedEntries()`/`monthEntries()`, which only emit entries for keys actually present in the data) — with only ~20-40 yearly-extreme occurrences spread across 52 possible weeks, most weeks have zero occurrences; plotting only the present keys would space bars by array index rather than true week-of-year distance, misrepresenting how far apart two occurrences actually are.
+- `js/profiling-calendar.js`: added a "Week of Year" row to the compact cross-asset home-view detail, and the ISO week number to the single-asset view's "Week (...)" context header (e.g. "Week 37 (2019-09-09 → 2019-09-13)").
+- Section note now explains ISO week numbering, since it produces a genuinely surprising result at the year boundary: a late-December date can land in Week 1 of the *following* year (confirmed empirically — 2019-12-30/31 both report as Week 1).
+
+### Bug fix: calendar day-detail panel used the wrong (compact) layout for single-asset view
+
+Found by comparing the ported `profiling-calendar/index.html?a=GBPUSD` against the source `KPT-Market-Profiling/dashboard/calendar/asset.html?a=GBPUSD` side by side. The source has two different day-detail layouts: a compact one-column-per-asset layout for the cross-asset home view (`calendar-home.js`), and a richer two-column layout for single-asset view (`calendar-page.js`) that adds week/month context headers ("WEEK (start → end)", "MONTH (start → end)") plus "Week High / Low Day" and "Month High / Low" rows. `js/profiling-calendar.js` merged both source files into one controller but only ported the compact layout, using it for both modes — so single-asset view was silently missing four rows/headers of real data that the underlying record already contained (`rec.week.high_weekday`/`low_weekday`, `rec.month.high`/`low`, both start/end dates). Added `assetDetailHtml()` (the full two-column layout) and switched `renderDetail()` to use it in asset mode, keeping the compact `assetColumnHtml()` for home mode only. Verified the asset-mode detail panel now renders identically to the source's, field-for-field.
+
+### Bug fix: pre-existing `.combined-wrap` gap on `cad.html`, `chf.html`, `eur.html` (found via user report, unrelated to Profiling)
+
+Found while investigating a user report that `eur.html`'s Seasonals accordion stayed visible underneath the Profiling panel instead of hiding when another tab was active. Root cause: these three pages (out of all 97) used an older, divergent HTML template — the combined accordion table sat inside a plain `<div class="section">` with no `.combined-wrap` wrapper, so `ui.js`'s `markPanel(combinedWrap, 'seasonals')` had nothing to mark (`combinedWrap` was `null`), and the accordion never received `data-kpt-panel` at all. This is a **pre-existing bug that predates Profiling entirely** — it would have left the Seasonals accordion visible under every tab (Trend, Price, Macro, etc.), not just Profiling; it just became obvious once Profiling's content appeared directly beneath the un-hidden accordion. The same template also duplicated the "← All Assets" back-link (once in `.topbar`, once unstyled inside a `.header-inner` wrapper) and, as a side effect of the missing `.combined-wrap`, silently dropped the month quick-jump bar (`buildQuickJump()` in `accordion.js` also targets `.combined-wrap` to find its insertion point) and the secondary TF sub-tabs.
+
+Fixed all three pages to match the standard template: accordion table wrapped in `.combined-wrap`, `.divider` added after it (before the AI panel, matching every other page), and the redundant `.header-inner`/duplicate back-link removed. Verified via automated check across all 97 pages that `.combined-wrap` is now present everywhere, and via Playwright that `eur.html`'s accordion now correctly toggles `display: none`/`block` when switching tabs (including switching back to Seasonals), that the month quick-jump bar and TF sub-tabs now render, and that the accordion's 84 month/week rows are unaffected.
+
+### Correction: Macro tab's Investing.com embed was NOT actually broken — reverted
+
+An earlier pass in this same v1.7 branch replaced the Macro tab's Investing.com iframe with a permanent "unavailable" fallback, based on a **headless** Playwright check that got HTTP 403 + `X-Frame-Options: sameorigin` even on the live deployed domain. That diagnosis was wrong: user testing with a real browser confirmed the embed loads correctly on `kpt-seasonals.netlify.app` — the 403 was almost certainly Investing.com's bot-detection rejecting the automated/headless traffic itself, not a real embedding block. The fallback has been fully reverted; `js/macro.js` is back to its original iframe-based implementation, and the associated `.macro-embed-fallback` CSS was removed.
+
+The real, narrower issue: the embed does **not** load when testing via Live Server on `127.0.0.1` — most likely because Investing.com's free widget requires the parent domain to be registered with them, and localhost never would be. This is a local-testing-only caveat, not a bug, and is now documented as such in `ARCHITECTURE.md` and `USER_GUIDE.md` rather than "fixed" in code. Lesson for future automated verification on this project: a headless-browser check that fails against a live third-party embed is not sufficient evidence the embed is actually broken for real users — confirm with a real browser against the live domain before concluding a working feature needs replacing.
+
+### Verified
+
+All 4 in-scope pages render the Profiling tab (stat tiles, 4 range-distribution charts, 2 time-of-extreme heatmaps, 8 profile cards) with a clean console; 3 out-of-scope pages (`aud.html`, `xau.html`, `fx-audusd.html`) correctly show no Profiling tab with no regressions; `profiling-calendar/index.html` (both modes, including all-asset back-links) and `profiling-profiles/detail.html` render and are interactive (day click, nav pills, candlestick charts) with a clean console, verified via a full click-through chain (tab → calendar → day → profile detail → nav pill → back to index), not just direct navigation to each destination; existing `kpt-sub-{id}` localStorage persistence confirmed unaffected by the `ui.js` tabs-array change; `js/macro.js` confirmed reverted to its original, working implementation.
+
+### Files Changed
+- `js/profiling.js`, `js/profiling-charts.js`, `js/profiling-calendar.js`, `js/profiling-profile-detail.js` — created
+- `js/ui.js` — Profiling tab added to `tabs` array
+- `js/macro.js` — unchanged (a fallback was added and then reverted within this same release — see the correction above)
+- `css/dashboard.css` — 7 new CSS variables + full `.kptp-` styles block added
+- `scripts/sync_profiling_data.js` — created
+- `data/profiling/` — created (gbpusd.js, eurusd.js, profile-examples/, calendar/, manifest.js)
+- `profiling-calendar/index.html`, `profiling-profiles/detail.html` — created
+- `assets/gbp.html`, `assets/fx-gbpusd.html`, `assets/eur.html`, `assets/fx-eurusd.html` — 4 script tags added before `ui.js`
+- `docs/ARCHITECTURE.md`, `docs/CONTRIBUTING.md`, `docs/USER_GUIDE.md`, `scripts/README.md`, `docs/MARKET_PROFILING_INTEGRATION.md` — updated
+
+---
+
 ## v1.6.2 — June 2026
 **Deployment & Hosting — Netlify migration, Netlify bug fixes**
 

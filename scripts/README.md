@@ -42,6 +42,17 @@ Inserts `<script src="../js/intraday.js" defer></script>` before `ui.js` in all 
 
 ---
 
+### `sync_profiling_data.js`
+
+Regenerates `data/profiling/*` from the sibling `KPT-Market-Profiling` repo's pipeline output (`../KPT-Market-Profiling/dashboard/data/`). Not a one-shot — this is the repeatable bridge between that data-pipeline repo and this one; re-run any time the pipeline is re-run for an asset (new/updated CSV, taxonomy change).
+
+- **Added in:** v1.7 (Profiling tab)
+- **Status:** Maintenance script, run as needed (not idempotent-skip like the patch scripts above — it always regenerates)
+- **Run:** `node scripts/sync_profiling_data.js` (from `seasonal-dashboard/`)
+- **To add a new asset:** add its lowercase key to the `ASSETS` array at the top of the script, then re-run. See `docs/CONTRIBUTING.md` → "Adding a New Profiling Asset" for the full downstream checklist (asset-key maps in `js/profiling.js`/`js/profiling-calendar.js`/`js/profiling-profile-detail.js`, script tags on the relevant page(s)).
+
+---
+
 ## Generator Scripts — Run As Needed
 
 These scripts were run from a separate working environment and are not committed to the repo. They are documented here for reference.

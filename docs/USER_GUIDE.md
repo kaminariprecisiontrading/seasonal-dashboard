@@ -168,6 +168,8 @@ Shows the Investing.com economic calendar, pre-filtered for the currencies and c
 
 The calendar widget may take 20–30 seconds to load on first open (it is an embedded third-party iframe). Change the date range using the widget's own controls. The importance filter (High / Medium / Low) can be toggled within the widget.
 
+**Note for anyone testing locally:** the widget only loads correctly on the deployed site (`kpt-seasonals.netlify.app`) — it will not load via Live Server on `127.0.0.1`, since Investing.com's free embed requires the parent domain to be registered with them. This is expected and not a bug.
+
 ---
 
 ## Printing / Saving to PDF
