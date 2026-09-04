@@ -98,6 +98,10 @@ def row_to_record(row) -> dict:
             "range_pips": _num(row["week_range_pips"], 1),
             "high_weekday": row["week_high_weekday"] if not pd.isna(row["week_high_weekday"]) else None,
             "low_weekday": row["week_low_weekday"] if not pd.isna(row["week_low_weekday"]) else None,
+            # ISO week-of-year (1-52/53) this date's containing week belongs
+            # to — already computed above as the iso_year/iso_week merge key,
+            # just not previously carried through to the output record.
+            "week_of_year": None if pd.isna(row["iso_week"]) else int(row["iso_week"]),
         },
         "month": {
             "start": _date(row["month_start"]),

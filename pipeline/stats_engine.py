@@ -303,6 +303,14 @@ def build_yearly(daily: pd.DataFrame, pip: float) -> pd.DataFrame:
         "low": g["low"].min().values,
         "high_month": d.loc[high_idx, "date"].dt.month.values,
         "low_month": d.loc[low_idx, "date"].dt.month.values,
+        # ISO week-of-year (1-52/53) the yearly extreme fell in — same basis
+        # as build_weekly()'s iso_week grouping, so this lines up with the
+        # week numbers shown elsewhere (e.g. the calendar day-detail panel).
+        # .astype(int) — isocalendar() returns pandas' nullable UInt32Dtype,
+        # whose numpy.uint32 scalars json.dump() can't use as dict keys
+        # (unlike plain int64, which .dt.month already happens to produce).
+        "high_week": d.loc[high_idx, "date"].dt.isocalendar().week.astype(int).values,
+        "low_week": d.loc[low_idx, "date"].dt.isocalendar().week.astype(int).values,
         "n_days": g.size().values,
     })
     yearly["range_pips"] = ((yearly["high"] - yearly["low"]) / pip).round(1)
@@ -369,6 +377,8 @@ def main():
         "monthly_low_week_of_month": monthly["low_week_of_month"].value_counts().sort_index().to_dict(),
         "yearly_high_month": yearly["high_month"].value_counts().sort_index().to_dict(),
         "yearly_low_month": yearly["low_month"].value_counts().sort_index().to_dict(),
+        "yearly_high_week": yearly["high_week"].value_counts().sort_index().to_dict(),
+        "yearly_low_week": yearly["low_week"].value_counts().sort_index().to_dict(),
     }
 
     with open(args.output_json, "w", encoding="utf-8") as f:
