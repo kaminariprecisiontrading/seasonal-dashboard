@@ -29,7 +29,7 @@ Full record: `docs/CHANGELOG.md` v1.8.
 
 ---
 
-## Tier 2 — Profile-detail: asset-specific default view
+## Tier 2 — Profile-detail: asset-specific default view — ✅ Complete (v1.9)
 
 **Problem:** `profiling-profiles/detail.html?p=<slug>&a=<assetkey>` always shows the cross-asset
 comparison (every Profiling asset's stats for that profile, side by side), regardless of whether
@@ -52,6 +52,8 @@ new page or route — `renderCrossAssetStats()`/`renderExampleCharts()` already 
 `ASSETS`; the change is which asset(s) render by default and adding the toggle/link.
 
 **Effort:** contained, moderate. No pipeline changes, no new data.
+
+Implemented as planned — full record: `docs/CHANGELOG.md` v1.9.
 
 ---
 
@@ -231,7 +233,7 @@ undone for this to happen later.
 ## Summary — execution order
 
 1. **Tier 1** — ✅ done (v1.8).
-2. **Tier 2** — profile-detail asset-specific view, contained.
+2. **Tier 2** — ✅ done (v1.9).
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
 4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling
    asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2).

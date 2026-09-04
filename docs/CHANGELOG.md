@@ -2,6 +2,43 @@
 
 ---
 
+## v1.9 — September 2026
+**Tier 2 from `docs/PLATFORM_ROADMAP.md` — profile-detail asset-specific default view**
+
+### Summary
+
+`profiling-profiles/detail.html?p=<slug>&a=<assetkey>` always showed the cross-asset comparison
+(every Profiling asset's stats for that profile, side by side), regardless of whether the visitor
+arrived from a specific asset's Profiling tab or navigated there directly. The `a` param existed
+but was only used for nav-pill/back-link construction, never to change what rendered by default.
+
+### Changes
+
+- **`js/profiling-profile-detail.js`** — new `renderFeaturedAsset()`: when `a` matches a known
+  asset, renders that asset's own stat tile + candlestick example prominently at the top, before
+  the cross-asset comparison. New `renderCompareToggle()`: in that mode, the existing "This
+  Profile, By Asset" / "See It In Action" sections (unchanged content, still built by the
+  pre-existing `renderCrossAssetStats()`/`renderExampleCharts()`) start collapsed behind a
+  "Compare across all assets →" button. Arriving with no `a` param renders exactly as before —
+  cross-asset comparison always visible, no featured section, no toggle.
+- **`profiling-profiles/detail.html`** — added `#kptp-featured-asset` and `#kptp-compare-toggle`
+  containers, and wrapped the existing comparison sections in `#kptp-compare-section` so both can
+  be shown/hidden together.
+- The "All Profiles" nav pills already carried the `a` param through (`renderAllProfilesNav()`
+  was unchanged) — confirmed browsing between profiles stays in the same asset's featured view.
+
+### Verified
+
+Full click chain (asset's Profiling tab → profile card → featured view) lands correctly with the
+right asset's data; toggle correctly reveals/hides the 2-asset comparison; general (no `a`) mode
+confirmed pixel-for-pixel unchanged from before (no featured section, no toggle, comparison always
+visible); nav-pill navigation preserves the `a` param across profiles; full regression suite clean.
+
+### Files Changed
+- `js/profiling-profile-detail.js`, `profiling-profiles/detail.html` — updated
+
+---
+
 ## v1.8 — September 2026
 **Tier 1 quick wins from `docs/PLATFORM_ROADMAP.md`**
 
