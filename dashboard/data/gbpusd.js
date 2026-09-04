@@ -3,6 +3,7 @@ const GBPUSD_DATA = {
   "asset": "GBPUSD",
   "stats": {
     "asset": "GBPUSD",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 8647,
     "n_weeks": 1735,

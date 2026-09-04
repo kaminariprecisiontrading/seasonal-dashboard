@@ -3,6 +3,7 @@ const USDCAD_DATA = {
   "asset": "USDCAD",
   "stats": {
     "asset": "USDCAD",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 7435,
     "n_weeks": 1493,

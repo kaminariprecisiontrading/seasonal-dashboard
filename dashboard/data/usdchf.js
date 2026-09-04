@@ -3,6 +3,7 @@ const USDCHF_DATA = {
   "asset": "USDCHF",
   "stats": {
     "asset": "USDCHF",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 6652,
     "n_weeks": 1336,

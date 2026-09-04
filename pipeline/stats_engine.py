@@ -327,6 +327,7 @@ def main():
     ap.add_argument("output_json")
     ap.add_argument("--asset", default="GBPUSD")
     ap.add_argument("--pip", type=float, default=0.0001)
+    ap.add_argument("--unit", default="pips", help="display label for range values, e.g. 'points' for a non-FX instrument (default: pips)")
     args = ap.parse_args()
 
     daily = pd.read_csv(args.daily_csv, parse_dates=["date", "open_time", "high_time", "low_time", "close_time"])
@@ -338,6 +339,7 @@ def main():
 
     result = {
         "asset": args.asset,
+        "unit": args.unit,
         "as_of": str(daily_valid["date"].max().date()),
         "n_days": int(len(daily_valid)),
         "n_weeks": int(len(weekly)),

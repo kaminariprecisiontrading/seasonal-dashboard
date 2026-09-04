@@ -3,6 +3,7 @@ const NZDUSD_DATA = {
   "asset": "NZDUSD",
   "stats": {
     "asset": "NZDUSD",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 6655,
     "n_weeks": 1336,

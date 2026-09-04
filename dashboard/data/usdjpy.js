@@ -3,6 +3,7 @@ const USDJPY_DATA = {
   "asset": "USDJPY",
   "stats": {
     "asset": "USDJPY",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 8740,
     "n_weeks": 1754,

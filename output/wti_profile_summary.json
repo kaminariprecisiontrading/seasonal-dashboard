@@ -1,0 +1,128 @@
+{
+  "n_labeled_days": 4148,
+  "n_data_gap_days": 0,
+  "n_insufficient_history_days": 59,
+  "profile_distribution": {
+    "Normal Day": {
+      "n": 2373,
+      "pct": 57.21
+    },
+    "Compression Day": {
+      "n": 737,
+      "pct": 17.77
+    },
+    "Volatile Day": {
+      "n": 434,
+      "pct": 10.46
+    },
+    "Trend Day (Down)": {
+      "n": 167,
+      "pct": 4.03
+    },
+    "Trend Day (Up)": {
+      "n": 160,
+      "pct": 3.86
+    },
+    "Volatile Reversal Day": {
+      "n": 140,
+      "pct": 3.38
+    },
+    "Quiet Drift Day (Up)": {
+      "n": 84,
+      "pct": 2.03
+    },
+    "Quiet Drift Day (Down)": {
+      "n": 53,
+      "pct": 1.28
+    }
+  },
+  "extreme_timing_by_profile": {
+    "Normal Day": {
+      "Insufficient_History": 905,
+      "Late_Push": 722,
+      "Late_Resolution": 493,
+      "Fade_Risk": 220,
+      "Early_Resolution": 33
+    },
+    "Compression Day": {
+      "Insufficient_History": 253,
+      "Late_Resolution": 205,
+      "Late_Push": 179,
+      "Fade_Risk": 90,
+      "Early_Resolution": 10
+    },
+    "Volatile Day": {
+      "Late_Push": 199,
+      "Insufficient_History": 148,
+      "Late_Resolution": 65,
+      "Early_Resolution": 12,
+      "Fade_Risk": 10
+    },
+    "Trend Day (Down)": {
+      "Late_Push": 72,
+      "Insufficient_History": 65,
+      "Late_Resolution": 30
+    },
+    "Trend Day (Up)": {
+      "Late_Push": 71,
+      "Insufficient_History": 57,
+      "Late_Resolution": 30,
+      "Fade_Risk": 2
+    },
+    "Volatile Reversal Day": {
+      "Late_Push": 52,
+      "Insufficient_History": 41,
+      "Late_Resolution": 24,
+      "Fade_Risk": 19,
+      "Early_Resolution": 4
+    },
+    "Quiet Drift Day (Up)": {
+      "Late_Push": 28,
+      "Late_Resolution": 27,
+      "Insufficient_History": 26,
+      "Fade_Risk": 2,
+      "Early_Resolution": 1
+    },
+    "Quiet Drift Day (Down)": {
+      "Insufficient_History": 24,
+      "Late_Resolution": 22,
+      "Late_Push": 6,
+      "Fade_Risk": 1
+    }
+  },
+  "avg_range_pips_by_profile": {
+    "Compression Day": {
+      "mean": 105.7,
+      "median": 101.0
+    },
+    "Normal Day": {
+      "mean": 193.6,
+      "median": 176.0
+    },
+    "Quiet Drift Day (Down)": {
+      "mean": 99.6,
+      "median": 98.0
+    },
+    "Quiet Drift Day (Up)": {
+      "mean": 125.9,
+      "median": 107.5
+    },
+    "Trend Day (Down)": {
+      "mean": 366.8,
+      "median": 299.0
+    },
+    "Trend Day (Up)": {
+      "mean": 392.5,
+      "median": 332.0
+    },
+    "Volatile Day": {
+      "mean": 397.6,
+      "median": 320.0
+    },
+    "Volatile Reversal Day": {
+      "mean": 384.8,
+      "median": 313.5
+    }
+  },
+  "asset": "WTI"
+}

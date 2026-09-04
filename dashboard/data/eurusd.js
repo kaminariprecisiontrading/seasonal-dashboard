@@ -3,6 +3,7 @@ const EURUSD_DATA = {
   "asset": "EURUSD",
   "stats": {
     "asset": "EURUSD",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 8739,
     "n_weeks": 1753,

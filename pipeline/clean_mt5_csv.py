@@ -36,6 +36,13 @@ PIP_SIZE = {
     "USDCAD": 0.0001,
     "USDCHF": 0.0001,
     "USDJPY": 0.01,  # JPY pair — pip is 2 decimal places, not 4
+    "XAUUSD": 0.01,  # gold, quoted to 2 decimals
+    "BTCUSD": 0.01,  # quoted to 2 decimals; "pip" here is just the smallest quote increment
+    "BRENT": 0.01,   # Brent crude, quoted to 2 decimals
+    "WTI": 0.01,     # WTI crude, quoted to 2 decimals
+    "US500": 0.1,    # S&P 500 index CFD, quoted to 1 decimal
+    "USTECH": 0.1,   # Nasdaq 100 index CFD, quoted to 1 decimal
+    "US30": 1.0,     # Dow Jones index CFD, quoted as whole points
     # Fallback default only — pipeline/refresh_asset.py always passes --pip
     # explicitly per its own registry, so this dict mainly matters for
     # direct/manual invocation of this script without --pip.

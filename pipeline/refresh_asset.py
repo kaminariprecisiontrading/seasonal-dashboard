@@ -44,18 +44,33 @@ import argparse
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
-# Pip size per asset — single source of truth for the whole chain, passed
+# Per-asset config — single source of truth for the whole chain, passed
 # explicitly to every script that needs it (clean_mt5_csv.py, stats_engine.py,
 # export_calendar_data.py) rather than relying on each script's own,
 # separately-maintained default. Add a new asset here when you add its data.
-PIP_REGISTRY = {
-    "GBPUSD": 0.0001,
-    "EURUSD": 0.0001,
-    "AUDUSD": 0.0001,
-    "NZDUSD": 0.0001,
-    "USDCAD": 0.0001,
-    "USDCHF": 0.0001,
-    "USDJPY": 0.01,  # JPY pair
+#
+# `unit` is the display label for range values downstream (dashboard stat
+# tiles/charts) — "pips" only for actual currency pairs (the term has a real,
+# specific meaning there); every other asset class (metals, energies,
+# indices, and future crypto/synthetics) uses "points" instead, since
+# "pips" reads wrong on e.g. a Dow Jones or gold page. Not auto-detected
+# from the symbol (a BTCUSD/XAUUSD ticker superficially looks FX-shaped) —
+# always set explicitly per asset here.
+ASSET_REGISTRY = {
+    "GBPUSD": {"pip": 0.0001, "unit": "pips"},
+    "EURUSD": {"pip": 0.0001, "unit": "pips"},
+    "AUDUSD": {"pip": 0.0001, "unit": "pips"},
+    "NZDUSD": {"pip": 0.0001, "unit": "pips"},
+    "USDCAD": {"pip": 0.0001, "unit": "pips"},
+    "USDCHF": {"pip": 0.0001, "unit": "pips"},
+    "USDJPY": {"pip": 0.01, "unit": "pips"},   # JPY pair
+    "XAUUSD": {"pip": 0.01, "unit": "points"}, # gold, quoted to 2 decimals
+    "BTCUSD": {"pip": 0.01, "unit": "points"}, # quoted to 2 decimals
+    "BRENT":  {"pip": 0.01, "unit": "points"}, # Brent crude, quoted to 2 decimals
+    "WTI":    {"pip": 0.01, "unit": "points"}, # WTI crude, quoted to 2 decimals
+    "US500":  {"pip": 0.1, "unit": "points"},  # S&P 500 index CFD, quoted to 1 decimal
+    "USTECH": {"pip": 0.1, "unit": "points"},  # Nasdaq 100 index CFD, quoted to 1 decimal
+    "US30":   {"pip": 1.0, "unit": "points"},  # Dow Jones index CFD, quoted as whole points
 }
 
 
@@ -68,7 +83,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("asset")
     ap.add_argument("--raw", default=None, help="raw M1 CSV path (default: data/raw/<ASSET>_M1_full.csv)")
-    ap.add_argument("--pip", type=float, default=None, help="pip size override (default: PIP_REGISTRY lookup)")
+    ap.add_argument("--pip", type=float, default=None, help="pip size override (default: ASSET_REGISTRY lookup)")
+    ap.add_argument("--unit", default=None, help="range-value display label override (default: ASSET_REGISTRY lookup, or 'pips' if the asset isn't registered)")
     ap.add_argument("--skip-examples", action="store_true")
     ap.add_argument("--skip-calendar", action="store_true")
     args = ap.parse_args()
@@ -76,10 +92,12 @@ def main():
     asset = args.asset.upper()
     asset_lower = asset.lower()
 
-    pip = args.pip if args.pip is not None else PIP_REGISTRY.get(asset)
+    entry = ASSET_REGISTRY.get(asset, {})
+    pip = args.pip if args.pip is not None else entry.get("pip")
+    unit = args.unit if args.unit is not None else entry.get("unit", "pips")
     if pip is None:
         print(f"ERROR: no pip size known for {asset}. Pass --pip explicitly, "
-              f"or add it to PIP_REGISTRY in this script.", file=sys.stderr)
+              f"or add it to ASSET_REGISTRY in this script.", file=sys.stderr)
         sys.exit(1)
 
     raw_csv = args.raw or os.path.join(ROOT, "data", "raw", f"{asset}_M1_full.csv")
@@ -107,12 +125,12 @@ def main():
 
     py = sys.executable
 
-    print(f"=== Refreshing {asset} (pip={pip}) ===", file=sys.stderr)
+    print(f"=== Refreshing {asset} (pip={pip}, unit={unit}) ===", file=sys.stderr)
     print(f"raw: {raw_csv}", file=sys.stderr)
 
     run([py, "clean_mt5_csv.py", raw_csv, clean_csv, "--asset", asset, "--pip", str(pip)])
     run([py, "profile_taxonomy.py", clean_csv, profiles_csv, summary_json, "--asset", asset])
-    run([py, "stats_engine.py", clean_csv, stats_json, "--asset", asset, "--pip", str(pip)])
+    run([py, "stats_engine.py", clean_csv, stats_json, "--asset", asset, "--pip", str(pip), "--unit", unit])
     run([py, "build_dashboard_data.py", stats_json, summary_json, dashboard_js, "--asset", asset])
 
     if not args.skip_examples:

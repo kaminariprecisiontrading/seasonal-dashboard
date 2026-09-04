@@ -3,6 +3,7 @@ const AUDUSD_DATA = {
   "asset": "AUDUSD",
   "stats": {
     "asset": "AUDUSD",
+    "unit": "pips",
     "as_of": "2026-09-03",
     "n_days": 8655,
     "n_weeks": 1737,
