@@ -97,6 +97,25 @@
     });
   }
 
+  // Zero-fills every ISO week 1-53 (unlike numericSortedEntries/monthEntries
+  // above, which only emit entries for keys actually present in the dict).
+  // With ~20-40 total yearly-extreme occurrences spread across 52 possible
+  // weeks, most weeks have zero occurrences and would otherwise be *absent*
+  // from the dict rather than present-with-zero — plotting only the present
+  // keys would space bars by array index, not by actual week-of-year
+  // distance, misrepresenting how far apart two occurrences really are.
+  function weekOfYearEntries(dict, contextFmt) {
+    var total = Object.keys(dict).reduce(function (s, k) { return s + dict[k]; }, 0) || 1;
+    var entries = [];
+    for (var w = 1; w <= 53; w++) {
+      var value = dict[w] || 0;
+      var pct = Math.round((value / total) * 1000) / 10;
+      var label = 'Wk ' + w;
+      entries.push({ label: label, value: value, tooltip: contextFmt ? ('<b>' + label + '</b><br>' + contextFmt(value, pct)) : undefined });
+    }
+    return entries;
+  }
+
   function modeNoteHtml(dist, unitPlural) {
     unitPlural = unitPlural || 'days';
     var parts = [];
@@ -181,7 +200,7 @@
     '</div>' +
 
     '<div class="kptp-section-label">Weekly, Monthly and Yearly Extremes</div>' +
-    '<div class="kptp-section-note">Which weekday the week&rsquo;s high/low falls on; which week-of-month the month&rsquo;s high/low falls on; which calendar month the year&rsquo;s high/low falls in. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count.</div>' +
+    '<div class="kptp-section-note">Which weekday the week&rsquo;s high/low falls on; which week-of-month the month&rsquo;s high/low falls on; which calendar month, and which week of the year (ISO week numbering), the year&rsquo;s high/low falls in. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count. <span class="kptp-muted-inline">ISO weeks: the week containing each year&rsquo;s first Thursday is Week 1, so a late-December date can land in Week 1 of the following year.</span></div>' +
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Week High &mdash; Day of Week</div><div id="kptp-weekday-high-chart"></div></div>' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Week Low &mdash; Day of Week</div><div id="kptp-weekday-low-chart"></div></div>' +
@@ -193,6 +212,10 @@
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Month</div><div id="kptp-year-high-month-chart"></div></div>' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Month</div><div id="kptp-year-low-month-chart"></div></div>' +
+    '</div>' +
+    '<div class="kptp-two-col">' +
+      '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Week of Year</div><div id="kptp-year-high-week-chart"></div></div>' +
+      '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Week of Year</div><div id="kptp-year-low-week-chart"></div></div>' +
     '</div>' +
 
     '<div class="kptp-section-label">Profile Taxonomy</div>' +
@@ -342,6 +365,15 @@
     function fmtY(thing) { return function (v, pct) { return 'The year’s ' + thing + ' landed in this month on ' + v + ' of ' + s.n_years + ' years (' + pct + '%).'; }; }
     KPTPCharts.renderBarChart(document.getElementById('kptp-year-high-month-chart'), monthEntries(s.yearly_high_month, fmtY('high')), { valueFmt: function (v) { return v + '×'; } });
     KPTPCharts.renderBarChart(document.getElementById('kptp-year-low-month-chart'), monthEntries(s.yearly_low_month, fmtY('low')), { valueFmt: function (v) { return v + '×'; } });
+
+    if (s.yearly_high_week && s.yearly_low_week) {
+      function fmtYW(thing) { return function (v, pct) { return v ? ('The year’s ' + thing + ' landed in this week on ' + v + ' of ' + s.n_years + ' years (' + pct + '%).') : 'No year in this dataset had its ' + thing + ' fall in this week.'; }; }
+      var weekChartOpts = { valueFmt: function (v) { return v + '×'; }, labelEvery: 4 };
+      var highWeekChart = document.getElementById('kptp-year-high-week-chart');
+      var lowWeekChart = document.getElementById('kptp-year-low-week-chart');
+      if (highWeekChart) KPTPCharts.renderBarChart(highWeekChart, weekOfYearEntries(s.yearly_high_week, fmtYW('high')), weekChartOpts);
+      if (lowWeekChart) KPTPCharts.renderBarChart(lowWeekChart, weekOfYearEntries(s.yearly_low_week, fmtYW('low')), weekChartOpts);
+    }
   }
 
   function renderProfiles() {

@@ -151,6 +151,7 @@ var KPTPCalendar = (function () {
       '<div class="kptp-calendar-detail-row"><span>Daily Range</span><b>' + rec.range_pips + ' pips</b></div>' +
       '<div class="kptp-calendar-detail-row"><span>High Time</span><b>' + rec.high_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.high_session.replace(/_/g, ' ') + ')</span></div>' +
       '<div class="kptp-calendar-detail-row"><span>Low Time</span><b>' + rec.low_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.low_session.replace(/_/g, ' ') + ')</span></div>' +
+      '<div class="kptp-calendar-detail-row"><span>Week of Year</span><b>' + (rec.week.week_of_year != null ? rec.week.week_of_year : '—') + '</b></div>' +
       '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' pips</b></div>' +
       '<div class="kptp-calendar-detail-row"><span>Month Range</span><b>' + rec.month.range_pips + ' pips</b></div>';
   }
@@ -176,7 +177,7 @@ var KPTPCalendar = (function () {
         '<div class="kptp-calendar-detail-row"><span>Low Time</span><b>' + rec.low_time + ' UTC</b> <span class="kptp-muted-inline">(' + rec.low_session.replace(/_/g, ' ') + ')</span></div>' +
       '</div>' +
       '<div>' +
-        '<div class="kptp-calendar-context-label">Week (' + rec.week.start + ' &rarr; ' + rec.week.end + ')</div>' +
+        '<div class="kptp-calendar-context-label">Week' + (rec.week.week_of_year != null ? (' ' + rec.week.week_of_year) : '') + ' (' + rec.week.start + ' &rarr; ' + rec.week.end + ')</div>' +
         '<div class="kptp-calendar-detail-row"><span>Week Range</span><b>' + rec.week.range_pips + ' pips</b></div>' +
         '<div class="kptp-calendar-detail-row"><span>Week High / Low Day</span><b>' + rec.week.high_weekday + ' / ' + rec.week.low_weekday + '</b></div>' +
         '<div class="kptp-calendar-context-label" style="margin-top:14px;">Month (' + rec.month.start + ' &rarr; ' + rec.month.end + ')</div>' +

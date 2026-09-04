@@ -375,6 +375,11 @@ var KPTPCharts = (function () {
     var total = entries.reduce(function (s, e) { return s + e.value; }, 0) || 1;
     var barGap = 8;
     var barW = (W - padL - padR - barGap * (entries.length - 1)) / entries.length;
+    // High-cardinality axes (e.g. 53 ISO weeks) pass labelEvery so only every
+    // Nth bar gets a text label — every bar still renders + hovers, this
+    // just keeps the labels from overlapping. Default 1 = label every bar
+    // (unchanged behaviour for the existing weekday/week-of-month/month callers).
+    var labelEvery = opts.labelEvery || 1;
 
     var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'kptp-bar-chart-svg' });
     svg.appendChild(el('line', { x1: padL, x2: W - padR, y1: H - padB, y2: H - padB, stroke: 'var(--border)', 'stroke-width': 1 }));
@@ -384,16 +389,18 @@ var KPTPCharts = (function () {
       var x = padL + i * (barW + barGap);
       var y = H - padB - h;
       var pct = Math.round((e.value / total) * 1000) / 10;
-      var bar = el('rect', { x: x, y: y, width: barW, height: Math.max(h, 1), fill: e.color || 'var(--accent-combined)', rx: 3, opacity: 0.85 });
+      var bar = el('rect', { x: x, y: y, width: barW, height: Math.max(h, 1), fill: e.color || 'var(--accent-combined)', rx: 3, opacity: e.value ? 0.85 : 0.25 });
       hover(bar, e.tooltip || ('<b>' + e.label + '</b><br>' + e.value + ' occurrences — ' + pct + '% of the total.'));
       svg.appendChild(bar);
 
-      var vt = el('text', { x: x + barW / 2, y: y - 4, 'font-size': 10, fill: 'var(--text)', 'text-anchor': 'middle' });
-      vt.textContent = opts.valueFmt ? opts.valueFmt(e.value) : e.value;
-      svg.appendChild(vt);
-      var lt = el('text', { x: x + barW / 2, y: H - padB + 12, 'font-size': 9, fill: 'var(--muted)', 'text-anchor': 'middle' });
-      lt.textContent = e.label;
-      svg.appendChild(lt);
+      if (i % labelEvery === 0) {
+        var vt = el('text', { x: x + barW / 2, y: y - 4, 'font-size': 10, fill: 'var(--text)', 'text-anchor': 'middle' });
+        vt.textContent = opts.valueFmt ? opts.valueFmt(e.value) : e.value;
+        svg.appendChild(vt);
+        var lt = el('text', { x: x + barW / 2, y: H - padB + 12, 'font-size': 9, fill: 'var(--muted)', 'text-anchor': 'middle' });
+        lt.textContent = e.label;
+        svg.appendChild(lt);
+      }
     });
 
     container.appendChild(svg);
