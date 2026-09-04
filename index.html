@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seasonal Trading Dashboard — Kaminari Precision Trading</title>
@@ -314,6 +315,11 @@
 <!-- ═══ Sticky Nav ═══ -->
 <nav class="sticky-nav">
   <div class="nav-inner">
+    <span class="nav-group-label">Forex</span>
+    <a class="nav-link" href="#fx-majors">Majors</a>
+    <a class="nav-link" href="#fx-minors">Minors</a>
+    <a class="nav-link" href="#fx-crosses">Crosses</a>
+    <div class="nav-sep"></div>
     <span class="nav-group-label">Futures</span>
     <a class="nav-link" href="#fut-currencies">Currencies</a>
     <a class="nav-link" href="#fut-metals">Metals</a>
@@ -324,11 +330,6 @@
     <a class="nav-link" href="#fut-grains">Grains</a>
     <a class="nav-link" href="#fut-fiber">Fiber</a>
     <a class="nav-link" href="#fut-meats">Meats</a>
-    <div class="nav-sep"></div>
-    <span class="nav-group-label">Forex</span>
-    <a class="nav-link" href="#fx-majors">Majors</a>
-    <a class="nav-link" href="#fx-minors">Minors</a>
-    <a class="nav-link" href="#fx-crosses">Crosses</a>
   </div>
 </nav>
 
@@ -353,6 +354,215 @@
     <div id="signal-freshness" style="display:none;font-size:10px;color:#475569;text-align:right;padding:4px 12px 6px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;"></div>
   </div>
 </div>
+
+<!-- ═══════════════════════════════ FOREX SEASONALS ═══════════════════════════════ -->
+<div class="source-block" id="forex">
+  <div class="source-heading">Forex Seasonals</div>
+  <div class="source-meta">Derived from CME futures seasonal components &nbsp;·&nbsp; Spot FX pairs synthesised from underlying futures data</div>
+
+  <!-- FX Majors -->
+  <div class="grid-section" id="fx-majors">FX Majors</div>
+  <div class="asset-grid">
+    <a class="asset-card status-complete" href="assets/fx-audusd.html" style="--card-accent:#e040a0;">
+      <div class="card-ticker">AUDUSD</div>
+      <div class="card-name">Australian Dollar / US Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">USD ICE</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-eurusd.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURUSD</div>
+      <div class="card-name">Euro / US Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">USD ICE</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-gbpusd.html" style="--card-accent:#22c55e;">
+      <div class="card-ticker">GBPUSD</div>
+      <div class="card-name">British Pound / US Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">USD ICE</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-usdcad.html" style="--card-accent:#f59e0b;">
+      <div class="card-ticker">USDCAD</div>
+      <div class="card-name">US Dollar / Canadian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">CAD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-usdchf.html" style="--card-accent:#06b6d4;">
+      <div class="card-ticker">USDCHF</div>
+      <div class="card-name">US Dollar / Swiss Franc</div>
+      <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">CHF CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-usdjpy.html" style="--card-accent:#8b3a2a;">
+      <div class="card-ticker">USDJPY</div>
+      <div class="card-name">US Dollar / Japanese Yen</div>
+      <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">JPY CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- FX Minors -->
+  <div class="grid-section" id="fx-minors">FX Minors</div>
+  <div class="asset-grid">
+    <a class="asset-card status-complete" href="assets/fx-audcad.html" style="--card-accent:#e040a0;">
+      <div class="card-ticker">AUDCAD</div>
+      <div class="card-name">Australian Dollar / Canadian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CAD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-audchf.html" style="--card-accent:#e040a0;">
+      <div class="card-ticker">AUDCHF</div>
+      <div class="card-name">Australian Dollar / Swiss Franc</div>
+      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CHF CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-audnzd.html" style="--card-accent:#e040a0;">
+      <div class="card-ticker">AUDNZD</div>
+      <div class="card-name">Australian Dollar / New Zealand Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">NZD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-euraud.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURAUD</div>
+      <div class="card-name">Euro / Australian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">AUD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-eurchf.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURCHF</div>
+      <div class="card-name">Euro / Swiss Franc</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">CHF CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-eurgbp.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURGBP</div>
+      <div class="card-name">Euro / British Pound</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">GBP CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-gbpaud.html" style="--card-accent:#22c55e;">
+      <div class="card-ticker">GBPAUD</div>
+      <div class="card-name">British Pound / Australian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">AUD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-gbpchf.html" style="--card-accent:#22c55e;">
+      <div class="card-ticker">GBPCHF</div>
+      <div class="card-name">British Pound / Swiss Franc</div>
+      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">CHF CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-nzdusd.html" style="--card-accent:#10b981;">
+      <div class="card-ticker">NZDUSD</div>
+      <div class="card-name">New Zealand Dollar / US Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">USD ICE</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- FX Crosses -->
+  <div class="grid-section" id="fx-crosses">FX Crosses</div>
+  <div class="asset-grid">
+    <a class="asset-card status-complete" href="assets/fx-audjpy.html" style="--card-accent:#e040a0;">
+      <div class="card-ticker">AUDJPY</div>
+      <div class="card-name">Australian Dollar / Japanese Yen</div>
+      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">JPY CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-cadchf.html" style="--card-accent:#f59e0b;">
+      <div class="card-ticker">CADCHF</div>
+      <div class="card-name">Canadian Dollar / Swiss Franc</div>
+      <div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">CHF CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-cadjpy.html" style="--card-accent:#f59e0b;">
+      <div class="card-ticker">CADJPY</div>
+      <div class="card-name">Canadian Dollar / Japanese Yen</div>
+      <div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">JPY CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-eurcad.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURCAD</div>
+      <div class="card-name">Euro / Canadian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">CAD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-eurjpy.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURJPY</div>
+      <div class="card-name">Euro / Japanese Yen</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">JPY CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-eurnzd.html" style="--card-accent:#6366f1;">
+      <div class="card-ticker">EURNZD</div>
+      <div class="card-name">Euro / New Zealand Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">NZD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-gbpcad.html" style="--card-accent:#22c55e;">
+      <div class="card-ticker">GBPCAD</div>
+      <div class="card-name">British Pound / Canadian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">CAD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-gbpjpy.html" style="--card-accent:#22c55e;">
+      <div class="card-ticker">GBPJPY</div>
+      <div class="card-name">British Pound / Japanese Yen</div>
+      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">JPY CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-gbpnzd.html" style="--card-accent:#22c55e;">
+      <div class="card-ticker">GBPNZD</div>
+      <div class="card-name">British Pound / New Zealand Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">NZD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-nzdcad.html" style="--card-accent:#10b981;">
+      <div class="card-ticker">NZDCAD</div>
+      <div class="card-name">New Zealand Dollar / Canadian Dollar</div>
+      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">CAD CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-nzdchf.html" style="--card-accent:#10b981;">
+      <div class="card-ticker">NZDCHF</div>
+      <div class="card-name">New Zealand Dollar / Swiss Franc</div>
+      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">CHF CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a class="asset-card status-complete" href="assets/fx-nzdjpy.html" style="--card-accent:#10b981;">
+      <div class="card-ticker">NZDJPY</div>
+      <div class="card-name">New Zealand Dollar / Japanese Yen</div>
+      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">JPY CME</span></div>
+      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
+    </a>
+  </div>
+
+</div><!-- /forex block -->
+
 
 <!-- ═══════════════════════════════ FUTURES SEASONALS ═══════════════════════════════ -->
 <div class="source-block" id="futures">
@@ -858,215 +1068,6 @@
   </div>
 
 </div><!-- /futures block -->
-
-
-<!-- ═══════════════════════════════ FOREX SEASONALS ═══════════════════════════════ -->
-<div class="source-block" id="forex">
-  <div class="source-heading">Forex Seasonals</div>
-  <div class="source-meta">Derived from CME futures seasonal components &nbsp;·&nbsp; Spot FX pairs synthesised from underlying futures data</div>
-
-  <!-- FX Majors -->
-  <div class="grid-section" id="fx-majors">FX Majors</div>
-  <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/fx-audusd.html" style="--card-accent:#e040a0;">
-      <div class="card-ticker">AUDUSD</div>
-      <div class="card-name">Australian Dollar / US Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">USD ICE</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-eurusd.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURUSD</div>
-      <div class="card-name">Euro / US Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">USD ICE</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-gbpusd.html" style="--card-accent:#22c55e;">
-      <div class="card-ticker">GBPUSD</div>
-      <div class="card-name">British Pound / US Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">USD ICE</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-usdcad.html" style="--card-accent:#f59e0b;">
-      <div class="card-ticker">USDCAD</div>
-      <div class="card-name">US Dollar / Canadian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">CAD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-usdchf.html" style="--card-accent:#06b6d4;">
-      <div class="card-ticker">USDCHF</div>
-      <div class="card-name">US Dollar / Swiss Franc</div>
-      <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">CHF CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-usdjpy.html" style="--card-accent:#8b3a2a;">
-      <div class="card-ticker">USDJPY</div>
-      <div class="card-name">US Dollar / Japanese Yen</div>
-      <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">JPY CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-  </div>
-
-  <!-- FX Minors -->
-  <div class="grid-section" id="fx-minors">FX Minors</div>
-  <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/fx-audcad.html" style="--card-accent:#e040a0;">
-      <div class="card-ticker">AUDCAD</div>
-      <div class="card-name">Australian Dollar / Canadian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CAD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-audchf.html" style="--card-accent:#e040a0;">
-      <div class="card-ticker">AUDCHF</div>
-      <div class="card-name">Australian Dollar / Swiss Franc</div>
-      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CHF CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-audnzd.html" style="--card-accent:#e040a0;">
-      <div class="card-ticker">AUDNZD</div>
-      <div class="card-name">Australian Dollar / New Zealand Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">NZD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-euraud.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURAUD</div>
-      <div class="card-name">Euro / Australian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">AUD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-eurchf.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURCHF</div>
-      <div class="card-name">Euro / Swiss Franc</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">CHF CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-eurgbp.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURGBP</div>
-      <div class="card-name">Euro / British Pound</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">GBP CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-gbpaud.html" style="--card-accent:#22c55e;">
-      <div class="card-ticker">GBPAUD</div>
-      <div class="card-name">British Pound / Australian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">AUD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-gbpchf.html" style="--card-accent:#22c55e;">
-      <div class="card-ticker">GBPCHF</div>
-      <div class="card-name">British Pound / Swiss Franc</div>
-      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">CHF CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-nzdusd.html" style="--card-accent:#10b981;">
-      <div class="card-ticker">NZDUSD</div>
-      <div class="card-name">New Zealand Dollar / US Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">USD ICE</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-  </div>
-
-  <!-- FX Crosses -->
-  <div class="grid-section" id="fx-crosses">FX Crosses</div>
-  <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/fx-audjpy.html" style="--card-accent:#e040a0;">
-      <div class="card-ticker">AUDJPY</div>
-      <div class="card-name">Australian Dollar / Japanese Yen</div>
-      <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">JPY CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-cadchf.html" style="--card-accent:#f59e0b;">
-      <div class="card-ticker">CADCHF</div>
-      <div class="card-name">Canadian Dollar / Swiss Franc</div>
-      <div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">CHF CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-cadjpy.html" style="--card-accent:#f59e0b;">
-      <div class="card-ticker">CADJPY</div>
-      <div class="card-name">Canadian Dollar / Japanese Yen</div>
-      <div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">JPY CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-eurcad.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURCAD</div>
-      <div class="card-name">Euro / Canadian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">CAD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-eurjpy.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURJPY</div>
-      <div class="card-name">Euro / Japanese Yen</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">JPY CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-eurnzd.html" style="--card-accent:#6366f1;">
-      <div class="card-ticker">EURNZD</div>
-      <div class="card-name">Euro / New Zealand Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">NZD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-gbpcad.html" style="--card-accent:#22c55e;">
-      <div class="card-ticker">GBPCAD</div>
-      <div class="card-name">British Pound / Canadian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">CAD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-gbpjpy.html" style="--card-accent:#22c55e;">
-      <div class="card-ticker">GBPJPY</div>
-      <div class="card-name">British Pound / Japanese Yen</div>
-      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">JPY CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-gbpnzd.html" style="--card-accent:#22c55e;">
-      <div class="card-ticker">GBPNZD</div>
-      <div class="card-name">British Pound / New Zealand Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">NZD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-nzdcad.html" style="--card-accent:#10b981;">
-      <div class="card-ticker">NZDCAD</div>
-      <div class="card-name">New Zealand Dollar / Canadian Dollar</div>
-      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">CAD CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-nzdchf.html" style="--card-accent:#10b981;">
-      <div class="card-ticker">NZDCHF</div>
-      <div class="card-name">New Zealand Dollar / Swiss Franc</div>
-      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">CHF CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-
-    <a class="asset-card status-complete" href="assets/fx-nzdjpy.html" style="--card-accent:#10b981;">
-      <div class="card-ticker">NZDJPY</div>
-      <div class="card-name">New Zealand Dollar / Japanese Yen</div>
-      <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">JPY CME</span></div>
-      <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
-    </a>
-  </div>
-
-</div><!-- /forex block -->
 
 
 <!-- ═══════════════════════════════ FOOTNOTE ═══════════════════════════════ -->

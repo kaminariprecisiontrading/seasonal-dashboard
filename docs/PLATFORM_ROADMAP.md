@@ -12,18 +12,20 @@ blocking phase).
 
 ---
 
-## Tier 1 — Quick wins
+## Tier 1 — Quick wins — ✅ Complete (v1.8)
 
 Small, independent, low-risk. No architectural decisions, no cross-file redesign.
 
 | Item | What | Files |
 |---|---|---|
-| Favicon | No `<link rel="icon">` anywhere in the repo — every page shows a broken/default tab icon. Add one (simple SVG or ICO), reference from a shared include point if one exists, or patch all 97 + `index.html`. | all HTML |
-| AI model strings | `claude-sonnet-4-20250514` is hardcoded in `js/api.js` and repeated in `ARCHITECTURE.md`/`PROMPTS.md`. Bump to a current Sonnet 5 model ID; verify the Gemini string (`gemini-2.0-flash`) is still current too. | `js/api.js`, `docs/ARCHITECTURE.md`, `docs/PROMPTS.md` |
-| Print CSS gap | The `@media print` block overrides the 11 base CSS tokens (`--bg`, `--surface`, etc.) but not the 7 `--kptp-*` tokens added for Profiling (session colors, compression/expansion accents). Printing the Profiling tab currently renders those elements with dark-theme colors on the print-forced white background. | `css/dashboard.css` |
-| Profiling → AI context | `api.js`'s `runAnalysis()` gathers 4 context layers (Seasonal, Curve, History, Sessions) for the Analysis tab's prompt. Profiling isn't one of them, even on the 4 pages where it's live. Add a 5th context layer (best/worst profile, dominant timing tag, current-window range stats) so Analysis's synthesis actually reflects Profiling data where available. Context bar chip pattern already exists (✓/○) — extend it. | `js/api.js` |
-| Profile Taxonomy above Range Distribution | User-requested reorder on the Profiling tab: taxonomy (plain-English "what kind of day is typical") should lead, range-distribution percentile math should follow. Pure markup reorder — each `render*()` function targets its container by `id`, not by DOM position, so this is zero logic risk. | `js/profiling.js` (panel markup only) |
-| Index page — Forex first | User-requested: Forex Seasonals section above Futures Seasonals section on `index.html` (MT5 data is easiest to source for FX, so FX is the near-term focus). Swap the two top-level section blocks and reorder the sticky-nav link groups (Majors/Minors/Crosses before Currencies/Metals/Energy/etc.) to match. | `index.html` |
+| ✅ Favicon | No `<link rel="icon">` anywhere in the repo — every page shows a broken/default tab icon. | `scripts/patch_add_favicon.js` (new), all HTML |
+| ✅ AI model strings | `claude-sonnet-4-20250514` → `claude-sonnet-5`, label → "Claude Sonnet 5". | `js/api.js`, `docs/ARCHITECTURE.md`, `docs/PROMPTS.md` |
+| ✅ Print CSS gap | Added print-appropriate overrides for the 7 `--kptp-*` tokens, darkened the same way `--bull`/`--bear`/`--chop` already are. | `css/dashboard.css` |
+| ✅ Profiling → AI context | Added `js/profiling.js`'s `window.KPT_PROFILING_CURRENT` exposure + `js/api.js`'s `_gatherProfilingCtx()` as a 5th context layer (median daily range, ADR20, most-common profile, dominant timing) with its own ✓/○ chip. | `js/api.js`, `js/profiling.js` |
+| ✅ Profile Taxonomy above Range Distribution | Pure markup reorder, zero logic risk as predicted. | `js/profiling.js` |
+| ✅ Index page — Forex first | Exact block swap (line-slice, not manual retyping) of the two top-level sections + sticky-nav groups; card count and every href/id verified unchanged. | `index.html` |
+
+Full record: `docs/CHANGELOG.md` v1.8.
 
 ---
 
@@ -228,7 +230,7 @@ undone for this to happen later.
 
 ## Summary — execution order
 
-1. **Tier 1** — quick wins, start immediately, fully independent of everything below.
+1. **Tier 1** — ✅ done (v1.8).
 2. **Tier 2** — profile-detail asset-specific view, contained.
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
 4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling

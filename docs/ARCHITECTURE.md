@@ -586,7 +586,7 @@ A multi-provider AI analysis engine that gathers seasonal, curve, backtest, and 
 
 | Provider | Model | Endpoint | Streaming |
 |----------|-------|----------|-----------|
-| Claude | claude-sonnet-4-20250514 | `api.anthropic.com/v1/messages` | SSE (`text_stream`) |
+| Claude | claude-sonnet-5 | `api.anthropic.com/v1/messages` | SSE (`text_stream`) |
 | Gemini | gemini-1.5-flash | `generativelanguage.googleapis.com/…/streamGenerateContent?alt=sse` | SSE |
 | Ollama | user-configured | `{url}/api/generate` | NDJSON line-by-line |
 

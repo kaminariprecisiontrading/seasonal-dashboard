@@ -2,6 +2,58 @@
 
 ---
 
+## v1.8 — September 2026
+**Tier 1 quick wins from `docs/PLATFORM_ROADMAP.md`**
+
+### Summary
+
+First slice of the platform-wide plan agreed after the Profiling merge was reviewed live. All
+independent, low-risk items — no architectural changes.
+
+### Changes
+
+- **Favicon** — every page (`index.html`, all 97 `assets/*.html`, `profiling-calendar/index.html`,
+  `profiling-profiles/detail.html`) previously showed a broken/default tab icon; none existed
+  anywhere in the repo. Added via `scripts/patch_add_favicon.js` (new, one-shot) — an inline SVG
+  `data:` URI, not a separate asset file, so it's identical and path-risk-free on every page
+  regardless of nesting depth.
+- **AI model string bump** — `js/api.js` was still hardcoded to `claude-sonnet-4-20250514`.
+  Updated to `claude-sonnet-5`, along with the display label ("Claude Sonnet" → "Claude Sonnet 5")
+  and the same string in `docs/ARCHITECTURE.md` and `docs/PROMPTS.md`.
+- **Print CSS gap fixed** — the `@media print` block overrode the 11 base CSS tokens but not the
+  7 `--kptp-*` tokens added for Profiling; printing that tab would have kept dark-theme session/
+  compression/expansion colors on the print-forced white background. Added print-appropriate
+  overrides for all 7, darkened the same way `--bull`/`--bear`/`--chop` already are.
+- **Profiling tab reordered** — "Profile Taxonomy" now sits above "Range Distribution" (user
+  request): lead with the plain-English classification, follow with the percentile math. Pure
+  markup move in `js/profiling.js`; no render-function changes needed since each targets its
+  container by `id`, not DOM position.
+- **index.html — Forex first** — the Forex Seasonals section (and its sticky-nav link group) now
+  precedes Futures Seasonals (user request: MT5 data is easiest to source for FX, so FX is the
+  near-term focus). Implemented as an exact block swap (line-slice, not manual retyping) to avoid
+  transcription risk across ~500 lines of asset-card markup; card count and every `href`/`id`
+  verified unchanged.
+- **Profiling wired into the AI Analysis context** — the Analysis tab's synthesis previously drew
+  on 4 context layers (Seasonal, Curve, History, Sessions) and had no idea Profiling existed, even
+  on the 4 pages where it's live. Added a 5th layer: `js/profiling.js` now exposes
+  `window.KPT_PROFILING_CURRENT` (asset key + resolved bundle) once it resolves data for the
+  current page, and `js/api.js`'s new `_gatherProfilingCtx()` reads it — median daily range, ADR20,
+  most-common daily profile, and dominant extreme-timing pattern all now feed the AI prompt and
+  show as a 5th ✓/○ chip in the context bar. Correctly shows `○ Profiling` (not an error) on the
+  93 pages without Profiling data.
+
+### Files Changed
+- `scripts/patch_add_favicon.js` — created; `scripts/README.md` — documented
+- `js/api.js` — model string, `_gatherProfilingCtx()`, context bar chip, prompt wiring
+- `js/profiling.js` — section reorder, `window.KPT_PROFILING_CURRENT` exposure
+- `css/dashboard.css` — print overrides for the 7 `--kptp-*` variables
+- `index.html` — Forex/Futures section + nav order swapped
+- All 97 `assets/*.html`, `profiling-calendar/index.html`, `profiling-profiles/detail.html` —
+  favicon link added
+- `docs/ARCHITECTURE.md`, `docs/PROMPTS.md` — model string updated
+
+---
+
 ## v1.7 — September 2026
 **Market Profiling — 8th tab (Profiling), GBPUSD/EURUSD, ported from KPT-Market-Profiling**
 

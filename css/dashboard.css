@@ -2172,6 +2172,18 @@ tbody td:first-child {
     --bull:     #1a7a2e;
     --bear:     #b91c1c;
     --chop:     #92400e;
+
+    /* Market Profiling tab (js/profiling.js) — darkened for legibility on
+       the white print background, same treatment as --bull/--bear/--chop
+       above; without this, Profiling's charts would keep their dark-theme
+       colors on a white page. */
+    --kptp-compression: #1e40af;
+    --kptp-expansion:   #a3175f;
+    --kptp-normal:      #555555;
+    --kptp-asian:       #6d28d9;
+    --kptp-london:      #1e40af;
+    --kptp-ny:          #1a7a2e;
+    --kptp-overlap:     #92400e;
   }
 
   * {

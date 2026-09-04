@@ -40,6 +40,14 @@ Inserts `<script src="../js/intraday.js" defer></script>` before `ui.js` in all 
 - **Status:** Already applied to all 97 files
 - **Run:** `node scripts/patch_add_intraday.js`
 
+### `patch_add_favicon.js`
+
+Inserts a `<link rel="icon">` (inline SVG data URI, no separate asset file) right after `<head>` in every page — `index.html`, `profiling-calendar/index.html`, `profiling-profiles/detail.html`, and all `assets/*.html`. No favicon existed anywhere before this.
+
+- **Added in:** v1.8 (`docs/PLATFORM_ROADMAP.md` Tier 1)
+- **Status:** Already applied to all 100 files
+- **Run:** `node scripts/patch_add_favicon.js`
+
 ---
 
 ### `sync_profiling_data.js`

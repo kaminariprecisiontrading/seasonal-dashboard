@@ -90,7 +90,7 @@ ACCORDION SPEC:
 - Chevron indicator on month row rotates when open
 
 AI PANEL SPEC:
-- model: claude-sonnet-4-20250514
+- model: claude-sonnet-5
 - max_tokens: 3000
 - SEASONAL_DATA includes: all 3 TF readings, playbook signals, TASK section
 - TASK requests: yearly summary, month-by-month table, week-by-week priority month, top 3 setups
@@ -174,7 +174,7 @@ The Analysis tab supports three providers. Select via the pill buttons at the to
 **Claude (Anthropic)**
 - API key from: console.anthropic.com → API Keys
 - Stored in localStorage as `kpt-cfg-claude-key`
-- Model: `claude-sonnet-4-20250514` (hardcoded)
+- Model: `claude-sonnet-5` (hardcoded)
 
 **Gemini (Google)**
 - API key from: aistudio.google.com → Get API Key

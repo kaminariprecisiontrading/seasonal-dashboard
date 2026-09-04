@@ -47,6 +47,16 @@
   var pairUpper = assetKey.toUpperCase();
   var meta = (window.KPT_PROFILING_META && window.KPT_PROFILING_META[assetKey]) || {};
 
+  // Exposed so other shared scripts (js/api.js's Analysis context gatherer)
+  // can find this page's resolved Profiling data without duplicating
+  // ASSET_MAP above. api.js defines its context-bar refresh hook before this
+  // script runs (load order: api.js -> ... -> profiling.js), but only
+  // *calls* it here at user-interaction time (Run Analysis click) or via the
+  // explicit refresh below — never at api.js's own parse time — so the
+  // load-order difference doesn't matter.
+  window.KPT_PROFILING_CURRENT = { key: assetKey, bundle: bundle, asOf: meta.asOf };
+  if (typeof window._kptUpdateCtxBar === 'function') window._kptUpdateCtxBar();
+
   var WINDOWS = [
     { key: 'full', label: 'Full History' },
     { key: '5y', label: '5Y' },
@@ -151,6 +161,10 @@
 
     '<div class="kptp-stat-grid" id="kptp-stat-grid"></div>' +
 
+    '<div class="kptp-section-label">Profile Taxonomy</div>' +
+    '<div class="kptp-section-note" id="kptp-profile-summary-note">Rule-based daily profile classification, built from closing strength' + kptpGlossaryIcon('closing_strength') + ' and range regime. Click any card for the full rule, why it&rsquo;s named that way, and a real illustrative chart.</div>' +
+    '<div class="kptp-profile-grid" id="kptp-profile-grid"></div>' +
+
     '<div class="kptp-section-label">Range Distribution</div>' +
     '<div class="kptp-section-note">Daily/weekly/monthly/yearly range percentile' + kptpGlossaryIcon('percentile') + ' strips (p05&ndash;p95), IQR' + kptpGlossaryIcon('iqr') + ' boxed, median' + kptpGlossaryIcon('median') + ' marked. Dashed lines mark the compression' + kptpGlossaryIcon('compression') + ' (p20) / expansion' + kptpGlossaryIcon('expansion') + ' (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window' + kptpGlossaryIcon('lookback_window') + ' affects the daily/weekly/monthly charts &mdash; not the yearly chart, which has only a small sample and always shows full history.</div>' +
     '<div class="kptp-dial" id="kptp-dial"></div>' +
@@ -217,10 +231,6 @@
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Week of Year</div><div id="kptp-year-high-week-chart"></div></div>' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Week of Year</div><div id="kptp-year-low-week-chart"></div></div>' +
     '</div>' +
-
-    '<div class="kptp-section-label">Profile Taxonomy</div>' +
-    '<div class="kptp-section-note" id="kptp-profile-summary-note">Rule-based daily profile classification, built from closing strength' + kptpGlossaryIcon('closing_strength') + ' and range regime. Click any card for the full rule, why it&rsquo;s named that way, and a real illustrative chart.</div>' +
-    '<div class="kptp-profile-grid" id="kptp-profile-grid"></div>' +
 
     '<div class="kptp-footnote">' +
       'Historical data: TradersWay MT5 export, ' + pairUpper + (bundle.stats && bundle.stats.n_days ? (', ' + bundle.stats.n_days + ' trading days through ' + bundle.stats.as_of) : '') + ' (data-gap days excluded from statistics). Statistics are probability-weighted historical tendencies, not guaranteed outcomes.' +

@@ -232,6 +232,42 @@ function _gatherIntradayCtx(assetId) {
   } catch (e) { return null; }
 }
 
+/* ─── Context gatherer: Market Profiling ─────────────────────────────────── */
+// Reads window.KPT_PROFILING_CURRENT, set by js/profiling.js only on the
+// handful of pages with ported Profiling data (see MARKET_PROFILING_INTEGRATION.md).
+// Returns null on every other page — same optional-layer pattern as backtest/intraday.
+
+function _gatherProfilingCtx() {
+  try {
+    var cur = window.KPT_PROFILING_CURRENT;
+    if (!cur || !cur.bundle) return null;
+    var b = cur.bundle;
+    var dist = b.profiles && b.profiles.profile_distribution;
+    if (!dist) return null;
+
+    var entries = Object.keys(dist).map(function (k) { return [k, dist[k]]; })
+      .sort(function (a, c) { return c[1].n - a[1].n; });
+    var mostCommon = entries[0];
+
+    var timing = (b.profiles.extreme_timing_by_profile || {})[mostCommon ? mostCommon[0] : ''];
+    var topTiming = timing
+      ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (a, c) { return c[1] - a[1]; })[0]
+      : null;
+
+    var s = b.stats || {};
+    var fullDaily = s.daily_range && s.daily_range.windowed_distribution && s.daily_range.windowed_distribution.full;
+    var adr20 = s.daily_range && s.daily_range.latest_adr && s.daily_range.latest_adr.ADR_20;
+
+    return {
+      asOf:               cur.asOf || s.as_of || null,
+      medianDailyRange:   fullDaily ? fullDaily.median : null,
+      adr20:              adr20 != null ? adr20 : null,
+      mostCommonProfile:  mostCommon ? { name: mostCommon[0], pct: mostCommon[1].pct } : null,
+      topTiming:          topTiming ? topTiming[0] : null
+    };
+  } catch (e) { return null; }
+}
+
 /* ─── Dynamic seasonal summary (replaces static SEASONAL_DATA string) ────── */
 // Generates a structured month-by-month text from MONTHS[] so the AI context
 // always reflects the current data file and can never drift from MONTHS[].
@@ -285,7 +321,7 @@ function _buildSeasonalSummary() {
 
 /* ─── Prompt builder ─────────────────────────────────────────────────────── */
 
-function _buildPrompt(curveCtx, btCtx, idtCtx) {
+function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
   var now = new Date();
   var wk  = now.getDate() <= 7 ? 1 : now.getDate() <= 14 ? 2 : now.getDate() <= 21 ? 3 : 4;
   var L   = [];
@@ -342,6 +378,14 @@ function _buildPrompt(curveCtx, btCtx, idtCtx) {
       ' | ' + idtCtx.worstDow.pct.toFixed(0) + '% positive');
   }
 
+  if (profCtx) {
+    L.push('');
+    L.push('=== MARKET PROFILING (statistical, pre-computed' + (profCtx.asOf ? ', data as of ' + profCtx.asOf : '') + ') ===');
+    if (profCtx.medianDailyRange != null) L.push('Median daily range: ' + profCtx.medianDailyRange + ' pips' + (profCtx.adr20 != null ? ' (20-day ADR: ' + profCtx.adr20 + ' pips)' : ''));
+    if (profCtx.mostCommonProfile) L.push('Most common daily shape: ' + profCtx.mostCommonProfile.name + ' (' + profCtx.mostCommonProfile.pct + '% of days)');
+    if (profCtx.topTiming) L.push('Dominant extreme-timing pattern: ' + profCtx.topTiming.replace(/_/g, ' '));
+  }
+
   L.push('');
   L.push('=== REQUIRED OUTPUT FORMAT ===');
   L.push('Produce the following structure exactly. Do not add extra sections or change the headings.');
@@ -385,7 +429,7 @@ async function _callClaude(prompt, output) {
       'x-api-key': key
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-5',
       max_tokens: 2500,
       stream: true,
       messages: [{ role: 'user', content: prompt }]
@@ -575,7 +619,7 @@ async function _readSSE(resp, output, extractor) {
   function _providerLabel(prov) {
     if (prov === 'gemini') return 'Gemini 2.0 Flash';
     if (prov === 'ollama') return 'Ollama · ' + _getOllamaModel();
-    return 'Claude Sonnet';
+    return 'Claude Sonnet 5';
   }
 
   /* ── Update panel headings to reflect active provider ── */
@@ -656,7 +700,7 @@ async function _readSSE(resp, output, extractor) {
     var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash (Google)' :
                     prov === 'ollama' ? 'Ollama (local — ' + _getOllamaModel() + ')' :
                                        'Claude (Anthropic)';
-    el.textContent = provLabel + ' · seasonal + curve + backtest + session context · cached per week';
+    el.textContent = provLabel + ' · seasonal + curve + backtest + session + profiling context · cached per week';
   }
 
   /* ── Context availability bar ── */
@@ -673,6 +717,7 @@ async function _readSSE(resp, output, extractor) {
         return !!(parsed && parsed.schemaVer === 3);
       } catch (_) { return false; }
     }());
+    var hasProf = !!(window.KPT_PROFILING_CURRENT && window.KPT_PROFILING_CURRENT.bundle);
 
     function chip(label, ok, title) {
       return '<span class="ai-ctx-chip' + (ok ? ' ai-ctx-ok' : ' ai-ctx-na') + '" title="' + (title || '') + '">' +
@@ -684,7 +729,8 @@ async function _readSSE(resp, output, extractor) {
       chip('Seasonal',  true,  'Always included — from the seasonal data file') +
       chip('Curve',     true,  'Always included — computed from MONTHS[] data') +
       chip('History',   hasBt, hasBt  ? 'Backtest stats loaded from localStorage'   : 'Upload a D1 CSV on the History tab to include') +
-      chip('Sessions',  hasIdt, hasIdt ? 'Intraday session data loaded from localStorage' : 'Upload an H1/H4 CSV on the Sessions tab to include');
+      chip('Sessions',  hasIdt, hasIdt ? 'Intraday session data loaded from localStorage' : 'Upload an H1/H4 CSV on the Sessions tab to include') +
+      chip('Profiling', hasProf, hasProf ? 'Pre-computed Market Profiling stats for this asset' : 'Not available for this asset');
   }
 
   /* Initialise */
@@ -745,15 +791,17 @@ async function runAnalysis() {
   var curveCtx = _gatherCurveCtx();
   var btCtx    = _gatherBacktestCtx(id);
   var idtCtx   = _gatherIntradayCtx(id);
+  var profCtx  = _gatherProfilingCtx();
 
   /* Build the enriched prompt */
-  var prompt = _buildPrompt(curveCtx, btCtx, idtCtx);
+  var prompt = _buildPrompt(curveCtx, btCtx, idtCtx, profCtx);
 
   /* Loading state */
   var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama' : 'Claude';
   var ctxLayers = ['seasonal', 'curve'];
-  if (btCtx)  ctxLayers.push('backtest');
-  if (idtCtx) ctxLayers.push('session');
+  if (btCtx)   ctxLayers.push('backtest');
+  if (idtCtx)  ctxLayers.push('session');
+  if (profCtx) ctxLayers.push('profiling');
 
   btn.disabled    = true;
   btn.textContent = '⟳  Analysing via ' + provLabel + '...';
