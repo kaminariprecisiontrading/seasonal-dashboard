@@ -12,30 +12,53 @@
 arrived from a specific asset's Profiling tab or navigated there directly. The `a` param existed
 but was only used for nav-pill/back-link construction, never to change what rendered by default.
 
+An initial pass kept the cross-asset comparison inline behind a collapsible toggle — reasonable at
+2 assets, but flagged (before shipping) as the wrong shape once more Profiling assets are added
+(Phase B) and eventually Deriv synthetics/crypto (`docs/PLATFORM_ROADMAP.md` Tier 6). Revised to a
+dedicated comparison page with a bounded picker instead, described below.
+
 ### Changes
 
-- **`js/profiling-profile-detail.js`** — new `renderFeaturedAsset()`: when `a` matches a known
-  asset, renders that asset's own stat tile + candlestick example prominently at the top, before
-  the cross-asset comparison. New `renderCompareToggle()`: in that mode, the existing "This
-  Profile, By Asset" / "See It In Action" sections (unchanged content, still built by the
-  pre-existing `renderCrossAssetStats()`/`renderExampleCharts()`) start collapsed behind a
-  "Compare across all assets →" button. Arriving with no `a` param renders exactly as before —
-  cross-asset comparison always visible, no featured section, no toggle.
-- **`profiling-profiles/detail.html`** — added `#kptp-featured-asset` and `#kptp-compare-toggle`
-  containers, and wrapped the existing comparison sections in `#kptp-compare-section` so both can
-  be shown/hidden together.
-- The "All Profiles" nav pills already carried the `a` param through (`renderAllProfilesNav()`
-  was unchanged) — confirmed browsing between profiles stays in the same asset's featured view.
+- **`js/profiling-profile-detail.js`** — with `a` present, `renderFeaturedAsset()` shows that
+  asset's own stat tile + candlestick example. With no `a`, shows a prompt instead of any
+  cross-asset data. `renderCompareLink()` adds a plain "Compare across all assets →" link to the
+  new `compare.html`. No more hardcoded `ASSETS` array, no more `renderCrossAssetStats()`/
+  `renderExampleCharts()` on this page — asset data loads on demand for just the focused asset via
+  the new `KPTPData.loadAsset()`.
+- **New `profiling-profiles/compare.html` + `js/profiling-compare.js`** — dedicated cross-asset
+  comparison page for one profile. A picker (pill buttons, capped at 10 selections) lets the user
+  choose which Profiling assets to compare; only the selected assets' data is ever fetched. The
+  available-assets list comes from `Object.keys(window.KPT_PROFILING_META)`
+  (`data/profiling/manifest.js`) rather than a hardcoded array — a new Profiling asset appears in
+  the picker automatically once its data is synced, no code change anywhere. Selection state
+  round-trips through the `assets` URL param via `history.replaceState`, so a specific comparison
+  is bookmarkable/shareable.
+- **New `KPTPData` in `js/profiling-charts.js`** — `loadAsset(key, dataBase)`, loading a given
+  asset's stats + profile-examples data on demand via an injected `<script>` tag, deduplicated.
+  Same on-demand-loading pattern `js/profiling-calendar.js`'s year-file loader already used,
+  generalized into the shared library so both new/changed pages (and any future one) can reuse it
+  instead of hardcoding a `<script>` tag per known Profiling asset.
+- **`profiling-profiles/detail.html`** — removed the hardcoded `gbpusd.js`/`eurusd.js`/
+  profile-examples `<script>` tags entirely (data now loads on demand for whichever asset `?a=`
+  names); removed the old `#kptp-compare-toggle`/`#kptp-compare-section` markup; added
+  `#kptp-compare-link-wrap`.
+- **`docs/CONTRIBUTING.md`** — "Adding a New Profiling Asset" checklist updated: no more per-asset
+  edits needed to `profiling-profiles/detail.html` or `compare.html` at all.
 
 ### Verified
 
-Full click chain (asset's Profiling tab → profile card → featured view) lands correctly with the
-right asset's data; toggle correctly reveals/hides the 2-asset comparison; general (no `a`) mode
-confirmed pixel-for-pixel unchanged from before (no featured section, no toggle, comparison always
-visible); nav-pill navigation preserves the `a` param across profiles; full regression suite clean.
+Full click chain (asset's Profiling tab → profile card → featured detail view, data loaded
+on-demand) lands correctly; general (no `a`) mode shows the prompt + compare link, no data
+fetched; `compare.html` renders the picker from the manifest, defaults sensibly (pre-selects the
+referring asset via `a`, falls back to the first two available), adding/removing a pill loads that
+asset's data live and updates the URL; nav-pill navigation preserves `a` across profiles; full
+regression suite clean.
 
 ### Files Changed
+- `profiling-profiles/compare.html`, `js/profiling-compare.js` — created
+- `js/profiling-charts.js` — `KPTPData` loader added
 - `js/profiling-profile-detail.js`, `profiling-profiles/detail.html` — updated
+- `docs/CONTRIBUTING.md`, `docs/ARCHITECTURE.md` — updated
 
 ---
 

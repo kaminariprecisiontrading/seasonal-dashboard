@@ -40,21 +40,12 @@
 </div>
 
 <!-- Populated only when arriving with ?a=<assetkey> (e.g. clicked from an
-     asset's own Profiling tab) — that asset's own stats + example, front
-     and center, before the cross-asset comparison further down. Empty/unused
-     when arriving without `a` (the general, cross-asset page). -->
+     asset's own Profiling tab) — that asset's own stats + example, loaded on
+     demand (see js/profiling-profile-detail.js). A prompt + link to
+     compare.html when arriving without `a`. -->
 <div id="kptp-featured-asset"></div>
 
-<div id="kptp-compare-toggle"></div>
-<div id="kptp-compare-section">
-  <div class="kptp-section-label">This Profile, By Asset</div>
-  <div class="kptp-section-note" id="kptp-cross-asset-note">How often this profile occurs, its average range, and its most common timing tag — full history, across all Profiling assets.</div>
-  <div class="kptp-stat-grid" id="kptp-cross-asset-stats"></div>
-
-  <div class="kptp-section-label">See It In Action</div>
-  <div class="kptp-section-note" id="kptp-examples-note">A real historical day for each asset, picked as a typical example of this profile (close to the profile's own average range, not a cherry-picked extreme) — so the shape described above is recognizable on an actual chart.</div>
-  <div id="kptp-example-charts"></div>
-</div>
+<div id="kptp-compare-link-wrap" style="margin:20px 0;"></div>
 
 <div class="kptp-section-label">All Profiles</div>
 <div class="kptp-profile-nav-pills" id="kptp-all-profiles-nav"></div>
@@ -65,10 +56,6 @@
 </div>
 </div>
 
-<script src="../data/profiling/gbpusd.js"></script>
-<script src="../data/profiling/eurusd.js"></script>
-<script src="../data/profiling/profile-examples/gbpusd.js"></script>
-<script src="../data/profiling/profile-examples/eurusd.js"></script>
 <script src="../js/profiling-charts.js"></script>
 <script src="../js/profiling-profile-detail.js"></script>
 </body>

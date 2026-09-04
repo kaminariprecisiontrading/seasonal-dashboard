@@ -46,14 +46,37 @@ shown by default.
   this is already effectively the "general Normal Day page," it just needs to stop being the
   *only* mode.
 
-**Implementation shape:** a rendering-mode branch in `js/profiling-profile-detail.js`, the same
-pattern already used in `js/profiling-calendar.js` for its `isHome` asset-vs-home split. Not a
-new page or route — `renderCrossAssetStats()`/`renderExampleCharts()` already loop over all
-`ASSETS`; the change is which asset(s) render by default and adding the toggle/link.
-
 **Effort:** contained, moderate. No pipeline changes, no new data.
 
-Implemented as planned — full record: `docs/CHANGELOG.md` v1.9.
+**Implemented, then revised same-day after user feedback on scale.** The first pass (v1.9) did
+exactly what "Implementation shape" below describes — an inline collapsible toggle reusing
+`renderCrossAssetStats()`/`renderExampleCharts()`, which loop over a hardcoded `ASSETS` array.
+Correctly flagged as not scaling: fine at 2 Profiling assets, but wrong shape once Phase B adds
+more (and eventually Deriv synthetics/crypto, Tier 6). Revised same day (v1.9 amended) to:
+
+- A **separate page**, `profiling-profiles/compare.html`, not an inline reveal — keeps
+  `detail.html` light regardless of how many assets exist.
+- A **picker capped at 10 assets**, not "show everything" — bounded rendering no matter how large
+  the Profiling roster grows.
+- The asset list is **read from `window.KPT_PROFILING_META`** (`data/profiling/manifest.js`), not
+  a hardcoded array — a new Profiling asset appears in the picker automatically once its data is
+  synced (`scripts/sync_profiling_data.js`), zero code change.
+- New shared `KPTPData.loadAsset()` (`js/profiling-charts.js`) loads a given asset's data on
+  demand via injected `<script>` tags — same pattern `js/profiling-calendar.js`'s year-file loader
+  already used. Both `detail.html` and `compare.html` now use this instead of hardcoding a
+  `<script>` tag per known asset; `detail.html` in particular no longer needs *any* asset data
+  script tags at all (only loads what the current `?a=` asset needs, on demand) — one fewer place
+  the "Adding a New Profiling Asset" checklist (`CONTRIBUTING.md`) needs updating per asset.
+- Selection state round-trips through the `assets` URL param (`history.replaceState`), so a
+  specific N-asset comparison is bookmarkable/shareable.
+
+~~Implementation shape~~ (superseded — kept below for the historical record of what changed):
+a rendering-mode branch in `js/profiling-profile-detail.js`, the same pattern already used in
+`js/profiling-calendar.js` for its `isHome` asset-vs-home split. Not a new page or route —
+`renderCrossAssetStats()`/`renderExampleCharts()` already loop over all `ASSETS`; the change is
+which asset(s) render by default and adding the toggle/link.
+
+Full record: `docs/CHANGELOG.md` v1.9 (original) and its same-day amendment.
 
 ---
 

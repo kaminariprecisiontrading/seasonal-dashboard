@@ -158,10 +158,10 @@ Once a new asset's MT5 CSV has been cleaned and run through `KPT-Market-Profilin
 2. Run `node scripts/sync_profiling_data.js` from `seasonal-dashboard/` root — regenerates `data/profiling/<key>.js`, `data/profiling/profile-examples/<key>.js`, `data/profiling/calendar/<key>/`, and `data/profiling/manifest.js`.
 3. Add the asset's id(s) to `js/profiling.js`'s `ASSET_MAP` (e.g. `{ aud: 'audusd', 'fx-audusd': 'audusd' }`) — decide which seasonal-dashboard page(s) should show this Profiling data using the same reasoning as `docs/MARKET_PROFILING_INTEGRATION.md` §2 (any page displaying related data for that currency/instrument, not just the most technically "correct" one).
 4. Add the corresponding reverse mapping to `js/profiling-calendar.js`'s `ASSET_PAGES` (for the "back to dashboard" links on the calendar page).
-5. Add `{ key: '<key>', label: '<LABEL>' }` to `js/profiling-profile-detail.js`'s `ASSETS` array, and add its two `<script>` tags (`data/profiling/<key>.js`, `data/profiling/profile-examples/<key>.js`) to `profiling-profiles/detail.html`.
+5. Nothing to do for `profiling-profiles/detail.html` or `compare.html` — both load asset data on demand via `KPTPData.loadAsset()` (`js/profiling-charts.js`) and read the available-assets list from `window.KPT_PROFILING_META` (`data/profiling/manifest.js`), so a new asset appears in the profile-detail flow and the compare-page picker automatically once its data is synced (step 2). No hardcoded per-asset script tags or asset arrays to update in either file.
 6. Add the 4 Profiling script tags (`data/profiling/manifest.js`, `data/profiling/<key>.js`, `js/profiling-charts.js`, `js/profiling.js`) before `ui.js` on each page identified in step 3.
 7. Update the attribution/footnote text if the new asset needs asset-specific sourcing notes.
-8. Test per the shared-JS-file checklist below, plus a manual check of `profiling-calendar/index.html` (with and without `?a=`) and a couple of `profiling-profiles/detail.html?p=<slug>&a=<key>` links.
+8. Test per the shared-JS-file checklist below, plus a manual check of `profiling-calendar/index.html` (with and without `?a=`) and `profiling-profiles/detail.html?p=<slug>&a=<key>` — confirm the new asset appears in `compare.html`'s asset picker without any code change.
 9. Update `CHANGELOG.md` and `docs/MARKET_PROFILING_INTEGRATION.md`'s rollout notes.
 
 ---

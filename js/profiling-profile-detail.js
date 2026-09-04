@@ -1,26 +1,24 @@
 /**
  * profiling-profile-detail.js — Controller for profiling-profiles/detail.html
- * (?p=<slug>&a=<assetkey>). Renders one profile's rule/why/timing copy,
- * cross-asset stats, and a real illustrative candlestick example per asset.
+ * (?p=<slug>&a=<assetkey>). Renders one profile's rule/why/timing copy, and
+ * — when arriving from a specific asset's Profiling tab (?a=<key>) — that
+ * asset's own stats and a real illustrative candlestick example.
  *
- * Ported/adapted from KPT-Market-Profiling/dashboard/js/profile-detail.js.
- * The source needed a "reference the bare identifier, not window.X" workaround
- * because its data files were plain `const X = {...}` (see its own comment,
- * and market-profiling-system-spec.md §5.3). This repo's ported data
- * (scripts/sync_profiling_data.js) already assigns onto window.KPT_PROFILING /
- * window.KPT_PROFILING_EXAMPLES, so that workaround isn't needed here.
+ * Cross-asset comparison lives on the separate profiling-profiles/compare.html
+ * page now, not inline here — with only 2 Profiling assets this page used to
+ * render every known asset inline behind a toggle, which doesn't scale as
+ * more assets are added (Phase B rollout). See docs/PLATFORM_ROADMAP.md
+ * Tier 2 and js/profiling-compare.js.
  *
- * Depends on: js/profiling-charts.js. Add to ASSETS below as Phase B adds
- * more Profiling assets.
+ * Loads only the focused asset's data on demand via KPTPData.loadAsset()
+ * (js/profiling-charts.js) — no hardcoded per-asset <script> tags on this
+ * page, and no hardcoded asset list in this file, so adding a new Profiling
+ * asset needs zero changes here.
+ *
+ * Depends on: js/profiling-charts.js.
  */
 (function () {
-  var ASSETS = [
-    { key: 'gbpusd', label: 'GBPUSD' },
-    { key: 'eurusd', label: 'EURUSD' }
-  ];
-
-  function dataFor(key) { return window.KPT_PROFILING && window.KPT_PROFILING[key]; }
-  function examplesFor(key) { return window.KPT_PROFILING_EXAMPLES && window.KPT_PROFILING_EXAMPLES[key]; }
+  var DATA_BASE = '../data/profiling';
 
   function slugToName() {
     var map = {};
@@ -45,75 +43,28 @@
     document.getElementById('kptp-profile-axis-shape').textContent = meta.axisShape;
   }
 
-  function renderCrossAssetStats(name) {
-    var wrap = document.getElementById('kptp-cross-asset-stats');
-    wrap.innerHTML = '';
-    ASSETS.forEach(function (a) {
-      var d = dataFor(a.key);
-      if (!d) return;
-      var dist = d.profiles.profile_distribution[name];
-      var range = d.profiles.avg_range_pips_by_profile[name];
-      var timing = d.profiles.extreme_timing_by_profile[name];
-      var timingEntries = timing ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
-      var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
-      var div = document.createElement('div');
-      div.className = 'kptp-stat-tile';
-      if (!dist) {
-        div.innerHTML = '<div class="kptp-stat-label">' + a.label + '</div><div class="kptp-stat-value" style="font-size:14px;color:var(--muted)">No days classified as this profile</div>';
-      } else {
-        div.innerHTML =
-          '<div class="kptp-stat-label">' + a.label + '</div>' +
-          '<div class="kptp-stat-value">' + dist.pct + '<span class="kptp-unit">% of days (n=' + dist.n + ')</span></div>' +
-          '<div class="kptp-profile-meta" style="margin-top:8px;">' +
-            (range ? ('Avg range: <b>' + range.mean + ' pips</b><br>') : '') +
-            (topTiming ? ('Most common timing: <b>' + topTiming[0].replace('_', ' ') + '</b> (' + topTiming[1] + ' days)') : '') +
-          '</div>';
-      }
-      wrap.appendChild(div);
-    });
-  }
-
-  function renderExampleCharts(name) {
-    var wrap = document.getElementById('kptp-example-charts');
-    wrap.innerHTML = '';
-    ASSETS.forEach(function (a) {
-      var ex = examplesFor(a.key);
-      var panel = document.createElement('div');
-      panel.className = 'kptp-panel-card';
-      var example = ex ? ex[name] : null;
-      if (!example) {
-        panel.innerHTML = '<div class="kptp-panel-title">' + a.label + ' Example</div><div class="kptp-section-note" style="margin:0;">No example day available.</div>';
-        wrap.appendChild(panel);
-        return;
-      }
-      panel.innerHTML =
-        '<div class="kptp-panel-title">' + a.label + ' Example &mdash; ' + example.date + '</div>' +
-        '<div id="kptp-candlestick-' + a.key + '"></div>' +
-        '<div class="kptp-section-note" style="margin:10px 0 0;">A real historical day picked as a typical example of this profile &mdash; its range is close to this profile’s own average, not a cherry-picked extreme. M15 candles, UTC. Hover any candle for its OHLC values.</div>';
-      wrap.appendChild(panel);
-      KPTPCharts.renderCandlestick(document.getElementById('kptp-candlestick-' + a.key), example.bars);
-    });
-  }
-
-  // Featured single-asset view (arriving with ?a=<assetkey>, e.g. clicked
-  // from that asset's own Profiling tab). Renders the same stat-tile +
-  // candlestick content renderCrossAssetStats()/renderExampleCharts()
-  // produce for one asset, but prominently, above the (now-collapsed)
-  // full cross-asset comparison — see docs/PLATFORM_ROADMAP.md Tier 2.
-  function renderFeaturedAsset(name, focusAsset) {
+  // Single-asset stats + example, shown when arriving with ?a=<assetkey>.
+  function renderFeaturedAsset(name, assetKey) {
     var wrap = document.getElementById('kptp-featured-asset');
     if (!wrap) return;
-    var d = dataFor(focusAsset.key);
-    var ex = examplesFor(focusAsset.key);
-    var dist = d && d.profiles.profile_distribution[name];
-    var range = d && d.profiles.avg_range_pips_by_profile[name];
-    var timing = d && d.profiles.extreme_timing_by_profile[name];
+    var label = assetKey.toUpperCase();
+    var d  = window.KPT_PROFILING && window.KPT_PROFILING[assetKey];
+    var ex = window.KPT_PROFILING_EXAMPLES && window.KPT_PROFILING_EXAMPLES[assetKey];
+
+    if (!d) {
+      wrap.innerHTML = '<div class="kptp-section-note">No Profiling data available for ' + label + '.</div>';
+      return;
+    }
+
+    var dist = d.profiles.profile_distribution[name];
+    var range = d.profiles.avg_range_pips_by_profile[name];
+    var timing = d.profiles.extreme_timing_by_profile[name];
     var timingEntries = timing ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
     var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
     var example = ex ? ex[name] : null;
 
     var statHtml = !dist
-      ? '<div class="kptp-stat-value" style="font-size:16px;color:var(--muted)">No ' + focusAsset.label + ' days classified as this profile</div>'
+      ? '<div class="kptp-stat-value" style="font-size:16px;color:var(--muted)">No ' + label + ' days classified as this profile</div>'
       : '<div class="kptp-stat-value">' + dist.pct + '<span class="kptp-unit">% of days (n=' + dist.n + ')</span></div>' +
         '<div class="kptp-profile-meta" style="margin-top:8px;">' +
           (range ? ('Avg range: <b>' + range.mean + ' pips</b><br>') : '') +
@@ -121,45 +72,31 @@
         '</div>';
 
     wrap.innerHTML =
-      '<div class="kptp-section-label">' + focusAsset.label + ' &mdash; This Profile</div>' +
-      '<div class="kptp-section-note">' + focusAsset.label + '’s own history for this profile. See it in action below, or compare against every other Profiling asset further down.</div>' +
-      '<div class="kptp-panel-card"><div class="kptp-stat-label">' + focusAsset.label + '</div>' + statHtml + '</div>' +
+      '<div class="kptp-section-label">' + label + ' &mdash; This Profile</div>' +
+      '<div class="kptp-section-note">' + label + '’s own history for this profile.</div>' +
+      '<div class="kptp-panel-card"><div class="kptp-stat-label">' + label + '</div>' + statHtml + '</div>' +
       (example
         ? '<div class="kptp-panel-card">' +
-            '<div class="kptp-panel-title">' + focusAsset.label + ' Example &mdash; ' + example.date + '</div>' +
+            '<div class="kptp-panel-title">' + label + ' Example &mdash; ' + example.date + '</div>' +
             '<div id="kptp-candlestick-featured"></div>' +
             '<div class="kptp-section-note" style="margin:10px 0 0;">A real historical day picked as a typical example of this profile &mdash; its range is close to this profile’s own average, not a cherry-picked extreme. M15 candles, UTC. Hover any candle for its OHLC values.</div>' +
           '</div>'
-        : '<div class="kptp-panel-card"><div class="kptp-panel-title">' + focusAsset.label + ' Example</div><div class="kptp-section-note" style="margin:0;">No example day available.</div></div>');
+        : '<div class="kptp-panel-card"><div class="kptp-panel-title">' + label + ' Example</div><div class="kptp-section-note" style="margin:0;">No example day available.</div></div>');
 
     if (example) KPTPCharts.renderCandlestick(document.getElementById('kptp-candlestick-featured'), example.bars);
   }
 
-  // Collapsed-by-default toggle around the cross-asset comparison section,
-  // shown only in featured (asset-focused) mode — general/no-`a` mode leaves
-  // the comparison always visible, unchanged from before this feature.
-  function renderCompareToggle() {
-    var toggleWrap = document.getElementById('kptp-compare-toggle');
-    var section = document.getElementById('kptp-compare-section');
-    if (!toggleWrap || !section) return;
-    section.style.display = 'none';
-    var btn = document.createElement('button');
-    btn.className = 'kptp-calendar-nav-btn';
-    btn.style.cssText = 'width:auto;padding:8px 16px;font-size:11px;margin-bottom:20px;';
-    btn.textContent = 'Compare across all assets →';
-    btn.addEventListener('click', function () {
-      var showing = section.style.display !== 'none';
-      section.style.display = showing ? 'none' : '';
-      btn.textContent = showing ? 'Compare across all assets →' : 'Hide cross-asset comparison';
-    });
-    toggleWrap.appendChild(btn);
+  function renderCompareLink(slug, assetKey) {
+    var wrap = document.getElementById('kptp-compare-link-wrap');
+    if (!wrap) return;
+    var href = 'compare.html?p=' + slug + (assetKey ? ('&a=' + assetKey) : '');
+    wrap.innerHTML = '<a class="kptp-calendar-nav-btn" style="width:auto;padding:8px 16px;font-size:11px;display:inline-block;" href="' + href + '">Compare across all assets &rarr;</a>';
   }
 
-  function renderAllProfilesNav(currentName) {
+  function renderAllProfilesNav(currentName, assetKey) {
     var nav = document.getElementById('kptp-all-profiles-nav');
     if (!nav) return;
-    var aParam = new URLSearchParams(window.location.search).get('a');
-    var suffix = aParam ? ('&a=' + aParam) : '';
+    var suffix = assetKey ? ('&a=' + assetKey) : '';
     nav.innerHTML = Object.keys(KPTP_PROFILE_META).map(function (name) {
       var active = name === currentName ? ' active' : '';
       return '<a class="kptp-profile-nav-pill' + active + '" href="detail.html?p=' + kptpProfileSlug(name) + suffix + '" style="--pill-accent:' + (KPTP_PROFILE_COLOR[name] || 'var(--muted)') + '">' + name + '</a>';
@@ -177,21 +114,28 @@
       return;
     }
 
-    var aParam = (params.get('a') || '').toLowerCase();
-    var focusAsset = ASSETS.filter(function (a) { return a.key === aParam; })[0] || null;
+    var assetKey = (params.get('a') || '').toLowerCase() || null;
 
     renderHeader(name);
     renderDescription(name);
-    renderCrossAssetStats(name);
-    renderExampleCharts(name);
-    renderAllProfilesNav(name);
-
-    if (focusAsset) {
-      renderFeaturedAsset(name, focusAsset);
-      renderCompareToggle();
-    }
-
+    renderAllProfilesNav(name, assetKey);
+    renderCompareLink(slug, assetKey);
     kptpAttachGlossaryIcons();
+
+    if (assetKey) {
+      var wrap = document.getElementById('kptp-featured-asset');
+      if (wrap) wrap.innerHTML = '<div class="kptp-section-note">Loading&hellip;</div>';
+      KPTPData.loadAsset(assetKey, DATA_BASE)
+        .then(function () { renderFeaturedAsset(name, assetKey); })
+        .catch(function () {
+          if (wrap) wrap.innerHTML = '<div class="kptp-section-note">No Profiling data available for ' + assetKey.toUpperCase() + '.</div>';
+        });
+    } else {
+      var promptWrap = document.getElementById('kptp-featured-asset');
+      if (promptWrap) {
+        promptWrap.innerHTML = '<div class="kptp-section-note">Viewing this profile generally. Open it from a specific asset’s Profiling tab to see that asset’s own numbers, or use "Compare across all assets" below.</div>';
+      }
+    }
   }
 
   init();

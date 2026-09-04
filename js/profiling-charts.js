@@ -15,6 +15,43 @@
  * profiling-profiles/ pages.
  */
 
+/* ─── Dynamic per-asset data loader ───────────────────────────────────────
+ * Loads data/profiling/<key>.js and profile-examples/<key>.js on demand via
+ * an injected <script> tag (same pattern js/profiling-calendar.js already
+ * uses for its per-year calendar files — fetch()/XHR would be CORS-blocked
+ * on a plain file:// open). Lets pages that only need one or a few assets'
+ * worth of data (profiling-profiles/detail.html, compare.html) avoid
+ * hardcoding a <script> tag per known Profiling asset, which doesn't scale
+ * as more assets are added (see docs/PLATFORM_ROADMAP.md Tier 2 follow-up).
+ */
+var KPTPData = (function () {
+  var loadedScripts = {};
+
+  function loadScript(src) {
+    if (loadedScripts[src]) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = src;
+      script.onload = function () { loadedScripts[src] = true; resolve(); };
+      script.onerror = function () { reject(new Error('Failed to load ' + src)); };
+      document.head.appendChild(script);
+    });
+  }
+
+  // dataBase: relative path to data/profiling/ from the calling page.
+  function loadAsset(key, dataBase) {
+    var p1 = (window.KPT_PROFILING && window.KPT_PROFILING[key])
+      ? Promise.resolve()
+      : loadScript(dataBase + '/' + key + '.js');
+    var p2 = (window.KPT_PROFILING_EXAMPLES && window.KPT_PROFILING_EXAMPLES[key])
+      ? Promise.resolve()
+      : loadScript(dataBase + '/profile-examples/' + key + '.js');
+    return Promise.all([p1, p2]);
+  }
+
+  return { loadScript: loadScript, loadAsset: loadAsset };
+})();
+
 /* ─── Tooltip ──────────────────────────────────────────────────────────── */
 var KPTPTooltip = (function () {
   var tipEl;
