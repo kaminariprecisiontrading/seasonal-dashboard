@@ -42,10 +42,9 @@ dormant CSS pattern (existed, unused, since the original site build) revived for
 
 ### Known gap (not this pass)
 
-`MTCUSD` (one ticker from the Market Watch export) has an unclear identity and was left off the
-`PLANNED` card list rather than guessed. The 4 new international index instruments the same export
-revealed (EURO50, AUS200, SW20, ESP35) have the same no-source-data problem as crypto and no MT5
-data collected yet — flagged for a future pass, not built here.
+The 4 new international index instruments the Market Watch export also revealed (EURO50, AUS200,
+SW20, ESP35) have the same no-source-data problem as crypto and no MT5 data collected yet —
+flagged for a future pass, not built here.
 
 ---
 
