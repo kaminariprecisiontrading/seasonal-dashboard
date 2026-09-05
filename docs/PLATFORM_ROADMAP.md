@@ -223,9 +223,17 @@ lock in an implementation:
 ### Sequencing
 
 Paced by MT5 data availability, not a blocking phase — runs alongside Tier-6-adjacent asset
-rollout (adding more Profiling assets as CSVs are cleaned). Daily is done. Weekly is the natural
-next validation target (largest remaining sample size of the three new ones). Monthly and Yearly
-follow, with Yearly requiring the most methodological care per the sample-size table above.
+rollout (adding more Profiling assets as CSVs are cleaned). Daily is done. **Weekly is done**
+(2026-09-05) — `KPT-Market-Profiling/pipeline/profile_taxonomy_weekly.py`, validated across
+GBPUSD/EURUSD/XAUUSD, not just one asset; full methodology and findings in that repo's
+`market-profiling-system-spec.md` §4.6 and `HANDOVER.md` §5, not duplicated here. Headline result:
+the same trend-day timing signature Daily found was independently reproduced at weekly
+granularity, plus a strong new cross-asset finding from a user-proposed idea (the *joint*
+high-weekday/low-weekday pattern, not just the two existing marginal charts — same-day extremes
+are suppressed 5-15x vs. independence). Generated for all 14 Profiling assets, but **not yet
+wired into any dashboard page** — this pass was explicitly scoped to data/methodology validation
+first. Monthly and Yearly follow next, with Yearly requiring the most methodological care per the
+sample-size table above.
 
 ---
 
@@ -316,7 +324,8 @@ for a real back-and-forth:
 2. **Tier 2** — ✅ done (v1.9).
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
 4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling
-   asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2).
+   asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2). Daily done, **Weekly done**
+   (2026-09-05, validated but not yet dashboard-wired), Monthly/Yearly next.
 5. **Tier 5b** — ongoing, independent of Tier 5 (different granularity direction), also
    step-by-step and not rushed. Session-OHLC infrastructure done; sweep-threshold derivation and
    the descriptive validation study are next, only when explicitly picked up again.
