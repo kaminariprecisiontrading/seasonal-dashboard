@@ -2,6 +2,53 @@
 
 ---
 
+## v1.11 — September 2026
+**Crypto category — BTCUSD, statistically-derived Seasonals + Profiling**
+
+### Summary
+
+Adds the site's first Crypto category. Moore Research Center doesn't cover crypto, so BTCUSD's
+Seasonal Tendency signal is statistically derived from ~9 years of its own real MT5 price history
+instead of hand-authored chart analysis — reusing the site's own Raw Price Tendency methodology
+(`js/backtest.js`'s week-of-month bucketing/return calculation) so it means the same thing as the
+rest of the site's validation tooling, with star conviction capped well below the usual maximum
+and a prominent above-the-fold disclosure of both compromises. BTCUSD also gets the standard
+Profiling tab (data was already cleaned in `KPT-Market-Profiling` but not yet wired anywhere). The
+other ~18 crypto tickers from a TradersWay Market Watch export get `PLANNED` index cards — a
+dormant CSS pattern (existed, unused, since the original site build) revived for its first live use.
+
+### Changes
+
+- **New `KPT-Market-Profiling/pipeline/gen_seasonal_signal.py`** — derives a `MONTHS[]`-shaped
+  seasonal signal from any cleaned daily price CSV. Not BTCUSD-specific; reusable for a future
+  statistically-derived asset (more crypto, eventually Deriv synthetics).
+- **New `scripts/sync_derived_seasonal.js`** — bridges that output into `data/btc.js` (bare
+  `ASSET_CONFIG`/`MONTHS[]`, matching the other 96 files' format exactly) and surgically patches
+  `data/signals_manifest.js` (adds the `btc` key only — the other 96 keys are untouched, since
+  `scripts/gen_signals_manifest.js`, the documented generator for that file, isn't present in this
+  repo to re-run).
+- **New `assets/btc.html`** — copied from `assets/fx-audusd.html`'s shell (no static TF tables,
+  Profiling already wired), with a `.derived-note` box disclosing the methodology and its two
+  known compromises: the "15-YR" column reuses the same full-history computation as the real
+  ~9-year column (a true 15-year window doesn't exist yet), and star conviction is capped below
+  what a 30-40 year Moore Research dataset would earn.
+- **`index.html`** — new "Crypto" `.source-block` + nav group. BTC card is `status-complete`; 18
+  other tickers are `status-planned` (greyed out, non-clickable, auto-injected `PLANNED` badge).
+- **`js/profiling.js`, `js/profiling-calendar.js`, `scripts/sync_profiling_data.js`** — BTCUSD
+  wired into the Profiling tab via the same recipe as the 13 already-wired assets.
+- Verified console-clean via headless browser: accordion renders real derived content, Profiling
+  tab renders with correct "points" unit, TradingView chart loads via `tvSymbol` override,
+  `compare.html` and the Profiling calendar both pick up BTCUSD automatically with no code change.
+
+### Known gap (not this pass)
+
+`MTCUSD` (one ticker from the Market Watch export) has an unclear identity and was left off the
+`PLANNED` card list rather than guessed. The 4 new international index instruments the same export
+revealed (EURO50, AUS200, SW20, ESP35) have the same no-source-data problem as crypto and no MT5
+data collected yet — flagged for a future pass, not built here.
+
+---
+
 ## v1.10 — September 2026
 **Profiling Phase B — 11 more assets wired in**
 

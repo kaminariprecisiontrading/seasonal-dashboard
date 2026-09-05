@@ -166,6 +166,43 @@ Once a new asset's MT5 CSV has been cleaned and run through `KPT-Market-Profilin
 
 ---
 
+## Adding a Statistically-Derived Asset (no Moore Research data)
+
+For an asset MRCI doesn't cover (crypto, and eventually Deriv synthetics — `docs/PLATFORM_ROADMAP.md`
+Tier 6) — no `MONTHS[]` chart-derived data exists, but a Profiling-style cleaned daily price
+history does. `assets/btc.html`/`data/btc.js` (BTCUSD) is the worked example; follow it rather than
+the standard futures/forex recipes above.
+
+1. Clean the asset's raw MT5 export through the normal `KPT-Market-Profiling` pipeline
+   (`refresh_asset.py`) first, same as any Profiling asset.
+2. Run `python3 pipeline/gen_seasonal_signal.py <ASSET>` from `KPT-Market-Profiling/` — derives a
+   `MONTHS[]`-shaped seasonal signal from the cleaned daily CSV using the site's own Raw Price
+   Tendency methodology (`js/backtest.js`'s week-of-month bucketing/return calculation), writing
+   `output/<asset_lower>_seasonal.json`. See that script's own docstring for the full algorithm and
+   why star conviction is capped for a short sample.
+3. Add the asset to `scripts/sync_derived_seasonal.js`'s `ASSETS` array (key, page id, display
+   name, accent color, `tvSymbol`) and run `node scripts/sync_derived_seasonal.js` from
+   `seasonal-dashboard/` — writes `data/{id}.js` in the exact bare `ASSET_CONFIG`/`MONTHS[]` format
+   the other 96 files use, and patches `data/signals_manifest.js` directly (the "rebuild signals
+   manifest" step below doesn't apply — `scripts/gen_signals_manifest.js` isn't present in this
+   repo; see `scripts/README.md`).
+4. Copy `assets/fx-audusd.html` (not a futures template) as the HTML shell — it already has no
+   static `.table-wrap` TF tables (so `buildTFTables()` self-generates from `MONTHS[]`) and the
+   `.derived-note` CSS pattern for the above-the-fold methodology disclosure this asset class
+   needs. Do not omit that disclosure — see `docs/DATA_DICTIONARY.md`'s "Statistically-derived
+   assets" section for exactly what compromises it needs to name (the 15-YR column reusing the
+   long-term computation, capped conviction).
+5. Add the asset to `index.html`'s new "Crypto" `.source-block` (or its own new block, for a future
+   non-crypto statistically-derived category) as a `status-complete` card — real MRCI assets get a
+   `status-planned` placeholder card first and are converted later per the standard recipe above;
+   a statistically-derived asset can go straight to live once its signal is generated, since there's
+   no separate "waiting on data" phase once the price history is already cleaned.
+6. Also wire the standard Profiling tab (steps 1-6 of "Adding a New Profiling Asset" above) if not
+   already done — the two features are independent but complementary on a page like this.
+7. Update `CHANGELOG.md`, `docs/DATA_DICTIONARY.md`, and `docs/MARKET_PROFILING_INTEGRATION.md`.
+
+---
+
 ## Conventions
 
 **Asset IDs:** Lowercase ASCII, hyphens allowed. FX pairs must be prefixed with `fx-`. Examples: `aud`, `cl`, `fx-audusd`, `fx-gbpjpy`, `euro-bund`.

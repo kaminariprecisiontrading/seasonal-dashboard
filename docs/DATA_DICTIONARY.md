@@ -36,6 +36,25 @@ ltSigKey: "sigLt",
 ltKey:    "sLt",
 ```
 
+**Statistically-derived assets** (no Moore Research coverage — currently just BTCUSD, `data/btc.js`)
+use the *numeric* futures convention, not the generic Forex one, since they're a single-instrument
+derivation rather than two combined futures sources:
+```javascript
+ltLabel:  "9-YR",   // the asset's actual elapsed years of price history, not a fixed value
+ltSigKey: "sig9",
+ltKey:    "s9",
+```
+The signal itself isn't hand-authored from Moore Research charts — it's computed from real daily
+price history using the site's own Raw Price Tendency methodology (`js/backtest.js`'s week-of-month
+bucketing and return calculation), by `KPT-Market-Profiling/pipeline/gen_seasonal_signal.py` and
+bridged into `data/{id}.js` by `scripts/sync_derived_seasonal.js` — see that script's own header
+comment for the full pipeline. Because `accordion.js` hardcodes literal "5-YR"/"15-YR" column
+headers (not config-driven — only the long-term column's header comes from `ltLabel`), and a short
+sample has no genuine 15-year window, `sig15`/`s15` reuse the exact same full-history computation
+as `sig9`/`s9`. Conviction (`stars`) is also capped below what a 30-40 year Moore Research dataset
+would earn, for the same reason. Both compromises are disclosed prominently on the page itself (see
+`assets/btc.html`'s `.derived-note` box), not just in this schema doc.
+
 ---
 
 ## MONTHS[]

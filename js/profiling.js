@@ -43,7 +43,8 @@
     cl: 'wti',
     sp500: 'us500',
     nq: 'ustech',
-    ym: 'us30'
+    ym: 'us30',
+    btc: 'btcusd'
   };
 
   var assetKey = ASSET_MAP[ASSET_CONFIG.id];

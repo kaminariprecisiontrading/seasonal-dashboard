@@ -139,7 +139,8 @@ var KPTPCalendar = (function () {
     WTI: [{ id: 'cl', label: 'Crude Oil (WTI)' }],
     US500: [{ id: 'sp500', label: 'S&P 500' }],
     USTECH: [{ id: 'nq', label: 'Nasdaq 100' }],
-    US30: [{ id: 'ym', label: 'DJIA' }]
+    US30: [{ id: 'ym', label: 'DJIA' }],
+    BTCUSD: [{ id: 'btc', label: 'Bitcoin (BTC)' }]
   };
 
   var params = new URLSearchParams(window.location.search);

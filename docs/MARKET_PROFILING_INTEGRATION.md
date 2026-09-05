@@ -235,18 +235,21 @@ filename (e.g. `cl`, the CME/NYMEX ticker) doesn't match the pipeline's asset ke
 `sp500`→`us500`, `nq`→`ustech`, `ym`→`us30` similarly. Verified console-clean on all 16 pages via
 headless-browser check.
 
-**Known follow-up, not yet fixed:** stat-tile copy hardcodes the unit as "pips" throughout
-(`js/profiling.js`/`js/profiling-charts.js`) — reads fine for the FX pairs and passably for
-gold/oil, but odd for the three index instruments (e.g. "ADR 20: 427.8 pips" on the DJIA page,
-where "points" is the natural term). No `unit`/pip-size field is threaded through the pipeline's
-JSON output today, so fixing this needs either a small pipeline addition (stats_engine.py emitting
-a `unit_label`) or a dashboard-side per-asset lookup table. Not blocking — purely a wording nit —
-but worth fixing before these pages get real visibility.
+**Update — fixed:** the "pips" hardcoding above was resolved the same session it was flagged.
+`stats_engine.py` now accepts `--unit` and includes it in its output JSON; `refresh_asset.py`'s
+`ASSET_REGISTRY` pairs each asset's pip size with a unit label ("pips" for currency pairs, "points"
+for everything else); `js/profiling.js`/`js/profiling-charts.js`/`js/profiling-calendar.js`/
+`js/profiling-compare.js`/`js/profiling-profile-detail.js` all read it from
+`data/profiling/manifest.js` with a "pips" fallback for any older bundle without it.
 
-A **BTCUSD** raw export was also cleaned in KPT-Market-Profiling this session but deliberately
-**not** wired in here — no existing seasonal-dashboard page covers crypto, and the plan is a
-dedicated Cryptos category (`docs/PLATFORM_ROADMAP.md` Tier 6: synthetics/crypto/Deriv) rather than
-bolting it onto an ad hoc page. Revisit once that category is designed.
+**Update (2026-09-05) — BTCUSD now has a page.** The Crypto category this note anticipated now
+exists (`index.html`'s new "Crypto" `.source-block`) with BTCUSD as its first live asset,
+`assets/btc.html` — both the standard Profiling tab (this section's feature) and a statistically-
+derived Seasonal Tendency tab (no Moore Research data exists for crypto; see
+`docs/DATA_DICTIONARY.md`'s "Statistically-derived assets" section and
+`KPT-Market-Profiling/pipeline/gen_seasonal_signal.py` for that methodology — a separate feature
+from Profiling, covered in `docs/CHANGELOG.md` v1.11, not detailed further in this document since
+it's outside Profiling's scope). The other ~18 crypto tickers remain `PLANNED` cards, not wired.
 
 ### 9.3 Statistically-derived Seasonals data — superseded, see `docs/PLATFORM_ROADMAP.md`
 

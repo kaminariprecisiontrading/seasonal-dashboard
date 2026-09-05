@@ -19,7 +19,7 @@ const vm = require('vm');
 // filename; the JS const inside is expected to be <KEY_UPPER>_DATA / _PROFILE_EXAMPLES.
 const ASSETS = [
   'gbpusd', 'eurusd', 'audusd', 'nzdusd', 'usdcad', 'usdchf', 'usdjpy',
-  'xauusd', 'brent', 'wti', 'us500', 'ustech', 'us30',
+  'xauusd', 'brent', 'wti', 'us500', 'ustech', 'us30', 'btcusd',
 ];
 
 const SRC_ROOT = path.join(__dirname, '..', '..', 'KPT-Market-Profiling', 'dashboard', 'data');
