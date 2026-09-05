@@ -5,8 +5,15 @@ Runs the full chain, in dependency order, that previously had to be invoked
 as five separate manual commands:
 
     clean_mt5_csv.py -> profile_taxonomy.py -> stats_engine.py
-        -> build_dashboard_data.py -> export_profile_examples.py
-        -> export_calendar_data.py
+        -> build_dashboard_data.py -> profile_taxonomy_weekly.py
+        -> export_profile_examples.py -> export_calendar_data.py
+
+profile_taxonomy_weekly.py (Tier 5's Weekly Profile, added 2026-09-05) is a
+parallel sibling to profile_taxonomy.py, not a dependency of anything after
+it in the chain -- produces <asset>_weekly_profiles.csv/_weekly_profile_
+summary.json, not yet consumed by build_dashboard_data.py or any dashboard
+page. See market-profiling-system-spec.md §4 and HANDOVER.md §5 for the
+methodology and the empirical validation behind it.
 
 Built to be safe to re-run at any cadence (daily/weekly/monthly/ad hoc) --
 every stage always reprocesses the *complete* history from the current raw
@@ -24,7 +31,7 @@ variants behind to track manually.
 
 Usage:
     python3 refresh_asset.py <ASSET> [--raw PATH] [--pip PIP]
-                              [--skip-examples] [--skip-calendar]
+                              [--skip-examples] [--skip-calendar] [--skip-weekly]
 
     <ASSET>   e.g. GBPUSD — uppercase canonical form used throughout outputs
               and the KPT_PROFILING_* window globals downstream.
@@ -35,6 +42,7 @@ Usage:
                        M1 file — the slowest single stage; safe to skip when
                        only re-validating the stats/taxonomy chain)
     --skip-calendar   skip the per-year calendar export
+    --skip-weekly     skip the weekly profile taxonomy (Tier 5)
 """
 import sys
 import os
@@ -87,6 +95,7 @@ def main():
     ap.add_argument("--unit", default=None, help="range-value display label override (default: ASSET_REGISTRY lookup, or 'pips' if the asset isn't registered)")
     ap.add_argument("--skip-examples", action="store_true")
     ap.add_argument("--skip-calendar", action="store_true")
+    ap.add_argument("--skip-weekly", action="store_true")
     args = ap.parse_args()
 
     asset = args.asset.upper()
@@ -119,6 +128,8 @@ def main():
     profiles_csv = os.path.join(clean_dir, f"{asset_lower}_daily_profiles.csv")
     summary_json = os.path.join(output_dir, f"{asset_lower}_profile_summary.json")
     stats_json   = os.path.join(output_dir, f"{asset_lower}_stats.json")
+    weekly_profiles_csv  = os.path.join(clean_dir, f"{asset_lower}_weekly_profiles.csv")
+    weekly_summary_json  = os.path.join(output_dir, f"{asset_lower}_weekly_profile_summary.json")
     dashboard_js = os.path.join(dashboard_data_dir, f"{asset_lower}.js")
     examples_js  = os.path.join(dashboard_data_dir, "profile-examples", f"{asset_lower}.js")
     calendar_dir = os.path.join(dashboard_data_dir, "calendar")
@@ -132,6 +143,11 @@ def main():
     run([py, "profile_taxonomy.py", clean_csv, profiles_csv, summary_json, "--asset", asset])
     run([py, "stats_engine.py", clean_csv, stats_json, "--asset", asset, "--pip", str(pip), "--unit", unit])
     run([py, "build_dashboard_data.py", stats_json, summary_json, dashboard_js, "--asset", asset])
+
+    if not args.skip_weekly:
+        run([py, "profile_taxonomy_weekly.py", clean_csv, weekly_profiles_csv, weekly_summary_json, "--asset", asset, "--pip", str(pip)])
+    else:
+        print("\n(skipped --skip-weekly)", file=sys.stderr)
 
     if not args.skip_examples:
         run([py, "export_profile_examples.py", raw_csv, profiles_csv, summary_json, examples_js, "--asset", asset])

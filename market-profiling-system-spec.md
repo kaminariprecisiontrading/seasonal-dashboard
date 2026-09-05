@@ -306,6 +306,54 @@ Design decided so far, each still needing empirical validation before becoming a
 Tracked in `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` as **Tier 5b** — a sibling to Tier 5's
 coarser (Daily→Weekly→Monthly→Yearly) direction, going finer (sub-daily/session-relative) instead.
 
+### 4.6 Weekly profile taxonomy (Tier 5, implemented 2026-09-05)
+
+`pipeline/profile_taxonomy_weekly.py` — the first step of Tier 5's coarser-than-Daily direction.
+Same two primary axes as Daily (range regime, closing shape), same 8-profile combination logic
+(names swap "Day"→"Week"), but empirically re-derived rather than assumed to transfer as-is —
+per §4.4's standing rule, and because they didn't transfer identically:
+
+- **Rolling window: 52 weeks**, not a re-derivation of Daily's 252. Chosen to match Daily's
+  window in *real elapsed time* (252 trading days ≈ 1 calendar year, so does 52 weeks), not just
+  unit count, so both granularities reflect "the trailing year" consistently. `MIN_PERIODS = 15`.
+- **Range regime × closing shape are not as cleanly independent as Daily's axes were.** Correlation
+  between weekly range and closing strength: **+0.155 (GBPUSD), +0.180 (EURUSD), +0.099 (XAUUSD)**
+  — small but real and stable across three different assets (two FX pairs, one metal), not
+  asset-specific noise. Disclosed here rather than treated as a design flaw: the two-axis split
+  still produces a healthy, non-degenerate distribution (every range-regime × shape cell
+  populated in the cross-tab check), so the same methodology was kept, with this correlation as a
+  known, accepted characteristic of weekly bars rather than something corrected away.
+- **Two secondary tags, not one:**
+  - `extreme_timing` — direct analog of Daily's tag (`Late_Push`/`Early_Resolution`/
+    `Late_Resolution`/`Fade_Risk`), same >=0.5-of-the-period rule, discretized to weekday
+    granularity ("late" = Wed/Thu/Fri, the back half of a 5-day week). **Validated the exact same
+    trend signature Daily found, independently, at weekly granularity**: across all three test
+    assets, `Trend Week (Up/Down)` weeks are 84-91% `Late_Push` — the opposite extreme forms
+    early in the week, the favored one late — strong cross-granularity confirmation the
+    methodology transferred correctly, not just a plausible-sounding assumption.
+  - `extreme_spread` — **new, no Daily analog** (a "how many days apart" concept only makes sense
+    at a granularity coarser than one day). Added directly from a user-proposed idea: instead of
+    only the two existing *marginal* charts (which weekday tends to have the high, which tends to
+    have the low, tracked separately), track the *joint* (high-weekday, low-weekday) pair as one
+    event. Empirically striking and consistent across all three assets: the high and low landing
+    on the **same weekday is suppressed 5-15x** versus what the existing marginals alone would
+    predict (2.8-3.2% observed vs. much higher expected under independence); pairs **2+ weekdays
+    apart are consistently over-represented ~1.4-1.9x**. Bucketed as `Same_Day` / `Adjacent` /
+    `Spread`. `Trend Week`s are 91%+ `Spread` and almost never `Same_Day` — a week's range needs
+    to build progressively across days to actually trend, which the data confirms directly.
+  - Both tags degrade gracefully to `Insufficient_History` (not a crash) for the rare trading day
+    that lands on a calendar Saturday/Sunday — a DST spring-forward boundary artifact in
+    `clean_mt5_csv.py`'s shared `trading_day` computation (13 occurrences in GBPUSD's full
+    history, all late March 1994-2006, none since) that's out of scope to fix here since it
+    touches a foundational function every other pipeline stage depends on.
+- **Same-period pattern generalizes to other granularities** (explicitly noted by the user, not
+  to be neglected when built): Monthly's analog is which week-of-month had the high vs. low
+  (including the same-week case); Yearly's is which month. `profile_taxonomy_weekly.py`'s
+  `extreme_spread` is the reference implementation for how to handle the same-period case
+  correctly (as a real, explicitly-tracked outcome, not a dropped edge case) when those are built.
+- Not yet consumed by `build_dashboard_data.py` or any dashboard page — data-and-methodology
+  validation was the explicit scope of this pass, dashboard surfacing is a separate later step.
+
 ---
 
 ## 5. Dashboard

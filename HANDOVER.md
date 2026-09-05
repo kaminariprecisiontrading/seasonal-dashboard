@@ -72,6 +72,8 @@ first step in Claude Code.
 | `concat_raw_csv.py` | Merges a new raw MT5 export into an asset's `<ASSET>_M1_full.csv`, auto-detecting append/prepend/both from the timestamp ranges (needed because MT5's Export Bars has a rolling ~20-year lookback cap, so a single from-scratch full-history export isn't always possible) — see §5. |
 | `refresh_asset.py` | One-command runner for the full 6-stage chain (`clean_mt5_csv.py` → `profile_taxonomy.py` → `stats_engine.py` → `build_dashboard_data.py` → `export_profile_examples.py` → `export_calendar_data.py`) for one asset. Looks up pip size and unit label from its own per-asset registry. Replaces manually invoking all 6 scripts in order — see §5. |
 | `gen_seasonal_signal.py` | Separate, optional stage — derives a Moore-Research-*shaped* seasonal signal (`MONTHS[]`-style, 12 months × 4 weeks) from a cleaned daily CSV, for assets MRCI doesn't cover (currently BTCUSD only). Not part of `refresh_asset.py`'s chain (different consumer — `seasonal-dashboard`'s Seasonals tab, not Profiling). See §5. |
+| `profile_taxonomy_weekly.py` | Tier 5's Weekly Profile — parallel sibling to `profile_taxonomy.py`, same two axes and 8-profile scheme re-derived (not assumed) at weekly granularity, plus two secondary tags (`extreme_timing`, `extreme_spread`). Part of `refresh_asset.py`'s chain (`--skip-weekly` to opt out). Not yet consumed by `build_dashboard_data.py`. See §5. |
+| `<asset>_weekly_profiles.csv` / `<asset>_weekly_profile_summary.json` | Weekly taxonomy output, one pair per asset, same role as the daily profiles/summary pair. |
 | `<asset>_daily_clean.csv` | Cleaned daily output, one per asset, full available history (back to 1993 for most majors) — see §5's asset roster. File naming deliberately drops the date-range suffix these files originally had (`_2000_2019` etc.): the range keeps growing with every refresh, so a baked-in suffix would immediately go stale. Freshness is tracked via each output's own `as_of` field instead. |
 | `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, and weekly/monthly aggregates. |
 | `<asset>_stats.json` | Stats engine output, one per asset — everything the dashboard (Phase 3) will consume. |
@@ -323,6 +325,21 @@ API and a database (if/when migrating off static files) are evaluated later — 
   Re-ran the full 6-stage chain for all 14 assets a second time to restore the original session
   labeling everywhere (this and the widening above never reached `origin/main` — both the fix and
   the revert happened in local commits before any push, so there was no live-site impact either way).
+- **Weekly Profile taxonomy implemented (2026-09-05), Tier 5's first granularity beyond Daily:**
+  `profile_taxonomy_weekly.py`, same two-axis methodology as `profile_taxonomy.py` but re-derived
+  empirically at weekly granularity per spec §4.4's standing rule, not assumed to transfer as-is
+  from Daily. Full methodology and findings: spec §4.6. Headline results, validated across GBPUSD/
+  EURUSD/XAUUSD (not GBPUSD-only): the range/closing-shape correlation is real (+0.10 to +0.18,
+  stable across assets) but small enough that the two-axis split still works; a user-proposed new
+  secondary tag (`extreme_spread` — the *joint* high-weekday/low-weekday pattern, not just the two
+  existing marginal charts) found a strong, consistent, cross-asset pattern — same-day extremes
+  suppressed 5-15x vs. independence, spread-apart pairs over-represented ~1.4-1.9x — and Weekly's
+  existing `extreme_timing` tag independently reproduced Daily's own trend-day signature
+  (`Late_Push` in 84-91% of Trend Weeks), a genuine cross-granularity confirmation the design
+  transferred correctly rather than just a plausible-sounding assumption. Wired into
+  `refresh_asset.py`'s chain (`--skip-weekly` to opt out) and backfilled for all 14 assets. Not yet
+  consumed by `build_dashboard_data.py` or any dashboard page — this pass was explicitly scoped to
+  data/methodology validation; dashboard surfacing is a separate future step.
 
 ---
 
@@ -377,8 +394,9 @@ in that repo, per the user's explicit preference — not carried over from this 
 
 1. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
    dashboard is a historical-statistics browser until then.
-2. **Weekly taxonomy** — the daily profile logic (`profile_taxonomy.py`) only labels individual
-   days; a weekly version needs its own empirical validation pass (per spec §4.4's naming logic).
+2. ~~**Weekly taxonomy**~~ — done (2026-09-05), see §5's entry and spec §4.6. Not yet surfaced on
+   any dashboard page — that's the natural next step for this item specifically, separate from
+   Monthly/Yearly (the rest of Tier 5) or Tier 5b's liquidity-sweep work.
 3. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
    tries it against a real morning routine. One known nit already flagged: "Normal Day" cells on
    the calendar are low-contrast, close in appearance to empty/no-data cells (spec §5.2).

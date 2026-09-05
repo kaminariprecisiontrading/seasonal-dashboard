@@ -1,0 +1,175 @@
+{
+  "n_labeled_weeks": 446,
+  "n_short_weeks": 0,
+  "n_insufficient_history_weeks": 14,
+  "profile_distribution": {
+    "Normal Week": {
+      "n": 231,
+      "pct": 51.79
+    },
+    "Compression Week": {
+      "n": 89,
+      "pct": 19.96
+    },
+    "Volatile Week": {
+      "n": 45,
+      "pct": 10.09
+    },
+    "Trend Week (Up)": {
+      "n": 32,
+      "pct": 7.17
+    },
+    "Volatile Reversal Week": {
+      "n": 20,
+      "pct": 4.48
+    },
+    "Quiet Drift Week (Up)": {
+      "n": 12,
+      "pct": 2.69
+    },
+    "Trend Week (Down)": {
+      "n": 11,
+      "pct": 2.47
+    },
+    "Quiet Drift Week (Down)": {
+      "n": 6,
+      "pct": 1.35
+    }
+  },
+  "extreme_timing_by_profile": {
+    "Normal Week": {
+      "Late_Push": 95,
+      "Insufficient_History": 62,
+      "Fade_Risk": 33,
+      "Late_Resolution": 22,
+      "Early_Resolution": 19
+    },
+    "Compression Week": {
+      "Late_Push": 40,
+      "Early_Resolution": 15,
+      "Fade_Risk": 12,
+      "Late_Resolution": 11,
+      "Insufficient_History": 11
+    },
+    "Volatile Week": {
+      "Late_Push": 24,
+      "Insufficient_History": 9,
+      "Late_Resolution": 5,
+      "Fade_Risk": 5,
+      "Early_Resolution": 2
+    },
+    "Trend Week (Up)": {
+      "Insufficient_History": 15,
+      "Late_Push": 13,
+      "Fade_Risk": 2,
+      "Late_Resolution": 1,
+      "Early_Resolution": 1
+    },
+    "Volatile Reversal Week": {
+      "Late_Push": 10,
+      "Early_Resolution": 4,
+      "Late_Resolution": 2,
+      "Fade_Risk": 2,
+      "Insufficient_History": 2
+    },
+    "Quiet Drift Week (Up)": {
+      "Late_Push": 7,
+      "Fade_Risk": 2,
+      "Late_Resolution": 1,
+      "Insufficient_History": 1,
+      "Early_Resolution": 1
+    },
+    "Trend Week (Down)": {
+      "Insufficient_History": 7,
+      "Late_Push": 3,
+      "Early_Resolution": 1
+    },
+    "Quiet Drift Week (Down)": {
+      "Insufficient_History": 3,
+      "Late_Push": 2,
+      "Late_Resolution": 1
+    }
+  },
+  "extreme_spread_by_profile": {
+    "Normal Week": {
+      "Spread": 133,
+      "Insufficient_History": 62,
+      "Adjacent": 25,
+      "Same_Day": 11
+    },
+    "Compression Week": {
+      "Spread": 52,
+      "Adjacent": 22,
+      "Insufficient_History": 11,
+      "Same_Day": 4
+    },
+    "Volatile Week": {
+      "Spread": 28,
+      "Insufficient_History": 9,
+      "Adjacent": 7,
+      "Same_Day": 1
+    },
+    "Trend Week (Up)": {
+      "Spread": 15,
+      "Insufficient_History": 15,
+      "Adjacent": 2
+    },
+    "Volatile Reversal Week": {
+      "Spread": 12,
+      "Adjacent": 5,
+      "Insufficient_History": 2,
+      "Same_Day": 1
+    },
+    "Quiet Drift Week (Up)": {
+      "Spread": 10,
+      "Insufficient_History": 1,
+      "Adjacent": 1
+    },
+    "Trend Week (Down)": {
+      "Insufficient_History": 7,
+      "Spread": 3,
+      "Adjacent": 1
+    },
+    "Quiet Drift Week (Down)": {
+      "Spread": 3,
+      "Insufficient_History": 3
+    }
+  },
+  "avg_range_pips_by_profile": {
+    "Compression Week": {
+      "mean": 227997.2,
+      "median": 159022.0
+    },
+    "Normal Week": {
+      "mean": 416119.6,
+      "median": 383700.0
+    },
+    "Quiet Drift Week (Down)": {
+      "mean": 114611.8,
+      "median": 108865.0
+    },
+    "Quiet Drift Week (Up)": {
+      "mean": 182250.8,
+      "median": 92914.5
+    },
+    "Trend Week (Down)": {
+      "mean": 1052251.2,
+      "median": 1302490.0
+    },
+    "Trend Week (Up)": {
+      "mean": 763368.8,
+      "median": 683191.5
+    },
+    "Volatile Reversal Week": {
+      "mean": 809137.0,
+      "median": 582672.0
+    },
+    "Volatile Week": {
+      "mean": 778188.8,
+      "median": 727409.0
+    }
+  },
+  "rolling_window_weeks": 52,
+  "min_periods_weeks": 15,
+  "asset": "BTCUSD"
+}
