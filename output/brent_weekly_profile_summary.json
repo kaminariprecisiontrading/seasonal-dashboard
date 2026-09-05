@@ -152,6 +152,123 @@
       "median": 703.0
     }
   },
+  "weekday_pair_distribution": {
+    "n_weeks": 564,
+    "same_day_n": 19,
+    "same_day_pct": 3.37,
+    "pairs": {
+      "Monday": {
+        "Monday": {
+          "n": 7,
+          "pct": 1.24
+        },
+        "Tuesday": {
+          "n": 10,
+          "pct": 1.77
+        },
+        "Wednesday": {
+          "n": 27,
+          "pct": 4.79
+        },
+        "Thursday": {
+          "n": 50,
+          "pct": 8.87
+        },
+        "Friday": {
+          "n": 84,
+          "pct": 14.89
+        }
+      },
+      "Tuesday": {
+        "Monday": {
+          "n": 13,
+          "pct": 2.3
+        },
+        "Tuesday": {
+          "n": 4,
+          "pct": 0.71
+        },
+        "Wednesday": {
+          "n": 5,
+          "pct": 0.89
+        },
+        "Thursday": {
+          "n": 22,
+          "pct": 3.9
+        },
+        "Friday": {
+          "n": 39,
+          "pct": 6.91
+        }
+      },
+      "Wednesday": {
+        "Monday": {
+          "n": 43,
+          "pct": 7.62
+        },
+        "Tuesday": {
+          "n": 12,
+          "pct": 2.13
+        },
+        "Wednesday": {
+          "n": 4,
+          "pct": 0.71
+        },
+        "Thursday": {
+          "n": 7,
+          "pct": 1.24
+        },
+        "Friday": {
+          "n": 23,
+          "pct": 4.08
+        }
+      },
+      "Thursday": {
+        "Monday": {
+          "n": 41,
+          "pct": 7.27
+        },
+        "Tuesday": {
+          "n": 33,
+          "pct": 5.85
+        },
+        "Wednesday": {
+          "n": 10,
+          "pct": 1.77
+        },
+        "Thursday": {
+          "n": 1,
+          "pct": 0.18
+        },
+        "Friday": {
+          "n": 11,
+          "pct": 1.95
+        }
+      },
+      "Friday": {
+        "Monday": {
+          "n": 57,
+          "pct": 10.11
+        },
+        "Tuesday": {
+          "n": 23,
+          "pct": 4.08
+        },
+        "Wednesday": {
+          "n": 21,
+          "pct": 3.72
+        },
+        "Thursday": {
+          "n": 14,
+          "pct": 2.48
+        },
+        "Friday": {
+          "n": 3,
+          "pct": 0.53
+        }
+      }
+    }
+  },
   "rolling_window_weeks": 52,
   "min_periods_weeks": 15,
   "asset": "BRENT"

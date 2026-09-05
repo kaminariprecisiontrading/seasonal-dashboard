@@ -72,7 +72,7 @@ first step in Claude Code.
 | `concat_raw_csv.py` | Merges a new raw MT5 export into an asset's `<ASSET>_M1_full.csv`, auto-detecting append/prepend/both from the timestamp ranges (needed because MT5's Export Bars has a rolling ~20-year lookback cap, so a single from-scratch full-history export isn't always possible) — see §5. |
 | `refresh_asset.py` | One-command runner for the full 6-stage chain (`clean_mt5_csv.py` → `profile_taxonomy.py` → `stats_engine.py` → `build_dashboard_data.py` → `export_profile_examples.py` → `export_calendar_data.py`) for one asset. Looks up pip size and unit label from its own per-asset registry. Replaces manually invoking all 6 scripts in order — see §5. |
 | `gen_seasonal_signal.py` | Separate, optional stage — derives a Moore-Research-*shaped* seasonal signal (`MONTHS[]`-style, 12 months × 4 weeks) from a cleaned daily CSV, for assets MRCI doesn't cover (currently BTCUSD only). Not part of `refresh_asset.py`'s chain (different consumer — `seasonal-dashboard`'s Seasonals tab, not Profiling). See §5. |
-| `profile_taxonomy_weekly.py` | Tier 5's Weekly Profile — parallel sibling to `profile_taxonomy.py`, same two axes and 8-profile scheme re-derived (not assumed) at weekly granularity, plus two secondary tags (`extreme_timing`, `extreme_spread`). Part of `refresh_asset.py`'s chain (`--skip-weekly` to opt out). Not yet consumed by `build_dashboard_data.py`. See §5. |
+| `profile_taxonomy_weekly.py` | Tier 5's Weekly Profile — parallel sibling to `profile_taxonomy.py`, same two axes and 8-profile scheme re-derived (not assumed) at weekly granularity, plus two secondary tags (`extreme_timing`, `extreme_spread`) and a top-level `weekday_pair_distribution` (the full joint high/low weekday table). Part of `refresh_asset.py`'s chain (`--skip-weekly` to opt out). Folded into the dashboard bundle by `build_dashboard_data.py --weekly-summary`. See §5. |
 | `<asset>_weekly_profiles.csv` / `<asset>_weekly_profile_summary.json` | Weekly taxonomy output, one pair per asset, same role as the daily profiles/summary pair. |
 | `<asset>_daily_clean.csv` | Cleaned daily output, one per asset, full available history (back to 1993 for most majors) — see §5's asset roster. File naming deliberately drops the date-range suffix these files originally had (`_2000_2019` etc.): the range keeps growing with every refresh, so a baked-in suffix would immediately go stale. Freshness is tracked via each output's own `as_of` field instead. |
 | `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, and weekly/monthly aggregates. |
@@ -337,9 +337,17 @@ API and a database (if/when migrating off static files) are evaluated later — 
   existing `extreme_timing` tag independently reproduced Daily's own trend-day signature
   (`Late_Push` in 84-91% of Trend Weeks), a genuine cross-granularity confirmation the design
   transferred correctly rather than just a plausible-sounding assumption. Wired into
-  `refresh_asset.py`'s chain (`--skip-weekly` to opt out) and backfilled for all 14 assets. Not yet
-  consumed by `build_dashboard_data.py` or any dashboard page — this pass was explicitly scoped to
-  data/methodology validation; dashboard surfacing is a separate future step.
+  `refresh_asset.py`'s chain (`--skip-weekly` to opt out) and backfilled for all 14 assets.
+- **Weekly Profile dashboard-wired (2026-09-05, same day):** user reviewed the validated data and
+  asked to see it live before deciding whether to push. `build_dashboard_data.py` now accepts
+  `--weekly-summary`, folding the weekly bundle into the same per-asset `dashboard/data/<asset>.js`
+  as `stats`/`profiles`. Also added a top-level `weekday_pair_distribution` field to
+  `profile_taxonomy_weekly.py`'s output — the full 5×5 joint (low-weekday × high-weekday) table,
+  not just the 3-bucket `extreme_spread` summary — so the dashboard can answer "how often does a
+  Monday-low pair with a Friday-high, specifically" directly (GBPUSD: 13.68%). Consuming side (new
+  "Weekly Profile Taxonomy" card grid, a "Week High/Low — Day Pairing" heatmap, and full
+  detail/compare-page support) lives in `seasonal-dashboard`'s `js/profiling*.js` — see that repo's
+  `docs/PLATFORM_ROADMAP.md` Tier 5 for the summary, not duplicated here.
 
 ---
 

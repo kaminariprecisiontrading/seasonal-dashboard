@@ -155,6 +155,123 @@
       "median": 301.5
     }
   },
+  "weekday_pair_distribution": {
+    "n_weeks": 1336,
+    "same_day_n": 29,
+    "same_day_pct": 2.17,
+    "pairs": {
+      "Monday": {
+        "Monday": {
+          "n": 9,
+          "pct": 0.67
+        },
+        "Tuesday": {
+          "n": 22,
+          "pct": 1.65
+        },
+        "Wednesday": {
+          "n": 61,
+          "pct": 4.57
+        },
+        "Thursday": {
+          "n": 105,
+          "pct": 7.86
+        },
+        "Friday": {
+          "n": 197,
+          "pct": 14.75
+        }
+      },
+      "Tuesday": {
+        "Monday": {
+          "n": 20,
+          "pct": 1.5
+        },
+        "Tuesday": {
+          "n": 2,
+          "pct": 0.15
+        },
+        "Wednesday": {
+          "n": 15,
+          "pct": 1.12
+        },
+        "Thursday": {
+          "n": 46,
+          "pct": 3.44
+        },
+        "Friday": {
+          "n": 80,
+          "pct": 5.99
+        }
+      },
+      "Wednesday": {
+        "Monday": {
+          "n": 59,
+          "pct": 4.42
+        },
+        "Tuesday": {
+          "n": 15,
+          "pct": 1.12
+        },
+        "Wednesday": {
+          "n": 3,
+          "pct": 0.22
+        },
+        "Thursday": {
+          "n": 26,
+          "pct": 1.95
+        },
+        "Friday": {
+          "n": 63,
+          "pct": 4.72
+        }
+      },
+      "Thursday": {
+        "Monday": {
+          "n": 103,
+          "pct": 7.71
+        },
+        "Tuesday": {
+          "n": 54,
+          "pct": 4.04
+        },
+        "Wednesday": {
+          "n": 17,
+          "pct": 1.27
+        },
+        "Thursday": {
+          "n": 6,
+          "pct": 0.45
+        },
+        "Friday": {
+          "n": 37,
+          "pct": 2.77
+        }
+      },
+      "Friday": {
+        "Monday": {
+          "n": 184,
+          "pct": 13.77
+        },
+        "Tuesday": {
+          "n": 88,
+          "pct": 6.59
+        },
+        "Wednesday": {
+          "n": 85,
+          "pct": 6.36
+        },
+        "Thursday": {
+          "n": 30,
+          "pct": 2.25
+        },
+        "Friday": {
+          "n": 9,
+          "pct": 0.67
+        }
+      }
+    }
+  },
   "rolling_window_weeks": 52,
   "min_periods_weeks": 15,
   "asset": "USDCHF"

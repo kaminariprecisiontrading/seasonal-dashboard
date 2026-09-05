@@ -2739,5 +2739,289 @@ const EURUSD_DATA = {
       }
     },
     "asset": "EURUSD"
+  },
+  "weekly": {
+    "n_labeled_weeks": 1739,
+    "n_short_weeks": 0,
+    "n_insufficient_history_weeks": 14,
+    "profile_distribution": {
+      "Normal Week": {
+        "n": 959,
+        "pct": 55.15
+      },
+      "Compression Week": {
+        "n": 340,
+        "pct": 19.55
+      },
+      "Volatile Week": {
+        "n": 153,
+        "pct": 8.8
+      },
+      "Trend Week (Down)": {
+        "n": 84,
+        "pct": 4.83
+      },
+      "Trend Week (Up)": {
+        "n": 68,
+        "pct": 3.91
+      },
+      "Volatile Reversal Week": {
+        "n": 68,
+        "pct": 3.91
+      },
+      "Quiet Drift Week (Down)": {
+        "n": 38,
+        "pct": 2.19
+      },
+      "Quiet Drift Week (Up)": {
+        "n": 29,
+        "pct": 1.67
+      }
+    },
+    "extreme_timing_by_profile": {
+      "Normal Week": {
+        "Late_Push": 591,
+        "Late_Resolution": 202,
+        "Fade_Risk": 135,
+        "Early_Resolution": 30,
+        "Insufficient_History": 1
+      },
+      "Compression Week": {
+        "Late_Push": 141,
+        "Late_Resolution": 101,
+        "Fade_Risk": 73,
+        "Early_Resolution": 25
+      },
+      "Volatile Week": {
+        "Late_Push": 119,
+        "Late_Resolution": 22,
+        "Fade_Risk": 6,
+        "Early_Resolution": 5,
+        "Insufficient_History": 1
+      },
+      "Trend Week (Down)": {
+        "Late_Push": 67,
+        "Late_Resolution": 14,
+        "Early_Resolution": 3
+      },
+      "Trend Week (Up)": {
+        "Late_Push": 59,
+        "Late_Resolution": 9
+      },
+      "Volatile Reversal Week": {
+        "Late_Push": 32,
+        "Fade_Risk": 21,
+        "Late_Resolution": 8,
+        "Early_Resolution": 7
+      },
+      "Quiet Drift Week (Down)": {
+        "Late_Push": 24,
+        "Late_Resolution": 9,
+        "Fade_Risk": 5
+      },
+      "Quiet Drift Week (Up)": {
+        "Late_Push": 14,
+        "Late_Resolution": 13,
+        "Fade_Risk": 1,
+        "Early_Resolution": 1
+      }
+    },
+    "extreme_spread_by_profile": {
+      "Normal Week": {
+        "Spread": 809,
+        "Adjacent": 126,
+        "Same_Day": 23,
+        "Insufficient_History": 1
+      },
+      "Compression Week": {
+        "Spread": 236,
+        "Adjacent": 86,
+        "Same_Day": 18
+      },
+      "Volatile Week": {
+        "Spread": 134,
+        "Adjacent": 16,
+        "Same_Day": 2,
+        "Insufficient_History": 1
+      },
+      "Trend Week (Down)": {
+        "Spread": 76,
+        "Adjacent": 7,
+        "Same_Day": 1
+      },
+      "Trend Week (Up)": {
+        "Spread": 64,
+        "Adjacent": 3,
+        "Same_Day": 1
+      },
+      "Volatile Reversal Week": {
+        "Spread": 57,
+        "Adjacent": 8,
+        "Same_Day": 3
+      },
+      "Quiet Drift Week (Down)": {
+        "Spread": 29,
+        "Adjacent": 9
+      },
+      "Quiet Drift Week (Up)": {
+        "Spread": 19,
+        "Adjacent": 8,
+        "Same_Day": 2
+      }
+    },
+    "avg_range_pips_by_profile": {
+      "Compression Week": {
+        "mean": 139.5,
+        "median": 133.8
+      },
+      "Normal Week": {
+        "mean": 221.6,
+        "median": 213.0
+      },
+      "Quiet Drift Week (Down)": {
+        "mean": 130.0,
+        "median": 126.1
+      },
+      "Quiet Drift Week (Up)": {
+        "mean": 129.3,
+        "median": 123.6
+      },
+      "Trend Week (Down)": {
+        "mean": 377.1,
+        "median": 341.5
+      },
+      "Trend Week (Up)": {
+        "mean": 359.2,
+        "median": 348.0
+      },
+      "Volatile Reversal Week": {
+        "mean": 365.7,
+        "median": 315.7
+      },
+      "Volatile Week": {
+        "mean": 369.2,
+        "median": 337.0
+      }
+    },
+    "weekday_pair_distribution": {
+      "n_weeks": 1750,
+      "same_day_n": 50,
+      "same_day_pct": 2.86,
+      "pairs": {
+        "Monday": {
+          "Monday": {
+            "n": 9,
+            "pct": 0.51
+          },
+          "Tuesday": {
+            "n": 30,
+            "pct": 1.71
+          },
+          "Wednesday": {
+            "n": 77,
+            "pct": 4.4
+          },
+          "Thursday": {
+            "n": 145,
+            "pct": 8.29
+          },
+          "Friday": {
+            "n": 230,
+            "pct": 13.14
+          }
+        },
+        "Tuesday": {
+          "Monday": {
+            "n": 28,
+            "pct": 1.6
+          },
+          "Tuesday": {
+            "n": 4,
+            "pct": 0.23
+          },
+          "Wednesday": {
+            "n": 23,
+            "pct": 1.31
+          },
+          "Thursday": {
+            "n": 69,
+            "pct": 3.94
+          },
+          "Friday": {
+            "n": 110,
+            "pct": 6.29
+          }
+        },
+        "Wednesday": {
+          "Monday": {
+            "n": 66,
+            "pct": 3.77
+          },
+          "Tuesday": {
+            "n": 18,
+            "pct": 1.03
+          },
+          "Wednesday": {
+            "n": 13,
+            "pct": 0.74
+          },
+          "Thursday": {
+            "n": 37,
+            "pct": 2.11
+          },
+          "Friday": {
+            "n": 86,
+            "pct": 4.91
+          }
+        },
+        "Thursday": {
+          "Monday": {
+            "n": 110,
+            "pct": 6.29
+          },
+          "Tuesday": {
+            "n": 64,
+            "pct": 3.66
+          },
+          "Wednesday": {
+            "n": 37,
+            "pct": 2.11
+          },
+          "Thursday": {
+            "n": 12,
+            "pct": 0.69
+          },
+          "Friday": {
+            "n": 45,
+            "pct": 2.57
+          }
+        },
+        "Friday": {
+          "Monday": {
+            "n": 261,
+            "pct": 14.91
+          },
+          "Tuesday": {
+            "n": 125,
+            "pct": 7.14
+          },
+          "Wednesday": {
+            "n": 91,
+            "pct": 5.2
+          },
+          "Thursday": {
+            "n": 48,
+            "pct": 2.74
+          },
+          "Friday": {
+            "n": 12,
+            "pct": 0.69
+          }
+        }
+      }
+    },
+    "rolling_window_weeks": 52,
+    "min_periods_weeks": 15,
+    "asset": "EURUSD"
   }
 };

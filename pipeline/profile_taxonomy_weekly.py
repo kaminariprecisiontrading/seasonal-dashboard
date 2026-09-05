@@ -242,6 +242,36 @@ def build_profiles(weekly: pd.DataFrame, pip: float) -> pd.DataFrame:
     return result
 
 
+def weekday_pair_distribution(result: pd.DataFrame) -> dict:
+    """The full (low_weekday, high_weekday) joint table -- e.g. "how often
+    does a Monday-low pair with a Friday-high specifically" -- not just the
+    3-bucket Same_Day/Adjacent/Spread summary attached to each profile.
+    Computed from every valid week regardless of range/shape classification
+    (excludes only Short_Week; Insufficient_History weeks still have real
+    high_weekday/low_weekday values from the rolling-window-independent
+    weekly bar construction, so including them maximizes sample size) --
+    this is a direct empirical fact about the price data, not something that
+    needs the taxonomy's own rolling-window burn-in."""
+    have_days = result[result["profile"] != "Short_Week"].dropna(subset=["high_weekday", "low_weekday"])
+    have_days = have_days[have_days["high_weekday"].isin(WEEKDAYS) & have_days["low_weekday"].isin(WEEKDAYS)]
+
+    n = len(have_days)
+    pairs = {}
+    for low_wd in WEEKDAYS:
+        pairs[low_wd] = {}
+        for high_wd in WEEKDAYS:
+            count = int(((have_days["low_weekday"] == low_wd) & (have_days["high_weekday"] == high_wd)).sum())
+            pairs[low_wd][high_wd] = {"n": count, "pct": round(count / n * 100, 2) if n else 0.0}
+
+    same_day_n = sum(pairs[d][d]["n"] for d in WEEKDAYS)
+    return {
+        "n_weeks": n,
+        "same_day_n": same_day_n,
+        "same_day_pct": round(same_day_n / n * 100, 2) if n else 0.0,
+        "pairs": pairs,  # pairs[low_weekday][high_weekday] = {n, pct}
+    }
+
+
 def summarize(result: pd.DataFrame) -> dict:
     labeled = result[~result["profile"].isin(["Short_Week", "Insufficient_History"])]
     profile_counts = labeled["profile"].value_counts()
@@ -266,6 +296,7 @@ def summarize(result: pd.DataFrame) -> dict:
         "extreme_timing_by_profile": timing_by_profile,
         "extreme_spread_by_profile": spread_by_profile,
         "avg_range_pips_by_profile": range_by_profile.to_dict(orient="index"),
+        "weekday_pair_distribution": weekday_pair_distribution(result),
         "rolling_window_weeks": ROLLING_WINDOW,
         "min_periods_weeks": MIN_PERIODS,
     }

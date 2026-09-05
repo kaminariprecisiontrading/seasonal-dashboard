@@ -142,12 +142,14 @@ def main():
     run([py, "clean_mt5_csv.py", raw_csv, clean_csv, "--asset", asset, "--pip", str(pip)])
     run([py, "profile_taxonomy.py", clean_csv, profiles_csv, summary_json, "--asset", asset])
     run([py, "stats_engine.py", clean_csv, stats_json, "--asset", asset, "--pip", str(pip), "--unit", unit])
-    run([py, "build_dashboard_data.py", stats_json, summary_json, dashboard_js, "--asset", asset])
 
+    build_dashboard_cmd = [py, "build_dashboard_data.py", stats_json, summary_json, dashboard_js, "--asset", asset]
     if not args.skip_weekly:
         run([py, "profile_taxonomy_weekly.py", clean_csv, weekly_profiles_csv, weekly_summary_json, "--asset", asset, "--pip", str(pip)])
+        build_dashboard_cmd += ["--weekly-summary", weekly_summary_json]
     else:
         print("\n(skipped --skip-weekly)", file=sys.stderr)
+    run(build_dashboard_cmd)
 
     if not args.skip_examples:
         run([py, "export_profile_examples.py", raw_csv, profiles_csv, summary_json, examples_js, "--asset", asset])

@@ -351,8 +351,17 @@ per §4.4's standing rule, and because they didn't transfer identically:
   (including the same-week case); Yearly's is which month. `profile_taxonomy_weekly.py`'s
   `extreme_spread` is the reference implementation for how to handle the same-period case
   correctly (as a real, explicitly-tracked outcome, not a dropped edge case) when those are built.
-- Not yet consumed by `build_dashboard_data.py` or any dashboard page — data-and-methodology
-  validation was the explicit scope of this pass, dashboard surfacing is a separate later step.
+- **Dashboard-wired (2026-09-05).** `build_dashboard_data.py` now accepts `--weekly-summary` and
+  folds the full weekly summary JSON into the same per-asset bundle as `stats`/`profiles`
+  (`bundle.weekly`) — `refresh_asset.py` passes it automatically unless `--skip-weekly`. A fourth
+  field was added specifically for the dashboard: `weekday_pair_distribution`, the full 5×5
+  (low-weekday × high-weekday) joint table — not just the 3-bucket `extreme_spread` summary
+  attached to each profile — so "how often does a Monday-low pair with a Friday-high,
+  specifically" has a direct answer (e.g. GBPUSD: 13.68%), not just an aggregated bucket. See
+  `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` Tier 5 and that repo's own `js/profiling.js`/
+  `js/profiling-profile-detail.js`/`js/profiling-compare.js` for the consuming side (a new "Weekly
+  Profile Taxonomy" card grid mirroring Daily's, a "Week High/Low — Day Pairing" heatmap, and full
+  detail/compare-page support including Daily/Weekly-grouped nav).
 
 ---
 

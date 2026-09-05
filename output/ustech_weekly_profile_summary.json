@@ -157,6 +157,123 @@
       "median": 5149.0
     }
   },
+  "weekday_pair_distribution": {
+    "n_weeks": 777,
+    "same_day_n": 23,
+    "same_day_pct": 2.96,
+    "pairs": {
+      "Monday": {
+        "Monday": {
+          "n": 4,
+          "pct": 0.51
+        },
+        "Tuesday": {
+          "n": 16,
+          "pct": 2.06
+        },
+        "Wednesday": {
+          "n": 31,
+          "pct": 3.99
+        },
+        "Thursday": {
+          "n": 67,
+          "pct": 8.62
+        },
+        "Friday": {
+          "n": 152,
+          "pct": 19.56
+        }
+      },
+      "Tuesday": {
+        "Monday": {
+          "n": 22,
+          "pct": 2.83
+        },
+        "Tuesday": {
+          "n": 6,
+          "pct": 0.77
+        },
+        "Wednesday": {
+          "n": 7,
+          "pct": 0.9
+        },
+        "Thursday": {
+          "n": 31,
+          "pct": 3.99
+        },
+        "Friday": {
+          "n": 60,
+          "pct": 7.72
+        }
+      },
+      "Wednesday": {
+        "Monday": {
+          "n": 21,
+          "pct": 2.7
+        },
+        "Tuesday": {
+          "n": 15,
+          "pct": 1.93
+        },
+        "Wednesday": {
+          "n": 2,
+          "pct": 0.26
+        },
+        "Thursday": {
+          "n": 9,
+          "pct": 1.16
+        },
+        "Friday": {
+          "n": 48,
+          "pct": 6.18
+        }
+      },
+      "Thursday": {
+        "Monday": {
+          "n": 38,
+          "pct": 4.89
+        },
+        "Tuesday": {
+          "n": 28,
+          "pct": 3.6
+        },
+        "Wednesday": {
+          "n": 16,
+          "pct": 2.06
+        },
+        "Thursday": {
+          "n": 4,
+          "pct": 0.51
+        },
+        "Friday": {
+          "n": 25,
+          "pct": 3.22
+        }
+      },
+      "Friday": {
+        "Monday": {
+          "n": 57,
+          "pct": 7.34
+        },
+        "Tuesday": {
+          "n": 51,
+          "pct": 6.56
+        },
+        "Wednesday": {
+          "n": 41,
+          "pct": 5.28
+        },
+        "Thursday": {
+          "n": 19,
+          "pct": 2.45
+        },
+        "Friday": {
+          "n": 7,
+          "pct": 0.9
+        }
+      }
+    }
+  },
   "rolling_window_weeks": 52,
   "min_periods_weeks": 15,
   "asset": "USTECH"
