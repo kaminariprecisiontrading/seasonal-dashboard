@@ -229,6 +229,26 @@ follow, with Yearly requiring the most methodological care per the sample-size t
 
 ---
 
+## Tier 5b — Sub-session profiles (finer than Daily, not coarser)
+
+**The sibling direction to Tier 5:** Tier 5 generalizes the daily taxonomy *coarser*
+(Weekly/Monthly/Yearly). This tier generalizes it *finer* — sub-daily, session-relative patterns —
+covering the three profile families noted in `KPT-Market-Profiling/market-profiling-system-spec.md`
+§4.5: session-defined extreme profiles, news-release-timing profiles, and (added 2026-09-05)
+liquidity-sweep / false-move profiles. Full design detail lives in that spec doc, not duplicated
+here — this entry exists so the workstream has a tier of its own, same visibility as Tier 5.
+
+**Status:** infrastructure step one is done — `clean_mt5_csv.py` now computes each named session's
+own OHLC per day (`asian_/london_/ny_open/high/low/close`), which the whole family depends on.
+Everything past that (sweep-threshold derivation, the descriptive validation study, an actual
+formal profile, Frankfurt as a distinct session, the news/event annotation layer) is intentionally
+sequenced step-by-step per the user's explicit preference, not designed or built ahead of need.
+
+**Sequencing:** independent of Tier 5 — the two can run in either order or interleaved, since they
+touch different granularities of the same underlying taxonomy idea.
+
+---
+
 ## Tier 6 — Parked (noted, not started)
 
 No design work yet — recorded so they aren't lost, revisited only when explicitly brought up.
@@ -251,6 +271,39 @@ source — extending the key to an asset+broker pair (e.g. `gbpusd_tradersway` v
 is a natural extension of the existing pattern, not a redesign. Nothing done so far needs to be
 undone for this to happen later.
 
+### Analysis tab: chat interface (noted 2026-09-05, not designed in detail)
+
+The Analysis tab (`js/api.js`) is currently one-shot, not conversational: `runAnalysis()` gathers
+four context layers per click (`_gatherCurveCtx()` — seasonal, `_gatherBacktestCtx()`,
+`_gatherIntradayCtx()`, `_gatherProfilingCtx()`), builds a single big prompt via `_buildPrompt()`
+(a fixed markdown template — signal/accuracy/curve/entry-window table, 3-month outlook, trade
+notes), and sends it as a single `messages: [{role:'user', content: prompt}]` call to whichever
+provider the user has configured (Claude/Gemini/Ollama — bring-your-own API key, called directly
+from the browser, no backend). Streams one response, renders it, done — no conversation state.
+
+**Near-term (the actual current ask):** keep it exactly this shape — a single button that exports
+a neat technical summary of the dashboard's most critical information in one shot. This is already
+close to what `_buildPrompt()` produces; revisit its exact template/content once the other tiers
+above (especially Tier 5's weekly/monthly/yearly profiles, and any session/news/liquidity-sweep
+profiles — see `KPT-Market-Profiling/market-profiling-system-spec.md` §4.5 and its liquidity-sweep
+addendum) have more data to fold in.
+
+**Later, if/when chat is worth building:** the lowest-overhead path is to keep the identical
+architecture (BYO API key, direct browser `fetch()`, no new backend) and add only what's missing
+for a real back-and-forth:
+- An accumulating `messages[]` array instead of rebuilding one fresh prompt per click, persisted
+  per-asset (matching the existing `kpt-ai-{id}-*` localStorage convention already in
+  `docs/DATA_DICTIONARY.md`'s localStorage table) so a conversation survives a page reload.
+- Move the four gathered context layers into the API's `system` parameter, sent once per
+  conversation, rather than re-stated inside a `user` message on every call as today — cheaper
+  per-turn and closer to how the Messages API is meant to be used for multi-turn context.
+- Small UI change: a scrollable message thread + text input instead of one button + one replaced
+  output block, plus a "new conversation" reset. Same panel, same streaming/markdown-render
+  plumbing already built (`_readSSE()`, `marked.parse()`) — no new dependency.
+- No architectural leap required — Anthropic's Messages API (and the other two providers already
+  wired) are standard multi-turn conversation APIs already; today's implementation just happens to
+  only ever send one turn.
+
 ---
 
 ## Summary — execution order
@@ -260,4 +313,7 @@ undone for this to happen later.
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
 4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling
    asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2).
-5. **Tier 6** — parked, no action until explicitly raised again.
+5. **Tier 5b** — ongoing, independent of Tier 5 (different granularity direction), also
+   step-by-step and not rushed. Session-OHLC infrastructure done; sweep-threshold derivation and
+   the descriptive validation study are next, only when explicitly picked up again.
+6. **Tier 6** — parked, no action until explicitly raised again.
