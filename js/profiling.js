@@ -182,6 +182,10 @@
     '<div class="kptp-section-note" id="kptp-profile-summary-note">Rule-based daily profile classification, built from closing strength' + kptpGlossaryIcon('closing_strength') + ' and range regime. Click any card for the full rule, why it&rsquo;s named that way, and a real illustrative chart.</div>' +
     '<div class="kptp-profile-grid" id="kptp-profile-grid"></div>' +
 
+    '<div class="kptp-section-label" id="kptp-weekly-profile-label" hidden>Weekly Profile Taxonomy</div>' +
+    '<div class="kptp-section-note" id="kptp-weekly-profile-summary-note" hidden></div>' +
+    '<div class="kptp-profile-grid" id="kptp-weekly-profile-grid" hidden></div>' +
+
     '<div class="kptp-section-label">Range Distribution</div>' +
     '<div class="kptp-section-note">Daily/weekly/monthly/yearly range percentile' + kptpGlossaryIcon('percentile') + ' strips (p05&ndash;p95), IQR' + kptpGlossaryIcon('iqr') + ' boxed, median' + kptpGlossaryIcon('median') + ' marked. Dashed lines mark the compression' + kptpGlossaryIcon('compression') + ' (p20) / expansion' + kptpGlossaryIcon('expansion') + ' (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window' + kptpGlossaryIcon('lookback_window') + ' affects the daily/weekly/monthly charts &mdash; not the yearly chart, which has only a small sample and always shows full history.</div>' +
     '<div class="kptp-dial" id="kptp-dial"></div>' +
@@ -235,6 +239,12 @@
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Week High &mdash; Day of Week</div><div id="kptp-weekday-high-chart"></div></div>' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Week Low &mdash; Day of Week</div><div id="kptp-weekday-low-chart"></div></div>' +
+    '</div>' +
+    '<div class="kptp-panel-card" id="kptp-weekday-pair-card" hidden>' +
+      '<div class="kptp-panel-title">Week High/Low &mdash; Day Pairing</div>' +
+      '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which day tends to have the high and which tends to have the low, ' +
+        '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a Monday low pairs with a Friday high, specifically. Rows = low day, columns = high day. Darker = more frequent; the diagonal (same day) is real but consistently rare.</div>' +
+      '<div id="kptp-weekday-pair-heatmap"></div>' +
     '</div>' +
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Month High &mdash; Week of Month</div><div id="kptp-wom-high-chart"></div></div>' +
@@ -441,6 +451,110 @@
     }
   }
 
+  function renderWeeklyProfiles() {
+    var grid = document.getElementById('kptp-weekly-profile-grid');
+    var label = document.getElementById('kptp-weekly-profile-label');
+    var note = document.getElementById('kptp-weekly-profile-summary-note');
+    if (!grid || !bundle.weekly) return;
+
+    grid.hidden = false;
+    if (label) label.hidden = false;
+    if (note) note.hidden = false;
+
+    var weekly = bundle.weekly;
+    var dist = weekly.profile_distribution;
+    var avgRange = weekly.avg_range_pips_by_profile;
+    var timing = weekly.extreme_timing_by_profile;
+    var spread = weekly.extreme_spread_by_profile;
+
+    var entries = Object.keys(dist).map(function (k) { return [k, dist[k]]; }).sort(function (a, b) { return b[1].n - a[1].n; });
+    grid.innerHTML = '';
+    entries.forEach(function (entry) {
+      var name = entry[0], v = entry[1];
+
+      var timingEntries = timing[name] ? Object.keys(timing[name]).map(function (k) { return [k, timing[name][k]]; }).sort(function (a, b) { return b[1] - a[1]; }) : null;
+      var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
+
+      var spreadEntries = spread[name] ? Object.keys(spread[name]).map(function (k) { return [k, spread[name][k]]; }).sort(function (a, b) { return b[1] - a[1]; }) : null;
+      var topSpread = spreadEntries && spreadEntries.length ? spreadEntries[0] : null;
+
+      var range = avgRange[name];
+      var a = document.createElement('a');
+      a.className = 'kptp-profile-card';
+      a.href = '../profiling-profiles/detail.html?p=' + kptpProfileSlug(name) + '&a=' + assetKey;
+      a.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
+      a.innerHTML =
+        '<div class="kptp-profile-card-top">' +
+          '<div><div class="kptp-profile-name">' + name + '</div><div class="kptp-profile-pct">' + v.pct + '%</div></div>' +
+          kptpProfileIconSvg(name, 46) +
+        '</div>' +
+        '<div class="kptp-profile-meta">' +
+          'n=' + v.n + ' weeks' + (range ? (' &middot; avg range ' + range.mean + ' ' + unit) : '') +
+          (topTiming ? ('<br>most common timing: ' + topTiming[0].replace('_', ' ') + ' (' + topTiming[1] + ')') : '') +
+          (topSpread ? ('<br>most common day-pattern: ' + topSpread[0].replace('_', ' ') + ' (' + topSpread[1] + ')') : '') +
+        '</div>' +
+        '<div class="kptp-profile-card-link">See profile details &rarr;</div>';
+      grid.appendChild(a);
+    });
+
+    if (note) {
+      note.innerHTML =
+        'Same two axes as the daily taxonomy above (range regime, closing strength), independently re-derived at weekly granularity' +
+        ' &mdash; not assumed to transfer as-is. Two timing tags: which half of the week each extreme formed in, and how many' +
+        ' weekdays apart the week&rsquo;s high and low landed (not just which single day tends to have each one).<br>' +
+        weekly.n_labeled_weeks + ' labeled weeks · ' + weekly.n_short_weeks + ' short weeks excluded · ' +
+        weekly.n_insufficient_history_weeks + ' weeks pending sufficient trailing history.';
+    }
+  }
+
+  // The joint (low_weekday, high_weekday) table -- e.g. "how often does a
+  // Monday low pair with a Friday high, specifically" -- not just the two
+  // existing marginal bar charts (which day tends to have the high, which
+  // tends to have the low, tracked separately). See
+  // KPT-Market-Profiling/pipeline/profile_taxonomy_weekly.py's
+  // weekday_pair_distribution() for how this is computed.
+  function renderWeekdayPairHeatmap() {
+    var card = document.getElementById('kptp-weekday-pair-card');
+    var container = document.getElementById('kptp-weekday-pair-heatmap');
+    if (!card || !container || !bundle.weekly || !bundle.weekly.weekday_pair_distribution) return;
+
+    card.hidden = false;
+    var wp = bundle.weekly.weekday_pair_distribution;
+    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    var shortDay = { Monday: 'Mon', Tuesday: 'Tue', Wednesday: 'Wed', Thursday: 'Thu', Friday: 'Fri' };
+
+    var maxPct = 0;
+    days.forEach(function (lo) { days.forEach(function (hi) { maxPct = Math.max(maxPct, wp.pairs[lo][hi].pct); }); });
+
+    var html = '<div style="overflow-x:auto;"><table style="border-collapse:collapse;width:100%;font-size:11px;">';
+    html += '<tr><td style="padding:6px 8px;"></td>' +
+      '<td colspan="5" style="padding:6px 8px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;">High Day &rarr;</td></tr>';
+    html += '<tr><td style="padding:6px 8px;"></td>' + days.map(function (d) {
+      return '<td style="padding:6px 8px;text-align:center;color:var(--muted);font-weight:600;">' + shortDay[d] + '</td>';
+    }).join('') + '</tr>';
+
+    days.forEach(function (lo) {
+      html += '<tr>';
+      html += '<td style="padding:6px 8px;color:var(--muted);font-weight:600;white-space:nowrap;">' + shortDay[lo] + ' low</td>';
+      days.forEach(function (hi) {
+        var cell = wp.pairs[lo][hi];
+        var isSameDay = lo === hi;
+        var intensity = maxPct ? cell.pct / maxPct : 0;
+        var bg = isSameDay
+          ? 'rgba(148,163,184,' + (0.06 + intensity * 0.1) + ')'
+          : 'rgba(34,197,94,' + (0.05 + intensity * 0.55) + ')';
+        html += '<td title="' + shortDay[lo] + ' low + ' + shortDay[hi] + ' high: ' + cell.pct + '% (n=' + cell.n + ')' + (isSameDay ? ' — same day' : '') + '"' +
+          ' style="padding:8px;text-align:center;background:' + bg + ';border:1px solid var(--border);' + (isSameDay ? 'color:var(--muted);' : 'color:var(--text);') + '">' +
+          cell.pct + '%</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</table></div>';
+    html += '<div class="kptp-section-note" style="margin-top:10px;margin-bottom:0;">n=' + wp.n_weeks + ' weeks &middot; same-day (diagonal) occurs in ' + wp.same_day_pct + '% of weeks. Hover any cell for the exact count.</div>';
+
+    container.innerHTML = html;
+  }
+
   function buildDial() {
     var dial = document.getElementById('kptp-dial');
     if (!dial) return;
@@ -470,7 +584,9 @@
   renderTimeSection('full');
   renderSessionLegend();
   renderWeeklyMonthly();
+  renderWeekdayPairHeatmap();
   renderYearlySection();
   renderProfiles();
+  renderWeeklyProfiles();
 
 })();

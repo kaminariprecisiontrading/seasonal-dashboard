@@ -325,7 +325,9 @@ for a real back-and-forth:
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
 4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling
    asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2). Daily done, **Weekly done**
-   (2026-09-05, validated but not yet dashboard-wired), Monthly/Yearly next.
+   (2026-09-05, now dashboard-wired too — a "Weekly Profile Taxonomy" card grid and a "Week
+   High/Low — Day Pairing" heatmap on the Profiling tab, full detail/compare-page support),
+   Monthly/Yearly next.
 5. **Tier 5b** — ongoing, independent of Tier 5 (different granularity direction), also
    step-by-step and not rushed. Session-OHLC infrastructure done; sweep-threshold derivation and
    the descriptive validation study are next, only when explicitly picked up again.

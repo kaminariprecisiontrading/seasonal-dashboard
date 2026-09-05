@@ -155,7 +155,17 @@ var KPTP_PROFILE_COLOR = {
   'Quiet Drift Day (Up)': 'var(--bull)',
   'Quiet Drift Day (Down)': 'var(--bear)',
   'Compression Day': 'var(--kptp-compression)',
-  'Normal Day': 'var(--kptp-normal)'
+  'Normal Day': 'var(--kptp-normal)',
+  // Weekly profiles reuse the exact same colors as their Daily equivalent —
+  // same concept, same visual language, not a distinct palette.
+  'Trend Week (Up)': 'var(--bull)',
+  'Trend Week (Down)': 'var(--bear)',
+  'Volatile Week': 'var(--kptp-expansion)',
+  'Volatile Reversal Week': 'var(--chop)',
+  'Quiet Drift Week (Up)': 'var(--bull)',
+  'Quiet Drift Week (Down)': 'var(--bear)',
+  'Compression Week': 'var(--kptp-compression)',
+  'Normal Week': 'var(--kptp-normal)'
 };
 
 var KPTP_PROFILE_ICON_PATH = {
@@ -166,7 +176,16 @@ var KPTP_PROFILE_ICON_PATH = {
   'Quiet Drift Day (Up)': 'M5,24 L30,22 L55,19 L75,16 L95,13',
   'Quiet Drift Day (Down)': 'M5,16 L30,18 L55,21 L75,24 L95,27',
   'Compression Day': 'M5,20 L20,17 L35,23 L50,18 L65,22 L80,19 L95,20',
-  'Normal Day': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20'
+  'Normal Day': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20',
+  // Weekly profiles reuse the exact same icon shapes as their Daily equivalent.
+  'Trend Week (Up)': 'M5,26 L16,30 L32,22 L50,15 L70,9 L95,4',
+  'Trend Week (Down)': 'M5,14 L16,10 L32,18 L50,25 L70,31 L95,36',
+  'Volatile Week': 'M5,20 L20,6 L35,32 L50,10 L65,30 L80,14 L95,22',
+  'Volatile Reversal Week': 'M5,20 L25,4 L50,36 L75,18 L95,20',
+  'Quiet Drift Week (Up)': 'M5,24 L30,22 L55,19 L75,16 L95,13',
+  'Quiet Drift Week (Down)': 'M5,16 L30,18 L55,21 L75,24 L95,27',
+  'Compression Week': 'M5,20 L20,17 L35,23 L50,18 L65,22 L80,19 L95,20',
+  'Normal Week': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20'
 };
 
 var KPTP_PROFILE_META = {
@@ -217,11 +236,71 @@ var KPTP_PROFILE_META = {
     rule: 'Range regime between the 20th and 80th percentile, any closing shape.',
     why: 'Deliberately the largest, least differentiated bucket (~57% of days on both assets in the original study). Most days are neither unusually big nor unusually small, so they don’t earn a directional-shape label — a rule that fires on most days isn’t adding decision value.',
     timingSignature: 'No dominant timing signature by design — this bucket intentionally doesn’t distinguish shape.'
+  },
+  // Weekly profiles — same two axes, same 8-name scheme, independently
+  // re-derived (not assumed) at weekly granularity. See
+  // KPT-Market-Profiling/market-profiling-system-spec.md §4.6 for the full
+  // methodology and cross-asset validation behind the timing-signature text.
+  'Trend Week (Up)': {
+    axisRange: 'Expansion', axisShape: 'Directional',
+    rule: 'Expansion + Directional, closed near the week’s high.',
+    why: 'Big range <b>and</b> closed near an extreme — the move was both large and held across the week. Same reasoning as Trend Day, one level up.',
+    timingSignature: 'Validated across multiple assets: typically <b>Late Push</b> (the low forms in the first half of the week, price pushes to new highs into Friday) and the high/low land on well-separated weekdays, not close together — a trend week needs room to build.'
+  },
+  'Trend Week (Down)': {
+    axisRange: 'Expansion', axisShape: 'Directional',
+    rule: 'Expansion + Directional, closed near the week’s low.',
+    why: 'Big range <b>and</b> closed near an extreme — the move was both large and held across the week. Same reasoning as Trend Day, one level up.',
+    timingSignature: 'Validated across multiple assets: typically <b>Late Push</b> (the high forms in the first half of the week, price pushes to new lows into Friday) and the high/low land on well-separated weekdays, not close together — a trend week needs room to build.'
+  },
+  'Volatile Week': {
+    axisRange: 'Expansion', axisShape: 'Mixed',
+    rule: 'Expansion + Mixed closing shape.',
+    why: 'Big range but closed only moderately off the midpoint — real two-way movement without a clean directional resolution across the week.',
+    timingSignature: 'No single dominant timing signature — that’s part of what makes it "Mixed" rather than a clean Trend or Reversal shape.'
+  },
+  'Volatile Reversal Week': {
+    axisRange: 'Expansion', axisShape: 'Balanced',
+    rule: 'Expansion + Balanced closing shape.',
+    why: 'Big range but closed essentially back at the midpoint — a big weekly move that got substantially or fully retraced.',
+    timingSignature: 'Often shows <b>Late Resolution</b> or <b>Fade Risk</b> timing — the week stays undecided, or gives back an early move later on.'
+  },
+  'Quiet Drift Week (Up)': {
+    axisRange: 'Compression', axisShape: 'Directional',
+    rule: 'Compression + Directional, closed near the week’s high.',
+    why: 'Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. The low-energy version of Trend Week.',
+    timingSignature: 'The same directional-conviction shape as Trend Week, just at much smaller amplitude.'
+  },
+  'Quiet Drift Week (Down)': {
+    axisRange: 'Compression', axisShape: 'Directional',
+    rule: 'Compression + Directional, closed near the week’s low.',
+    why: 'Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. The low-energy version of Trend Week.',
+    timingSignature: 'The same directional-conviction shape as Trend Week, just at much smaller amplitude.'
+  },
+  'Compression Week': {
+    axisRange: 'Compression', axisShape: 'Balanced / Mixed',
+    rule: 'Compression range regime, Balanced or Mixed closing shape.',
+    why: 'Small range, closed near the middle — the "coiling," non-committal week. Default label for small-range weeks without a clear directional tilt.',
+    timingSignature: 'No dominant timing signature or day-pattern expected — low amplitude, no strong directional push to time.'
+  },
+  'Normal Week': {
+    axisRange: 'Normal', axisShape: 'Any',
+    rule: 'Range regime between the 20th and 80th percentile, any closing shape.',
+    why: 'Deliberately the largest, least differentiated bucket, same as Normal Day. Most weeks are neither unusually big nor unusually small.',
+    timingSignature: 'No dominant timing signature by design — this bucket intentionally doesn’t distinguish shape.'
   }
 };
 
 function kptpProfileSlug(name) {
   return name.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-');
+}
+
+// Weekly profile names always contain "Week" (profile_taxonomy_weekly.py's
+// profile_name() is a deliberate clone of the Daily version, prefix swapped)
+// -- used wherever a page needs to know which bundle field ("weekly" vs
+// "profiles") a given profile name belongs to.
+function kptpIsWeeklyProfile(name) {
+  return name.indexOf('Week') !== -1;
 }
 
 function kptpProfileIconSvg(name, size) {
