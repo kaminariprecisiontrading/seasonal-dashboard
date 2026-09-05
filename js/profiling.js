@@ -190,6 +190,10 @@
     '<div class="kptp-section-note" id="kptp-monthly-profile-summary-note" hidden></div>' +
     '<div class="kptp-profile-grid" id="kptp-monthly-profile-grid" hidden></div>' +
 
+    '<div class="kptp-section-label" id="kptp-yearly-profile-label" hidden>Yearly Profile Taxonomy</div>' +
+    '<div class="kptp-section-note" id="kptp-yearly-profile-summary-note" hidden></div>' +
+    '<div class="kptp-profile-grid" id="kptp-yearly-profile-grid" hidden></div>' +
+
     '<div class="kptp-section-label">Range Distribution</div>' +
     '<div class="kptp-section-note">Daily/weekly/monthly/yearly range percentile' + kptpGlossaryIcon('percentile') + ' strips (p05&ndash;p95), IQR' + kptpGlossaryIcon('iqr') + ' boxed, median' + kptpGlossaryIcon('median') + ' marked. Dashed lines mark the compression' + kptpGlossaryIcon('compression') + ' (p20) / expansion' + kptpGlossaryIcon('expansion') + ' (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window' + kptpGlossaryIcon('lookback_window') + ' affects the daily/weekly/monthly charts &mdash; not the yearly chart, which has only a small sample and always shows full history.</div>' +
     '<div class="kptp-dial" id="kptp-dial"></div>' +
@@ -263,6 +267,12 @@
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Month</div><div id="kptp-year-high-month-chart"></div></div>' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Month</div><div id="kptp-year-low-month-chart"></div></div>' +
+    '</div>' +
+    '<div class="kptp-panel-card" id="kptp-year-month-pair-card" hidden>' +
+      '<div class="kptp-panel-title">Year High/Low &mdash; Month Pairing</div>' +
+      '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which month tends to have the year&rsquo;s high and which tends to have the low, ' +
+        '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a January low pairs with a December high, specifically. Rows = low month, columns = high month. Darker = more frequent. <b>Only ~25-30 years of history per asset &mdash; most cells are 0 or 1 by construction; treat this as a much weaker signal than the Weekly/Monthly pairing heatmaps above.</b></div>' +
+      '<div id="kptp-year-month-pair-heatmap"></div>' +
     '</div>' +
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Week of Year</div><div id="kptp-year-high-week-chart"></div></div>' +
@@ -621,6 +631,113 @@
     container.innerHTML = html;
   }
 
+  function renderYearlyProfiles() {
+    var grid = document.getElementById('kptp-yearly-profile-grid');
+    var label = document.getElementById('kptp-yearly-profile-label');
+    var note = document.getElementById('kptp-yearly-profile-summary-note');
+    if (!grid || !bundle.yearly) return;
+
+    grid.hidden = false;
+    if (label) label.hidden = false;
+    if (note) note.hidden = false;
+
+    var yearly = bundle.yearly;
+    var dist = yearly.profile_distribution;
+    var avgRange = yearly.avg_range_pips_by_profile;
+    var timing = yearly.extreme_timing_by_profile;
+    var spread = yearly.extreme_spread_by_profile;
+
+    var entries = Object.keys(dist).map(function (k) { return [k, dist[k]]; }).sort(function (a, b) { return b[1].n - a[1].n; });
+    grid.innerHTML = '';
+    entries.forEach(function (entry) {
+      var name = entry[0], v = entry[1];
+
+      var timingEntries = timing[name] ? Object.keys(timing[name]).map(function (k) { return [k, timing[name][k]]; }).sort(function (a, b) { return b[1] - a[1]; }) : null;
+      var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
+
+      var spreadEntries = spread[name] ? Object.keys(spread[name]).map(function (k) { return [k, spread[name][k]]; }).sort(function (a, b) { return b[1] - a[1]; }) : null;
+      var topSpread = spreadEntries && spreadEntries.length ? spreadEntries[0] : null;
+
+      var range = avgRange[name];
+      var a = document.createElement('a');
+      a.className = 'kptp-profile-card';
+      a.href = '../profiling-profiles/detail.html?p=' + kptpProfileSlug(name) + '&a=' + assetKey;
+      a.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
+      a.innerHTML =
+        '<div class="kptp-profile-card-top">' +
+          '<div><div class="kptp-profile-name">' + name + '</div><div class="kptp-profile-pct">' + v.pct + '%</div></div>' +
+          kptpProfileIconSvg(name, 46) +
+        '</div>' +
+        '<div class="kptp-profile-meta">' +
+          'n=' + v.n + ' years' + (range ? (' &middot; avg range ' + range.mean + ' ' + unit) : '') +
+          (topTiming ? ('<br>most common timing: ' + topTiming[0].replace('_', ' ') + ' (' + topTiming[1] + ')') : '') +
+          (topSpread ? ('<br>most common month-pattern: ' + topSpread[0].replace('_', ' ') + ' (' + topSpread[1] + ')') : '') +
+        '</div>' +
+        '<div class="kptp-profile-card-link">See profile details &rarr;</div>';
+      grid.appendChild(a);
+    });
+
+    if (note) {
+      note.innerHTML =
+        'Same two axes as the daily/weekly/monthly taxonomies above (range regime, closing strength), independently re-derived at yearly granularity' +
+        ' &mdash; using an expanding window (percentile against all prior years) rather than a fixed trailing window, since there are only ~' + (yearly.n_labeled_years + yearly.n_short_years + yearly.n_insufficient_history_years) + ' years of history total to compare against.' +
+        ' <b>Built from only ' + yearly.n_labeled_years + ' classified years &mdash; treat every card above as a much weaker signal than the Daily/Weekly/Monthly readings.</b> Some profiles may show n=0-2 for a given asset; that is a real reflection of how little yearly history exists, not a bug.<br>' +
+        yearly.n_labeled_years + ' labeled years · ' + yearly.n_short_years + ' short years excluded · ' +
+        yearly.n_insufficient_history_years + ' years pending sufficient trailing history.';
+    }
+  }
+
+  // The joint (low_month, high_month) table -- e.g. "how often does a
+  // January low pair with a December high, specifically" -- not just the
+  // two existing marginal bar charts (which month tends to have the year's
+  // high, which tends to have the low, tracked separately). See
+  // KPT-Market-Profiling/pipeline/profile_taxonomy_yearly.py's
+  // month_pair_distribution() for how this is computed. Genuinely sparse at
+  // this sample size (~25-30 years across 144 cells) -- built at the user's
+  // explicit request, disclosed prominently rather than presented with the
+  // same confidence the denser Weekly/Monthly heatmaps can claim.
+  function renderYearMonthPairHeatmap() {
+    var card = document.getElementById('kptp-year-month-pair-card');
+    var container = document.getElementById('kptp-year-month-pair-heatmap');
+    if (!card || !container || !bundle.yearly || !bundle.yearly.month_pair_distribution) return;
+
+    card.hidden = false;
+    var mp = bundle.yearly.month_pair_distribution;
+    var months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+    var shortMonth = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
+
+    var maxPct = 0;
+    months.forEach(function (lo) { months.forEach(function (hi) { maxPct = Math.max(maxPct, mp.pairs[lo][hi].pct); }); });
+
+    var html = '<div style="overflow-x:auto;"><table style="border-collapse:collapse;width:100%;font-size:10px;">';
+    html += '<tr><td style="padding:4px 5px;"></td>' +
+      '<td colspan="12" style="padding:4px 5px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;">High Month &rarr;</td></tr>';
+    html += '<tr><td style="padding:4px 5px;"></td>' + months.map(function (m) {
+      return '<td style="padding:4px 3px;text-align:center;color:var(--muted);font-weight:600;">' + shortMonth[m] + '</td>';
+    }).join('') + '</tr>';
+
+    months.forEach(function (lo) {
+      html += '<tr>';
+      html += '<td style="padding:4px 5px;color:var(--muted);font-weight:600;white-space:nowrap;">' + shortMonth[lo] + ' low</td>';
+      months.forEach(function (hi) {
+        var cell = mp.pairs[lo][hi];
+        var isSameMonth = lo === hi;
+        var intensity = maxPct ? cell.pct / maxPct : 0;
+        var bg = isSameMonth
+          ? 'rgba(148,163,184,' + (0.06 + intensity * 0.1) + ')'
+          : (cell.n > 0 ? 'rgba(34,197,94,' + (0.08 + intensity * 0.6) + ')' : 'transparent');
+        html += '<td title="' + shortMonth[lo] + ' low + ' + shortMonth[hi] + ' high: ' + cell.pct + '% (n=' + cell.n + ')' + (isSameMonth ? ' — same month' : '') + '"' +
+          ' style="padding:5px 3px;text-align:center;background:' + bg + ';border:1px solid var(--border);' + (isSameMonth ? 'color:var(--muted);' : 'color:var(--text);') + '">' +
+          (cell.n > 0 ? cell.n : '') + '</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</table></div>';
+    html += '<div class="kptp-section-note" style="margin-top:10px;margin-bottom:0;">n=' + mp.n_years + ' years total &mdash; cells show raw count (n), not %, since most cells are 0 or 1. Same-month occurred in ' + mp.same_month_pct + '% of years. Hover any cell for the exact percentage.</div>';
+
+    container.innerHTML = html;
+  }
+
   // The joint (low_weekday, high_weekday) table -- e.g. "how often does a
   // Monday low pair with a Friday high, specifically" -- not just the two
   // existing marginal bar charts (which day tends to have the high, which
@@ -701,8 +818,10 @@
   renderWeekdayPairHeatmap();
   renderWeekOfMonthPairHeatmap();
   renderYearlySection();
+  renderYearMonthPairHeatmap();
   renderProfiles();
   renderWeeklyProfiles();
   renderMonthlyProfiles();
+  renderYearlyProfiles();
 
 })();

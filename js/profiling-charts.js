@@ -174,7 +174,16 @@ var KPTP_PROFILE_COLOR = {
   'Quiet Drift Month (Up)': 'var(--bull)',
   'Quiet Drift Month (Down)': 'var(--bear)',
   'Compression Month': 'var(--kptp-compression)',
-  'Normal Month': 'var(--kptp-normal)'
+  'Normal Month': 'var(--kptp-normal)',
+  // Yearly profiles reuse the exact same colors as their Daily/Weekly/Monthly equivalent.
+  'Trend Year (Up)': 'var(--bull)',
+  'Trend Year (Down)': 'var(--bear)',
+  'Volatile Year': 'var(--kptp-expansion)',
+  'Volatile Reversal Year': 'var(--chop)',
+  'Quiet Drift Year (Up)': 'var(--bull)',
+  'Quiet Drift Year (Down)': 'var(--bear)',
+  'Compression Year': 'var(--kptp-compression)',
+  'Normal Year': 'var(--kptp-normal)'
 };
 
 var KPTP_PROFILE_ICON_PATH = {
@@ -203,7 +212,16 @@ var KPTP_PROFILE_ICON_PATH = {
   'Quiet Drift Month (Up)': 'M5,24 L30,22 L55,19 L75,16 L95,13',
   'Quiet Drift Month (Down)': 'M5,16 L30,18 L55,21 L75,24 L95,27',
   'Compression Month': 'M5,20 L20,17 L35,23 L50,18 L65,22 L80,19 L95,20',
-  'Normal Month': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20'
+  'Normal Month': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20',
+  // Yearly profiles reuse the exact same icon shapes as their Daily/Weekly/Monthly equivalent.
+  'Trend Year (Up)': 'M5,26 L16,30 L32,22 L50,15 L70,9 L95,4',
+  'Trend Year (Down)': 'M5,14 L16,10 L32,18 L50,25 L70,31 L95,36',
+  'Volatile Year': 'M5,20 L20,6 L35,32 L50,10 L65,30 L80,14 L95,22',
+  'Volatile Reversal Year': 'M5,20 L25,4 L50,36 L75,18 L95,20',
+  'Quiet Drift Year (Up)': 'M5,24 L30,22 L55,19 L75,16 L95,13',
+  'Quiet Drift Year (Down)': 'M5,16 L30,18 L55,21 L75,24 L95,27',
+  'Compression Year': 'M5,20 L20,17 L35,23 L50,18 L65,22 L80,19 L95,20',
+  'Normal Year': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20'
 };
 
 var KPTP_PROFILE_META = {
@@ -361,6 +379,59 @@ var KPTP_PROFILE_META = {
     rule: 'Range regime between the 20th and 80th percentile, any closing shape.',
     why: 'Deliberately the largest, least differentiated bucket, same as Normal Day/Week. Most months are neither unusually big nor unusually small.',
     timingSignature: 'No dominant timing signature by design — this bucket intentionally doesn’t distinguish shape.'
+  },
+  // Yearly profiles — same two axes, same 8-name scheme, at a genuinely thin
+  // sample size (~28-34 years of history, only ~21-26 classifiable). Kept for
+  // consistency with Daily/Weekly/Monthly after an explicit user decision
+  // (not a default) to disclose rather than hide the small-n reality. See
+  // KPT-Market-Profiling/market-profiling-system-spec.md §4.8.
+  'Trend Year (Up)': {
+    axisRange: 'Expansion', axisShape: 'Directional',
+    rule: 'Expansion + Directional, closed near the year’s high.',
+    why: 'Big range <b>and</b> closed near an extreme — the move was both large and held across the year. Same reasoning as Trend Month, one level up.',
+    timingSignature: 'Directionally the same Late Push shape found at every finer granularity, just with far fewer years (~25-30 total) to confirm it at this level — treat this as a much weaker signal than the Daily/Weekly/Monthly readings.'
+  },
+  'Trend Year (Down)': {
+    axisRange: 'Expansion', axisShape: 'Directional',
+    rule: 'Expansion + Directional, closed near the year’s low.',
+    why: 'Big range <b>and</b> closed near an extreme — the move was both large and held across the year. Same reasoning as Trend Month, one level up.',
+    timingSignature: 'Directionally the same Late Push shape found at every finer granularity, just with far fewer years (~25-30 total) to confirm it at this level — treat this as a much weaker signal than the Daily/Weekly/Monthly readings.'
+  },
+  'Volatile Year': {
+    axisRange: 'Expansion', axisShape: 'Mixed',
+    rule: 'Expansion + Mixed closing shape.',
+    why: 'Big range but closed only moderately off the midpoint — real two-way movement without a clean directional resolution across the year.',
+    timingSignature: 'No single dominant timing signature — that’s part of what makes it "Mixed" rather than a clean Trend or Reversal shape.'
+  },
+  'Volatile Reversal Year': {
+    axisRange: 'Expansion', axisShape: 'Balanced',
+    rule: 'Expansion + Balanced closing shape.',
+    why: 'Big range but closed essentially back at the midpoint — a big yearly move that got substantially or fully retraced.',
+    timingSignature: 'Often shows <b>Late Resolution</b> or <b>Fade Risk</b> timing — the year stays undecided, or gives back an early move later on.'
+  },
+  'Quiet Drift Year (Up)': {
+    axisRange: 'Compression', axisShape: 'Directional',
+    rule: 'Compression + Directional, closed near the year’s high.',
+    why: 'Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. The low-energy version of Trend Year.',
+    timingSignature: 'The same directional-conviction shape as Trend Year, just at much smaller amplitude — and, at this sample size, often only 1-2 years total.'
+  },
+  'Quiet Drift Year (Down)': {
+    axisRange: 'Compression', axisShape: 'Directional',
+    rule: 'Compression + Directional, closed near the year’s low.',
+    why: 'Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. The low-energy version of Trend Year.',
+    timingSignature: 'The same directional-conviction shape as Trend Year, just at much smaller amplitude — and, at this sample size, often only 1-2 years total.'
+  },
+  'Compression Year': {
+    axisRange: 'Compression', axisShape: 'Balanced / Mixed',
+    rule: 'Compression range regime, Balanced or Mixed closing shape.',
+    why: 'Small range, closed near the middle — the "coiling," non-committal year. Default label for small-range years without a clear directional tilt.',
+    timingSignature: 'No dominant timing signature or month-pattern expected — low amplitude, no strong directional push to time.'
+  },
+  'Normal Year': {
+    axisRange: 'Normal', axisShape: 'Any',
+    rule: 'Range regime between the 20th and 80th percentile, any closing shape.',
+    why: 'Deliberately the largest, least differentiated bucket, same as Normal Day/Week/Month. Most years are neither unusually big nor unusually small — usually the best-populated Yearly bucket even at this small overall n.',
+    timingSignature: 'No dominant timing signature by design — this bucket intentionally doesn’t distinguish shape.'
   }
 };
 
@@ -382,6 +453,14 @@ function kptpIsWeeklyProfile(name) {
 // ("monthly" vs "weekly" vs "profiles") a given profile name belongs to.
 function kptpIsMonthlyProfile(name) {
   return name.indexOf('Month') !== -1;
+}
+
+// Yearly profile names always contain "Year" (profile_taxonomy_yearly.py's
+// profile_name() is a deliberate clone of the Daily/Weekly/Monthly version,
+// prefix swapped) -- used wherever a page needs to know which bundle field
+// a given profile name belongs to.
+function kptpIsYearlyProfile(name) {
+  return name.indexOf('Year') !== -1;
 }
 
 function kptpProfileIconSvg(name, size) {

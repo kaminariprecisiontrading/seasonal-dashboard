@@ -245,8 +245,25 @@ monthly bars makes percentile ranking too coarse. Generated and dashboard-wired 
 Profiling assets — a "Monthly Profile Taxonomy" card grid, a "Month High/Low — Week Pairing"
 heatmap, and full detail/compare-page support (now grouped Daily/Weekly/Monthly).
 
-Yearly is next, requiring the most methodological care per the sample-size table above (~20 years
-of history is "very thin").
+**Yearly is done and dashboard-wired** (2026-09-05, same day) —
+`KPT-Market-Profiling/pipeline/profile_taxonomy_yearly.py`; full methodology and findings in
+`market-profiling-system-spec.md` §4.8 and `HANDOVER.md` §5. This granularity needed the most
+methodological care, per the sample-size table above (~20-34 years, "very thin") — validated
+first, then presented the user an explicit fork before writing any permanent code: full 8-name
+taxonomy (disclosed) vs. a simplified 3-bucket range-only scheme vs. no formal yearly taxonomy at
+all. **User chose the full 8-name taxonomy for consistency with Daily/Weekly/Monthly**, disclosed
+with a prominent small-sample note rather than silently equated with the denser granularities —
+several profile buckets land at 0-2 years for a given asset (real, not a bug). Uses an expanding
+window (percentile against all prior years), not a trailing one, matching `stats_engine.py`'s own
+`yearly_range` precedent. The `month_pair_distribution` (12×12 joint table) was built at the
+user's explicit request despite being genuinely sparse at this n (most of 144 cells are 0 or 1) —
+shipped with raw counts instead of percentages and the same small-sample disclosure. Generated and
+dashboard-wired for all 14 Profiling assets, including very-young ones (BTCUSD: only 2 classified
+years) rendering an honest near-empty grid rather than crashing or hiding — a "Yearly Profile
+Taxonomy" card grid, a "Year High/Low — Month Pairing" heatmap, and full detail/compare-page
+support (now grouped Daily/Weekly/Monthly/Yearly).
+
+**Tier 5's full Daily → Weekly → Monthly → Yearly ladder is now complete.**
 
 ---
 
@@ -336,13 +353,12 @@ for a real back-and-forth:
 1. **Tier 1** — ✅ done (v1.8).
 2. **Tier 2** — ✅ done (v1.9).
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
-4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling
-   asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2). Daily done, **Weekly done and
-   dashboard-wired** (2026-09-05 — a "Weekly Profile Taxonomy" card grid and a "Week High/Low —
-   Day Pairing" heatmap on the Profiling tab, full detail/compare-page support), **Monthly done
-   and dashboard-wired** (2026-09-05, same pass — a "Monthly Profile Taxonomy" card grid and a
-   "Month High/Low — Week Pairing" heatmap, full detail/compare-page support grouped
-   Daily/Weekly/Monthly). Yearly next.
+4. **Tier 5** — ✅ done (2026-09-05). Daily, **Weekly** (a "Weekly Profile Taxonomy" card grid and
+   a "Week High/Low — Day Pairing" heatmap), **Monthly** (a "Monthly Profile Taxonomy" card grid
+   and a "Month High/Low — Week Pairing" heatmap), and **Yearly** (a "Yearly Profile Taxonomy"
+   card grid, disclosed small-sample, and a "Year High/Low — Month Pairing" heatmap) are all done
+   and dashboard-wired for all 14 Profiling assets, full detail/compare-page support grouped
+   Daily/Weekly/Monthly/Yearly. The full Daily → Weekly → Monthly → Yearly ladder is complete.
 5. **Tier 5b** — ongoing, independent of Tier 5 (different granularity direction), also
    step-by-step and not rushed. Session-OHLC infrastructure done; sweep-threshold derivation and
    the descriptive validation study are next, only when explicitly picked up again.

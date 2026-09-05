@@ -32,8 +32,20 @@
     document.getElementById('kptp-profile-icon-large').innerHTML = kptpProfileIconSvg(name, 90);
     document.documentElement.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
     var subtitle = document.getElementById('kptp-profile-subtitle');
-    var granularity = kptpIsMonthlyProfile(name) ? 'monthly' : kptpIsWeeklyProfile(name) ? 'weekly' : 'daily';
+    var granularity = kptpIsYearlyProfile(name) ? 'yearly' : kptpIsMonthlyProfile(name) ? 'monthly' : kptpIsWeeklyProfile(name) ? 'weekly' : 'daily';
     if (subtitle) subtitle.textContent = 'Rule-based ' + granularity + ' profile · Market Profiling';
+  }
+
+  // Resolves which bundle field / wording a profile name maps to. Checked in
+  // coarsest-first order since e.g. "Trend Year (Up)" would also match a
+  // naive "contains Month"-style check if checked in the wrong order (it
+  // doesn't here, but this keeps the dispatch order intentional as more
+  // granularities are added).
+  function granularityInfo(name) {
+    if (kptpIsYearlyProfile(name)) return { key: 'yearly', periodWord: 'years', patternWord: 'month-pattern', label: 'Yearly', smallSample: true };
+    if (kptpIsMonthlyProfile(name)) return { key: 'monthly', periodWord: 'months', patternWord: 'week-pattern', label: 'Monthly', smallSample: false };
+    if (kptpIsWeeklyProfile(name)) return { key: 'weekly', periodWord: 'weeks', patternWord: 'day-pattern', label: 'Weekly', smallSample: false };
+    return { key: 'profiles', periodWord: 'days', patternWord: null, label: 'Daily', smallSample: false };
   }
 
   function renderDescription(name) {
@@ -59,13 +71,12 @@
       return;
     }
 
-    var isMonthly = kptpIsMonthlyProfile(name);
-    var isWeekly = !isMonthly && kptpIsWeeklyProfile(name);
-    var isCoarser = isMonthly || isWeekly;
-    var source = isMonthly ? d.monthly : isWeekly ? d.weekly : d.profiles;
-    var periodWord = isMonthly ? 'months' : isWeekly ? 'weeks' : 'days';
-    var patternWord = isMonthly ? 'week-pattern' : 'day-pattern';
-    var granularityLabel = isMonthly ? 'Monthly' : 'Weekly';
+    var g = granularityInfo(name);
+    var isCoarser = g.key !== 'profiles';
+    var source = isCoarser ? d[g.key] : d.profiles;
+    var periodWord = g.periodWord;
+    var patternWord = g.patternWord;
+    var granularityLabel = g.label;
 
     if (isCoarser && !source) {
       wrap.innerHTML = '<div class="kptp-section-label">' + label + ' &mdash; This Profile</div>' +
@@ -79,25 +90,29 @@
     var timing = source.extreme_timing_by_profile[name];
     var timingEntries = timing ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
     var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
-    // extreme_spread has no Daily analog -- only present on the weekly/monthly bundles.
+    // extreme_spread has no Daily analog -- only present on the weekly/monthly/yearly bundles.
     var spread = isCoarser ? source.extreme_spread_by_profile[name] : null;
     var spreadEntries = spread ? Object.keys(spread).map(function (k) { return [k, spread[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
     var topSpread = spreadEntries && spreadEntries.length ? spreadEntries[0] : null;
     var example = (!isCoarser && ex) ? ex[name] : null;
 
+    var smallSampleNote = g.smallSample
+      ? '<div class="kptp-section-note" style="margin:8px 0 0;color:var(--muted);">Built from only ' + (source.n_labeled_years != null ? source.n_labeled_years : '~25') + ' classified years &mdash; treat this as a much weaker signal than the Daily/Weekly/Monthly readings above.</div>'
+      : '';
+
     var statHtml = !dist
-      ? '<div class="kptp-stat-value" style="font-size:16px;color:var(--muted)">No ' + label + ' ' + periodWord + ' classified as this profile</div>'
+      ? '<div class="kptp-stat-value" style="font-size:16px;color:var(--muted)">No ' + label + ' ' + periodWord + ' classified as this profile</div>' + smallSampleNote
       : '<div class="kptp-stat-value">' + dist.pct + '<span class="kptp-unit">% of ' + periodWord + ' (n=' + dist.n + ')</span></div>' +
         '<div class="kptp-profile-meta" style="margin-top:8px;">' +
           (range ? ('Avg range: <b>' + range.mean + ' ' + unit + '</b><br>') : '') +
           (topTiming ? ('Most common timing: <b>' + topTiming[0].replace('_', ' ') + '</b> (' + topTiming[1] + ' ' + periodWord + ')') : '') +
           (topSpread ? ('<br>Most common ' + patternWord + ': <b>' + topSpread[0].replace('_', ' ') + '</b> (' + topSpread[1] + ' ' + periodWord + ')') : '') +
-        '</div>';
+        '</div>' + smallSampleNote;
 
     var exampleHtml;
     if (isCoarser) {
       exampleHtml = '<div class="kptp-panel-card"><div class="kptp-panel-title">' + label + ' Example</div>' +
-        '<div class="kptp-section-note" style="margin:0;">Illustrative ' + (isMonthly ? 'monthly' : 'weekly') + ' charts aren&rsquo;t built yet &mdash; only Daily profiles have a real example chart today.</div></div>';
+        '<div class="kptp-section-note" style="margin:0;">Illustrative ' + granularityLabel.toLowerCase() + ' charts aren&rsquo;t built yet &mdash; only Daily profiles have a real example chart today.</div></div>';
     } else if (example) {
       exampleHtml = '<div class="kptp-panel-card">' +
           '<div class="kptp-panel-title">' + label + ' Example &mdash; ' + example.date + '</div>' +
@@ -133,14 +148,16 @@
       return '<a class="kptp-profile-nav-pill' + active + '" href="detail.html?p=' + kptpProfileSlug(name) + suffix + '" style="--pill-accent:' + (KPTP_PROFILE_COLOR[name] || 'var(--muted)') + '">' + name + '</a>';
     }
     var names = Object.keys(KPTP_PROFILE_META);
-    var daily = names.filter(function (n) { return !kptpIsWeeklyProfile(n) && !kptpIsMonthlyProfile(n); });
+    var daily = names.filter(function (n) { return !kptpIsWeeklyProfile(n) && !kptpIsMonthlyProfile(n) && !kptpIsYearlyProfile(n); });
     var weekly = names.filter(kptpIsWeeklyProfile);
     var monthly = names.filter(kptpIsMonthlyProfile);
+    var yearly = names.filter(kptpIsYearlyProfile);
     var groupLabel = '<span style="width:100%;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:10px 0 2px;">';
     nav.innerHTML =
       groupLabel + 'Daily</span>' + daily.map(pill).join('') +
       (weekly.length ? groupLabel + 'Weekly</span>' + weekly.map(pill).join('') : '') +
-      (monthly.length ? groupLabel + 'Monthly</span>' + monthly.map(pill).join('') : '');
+      (monthly.length ? groupLabel + 'Monthly</span>' + monthly.map(pill).join('') : '') +
+      (yearly.length ? groupLabel + 'Yearly</span>' + yearly.map(pill).join('') : '');
   }
 
   function init() {
