@@ -348,6 +348,27 @@ API and a database (if/when migrating off static files) are evaluated later — 
   "Weekly Profile Taxonomy" card grid, a "Week High/Low — Day Pairing" heatmap, and full
   detail/compare-page support) lives in `seasonal-dashboard`'s `js/profiling*.js` — see that repo's
   `docs/PLATFORM_ROADMAP.md` Tier 5 for the summary, not duplicated here.
+- **Monthly Profile taxonomy implemented and dashboard-wired in one pass (2026-09-05, same day):**
+  `profile_taxonomy_monthly.py`, Tier 5's second granularity beyond Daily/Weekly. Same two-axis
+  methodology, re-derived (not assumed) at monthly granularity per spec §4.4's standing rule. Full
+  methodology and findings: spec §4.7. Headline results, validated across GBPUSD/EURUSD/XAUUSD
+  before writing any permanent code: range/closing-shape correlation is even smaller than Weekly's
+  (-0.05 to +0.13), and the same same-period-suppression / spread-apart-over-representation pattern
+  found at Weekly generalizes one level coarser to week-of-month (same-week-of-month suppressed to
+  3.5-5.6% of months vs. independence, spread-apart pairs over-represented ~1.5-2.0x); `Trend
+  Month`s reproduce the same `Late_Push`-dominant signature found independently at Daily and
+  Weekly. One deliberate design deviation, disclosed rather than silent: the rolling window is 24
+  months, not the 12 months a strict "match ~1 trailing real year" rule (Daily's/Weekly's own
+  convention) would imply — with so few monthly bars, a 12-month window makes percentile rank too
+  coarse (~8%-wide steps) for the 20/80 thresholds to mean much. Wired into `refresh_asset.py`'s
+  chain (`--skip-monthly` to opt out) and backfilled for all 14 assets. Unlike Weekly,
+  dashboard-bundle wiring (`build_dashboard_data.py --monthly-summary` → `bundle.monthly`,
+  including the full `week_of_month_pair_distribution` joint table from the start, not added in a
+  follow-up) shipped in the same pass as the taxonomy itself — the follow-up-request pattern from
+  Weekly's `weekday_pair_distribution` was already known to be needed, so it wasn't deferred here.
+  Consuming dashboard UI (card grid, heatmap, detail/compare-page support) **not yet built** —
+  pipeline output validated and reviewed at the data level; UI wiring is the next step, pending the
+  same "review before pushing further" checkpoint used for Weekly.
 
 ---
 
@@ -402,9 +423,11 @@ in that repo, per the user's explicit preference — not carried over from this 
 
 1. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
    dashboard is a historical-statistics browser until then.
-2. ~~**Weekly taxonomy**~~ — done (2026-09-05), see §5's entry and spec §4.6. Not yet surfaced on
-   any dashboard page — that's the natural next step for this item specifically, separate from
-   Monthly/Yearly (the rest of Tier 5) or Tier 5b's liquidity-sweep work.
+2. ~~**Weekly taxonomy**~~ — done and dashboard-wired (2026-09-05), see §5's entries and spec
+   §4.6. ~~**Monthly taxonomy**~~ — done and dashboard-wired at the data-bundle level (2026-09-05),
+   see §5's entry and spec §4.7; **dashboard UI (card grid, heatmap, detail/compare pages) not yet
+   built** for Monthly specifically — that's the natural next step for this item, separate from
+   Yearly (the rest of Tier 5) or Tier 5b's liquidity-sweep work.
 3. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
    tries it against a real morning routine. One known nit already flagged: "Normal Day" cells on
    the calendar are low-contrast, close in appearance to empty/no-data cells (spec §5.2).

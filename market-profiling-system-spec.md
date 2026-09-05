@@ -351,6 +351,16 @@ per §4.4's standing rule, and because they didn't transfer identically:
   (including the same-week case); Yearly's is which month. `profile_taxonomy_weekly.py`'s
   `extreme_spread` is the reference implementation for how to handle the same-period case
   correctly (as a real, explicitly-tracked outcome, not a dropped edge case) when those are built.
+  **User preference (2026-09-05), for when Daily's own pairing is eventually built (Tier 5b, not
+  yet started):** don't stop at a coarse bucket summary the way `extreme_spread` currently is —
+  build the same *full joint table* treatment `weekday_pair_distribution` (§ below) gives Weekly,
+  applied to Daily's own two pairings: **which hour had the day's high vs. which hour had the
+  low** (a 24×24 table — session-relative work already has the per-session OHLC and UTC hour
+  data this needs, see §4.5's session-defined/liquidity-sweep notes), and **which session had the
+  high vs. which had the low** (a small session×session table, e.g. Asian/London/NY, the direct
+  joint version of §4.5's "session-defined extreme profiles" idea). Same design principle as
+  Weekly's heatmap: marginal charts already exist (which hour/session tends to have the high,
+  tracked separately) — the value is in the *pairing*, not restating the marginals.
 - **Dashboard-wired (2026-09-05).** `build_dashboard_data.py` now accepts `--weekly-summary` and
   folds the full weekly summary JSON into the same per-asset bundle as `stats`/`profiles`
   (`bundle.weekly`) — `refresh_asset.py` passes it automatically unless `--skip-weekly`. A fourth
@@ -362,6 +372,50 @@ per §4.4's standing rule, and because they didn't transfer identically:
   `js/profiling-profile-detail.js`/`js/profiling-compare.js` for the consuming side (a new "Weekly
   Profile Taxonomy" card grid mirroring Daily's, a "Week High/Low — Day Pairing" heatmap, and full
   detail/compare-page support including Daily/Weekly-grouped nav).
+
+### 4.7 Monthly profile taxonomy (Tier 5, implemented 2026-09-05)
+
+`pipeline/profile_taxonomy_monthly.py` — the second step of Tier 5's coarser-than-Daily/Weekly
+direction. Same 8-profile taxonomy shape (names swap "Week"→"Month"), again re-derived rather than
+assumed to transfer, per §4.4's standing rule and §4.6's own precedent:
+
+- **Rolling window: 24 months** — a deliberate break from Daily's 252-day and Weekly's 52-week
+  convention of matching "trailing ~1 real year." Tested 12/24/36-month windows on GBPUSD/EURUSD/
+  XAUUSD: with only ~12 bars in a trailing window, a percentile rank moves in ~8%-wide steps, too
+  coarse for the 20/80 split to mean much (2-3 raw points decide "Compression" or not). 24 months
+  roughly halves that coarseness while still covering 96-98% of history across all three assets
+  (9 months burned to burn-in, since months are far rarer than weeks/days to begin with) and
+  produces a stable, non-degenerate regime split. `MIN_PERIODS = 10`.
+- **Range regime × closing shape are, if anything, more independent than Weekly's.** Correlation
+  between monthly range and closing strength: **+0.059 (GBPUSD), +0.132 (EURUSD), −0.048
+  (XAUUSD)** — smaller in magnitude than Weekly's +0.10 to +0.18, and XAUUSD is even slightly
+  negative. Two-axis design kept unchanged.
+- **Two secondary tags, direct analogs of Weekly's, discretized to week-of-month instead of
+  weekday** (reusing `stats_engine.py`'s own `((day_of_month-1)//7+1).clip(upper=5)` bucketing
+  convention exactly, so this taxonomy's week-of-month fields mean the same thing as the ones
+  already surfaced elsewhere in the dashboard):
+  - `extreme_timing` — same >=0.5-of-the-period rule as Daily/Weekly, "late" = week 3, 4 or 5 of
+    the month. `Trend Month (Up/Down)` months reproduce the same signature found at Daily and
+    Weekly independently: 84-90%+ `Late_Push` across all three test assets.
+  - `extreme_spread` — same-week-of-month vs. adjacent vs. spread-apart, bucketed `Same_Week` /
+    `Adjacent` / `Spread`. Same generalizing pattern as Weekly's `weekday_pair_distribution`: the
+    month's high and low landing in the **same week-of-month is suppressed to 3.5-5.6%** of months
+    (vs. what the marginal week-of-month distributions alone would predict) across GBPUSD/EURUSD/
+    XAUUSD; pairs spread 2+ weeks apart are consistently over-represented ~1.5-2.0x. `Trend Month`s
+    are 90%+ `Spread`, almost never `Same_Week` — same "needs room to build" story as Weekly.
+  - Both tags degrade gracefully to `Insufficient_History` for the same rare DST-boundary trading
+    days documented in §4.6 (the week-of-month itself is always defined; it's the *weekday* lookup
+    elsewhere in the pipeline that occasionally can't resolve, not relevant here — included for
+    completeness since these fields share the same `.get()`-based defensive pattern).
+- **Dashboard-wired from the start** (unlike Weekly, which was wired in a follow-up pass):
+  `build_dashboard_data.py` accepts `--monthly-summary`, folded into the bundle as `bundle.monthly`
+  — `refresh_asset.py` passes it automatically unless `--skip-monthly`. Includes the full joint
+  table from the start, `week_of_month_pair_distribution` (5×5, `low_week_of_month` ×
+  `high_week_of_month`) — the same full-table treatment Weekly's `weekday_pair_distribution` needed
+  a follow-up request to add, applied here immediately per the standing preference recorded in
+  §4.6's last bullet. **Dashboard UI (card grid, heatmap, detail/compare-page support) not yet
+  built as of this entry** — pipeline output validated end-to-end via `refresh_asset.py` on GBPUSD/
+  EURUSD/XAUUSD, awaiting the same "review before wiring further" checkpoint used for Weekly.
 
 ---
 

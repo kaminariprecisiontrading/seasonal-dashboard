@@ -1,0 +1,252 @@
+{
+  "n_labeled_months": 172,
+  "n_short_months": 2,
+  "n_insufficient_history_months": 9,
+  "profile_distribution": {
+    "Normal Month": {
+      "n": 102,
+      "pct": 59.3
+    },
+    "Volatile Month": {
+      "n": 23,
+      "pct": 13.37
+    },
+    "Volatile Reversal Month": {
+      "n": 17,
+      "pct": 9.88
+    },
+    "Compression Month": {
+      "n": 13,
+      "pct": 7.56
+    },
+    "Trend Month (Up)": {
+      "n": 13,
+      "pct": 7.56
+    },
+    "Quiet Drift Month (Up)": {
+      "n": 3,
+      "pct": 1.74
+    },
+    "Trend Month (Down)": {
+      "n": 1,
+      "pct": 0.58
+    }
+  },
+  "extreme_timing_by_profile": {
+    "Normal Month": {
+      "Late_Push": 63,
+      "Late_Resolution": 18,
+      "Fade_Risk": 11,
+      "Early_Resolution": 10
+    },
+    "Volatile Month": {
+      "Late_Push": 16,
+      "Late_Resolution": 4,
+      "Early_Resolution": 2,
+      "Fade_Risk": 1
+    },
+    "Volatile Reversal Month": {
+      "Late_Push": 13,
+      "Fade_Risk": 4
+    },
+    "Compression Month": {
+      "Late_Push": 6,
+      "Late_Resolution": 4,
+      "Fade_Risk": 3
+    },
+    "Trend Month (Up)": {
+      "Late_Push": 10,
+      "Early_Resolution": 2,
+      "Late_Resolution": 1
+    },
+    "Quiet Drift Month (Up)": {
+      "Late_Resolution": 2,
+      "Early_Resolution": 1
+    },
+    "Trend Month (Down)": {
+      "Late_Push": 1
+    }
+  },
+  "extreme_spread_by_profile": {
+    "Normal Month": {
+      "Spread": 80,
+      "Adjacent": 17,
+      "Same_Week": 5
+    },
+    "Volatile Month": {
+      "Spread": 18,
+      "Adjacent": 5
+    },
+    "Volatile Reversal Month": {
+      "Spread": 16,
+      "Adjacent": 1
+    },
+    "Compression Month": {
+      "Spread": 9,
+      "Adjacent": 3,
+      "Same_Week": 1
+    },
+    "Trend Month (Up)": {
+      "Spread": 11,
+      "Adjacent": 1,
+      "Same_Week": 1
+    },
+    "Quiet Drift Month (Up)": {
+      "Adjacent": 2,
+      "Same_Week": 1
+    },
+    "Trend Month (Down)": {
+      "Spread": 1
+    }
+  },
+  "avg_range_pips_by_profile": {
+    "Compression Month": {
+      "mean": 3162.4,
+      "median": 1411.0
+    },
+    "Normal Month": {
+      "mean": 7872.6,
+      "median": 6666.5
+    },
+    "Quiet Drift Month (Up)": {
+      "mean": 2665.7,
+      "median": 1379.0
+    },
+    "Trend Month (Down)": {
+      "mean": 23882.0,
+      "median": 23882.0
+    },
+    "Trend Month (Up)": {
+      "mean": 13623.5,
+      "median": 8149.0
+    },
+    "Volatile Month": {
+      "mean": 14142.6,
+      "median": 16311.0
+    },
+    "Volatile Reversal Month": {
+      "mean": 13993.9,
+      "median": 12667.0
+    }
+  },
+  "week_of_month_pair_distribution": {
+    "n_months": 181,
+    "same_week_n": 8,
+    "same_week_pct": 4.42,
+    "pairs": {
+      "1": {
+        "1": {
+          "n": 5,
+          "pct": 2.76
+        },
+        "2": {
+          "n": 6,
+          "pct": 3.31
+        },
+        "3": {
+          "n": 13,
+          "pct": 7.18
+        },
+        "4": {
+          "n": 28,
+          "pct": 15.47
+        },
+        "5": {
+          "n": 28,
+          "pct": 15.47
+        }
+      },
+      "2": {
+        "1": {
+          "n": 5,
+          "pct": 2.76
+        },
+        "2": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "3": {
+          "n": 2,
+          "pct": 1.1
+        },
+        "4": {
+          "n": 11,
+          "pct": 6.08
+        },
+        "5": {
+          "n": 9,
+          "pct": 4.97
+        }
+      },
+      "3": {
+        "1": {
+          "n": 13,
+          "pct": 7.18
+        },
+        "2": {
+          "n": 2,
+          "pct": 1.1
+        },
+        "3": {
+          "n": 2,
+          "pct": 1.1
+        },
+        "4": {
+          "n": 6,
+          "pct": 3.31
+        },
+        "5": {
+          "n": 7,
+          "pct": 3.87
+        }
+      },
+      "4": {
+        "1": {
+          "n": 15,
+          "pct": 8.29
+        },
+        "2": {
+          "n": 5,
+          "pct": 2.76
+        },
+        "3": {
+          "n": 6,
+          "pct": 3.31
+        },
+        "4": {
+          "n": 1,
+          "pct": 0.55
+        },
+        "5": {
+          "n": 1,
+          "pct": 0.55
+        }
+      },
+      "5": {
+        "1": {
+          "n": 6,
+          "pct": 3.31
+        },
+        "2": {
+          "n": 4,
+          "pct": 2.21
+        },
+        "3": {
+          "n": 4,
+          "pct": 2.21
+        },
+        "4": {
+          "n": 2,
+          "pct": 1.1
+        },
+        "5": {
+          "n": 0,
+          "pct": 0.0
+        }
+      }
+    }
+  },
+  "rolling_window_months": 24,
+  "min_periods_months": 10,
+  "asset": "USTECH"
+}

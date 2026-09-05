@@ -1,0 +1,264 @@
+{
+  "n_labeled_months": 97,
+  "n_short_months": 2,
+  "n_insufficient_history_months": 9,
+  "profile_distribution": {
+    "Normal Month": {
+      "n": 46,
+      "pct": 47.42
+    },
+    "Compression Month": {
+      "n": 14,
+      "pct": 14.43
+    },
+    "Volatile Month": {
+      "n": 14,
+      "pct": 14.43
+    },
+    "Volatile Reversal Month": {
+      "n": 9,
+      "pct": 9.28
+    },
+    "Trend Month (Up)": {
+      "n": 6,
+      "pct": 6.19
+    },
+    "Quiet Drift Month (Down)": {
+      "n": 5,
+      "pct": 5.15
+    },
+    "Quiet Drift Month (Up)": {
+      "n": 2,
+      "pct": 2.06
+    },
+    "Trend Month (Down)": {
+      "n": 1,
+      "pct": 1.03
+    }
+  },
+  "extreme_timing_by_profile": {
+    "Normal Month": {
+      "Late_Push": 32,
+      "Early_Resolution": 6,
+      "Late_Resolution": 4,
+      "Fade_Risk": 4
+    },
+    "Compression Month": {
+      "Late_Push": 6,
+      "Fade_Risk": 4,
+      "Early_Resolution": 3,
+      "Late_Resolution": 1
+    },
+    "Volatile Month": {
+      "Late_Push": 7,
+      "Early_Resolution": 6,
+      "Fade_Risk": 1
+    },
+    "Volatile Reversal Month": {
+      "Late_Push": 5,
+      "Early_Resolution": 2,
+      "Fade_Risk": 2
+    },
+    "Trend Month (Up)": {
+      "Late_Push": 6
+    },
+    "Quiet Drift Month (Down)": {
+      "Late_Push": 4,
+      "Late_Resolution": 1
+    },
+    "Quiet Drift Month (Up)": {
+      "Late_Push": 2
+    },
+    "Trend Month (Down)": {
+      "Late_Push": 1
+    }
+  },
+  "extreme_spread_by_profile": {
+    "Normal Month": {
+      "Spread": 35,
+      "Adjacent": 8,
+      "Same_Week": 3
+    },
+    "Compression Month": {
+      "Spread": 8,
+      "Adjacent": 6
+    },
+    "Volatile Month": {
+      "Spread": 7,
+      "Adjacent": 6,
+      "Same_Week": 1
+    },
+    "Volatile Reversal Month": {
+      "Spread": 6,
+      "Adjacent": 2,
+      "Same_Week": 1
+    },
+    "Trend Month (Up)": {
+      "Spread": 6
+    },
+    "Quiet Drift Month (Down)": {
+      "Spread": 4,
+      "Adjacent": 1
+    },
+    "Quiet Drift Month (Up)": {
+      "Spread": 2
+    },
+    "Trend Month (Down)": {
+      "Spread": 1
+    }
+  },
+  "avg_range_pips_by_profile": {
+    "Compression Month": {
+      "mean": 425331.8,
+      "median": 357555.0
+    },
+    "Normal Month": {
+      "mean": 915657.7,
+      "median": 936408.0
+    },
+    "Quiet Drift Month (Down)": {
+      "mean": 439461.6,
+      "median": 298650.0
+    },
+    "Quiet Drift Month (Up)": {
+      "mean": 324160.5,
+      "median": 324160.5
+    },
+    "Trend Month (Down)": {
+      "mean": 1371882.0,
+      "median": 1371882.0
+    },
+    "Trend Month (Up)": {
+      "mean": 1639817.0,
+      "median": 1650563.0
+    },
+    "Volatile Month": {
+      "mean": 1709518.2,
+      "median": 1711567.0
+    },
+    "Volatile Reversal Month": {
+      "mean": 1780266.4,
+      "median": 1676158.0
+    }
+  },
+  "week_of_month_pair_distribution": {
+    "n_months": 106,
+    "same_week_n": 5,
+    "same_week_pct": 4.72,
+    "pairs": {
+      "1": {
+        "1": {
+          "n": 3,
+          "pct": 2.83
+        },
+        "2": {
+          "n": 6,
+          "pct": 5.66
+        },
+        "3": {
+          "n": 10,
+          "pct": 9.43
+        },
+        "4": {
+          "n": 13,
+          "pct": 12.26
+        },
+        "5": {
+          "n": 10,
+          "pct": 9.43
+        }
+      },
+      "2": {
+        "1": {
+          "n": 7,
+          "pct": 6.6
+        },
+        "2": {
+          "n": 1,
+          "pct": 0.94
+        },
+        "3": {
+          "n": 4,
+          "pct": 3.77
+        },
+        "4": {
+          "n": 3,
+          "pct": 2.83
+        },
+        "5": {
+          "n": 5,
+          "pct": 4.72
+        }
+      },
+      "3": {
+        "1": {
+          "n": 6,
+          "pct": 5.66
+        },
+        "2": {
+          "n": 4,
+          "pct": 3.77
+        },
+        "3": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "4": {
+          "n": 1,
+          "pct": 0.94
+        },
+        "5": {
+          "n": 2,
+          "pct": 1.89
+        }
+      },
+      "4": {
+        "1": {
+          "n": 8,
+          "pct": 7.55
+        },
+        "2": {
+          "n": 9,
+          "pct": 8.49
+        },
+        "3": {
+          "n": 1,
+          "pct": 0.94
+        },
+        "4": {
+          "n": 1,
+          "pct": 0.94
+        },
+        "5": {
+          "n": 0,
+          "pct": 0.0
+        }
+      },
+      "5": {
+        "1": {
+          "n": 7,
+          "pct": 6.6
+        },
+        "2": {
+          "n": 3,
+          "pct": 2.83
+        },
+        "3": {
+          "n": 2,
+          "pct": 1.89
+        },
+        "4": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "5": {
+          "n": 0,
+          "pct": 0.0
+        }
+      }
+    }
+  },
+  "rolling_window_months": 24,
+  "min_periods_months": 10,
+  "asset": "BTCUSD"
+}

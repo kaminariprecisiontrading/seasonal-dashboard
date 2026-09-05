@@ -3026,5 +3026,274 @@ const AUDUSD_DATA = {
     "rolling_window_weeks": 52,
     "min_periods_weeks": 15,
     "asset": "AUDUSD"
+  },
+  "monthly": {
+    "n_labeled_months": 390,
+    "n_short_months": 3,
+    "n_insufficient_history_months": 9,
+    "profile_distribution": {
+      "Normal Month": {
+        "n": 229,
+        "pct": 58.72
+      },
+      "Compression Month": {
+        "n": 66,
+        "pct": 16.92
+      },
+      "Volatile Month": {
+        "n": 39,
+        "pct": 10.0
+      },
+      "Trend Month (Up)": {
+        "n": 18,
+        "pct": 4.62
+      },
+      "Trend Month (Down)": {
+        "n": 16,
+        "pct": 4.1
+      },
+      "Volatile Reversal Month": {
+        "n": 9,
+        "pct": 2.31
+      },
+      "Quiet Drift Month (Up)": {
+        "n": 8,
+        "pct": 2.05
+      },
+      "Quiet Drift Month (Down)": {
+        "n": 5,
+        "pct": 1.28
+      }
+    },
+    "extreme_timing_by_profile": {
+      "Normal Month": {
+        "Late_Push": 151,
+        "Fade_Risk": 38,
+        "Late_Resolution": 22,
+        "Early_Resolution": 18
+      },
+      "Compression Month": {
+        "Late_Push": 27,
+        "Early_Resolution": 18,
+        "Fade_Risk": 16,
+        "Late_Resolution": 5
+      },
+      "Volatile Month": {
+        "Late_Push": 29,
+        "Early_Resolution": 5,
+        "Fade_Risk": 3,
+        "Late_Resolution": 2
+      },
+      "Trend Month (Up)": {
+        "Late_Push": 17,
+        "Late_Resolution": 1
+      },
+      "Trend Month (Down)": {
+        "Late_Push": 14,
+        "Late_Resolution": 2
+      },
+      "Volatile Reversal Month": {
+        "Late_Push": 4,
+        "Fade_Risk": 4,
+        "Early_Resolution": 1
+      },
+      "Quiet Drift Month (Up)": {
+        "Late_Push": 7,
+        "Fade_Risk": 1
+      },
+      "Quiet Drift Month (Down)": {
+        "Late_Push": 4,
+        "Late_Resolution": 1
+      }
+    },
+    "extreme_spread_by_profile": {
+      "Normal Month": {
+        "Spread": 191,
+        "Adjacent": 36,
+        "Same_Week": 2
+      },
+      "Compression Month": {
+        "Spread": 35,
+        "Adjacent": 29,
+        "Same_Week": 2
+      },
+      "Volatile Month": {
+        "Spread": 32,
+        "Adjacent": 5,
+        "Same_Week": 2
+      },
+      "Trend Month (Up)": {
+        "Spread": 17,
+        "Adjacent": 1
+      },
+      "Trend Month (Down)": {
+        "Spread": 15,
+        "Adjacent": 1
+      },
+      "Volatile Reversal Month": {
+        "Spread": 6,
+        "Adjacent": 3
+      },
+      "Quiet Drift Month (Up)": {
+        "Spread": 8
+      },
+      "Quiet Drift Month (Down)": {
+        "Spread": 5
+      }
+    },
+    "avg_range_pips_by_profile": {
+      "Compression Month": {
+        "mean": 214.7,
+        "median": 204.4
+      },
+      "Normal Month": {
+        "mean": 351.5,
+        "median": 319.1
+      },
+      "Quiet Drift Month (Down)": {
+        "mean": 206.6,
+        "median": 217.0
+      },
+      "Quiet Drift Month (Up)": {
+        "mean": 207.3,
+        "median": 203.2
+      },
+      "Trend Month (Down)": {
+        "mean": 603.5,
+        "median": 549.4
+      },
+      "Trend Month (Up)": {
+        "mean": 498.0,
+        "median": 494.8
+      },
+      "Volatile Month": {
+        "mean": 553.7,
+        "median": 472.9
+      },
+      "Volatile Reversal Month": {
+        "mean": 813.5,
+        "median": 516.0
+      }
+    },
+    "week_of_month_pair_distribution": {
+      "n_months": 399,
+      "same_week_n": 6,
+      "same_week_pct": 1.5,
+      "pairs": {
+        "1": {
+          "1": {
+            "n": 3,
+            "pct": 0.75
+          },
+          "2": {
+            "n": 23,
+            "pct": 5.76
+          },
+          "3": {
+            "n": 38,
+            "pct": 9.52
+          },
+          "4": {
+            "n": 43,
+            "pct": 10.78
+          },
+          "5": {
+            "n": 50,
+            "pct": 12.53
+          }
+        },
+        "2": {
+          "1": {
+            "n": 14,
+            "pct": 3.51
+          },
+          "2": {
+            "n": 2,
+            "pct": 0.5
+          },
+          "3": {
+            "n": 5,
+            "pct": 1.25
+          },
+          "4": {
+            "n": 14,
+            "pct": 3.51
+          },
+          "5": {
+            "n": 12,
+            "pct": 3.01
+          }
+        },
+        "3": {
+          "1": {
+            "n": 38,
+            "pct": 9.52
+          },
+          "2": {
+            "n": 14,
+            "pct": 3.51
+          },
+          "3": {
+            "n": 1,
+            "pct": 0.25
+          },
+          "4": {
+            "n": 5,
+            "pct": 1.25
+          },
+          "5": {
+            "n": 2,
+            "pct": 0.5
+          }
+        },
+        "4": {
+          "1": {
+            "n": 39,
+            "pct": 9.77
+          },
+          "2": {
+            "n": 26,
+            "pct": 6.52
+          },
+          "3": {
+            "n": 9,
+            "pct": 2.26
+          },
+          "4": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "5": {
+            "n": 2,
+            "pct": 0.5
+          }
+        },
+        "5": {
+          "1": {
+            "n": 31,
+            "pct": 7.77
+          },
+          "2": {
+            "n": 13,
+            "pct": 3.26
+          },
+          "3": {
+            "n": 11,
+            "pct": 2.76
+          },
+          "4": {
+            "n": 4,
+            "pct": 1.0
+          },
+          "5": {
+            "n": 0,
+            "pct": 0.0
+          }
+        }
+      }
+    },
+    "rolling_window_months": 24,
+    "min_periods_months": 10,
+    "asset": "AUDUSD"
   }
 };

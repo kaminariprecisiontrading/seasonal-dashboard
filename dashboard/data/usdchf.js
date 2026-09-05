@@ -2996,5 +2996,275 @@ const USDCHF_DATA = {
     "rolling_window_weeks": 52,
     "min_periods_weeks": 15,
     "asset": "USDCHF"
+  },
+  "monthly": {
+    "n_labeled_months": 298,
+    "n_short_months": 2,
+    "n_insufficient_history_months": 9,
+    "profile_distribution": {
+      "Normal Month": {
+        "n": 174,
+        "pct": 58.39
+      },
+      "Compression Month": {
+        "n": 53,
+        "pct": 17.79
+      },
+      "Volatile Month": {
+        "n": 25,
+        "pct": 8.39
+      },
+      "Trend Month (Down)": {
+        "n": 17,
+        "pct": 5.7
+      },
+      "Quiet Drift Month (Down)": {
+        "n": 12,
+        "pct": 4.03
+      },
+      "Trend Month (Up)": {
+        "n": 7,
+        "pct": 2.35
+      },
+      "Volatile Reversal Month": {
+        "n": 5,
+        "pct": 1.68
+      },
+      "Quiet Drift Month (Up)": {
+        "n": 5,
+        "pct": 1.68
+      }
+    },
+    "extreme_timing_by_profile": {
+      "Normal Month": {
+        "Late_Push": 119,
+        "Fade_Risk": 25,
+        "Late_Resolution": 15,
+        "Early_Resolution": 15
+      },
+      "Compression Month": {
+        "Late_Push": 29,
+        "Early_Resolution": 9,
+        "Late_Resolution": 8,
+        "Fade_Risk": 7
+      },
+      "Volatile Month": {
+        "Late_Push": 20,
+        "Fade_Risk": 3,
+        "Late_Resolution": 2
+      },
+      "Trend Month (Down)": {
+        "Late_Push": 15,
+        "Late_Resolution": 2
+      },
+      "Quiet Drift Month (Down)": {
+        "Late_Push": 8,
+        "Late_Resolution": 2,
+        "Fade_Risk": 1,
+        "Early_Resolution": 1
+      },
+      "Trend Month (Up)": {
+        "Late_Push": 7
+      },
+      "Volatile Reversal Month": {
+        "Late_Push": 2,
+        "Early_Resolution": 2,
+        "Fade_Risk": 1
+      },
+      "Quiet Drift Month (Up)": {
+        "Late_Push": 3,
+        "Late_Resolution": 1,
+        "Early_Resolution": 1
+      }
+    },
+    "extreme_spread_by_profile": {
+      "Normal Month": {
+        "Spread": 141,
+        "Adjacent": 31,
+        "Same_Week": 2
+      },
+      "Compression Month": {
+        "Spread": 32,
+        "Adjacent": 18,
+        "Same_Week": 3
+      },
+      "Volatile Month": {
+        "Spread": 22,
+        "Adjacent": 3
+      },
+      "Trend Month (Down)": {
+        "Spread": 16,
+        "Adjacent": 1
+      },
+      "Quiet Drift Month (Down)": {
+        "Spread": 10,
+        "Adjacent": 2
+      },
+      "Trend Month (Up)": {
+        "Spread": 7
+      },
+      "Volatile Reversal Month": {
+        "Adjacent": 4,
+        "Spread": 1
+      },
+      "Quiet Drift Month (Up)": {
+        "Spread": 3,
+        "Adjacent": 2
+      }
+    },
+    "avg_range_pips_by_profile": {
+      "Compression Month": {
+        "mean": 295.9,
+        "median": 261.6
+      },
+      "Normal Month": {
+        "mean": 420.3,
+        "median": 387.6
+      },
+      "Quiet Drift Month (Down)": {
+        "mean": 286.1,
+        "median": 298.4
+      },
+      "Quiet Drift Month (Up)": {
+        "mean": 180.9,
+        "median": 173.1
+      },
+      "Trend Month (Down)": {
+        "mean": 751.1,
+        "median": 703.0
+      },
+      "Trend Month (Up)": {
+        "mean": 647.2,
+        "median": 652.0
+      },
+      "Volatile Month": {
+        "mean": 697.8,
+        "median": 639.5
+      },
+      "Volatile Reversal Month": {
+        "mean": 925.1,
+        "median": 718.1
+      }
+    },
+    "week_of_month_pair_distribution": {
+      "n_months": 307,
+      "same_week_n": 5,
+      "same_week_pct": 1.63,
+      "pairs": {
+        "1": {
+          "1": {
+            "n": 2,
+            "pct": 0.65
+          },
+          "2": {
+            "n": 11,
+            "pct": 3.58
+          },
+          "3": {
+            "n": 22,
+            "pct": 7.17
+          },
+          "4": {
+            "n": 37,
+            "pct": 12.05
+          },
+          "5": {
+            "n": 20,
+            "pct": 6.51
+          }
+        },
+        "2": {
+          "1": {
+            "n": 14,
+            "pct": 4.56
+          },
+          "2": {
+            "n": 1,
+            "pct": 0.33
+          },
+          "3": {
+            "n": 7,
+            "pct": 2.28
+          },
+          "4": {
+            "n": 13,
+            "pct": 4.23
+          },
+          "5": {
+            "n": 13,
+            "pct": 4.23
+          }
+        },
+        "3": {
+          "1": {
+            "n": 27,
+            "pct": 8.79
+          },
+          "2": {
+            "n": 11,
+            "pct": 3.58
+          },
+          "3": {
+            "n": 2,
+            "pct": 0.65
+          },
+          "4": {
+            "n": 9,
+            "pct": 2.93
+          },
+          "5": {
+            "n": 5,
+            "pct": 1.63
+          }
+        },
+        "4": {
+          "1": {
+            "n": 29,
+            "pct": 9.45
+          },
+          "2": {
+            "n": 16,
+            "pct": 5.21
+          },
+          "3": {
+            "n": 8,
+            "pct": 2.61
+          },
+          "4": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "5": {
+            "n": 0,
+            "pct": 0.0
+          }
+        },
+        "5": {
+          "1": {
+            "n": 36,
+            "pct": 11.73
+          },
+          "2": {
+            "n": 18,
+            "pct": 5.86
+          },
+          "3": {
+            "n": 5,
+            "pct": 1.63
+          },
+          "4": {
+            "n": 1,
+            "pct": 0.33
+          },
+          "5": {
+            "n": 0,
+            "pct": 0.0
+          }
+        }
+      }
+    },
+    "rolling_window_months": 24,
+    "min_periods_months": 10,
+    "asset": "USDCHF"
   }
 };

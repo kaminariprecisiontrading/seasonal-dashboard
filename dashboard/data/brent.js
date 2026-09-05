@@ -2976,5 +2976,270 @@ const BRENT_DATA = {
     "rolling_window_weeks": 52,
     "min_periods_weeks": 15,
     "asset": "BRENT"
+  },
+  "monthly": {
+    "n_labeled_months": 120,
+    "n_short_months": 3,
+    "n_insufficient_history_months": 9,
+    "profile_distribution": {
+      "Normal Month": {
+        "n": 66,
+        "pct": 55.0
+      },
+      "Compression Month": {
+        "n": 14,
+        "pct": 11.67
+      },
+      "Volatile Month": {
+        "n": 12,
+        "pct": 10.0
+      },
+      "Trend Month (Down)": {
+        "n": 8,
+        "pct": 6.67
+      },
+      "Trend Month (Up)": {
+        "n": 6,
+        "pct": 5.0
+      },
+      "Volatile Reversal Month": {
+        "n": 5,
+        "pct": 4.17
+      },
+      "Quiet Drift Month (Up)": {
+        "n": 5,
+        "pct": 4.17
+      },
+      "Quiet Drift Month (Down)": {
+        "n": 4,
+        "pct": 3.33
+      }
+    },
+    "extreme_timing_by_profile": {
+      "Normal Month": {
+        "Late_Push": 41,
+        "Early_Resolution": 13,
+        "Fade_Risk": 7,
+        "Late_Resolution": 5
+      },
+      "Compression Month": {
+        "Early_Resolution": 6,
+        "Fade_Risk": 4,
+        "Late_Push": 4
+      },
+      "Volatile Month": {
+        "Late_Push": 7,
+        "Early_Resolution": 3,
+        "Fade_Risk": 2
+      },
+      "Trend Month (Down)": {
+        "Late_Push": 7,
+        "Late_Resolution": 1
+      },
+      "Trend Month (Up)": {
+        "Late_Push": 5,
+        "Late_Resolution": 1
+      },
+      "Volatile Reversal Month": {
+        "Late_Push": 3,
+        "Fade_Risk": 1,
+        "Early_Resolution": 1
+      },
+      "Quiet Drift Month (Up)": {
+        "Late_Push": 4,
+        "Fade_Risk": 1
+      },
+      "Quiet Drift Month (Down)": {
+        "Late_Push": 3,
+        "Early_Resolution": 1
+      }
+    },
+    "extreme_spread_by_profile": {
+      "Normal Month": {
+        "Spread": 49,
+        "Adjacent": 12,
+        "Same_Week": 5
+      },
+      "Compression Month": {
+        "Adjacent": 8,
+        "Spread": 6
+      },
+      "Volatile Month": {
+        "Spread": 8,
+        "Adjacent": 4
+      },
+      "Trend Month (Down)": {
+        "Spread": 8
+      },
+      "Trend Month (Up)": {
+        "Spread": 6
+      },
+      "Volatile Reversal Month": {
+        "Spread": 3,
+        "Adjacent": 2
+      },
+      "Quiet Drift Month (Up)": {
+        "Spread": 4,
+        "Adjacent": 1
+      },
+      "Quiet Drift Month (Down)": {
+        "Spread": 3,
+        "Same_Week": 1
+      }
+    },
+    "avg_range_pips_by_profile": {
+      "Compression Month": {
+        "mean": 486.1,
+        "median": 462.0
+      },
+      "Normal Month": {
+        "mean": 873.3,
+        "median": 778.0
+      },
+      "Quiet Drift Month (Down)": {
+        "mean": 658.8,
+        "median": 622.0
+      },
+      "Quiet Drift Month (Up)": {
+        "mean": 576.0,
+        "median": 624.0
+      },
+      "Trend Month (Down)": {
+        "mean": 2021.4,
+        "median": 1731.5
+      },
+      "Trend Month (Up)": {
+        "mean": 1589.5,
+        "median": 1384.0
+      },
+      "Volatile Month": {
+        "mean": 2023.4,
+        "median": 1674.0
+      },
+      "Volatile Reversal Month": {
+        "mean": 1740.6,
+        "median": 1958.0
+      }
+    },
+    "week_of_month_pair_distribution": {
+      "n_months": 129,
+      "same_week_n": 6,
+      "same_week_pct": 4.65,
+      "pairs": {
+        "1": {
+          "1": {
+            "n": 5,
+            "pct": 3.88
+          },
+          "2": {
+            "n": 7,
+            "pct": 5.43
+          },
+          "3": {
+            "n": 8,
+            "pct": 6.2
+          },
+          "4": {
+            "n": 25,
+            "pct": 19.38
+          },
+          "5": {
+            "n": 15,
+            "pct": 11.63
+          }
+        },
+        "2": {
+          "1": {
+            "n": 12,
+            "pct": 9.3
+          },
+          "2": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "3": {
+            "n": 3,
+            "pct": 2.33
+          },
+          "4": {
+            "n": 3,
+            "pct": 2.33
+          },
+          "5": {
+            "n": 4,
+            "pct": 3.1
+          }
+        },
+        "3": {
+          "1": {
+            "n": 10,
+            "pct": 7.75
+          },
+          "2": {
+            "n": 4,
+            "pct": 3.1
+          },
+          "3": {
+            "n": 1,
+            "pct": 0.78
+          },
+          "4": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "5": {
+            "n": 3,
+            "pct": 2.33
+          }
+        },
+        "4": {
+          "1": {
+            "n": 9,
+            "pct": 6.98
+          },
+          "2": {
+            "n": 8,
+            "pct": 6.2
+          },
+          "3": {
+            "n": 1,
+            "pct": 0.78
+          },
+          "4": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "5": {
+            "n": 0,
+            "pct": 0.0
+          }
+        },
+        "5": {
+          "1": {
+            "n": 6,
+            "pct": 4.65
+          },
+          "2": {
+            "n": 3,
+            "pct": 2.33
+          },
+          "3": {
+            "n": 2,
+            "pct": 1.55
+          },
+          "4": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "5": {
+            "n": 0,
+            "pct": 0.0
+          }
+        }
+      }
+    },
+    "rolling_window_months": 24,
+    "min_periods_months": 10,
+    "asset": "BRENT"
   }
 };
