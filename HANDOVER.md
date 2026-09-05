@@ -70,7 +70,8 @@ first step in Claude Code.
 | `market-profiling-system-spec.md` | Canonical project spec: goals, architecture, methodology, phased roadmap. **Source of truth for all design decisions.** |
 | `clean_mt5_csv.py` | Phase 1 pipeline: raw MT5 M1 CSV → UTC-normalized, cleaned daily OHLC CSV. Reusable for future CSV uploads/assets. Auto-detects a per-asset "daily-only" historical era (single EOD bar/day, before the broker's M1 feed began) and flags it `is_daily_only` rather than misclassifying it as `is_data_gap` — see §5. |
 | `concat_raw_csv.py` | Merges a new raw MT5 export into an asset's `<ASSET>_M1_full.csv`, auto-detecting append/prepend/both from the timestamp ranges (needed because MT5's Export Bars has a rolling ~20-year lookback cap, so a single from-scratch full-history export isn't always possible) — see §5. |
-| `refresh_asset.py` | One-command runner for the full 6-stage chain (`clean_mt5_csv.py` → `profile_taxonomy.py` → `stats_engine.py` → `build_dashboard_data.py` → `export_profile_examples.py` → `export_calendar_data.py`) for one asset. Looks up pip size from its own per-asset registry. Replaces manually invoking all 6 scripts in order — see §5. |
+| `refresh_asset.py` | One-command runner for the full 6-stage chain (`clean_mt5_csv.py` → `profile_taxonomy.py` → `stats_engine.py` → `build_dashboard_data.py` → `export_profile_examples.py` → `export_calendar_data.py`) for one asset. Looks up pip size and unit label from its own per-asset registry. Replaces manually invoking all 6 scripts in order — see §5. |
+| `gen_seasonal_signal.py` | Separate, optional stage — derives a Moore-Research-*shaped* seasonal signal (`MONTHS[]`-style, 12 months × 4 weeks) from a cleaned daily CSV, for assets MRCI doesn't cover (currently BTCUSD only). Not part of `refresh_asset.py`'s chain (different consumer — `seasonal-dashboard`'s Seasonals tab, not Profiling). See §5. |
 | `<asset>_daily_clean.csv` | Cleaned daily output, one per asset, full available history (back to 1993 for most majors) — see §5's asset roster. File naming deliberately drops the date-range suffix these files originally had (`_2000_2019` etc.): the range keeps growing with every refresh, so a baked-in suffix would immediately go stale. Freshness is tracked via each output's own `as_of` field instead. |
 | `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, and weekly/monthly aggregates. |
 | `<asset>_stats.json` | Stats engine output, one per asset — everything the dashboard (Phase 3) will consume. |
@@ -258,6 +259,24 @@ API and a database (if/when migrating off static files) are evaluated later — 
   `stats_engine.py`, and `export_calendar_data.py` all key exclusively off `is_data_gap`, so
   narrowing that flag upstream was sufficient — the one genuine gap was `export_profile_examples.py`
   needing to exclude `is_daily_only` days from exemplar candidacy (see its §3 row).
+- **Per-asset unit label added (2026-09-05):** `stats_engine.py` now accepts `--unit` and includes
+  it in its output JSON (default `"pips"`, backward compatible). `refresh_asset.py`'s
+  `PIP_REGISTRY` became `ASSET_REGISTRY`, pairing each asset's pip size with a unit label — "pips"
+  for actual currency pairs, "points" for everything else (metals, energies, indices, crypto).
+  Fixed a real display bug on `seasonal-dashboard`'s new non-FX Profiling pages ("ADR 20: 427.8
+  pips" on the Dow Jones page, which should say "points").
+- **`pipeline/gen_seasonal_signal.py` added (2026-09-05):** derives a Moore-Research-*shaped*
+  seasonal signal (12 months × 4 weeks, `bull`/`bear`/`chop` per bucket) from a cleaned daily CSV,
+  for assets MRCI doesn't cover — currently just BTCUSD. Deliberately replicates
+  `seasonal-dashboard/js/backtest.js`'s exact week-of-month bucketing (day-of-month buckets, not
+  ISO weeks) and Raw Price Tendency thresholds (60%/40%), so the derived signal means the same
+  thing as that site's own validation tooling instead of inventing a new methodology. Star
+  conviction is capped globally, not per-bucket — a ~9-year sample gives almost every bucket the
+  same small n (one observation per year), so there's no meaningful per-cell variance to penalize
+  the way there would be for a 40-year Moore Research asset; the honest fix is a ceiling on the
+  whole asset (never 5 stars), not a per-cell heuristic. Bridged into `seasonal-dashboard` by its
+  own new `scripts/sync_derived_seasonal.js` — see that repo's `docs/CHANGELOG.md` v1.11 and
+  `docs/DATA_DICTIONARY.md`'s "Statistically-derived assets" section for the consuming side.
 
 ---
 
