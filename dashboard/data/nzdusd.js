@@ -1443,12 +1443,8 @@ const NZDUSD_DATA = {
       },
       "session_distribution": {
         "Asian": {
-          "n": 1581,
-          "pct": 23.8
-        },
-        "Other": {
-          "n": 1553,
-          "pct": 23.3
+          "n": 3134,
+          "pct": 47.1
         },
         "London_NY_Overlap": {
           "n": 1306,
@@ -2476,13 +2472,9 @@ const NZDUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 2010,
-          "pct": 30.2
-        },
         "Asian": {
-          "n": 1462,
-          "pct": 22.0
+          "n": 3472,
+          "pct": 52.2
         },
         "New_York": {
           "n": 1221,

@@ -277,6 +277,37 @@ API and a database (if/when migrating off static files) are evaluated later — 
   whole asset (never 5 stars), not a per-cell heuristic. Bridged into `seasonal-dashboard` by its
   own new `scripts/sync_derived_seasonal.js` — see that repo's `docs/CHANGELOG.md` v1.11 and
   `docs/DATA_DICTIONARY.md`'s "Statistically-derived assets" section for the consuming side.
+- **Per-session OHLC added (2026-09-05), first step toward liquidity-sweep profiles:**
+  `clean_mt5_csv.py`'s `add_session_ohlc()` computes each named session's own open/high/low/close
+  per trading day (`asian_*`/`london_*`/`ny_*` columns). Deliberately uses each session's *full*
+  native hour window, including hours shared with an adjacent session — grouping by
+  `session_tag()`'s own mutually-exclusive labels instead would understate a session's real range
+  by excluding its overlap hours, and the whole point of this data is to know each session's true
+  extremes so a later session's sweep of them can be detected.
+
+  Confirmed empirically on GBPUSD that the *original* three windows (Asian 23:00-08:00, London
+  07:00-16:00, NY 12:00-21:00 UTC) plus their overlaps didn't cover the full 24 hours — a real
+  ~2-hour gap at 21:00-23:00 UTC with no session OHLC at all. User asked for full 24-hour coverage
+  (same day, once the gap was reported) — fixed by widening Asian's start to **21:00 UTC**, the
+  conventional Sydney-open time several retail FX session models already use as the start of the
+  broader "Asian/Pacific" session, not an arbitrary stretch. Asian ∪ London ∪ NY now spans all 24
+  hours with no gap. `session_tag()` and `add_session_ohlc()` now both derive from the same three
+  shared boundary functions (`_in_asian`/`_in_london`/`_in_ny`) instead of duplicating the hour
+  logic, so they can't drift apart again.
+
+  **This change has real, visible effect on already-shipped features**, not just new unused
+  columns — `session_tag()`'s output feeds `stats_engine.py`'s time-of-extreme circular stats (the
+  Profiling tab's session-colored heatmap, already live) and `export_calendar_data.py`'s per-day
+  session labels (the calendar feature, already live). A day whose high/low previously landed in
+  the 21:00-23:00 gap (rendered with no session color at all) now correctly shows as Asian. Ran the
+  full 6-stage `refresh_asset.py` chain for all 14 assets, not just `clean_mt5_csv.py` alone, to
+  keep every downstream consumer in sync with the new boundary — this couldn't be staged as a
+  clean-only change the way the initial version could.
+
+  See `market-profiling-system-spec.md` §2.3/§4.5 for the full writeup and the sweep-profile design
+  this unblocks. No downstream stage consumes the new session-OHLC *columns* themselves yet
+  (deliberately staged step-by-step, not built ahead of the actual sweep-detection logic) — only
+  the boundary widening itself was live-visible, via the pre-existing `session_tag()` consumers.
 
 ---
 

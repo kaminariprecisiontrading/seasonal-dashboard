@@ -1442,9 +1442,9 @@ const US30_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 1763,
-          "pct": 60.2
+        "Asian": {
+          "n": 1919,
+          "pct": 65.6
         },
         "New_York": {
           "n": 475,
@@ -1453,10 +1453,6 @@ const US30_DATA = {
         "London_NY_Overlap": {
           "n": 394,
           "pct": 13.5
-        },
-        "Asian": {
-          "n": 156,
-          "pct": 5.3
         },
         "London": {
           "n": 106,
@@ -2476,9 +2472,9 @@ const US30_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 1764,
-          "pct": 60.3
+        "Asian": {
+          "n": 1954,
+          "pct": 66.8
         },
         "New_York": {
           "n": 451,
@@ -2487,10 +2483,6 @@ const US30_DATA = {
         "London_NY_Overlap": {
           "n": 363,
           "pct": 12.4
-        },
-        "Asian": {
-          "n": 190,
-          "pct": 6.5
         },
         "London": {
           "n": 109,

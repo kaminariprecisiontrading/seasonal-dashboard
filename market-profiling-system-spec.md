@@ -62,6 +62,7 @@ the file format itself gives no indication.
 | `n_bars` | Raw M1 bar count aggregated into this day — the basis for the two flags below |
 | `is_data_gap` | Boolean — `n_bars` at/below threshold *and* within the M1-coverage era (real feed outage/artifact). Range set to NaN, excluded from everything. |
 | `is_daily_only` | Boolean — `n_bars` at/below threshold but *before* the broker's M1 feed began (a genuine single EOD bar, not an artifact). Range/OHLC trusted and included everywhere that doesn't need intraday granularity (period highs/lows, range-distribution stats); excluded only where real intrabar timing is required (`extreme_timing` tag, candlestick chart exemplars). Auto-detected per asset, not a hardcoded date — see HANDOVER.md §5. |
+| `asian_open/high/low/close`, `london_open/high/low/close`, `ny_open/high/low/close` | Each named session's *own* OHLC for that trading day — added for the liquidity-sweep profile family (§4.5.3). Uses each session's full native hour window (Asian **21:00**–08:00 UTC, London 07:00–16:00 UTC, NY 12:00–21:00 UTC — same boundaries as `session_tag()`), including hours shared with an adjacent session, so a session's own high/low isn't understated by excluding its overlap hours. Deliberately **not** the same thing as grouping by `session_tag()`'s mutually-exclusive labels (Asian/London/New_York/two overlaps) — that labeling answers "which single bucket did this specific extreme's timestamp fall into," this answers "what was session X's own true range." NaN when a day has no bars in that window (a data-gap day, or an `is_daily_only`-era day whose single bar falls outside it). **Full 24-hour coverage, no gap:** originally Asian started at 23:00 UTC, leaving a ~2-hour blind spot (21:00–23:00 UTC, between NY's close and Asian's open) covered by no session at all — confirmed empirically on GBPUSD, every case where no session's range covered the day's overall high/low traced to exactly this window. Fixed by widening Asian's start to 21:00 UTC — the conventional Sydney-open time many retail FX session models already use as the start of the broader "Asian/Pacific" session, not an arbitrary stretch — which closes the gap exactly (Asian ∪ London ∪ NY now spans all 24 hours). `session_tag()` and `add_session_ohlc()` both now derive from the same three shared boundary functions (`_in_asian`/`_in_london`/`_in_ny`) so they can't drift apart again. |
 
 Retrospective flags and "so-far" running values are kept as **separate columns** — they serve different
 purposes (backtesting/labeling vs. live dashboard state) and conflating them was identified as a
@@ -260,6 +261,50 @@ until that layer has real data to join against for the general case. Naming judg
 macro-calendar shorthand like "NFP" is common financial vocabulary, not proprietary trading-education
 jargon (like ICT terms) — the naming rule in §4.4.5 is about avoiding a specific school-of-trading's
 invented terminology, not about avoiding all abbreviations a trader would already recognize.
+
+**Liquidity-sweep / false-move profiles (added 2026-09-05).** A finer-grained, cross-session
+sibling to the session-defined family above: not "which session contained the day's extreme" but
+"did an *earlier* session's own high/low get pierced by a small margin during a *later* session,
+then reject and reverse — with price subsequently moving further/more decisively in the reversed
+direction than on non-sweep days." E.g. the Asian session's own high is swept during London, then
+London (or NY) sells off meaningfully below it. Motivated by wanting a statistical basis for
+day-trading setups keyed off these fakeout-then-follow-through moments, not just where the day's
+extreme statistically tends to land.
+
+Design decided so far, each still needing empirical validation before becoming a real profile
+(same standing rule as §4.4):
+- **Reference levels**: each named session's *own* high/low (§2.3's new `asian_high`/`london_low`/
+  etc. columns), not the whole day's high/low — that data now exists in the cleaned daily CSV.
+- **Sweep threshold scales with the asset and the specific session**, not a fixed pip/point value
+  — a fixed "5 pips" means something very different for EURUSD (ADR ~50-100 pips) than for BTCUSD
+  or gold, and even within one asset, the Asian session's typical range is much smaller than
+  London's or NY's. Planned as a ratio of that **session's own average range** (an "Average
+  Session Range," analogous to the existing ADR), not the whole day's ADR. The exact ratio
+  (candidate range so far: roughly 3-15% of that session's ASR) is deliberately not fixed yet —
+  to be derived from the real distribution once enough sweep events can be measured, the same way
+  Compression/Expansion's p20/p80 thresholds were derived empirically rather than assumed.
+- **Reversal rule**: a pierce only counts as a genuine sweep if price closes back on the other
+  side of the swept level by the end of whichever session did the piercing — a coarse first rule,
+  intentionally not more precise than that yet.
+- **Build order (explicitly step-by-step, not a single leap):** (1) the session-OHLC columns
+  above — done; (2) a one-off, informal descriptive study on an asset with full history (GBPUSD or
+  EURUSD) measuring, across a few candidate thresholds, how often a sweep-by-that-definition
+  happens and what price does afterward vs. non-sweep days — purely to establish whether a real,
+  non-noise effect exists at all; (3) only if that shows something real, a formal profile/taxonomy
+  addition with thresholds derived from step 2's data. Not proposed to build steps 2-3 until
+  explicitly asked.
+- **Session-overlap activity, a related but separate question**: independent of whether a sweep
+  happened, is there a statistically real activity/volatility signature specifically at session
+  *overlap* windows (Asian-London, London-NY) worth designing setups around? Noted alongside sweeps
+  since they're likely to interact (a sweep is plausibly more likely to resolve right as liquidity
+  shifts at an overlap boundary), but is its own question, not assumed to be the same finding.
+- **Frankfurt as a distinct session boundary**: not yet supported — `session_tag()`/the new
+  per-session OHLC only know Asian/London/New York. Needed before a "Frankfurt open" profile
+  specifically (as opposed to "London," which currently starts at 07:00 UTC, already close to
+  Frankfurt's own open) can be built.
+
+Tracked in `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` as **Tier 5b** — a sibling to Tier 5's
+coarser (Daily→Weekly→Monthly→Yearly) direction, going finer (sub-daily/session-relative) instead.
 
 ---
 

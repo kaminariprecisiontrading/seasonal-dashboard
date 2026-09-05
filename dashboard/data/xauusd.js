@@ -1442,17 +1442,13 @@ const XAUUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 4867,
-          "pct": 66.4
+        "Asian": {
+          "n": 5577,
+          "pct": 76.1
         },
         "London_NY_Overlap": {
           "n": 770,
           "pct": 10.5
-        },
-        "Asian": {
-          "n": 710,
-          "pct": 9.7
         },
         "New_York": {
           "n": 630,
@@ -2476,13 +2472,9 @@ const XAUUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 4876,
-          "pct": 66.6
-        },
         "Asian": {
-          "n": 797,
-          "pct": 10.9
+          "n": 5673,
+          "pct": 77.4
         },
         "London_NY_Overlap": {
           "n": 776,

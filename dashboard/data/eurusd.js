@@ -1442,17 +1442,13 @@ const EURUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 2256,
-          "pct": 25.8
+        "Asian": {
+          "n": 3957,
+          "pct": 45.3
         },
         "London_NY_Overlap": {
           "n": 1836,
           "pct": 21.0
-        },
-        "Asian": {
-          "n": 1701,
-          "pct": 19.5
         },
         "New_York": {
           "n": 1429,
@@ -2476,17 +2472,13 @@ const EURUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 2395,
-          "pct": 27.4
+        "Asian": {
+          "n": 3930,
+          "pct": 45.0
         },
         "London_NY_Overlap": {
           "n": 1997,
           "pct": 22.9
-        },
-        "Asian": {
-          "n": 1535,
-          "pct": 17.6
         },
         "New_York": {
           "n": 1412,

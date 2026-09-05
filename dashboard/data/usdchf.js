@@ -1442,13 +1442,13 @@ const USDCHF_DATA = {
         }
       },
       "session_distribution": {
+        "Asian": {
+          "n": 2024,
+          "pct": 30.4
+        },
         "London_NY_Overlap": {
           "n": 1854,
           "pct": 27.9
-        },
-        "Asian": {
-          "n": 1446,
-          "pct": 21.7
         },
         "New_York": {
           "n": 1318,
@@ -1457,10 +1457,6 @@ const USDCHF_DATA = {
         "London": {
           "n": 1064,
           "pct": 16.0
-        },
-        "Other": {
-          "n": 578,
-          "pct": 8.7
         },
         "Asian_London_Overlap": {
           "n": 392,
@@ -2476,6 +2472,10 @@ const USDCHF_DATA = {
         }
       },
       "session_distribution": {
+        "Asian": {
+          "n": 2361,
+          "pct": 35.5
+        },
         "London_NY_Overlap": {
           "n": 1677,
           "pct": 25.2
@@ -2483,14 +2483,6 @@ const USDCHF_DATA = {
         "New_York": {
           "n": 1318,
           "pct": 19.8
-        },
-        "Other": {
-          "n": 1208,
-          "pct": 18.2
-        },
-        "Asian": {
-          "n": 1153,
-          "pct": 17.3
         },
         "London": {
           "n": 956,

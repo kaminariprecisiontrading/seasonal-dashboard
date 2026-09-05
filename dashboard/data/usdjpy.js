@@ -1442,13 +1442,9 @@ const USDJPY_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 2653,
-          "pct": 30.4
-        },
         "Asian": {
-          "n": 2057,
-          "pct": 23.5
+          "n": 4710,
+          "pct": 53.9
         },
         "London_NY_Overlap": {
           "n": 1544,
@@ -2476,13 +2472,9 @@ const USDJPY_DATA = {
         }
       },
       "session_distribution": {
-        "Other": {
-          "n": 2735,
-          "pct": 31.3
-        },
         "Asian": {
-          "n": 2005,
-          "pct": 22.9
+          "n": 4740,
+          "pct": 54.2
         },
         "London_NY_Overlap": {
           "n": 1605,

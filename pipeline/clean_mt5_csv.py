@@ -49,12 +49,44 @@ PIP_SIZE = {
 }
 
 
+# Single source of truth for session hour boundaries (UTC, fixed year-round --
+# an approximation, not DST-aware). Used by both session_tag() below (mutually
+# exclusive labeling of a single timestamp) and add_session_ohlc() (each
+# session's own full OHLC, including overlap hours) so the two can't drift
+# apart into disagreeing about what "Asian"/"London"/"NY" mean.
+#
+# Asian starts at 21:00 UTC, not 23:00 -- widened from the original boundary
+# specifically to close a real gap: 23:00/07:00/12:00-21:00 windows plus their
+# overlaps left 21:00-23:00 UTC covered by no session at all (confirmed
+# empirically: every case where a day's overall high/low wasn't reflected in
+# any of the three session-OHLC columns traced to exactly this window). 21:00
+# UTC is also the conventional Sydney-open time many retail FX session models
+# already use as the start of the broader "Asian/Pacific" session, so this
+# isn't an arbitrary stretch -- it's a real, commonly-used boundary the
+# original definition simply didn't use. With this widening, Asian + London +
+# NY covers all 24 hours with no gap.
+def _in_asian(h):
+    # | not "or" -- must vectorize over a pandas Series (add_session_ohlc's
+    # bulk hour column) as well as work on a plain scalar float (session_tag).
+    return (h >= 21.0) | (h < 8.0)
+
+
+def _in_london(h):
+    # chained comparison (7.0 <= h < 16.0) implicitly uses "and", which
+    # breaks on a pandas Series -- write it out explicitly with "&" instead.
+    return (h >= 7.0) & (h < 16.0)
+
+
+def _in_ny(h):
+    return (h >= 12.0) & (h < 21.0)
+
+
 def session_tag(utc_dt: pd.Timestamp) -> str:
     """Approximate standard FX session tag from a UTC timestamp's time-of-day."""
     h = utc_dt.hour + utc_dt.minute / 60.0
-    in_asian = (h >= 23.0) or (h < 8.0)
-    in_london = 7.0 <= h < 16.0
-    in_ny = 12.0 <= h < 21.0
+    in_asian = _in_asian(h)
+    in_london = _in_london(h)
+    in_ny = _in_ny(h)
     if in_london and in_ny:
         return "London_NY_Overlap"
     if in_asian and in_london:
@@ -65,7 +97,7 @@ def session_tag(utc_dt: pd.Timestamp) -> str:
         return "New_York"
     if in_asian:
         return "Asian"
-    return "Other"
+    return "Other"  # unreachable now that Asian+London+NY cover all 24 hours; kept as a safety fallback
 
 
 def load_raw(path: str) -> pd.DataFrame:
@@ -146,6 +178,54 @@ def detect_daily_only_cutoff(daily: pd.DataFrame, min_bars: int,
     if len(candidates) == 0:
         return None
     return daily.loc[candidates[0], "date"]
+
+
+def add_session_ohlc(df: pd.DataFrame, daily: pd.DataFrame) -> pd.DataFrame:
+    """Adds each session's own open/high/low/close as separate columns per
+    trading day -- distinct from session_tag()'s mutually-exclusive labels
+    (used elsewhere to tag which single bucket a specific extreme's time
+    falls into). A session's own OHLC needs its *full* native hour window,
+    including hours it shares with an adjacent session (e.g. London's own
+    high/low must include the London/NY overlap hours) -- excluding those
+    hours would understate that session's real traded range. This data
+    exists to answer "was session X's own high/low pierced during session
+    Y," which needs each session's true extremes, not a mutually-exclusive
+    slice of them, so overlap-hour bars deliberately count toward both
+    sessions they belong to.
+
+    A day with no bars in a given session's window (a data gap, or the old
+    daily-only era's single EOD bar landing outside that window) leaves that
+    session's four columns as NaN -- the honest result of genuinely having
+    no intraday data for that window, same as elsewhere in this pipeline.
+    """
+    t0 = time.time()
+    hour = df["utc_dt"].dt.hour + df["utc_dt"].dt.minute / 60.0
+    windows = {
+        "asian": _in_asian(hour),
+        "london": _in_london(hour),
+        "ny": _in_ny(hour),
+    }
+
+    for name, mask in windows.items():
+        sub = df[mask]
+        if sub.empty:
+            for col in ["open", "high", "low", "close"]:
+                daily[f"{name}_{col}"] = np.nan
+            continue
+        g = sub.groupby("trading_day", sort=True)
+        open_idx = g["utc_dt"].idxmin()
+        close_idx = g["utc_dt"].idxmax()
+        sess = pd.DataFrame({
+            "date": pd.to_datetime(list(g.groups.keys())),
+            f"{name}_open": sub.loc[open_idx, "open"].values,
+            f"{name}_high": g["high"].max().values,
+            f"{name}_low": g["low"].min().values,
+            f"{name}_close": sub.loc[close_idx, "close"].values,
+        })
+        daily = daily.merge(sess, on="date", how="left")
+
+    print(f"  session OHLC computed in {time.time()-t0:.1f}s", file=sys.stderr)
+    return daily
 
 
 def aggregate_daily(df: pd.DataFrame, asset: str, pip: float = None) -> pd.DataFrame:
@@ -264,12 +344,16 @@ def main():
     df = load_raw(args.input_csv)
     df = to_utc(df)
     daily = aggregate_daily(df, args.asset, args.pip)
+    daily = add_session_ohlc(df, daily)
     daily = add_period_flags(daily)
 
     col_order = [
         "date", "open", "high", "low", "close", "daily_range_pips",
         "open_time", "high_time", "low_time", "close_time",
         "open_time_session", "high_time_session", "low_time_session", "close_time_session",
+        "asian_open", "asian_high", "asian_low", "asian_close",
+        "london_open", "london_high", "london_low", "london_close",
+        "ny_open", "ny_high", "ny_low", "ny_close",
         "is_week_high", "is_week_low", "week_high_so_far", "week_low_so_far",
         "is_month_high", "is_month_low", "month_high_so_far", "month_low_so_far",
         "is_year_high", "is_year_low", "year_high_so_far", "year_low_so_far",
