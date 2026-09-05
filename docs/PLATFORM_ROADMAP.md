@@ -212,10 +212,14 @@ without a Seasonals view just because they lack MT5 coverage.
 
 ### Where this eventually surfaces in the UI
 
-Not designed in detail yet — flagged so a future session has the shape of the problem, not to
-lock in an implementation:
-- A granularity selector on the Profiling tab (or a new dedicated view), similar in spirit to the
-  existing lookback-window dial — Daily / Weekly / Monthly / Yearly.
+- **Granularity selector: done (2026-09-05).** Underline-tab switcher (`.kptp-gran-switch`,
+  visually matching the page's own primary tab bar) — Daily / Weekly / Monthly / Yearly — added to
+  the Profiling tab after user feedback that scrolling through all four granularities stacked on
+  one page took too long. Content that used to stack (Profile Taxonomy → Range Distribution →
+  Extreme Timing, once per granularity) now lives in one panel per granularity, one visible at a
+  time; the lookback-window dial stays a single global control (not duplicated per panel) and
+  hides itself entirely on the Yearly tab, where it has no effect. See `js/profiling.js`'s
+  `switchGranularity()`/`buildGranularitySwitch()`.
 - The Seasonals tab's own accordion likely stays the primary *reading* surface for the yearly
   story even after this ships — the change is in what generates its underlying signal (rule-based
   statistics vs. chart-image interpretation), not necessarily its presentation.

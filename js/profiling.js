@@ -178,105 +178,155 @@
 
     '<div class="kptp-stat-grid" id="kptp-stat-grid"></div>' +
 
-    '<div class="kptp-section-label">Profile Taxonomy</div>' +
-    '<div class="kptp-section-note" id="kptp-profile-summary-note">Rule-based daily profile classification, built from closing strength' + kptpGlossaryIcon('closing_strength') + ' and range regime. Click any card for the full rule, why it&rsquo;s named that way, and a real illustrative chart.</div>' +
-    '<div class="kptp-profile-grid" id="kptp-profile-grid"></div>' +
-
-    '<div class="kptp-section-label" id="kptp-weekly-profile-label" hidden>Weekly Profile Taxonomy</div>' +
-    '<div class="kptp-section-note" id="kptp-weekly-profile-summary-note" hidden></div>' +
-    '<div class="kptp-profile-grid" id="kptp-weekly-profile-grid" hidden></div>' +
-
-    '<div class="kptp-section-label" id="kptp-monthly-profile-label" hidden>Monthly Profile Taxonomy</div>' +
-    '<div class="kptp-section-note" id="kptp-monthly-profile-summary-note" hidden></div>' +
-    '<div class="kptp-profile-grid" id="kptp-monthly-profile-grid" hidden></div>' +
-
-    '<div class="kptp-section-label" id="kptp-yearly-profile-label" hidden>Yearly Profile Taxonomy</div>' +
-    '<div class="kptp-section-note" id="kptp-yearly-profile-summary-note" hidden></div>' +
-    '<div class="kptp-profile-grid" id="kptp-yearly-profile-grid" hidden></div>' +
-
-    '<div class="kptp-section-label">Range Distribution</div>' +
-    '<div class="kptp-section-note">Daily/weekly/monthly/yearly range percentile' + kptpGlossaryIcon('percentile') + ' strips (p05&ndash;p95), IQR' + kptpGlossaryIcon('iqr') + ' boxed, median' + kptpGlossaryIcon('median') + ' marked. Dashed lines mark the compression' + kptpGlossaryIcon('compression') + ' (p20) / expansion' + kptpGlossaryIcon('expansion') + ' (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window' + kptpGlossaryIcon('lookback_window') + ' affects the daily/weekly/monthly charts &mdash; not the yearly chart, which has only a small sample and always shows full history.</div>' +
-    '<div class="kptp-dial" id="kptp-dial"></div>' +
-
-    '<div class="kptp-panel-card">' +
-      '<div class="kptp-panel-title">Daily Range</div>' +
-      '<div class="kptp-range-strip-wrap"><div id="kptp-range-daily"></div></div>' +
-      '<div class="kptp-range-strip-caption" id="kptp-range-daily-caption"></div>' +
-      '<div class="kptp-mode-note" id="kptp-range-daily-mode-note"></div>' +
+    // Granularity switcher -- the primary navigation for everything below.
+    // Added 2026-09-05 after user feedback that scrolling through all four
+    // granularities stacked on one page took too long; content that used to
+    // stack (Profile Taxonomy -> Range Distribution -> Extreme Timing, once
+    // per granularity) now lives in one panel per granularity, one visible
+    // at a time. See PLATFORM_ROADMAP.md's earlier "granularity selector,
+    // similar in spirit to the lookback dial" note -- this is that idea.
+    '<div class="kptp-gran-switch" id="kptp-gran-switch">' +
+      '<button class="kptp-gran-btn active" data-gran="daily">Daily</button>' +
+      '<button class="kptp-gran-btn" data-gran="weekly">Weekly</button>' +
+      '<button class="kptp-gran-btn" data-gran="monthly">Monthly</button>' +
+      '<button class="kptp-gran-btn" data-gran="yearly">Yearly</button>' +
     '</div>' +
-    '<div class="kptp-two-col">' +
+
+    // ── Daily panel ──────────────────────────────────────────────────────
+    // Lookback dial slot: the actual dial (built once, see buildDial()/
+    // switchGranularity()) gets physically relocated into whichever
+    // granularity's slot is active, rather than duplicated per panel --
+    // it's one cross-cutting preference, not a per-granularity setting.
+    // Sits just above Range Distribution (what it actually affects), not
+    // above Profile Taxonomy (what it doesn't) -- moved here after initial
+    // feedback that its first position, above everything, implied it
+    // affected the taxonomy above it too. No slot in the Yearly panel --
+    // the dial has no effect there (yearly stats are always full-history,
+    // too few years to meaningfully window) so it simply doesn't travel
+    // there and stays invisible, parked inside whichever panel is hidden.
+    '<div class="kptp-gran-panel" id="kptp-gran-daily" data-gran-panel="daily">' +
+      '<div class="kptp-section-label">Daily Profile Taxonomy</div>' +
+      '<div class="kptp-section-note" id="kptp-profile-summary-note">Rule-based daily profile classification, built from closing strength' + kptpGlossaryIcon('closing_strength') + ' and range regime. Click any card for the full rule, why it&rsquo;s named that way, and a real illustrative chart.</div>' +
+      '<div class="kptp-profile-grid" id="kptp-profile-grid"></div>' +
+
+      '<div class="kptp-dial-slot" id="kptp-dial-slot-daily"></div>' +
+      '<div class="kptp-section-label">Daily Range Distribution</div>' +
+      '<div class="kptp-section-note">Range percentile' + kptpGlossaryIcon('percentile') + ' strip (p05&ndash;p95), IQR' + kptpGlossaryIcon('iqr') + ' boxed, median' + kptpGlossaryIcon('median') + ' marked. Dashed lines mark the compression' + kptpGlossaryIcon('compression') + ' (p20) / expansion' + kptpGlossaryIcon('expansion') + ' (p80) regime thresholds used by the profile taxonomy above. Hover any part of the chart for an explanation.</div>' +
+      '<div class="kptp-panel-card">' +
+        '<div class="kptp-panel-title">Daily Range</div>' +
+        '<div class="kptp-range-strip-wrap"><div id="kptp-range-daily"></div></div>' +
+        '<div class="kptp-range-strip-caption" id="kptp-range-daily-caption"></div>' +
+        '<div class="kptp-mode-note" id="kptp-range-daily-mode-note"></div>' +
+      '</div>' +
+
+      '<div class="kptp-section-label">Time of Extreme</div>' +
+      '<div class="kptp-section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean' + kptpGlossaryIcon('circular_mean') + '. Bars are coloured by FX session' + kptpGlossaryIcon('session') + '. The badge shows how tightly clustered (concentrated' + kptpGlossaryIcon('concentration') + ') the timing actually is &mdash; hover any bar for its exact time window.</div>' +
+      '<div class="kptp-panel-card">' +
+        '<div class="kptp-panel-title">Daily High</div>' +
+        '<div id="kptp-heatmap-high"></div>' +
+        '<div class="kptp-clock-caption" id="kptp-heatmap-high-caption"></div>' +
+        '<div class="kptp-session-legend"></div>' +
+      '</div>' +
+      '<div class="kptp-panel-card">' +
+        '<div class="kptp-panel-title">Daily Low</div>' +
+        '<div id="kptp-heatmap-low"></div>' +
+        '<div class="kptp-clock-caption" id="kptp-heatmap-low-caption"></div>' +
+        '<div class="kptp-session-legend"></div>' +
+      '</div>' +
+    '</div>' +
+
+    // ── Weekly panel ─────────────────────────────────────────────────────
+    '<div class="kptp-gran-panel" id="kptp-gran-weekly" data-gran-panel="weekly" hidden>' +
+      '<div class="kptp-section-label" id="kptp-weekly-profile-label" hidden>Weekly Profile Taxonomy</div>' +
+      '<div class="kptp-section-note" id="kptp-weekly-profile-summary-note" hidden></div>' +
+      '<div class="kptp-profile-grid" id="kptp-weekly-profile-grid" hidden></div>' +
+
+      '<div class="kptp-dial-slot" id="kptp-dial-slot-weekly"></div>' +
+      '<div class="kptp-section-label">Weekly Range Distribution</div>' +
+      '<div class="kptp-section-note">Same percentile-strip reading as Daily, computed from weekly bars.</div>' +
       '<div class="kptp-panel-card">' +
         '<div class="kptp-panel-title">Weekly Range</div>' +
         '<div class="kptp-range-strip-wrap"><div id="kptp-range-weekly"></div></div>' +
         '<div class="kptp-range-strip-caption" id="kptp-range-weekly-caption"></div>' +
         '<div class="kptp-mode-note" id="kptp-range-weekly-mode-note"></div>' +
       '</div>' +
+
+      '<div class="kptp-section-label">Extreme Timing &mdash; Day of Week</div>' +
+      '<div class="kptp-section-note">Which weekday the week&rsquo;s high/low falls on. Full history &mdash; not affected by the lookback window above. Hover any bar for the exact count.</div>' +
+      '<div class="kptp-two-col">' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Week High &mdash; Day of Week</div><div id="kptp-weekday-high-chart"></div></div>' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Week Low &mdash; Day of Week</div><div id="kptp-weekday-low-chart"></div></div>' +
+      '</div>' +
+      '<div class="kptp-panel-card" id="kptp-weekday-pair-card" hidden>' +
+        '<div class="kptp-panel-title">Week High/Low &mdash; Day Pairing</div>' +
+        '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which day tends to have the high and which tends to have the low, ' +
+          '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a Monday low pairs with a Friday high, specifically. Rows = low day, columns = high day. Darker = more frequent; the diagonal (same day) is real but consistently rare.</div>' +
+        '<div id="kptp-weekday-pair-heatmap"></div>' +
+      '</div>' +
+    '</div>' +
+
+    // ── Monthly panel ────────────────────────────────────────────────────
+    '<div class="kptp-gran-panel" id="kptp-gran-monthly" data-gran-panel="monthly" hidden>' +
+      '<div class="kptp-section-label" id="kptp-monthly-profile-label" hidden>Monthly Profile Taxonomy</div>' +
+      '<div class="kptp-section-note" id="kptp-monthly-profile-summary-note" hidden></div>' +
+      '<div class="kptp-profile-grid" id="kptp-monthly-profile-grid" hidden></div>' +
+
+      '<div class="kptp-dial-slot" id="kptp-dial-slot-monthly"></div>' +
+      '<div class="kptp-section-label">Monthly Range Distribution</div>' +
+      '<div class="kptp-section-note">Same percentile-strip reading as Daily/Weekly, computed from monthly bars.</div>' +
       '<div class="kptp-panel-card">' +
         '<div class="kptp-panel-title">Monthly Range</div>' +
         '<div class="kptp-range-strip-wrap"><div id="kptp-range-monthly"></div></div>' +
         '<div class="kptp-range-strip-caption" id="kptp-range-monthly-caption"></div>' +
         '<div class="kptp-mode-note" id="kptp-range-monthly-mode-note"></div>' +
       '</div>' +
-    '</div>' +
-    '<div class="kptp-panel-card">' +
-      '<div class="kptp-panel-title">Yearly Range</div>' +
-      '<div class="kptp-range-strip-wrap"><div id="kptp-range-yearly"></div></div>' +
-      '<div class="kptp-range-strip-caption" id="kptp-range-yearly-caption"></div>' +
-      '<div class="kptp-mode-note" id="kptp-range-yearly-mode-note"></div>' +
-      '<div class="kptp-section-note" id="kptp-range-yearly-sample-note" style="margin-top:10px;margin-bottom:0;"></div>' +
+
+      '<div class="kptp-section-label">Extreme Timing &mdash; Week of Month</div>' +
+      '<div class="kptp-section-note">Which week-of-month the month&rsquo;s high/low falls on. Full history &mdash; not affected by the lookback window above. Hover any bar for the exact count.</div>' +
+      '<div class="kptp-two-col">' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Month High &mdash; Week of Month</div><div id="kptp-wom-high-chart"></div></div>' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Month Low &mdash; Week of Month</div><div id="kptp-wom-low-chart"></div></div>' +
+      '</div>' +
+      '<div class="kptp-panel-card" id="kptp-wom-pair-card" hidden>' +
+        '<div class="kptp-panel-title">Month High/Low &mdash; Week Pairing</div>' +
+        '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which week-of-month tends to have the high and which tends to have the low, ' +
+          '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a week-1 low pairs with a week-4 high, specifically. Rows = low week, columns = high week. Darker = more frequent; the diagonal (same week) is real but consistently rare.</div>' +
+        '<div id="kptp-wom-pair-heatmap"></div>' +
+      '</div>' +
     '</div>' +
 
-    '<div class="kptp-section-label">Time of Extreme</div>' +
-    '<div class="kptp-section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean' + kptpGlossaryIcon('circular_mean') + '. Bars are coloured by FX session' + kptpGlossaryIcon('session') + '. The badge shows how tightly clustered (concentrated' + kptpGlossaryIcon('concentration') + ') the timing actually is &mdash; hover any bar for its exact time window.</div>' +
+    // ── Yearly panel ─────────────────────────────────────────────────────
+    '<div class="kptp-gran-panel" id="kptp-gran-yearly" data-gran-panel="yearly" hidden>' +
+      '<div class="kptp-section-label" id="kptp-yearly-profile-label" hidden>Yearly Profile Taxonomy</div>' +
+      '<div class="kptp-section-note" id="kptp-yearly-profile-summary-note" hidden></div>' +
+      '<div class="kptp-profile-grid" id="kptp-yearly-profile-grid" hidden></div>' +
 
-    '<div class="kptp-panel-card">' +
-      '<div class="kptp-panel-title">Daily High</div>' +
-      '<div id="kptp-heatmap-high"></div>' +
-      '<div class="kptp-clock-caption" id="kptp-heatmap-high-caption"></div>' +
-      '<div class="kptp-session-legend"></div>' +
-    '</div>' +
-    '<div class="kptp-panel-card">' +
-      '<div class="kptp-panel-title">Daily Low</div>' +
-      '<div id="kptp-heatmap-low"></div>' +
-      '<div class="kptp-clock-caption" id="kptp-heatmap-low-caption"></div>' +
-      '<div class="kptp-session-legend"></div>' +
-    '</div>' +
+      '<div class="kptp-section-label">Yearly Range Distribution</div>' +
+      '<div class="kptp-section-note">Same percentile-strip reading as the other granularities, computed from yearly bars &mdash; always full history (no lookback window; too few years to meaningfully window).</div>' +
+      '<div class="kptp-panel-card">' +
+        '<div class="kptp-panel-title">Yearly Range</div>' +
+        '<div class="kptp-range-strip-wrap"><div id="kptp-range-yearly"></div></div>' +
+        '<div class="kptp-range-strip-caption" id="kptp-range-yearly-caption"></div>' +
+        '<div class="kptp-mode-note" id="kptp-range-yearly-mode-note"></div>' +
+        '<div class="kptp-section-note" id="kptp-range-yearly-sample-note" style="margin-top:10px;margin-bottom:0;"></div>' +
+      '</div>' +
 
-    '<div class="kptp-section-label">Weekly, Monthly and Yearly Extremes</div>' +
-    '<div class="kptp-section-note">Which weekday the week&rsquo;s high/low falls on; which week-of-month the month&rsquo;s high/low falls on; which calendar month, and which week of the year (ISO week numbering), the year&rsquo;s high/low falls in. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count. <span class="kptp-muted-inline">ISO weeks: the week containing each year&rsquo;s first Thursday is Week 1, so a late-December date can land in Week 1 of the following year.</span></div>' +
-    '<div class="kptp-two-col">' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Week High &mdash; Day of Week</div><div id="kptp-weekday-high-chart"></div></div>' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Week Low &mdash; Day of Week</div><div id="kptp-weekday-low-chart"></div></div>' +
-    '</div>' +
-    '<div class="kptp-panel-card" id="kptp-weekday-pair-card" hidden>' +
-      '<div class="kptp-panel-title">Week High/Low &mdash; Day Pairing</div>' +
-      '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which day tends to have the high and which tends to have the low, ' +
-        '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a Monday low pairs with a Friday high, specifically. Rows = low day, columns = high day. Darker = more frequent; the diagonal (same day) is real but consistently rare.</div>' +
-      '<div id="kptp-weekday-pair-heatmap"></div>' +
-    '</div>' +
-    '<div class="kptp-two-col">' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Month High &mdash; Week of Month</div><div id="kptp-wom-high-chart"></div></div>' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Month Low &mdash; Week of Month</div><div id="kptp-wom-low-chart"></div></div>' +
-    '</div>' +
-    '<div class="kptp-panel-card" id="kptp-wom-pair-card" hidden>' +
-      '<div class="kptp-panel-title">Month High/Low &mdash; Week Pairing</div>' +
-      '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which week-of-month tends to have the high and which tends to have the low, ' +
-        '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a week-1 low pairs with a week-4 high, specifically. Rows = low week, columns = high week. Darker = more frequent; the diagonal (same week) is real but consistently rare.</div>' +
-      '<div id="kptp-wom-pair-heatmap"></div>' +
-    '</div>' +
-    '<div class="kptp-two-col">' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Month</div><div id="kptp-year-high-month-chart"></div></div>' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Month</div><div id="kptp-year-low-month-chart"></div></div>' +
-    '</div>' +
-    '<div class="kptp-panel-card" id="kptp-year-month-pair-card" hidden>' +
-      '<div class="kptp-panel-title">Year High/Low &mdash; Month Pairing</div>' +
-      '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which month tends to have the year&rsquo;s high and which tends to have the low, ' +
-        '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a January low pairs with a December high, specifically. Rows = low month, columns = high month. Darker = more frequent. <b>Only ~25-30 years of history per asset &mdash; most cells are 0 or 1 by construction; treat this as a much weaker signal than the Weekly/Monthly pairing heatmaps above.</b></div>' +
-      '<div id="kptp-year-month-pair-heatmap"></div>' +
-    '</div>' +
-    '<div class="kptp-two-col">' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Week of Year</div><div id="kptp-year-high-week-chart"></div></div>' +
-      '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Week of Year</div><div id="kptp-year-low-week-chart"></div></div>' +
+      '<div class="kptp-section-label">Extreme Timing &mdash; Month &amp; Week of Year</div>' +
+      '<div class="kptp-section-note">Which calendar month, and which week of the year (ISO week numbering), the year&rsquo;s high/low falls in. Full history. Hover any bar for the exact count. <span class="kptp-muted-inline">ISO weeks: the week containing each year&rsquo;s first Thursday is Week 1, so a late-December date can land in Week 1 of the following year.</span></div>' +
+      '<div class="kptp-two-col">' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Month</div><div id="kptp-year-high-month-chart"></div></div>' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Month</div><div id="kptp-year-low-month-chart"></div></div>' +
+      '</div>' +
+      '<div class="kptp-panel-card" id="kptp-year-month-pair-card" hidden>' +
+        '<div class="kptp-panel-title">Year High/Low &mdash; Month Pairing</div>' +
+        '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which month tends to have the year&rsquo;s high and which tends to have the low, ' +
+          '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a January low pairs with a December high, specifically. Rows = low month, columns = high month. Darker = more frequent. <b>Only ~25-30 years of history per asset &mdash; most cells are 0 or 1 by construction; treat this as a much weaker signal than the Weekly/Monthly pairing heatmaps.</b></div>' +
+        '<div id="kptp-year-month-pair-heatmap"></div>' +
+      '</div>' +
+      '<div class="kptp-two-col">' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Week of Year</div><div id="kptp-year-high-week-chart"></div></div>' +
+        '<div class="kptp-panel-card"><div class="kptp-panel-title">Year Low &mdash; Week of Year</div><div id="kptp-year-low-week-chart"></div></div>' +
+      '</div>' +
     '</div>' +
 
     '<div class="kptp-footnote">' +
@@ -804,12 +854,66 @@
     });
   }
 
+  // What the shared lookback dial actually affects differs by which
+  // granularity tab is showing -- Daily's Range Distribution AND its Time
+  // of Extreme heatmaps both respond to it, Weekly/Monthly's Range
+  // Distribution alone does, and Yearly ignores it entirely (no slot for
+  // it there -- see switchGranularity below). One physical dial node is
+  // built once, then relocated (not duplicated) into whichever panel's
+  // .kptp-dial-slot is active, right above that panel's Range Distribution
+  // section -- avoids both triplicated buttons/listeners and the earlier
+  // "sits above everything, implies it affects the taxonomy above it too"
+  // placement issue.
+  var DIAL_NOTES = {
+    daily: 'Lookback window' + kptpGlossaryIcon('lookback_window') + ' &mdash; affects the Range Distribution and Time of Extreme charts below.',
+    weekly: 'Lookback window' + kptpGlossaryIcon('lookback_window') + ' &mdash; affects the Weekly Range chart below (not the Day-of-Week extreme charts, which are always full history).',
+    monthly: 'Lookback window' + kptpGlossaryIcon('lookback_window') + ' &mdash; affects the Monthly Range chart below (not the Week-of-Month extreme charts, which are always full history).'
+  };
+
+  var dialWrap = null; // set by buildGranularitySwitch(), moved by switchGranularity()
+
+  function switchGranularity(gran) {
+    panel.querySelectorAll('.kptp-gran-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.gran === gran);
+    });
+    panel.querySelectorAll('.kptp-gran-panel').forEach(function (p) {
+      p.hidden = p.dataset.granPanel !== gran;
+    });
+    var slot = document.getElementById('kptp-dial-slot-' + gran);
+    if (slot && dialWrap) {
+      slot.appendChild(dialWrap); // moves the existing node -- click listeners travel with it
+      var dialNote = document.getElementById('kptp-dial-note');
+      if (dialNote && DIAL_NOTES[gran]) {
+        dialNote.innerHTML = DIAL_NOTES[gran];
+        kptpAttachGlossaryIcons(dialNote);
+      }
+    }
+    // No slot on the Yearly panel -- dialWrap simply stays parked inside
+    // whichever panel it was last moved into, which is now hidden, so it
+    // disappears from view with no extra hide/show bookkeeping needed.
+  }
+
+  function buildGranularitySwitch() {
+    var switcher = document.getElementById('kptp-gran-switch');
+    if (!switcher) return;
+    dialWrap = document.createElement('div');
+    dialWrap.id = 'kptp-dial-wrap';
+    dialWrap.innerHTML =
+      '<div class="kptp-section-note" id="kptp-dial-note" style="margin-bottom:8px;"></div>' +
+      '<div class="kptp-dial" id="kptp-dial"></div>';
+    switcher.querySelectorAll('.kptp-gran-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { switchGranularity(btn.dataset.gran); });
+    });
+    switchGranularity('daily');
+  }
+
   /* ─── Init ────────────────────────────────────────────────────────────
    * Script is `defer`-loaded, so the DOM is already parsed by the time this
    * runs — no DOMContentLoaded wrapper needed (matches this repo's own
    * macro.js/intraday.js/backtest.js convention).
    */
   renderStatTiles();
+  buildGranularitySwitch();
   buildDial();
   renderRangeSection('full');
   renderTimeSection('full');

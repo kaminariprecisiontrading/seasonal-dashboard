@@ -2402,6 +2402,48 @@ tbody td:first-child {
   max-width: 720px;
 }
 
+/* ── Granularity switcher (Daily/Weekly/Monthly/Yearly, within Profiling tab) ──
+   Underline-tab style, matching .kpt-tab-btn's visual language (this is now
+   the primary navigation for the tab's content, not a minor toggle like the
+   lookback dial below) — but sized down slightly and namespaced .kptp- since
+   it's a sub-level control, not the page's own top-level tab bar. */
+.kptp-gran-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0 28px;
+  border-bottom: 1px solid var(--border);
+}
+.kptp-gran-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+.kptp-gran-btn:hover { color: var(--text); }
+.kptp-gran-btn.active {
+  color: var(--accent-combined);
+  border-bottom-color: var(--accent-combined);
+}
+.kptp-gran-panel[hidden] { display: none; }
+
+/* ── Lookback dial slot (Profiling tab granularity panels) ────────────────
+   The dial itself (built once, relocated per active panel — see
+   js/profiling.js's switchGranularity()) needs clear air on both sides:
+   above, so it doesn't read as glued to the last profile card in the
+   Profile Taxonomy grid above it; below, .kptp-dial's own margin-bottom
+   already separates it from the Range Distribution label that follows. */
+.kptp-dial-slot { margin-top: 40px; } /* matches .kptp-section-label's own top margin, for the same rhythm */
+.kptp-dial-slot:empty { margin-top: 0; } /* no gap while parked in a hidden panel */
+
 /* ── Lookback dial ──────────────────────────────────────────────────────── */
 .kptp-dial {
   display: inline-flex;
