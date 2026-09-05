@@ -165,7 +165,16 @@ var KPTP_PROFILE_COLOR = {
   'Quiet Drift Week (Up)': 'var(--bull)',
   'Quiet Drift Week (Down)': 'var(--bear)',
   'Compression Week': 'var(--kptp-compression)',
-  'Normal Week': 'var(--kptp-normal)'
+  'Normal Week': 'var(--kptp-normal)',
+  // Monthly profiles reuse the exact same colors as their Daily/Weekly equivalent.
+  'Trend Month (Up)': 'var(--bull)',
+  'Trend Month (Down)': 'var(--bear)',
+  'Volatile Month': 'var(--kptp-expansion)',
+  'Volatile Reversal Month': 'var(--chop)',
+  'Quiet Drift Month (Up)': 'var(--bull)',
+  'Quiet Drift Month (Down)': 'var(--bear)',
+  'Compression Month': 'var(--kptp-compression)',
+  'Normal Month': 'var(--kptp-normal)'
 };
 
 var KPTP_PROFILE_ICON_PATH = {
@@ -185,7 +194,16 @@ var KPTP_PROFILE_ICON_PATH = {
   'Quiet Drift Week (Up)': 'M5,24 L30,22 L55,19 L75,16 L95,13',
   'Quiet Drift Week (Down)': 'M5,16 L30,18 L55,21 L75,24 L95,27',
   'Compression Week': 'M5,20 L20,17 L35,23 L50,18 L65,22 L80,19 L95,20',
-  'Normal Week': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20'
+  'Normal Week': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20',
+  // Monthly profiles reuse the exact same icon shapes as their Daily/Weekly equivalent.
+  'Trend Month (Up)': 'M5,26 L16,30 L32,22 L50,15 L70,9 L95,4',
+  'Trend Month (Down)': 'M5,14 L16,10 L32,18 L50,25 L70,31 L95,36',
+  'Volatile Month': 'M5,20 L20,6 L35,32 L50,10 L65,30 L80,14 L95,22',
+  'Volatile Reversal Month': 'M5,20 L25,4 L50,36 L75,18 L95,20',
+  'Quiet Drift Month (Up)': 'M5,24 L30,22 L55,19 L75,16 L95,13',
+  'Quiet Drift Month (Down)': 'M5,16 L30,18 L55,21 L75,24 L95,27',
+  'Compression Month': 'M5,20 L20,17 L35,23 L50,18 L65,22 L80,19 L95,20',
+  'Normal Month': 'M5,22 L20,14 L35,24 L50,12 L65,26 L80,16 L95,20'
 };
 
 var KPTP_PROFILE_META = {
@@ -288,6 +306,61 @@ var KPTP_PROFILE_META = {
     rule: 'Range regime between the 20th and 80th percentile, any closing shape.',
     why: 'Deliberately the largest, least differentiated bucket, same as Normal Day. Most weeks are neither unusually big nor unusually small.',
     timingSignature: 'No dominant timing signature by design — this bucket intentionally doesn’t distinguish shape.'
+  },
+  // Monthly profiles — same two axes, same 8-name scheme, independently
+  // re-derived (not assumed) at monthly granularity, using a 24-month
+  // rolling window rather than Daily/Weekly's "trailing ~1 real year"
+  // convention (too few monthly bars in 12 months for a meaningful
+  // percentile rank). See
+  // KPT-Market-Profiling/market-profiling-system-spec.md §4.7 for the full
+  // methodology and cross-asset validation behind the timing-signature text.
+  'Trend Month (Up)': {
+    axisRange: 'Expansion', axisShape: 'Directional',
+    rule: 'Expansion + Directional, closed near the month’s high.',
+    why: 'Big range <b>and</b> closed near an extreme — the move was both large and held across the month. Same reasoning as Trend Week, one level up.',
+    timingSignature: 'Validated across multiple assets: typically <b>Late Push</b> (the low forms in the first half of the month, price pushes to new highs later on) and the high/low land in well-separated weeks-of-month, not close together — a trend month needs room to build.'
+  },
+  'Trend Month (Down)': {
+    axisRange: 'Expansion', axisShape: 'Directional',
+    rule: 'Expansion + Directional, closed near the month’s low.',
+    why: 'Big range <b>and</b> closed near an extreme — the move was both large and held across the month. Same reasoning as Trend Week, one level up.',
+    timingSignature: 'Validated across multiple assets: typically <b>Late Push</b> (the high forms in the first half of the month, price pushes to new lows later on) and the high/low land in well-separated weeks-of-month, not close together — a trend month needs room to build.'
+  },
+  'Volatile Month': {
+    axisRange: 'Expansion', axisShape: 'Mixed',
+    rule: 'Expansion + Mixed closing shape.',
+    why: 'Big range but closed only moderately off the midpoint — real two-way movement without a clean directional resolution across the month.',
+    timingSignature: 'No single dominant timing signature — that’s part of what makes it "Mixed" rather than a clean Trend or Reversal shape.'
+  },
+  'Volatile Reversal Month': {
+    axisRange: 'Expansion', axisShape: 'Balanced',
+    rule: 'Expansion + Balanced closing shape.',
+    why: 'Big range but closed essentially back at the midpoint — a big monthly move that got substantially or fully retraced.',
+    timingSignature: 'Often shows <b>Late Resolution</b> or <b>Fade Risk</b> timing — the month stays undecided, or gives back an early move later on.'
+  },
+  'Quiet Drift Month (Up)': {
+    axisRange: 'Compression', axisShape: 'Directional',
+    rule: 'Compression + Directional, closed near the month’s high.',
+    why: 'Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. The low-energy version of Trend Month.',
+    timingSignature: 'The same directional-conviction shape as Trend Month, just at much smaller amplitude.'
+  },
+  'Quiet Drift Month (Down)': {
+    axisRange: 'Compression', axisShape: 'Directional',
+    rule: 'Compression + Directional, closed near the month’s low.',
+    why: 'Small range, but still closed at an edge of that small range — persistently one-sided without much amplitude. The low-energy version of Trend Month.',
+    timingSignature: 'The same directional-conviction shape as Trend Month, just at much smaller amplitude.'
+  },
+  'Compression Month': {
+    axisRange: 'Compression', axisShape: 'Balanced / Mixed',
+    rule: 'Compression range regime, Balanced or Mixed closing shape.',
+    why: 'Small range, closed near the middle — the "coiling," non-committal month. Default label for small-range months without a clear directional tilt.',
+    timingSignature: 'No dominant timing signature or week-pattern expected — low amplitude, no strong directional push to time.'
+  },
+  'Normal Month': {
+    axisRange: 'Normal', axisShape: 'Any',
+    rule: 'Range regime between the 20th and 80th percentile, any closing shape.',
+    why: 'Deliberately the largest, least differentiated bucket, same as Normal Day/Week. Most months are neither unusually big nor unusually small.',
+    timingSignature: 'No dominant timing signature by design — this bucket intentionally doesn’t distinguish shape.'
   }
 };
 
@@ -301,6 +374,14 @@ function kptpProfileSlug(name) {
 // "profiles") a given profile name belongs to.
 function kptpIsWeeklyProfile(name) {
   return name.indexOf('Week') !== -1;
+}
+
+// Monthly profile names always contain "Month" (profile_taxonomy_monthly.py's
+// profile_name() is a deliberate clone of the Daily/Weekly version, prefix
+// swapped) -- used wherever a page needs to know which bundle field
+// ("monthly" vs "weekly" vs "profiles") a given profile name belongs to.
+function kptpIsMonthlyProfile(name) {
+  return name.indexOf('Month') !== -1;
 }
 
 function kptpProfileIconSvg(name, size) {

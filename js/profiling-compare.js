@@ -43,7 +43,7 @@
     document.getElementById('kptp-compare-icon').innerHTML = kptpProfileIconSvg(name, 90);
     document.documentElement.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
     var examplesLabel = document.getElementById('kptp-compare-examples-label');
-    if (examplesLabel) examplesLabel.textContent = kptpIsWeeklyProfile(name) ? 'Example Weeks' : 'Example Days';
+    if (examplesLabel) examplesLabel.textContent = kptpIsMonthlyProfile(name) ? 'Example Months' : kptpIsWeeklyProfile(name) ? 'Example Weeks' : 'Example Days';
 
     var focusAssetKey = (params.get('a') || '').toLowerCase();
     var backLink = document.getElementById('kptp-compare-back');
@@ -104,14 +104,18 @@
       statsWrap.innerHTML = '';
       chartsWrap.innerHTML = '';
 
-      var isWeekly = kptpIsWeeklyProfile(name);
-      var periodWord = isWeekly ? 'weeks' : 'days';
+      var isMonthly = kptpIsMonthlyProfile(name);
+      var isWeekly = !isMonthly && kptpIsWeeklyProfile(name);
+      var isCoarser = isMonthly || isWeekly;
+      var periodWord = isMonthly ? 'months' : isWeekly ? 'weeks' : 'days';
+      var patternWord = isMonthly ? 'week-pattern' : 'day-pattern';
+      var granularityLabel = isMonthly ? 'Monthly' : 'Weekly';
 
       selected.forEach(function (key) {
         var d = window.KPT_PROFILING && window.KPT_PROFILING[key];
         var ex = window.KPT_PROFILING_EXAMPLES && window.KPT_PROFILING_EXAMPLES[key];
         var label = key.toUpperCase();
-        var source = d && (isWeekly ? d.weekly : d.profiles);
+        var source = d && (isMonthly ? d.monthly : isWeekly ? d.weekly : d.profiles);
 
         var dist  = source && source.profile_distribution[name];
         var range = source && source.avg_range_pips_by_profile[name];
@@ -119,28 +123,28 @@
         var timing = source && source.extreme_timing_by_profile[name];
         var timingEntries = timing ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
         var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
-        var spread = (isWeekly && source) ? source.extreme_spread_by_profile[name] : null;
+        var spread = (isCoarser && source) ? source.extreme_spread_by_profile[name] : null;
         var spreadEntries = spread ? Object.keys(spread).map(function (k) { return [k, spread[k]]; }).sort(function (x, y) { return y[1] - x[1]; }) : null;
         var topSpread = spreadEntries && spreadEntries.length ? spreadEntries[0] : null;
 
         var tile = document.createElement('div');
         tile.className = 'kptp-stat-tile';
         tile.innerHTML = !dist
-          ? '<div class="kptp-stat-label">' + label + '</div><div class="kptp-stat-value" style="font-size:14px;color:var(--muted)">No ' + (source ? periodWord : ('Weekly Profile data yet for ' + label)) + (source ? ' classified as this profile' : '') + '</div>'
+          ? '<div class="kptp-stat-label">' + label + '</div><div class="kptp-stat-value" style="font-size:14px;color:var(--muted)">No ' + (source ? periodWord : (granularityLabel + ' Profile data yet for ' + label)) + (source ? ' classified as this profile' : '') + '</div>'
           : '<div class="kptp-stat-label">' + label + '</div>' +
             '<div class="kptp-stat-value">' + dist.pct + '<span class="kptp-unit">% of ' + periodWord + ' (n=' + dist.n + ')</span></div>' +
             '<div class="kptp-profile-meta" style="margin-top:8px;">' +
               (range ? ('Avg range: <b>' + range.mean + ' ' + unit + '</b><br>') : '') +
               (topTiming ? ('Most common timing: <b>' + topTiming[0].replace('_', ' ') + '</b> (' + topTiming[1] + ' ' + periodWord + ')') : '') +
-              (topSpread ? ('<br>Most common day-pattern: <b>' + topSpread[0].replace('_', ' ') + '</b> (' + topSpread[1] + ' ' + periodWord + ')') : '') +
+              (topSpread ? ('<br>Most common ' + patternWord + ': <b>' + topSpread[0].replace('_', ' ') + '</b> (' + topSpread[1] + ' ' + periodWord + ')') : '') +
             '</div>';
         statsWrap.appendChild(tile);
 
-        var example = (!isWeekly && ex) ? ex[name] : null;
+        var example = (!isCoarser && ex) ? ex[name] : null;
         var panel = document.createElement('div');
         panel.className = 'kptp-panel-card';
-        if (isWeekly) {
-          panel.innerHTML = '<div class="kptp-panel-title">' + label + ' Example</div><div class="kptp-section-note" style="margin:0;">Illustrative weekly charts aren&rsquo;t built yet.</div>';
+        if (isCoarser) {
+          panel.innerHTML = '<div class="kptp-panel-title">' + label + ' Example</div><div class="kptp-section-note" style="margin:0;">Illustrative ' + (isMonthly ? 'monthly' : 'weekly') + ' charts aren&rsquo;t built yet.</div>';
         } else if (!example) {
           panel.innerHTML = '<div class="kptp-panel-title">' + label + ' Example</div><div class="kptp-section-note" style="margin:0;">No example day available.</div>';
         } else {

@@ -223,17 +223,30 @@ lock in an implementation:
 ### Sequencing
 
 Paced by MT5 data availability, not a blocking phase — runs alongside Tier-6-adjacent asset
-rollout (adding more Profiling assets as CSVs are cleaned). Daily is done. **Weekly is done**
-(2026-09-05) — `KPT-Market-Profiling/pipeline/profile_taxonomy_weekly.py`, validated across
-GBPUSD/EURUSD/XAUUSD, not just one asset; full methodology and findings in that repo's
-`market-profiling-system-spec.md` §4.6 and `HANDOVER.md` §5, not duplicated here. Headline result:
-the same trend-day timing signature Daily found was independently reproduced at weekly
+rollout (adding more Profiling assets as CSVs are cleaned). Daily is done. **Weekly is done and
+dashboard-wired** (2026-09-05) — `KPT-Market-Profiling/pipeline/profile_taxonomy_weekly.py`,
+validated across GBPUSD/EURUSD/XAUUSD, not just one asset; full methodology and findings in that
+repo's `market-profiling-system-spec.md` §4.6 and `HANDOVER.md` §5, not duplicated here. Headline
+result: the same trend-day timing signature Daily found was independently reproduced at weekly
 granularity, plus a strong new cross-asset finding from a user-proposed idea (the *joint*
 high-weekday/low-weekday pattern, not just the two existing marginal charts — same-day extremes
-are suppressed 5-15x vs. independence). Generated for all 14 Profiling assets, but **not yet
-wired into any dashboard page** — this pass was explicitly scoped to data/methodology validation
-first. Monthly and Yearly follow next, with Yearly requiring the most methodological care per the
-sample-size table above.
+are suppressed 5-15x vs. independence). Generated and dashboard-wired for all 14 Profiling assets
+— a "Weekly Profile Taxonomy" card grid, a "Week High/Low — Day Pairing" heatmap, and full
+detail/compare-page support.
+
+**Monthly is done and dashboard-wired** (2026-09-05, same pass this time — unlike Weekly, which
+had its dashboard wiring as a separate follow-up) —
+`KPT-Market-Profiling/pipeline/profile_taxonomy_monthly.py`, same validate-first process across
+GBPUSD/EURUSD/XAUUSD; full methodology and findings in `market-profiling-system-spec.md` §4.7 and
+`HANDOVER.md` §5. Same generalizing pattern as Weekly's, one level coarser (same-week-of-month
+suppressed to 3.5-5.6% of months vs. independence); one deliberate deviation from Daily/Weekly's
+"trailing ~1 real year" window convention — a 24-month rolling window instead of 12, since 12
+monthly bars makes percentile ranking too coarse. Generated and dashboard-wired for all 14
+Profiling assets — a "Monthly Profile Taxonomy" card grid, a "Month High/Low — Week Pairing"
+heatmap, and full detail/compare-page support (now grouped Daily/Weekly/Monthly).
+
+Yearly is next, requiring the most methodological care per the sample-size table above (~20 years
+of history is "very thin").
 
 ---
 
@@ -324,10 +337,12 @@ for a real back-and-forth:
 2. **Tier 2** — ✅ done (v1.9).
 3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
 4. **Tier 5** — ongoing, paced by MT5 data uploads, runs in parallel with continued Profiling
-   asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2). Daily done, **Weekly done**
-   (2026-09-05, now dashboard-wired too — a "Weekly Profile Taxonomy" card grid and a "Week
-   High/Low — Day Pairing" heatmap on the Profiling tab, full detail/compare-page support),
-   Monthly/Yearly next.
+   asset rollout (`MARKET_PROFILING_INTEGRATION.md` §9.2). Daily done, **Weekly done and
+   dashboard-wired** (2026-09-05 — a "Weekly Profile Taxonomy" card grid and a "Week High/Low —
+   Day Pairing" heatmap on the Profiling tab, full detail/compare-page support), **Monthly done
+   and dashboard-wired** (2026-09-05, same pass — a "Monthly Profile Taxonomy" card grid and a
+   "Month High/Low — Week Pairing" heatmap, full detail/compare-page support grouped
+   Daily/Weekly/Monthly). Yearly next.
 5. **Tier 5b** — ongoing, independent of Tier 5 (different granularity direction), also
    step-by-step and not rushed. Session-OHLC infrastructure done; sweep-threshold derivation and
    the descriptive validation study are next, only when explicitly picked up again.

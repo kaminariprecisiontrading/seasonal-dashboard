@@ -186,6 +186,10 @@
     '<div class="kptp-section-note" id="kptp-weekly-profile-summary-note" hidden></div>' +
     '<div class="kptp-profile-grid" id="kptp-weekly-profile-grid" hidden></div>' +
 
+    '<div class="kptp-section-label" id="kptp-monthly-profile-label" hidden>Monthly Profile Taxonomy</div>' +
+    '<div class="kptp-section-note" id="kptp-monthly-profile-summary-note" hidden></div>' +
+    '<div class="kptp-profile-grid" id="kptp-monthly-profile-grid" hidden></div>' +
+
     '<div class="kptp-section-label">Range Distribution</div>' +
     '<div class="kptp-section-note">Daily/weekly/monthly/yearly range percentile' + kptpGlossaryIcon('percentile') + ' strips (p05&ndash;p95), IQR' + kptpGlossaryIcon('iqr') + ' boxed, median' + kptpGlossaryIcon('median') + ' marked. Dashed lines mark the compression' + kptpGlossaryIcon('compression') + ' (p20) / expansion' + kptpGlossaryIcon('expansion') + ' (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window' + kptpGlossaryIcon('lookback_window') + ' affects the daily/weekly/monthly charts &mdash; not the yearly chart, which has only a small sample and always shows full history.</div>' +
     '<div class="kptp-dial" id="kptp-dial"></div>' +
@@ -249,6 +253,12 @@
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Month High &mdash; Week of Month</div><div id="kptp-wom-high-chart"></div></div>' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Month Low &mdash; Week of Month</div><div id="kptp-wom-low-chart"></div></div>' +
+    '</div>' +
+    '<div class="kptp-panel-card" id="kptp-wom-pair-card" hidden>' +
+      '<div class="kptp-panel-title">Month High/Low &mdash; Week Pairing</div>' +
+      '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which week-of-month tends to have the high and which tends to have the low, ' +
+        '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often a week-1 low pairs with a week-4 high, specifically. Rows = low week, columns = high week. Darker = more frequent; the diagonal (same week) is real but consistently rare.</div>' +
+      '<div id="kptp-wom-pair-heatmap"></div>' +
     '</div>' +
     '<div class="kptp-two-col">' +
       '<div class="kptp-panel-card"><div class="kptp-panel-title">Year High &mdash; Month</div><div id="kptp-year-high-month-chart"></div></div>' +
@@ -507,6 +517,110 @@
     }
   }
 
+  function renderMonthlyProfiles() {
+    var grid = document.getElementById('kptp-monthly-profile-grid');
+    var label = document.getElementById('kptp-monthly-profile-label');
+    var note = document.getElementById('kptp-monthly-profile-summary-note');
+    if (!grid || !bundle.monthly) return;
+
+    grid.hidden = false;
+    if (label) label.hidden = false;
+    if (note) note.hidden = false;
+
+    var monthly = bundle.monthly;
+    var dist = monthly.profile_distribution;
+    var avgRange = monthly.avg_range_pips_by_profile;
+    var timing = monthly.extreme_timing_by_profile;
+    var spread = monthly.extreme_spread_by_profile;
+
+    var entries = Object.keys(dist).map(function (k) { return [k, dist[k]]; }).sort(function (a, b) { return b[1].n - a[1].n; });
+    grid.innerHTML = '';
+    entries.forEach(function (entry) {
+      var name = entry[0], v = entry[1];
+
+      var timingEntries = timing[name] ? Object.keys(timing[name]).map(function (k) { return [k, timing[name][k]]; }).sort(function (a, b) { return b[1] - a[1]; }) : null;
+      var topTiming = timingEntries && timingEntries.length ? timingEntries[0] : null;
+
+      var spreadEntries = spread[name] ? Object.keys(spread[name]).map(function (k) { return [k, spread[name][k]]; }).sort(function (a, b) { return b[1] - a[1]; }) : null;
+      var topSpread = spreadEntries && spreadEntries.length ? spreadEntries[0] : null;
+
+      var range = avgRange[name];
+      var a = document.createElement('a');
+      a.className = 'kptp-profile-card';
+      a.href = '../profiling-profiles/detail.html?p=' + kptpProfileSlug(name) + '&a=' + assetKey;
+      a.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
+      a.innerHTML =
+        '<div class="kptp-profile-card-top">' +
+          '<div><div class="kptp-profile-name">' + name + '</div><div class="kptp-profile-pct">' + v.pct + '%</div></div>' +
+          kptpProfileIconSvg(name, 46) +
+        '</div>' +
+        '<div class="kptp-profile-meta">' +
+          'n=' + v.n + ' months' + (range ? (' &middot; avg range ' + range.mean + ' ' + unit) : '') +
+          (topTiming ? ('<br>most common timing: ' + topTiming[0].replace('_', ' ') + ' (' + topTiming[1] + ')') : '') +
+          (topSpread ? ('<br>most common week-pattern: ' + topSpread[0].replace('_', ' ') + ' (' + topSpread[1] + ')') : '') +
+        '</div>' +
+        '<div class="kptp-profile-card-link">See profile details &rarr;</div>';
+      grid.appendChild(a);
+    });
+
+    if (note) {
+      note.innerHTML =
+        'Same two axes as the daily/weekly taxonomies above (range regime, closing strength), independently re-derived at monthly granularity' +
+        ' &mdash; using a 24-month rolling window rather than the ~1-year convention Daily/Weekly use, since a 12-month window makes the percentile' +
+        ' ranking too coarse with so few monthly bars. Two timing tags: which half of the month each extreme formed in, and how many' +
+        ' weeks-of-month apart the month&rsquo;s high and low landed (not just which single week tends to have each one).<br>' +
+        monthly.n_labeled_months + ' labeled months · ' + monthly.n_short_months + ' short months excluded · ' +
+        monthly.n_insufficient_history_months + ' months pending sufficient trailing history.';
+    }
+  }
+
+  // The joint (low_week_of_month, high_week_of_month) table -- e.g. "how
+  // often does a week-1 low pair with a week-4 high, specifically" -- not
+  // just the two existing marginal bar charts (which week-of-month tends to
+  // have the high, which tends to have the low, tracked separately). See
+  // KPT-Market-Profiling/pipeline/profile_taxonomy_monthly.py's
+  // week_of_month_pair_distribution() for how this is computed.
+  function renderWeekOfMonthPairHeatmap() {
+    var card = document.getElementById('kptp-wom-pair-card');
+    var container = document.getElementById('kptp-wom-pair-heatmap');
+    if (!card || !container || !bundle.monthly || !bundle.monthly.week_of_month_pair_distribution) return;
+
+    card.hidden = false;
+    var wp = bundle.monthly.week_of_month_pair_distribution;
+    var weeks = ['1', '2', '3', '4', '5'];
+
+    var maxPct = 0;
+    weeks.forEach(function (lo) { weeks.forEach(function (hi) { maxPct = Math.max(maxPct, wp.pairs[lo][hi].pct); }); });
+
+    var html = '<div style="overflow-x:auto;"><table style="border-collapse:collapse;width:100%;font-size:11px;">';
+    html += '<tr><td style="padding:6px 8px;"></td>' +
+      '<td colspan="5" style="padding:6px 8px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;">High Week &rarr;</td></tr>';
+    html += '<tr><td style="padding:6px 8px;"></td>' + weeks.map(function (w) {
+      return '<td style="padding:6px 8px;text-align:center;color:var(--muted);font-weight:600;">Wk ' + w + '</td>';
+    }).join('') + '</tr>';
+
+    weeks.forEach(function (lo) {
+      html += '<tr>';
+      html += '<td style="padding:6px 8px;color:var(--muted);font-weight:600;white-space:nowrap;">Wk ' + lo + ' low</td>';
+      weeks.forEach(function (hi) {
+        var cell = wp.pairs[lo][hi];
+        var isSameWeek = lo === hi;
+        var intensity = maxPct ? cell.pct / maxPct : 0;
+        var bg = isSameWeek
+          ? 'rgba(148,163,184,' + (0.06 + intensity * 0.1) + ')'
+          : 'rgba(34,197,94,' + (0.05 + intensity * 0.55) + ')';
+        html += '<td title="Wk ' + lo + ' low + Wk ' + hi + ' high: ' + cell.pct + '% (n=' + cell.n + ')' + (isSameWeek ? ' — same week' : '') + '"' +
+          ' style="padding:8px;text-align:center;background:' + bg + ';border:1px solid var(--border);' + (isSameWeek ? 'color:var(--muted);' : 'color:var(--text);') + '">' +
+          cell.pct + '%</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</table></div>';
+    html += '<div class="kptp-section-note" style="margin-top:10px;margin-bottom:0;">n=' + wp.n_months + ' months &middot; same-week (diagonal) occurs in ' + wp.same_week_pct + '% of months. Hover any cell for the exact count.</div>';
+
+    container.innerHTML = html;
+  }
+
   // The joint (low_weekday, high_weekday) table -- e.g. "how often does a
   // Monday low pair with a Friday high, specifically" -- not just the two
   // existing marginal bar charts (which day tends to have the high, which
@@ -585,8 +699,10 @@
   renderSessionLegend();
   renderWeeklyMonthly();
   renderWeekdayPairHeatmap();
+  renderWeekOfMonthPairHeatmap();
   renderYearlySection();
   renderProfiles();
   renderWeeklyProfiles();
+  renderMonthlyProfiles();
 
 })();
