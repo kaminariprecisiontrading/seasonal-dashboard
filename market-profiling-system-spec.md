@@ -413,9 +413,63 @@ assumed to transfer, per §4.4's standing rule and §4.6's own precedent:
   table from the start, `week_of_month_pair_distribution` (5×5, `low_week_of_month` ×
   `high_week_of_month`) — the same full-table treatment Weekly's `weekday_pair_distribution` needed
   a follow-up request to add, applied here immediately per the standing preference recorded in
-  §4.6's last bullet. **Dashboard UI (card grid, heatmap, detail/compare-page support) not yet
-  built as of this entry** — pipeline output validated end-to-end via `refresh_asset.py` on GBPUSD/
-  EURUSD/XAUUSD, awaiting the same "review before wiring further" checkpoint used for Weekly.
+  §4.6's last bullet. **Dashboard UI shipped same-day (2026-09-05)**: a "Monthly Profile Taxonomy"
+  card grid and a "Month High/Low — Week Pairing" heatmap on the Profiling tab, full detail/
+  compare-page support (Daily/Weekly/Monthly-grouped nav) — see `seasonal-dashboard`'s
+  `js/profiling*.js` and that repo's `docs/PLATFORM_ROADMAP.md` Tier 5.
+
+### 4.8 Yearly profile taxonomy (Tier 5, implemented 2026-09-05)
+
+`pipeline/profile_taxonomy_yearly.py` — Tier 5's coarsest granularity, completing the
+Daily→Weekly→Monthly→Yearly direction. Same 8-profile taxonomy shape (names swap "Month"→"Year"),
+re-derived per §4.4's standing rule — but this granularity needed an explicit scope decision from
+the user before building anything permanent, not just a parameter choice, because the sample size
+is genuinely thin:
+
+- **~28-34 years of history per asset, only ~21-26 of those classifiable** after burn-in (GBPUSD/
+  EURUSD/XAUUSD). Crossing two axes into 8 named profiles fragments this further — several
+  profile buckets landed at **zero years for a given asset** in the validation check (e.g.
+  GBPUSD's Quiet Drift Year (Down), XAUUSD's Compression Year and both Quiet Drift variants).
+  Presented this honestly to the user as a genuine fork before writing any code — full 8-name
+  taxonomy (disclosed) vs. a simplified 3-bucket range-only scheme vs. no formal yearly taxonomy
+  at all — **user chose to keep the full 8-name taxonomy for consistency with Daily/Weekly/
+  Monthly**, disclosed with a prominent small-sample note (mirroring the existing `yearly_range`
+  panel's own "treat this as a much weaker signal" copy) rather than silently presented as
+  equally reliable as the denser granularities.
+- **No trailing rolling window** — unlike Daily (252 days) or Weekly/Monthly (52 weeks / 24
+  months), a fixed trailing window doesn't make sense when the whole point is comparing a year to
+  *other years* and there are only ~30 of them total. Uses an **expanding window** instead
+  (percentile rank against all prior years, `MIN_PERIODS = 8`) — tested against small trailing
+  windows (15yr/20yr) and results were nearly identical, so the simpler expanding form was kept.
+  This also matches `stats_engine.py`'s own `build_yearly()`/`yearly_range`, which already
+  abandoned trailing-window lookback for the identical reason, well before this taxonomy existed.
+- **Range regime × closing shape correlation is small but inconsistent in sign** across assets:
+  **+0.153 (GBPUSD), −0.206 (EURUSD), +0.142 (XAUUSD)**. Larger in magnitude and less consistent
+  than Weekly/Monthly's, but still small enough that the two-axis split is defensible — disclosed,
+  not treated as disqualifying.
+- **Two secondary tags, direct analogs of Weekly's/Monthly's, discretized to calendar month**
+  (reusing `stats_engine.py`'s own `yearly_high_month`/`yearly_low_month` convention — plain
+  calendar month 1-12, not a coarser bucketing):
+  - `extreme_timing` — same >=0.5-of-the-period rule, "late" = July-December.
+  - `extreme_spread` — same-month vs. adjacent vs. spread-apart, bucketed `Same_Month` /
+    `Adjacent` / `Spread`. **Linear, not circular** — December and January are NOT treated as
+    adjacent, a known simplification consistent with how Weekly/Monthly also don't wrap their own
+    period boundaries, disclosed rather than silently assumed away.
+  - Both tags degrade gracefully to `Insufficient_History`, same defensive `.get()` pattern as
+    Weekly/Monthly.
+- **`month_pair_distribution` (12×12 joint table), included at the user's explicit request** even
+  though the exploratory check found it genuinely very sparse: with ~28-34 years spread across 144
+  cells, only 23-28 cells were non-zero and the max single-cell count was 2-3 years, across all
+  three test assets. Same-month occurred 0/33 (GBPUSD), 0/33 (EURUSD), 0/28 (XAUUSD) — with this
+  few years, that is **not** the same kind of "suppression finding" Weekly (thousands of weeks) or
+  Monthly (hundreds of months) demonstrated; it's simply what near-total sparsity looks like at
+  this n. Built and shipped, but the dashboard must disclose the small n prominently rather than
+  implying the same confidence the denser granularities' heatmaps can claim.
+- **Dashboard-wired same-day**: `build_dashboard_data.py` accepts `--yearly-summary`, folded into
+  the bundle as `bundle.yearly` — `refresh_asset.py` passes it automatically unless
+  `--skip-yearly`. A "Yearly Profile Taxonomy" card grid and a "Year High/Low — Month Pairing"
+  heatmap on the Profiling tab, full detail/compare-page support (now grouped Daily/Weekly/
+  Monthly/Yearly) — see `seasonal-dashboard`'s `js/profiling*.js`.
 
 ---
 

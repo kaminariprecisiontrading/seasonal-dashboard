@@ -366,9 +366,35 @@ API and a database (if/when migrating off static files) are evaluated later — 
   including the full `week_of_month_pair_distribution` joint table from the start, not added in a
   follow-up) shipped in the same pass as the taxonomy itself — the follow-up-request pattern from
   Weekly's `weekday_pair_distribution` was already known to be needed, so it wasn't deferred here.
-  Consuming dashboard UI (card grid, heatmap, detail/compare-page support) **not yet built** —
-  pipeline output validated and reviewed at the data level; UI wiring is the next step, pending the
-  same "review before pushing further" checkpoint used for Weekly.
+  Dashboard UI (a "Monthly Profile Taxonomy" card grid, "Month High/Low — Week Pairing" heatmap,
+  full detail/compare-page support) shipped in a follow-up pass the same day, after user review —
+  see `seasonal-dashboard`'s `js/profiling*.js` and `docs/PLATFORM_ROADMAP.md` Tier 5.
+- **Yearly Profile taxonomy implemented and dashboard-wired (2026-09-05, same day):**
+  `profile_taxonomy_yearly.py`, Tier 5's coarsest and final granularity. Sample size here is
+  genuinely thin (~28-34 years of history per asset, only ~21-26 classifiable) — this was flagged
+  to the user as a real fork, not just a parameter choice, before writing any permanent code: full
+  8-name taxonomy (disclosed) vs. a simplified 3-bucket range-only scheme vs. no formal yearly
+  taxonomy at all. **User chose to keep the full 8-name taxonomy for consistency with Daily/Weekly/
+  Monthly**, disclosed with a prominent small-sample note rather than silently presented as equally
+  reliable — several profile buckets landed at 0-2 years for a given asset in the validation check
+  (e.g. GBPUSD's Quiet Drift Year (Down) had 0 years). Full methodology: spec §4.8. Uses an
+  **expanding window** (percentile against all prior years), not a trailing one — meaningless at
+  this granularity with only ~30 total samples, and matches `stats_engine.py`'s own
+  `build_yearly()`/`yearly_range`, which had already abandoned trailing-window lookback for the
+  identical reason. Range/closing-shape correlation: +0.153 (GBPUSD), -0.206 (EURUSD), +0.142
+  (XAUUSD) — larger and less consistent in sign than Weekly/Monthly's, still small enough to keep
+  the two-axis split. The `month_pair_distribution` (12×12 joint table) was built at the user's
+  **explicit request** despite the exploratory check finding it genuinely sparse (only 23-28 of 144
+  cells non-zero, max single-cell count 2-3, across ~30 years) — shipped with raw counts shown
+  instead of percentages (which would overstate precision at this n) and a prominent small-sample
+  disclaimer, not silently presented with the same confidence Weekly's/Monthly's denser heatmaps
+  can claim. Wired into `refresh_asset.py`'s chain (`--skip-yearly` to opt out) and backfilled for
+  all 14 assets — some very-young assets (BTCUSD: only 2 classified years, having just ~10 years of
+  history total) render correctly with an honest near-empty card grid, not a crash or hidden
+  section. Dashboard UI (card grid, "Year High/Low — Month Pairing" heatmap, full detail/compare
+  support, now grouped Daily/Weekly/Monthly/Yearly) shipped in the same pass — see
+  `seasonal-dashboard`'s `js/profiling*.js` and `docs/PLATFORM_ROADMAP.md` Tier 5. **This completes
+  Tier 5's full Daily → Weekly → Monthly → Yearly ladder.**
 
 ---
 
@@ -423,11 +449,10 @@ in that repo, per the user's explicit preference — not carried over from this 
 
 1. **"Today's" live profile match** — blocked on Phase 4 (a live/current data feed); the
    dashboard is a historical-statistics browser until then.
-2. ~~**Weekly taxonomy**~~ — done and dashboard-wired (2026-09-05), see §5's entries and spec
-   §4.6. ~~**Monthly taxonomy**~~ — done and dashboard-wired at the data-bundle level (2026-09-05),
-   see §5's entry and spec §4.7; **dashboard UI (card grid, heatmap, detail/compare pages) not yet
-   built** for Monthly specifically — that's the natural next step for this item, separate from
-   Yearly (the rest of Tier 5) or Tier 5b's liquidity-sweep work.
+2. ~~**Weekly/Monthly/Yearly taxonomies**~~ — all done and dashboard-wired (2026-09-05), see §5's
+   entries and spec §4.6/§4.7/§4.8. **Tier 5's full Daily → Weekly → Monthly → Yearly ladder is
+   complete.** Only Tier 5b (session-defined/news-timing/liquidity-sweep profiles, paused pending
+   pickup) remains open in the profile-taxonomy family.
 3. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
    tries it against a real morning routine. One known nit already flagged: "Normal Day" cells on
    the calendar are low-contrast, close in appearance to empty/no-data cells (spec §5.2).

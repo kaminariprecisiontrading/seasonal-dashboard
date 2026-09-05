@@ -1,0 +1,18 @@
+year_start,is_short_year,year_end,open,high,low,close,range_pips,high_month,low_month,close_position,cs,direction,range_pctile,cs_pctile,range_regime,shape,close_side_month,far_side_month,extreme_timing,extreme_spread,n_days,profile
+2010-08-22,True,,,,,,,,,,,,,,,,,,,,,Short_Year
+2011-01-02,False,2011-12-30,91.26,114.78,74.94,98.92,3984.0,5.0,10.0,0.6019076305220884,0.2038152610441768,Up,,,Insufficient_History,Insufficient_History,5.0,10.0,Fade_Risk,Spread,304.0,Insufficient_History
+2012-01-02,False,2012-12-31,98.85,110.51,77.28,91.12,3323.0,3.0,6.0,0.41649112247968706,0.16701775504062588,Down,,,Insufficient_History,Insufficient_History,6.0,3.0,Early_Resolution,Spread,286.0,Insufficient_History
+2013-01-02,False,2013-12-31,92.71,112.18,85.59,98.5,2659.0,8.0,4.0,0.48552087250846165,0.028958254983076692,Down,,,Insufficient_History,Insufficient_History,4.0,8.0,Fade_Risk,Spread,256.0,Insufficient_History
+2014-01-02,False,2014-12-31,96.77,107.62,52.47,52.67,5515.0,6.0,12.0,0.0036264732547597973,0.9927470534904804,Down,,,Insufficient_History,Insufficient_History,12.0,6.0,Late_Push,Spread,257.0,Insufficient_History
+2015-01-02,False,2015-12-31,53.86,62.55,35.51,38.08,2704.0,5.0,12.0,0.09504437869822487,0.8099112426035503,Down,,,Insufficient_History,Insufficient_History,12.0,5.0,Late_Push,Spread,258.0,Insufficient_History
+2016-01-04,False,2016-12-30,38.45,55.26,27.69,54.21,2757.0,12.0,1.0,0.9619151251360175,0.923830250272035,Up,,,Insufficient_History,Insufficient_History,12.0,1.0,Late_Push,Spread,258.0,Insufficient_History
+2017-01-03,False,2017-12-29,54.58,60.45,41.99,60.15,1846.0,12.0,6.0,0.9837486457204765,0.967497291440953,Up,,,Insufficient_History,Insufficient_History,12.0,6.0,Late_Push,Spread,257.0,Insufficient_History
+2018-01-02,False,2018-12-31,60.13,76.76,42.11,45.9,3465.0,10.0,12.0,0.10937950937950934,0.7812409812409813,Down,75.0,50.0,Normal,Mixed,12.0,10.0,Late_Resolution,Spread,238.0,Normal Year
+2019-01-02,False,2019-12-31,45.87,66.57,44.51,61.12,2206.0,4.0,1.0,0.7529465095194924,0.5058930190389848,Up,22.22222222222222,44.44444444444444,Normal,Mixed,4.0,1.0,Early_Resolution,Spread,258.0,Normal Year
+2020-01-02,False,2020-12-31,61.14,65.53,3.41,48.08,6212.0,1.0,4.0,0.7190920798454604,0.43818415969092084,Up,100.0,40.0,Expansion,Mixed,1.0,4.0,Early_Resolution,Spread,259.0,Volatile Year
+2021-01-04,False,2021-12-30,48.04,85.76,47.08,76.48,3868.0,10.0,1.0,0.7600827300930714,0.5201654601861427,Up,72.72727272727273,54.54545454545454,Normal,Mixed,10.0,1.0,Late_Push,Spread,257.0,Normal Year
+2022-01-03,False,2022-12-30,75.4,131.1,70.21,80.03,6089.0,3.0,12.0,0.16127442929873553,0.6774511414025289,Down,91.66666666666666,58.333333333333336,Expansion,Mixed,12.0,3.0,Late_Push,Spread,258.0,Volatile Year
+2023-01-03,False,2023-12-29,80.48,95.35,63.8,71.33,3155.0,9.0,5.0,0.23866877971473857,0.5226624405705229,Down,46.15384615384615,53.84615384615385,Normal,Mixed,5.0,9.0,Fade_Risk,Spread,257.0,Normal Year
+2024-01-02,False,2024-12-31,71.68,87.79,65.5,72.05,2229.0,4.0,9.0,0.2938537460744726,0.41229250785105476,Down,21.428571428571427,28.57142857142857,Normal,Mixed,9.0,4.0,Late_Push,Spread,259.0,Normal Year
+2025-01-02,False,2025-12-31,71.97,80.75,54.97,57.45,2578.0,1.0,12.0,0.09619860356865803,0.8076027928626839,Down,26.666666666666668,73.33333333333333,Normal,Mixed,12.0,1.0,Late_Push,Spread,258.0,Normal Year
+2026-01-02,True,,,,,,,,,,,,,,,,,,,,,Short_Year

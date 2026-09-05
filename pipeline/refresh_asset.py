@@ -2,21 +2,21 @@
 refresh_asset.py — One-command pipeline runner for a single asset.
 
 Runs the full chain, in dependency order, that previously had to be invoked
-as five separate manual commands:
+as several separate manual commands:
 
     clean_mt5_csv.py -> profile_taxonomy.py -> stats_engine.py
         -> profile_taxonomy_weekly.py -> profile_taxonomy_monthly.py
-        -> build_dashboard_data.py
+        -> profile_taxonomy_yearly.py -> build_dashboard_data.py
         -> export_profile_examples.py -> export_calendar_data.py
 
-profile_taxonomy_weekly.py / profile_taxonomy_monthly.py (Tier 5's Weekly
-and Monthly Profiles, added 2026-09-05) are parallel siblings to
-profile_taxonomy.py, not a dependency of anything after them in the chain --
-each produces its own <asset>_<period>_profiles.csv/_<period>_profile_
-summary.json, folded into the dashboard bundle by build_dashboard_data.py's
---weekly-summary/--monthly-summary flags. See market-profiling-system-spec.md
-§4 and HANDOVER.md §5 for the methodology and the empirical validation
-behind both.
+profile_taxonomy_weekly.py / profile_taxonomy_monthly.py / profile_taxonomy_yearly.py
+(Tier 5's Weekly/Monthly/Yearly Profiles, added 2026-09-05) are parallel
+siblings to profile_taxonomy.py, not a dependency of anything after them in
+the chain -- each produces its own <asset>_<period>_profiles.csv/_<period>_
+profile_summary.json, folded into the dashboard bundle by
+build_dashboard_data.py's --weekly-summary/--monthly-summary/--yearly-summary
+flags. See market-profiling-system-spec.md §4 and HANDOVER.md §5 for the
+methodology and the empirical validation behind each.
 
 Built to be safe to re-run at any cadence (daily/weekly/monthly/ad hoc) --
 every stage always reprocesses the *complete* history from the current raw
@@ -47,6 +47,7 @@ Usage:
     --skip-calendar   skip the per-year calendar export
     --skip-weekly     skip the weekly profile taxonomy (Tier 5)
     --skip-monthly    skip the monthly profile taxonomy (Tier 5)
+    --skip-yearly     skip the yearly profile taxonomy (Tier 5)
 """
 import sys
 import os
@@ -101,6 +102,7 @@ def main():
     ap.add_argument("--skip-calendar", action="store_true")
     ap.add_argument("--skip-weekly", action="store_true")
     ap.add_argument("--skip-monthly", action="store_true")
+    ap.add_argument("--skip-yearly", action="store_true")
     args = ap.parse_args()
 
     asset = args.asset.upper()
@@ -137,6 +139,8 @@ def main():
     weekly_summary_json  = os.path.join(output_dir, f"{asset_lower}_weekly_profile_summary.json")
     monthly_profiles_csv = os.path.join(clean_dir, f"{asset_lower}_monthly_profiles.csv")
     monthly_summary_json = os.path.join(output_dir, f"{asset_lower}_monthly_profile_summary.json")
+    yearly_profiles_csv  = os.path.join(clean_dir, f"{asset_lower}_yearly_profiles.csv")
+    yearly_summary_json  = os.path.join(output_dir, f"{asset_lower}_yearly_profile_summary.json")
     dashboard_js = os.path.join(dashboard_data_dir, f"{asset_lower}.js")
     examples_js  = os.path.join(dashboard_data_dir, "profile-examples", f"{asset_lower}.js")
     calendar_dir = os.path.join(dashboard_data_dir, "calendar")
@@ -161,6 +165,11 @@ def main():
         build_dashboard_cmd += ["--monthly-summary", monthly_summary_json]
     else:
         print("\n(skipped --skip-monthly)", file=sys.stderr)
+    if not args.skip_yearly:
+        run([py, "profile_taxonomy_yearly.py", clean_csv, yearly_profiles_csv, yearly_summary_json, "--asset", asset, "--pip", str(pip)])
+        build_dashboard_cmd += ["--yearly-summary", yearly_summary_json]
+    else:
+        print("\n(skipped --skip-yearly)", file=sys.stderr)
     run(build_dashboard_cmd)
 
     if not args.skip_examples:
