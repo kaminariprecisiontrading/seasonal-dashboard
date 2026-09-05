@@ -1442,9 +1442,9 @@ const WTI_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 2235,
-          "pct": 53.1
+        "Other": {
+          "n": 1762,
+          "pct": 41.9
         },
         "New_York": {
           "n": 814,
@@ -1453,6 +1453,10 @@ const WTI_DATA = {
         "London_NY_Overlap": {
           "n": 729,
           "pct": 17.3
+        },
+        "Asian": {
+          "n": 473,
+          "pct": 11.2
         },
         "London": {
           "n": 347,
@@ -2472,9 +2476,9 @@ const WTI_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 2233,
-          "pct": 53.1
+        "Other": {
+          "n": 1735,
+          "pct": 41.2
         },
         "London_NY_Overlap": {
           "n": 751,
@@ -2483,6 +2487,10 @@ const WTI_DATA = {
         "New_York": {
           "n": 713,
           "pct": 16.9
+        },
+        "Asian": {
+          "n": 498,
+          "pct": 11.8
         },
         "London": {
           "n": 413,

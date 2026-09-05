@@ -1442,13 +1442,17 @@ const BTCUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 1297,
-          "pct": 45.0
-        },
         "New_York": {
           "n": 777,
           "pct": 27.0
+        },
+        "Asian": {
+          "n": 709,
+          "pct": 24.6
+        },
+        "Other": {
+          "n": 588,
+          "pct": 20.4
         },
         "London_NY_Overlap": {
           "n": 502,
@@ -2472,13 +2476,17 @@ const BTCUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 1333,
-          "pct": 46.3
-        },
         "New_York": {
           "n": 733,
           "pct": 25.4
+        },
+        "Asian": {
+          "n": 699,
+          "pct": 24.3
+        },
+        "Other": {
+          "n": 634,
+          "pct": 22.0
         },
         "London_NY_Overlap": {
           "n": 487,

@@ -308,6 +308,21 @@ API and a database (if/when migrating off static files) are evaluated later — 
   this unblocks. No downstream stage consumes the new session-OHLC *columns* themselves yet
   (deliberately staged step-by-step, not built ahead of the actual sweep-detection logic) — only
   the boundary widening itself was live-visible, via the pre-existing `session_tag()` consumers.
+- **Asian-widening reverted, same day (2026-09-05):** on reflection, decided the 21:00 UTC widening
+  above was the wrong fix, even though it mechanically worked. That window sits right at this
+  pipeline's own trading-day boundary (NY 5pm, landing at 21:00 or 22:00 UTC depending on DST), so
+  a widened Asian session doesn't cleanly represent "the fresh start of a new trading day" — part
+  of it can still conceptually belong to the tail of the *previous* trading day depending on the
+  time of year, which felt like carrying over stray data rather than a clean session boundary.
+  Reverted `_in_asian()` back to 23:00 UTC; the 21:00-23:00 UTC gap (`"Other"` in `session_tag()`,
+  NaN in the session-OHLC columns) is deliberate again, not a defect — read as "not much happens
+  here," not "unaccounted for." The shared-boundary-functions refactor (`_in_asian`/`_in_london`/
+  `_in_ny` as one source of truth for both `session_tag()` and `add_session_ohlc()`) stayed; only
+  the specific hour values reverted. If a concrete future use case genuinely needs that window's
+  data, handle it for that case specifically rather than redefining the boundary globally again.
+  Re-ran the full 6-stage chain for all 14 assets a second time to restore the original session
+  labeling everywhere (this and the widening above never reached `origin/main` — both the fix and
+  the revert happened in local commits before any push, so there was no live-site impact either way).
 
 ---
 

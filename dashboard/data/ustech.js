@@ -1442,9 +1442,9 @@ const USTECH_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 2929,
-          "pct": 74.2
+        "Other": {
+          "n": 2735,
+          "pct": 69.3
         },
         "New_York": {
           "n": 521,
@@ -1453,6 +1453,10 @@ const USTECH_DATA = {
         "London_NY_Overlap": {
           "n": 369,
           "pct": 9.3
+        },
+        "Asian": {
+          "n": 194,
+          "pct": 4.9
         },
         "London": {
           "n": 94,
@@ -2472,9 +2476,9 @@ const USTECH_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 2995,
-          "pct": 75.9
+        "Other": {
+          "n": 2758,
+          "pct": 69.9
         },
         "New_York": {
           "n": 431,
@@ -2483,6 +2487,10 @@ const USTECH_DATA = {
         "London_NY_Overlap": {
           "n": 377,
           "pct": 9.5
+        },
+        "Asian": {
+          "n": 237,
+          "pct": 6.0
         },
         "London": {
           "n": 105,

@@ -1446,17 +1446,21 @@ const BRENT_DATA = {
           "n": 821,
           "pct": 29.5
         },
-        "Asian": {
-          "n": 751,
-          "pct": 27.0
-        },
         "London_NY_Overlap": {
           "n": 677,
           "pct": 24.3
         },
+        "Asian": {
+          "n": 567,
+          "pct": 20.4
+        },
         "London": {
           "n": 431,
           "pct": 15.5
+        },
+        "Other": {
+          "n": 184,
+          "pct": 6.6
         },
         "Asian_London_Overlap": {
           "n": 104,
@@ -2472,10 +2476,6 @@ const BRENT_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 794,
-          "pct": 28.5
-        },
         "New_York": {
           "n": 716,
           "pct": 25.7
@@ -2484,9 +2484,17 @@ const BRENT_DATA = {
           "n": 707,
           "pct": 25.4
         },
+        "Asian": {
+          "n": 601,
+          "pct": 21.6
+        },
         "London": {
           "n": 456,
           "pct": 16.4
+        },
+        "Other": {
+          "n": 193,
+          "pct": 6.9
         },
         "Asian_London_Overlap": {
           "n": 111,

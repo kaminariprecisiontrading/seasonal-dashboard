@@ -1442,12 +1442,16 @@ const GBPUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 3864,
-          "pct": 44.7
+        "Other": {
+          "n": 2153,
+          "pct": 24.9
         },
         "London_NY_Overlap": {
           "n": 1712,
+          "pct": 19.8
+        },
+        "Asian": {
+          "n": 1711,
           "pct": 19.8
         },
         "New_York": {
@@ -2472,13 +2476,17 @@ const GBPUSD_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 3829,
-          "pct": 44.3
+        "Other": {
+          "n": 2373,
+          "pct": 27.4
         },
         "London_NY_Overlap": {
           "n": 1808,
           "pct": 20.9
+        },
+        "Asian": {
+          "n": 1456,
+          "pct": 16.8
         },
         "New_York": {
           "n": 1299,

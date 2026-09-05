@@ -55,20 +55,22 @@ PIP_SIZE = {
 # session's own full OHLC, including overlap hours) so the two can't drift
 # apart into disagreeing about what "Asian"/"London"/"NY" mean.
 #
-# Asian starts at 21:00 UTC, not 23:00 -- widened from the original boundary
-# specifically to close a real gap: 23:00/07:00/12:00-21:00 windows plus their
-# overlaps left 21:00-23:00 UTC covered by no session at all (confirmed
-# empirically: every case where a day's overall high/low wasn't reflected in
-# any of the three session-OHLC columns traced to exactly this window). 21:00
-# UTC is also the conventional Sydney-open time many retail FX session models
-# already use as the start of the broader "Asian/Pacific" session, so this
-# isn't an arbitrary stretch -- it's a real, commonly-used boundary the
-# original definition simply didn't use. With this widening, Asian + London +
-# NY covers all 24 hours with no gap.
+# Asian starts at 23:00 UTC, leaving 21:00-23:00 UTC covered by no named
+# session (tagged "Other" by session_tag(), NaN in add_session_ohlc()) --
+# deliberate, not an oversight. A same-day attempt to widen Asian to 21:00 UTC
+# to close this gap was reverted (2026-09-05): that window sits right at this
+# pipeline's own trading-day boundary (NY 5pm, which lands at 21:00 or 22:00
+# UTC depending on DST), so a widened Asian session doesn't cleanly represent
+# "the fresh start of a new trading day" -- part of it can still conceptually
+# belong to the tail of the *previous* trading day depending on the time of
+# year. Left unaccounted for by default; if a specific future use case
+# genuinely needs that window's data, handle it for that case specifically
+# rather than redefining the session boundary globally. See HANDOVER.md §5
+# and market-profiling-system-spec.md §2.3 for the full back-and-forth.
 def _in_asian(h):
     # | not "or" -- must vectorize over a pandas Series (add_session_ohlc's
     # bulk hour column) as well as work on a plain scalar float (session_tag).
-    return (h >= 21.0) | (h < 8.0)
+    return (h >= 23.0) | (h < 8.0)
 
 
 def _in_london(h):
@@ -97,7 +99,7 @@ def session_tag(utc_dt: pd.Timestamp) -> str:
         return "New_York"
     if in_asian:
         return "Asian"
-    return "Other"  # unreachable now that Asian+London+NY cover all 24 hours; kept as a safety fallback
+    return "Other"  # the deliberate 21:00-23:00 UTC gap -- see _in_asian()'s comment above
 
 
 def load_raw(path: str) -> pd.DataFrame:

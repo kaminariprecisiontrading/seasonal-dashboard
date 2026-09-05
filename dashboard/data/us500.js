@@ -1442,9 +1442,9 @@ const US500_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 3186,
-          "pct": 75.6
+        "Other": {
+          "n": 3004,
+          "pct": 71.3
         },
         "New_York": {
           "n": 555,
@@ -1453,6 +1453,10 @@ const US500_DATA = {
         "London_NY_Overlap": {
           "n": 331,
           "pct": 7.9
+        },
+        "Asian": {
+          "n": 182,
+          "pct": 4.3
         },
         "London": {
           "n": 103,
@@ -2472,9 +2476,9 @@ const US500_DATA = {
         }
       },
       "session_distribution": {
-        "Asian": {
-          "n": 3256,
-          "pct": 77.3
+        "Other": {
+          "n": 3015,
+          "pct": 71.6
         },
         "New_York": {
           "n": 471,
@@ -2483,6 +2487,10 @@ const US500_DATA = {
         "London_NY_Overlap": {
           "n": 330,
           "pct": 7.8
+        },
+        "Asian": {
+          "n": 241,
+          "pct": 5.7
         },
         "London": {
           "n": 113,

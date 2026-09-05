@@ -1442,9 +1442,13 @@ const AUDUSD_DATA = {
         }
       },
       "session_distribution": {
+        "Other": {
+          "n": 2435,
+          "pct": 28.1
+        },
         "Asian": {
-          "n": 4430,
-          "pct": 51.2
+          "n": 1995,
+          "pct": 23.1
         },
         "New_York": {
           "n": 1561,
@@ -2472,9 +2476,13 @@ const AUDUSD_DATA = {
         }
       },
       "session_distribution": {
+        "Other": {
+          "n": 2809,
+          "pct": 32.5
+        },
         "Asian": {
-          "n": 4830,
-          "pct": 55.8
+          "n": 2021,
+          "pct": 23.4
         },
         "London_NY_Overlap": {
           "n": 1459,
