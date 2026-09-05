@@ -245,7 +245,11 @@ formal profile, Frankfurt as a distinct session, the news/event annotation layer
 sequenced step-by-step per the user's explicit preference, not designed or built ahead of need.
 
 **Sequencing:** independent of Tier 5 — the two can run in either order or interleaved, since they
-touch different granularities of the same underlying taxonomy idea.
+touch different granularities of the same underlying taxonomy idea. **Decided (2026-09-05): paused
+here.** The 21:00-23:00 UTC session gap the infrastructure step surfaced was deliberately left
+open rather than closed (a same-day attempt to widen the Asian session to close it was reverted —
+see `KPT-Market-Profiling/HANDOVER.md` §5 for why). Tier 5's Weekly Profile is picked up next; the
+sweep-threshold derivation/descriptive study resumes only after that's done and reviewed.
 
 ---
 
