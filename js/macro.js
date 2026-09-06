@@ -6,7 +6,7 @@
  * ui.js discovers it and adds the Macro tab automatically.
  *
  * Depends on: ASSET_CONFIG.id (loaded before this script).
- * Script load order: data.js → accordion.js → api.js → tradingview.js → backtest.js → macro.js → ui.js
+ * Script load order: data.js → accordion.js → api.js → tradingview.js → macro.js → seasonal-chart.js → upload.js → ui.js
  */
 (function () {
 

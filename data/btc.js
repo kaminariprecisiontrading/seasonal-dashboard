@@ -7,7 +7,7 @@ const ASSET_CONFIG = {
   id:       "btc",
   name:     "Bitcoin / USD",
   sub:      "Seasonal Tendency Analysis · 5-YR · 15-YR · 9-YR (statistically derived) · Not Moore Research Center data",
-  footnote: "Statistically derived from 8.9 years of real BTCUSD price history (2017-10-17 → 2026-09-03), sourced via TradersWay MT5 export and cleaned by the KPT-Market-Profiling pipeline. Moore Research Center does not cover crypto — this signal uses the site's own Raw Price Tendency methodology (js/backtest.js) instead of hand-authored chart analysis. The 15-YR column shows the same full-history computation as the 9-YR column, since that much price history does not exist yet. Star conviction is capped below the site's usual maximum for this reason — see the page's derived-note box.",
+  footnote: "Statistically derived from 8.9 years of real BTCUSD price history (2017-10-17 → 2026-09-03), sourced via TradersWay MT5 export and cleaned by the KPT-Market-Profiling pipeline. Moore Research Center does not cover crypto — this signal uses the site's own Raw Price Tendency methodology (js/upload.js) instead of hand-authored chart analysis. The 15-YR column shows the same full-history computation as the 9-YR column, since that much price history does not exist yet. Star conviction is capped below the site's usual maximum for this reason — see the page's derived-note box.",
   ltLabel:  "9-YR",
   ltSigKey: "sig9",
   ltKey:    "s9",

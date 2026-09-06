@@ -5,9 +5,9 @@ version: 1.6.2
 updated: June 2026
 futures_complete: AUD/USD (34-YR), USD Index (35-YR), JPY/USD (40-YR), GBP/USD (40-YR), CAD/USD (40-YR), EUR/USD (22-YR), CHF/USD (40-YR), NZD/USD (23-YR)
 forex_complete: AUDUSD, USDJPY, GBPUSD, AUDJPY, EURJPY, GBPJPY, CADJPY, NZDJPY, CHFJPY, EURUSD, EURGBP, EURCAD, EURAUD, EURNZD, EURCHF, GBPCAD, GBPAUD, GBPNZD, GBPCHF, AUDCAD, AUDNZD, AUDCHF, CADCHF, NZDCAD, NZDCHF, NZDUSD, USDCAD, USDCHF
-total_assets: 97 (70 futures + 27 FX pairs)
-tabs: Seasonals | Trend | Price | History | Sessions | Macro | Analysis
-scripts: 9 (data → accordion → api → tradingview → backtest → macro → seasonal-chart → intraday → ui)
+total_assets: 98 (70 futures + 27 FX pairs + BTCUSD)
+tabs: Seasonals | Trend | Profiling | Live Price | Macro | Upload | Analysis
+scripts: 8 (data → accordion → api → tradingview → macro → seasonal-chart → upload → ui)
 ---
 
 # SKILL.md — How to Build a Seasonal Trading Dashboard
@@ -123,8 +123,8 @@ All configuration is in `js/api.js` (shared). Provider credentials and settings 
 |------|--------|----------------|
 | Seasonal | `MONTHS[]` in data file | Always |
 | Curve | Cumulative data derived from `MONTHS[]` | Always |
-| History | D1 CSV uploaded on History tab | After upload |
-| Sessions | H1/H4 CSV uploaded on Sessions tab | After upload |
+| History | D1-and-coarser CSV uploaded on Upload tab | After upload |
+| Sessions | Sub-daily (M1–H4) CSV uploaded on Upload tab | After upload, tier-permitting |
 
 **Dynamic SEASONAL_DATA (v1.5):** The `SEASONAL_DATA` static string in each data file is no longer the source of truth. `api.js` calls `_buildSeasonalSummary()` which generates an equivalent text live from `MONTHS[]` at runtime. You do not need to maintain the static string — it is only a fallback for edge cases where `MONTHS` is undefined.
 
@@ -199,20 +199,19 @@ const ASSET_CONFIG = {
 
 **IMPORTANT:** The copyright span uses inline styles — do NOT use a CSS class alone. This ensures it always renders regardless of CSS caching.
 
-Script tags — must be in this exact order (9 scripts total):
+Script tags — must be in this exact order (8 scripts total):
 ```html
 <script src="../data/[asset].js"></script>   <!-- ASSET_CONFIG, MONTHS[], SEASONAL_DATA -->
 <script src="../js/accordion.js"></script>    <!-- builds combined accordion from MONTHS[] -->
 <script src="../js/api.js"></script>          <!-- multi-provider AI (Claude/Gemini/Ollama) -->
-<script src="../js/tradingview.js"></script>  <!-- TradingView Price tab widget -->
-<script src="../js/backtest.js"></script>     <!-- History tab: D1 CSV upload + backtest engine -->
+<script src="../js/tradingview.js"></script>  <!-- TradingView Live Price tab widget -->
 <script src="../js/macro.js"></script>        <!-- Macro tab: economic calendar links -->
 <script src="../js/seasonal-chart.js"></script> <!-- Trend tab: S-curve chart renderer -->
-<script src="../js/intraday.js"></script>     <!-- Sessions tab: H1/H4 CSV upload + session stats -->
+<script src="../js/upload.js"></script>       <!-- Upload tab: any-timeframe CSV upload + tendency/session stats -->
 <script src="../js/ui.js"></script>           <!-- tab switching, shared UI init (loads last) -->
 ```
 
-Do NOT edit any shared JS files for asset-specific changes — they serve all 97 pages. Asset-specific customisation belongs in `data/[asset].js` only.
+Do NOT edit any shared JS files for asset-specific changes — they serve all 98 pages. Asset-specific customisation belongs in `data/[asset].js` only.
 
 **3. `index.html`** — find the planned card, change:
 - `status-planned` → `status-complete`
@@ -240,21 +239,25 @@ Netlify detects the push and auto-deploys within ~60 seconds. Live URL: `https:/
 
 ---
 
-## Step 9 — Tab System (v1.5)
+## Step 9 — Tab System (Tier 4)
 
-All asset pages use a 7-tab layout. Tabs are injected by `ui.js` from the shared `.kpt-tabs` nav in each HTML shell:
+All asset pages use a 7-tab layout. There is no static tab nav anywhere in the HTML shells —
+`ui.js` builds the entire tab bar at runtime from its own `tabs` array, and only renders a button
+for a tab whose panel element (`[data-kpt-panel="<id>"]`) actually exists in the DOM. Each feature
+module injects its own panel section at script-load time, before `ui.js` runs:
 
-| Tab label | Panel ID | Injected by |
-|-----------|----------|-------------|
-| Seasonals | `kpt-panel-seasonals` | `accordion.js` |
-| Trend | `kpt-panel-scurve` | `seasonal-chart.js` |
-| Price | `kpt-panel-chart` | `tradingview.js` |
-| History | `kpt-panel-backtest` | `backtest.js` |
-| Sessions | `kpt-panel-intraday` | `intraday.js` |
-| Macro | `kpt-panel-macro` | `macro.js` |
-| Analysis | `kpt-panel-ai` | `api.js` |
+| Tab label | Panel ID (`data-kpt-panel`) | Injected by |
+|-----------|------------------------------|-------------|
+| Seasonals | `seasonals` | `ui.js` itself (tags `.combined-wrap`) |
+| Trend | `scurve` | `seasonal-chart.js` |
+| Profiling | `profiling` | `profiling.js` (only on pages with ported Profiling data) |
+| Live Price | `chart` | `ui.js` itself (tags `#tv-chart-section`) |
+| Macro | `macro` | `macro.js` |
+| Upload | `upload` | `upload.js` |
+| Analysis | `analysis` | `ui.js` itself (tags `.ai-panel`) |
 
-The **Seasonals** tab is the landing tab and contains:
+The **Seasonals** tab is the landing tab (always `tabs[0]`, activated unconditionally on every
+page load — the primary tab is not persisted) and contains:
 1. Header + legend
 2. Combined accordion (12 months, Wk1–4 expandable, current month auto-opens)
 3. Divider
@@ -263,39 +266,46 @@ The **Seasonals** tab is the landing tab and contains:
 6. Long-term table
 7. Footnote
 
-The **Analysis** tab panel must contain these elements for `api.js` to inject into:
-```html
-<div data-kpt-panel="ai" class="kpt-panel">
-  <!-- api.js injects provider pills, settings, context bar, run button, output -->
-</div>
-```
-
-`api.js` calls `_injectUI()` on DOMContentLoaded to build the entire panel. No AI markup is required in the HTML shell.
+The **Analysis** tab's panel is `.ai-panel`, already present as static markup in every HTML shell
+(not JS-injected like the others) — `ui.js` just tags it with `data-kpt-panel="analysis"`.
+`api.js` calls `_injectUI()` on DOMContentLoaded to build the provider pills, settings, context
+bar, and output area inside it. No additional AI markup is required in the HTML shell.
 
 ---
 
-## Step 10 — Sessions Tab (Intraday Statistics)
+## Step 10 — Upload Tab (CSV price-history tool)
 
-The Sessions tab accepts H1 or H4 CSV exports from MetaTrader 5 and computes intraday statistics broken down by:
-- **Trading session** (Sydney, Tokyo, London, New York, overlaps)
-- **Day of week** (Monday–Friday)
-- **Hour of day** (bar-level chart, 24 slots in broker EET time)
+The Upload tab accepts an MT5 CSV export at **any granularity from M1 (1-minute) through MN1
+(Monthly)** — a single shared parser and timeframe detector, replacing the former separate
+History and Sessions tabs. Two views render, only when the detected tier supports them:
+
+- **Seasonal Tendency** (available for every tier) — raw up-frequency, win-rate vs. the seasonal
+  model, and average return per (month, week-of-month) slot. A Monthly-bar upload collapses the
+  week-of-month axis to a single "Month" slot (disclosed in-panel) since one bar per month carries
+  no sub-month resolution.
+- **Intraday Timing** (sub-daily tiers only — M1/M5/M15/M30/H1/H4) — average return by hour of
+  day, by trading session (Asian/London/Overlap/New York), and by day of week.
 
 **Exporting from MT5:**
 1. View → Symbols → select asset → Bars tab
-2. Timeframe: **H1** (recommended) or H4
+2. Timeframe: any, M1 through MN1
 3. Set date range (all available history)
 4. Click Request → Export Bars → save as CSV
 
-**Occurrence count methodology (schemaVer 3):**
-- Session cards and DoW cards count **distinct trading days**, not individual H1 bars
+**Timeframe detection:** `detectTier()` computes the *median* gap between consecutive bar
+timestamps in minutes (a median, not a mean, so weekend/holiday gaps don't skew the result) and
+matches it to the nearest of nine standard tiers.
+
+**Occurrence count methodology (Intraday Timing view):**
+- Session cards and day-of-week cards count **distinct trading days**, not individual bars
 - "N / M sessions" means N days where the session closed up, out of M total days where the session had any data
 - The hourly chart remains bar-level (each bar slot is the atomic unit for an hour)
-- This gives interpretable M values (~1,650 for a 33-year dataset) rather than misleadingly large bar counts (~39,600 if counted at bar level)
 
-**Cache versioning:** `schemaVer: 3` — any cached data with `schemaVer < 3` is rejected on page load and recomputed from the CSV. This ensures the methodology change propagates automatically.
+**Storage:** single `kpt-up-{id}` key (schemaVer 1) holds the tier plus both views' computed
+stats. Broker UTC offset is still stored separately at `kpt-tz-{id}`.
 
-**Signal filter:** The Sessions tab shows statistics for the full dataset ("All") and filtered by the current seasonal signal ("Long"/"Short"/"Choppy") derived from `MONTHS[]`.
+**Signal filter:** the Intraday Timing view shows statistics for the full dataset ("All") and
+filtered by the current seasonal signal ("Long"/"Short"/"Choppy") derived from `MONTHS[]`.
 
 ---
 
@@ -351,9 +361,9 @@ If you copy from an old template (pre-v0.6), it may have `id="accordion-body"` a
 | Ollama button gives CORS error | Must run `set OLLAMA_ORIGINS=* && ollama serve` (not just `ollama serve`). Use `start_kpt.bat`. |
 | Ollama URL field — what to enter | Enter `http://localhost:11434` exactly — no trailing slash, no `/v1` suffix |
 | Analysis tab blank / no pills | `api.js` must load AFTER `data/[asset].js` — check script order in HTML shell |
-| Sessions tab bar counts seem too high | Expected — occurrence count uses day-level not bar-level for session/DoW cards. Check schemaVer is 3. |
-| Sessions cache not refreshing after update | Old cache has `schemaVer: 2` — clear localStorage for the asset key or re-upload the CSV |
-| Sessions signal filter shows nothing | `MONTHS[]` must be defined (data file loaded) before `intraday.js` runs — check script order |
+| Intraday Timing view bar counts seem too high | Expected — occurrence count uses day-level not bar-level for session/DoW cards |
+| Upload's Intraday Timing view missing after upload | Expected for D1/W1/MN1 uploads — that view only renders for sub-daily tiers (M1–H4) |
+| Upload signal filter shows nothing | `MONTHS[]` must be defined (data file loaded) before `upload.js` runs — check script order |
 | Wrong provider name in Analysis panel heading | Heading is set by `_updatePanelHeadings(prov)` — fires on provider pill click. Check `api.js` is v1.5. |
-| Tab missing from nav / tab does nothing | Each tab's JS must load in the correct order; `ui.js` must be last. Check the 9-script load order. |
+| Tab missing from nav / tab does nothing | Each tab's JS must load in the correct order; `ui.js` must be last. Check the 8-script load order. |
 | Print output shows dark background | `@media print` block in `dashboard.css` overrides CSS vars to white — check dashboard.css is current v1.5 file |

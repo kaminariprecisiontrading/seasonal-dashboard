@@ -48,10 +48,9 @@ The 9 shared JS scripts must remain in this order, with `ui.js` last:
 <script src="../js/accordion.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/tradingview.js"></script>
-<script src="../js/backtest.js"></script>
 <script src="../js/macro.js"></script>
 <script src="../js/seasonal-chart.js"></script>
-<script src="../js/intraday.js"></script>
+<script src="../js/upload.js"></script>
 <script src="../js/ui.js"></script>
 ```
 
@@ -122,7 +121,7 @@ All 97 asset pages load the same 9 shared scripts from `js/`. Changes to any sha
 
 Before editing a shared file:
 - Understand which modules depend on which — see `ARCHITECTURE.md` load order
-- Changes to `accordion.js`, `api.js`, or `intraday.js` are the highest risk (most logic)
+- Changes to `accordion.js`, `api.js`, or `upload.js` are the highest risk (most logic)
 - Changes to `tradingview.js`, `macro.js`, or `seasonal-chart.js` are lower risk (more self-contained)
 - `ui.js` is the final bootstrap — if it errors, no tabs appear
 
@@ -177,7 +176,7 @@ the standard futures/forex recipes above.
    (`refresh_asset.py`) first, same as any Profiling asset.
 2. Run `python3 pipeline/gen_seasonal_signal.py <ASSET>` from `KPT-Market-Profiling/` — derives a
    `MONTHS[]`-shaped seasonal signal from the cleaned daily CSV using the site's own Raw Price
-   Tendency methodology (`js/backtest.js`'s week-of-month bucketing/return calculation), writing
+   Tendency methodology (`js/upload.js`'s week-of-month bucketing/return calculation), writing
    `output/<asset_lower>_seasonal.json`. See that script's own docstring for the full algorithm and
    why star conviction is capped for a short sample.
 3. Add the asset to `scripts/sync_derived_seasonal.js`'s `ASSETS` array (key, page id, display

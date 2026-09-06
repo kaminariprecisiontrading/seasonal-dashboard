@@ -28,10 +28,10 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── accordion.js         ← shared accordion builder + buildTFTables() + buildQuickJump()
 │   ├── api.js               ← multi-provider AI panel (Claude / Gemini / Ollama); enriched context
 │   ├── tradingview.js       ← TradingView widget injector (97-entry symbol table)
-│   ├── backtest.js          ← CSV price history analysis engine (D1 / sub-daily)
 │   ├── macro.js             ← Investing.com economic calendar embed + asset-class guide
 │   ├── seasonal-chart.js    ← seasonal bias curve chart (Chart.js, 48-point cumulative)
-│   ├── intraday.js          ← intraday bias tool (H1/H4 CSV → session/DoW stats)
+│   ├── upload.js            ← unified CSV upload tool (Tier 4): any timeframe M1–MN1 → seasonal
+│   │                            tendency (ex-Backtest) + intraday timing (ex-Sessions) stats
 │   └── ui.js                ← shared UI layer: tabs, sub-tabs, topbar, legend toggle
 ├── data/
 │   ├── aud.js               ← AUD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
@@ -48,10 +48,10 @@ seasonal-dashboard/          ← root of GitHub repo
 │   └── [asset].js           ← future assets follow same pattern
 ├── scripts/
 │   ├── README.md                    ← documents all scripts (purpose, run command, status)
-│   ├── patch_add_backtest.js        ← one-shot: inserted backtest.js into all 97 HTML files
 │   ├── patch_add_macro.js           ← one-shot: inserted macro.js into all 97 HTML files
 │   ├── patch_add_seasonal_chart.js  ← one-shot: inserted seasonal-chart.js into all 97 HTML files
-│   └── patch_add_intraday.js        ← one-shot: inserted intraday.js into all 97 HTML files
+│   └── patch_swap_upload.js         ← one-shot (Tier 4): replaced backtest.js+intraday.js tags
+│                                        with upload.js across all 98 HTML files
 └── docs/
     ├── README.md
     ├── SKILL.md
@@ -97,7 +97,7 @@ Key variables:
 
 Typography: `Bebas Neue` (headings) + `IBM Plex Mono` (body/data)
 
-### Layer 2 — Shared JavaScript (`js/accordion.js`, `js/api.js`, `js/tradingview.js`, `js/backtest.js`, `js/macro.js`, `js/ui.js`)
+### Layer 2 — Shared JavaScript (`js/accordion.js`, `js/api.js`, `js/tradingview.js`, `js/upload.js`, `js/macro.js`, `js/ui.js`)
 
 **`accordion.js`** reads `ASSET_CONFIG` to determine:
 - `ltKey` — week-level signal key (`"s34"` / `"s35"` / `"s40"` / `"sLt"`)
@@ -108,11 +108,9 @@ Injects `ltLabel` into `id="acc-lt-header"`. Handles current month detection. Au
 
 **`api.js`** is the multi-provider AI analysis engine. Gathers up to four context layers (seasonal, curve, backtest, intraday) before calling the selected provider. Supports Claude Sonnet (Anthropic SSE), Gemini Flash (Google SSE), and Ollama (local NDJSON streaming). Config and API keys stored in `localStorage` under `kpt-cfg-*` keys. Injects the provider selector, settings panel, and context bar before `#run-btn` at page load. Dynamically overwrites the panel heading and subtitle at runtime so the label reflects the active provider without requiring HTML changes to any of the 97 asset files. Output streamed token-by-token; rendered as Markdown via dynamically loaded `marked.js`. AI response cached per `kpt-ai-{id}-{provider}-{year}-w{week}`.
 
-**`intraday.js`** is the intraday bias tool. Accepts H1 or H4 MT5 CSV exports; auto-detects timeframe. Produces three result sections: average return by hour (Chart.js bar chart with session shading), by trading session (stat cards with occurrence counts), and by day of week (stat cards with occurrence counts). A signal filter (All / Bull / Bear / Chop) isolates bars from weeks matching the current seasonal signal. Session hours use broker server time (EET, UTC+2). Cache stored as `kpt-idt-{id}` with `schemaVer: 3` — old-format cache is discarded on load so session boundary changes take effect without manual clearing. Session and DoW slots are day-level (one data point per session occurrence / trading day); hourly slots are bar-level. Injects `<section data-kpt-panel="intraday">` before `ui.js` runs.
+**`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Live Price tab activation to force iframe render.
 
-**`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Chart tab activation to force iframe render.
-
-**`backtest.js`** is a self-contained CSV price history analysis engine. It injects a `<section data-kpt-panel="backtest">` before the footnote, which `ui.js` discovers and adds as a Backtest tab. Must load before `ui.js`. See the Backtest Panel section below.
+**`upload.js`** (Tier 4, replaces the former `backtest.js` + `intraday.js`) is the unified CSV upload tool. One shared parser/timeframe detector accepts any MT5 export granularity from M1 (1-minute) through MN1 (Monthly) — a real median inter-bar-timestamp gap in minutes is matched to the nearest standard tier, robust to weekend/holiday gaps. Two views, shown only when the detected tier supports them: Seasonal Tendency (ex-Backtest — raw up-frequency, win-rate vs. the seasonal model, and average return per month/week-of-month slot; available for every tier, with MN1 uploads collapsing to a single "Month" slot since a monthly bar has no week-of-month resolution) and Intraday Timing (ex-Sessions — average return by hour, session, and day of week; only possible for sub-daily tiers M1–H4). It injects a single `<section data-kpt-panel="upload">` before the footnote. Must load before `ui.js`. See the Upload Panel section below.
 
 **`macro.js`** injects a `<section data-kpt-panel="macro">` containing an Investing.com economic calendar embed, filtered by the currencies relevant to each asset, plus a collapsible asset-class-specific interpretation guide. Must load before `ui.js`. See the Macro Panel section below.
 
@@ -153,33 +151,32 @@ Thin HTML files (~120–150 lines). Content order (v1.3):
 9. Footnote with inline-styled copyright
 10. **Nine `<script>` tags** in load order (see below) — **thirteen** on the 4 Profiling-enabled pages (see the Profiling exception below)
 
-**Script load order is critical (9 scripts as of v1.5):**
+**Script load order is critical (8 scripts as of Tier 4):**
 ```html
 <script src="../data/[asset].js"></script>           <!-- must be first — defines ASSET_CONFIG, MONTHS, SEASONAL_DATA -->
 <script src="../js/accordion.js" defer></script>     <!-- reads ASSET_CONFIG; runs buildAccordion(), buildTFTables() -->
-<script src="../js/api.js" defer></script>           <!-- multi-provider AI panel; gathers context from MONTHS, backtest, intraday -->
+<script src="../js/api.js" defer></script>           <!-- multi-provider AI panel; gathers context from MONTHS, upload, profiling -->
 <script src="../js/tradingview.js" defer></script>   <!-- injects TradingView widget -->
-<script src="../js/backtest.js" defer></script>      <!-- injects [data-kpt-panel="backtest"] before ui.js scans -->
 <script src="../js/macro.js" defer></script>         <!-- injects [data-kpt-panel="macro"] before ui.js scans -->
 <script src="../js/seasonal-chart.js" defer></script><!-- injects [data-kpt-panel="scurve"] before ui.js scans -->
-<script src="../js/intraday.js" defer></script>      <!-- injects [data-kpt-panel="intraday"] before ui.js scans -->
+<script src="../js/upload.js" defer></script>        <!-- injects [data-kpt-panel="upload"] before ui.js scans -->
 <script src="../js/ui.js" defer></script>            <!-- must be last — builds tabs after all content is in DOM -->
 ```
 
-`backtest.js`, `macro.js`, `seasonal-chart.js`, and `intraday.js` must all load before `ui.js` so their injected `[data-kpt-panel]` elements are in the DOM when `ui.js` scans for panels. `ui.js` must load last because it scans the fully-built DOM for `.combined-wrap`, `.ai-panel`, `.table-wrap`, `#tv-chart-section`, and `[data-kpt-panel]` elements to construct the tab system.
+`macro.js`, `seasonal-chart.js`, and `upload.js` must all load before `ui.js` so their injected `[data-kpt-panel]` elements are in the DOM when `ui.js` scans for panels. `ui.js` must load last because it scans the fully-built DOM for `.combined-wrap`, `.ai-panel`, `.table-wrap`, `#tv-chart-section`, and `[data-kpt-panel]` elements to construct the tab system.
 
-**Profiling exception (v1.7):** `gbp.html`, `fx-gbpusd.html`, `eur.html`, and `fx-eurusd.html` — the only pages with ported Market Profiling data — load four additional scripts between `intraday.js` and `ui.js`:
+**Profiling exception (v1.7, extended Tier 4 — 11 pages):** the pages with ported Market Profiling data load four additional scripts between `upload.js` and `ui.js`:
 
 ```html
-<script src="../js/intraday.js" defer></script>
+<script src="../js/upload.js" defer></script>
 <script src="../data/profiling/manifest.js" defer></script>          <!-- freshness (KPT_PROFILING_META) -->
-<script src="../data/profiling/gbpusd.js" defer></script>            <!-- or eurusd.js — window.KPT_PROFILING.<key> -->
+<script src="../data/profiling/[key].js" defer></script>             <!-- window.KPT_PROFILING.<key> -->
 <script src="../js/profiling-charts.js" defer></script>              <!-- tooltip/glossary/profile-meta/SVG charts, no ASSET_CONFIG dependency -->
 <script src="../js/profiling.js" defer></script>                     <!-- injects [data-kpt-panel="profiling"] before ui.js scans -->
 <script src="../js/ui.js" defer></script>
 ```
 
-Unlike every other shared script, these are **not** loaded on all 97 pages — only where Profiling data exists for that asset (see the Profiling Panel section below and `docs/MARKET_PROFILING_INTEGRATION.md`). `profiling.js` early-returns (renders nothing) if `ASSET_CONFIG.id` isn't in its internal asset-key map, so it's harmless to load on an unmapped page, but the convention going forward is still to only add the tag where data actually exists.
+Unlike every other shared script, these are **not** loaded on all 98 pages — only where Profiling data exists for that asset (see the Profiling Panel section below and `docs/MARKET_PROFILING_INTEGRATION.md`). `profiling.js` early-returns (renders nothing) if `ASSET_CONFIG.id` isn't in its internal asset-key map, so it's harmless to load on an unmapped page, but the convention going forward is still to only add the tag where data actually exists.
 
 ---
 
@@ -189,7 +186,7 @@ The combined accordion and AI panel are **first** on every asset page. Individua
 
 ```
 Header + Legend (toggle)
-[TAB BAR: Seasonals · Trend · Price · History · Sessions · Macro · Analysis]  ← injected by ui.js
+[TAB BAR: Seasonals · Trend · Profiling · Live Price · Macro · Upload · Analysis]  ← injected by ui.js
   [SUB-TAB BAR: Combined · 5-YR · 15-YR · LT]   ← only on Seasonals tab
   Month quick-jump bar                            ← injected by accordion.js
   Combined accordion
@@ -197,10 +194,10 @@ Header + Legend (toggle)
   ── divider ──
   5-YR table | 15-YR table | LT table            ← switched by sub-tabs
 [Trend panel: seasonal bias curve chart (scurve)]
-[Price panel: TradingView widget (chart)]
-[History panel: CSV backtest tool (backtest)]
-[Sessions panel: H1/H4 intraday bias tool (intraday)]
+[Profiling panel: pre-computed Market Profiling stats (11 pages only)]
+[Live Price panel: TradingView widget (chart)]
 [Macro panel: Investing.com calendar + guide]
+[Upload panel: unified CSV upload tool — Seasonal Tendency + Intraday Timing views (upload)]
 [Analysis panel: multi-provider AI output]
 Footnote + copyright
 ```
@@ -224,12 +221,13 @@ Scans for all `[data-kpt-panel]` elements in the DOM. The full ordered tab list 
 |----------|-----------|-------------|
 | `seasonals` | Seasonals | `ui.js` (tags `.combined-wrap`) |
 | `scurve` | Trend | `seasonal-chart.js` |
-| `chart` | Price | `ui.js` (tags `#tv-chart-section`) |
-| `backtest` | History | `backtest.js` |
-| `intraday` | Sessions | `intraday.js` |
+| `profiling` | Profiling | `profiling.js` (11 pages only — see load-order exception above) |
+| `chart` | Live Price | `ui.js` (tags `#tv-chart-section`) |
 | `macro` | Macro | `macro.js` |
-| `profiling` | Profiling | `profiling.js` (4 pages only — see load-order exception above) |
+| `upload` | Upload | `upload.js` |
 | `analysis` | Analysis | `ui.js` (tags `.ai-panel`) |
+
+**Tier 4 note (unified Upload tab):** `upload` replaced the former `backtest`/`intraday` tab pair. `id: 'chart'` was kept unchanged (only its label became "Live Price") so the TradingView reflow special-case in `activateTab()` didn't need touching. The order above is the actual visual order — array order in `js/ui.js`'s `tabs` list drives tab-bar order directly.
 
 Only tabs whose panel element exists in the DOM are rendered. Tags discovered elements with `data-kpt-panel` using `collectPreceding()` to also capture immediately preceding `.section-label` and `<p>` elements. Builds a `kpt-tabs` bar and inserts it before the first `[data-kpt-panel]` element. Tab switching applies/removes `.kpt-panel-active` (CSS handles visibility). If fewer than 2 panels are found, aborts gracefully.
 
@@ -257,66 +255,6 @@ Builds a `kpt-tabs kpt-subtabs` bar for the four timeframe views: Combined · 5-
 **`data-tf-section` tags:** Each generated section-label and table-wrap receives `data-tf-section="five|fifteen|lt"`. The secondary sub-tab system in `ui.js` reads these to show/hide the correct content.
 
 **Insertion:** All generated elements are appended before `#tv-chart-section` (fallback: `.footnote`) to maintain the canonical section order.
-
----
-
-## Backtest Panel (`js/backtest.js`)
-
-A fully client-side CSV analysis engine injected on all 97 asset pages. No backend required — all processing runs in the browser.
-
-### Panel Injection
-
-`backtest.js` creates a `<section id="backtest-section" data-kpt-panel="backtest">` and inserts it before `.footnote` (fallback: appends to `.container`). Because `ui.js` dynamically scans for `[data-kpt-panel]` elements, the Backtest tab appears automatically in the primary tab bar with zero HTML changes.
-
-### CSV Format
-
-Expects MT5 D1 tab-separated export:
-```
-<DATE>  <OPEN>  <HIGH>  <LOW>  <CLOSE>  <TICKVOL>  <VOL>  <SPREAD>
-1993.05.12  1.53700  1.54450  ...
-```
-
-The parser also accepts sub-daily files (M1, H1, H4 — detected by the presence of a `TIME` column). Sub-daily bars are automatically aggregated to one daily close per calendar day, so the engine always works on D1-equivalent data regardless of input timeframe.
-
-### Week-Slot Mapping
-
-Days within a month are assigned to four week slots:
-
-| Days | Slot | Label |
-|------|------|-------|
-| 1–7  | 0    | Wk 1  |
-| 8–14 | 1    | Wk 2  |
-| 15–21| 2    | Wk 3  |
-| 22+  | 3    | Wk 4  |
-
-### Three-Section Results
-
-**1. Raw Price Tendency** — for each (month, week) cell, the percentage of years in the dataset where the weekly return was positive. Completely model-agnostic. Thresholds: green ≥60%, amber 40–59%, red ≤39%. All 48 cells always have a value.
-
-**2. Win Rate by Period** — for directional (bull/bear) cells only: percentage of years the seasonal signal was correct. Chop/Flip cells show `~` (nothing to validate). Threshold: green ≥65%. The 65% bar is intentionally stricter than the 60% used in Raw Tendency — raw frequency just needs a meaningful lean, while model accuracy needs a genuinely reliable signal.
-
-**3. Average Weekly Return by Month (%)** — average magnitude of weekly price moves per month across all years. Chart.js 4.4.0 bar chart, loaded dynamically from cdnjs on first use. Green bars = positive average drift; red bars = negative drift.
-
-### `computeStats()` Output
-
-```javascript
-{
-  rawTendency: [ /* [12][4] — { up, total, upPct } */ ],
-  matrix:      [ /* [12][4] — { signal, wins, total, winRate, avgReturn } */ ],
-  monthlyAvg:  [ /* [12] — average weekly return per month */ ],
-  yearRange:   [firstYear, lastYear],
-  yearsCount:  Number,
-  totalBars:   Number
-}
-```
-
-### localStorage
-
-Key: `kpt-bt-{assetId}`. Stores the full `stats` object (not raw bars — typically <50KB). On page load, if a stored stats object exists and passes the `rawTendency && matrix && yearRange` guard, results are restored without requiring re-upload. The CSV upload itself is not cached.
-
-### `window.kptBtRefresh()`
-
-Called by `ui.js` each time the Backtest tab is activated. Calls `btChartInstance.resize()` so the Chart.js canvas renders at the correct size after being revealed from `display:none`. If no chart instance exists but `lastStats` is available, re-renders the chart from stored stats.
 
 ---
 
@@ -417,39 +355,39 @@ The panel header shows:
 
 ---
 
-## Sessions Panel (`js/intraday.js`)
+## Upload Panel (`js/upload.js`) — Tier 4
 
-A fully client-side intraday bias analysis tool. Accepts H1 or H4 MT5 CSV exports and produces three result sections: average return by hour, by trading session, and by day of week. Results can be filtered to bars from Bull, Bear, or Chop seasonal weeks.
+A fully client-side CSV upload tool injected on all 98 asset pages. No backend required — all processing runs in the browser. Replaces the former separate Backtest ("History") and Sessions panels with one shared parser and two views, each shown only when the uploaded data supports it.
 
 ### Panel Injection
 
-`intraday.js` creates a `<section data-kpt-panel="intraday">` and inserts it before `.footnote`. Because `ui.js` dynamically scans for `[data-kpt-panel]` elements, the Sessions tab appears automatically in the primary tab bar with zero HTML changes. `intraday.js` must load before `ui.js`.
+`upload.js` creates a `<section id="upload-section" data-kpt-panel="upload">` and inserts it before `.footnote` (fallback: appends to `.container`). Because `ui.js` dynamically scans for `[data-kpt-panel]` elements, the Upload tab appears automatically in the primary tab bar with zero HTML changes. `upload.js` must load before `ui.js`.
 
-### CSV Format
+### CSV Format & Timeframe Detection
 
-Expects MT5 H1 or H4 tab-separated export with a TIME column:
+Expects an MT5 export, tab- or comma-separated (auto-detected from the first 5 lines), either:
 ```
-<DATE>  <TIME>  <OPEN>  <HIGH>  <LOW>  <CLOSE>  ...
-2024.01.02  00:00  ...
+<DATE>  <OPEN>  <HIGH>  <LOW>  <CLOSE>  <TICKVOL>  <VOL>  <SPREAD>     (no TIME column — D1/W1/MN1)
+<DATE>  <TIME>  <OPEN>  <HIGH>  <LOW>  <CLOSE>  <TICKVOL>  <VOL>  <SPREAD>   (has TIME column — M1–H4)
 ```
 
-Timeframe is auto-detected from the TIME values: if hour values include 01, 02, 03 etc., it's H1 (24-bucket); if all TIME values end in `:00` with hours only at 00, 04, 08, 12, 16, 20, it's H4 (6-bucket).
+Timeframe is detected by `detectTier()` from the **median gap between consecutive bar timestamps, in minutes** (a median rather than a mean so weekend/holiday gaps don't skew the coarser tiers) — matched to the nearest of nine standard tiers by relative error:
 
-### Broker Timezone Offset (v1.6)
+| Tier | Minutes | Tier | Minutes |
+|------|---------|------|---------|
+| M1  | 1  | H4  | 240 |
+| M5  | 5  | D1  | 1440 |
+| M15 | 15 | W1  | 10080 |
+| M30 | 30 | MN1 | 43200 |
+| H1  | 60 | | |
 
-A UTC offset dropdown (UTC+0 / UTC+1 / UTC+2 / UTC+3) appears below the upload area. Default is UTC+2 (EET winter). Stored per asset as `kpt-tz-{id}` in localStorage.
+This is a deliberate replacement of the old `intraday.js` heuristic (counting unique hours-of-day, ≤8 → H4 else H1), which only distinguished two tiers and would have silently misclassified M1–M30 data as H1.
 
-Raw hour values from the CSV are normalised to EET before stat accumulation using:
-```javascript
-normHour = (rawHour - (brokerOffset - 2) + 24) % 24
-```
-Changing the offset invalidates the cached stats (`localStorage.removeItem(STORE_KEY)`) and requires re-upload.
+### Two Views
 
-### Session Definitions (UTC+2 Broker Offset)
+**Seasonal Tendency** (ex-Backtest/History) — available for every tier. M1–D1 bars are first aggregated to one close per calendar day (`toPeriodBars()`); W1 bars are used as-is (already one bar per week); MN1 bars collapse the week-of-month axis to a single "Month" slot (`slots: 1` instead of `4`) since a monthly bar carries no week-of-month resolution — disclosed via a note in the panel. Same three sections as the old Backtest panel: Raw Price Tendency, Win Rate by Period, Average Return by Month.
 
-All session hours are in **broker server time (EET: UTC+2 winter / UTC+3 summer)**. MT5 exports use the broker's server clock. 00:00 broker = 22:00 UTC (winter standard offset). The `normHour` function normalises CSV hours to this basis regardless of which broker offset the user selects.
-
-**H1 sessions:**
+**Intraday Timing** (ex-Sessions) — only for sub-daily tiers (M1–H4). Session-bucket selection: H4 uses the 6-bucket `SESSIONS_H4` array; every finer tier (M1–H1) uses the 24-bucket `SESSIONS_H1` hourly buckets — `accumulate()`'s sum/average logic already handles multiple bars landing in the same hour, so M1–M30 need no new bucket shape. Session definitions (broker server time, EET UTC+2 winter baseline) are unchanged from the old `intraday.js`:
 
 | Session | Hours (broker) | UTC (winter) |
 |---------|---------------|--------------|
@@ -462,70 +400,49 @@ All session hours are in **broker server time (EET: UTC+2 winter / UTC+3 summer)
 
 **H4 sessions:** `00` (Late NY/Sydney) · `04,08` (Asian) · `12` (London) · `16` (L/NY Overlap) · `20` (New York)
 
-### Signal Filter
+A small underline-tab switcher (`.up-view-switch`/`.up-view-btn`, styled like `.kptp-gran-switch`) toggles between the two views — hidden entirely when only one view applies to the uploaded tier.
 
-Each bar is classified using `MONTHS[month].weeks[wkSlot].com`:
-- `LONG…` → `bull`
-- `SHORT…` → `bear`
-- Everything else → `chop`
+### Signal Filter (Intraday Timing view only)
 
-Filter buttons (All / Bull / Bear / Chop) re-render all three result sections from the same stored stats object — no re-parsing required.
+Each bar is classified using `MONTHS[month].weeks[wkSlot].com`: `LONG…` → `bull`, `SHORT…` → `bear`, everything else → `chop`. Filter buttons (All / Bull / Bear / Chop) re-render the session/DoW cards from the same stored stats object — no re-parsing required.
 
-### Three Result Sections
-
-**1. By Hour** — Chart.js bar chart. H1: 24 hourly bars. H4: 6 bars (00, 04, 08, 12, 16, 20). Session zones rendered as coloured background rectangles behind the bars. Green bars = positive average return; red = negative.
-
-**2. By Session** — One stat card per session zone. Each card shows: session name + hour range sublabel, average return percentage, directional arrow (▲ / ▼), and occurrence count (`N / total bars`).
-
-**3. By Day of Week** — One stat card per trading day (Mon–Fri). Same layout as session cards: avg return, arrow, occurrence count.
-
-### `computeStats()` Output
+### Result Shape (`kpt-up-{assetId}`, schemaVer 1)
 
 ```javascript
 {
-  schemaVer: 3,               // cache discriminator — MUST be 3 for restore to succeed
-  meta: { tf, tfType, totalBars, filteredBars, filter },
-  hourList: [ /* 24 or 6 floats — avg return per hour slot */ ],
-  groups: {                   // by-session results
-    lateNY:  { avg, posCount, count },
-    asian:   { avg, posCount, count },
-    london:  { avg, posCount, count },
-    overlap: { avg, posCount, count },
-    ny:      { avg, posCount, count },
-    late:    { avg, posCount, count }   // H1 only
+  schemaVer: 1,
+  tier: 'H1',            // one of M1/M5/M15/M30/H1/H4/D1/W1/MN1
+  totalBars: Number,
+  historyStats: {         // always present
+    slots: 4,              // 1 for MN1 uploads, 4 otherwise
+    rawTendency: [ /* [12][slots] — { up, total, upPct } */ ],
+    matrix:      [ /* [12][slots] — { signal, wins, total, winRate, avgReturn } */ ],
+    monthlyAvg:  [ /* [12] */ ],
+    yearRange: [firstYear, lastYear], yearsCount: Number, totalBars: Number
   },
-  dow: [
-    { day: 'Mon', avg, posCount, count },
-    ...
-  ]
+  sessionStats: {          // null for D1/W1/MN1 uploads
+    groups: { all, bull, bear, chop },  // each { hourly, sessions, dow }
+    hourList: [ /* unique hours present */ ],
+    tier: 'H1',
+    meta: { firstDate, lastDate, totalBars, intradayBars }
+  }
 }
 ```
-
-**Critical:** `sessionDefs` is NOT stored in the stats object. `renderChart()` and `renderSessions()` always derive session definitions from the live `SESSIONS_H1` / `SESSIONS_H4` module-level variables using `stats.tfType`. This prevents stale session boundaries surviving a code update.
-
-### `schemaVer` Cache Invalidation
-
-On page load, the stored `kpt-idt-{id}` object is checked:
-```javascript
-if (s && s.schemaVer === 3 && s.meta && s.groups && s.hourList) {
-  lastStats = s; renderResults(s);
-} else if (s) {
-  localStorage.removeItem(STORE_KEY); // discard old-format cache silently
-}
-```
-
-When session boundary definitions change in future, increment `schemaVer` to force all users to re-upload their CSVs.
-
-### `window.kptIdtRefresh()`
-
-Called by `ui.js` each time the Sessions tab is activated. Calls `chartInstance.resize()` so the Chart.js canvas renders at the correct size after being revealed from `display:none`. If no chart instance exists but `lastStats` is available, re-renders from stored stats.
 
 ### localStorage
 
 | Key | Contents |
 |-----|----------|
-| `kpt-idt-{assetId}` | Full stats object (schemaVer 3, ~<30KB). Restore guard: `schemaVer === 3 && meta && groups && hourList`. |
-| `kpt-tz-{assetId}` | Broker UTC offset integer (0–3). Default 2 (EET). Written by the timezone selector dropdown. |
+| `kpt-up-{assetId}` | Full result object above (schemaVer 1). Restore guard: `schemaVer === 1 && tier && (historyStats || sessionStats)`. Not a migration of the old `kpt-bt-{id}`/`kpt-idt-{id}` caches — those go inert (nothing reads them) once `backtest.js`/`intraday.js` were removed. |
+| `kpt-tz-{assetId}` | Broker UTC offset integer (0–3). Default 2 (EET). Unchanged from the old Sessions panel — reused as-is. |
+
+### `window.kptUpRefresh()`
+
+Called by `ui.js` each time the Upload tab is activated. Resizes whichever Chart.js canvas belongs to the currently active view (`btChartInstance` for Seasonal Tendency, `idtChartInstance` for Intraday Timing), or renders it for the first time from stored stats if no instance exists yet. **Must be defined before the restore-on-load IIFE runs** — `displayResult()`'s call path guards the reference with `typeof window.kptUpRefresh === 'function'` specifically because the restore IIFE executes earlier in the file's top-to-bottom run than the `window.kptUpRefresh` assignment itself; without the guard, restoring a cached result on page load throws and the results panel never becomes visible (caught during Tier 4 testing).
+
+### `js/api.js` context gatherers
+
+`_gatherBacktestCtx()`/`_gatherIntradayCtx()` in `api.js` were repointed to read `kpt-up-{id}`'s nested `historyStats`/`sessionStats` (previously separate `kpt-bt-{id}`/`kpt-idt-{id}` keys) — their return shape is unchanged, so `_buildPrompt()` and everything downstream needed no changes. `_gatherBacktestCtx()` also loops `w < slots` instead of a hardcoded `w < 4`, so a Monthly-bar upload's single-slot `historyStats` doesn't throw.
 
 ---
 
@@ -539,7 +456,7 @@ A statistical market-profiling browser — range distributions, time-of-extreme 
 
 ### Panel injection
 
-`profiling.js` resolves `ASSET_CONFIG.id` to a Profiling data key via an internal map (`gbp`/`fx-gbpusd` → `gbpusd`, `eur`/`fx-eurusd` → `eurusd`) and early-returns (renders nothing) if unmapped. When mapped, it reads `window.KPT_PROFILING.<key>` (set by `data/profiling/<key>.js`), builds a `<section data-kpt-panel="profiling">` with all inner containers created by JS (not a static HTML template — see below), and inserts it before `.footnote`, same as `macro.js`/`intraday.js`. `ui.js` discovers it and adds the Profiling tab automatically.
+`profiling.js` resolves `ASSET_CONFIG.id` to a Profiling data key via an internal map (`gbp`/`fx-gbpusd` → `gbpusd`, `eur`/`fx-eurusd` → `eurusd`) and early-returns (renders nothing) if unmapped. When mapped, it reads `window.KPT_PROFILING.<key>` (set by `data/profiling/<key>.js`), builds a `<section data-kpt-panel="profiling">` with all inner containers created by JS (not a static HTML template — see below), and inserts it before `.footnote`, same as `macro.js`/`upload.js`. `ui.js` discovers it and adds the Profiling tab automatically.
 
 ### Why it's a from-scratch DOM build, not a static template
 
@@ -582,7 +499,7 @@ Run any time the KPT-Market-Profiling pipeline is re-run for an asset. Adding a 
 
 ## Analysis Panel (`js/api.js`)
 
-A multi-provider AI analysis engine that gathers seasonal, curve, backtest, and intraday context before calling the selected model.
+A multi-provider AI analysis engine that gathers seasonal, curve, history, and session context before calling the selected model.
 
 ### Provider Support
 
@@ -605,9 +522,9 @@ Config stored in localStorage: `kpt-cfg-claude-key`, `kpt-cfg-gemini-key`, `kpt-
 - `trend4w` — change over last 4 weeks (`up` / `down` / `flat`)
 - `pctRange` — current value as % of the annual min–max range
 
-**3. History** (`_gatherBacktestCtx(assetId)`) — reads `kpt-bt-{id}`. Returns overall win rate, plus top 2 months by win rate and top 2 months by avg return (and their bottom counterparts). Returns `null` if no backtest data uploaded.
+**3. History** (`_gatherBacktestCtx(assetId)`) — reads `kpt-up-{id}`'s `historyStats`. Returns overall win rate, plus top 2 months by win rate and top 2 months by avg return (and their bottom counterparts). Loops `w < (historyStats.slots || 4)` so a Monthly-bar upload's single-slot data doesn't throw. Returns `null` if nothing uploaded yet.
 
-**4. Sessions** (`_gatherIntradayCtx(assetId)`) — reads `kpt-idt-{id}`. Rejects if `schemaVer !== 3`. Returns best and worst session (by avg return) and best and worst day of week. Returns `null` if no intraday data uploaded or cache is stale.
+**4. Sessions** (`_gatherIntradayCtx(assetId)`) — reads `kpt-up-{id}`'s `sessionStats` (`null` for D1/W1/MN1 uploads — no intraday information to gather). Returns best and worst session (by avg return) and best and worst day of week. Returns `null` if nothing uploaded yet or the uploaded tier had no sub-daily data.
 
 ### UI Injection (`_injectUI()`)
 
@@ -633,8 +550,8 @@ This allows all 97 HTML files to keep their original hardcoded heading text as a
 1. Asset identity (name, current date, current seasonal signal)
 2. Full 12-month seasonal grid (month · combined signal · stars · week-level detail)
 3. Curve position (current value · trend · % of annual range)
-4. Backtest stats (if available)
-5. Intraday bias (if available)
+4. History stats (if uploaded)
+5. Intraday bias (if the uploaded tier had sub-daily data)
 6. Explicit output format instructions (VERDICT heading, data table, outlook, trade notes)
 
 ### AI Cache
@@ -736,7 +653,7 @@ Three files required:
 - Legend long-term TF label
 - All three static TF tables (hand-built pages only; generator pages use `buildTFTables()`)
 - Footnote — use exact pattern with inline-styled copyright span (see SKILL.md)
-- Script src tags in correct order: `data/[asset].js` → `accordion.js` → `api.js` → `tradingview.js` → `backtest.js` → `macro.js` → `seasonal-chart.js` → `intraday.js` → `ui.js` (9 scripts total)
+- Script src tags in correct order: `data/[asset].js` → `accordion.js` → `api.js` → `tradingview.js` → `macro.js` → `seasonal-chart.js` → `upload.js` → `ui.js` (8 scripts total)
 
 **3. `index.html`** — find the planned card, change:
 - `status-planned` → `status-complete`
@@ -808,10 +725,10 @@ Every asset footnote must use this exact pattern:
 | Sub-tabs appear above primary tabs | The subBar insertion must use `tabBar.parentElement.insertBefore(subBar, tabBar.nextSibling)` — inserting before `combinedGroupEls[0]` places it above the primary tabs |
 | TF tables generated twice | The `buildTFTables()` skip guard checks `.table-wrap` count — if static tables exist in HTML, generation is skipped |
 | Prev/Next nav links wrong category | Check that `ASSET_CONFIG.id` exactly matches the ID string in the `ASSET_CATEGORIES` map in `ui.js` |
-| Backtest tab missing from tab bar | `backtest.js` must load before `ui.js` — the `[data-kpt-panel="backtest"]` element must exist when `ui.js` scans the DOM |
-| Backtest chart not visible on tab activate | `window.kptBtRefresh()` is called by `ui.js` on tab activation; check `kptBtRefresh` is defined in `backtest.js` and `backtest.js` loads before `ui.js` |
-| "Only N valid bars found" alert on valid CSV | Check the file is D1 (not tick data); check separator is tab or comma; ensure date format is `YYYY.MM.DD` or `YYYY-MM-DD` |
-| Backtest results lost on page reload | localStorage key is `kpt-bt-{assetId}` — check `ASSET_CONFIG.id` is set correctly in the data file |
+| Upload tab missing from tab bar | `upload.js` must load before `ui.js` — the `[data-kpt-panel="upload"]` element must exist when `ui.js` scans the DOM |
+| Upload chart not visible on tab activate | `window.kptUpRefresh()` is called by `ui.js` on tab activation; check `kptUpRefresh` is defined in `upload.js` and `upload.js` loads before `ui.js` |
+| "Only N valid bars found" alert on valid CSV | Check separator is tab or comma; ensure date format is `YYYY.MM.DD` or `YYYY-MM-DD`; check there's enough history (10+ years recommended for D1-and-coarser data) |
+| Upload results lost on page reload | localStorage key is `kpt-up-{assetId}` (schemaVer 1) — check `ASSET_CONFIG.id` is set correctly in the data file; if a result restores but the results panel stays hidden, check `window.kptUpRefresh` is defined and `switchView()`'s call to it is still guarded with `typeof window.kptUpRefresh === 'function'` (the restore IIFE runs before that assignment in file order) |
 | `<strong>` text in upload guide breaks to new line | `.bt-upload-steps li` uses `position: absolute` for the step number — do not change to `display: grid` or `display: flex`, which turns `<strong>` inline elements into separate grid/flex items |
 | Macro tab missing from tab bar | `macro.js` must load before `ui.js` — the `[data-kpt-panel="macro"]` element must exist when `ui.js` scans the DOM |
 | Macro calendar shows wrong country events | Check `FF_CURRENCIES` map in `macro.js` has the correct asset ID and currency codes; check `CC` map has the correct Investing.com country ID for that currency |
@@ -819,11 +736,11 @@ Every asset footnote must use this exact pattern:
 | Macro embed white theme clashing with dark dashboard | `filter: invert(1) hue-rotate(180deg)` on `.macro-iframe` — check it hasn't been removed from `dashboard.css` |
 | Macro guide shows wrong content | Check `ASSET_CLASS` map in `macro.js` has the correct asset ID mapped to one of: fx, rates, indices, metals, energy, ags |
 | New asset has no macro tab | Add the new asset ID to both `FF_CURRENCIES` and `ASSET_CLASS` in `macro.js`; ensure `macro.js` script tag is in the asset HTML before `ui.js` |
-| Sessions tab missing from tab bar | `intraday.js` must load before `ui.js` — the `[data-kpt-panel="intraday"]` element must exist when `ui.js` scans the DOM |
-| Sessions chart not visible on tab activate | `window.kptIdtRefresh()` is called by `ui.js` on activation; check `kptIdtRefresh` is defined in `intraday.js` and `intraday.js` loads before `ui.js` |
-| Sessions shows old session shading after timezone fix | Old cache used `stats.sessionDefs` (stale). Fix: cache now requires `schemaVer: 3`; session defs are always derived at render time from live `SESSIONS_H1`/`SESSIONS_H4` variables |
-| Sessions upload shows "only N valid bars" on H1 CSV | Verify the TIME column is present and format is `HH:MM`; separator must be tab or comma |
-| Session filter (Bull/Bear/Chop) shows no bars | CSV uploaded when `MONTHS[]` data was unavailable or `ASSET_CONFIG` undefined — re-upload; check data file loads before `intraday.js` |
+| Intraday Timing view doesn't appear after upload | Expected for D1/W1/MN1 uploads — that view only renders for sub-daily tiers (M1–H4); check `#up-view-switch` is `hidden` and the tier chip in the summary row matches what you expect from the file |
+| Intraday Timing shows old session shading after a code change | Session defs are always derived at render time from the live `SESSIONS_H1`/`SESSIONS_H4` module-level arrays in `upload.js` using `stats.tier` — not stored in the cached result — so a code change to session boundaries takes effect on next render without needing a schema bump |
+| Upload shows "only N valid bars" on a sub-daily CSV | Verify the TIME column is present and format is `HH:MM`; separator must be tab or comma |
+| Session filter (Bull/Bear/Chop) shows no bars | CSV uploaded when `MONTHS[]` data was unavailable or `ASSET_CONFIG` undefined — re-upload; check data file loads before `upload.js` |
+| Wrong tier detected (e.g. M15 file shows as H1) | `detectTier()` uses the *median* gap between consecutive bar timestamps — a file with very few bars, or a mostly-empty/corrupted export, can throw the median off; check `totalBars` in the summary chip and re-export with more history if it looks too small |
 | AI panel says "Claude AI" instead of active provider | `_updatePanelHeadings()` is called at init — check `api.js` loads and `#run-btn` exists in the DOM; the function rewrites `.ai-label` at startup |
 | AI Settings panel not appearing | `_injectUI()` targets `#run-btn` — check the AI button has `id="run-btn"` (not `id="ai-btn"`) |
 | Ollama "Failed to fetch" | (1) Ollama not running — run `start_kpt.bat`; (2) CORS not enabled — must use `set OLLAMA_ORIGINS=* && ollama serve` in same process; (3) Wrong URL — use `http://localhost:11434`, not `…/v1` |
@@ -833,8 +750,8 @@ Every asset footnote must use this exact pattern:
 | Signal filter bar missing or shows no buttons | `data/signals_manifest.js` must be loaded in `index.html` before the signal injection `<script>` block; the filter bar is hidden until `SIGNALS_MANIFEST` is defined |
 | Signal filter shows "0 assets" for a category | The `data-sig-type` attribute is only set during the manifest injection loop — if a card was added to `index.html` without a matching entry in `SIGNALS_MANIFEST`, it will not be tagged and will never show under a filter |
 | Signals freshness note is missing or shows wrong date | `SIGNALS_GENERATED` must be exported as a `const` (not just a comment) in `signals_manifest.js` — run the manifest generator script and verify `const SIGNALS_GENERATED = '…'` is present |
-| Sessions tab: changing timezone shows "re-upload" prompt | Expected behaviour — timezone offset is applied at parse time, so existing cached data cannot be reused; re-upload the CSV to recalculate with the new offset |
-| Sessions hour bars shifted by 1 after broker TZ change | Check `_normHour()` in `intraday.js` — formula is `(rawHour - (offset - 2) + 24) % 24`; offset is stored in `kpt-tz-{id}` localStorage key; EET (UTC+2) → offset 2 = zero shift |
+| Upload: changing timezone shows "re-upload" prompt | Expected behaviour — timezone offset is applied at parse time, so existing cached intraday data cannot be reused; re-upload the CSV to recalculate with the new offset |
+| Intraday hour bars shifted by 1 after broker TZ change | Check `_normHour()` in `upload.js` — formula is `(rawHour - (offset - 2) + 24) % 24`; offset is stored in `kpt-tz-{id}` localStorage key (unchanged from the old Sessions panel); EET (UTC+2) → offset 2 = zero shift |
 | TradingView chart shows wrong instrument | Add `tvSymbol: "EXCHANGE:SYMBOL"` to the asset's `ASSET_CONFIG` in its data file; `tradingview.js` checks `ASSET_CONFIG.tvSymbol` first, then falls back to the built-in `TV_SYMBOLS` table |
 | "Print tab" button shows all tabs in print output | `body.print-single-tab` class must be present during the print call; `ui.js` adds it, opens `window.print()`, then removes it in a `setTimeout(1000)` — if the class is stuck (e.g. from a crash), open DevTools console and run `document.body.classList.remove('print-single-tab')` |
 | Signals not injecting on Netlify (index shows STATUS LIVE instead of SIGNAL CHOP) | Netlify Pretty URLs rewrites `href="assets/aud.html"` → `href="/assets/aud"`, breaking the old regex `/assets\/(.+)\.html/`. The fixed regex is `/assets\/([^./?#]+)/` — this matches both the local `.html` format and the Netlify pretty-URL format. If reverting, do not use `.+\.html` as the capture. |

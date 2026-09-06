@@ -8,13 +8,12 @@ One-shot and maintenance scripts for the KPT Seasonal Dashboard. All scripts run
 
 These scripts were used to retroactively add new shared JS modules to all 97 asset HTML files when each phase was built. They are **idempotent** (safe to re-run — they skip files that already contain the target script tag), but there is no reason to run them again unless you are rebuilding the HTML shells from scratch.
 
-### `patch_add_backtest.js`
+### `patch_add_backtest.js` — superseded
 
-Inserts `<script src="../js/backtest.js" defer></script>` before `ui.js` in all `assets/*.html` files.
+Inserted `<script src="../js/backtest.js" defer></script>` before `ui.js` in all `assets/*.html` files.
 
 - **Added in:** Phase 2 (History tab, v1.2)
-- **Status:** Already applied to all 97 files
-- **Run:** `node scripts/patch_add_backtest.js` (from `seasonal-dashboard/`)
+- **Status:** **Obsolete as of v1.12/Tier 4** — `js/backtest.js` was deleted and merged into `js/upload.js`. Left in place as historical record only; do not run (there is nothing left for it to patch toward — it would reinsert a script tag for a file that no longer exists). See `patch_swap_upload.js` below for the script that superseded it.
 
 ### `patch_add_macro.js`
 
@@ -32,13 +31,20 @@ Inserts `<script src="../js/seasonal-chart.js" defer></script>` before `ui.js` i
 - **Status:** Already applied to all 97 files
 - **Run:** `node scripts/patch_add_seasonal_chart.js`
 
-### `patch_add_intraday.js`
+### `patch_add_intraday.js` — superseded
 
-Inserts `<script src="../js/intraday.js" defer></script>` before `ui.js` in all `assets/*.html` files.
+Inserted `<script src="../js/intraday.js" defer></script>` before `ui.js` in all `assets/*.html` files.
 
 - **Added in:** Phase 2.5 (Sessions tab, v1.5)
-- **Status:** Already applied to all 97 files
-- **Run:** `node scripts/patch_add_intraday.js`
+- **Status:** **Obsolete as of v1.12/Tier 4** — `js/intraday.js` was deleted and merged into `js/upload.js`. Left in place as historical record only; do not run. See `patch_swap_upload.js` below.
+
+### `patch_swap_upload.js`
+
+Removed the `backtest.js`/`intraday.js` script tags and inserted a single `<script src="../js/upload.js" defer></script>` before `ui.js`, across all 98 `assets/*.html` files. The one-shot codemod for the Tier 4 History+Sessions → Upload merge.
+
+- **Added in:** v1.12 (`docs/PLATFORM_ROADMAP.md` Tier 4)
+- **Status:** Already applied to all 98 files
+- **Run:** `node scripts/patch_swap_upload.js` (from `seasonal-dashboard/`) — accepts an optional list of specific filenames to patch a subset instead of all pages (used during Tier 4's own branch-and-test rollout)
 
 ### `patch_add_favicon.js`
 
@@ -86,7 +92,7 @@ The generated file includes a `SIGNALS_GENERATED` timestamp so you can see when 
 
 ## Writing a New Patch Script
 
-If you add a new shared JS module (e.g. `js/newfeature.js`) and need to insert it into all 97 HTML files, copy the pattern from any existing patch script:
+If you add a new shared JS module (e.g. `js/newfeature.js`) and need to insert it into all 98 HTML files, copy the pattern from any existing patch script:
 
 ```javascript
 const ASSETS_DIR = path.join(__dirname, '..', 'assets'); // note: run from root, so __dirname is scripts/

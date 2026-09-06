@@ -2,6 +2,59 @@
 
 ---
 
+## v1.12 — September 2026
+**Tier 4 — Tab restructure + unified Upload tool**
+
+### Summary
+
+Ships `docs/PLATFORM_ROADMAP.md`'s Tier 4 plan: the tab bar goes from 8 tabs to 7 (Seasonals ·
+Trend · Profiling · Live Price · Macro · Upload · Analysis — Live Price and Upload are the
+renamed/merged tabs), and the former separate History (`js/backtest.js`) and Sessions
+(`js/intraday.js`) CSV-upload tools are replaced by one genuinely unified `js/upload.js` — the
+"clean end state" option from the roadmap doc, not the interim dual-module approach. Scope grew
+beyond the original plan during design: the new shared timeframe detector handles any granularity
+from 1-minute to Monthly bars (nine tiers), not just the old D1/H1/H4.
+
+### Changes
+
+- **New `js/upload.js`** — one CSV parser (tab/comma auto-detected), one timeframe detector
+  (`detectTier()`, median inter-bar-timestamp gap in minutes, matched to the nearest of nine
+  standard tiers — replaces the old `intraday.js` heuristic that only ever distinguished H1 from
+  H4 and would have silently misclassified anything finer as H1). Two views, shown only when the
+  uploaded tier supports them: Seasonal Tendency (ex-Backtest/History; MN1 uploads collapse the
+  week-of-month axis to a single "Month" slot, disclosed in-panel) and Intraday Timing
+  (ex-Sessions; sub-daily tiers M1–H4 only). Single `kpt-up-{id}` localStorage key (schemaVer 1)
+  replaces the old separate `kpt-bt-{id}`/`kpt-idt-{id}` caches, which go inert (nothing reads
+  them) rather than being migrated.
+- **`js/backtest.js` and `js/intraday.js` deleted.**
+- **`js/ui.js`** — `tabs` array reordered/relabeled to the new 7 (`chart`'s id unchanged, label
+  → "Live Price"; `upload` replaces `backtest`+`intraday`); the two old
+  `panelId === 'backtest'`/`'intraday'` Chart.js-resize checks in `activateTab()` collapsed into
+  one `panelId === 'upload'` check calling the new `window.kptUpRefresh()`.
+- **`js/api.js`** — `_gatherBacktestCtx()`/`_gatherIntradayCtx()` repointed from the retired
+  `kpt-bt-{id}`/`kpt-idt-{id}` keys to `kpt-up-{id}`'s nested `historyStats`/`sessionStats`; return
+  shape unchanged so `_buildPrompt()` needed no changes. Caught during testing — without this fix,
+  the AI Analysis tab's History/Sessions context layers would have silently gone permanently empty
+  on every page, since nothing writes the old keys anymore.
+- **New `scripts/patch_swap_upload.js`** — one-shot codemod, replaced the `backtest.js`/
+  `intraday.js` script tags with a single `upload.js` tag across all 98 asset pages.
+- **`css/dashboard.css`** — new `.up-view-switch`/`.up-view-btn` (styled like the Profiling tab's
+  `.kptp-gran-switch`) for the view toggle. `upload.js`'s markup deliberately reuses the existing
+  `.bt-*`/`.idt-*` classes rather than duplicating ~250 lines of CSS, so those rules stay in active
+  use — not dead code to clean up.
+- **Bug found and fixed during testing:** `switchView()` unconditionally called
+  `window.kptUpRefresh()`, but the restore-on-page-load path runs *before* that function's
+  assignment (later in the same file, executed top-to-bottom) — so restoring a cached upload on
+  page load threw a `TypeError` inside a swallowed `try/catch`, leaving the results panel
+  permanently hidden until the user manually re-uploaded. Fixed with a `typeof === 'function'`
+  guard at the call site, matching how `ui.js` itself already guards the call.
+- Verified via headless-browser smoke tests (tab order/labels on 15 pages across asset classes,
+  full CSV-upload-through-all-5-tiers round trip including reload-restore, Chart.js
+  resize-on-tab-activation, `api.js` context-layer pickup) before the site-wide rollout.
+- `docs/ARCHITECTURE.md`, `docs/PLATFORM_ROADMAP.md` updated to match.
+
+---
+
 ## v1.11 — September 2026
 **Crypto category — BTCUSD, statistically-derived Seasonals + Profiling**
 
