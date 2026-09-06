@@ -499,7 +499,7 @@ Run any time the KPT-Market-Profiling pipeline is re-run for an asset. Adding a 
 
 ## Analysis Panel (`js/api.js`)
 
-A multi-provider AI analysis engine that gathers seasonal, curve, history, and session context before calling the selected model.
+A multi-provider AI analysis engine that gathers seasonal, curve, history, session, and Market Profiling context before calling the selected model.
 
 ### Provider Support
 
@@ -513,7 +513,7 @@ Config stored in localStorage: `kpt-cfg-claude-key`, `kpt-cfg-gemini-key`, `kpt-
 
 ### Context Layers
 
-`runAnalysis()` gathers four context layers before building the prompt:
+`runAnalysis()` gathers five context layers before building the prompt:
 
 **1. Seasonal** (always) — reads `MONTHS[]` directly; extracts month-level combined signal and top/bottom 3 months by conviction stars.
 
@@ -526,12 +526,42 @@ Config stored in localStorage: `kpt-cfg-claude-key`, `kpt-cfg-gemini-key`, `kpt-
 
 **4. Sessions** (`_gatherIntradayCtx(assetId)`) — reads `kpt-up-{id}`'s `sessionStats` (`null` for D1/W1/MN1 uploads — no intraday information to gather). Returns best and worst session (by avg return) and best and worst day of week. Returns `null` if nothing uploaded yet or the uploaded tier had no sub-daily data.
 
+**5. Market Profiling** (`_gatherProfilingCtx()`) — reads `window.KPT_PROFILING_CURRENT` (set by
+`profiling.js`, only on pages with ported pipeline data). Returns `null` entirely if unavailable.
+Otherwise pulls, each independently guarded so a missing tier just omits that line rather than
+breaking:
+- Daily: median daily range, 20-day ADR, most common daily profile shape + dominant extreme-timing
+  pattern (unchanged from v1.8/Tier 1).
+- Weekly / Monthly / Yearly (added in this pass): top profile shape + share, via a shared
+  `_topProfile(dist)`/`_topTiming(timingByProfile, name)` helper reused across all four
+  granularities rather than four copies of the same sort/pick logic. The Yearly line always
+  includes its sample size (`n_labeled_years`) and an explicit small-sample caveat in the prompt
+  text itself, since that tier's window is expanding and n is typically well under 30 — matches the
+  small-sample-disclosure convention already used in the Yearly Profile UI.
+- NFP event risk (added in this pass, via `_thisWeeksNfpFriday()`): only populated when *this*
+  calendar week's Friday falls on day-of-month ≤ 7 (the same rule `stats_engine.py`/
+  `profile_taxonomy.py` use) — purely calendar-computed, no price-feed dependency, so it's knowable
+  with certainty (unlike any "today's developing profile" claim, which nothing in this codebase can
+  make — there is no live feed; Phase 4 per `HANDOVER.md`, not started). When populated, pulls
+  `stats.nfp_profile`'s NFP-vs-other-Friday mean/median range-pips and extreme-in-release-window %
+  comparison, plus the top profile shape for NFP days from `profiles.nfp.nfp_profile_distribution`.
+  Feeds a dedicated `=== EVENT RISK THIS WEEK — NON-FARM PAYROLLS ===` prompt block, explicitly
+  framed to the model as a volatility/timing factor, not a directional one.
+
+Deliberately **not** pulled into the prompt: `hourly_activity` and the session/hour pairing tables
+— range-*magnitude* diagnostics with no directional read, better suited to the Profiling tab's own
+visual browsing than a "be concise, no padding" synthesis prompt.
+
 ### UI Injection (`_injectUI()`)
 
 Called once at page load. Inserts before `#run-btn`:
 - Provider pill buttons (Claude · Gemini · Ollama)
 - Settings gear toggle → expandable panel with key/URL/model inputs + Save button
-- Context bar chips (✓ Seasonal · ✓ Curve · ✓/○ History · ✓/○ Sessions)
+- Context bar chips (✓ Seasonal · ✓ Curve · ✓/○ History · ✓/○ Sessions · ✓/○ Profiling), built by
+  `_updateCtxBar()` — History/Sessions chips read `kpt-up-{id}`'s `historyStats`/`sessionStats`
+  presence (fixed in this pass: they were still checking the retired `kpt-bt-{id}`/`kpt-idt-{id}`
+  keys with a `schemaVer === 3` guard left over from before the Tier 4 Upload-tab merge, so both
+  chips permanently showed unavailable regardless of what the user had uploaded)
 - Hint text showing which provider is active
 
 ### Dynamic Panel Headings (`_updatePanelHeadings(prov)`)

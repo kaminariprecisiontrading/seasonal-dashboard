@@ -2,6 +2,43 @@
 
 ---
 
+## v1.13 — September 2026
+**Analysis tab — richer AI context (Weekly/Monthly/Yearly Profiles, NFP event risk) + a Tier 4 leftover bug fix**
+
+### Summary
+
+`js/api.js`'s `_buildPrompt()` had not been revisited since it was written — it only ever pulled
+Daily-granularity Market Profiling data, even though this session shipped Weekly/Monthly/Yearly
+Profile taxonomies and an NFP profile since then. Folds those in, per `docs/PLATFORM_ROADMAP.md`'s
+own standing note to do so once more data existed.
+
+### Changes
+
+- **`_gatherProfilingCtx()`** now also returns each tier's top profile shape (Weekly/Monthly, plus
+  dominant timing for each) via a new shared `_topProfile()`/`_topTiming()` helper (previously
+  copy-pasted sort/pick logic, now written once). Yearly's line always carries its sample size and
+  an explicit small-sample caveat in the prompt text, matching the same disclosure already shown in
+  the Yearly Profile UI.
+- **New NFP event-risk context**, via `_thisWeeksNfpFriday()` — purely calendar-computed (first
+  Friday of the month, day ≤ 7), so it's knowable with certainty without any live price feed. When
+  this week's Friday is an NFP day, a new `=== EVENT RISK THIS WEEK — NON-FARM PAYROLLS ===` prompt
+  block fires with real NFP-vs-other-Friday range comparisons and the top NFP-day profile shape,
+  explicitly framed to the model as a volatility/timing factor, not a directional one.
+- **Bug fix, found while re-reading the file for this task:** `_updateCtxBar()` (the Analysis tab's
+  "Context included: ✓/○" chip row) was still reading the retired `kpt-bt-{id}`/`kpt-idt-{id}`
+  (`schemaVer === 3`) localStorage keys — a leftover from the Tier 4 Upload-tab merge, which
+  repointed `_buildPrompt()`'s own data source but missed this display-only check. Both chips have
+  been showing permanently unavailable on every page since Tier 4 shipped, regardless of what the
+  user uploaded. Fixed to read `kpt-up-{id}`'s `historyStats`/`sessionStats` presence.
+- Deliberately did not add `hourly_activity` or the session/hour pairing tables to the prompt —
+  range-magnitude diagnostics with no directional read, not a fit for a "concise, no padding"
+  synthesis prompt.
+- Verified via headless-browser tests intercepting the outbound Claude API request (captured the
+  actual prompt sent, never reaching a real key) across an NFP week, a non-NFP week, a
+  non-Profiling page, and a seeded-upload page confirming the chip fix.
+
+---
+
 ## v1.12 — September 2026
 **Tier 4 — Tab restructure + unified Upload tool**
 

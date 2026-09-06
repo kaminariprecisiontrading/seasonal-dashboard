@@ -7,8 +7,12 @@
  *   · Seasonal summary — generated live from MONTHS[] by _buildSeasonalSummary()
  *                        (falls back to SEASONAL_DATA string if MONTHS unavailable)
  *   · Seasonal curve   — computed live from MONTHS[] (always available)
- *   · Backtest stats   — from localStorage kpt-bt-{id} if uploaded
- *   · Intraday bias    — from localStorage kpt-idt-{id} if uploaded (schemaVer 3)
+ *   · History stats    — from localStorage kpt-up-{id}.historyStats if uploaded
+ *   · Intraday bias    — from localStorage kpt-up-{id}.sessionStats if uploaded
+ *   · Market Profiling — from window.KPT_PROFILING_CURRENT if this asset has ported
+ *                        pipeline data: Daily/Weekly/Monthly/Yearly Profile taxonomy
+ *                        top shapes, plus an NFP event-risk block when this week's
+ *                        Friday is an NFP Friday
  *
  * Provider config stored in localStorage (shared across all asset pages):
  *   kpt-cfg-provider   — 'claude' | 'gemini' | 'ollama'
@@ -241,6 +245,42 @@ function _gatherIntradayCtx(assetId) {
 // handful of pages with ported Profiling data (see MARKET_PROFILING_INTEGRATION.md).
 // Returns null on every other page — same optional-layer pattern as backtest/intraday.
 
+// Picks the highest-n entry from a {name: {n, pct, ...}} distribution object —
+// shared by the Daily/Weekly/Monthly/Yearly blocks below, which all use the
+// identical profile_distribution shape (profile_taxonomy[_weekly|_monthly|_yearly].py).
+function _topProfile(dist) {
+  if (!dist) return null;
+  var entries = Object.keys(dist).map(function (k) { return [k, dist[k]]; })
+    .sort(function (a, c) { return c[1].n - a[1].n; });
+  return entries[0] ? { name: entries[0][0], pct: entries[0][1].pct } : null;
+}
+
+function _topTiming(timingByProfile, profileName) {
+  var timing = (timingByProfile || {})[profileName || ''];
+  if (!timing) return null;
+  var top = Object.keys(timing).map(function (k) { return [k, timing[k]]; })
+    .sort(function (a, c) { return c[1] - a[1]; })[0];
+  return top ? top[0] : null;
+}
+
+// This calendar week's Friday date, and whether it's an NFP Friday (first
+// Friday of the month, day-of-month <= 7) — the same rule stats_engine.py and
+// profile_taxonomy.py already use. Purely calendar-computed, no price feed
+// dependency, so this is knowable with certainty (unlike any "today's
+// developing profile" claim — no live feed exists to know that; Phase 4,
+// not started, per HANDOVER.md).
+function _thisWeeksNfpFriday() {
+  var now = new Date();
+  var offset = (5 - now.getDay() + 7) % 7; // 5 = Friday
+  var friday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+  if (friday.getDate() > 7) return null;
+  // Format from local Y/M/D components, not toISOString() (which converts to
+  // UTC and can roll the date back a day in timezones ahead of UTC).
+  var mm = String(friday.getMonth() + 1).padStart(2, '0');
+  var dd = String(friday.getDate()).padStart(2, '0');
+  return { date: friday, iso: friday.getFullYear() + '-' + mm + '-' + dd };
+}
+
 function _gatherProfilingCtx() {
   try {
     var cur = window.KPT_PROFILING_CURRENT;
@@ -249,25 +289,51 @@ function _gatherProfilingCtx() {
     var dist = b.profiles && b.profiles.profile_distribution;
     if (!dist) return null;
 
-    var entries = Object.keys(dist).map(function (k) { return [k, dist[k]]; })
-      .sort(function (a, c) { return c[1].n - a[1].n; });
-    var mostCommon = entries[0];
-
-    var timing = (b.profiles.extreme_timing_by_profile || {})[mostCommon ? mostCommon[0] : ''];
-    var topTiming = timing
-      ? Object.keys(timing).map(function (k) { return [k, timing[k]]; }).sort(function (a, c) { return c[1] - a[1]; })[0]
-      : null;
+    var mostCommon = _topProfile(dist);
+    var topTiming = _topTiming(b.profiles.extreme_timing_by_profile, mostCommon ? mostCommon.name : null);
 
     var s = b.stats || {};
     var fullDaily = s.daily_range && s.daily_range.windowed_distribution && s.daily_range.windowed_distribution.full;
     var adr20 = s.daily_range && s.daily_range.latest_adr && s.daily_range.latest_adr.ADR_20;
 
+    var weeklyDist  = b.weekly  && b.weekly.profile_distribution;
+    var monthlyDist = b.monthly && b.monthly.profile_distribution;
+    var yearlyDist  = b.yearly  && b.yearly.profile_distribution;
+    var weeklyTop   = _topProfile(weeklyDist);
+    var monthlyTop  = _topProfile(monthlyDist);
+    var yearlyTop   = _topProfile(yearlyDist);
+    var weeklyTiming  = weeklyTop  ? _topTiming(b.weekly.extreme_timing_by_profile,  weeklyTop.name)  : null;
+    var monthlyTiming = monthlyTop ? _topTiming(b.monthly.extreme_timing_by_profile, monthlyTop.name) : null;
+
+    var nfpInfo = null;
+    var nfpFriday = _thisWeeksNfpFriday();
+    var nfpStats = s.nfp_profile;
+    var nfpDist  = b.profiles && b.profiles.nfp;
+    if (nfpFriday && nfpStats && nfpDist && nfpDist.nfp_profile_distribution) {
+      nfpInfo = {
+        fridayDate:              nfpFriday.iso,
+        nfpMeanRangePips:        nfpStats.nfp_fridays.mean_range_pips,
+        otherFridayMeanRangePips: nfpStats.other_fridays.mean_range_pips,
+        nfpExtremeInWindowPct:    nfpStats.nfp_fridays.extreme_in_release_window_pct,
+        otherFridayExtremeInWindowPct: nfpStats.other_fridays.extreme_in_release_window_pct,
+        nNfpDays:                 nfpStats.nfp_fridays.n,
+        topNfpProfile:            _topProfile(nfpDist.nfp_profile_distribution)
+      };
+    }
+
     return {
       asOf:               cur.asOf || s.as_of || null,
       medianDailyRange:   fullDaily ? fullDaily.median : null,
       adr20:              adr20 != null ? adr20 : null,
-      mostCommonProfile:  mostCommon ? { name: mostCommon[0], pct: mostCommon[1].pct } : null,
-      topTiming:          topTiming ? topTiming[0] : null
+      mostCommonProfile:  mostCommon,
+      topTiming:          topTiming,
+      weeklyTop:          weeklyTop,
+      weeklyTiming:       weeklyTiming,
+      monthlyTop:         monthlyTop,
+      monthlyTiming:      monthlyTiming,
+      yearlyTop:          yearlyTop,
+      yearlySampleN:      b.yearly ? b.yearly.n_labeled_years : null,
+      nfpInfo:            nfpInfo
     };
   } catch (e) { return null; }
 }
@@ -386,8 +452,27 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
     L.push('');
     L.push('=== MARKET PROFILING (statistical, pre-computed' + (profCtx.asOf ? ', data as of ' + profCtx.asOf : '') + ') ===');
     if (profCtx.medianDailyRange != null) L.push('Median daily range: ' + profCtx.medianDailyRange + ' pips' + (profCtx.adr20 != null ? ' (20-day ADR: ' + profCtx.adr20 + ' pips)' : ''));
-    if (profCtx.mostCommonProfile) L.push('Most common daily shape: ' + profCtx.mostCommonProfile.name + ' (' + profCtx.mostCommonProfile.pct + '% of days)');
-    if (profCtx.topTiming) L.push('Dominant extreme-timing pattern: ' + profCtx.topTiming.replace(/_/g, ' '));
+    if (profCtx.mostCommonProfile) L.push('Most common daily shape: ' + profCtx.mostCommonProfile.name + ' (' + profCtx.mostCommonProfile.pct + '% of days)' +
+      (profCtx.topTiming ? ' — dominant timing: ' + profCtx.topTiming.replace(/_/g, ' ') : ''));
+    if (profCtx.weeklyTop) L.push('Most common weekly shape: ' + profCtx.weeklyTop.name + ' (' + profCtx.weeklyTop.pct + '% of weeks)' +
+      (profCtx.weeklyTiming ? ' — dominant timing: ' + profCtx.weeklyTiming.replace(/_/g, ' ') : ''));
+    if (profCtx.monthlyTop) L.push('Most common monthly shape: ' + profCtx.monthlyTop.name + ' (' + profCtx.monthlyTop.pct + '% of months)' +
+      (profCtx.monthlyTiming ? ' — dominant timing: ' + profCtx.monthlyTiming.replace(/_/g, ' ') : ''));
+    if (profCtx.yearlyTop) L.push('Most common yearly shape: ' + profCtx.yearlyTop.name + ' (' + profCtx.yearlyTop.pct + '% of years, n=' + profCtx.yearlySampleN +
+      ' — small sample, treat as directional context only, not a strong signal)');
+  }
+
+  if (profCtx && profCtx.nfpInfo) {
+    var nfp = profCtx.nfpInfo;
+    L.push('');
+    L.push('=== EVENT RISK THIS WEEK — NON-FARM PAYROLLS (' + nfp.fridayDate + ') ===');
+    L.push('This week\'s Friday is a Non-Farm Payrolls release day (calendar rule: first Friday of the month, 8:30am NY, DST-aware).');
+    L.push('Historically (n=' + nfp.nNfpDays + ' NFP Fridays), NFP days run wider than other Fridays: mean range ' +
+      nfp.nfpMeanRangePips + ' pips vs ' + nfp.otherFridayMeanRangePips + ' pips.');
+    L.push('The day\'s extreme falls inside the release window (15min before to 90min after) on ' +
+      nfp.nfpExtremeInWindowPct + '% of NFP days, vs ' + nfp.otherFridayExtremeInWindowPct + '% on other Fridays.');
+    if (nfp.topNfpProfile) L.push('Most common NFP-day shape: ' + nfp.topNfpProfile.name + ' (' + nfp.topNfpProfile.pct + '% of NFP days).');
+    L.push('Factor this into position sizing / entry timing for this week — do not treat it as a directional signal, only a volatility/timing one.');
   }
 
   L.push('');
@@ -711,16 +796,12 @@ async function _readSSE(resp, output, extractor) {
   function _updateCtxBar() {
     var bar = document.getElementById('ai-ctx-bar');
     if (!bar) return;
-    var id    = typeof ASSET_CONFIG !== 'undefined' ? ASSET_CONFIG.id : '';
-    var hasBt = !!(function () {
-      try { return localStorage.getItem('kpt-bt-' + id); } catch (_) { return false; }
+    var id     = typeof ASSET_CONFIG !== 'undefined' ? ASSET_CONFIG.id : '';
+    var upload = (function () {
+      try { return JSON.parse(localStorage.getItem('kpt-up-' + id) || 'null'); } catch (_) { return null; }
     }());
-    var hasIdt = (function () {
-      try {
-        var parsed = JSON.parse(localStorage.getItem('kpt-idt-' + id) || 'null');
-        return !!(parsed && parsed.schemaVer === 3);
-      } catch (_) { return false; }
-    }());
+    var hasBt  = !!(upload && upload.historyStats);
+    var hasIdt = !!(upload && upload.sessionStats);
     var hasProf = !!(window.KPT_PROFILING_CURRENT && window.KPT_PROFILING_CURRENT.bundle);
 
     function chip(label, ok, title) {
@@ -732,8 +813,8 @@ async function _readSSE(resp, output, extractor) {
       '<span class="ai-ctx-label">Context included:</span>' +
       chip('Seasonal',  true,  'Always included — from the seasonal data file') +
       chip('Curve',     true,  'Always included — computed from MONTHS[] data') +
-      chip('History',   hasBt, hasBt  ? 'Backtest stats loaded from localStorage'   : 'Upload a D1 CSV on the History tab to include') +
-      chip('Sessions',  hasIdt, hasIdt ? 'Intraday session data loaded from localStorage' : 'Upload an H1/H4 CSV on the Sessions tab to include') +
+      chip('History',   hasBt, hasBt  ? 'Upload history stats loaded from localStorage'   : 'Upload a CSV on the Upload tab to include') +
+      chip('Sessions',  hasIdt, hasIdt ? 'Intraday session data loaded from localStorage' : 'Upload a sub-daily (M1-H4) CSV on the Upload tab to include') +
       chip('Profiling', hasProf, hasProf ? 'Pre-computed Market Profiling stats for this asset' : 'Not available for this asset');
   }
 

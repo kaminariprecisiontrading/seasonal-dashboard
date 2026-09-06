@@ -388,12 +388,17 @@ notes), and sends it as a single `messages: [{role:'user', content: prompt}]` ca
 provider the user has configured (Claude/Gemini/Ollama — bring-your-own API key, called directly
 from the browser, no backend). Streams one response, renders it, done — no conversation state.
 
-**Near-term (the actual current ask):** keep it exactly this shape — a single button that exports
-a neat technical summary of the dashboard's most critical information in one shot. This is already
-close to what `_buildPrompt()` produces; revisit its exact template/content once the other tiers
-above (especially Tier 5's weekly/monthly/yearly profiles, and any session/news/liquidity-sweep
-profiles — see `KPT-Market-Profiling/market-profiling-system-spec.md` §4.5 and its liquidity-sweep
-addendum) have more data to fold in.
+**Near-term (the actual current ask) — ✅ Done (2026-09-06):** keep it exactly this shape — a
+single button that exports a neat technical summary of the dashboard's most critical information
+in one shot. `_buildPrompt()`'s content was revisited once Tier 5's weekly/monthly/yearly profiles
+and the NFP profile existed to fold in: `_gatherProfilingCtx()` now also surfaces each tier's top
+profile shape (Yearly explicitly caveated as small-sample), and a new conditional event-risk block
+fires only during an actual NFP week (calendar-computed, not price-feed-dependent). Session/hour
+pairing and hourly-activity were deliberately left out — magnitude diagnostics with no directional
+read, not a good fit for a concise synthesis prompt. See `docs/ARCHITECTURE.md`'s Analysis Panel
+section for the full writeup. Any liquidity-sweep profile (parked, `KPT-Market-Profiling/
+market-profiling-system-spec.md` §4.5 addendum) would be a natural future addition to this same
+gatherer once it exists.
 
 **Later, if/when chat is worth building:** the lowest-overhead path is to keep the identical
 architecture (BYO API key, direct browser `fetch()`, no new backend) and add only what's missing
