@@ -2,15 +2,16 @@
 Phase 3 — Dashboard data export (Kaminari Market Profiling System)
 
 Bundles a single asset's stats_engine.py + profile_taxonomy.py (+, optionally,
-profile_taxonomy_weekly.py / profile_taxonomy_monthly.py / profile_taxonomy_yearly.py)
-JSON outputs into one static dashboard/data/<asset>.js file, defining a single
-global (e.g. `const GBPUSD_DATA = {...}`) that the dashboard HTML pages load
-via a plain <script> tag — same pattern as the sibling Kaminari Seasonals
-Dashboard's data/*.js files, chosen so the dashboard works from a plain
-file:// open with no server/build step and no fetch()/CORS concerns.
+profile_taxonomy_weekly.py / profile_taxonomy_monthly.py / profile_taxonomy_yearly.py
+/ session_activity.py) JSON outputs into one static dashboard/data/<asset>.js
+file, defining a single global (e.g. `const GBPUSD_DATA = {...}`) that the
+dashboard HTML pages load via a plain <script> tag — same pattern as the
+sibling Kaminari Seasonals Dashboard's data/*.js files, chosen so the
+dashboard works from a plain file:// open with no server/build step and no
+fetch()/CORS concerns.
 
 Usage:
-    python3 build_dashboard_data.py <stats_json> <profile_summary_json> <output_js> --asset GBPUSD [--weekly-summary PATH] [--monthly-summary PATH] [--yearly-summary PATH]
+    python3 build_dashboard_data.py <stats_json> <profile_summary_json> <output_js> --asset GBPUSD [--weekly-summary PATH] [--monthly-summary PATH] [--yearly-summary PATH] [--hourly-activity PATH]
 """
 
 import json
@@ -26,6 +27,7 @@ def main():
     ap.add_argument("--weekly-summary", default=None, help="optional profile_taxonomy_weekly.py output JSON, folded in as bundle.weekly")
     ap.add_argument("--monthly-summary", default=None, help="optional profile_taxonomy_monthly.py output JSON, folded in as bundle.monthly")
     ap.add_argument("--yearly-summary", default=None, help="optional profile_taxonomy_yearly.py output JSON, folded in as bundle.yearly")
+    ap.add_argument("--hourly-activity", default=None, help="optional session_activity.py output JSON, folded in as bundle.hourly_activity")
     args = ap.parse_args()
 
     with open(args.stats_json, encoding="utf-8") as f:
@@ -46,6 +48,10 @@ def main():
     if args.yearly_summary:
         with open(args.yearly_summary, encoding="utf-8") as f:
             bundle["yearly"] = json.load(f)
+
+    if args.hourly_activity:
+        with open(args.hourly_activity, encoding="utf-8") as f:
+            bundle["hourly_activity"] = json.load(f)
 
     var_name = f"{args.asset.upper()}_DATA"
 

@@ -83,6 +83,7 @@ first step in Claude Code.
 | `build_dashboard_data.py` | Phase 3 pipeline: bundles one asset's `*_stats.json` + `*_profile_summary.json` into a single `dashboard/data/<asset>.js` (a plain `const <ASSET>_DATA = {...}` global) — same data-as-JS-file pattern as the sibling Seasonals Dashboard, so the dashboard works from a plain `file://` open with no server/build step. Re-run this (after re-running `stats_engine.py`/`profile_taxonomy.py`) any time the underlying data changes — the `dashboard/data/*.js` files are generated, not hand-edited. |
 | `export_profile_examples.py` | Phase 3 pipeline: picks one real "typical" exemplar day per profile (closest to that profile's own average range) per asset, extracts its M1 bars from the raw export, resamples to M15, and writes `dashboard/data/profile-examples/<asset>.js` — the real-chart data behind the profile detail pages. Excludes `is_daily_only` days from exemplar candidacy (a single EOD bar can't back a candlestick chart). Re-run if the raw CSV, `profile_taxonomy.py`, or its thresholds change. |
 | `export_calendar_data.py` | Phase 3 pipeline: builds the calendar feature's per-day data — one JS file per asset per year (`dashboard/data/calendar/<asset>/<year>.js`, chunked so the dashboard doesn't load all ~5,185 days upfront) plus a manifest of available years. Imports `build_weekly()`/`build_monthly()` from `stats_engine.py` so each day's week/month context reuses that logic rather than duplicating it. |
+| `session_activity.py` | Tier 5b: mean intra-hour range (UTC) across full history, one value per hour 0-23, plus a summary of the two session-overlap windows vs. their single-session neighbors. Re-parses the raw M1 file like `export_profile_examples.py` (reuses `clean_mt5_csv.py`'s `load_raw()`/`to_utc()`). Validated (2026-09-05) as a real, cross-asset signal, unlike the liquidity-sweep branch it was tested alongside — see spec §4.5. Folded into the dashboard bundle by `build_dashboard_data.py --hourly-activity`. |
 | `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
 ---
@@ -395,6 +396,22 @@ API and a database (if/when migrating off static files) are evaluated later — 
   support, now grouped Daily/Weekly/Monthly/Yearly) shipped in the same pass — see
   `seasonal-dashboard`'s `js/profiling*.js` and `docs/PLATFORM_ROADMAP.md` Tier 5. **This completes
   Tier 5's full Daily → Weekly → Monthly → Yearly ladder.**
+- **Tier 5b resumed and step 2 done for both branches (2026-09-05), with opposite outcomes:**
+  liquidity-sweep descriptive study (spec §4.5) found no real, non-noise, cross-asset effect with
+  the coarse first-pass definition tested — a `close_position`-based metric looked consistent but
+  is very likely mechanical (the sweep event mechanically creates the day's own new extreme,
+  pulling the close away from it regardless of any real edge); the cleaner point-to-point
+  follow-through metric showed no consistent signal across GBPUSD/EURUSD/XAUUSD. Per the spec's
+  own build-order rule, **parked rather than pushed to a formal profile** — user's explicit call
+  after seeing the mixed evidence. The session-overlap activity question (spec §4.5, noted
+  alongside sweeps as "related but separate") found the opposite: a real, replicated,
+  non-event-conditioned signal — both overlap windows show consistently elevated mean hourly range
+  vs. their single-session neighbors in all three assets, London-NY overlap most dramatically
+  (XAUUSD: ~994 pips/hour vs. ~582-588 in the surrounding hours). Built `pipeline/session_activity.py`
+  (re-parses raw M1, like `export_profile_examples.py`), wired into `refresh_asset.py`
+  (`--skip-hourly-activity` to opt out) and `build_dashboard_data.py` (`--hourly-activity` →
+  `bundle.hourly_activity`), backfilled for all 14 assets, and shipped as an "Hourly Activity"
+  chart on the Profiling tab's Daily view (`seasonal-dashboard`'s `js/profiling.js`).
 
 ---
 
@@ -451,14 +468,17 @@ in that repo, per the user's explicit preference — not carried over from this 
    dashboard is a historical-statistics browser until then.
 2. ~~**Weekly/Monthly/Yearly taxonomies**~~ — all done and dashboard-wired (2026-09-05), see §5's
    entries and spec §4.6/§4.7/§4.8. **Tier 5's full Daily → Weekly → Monthly → Yearly ladder is
-   complete.** Only Tier 5b (session-defined/news-timing/liquidity-sweep profiles, paused pending
-   pickup) remains open in the profile-taxonomy family.
-3. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
+   complete.**
+3. **Tier 5b** — liquidity-sweep branch parked (no real effect found, see §5's entry and spec
+   §4.5's 2026-09-05 update); session-overlap activity branch done and shipped (Hourly Activity
+   chart). Still open: session-defined extreme profiles + news-release-timing profiles (below),
+   Frankfurt as a distinct session boundary.
+4. **Polish pass** — an actual trader hasn't used this yet; expect UI/copy feedback once someone
    tries it against a real morning routine. One known nit already flagged: "Normal Day" cells on
    the calendar are low-contrast, close in appearance to empty/no-data cells (spec §5.2).
-4. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
+5. **Full OHLC chart viewer** (spec §5.1) — the profile-detail exemplar charts (§5.3) cover 8
    days per asset; viewing an arbitrary historical day still needs the full per-day export.
-5. **Session-defined extreme profiles + news-release-timing profiles** — two new profile
+6. **Session-defined extreme profiles + news-release-timing profiles** — two new profile
    families the user wants eventually (spec §4.5), not designed in detail yet.
 
 **Noted for later, not actionable now:**

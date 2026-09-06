@@ -3906,5 +3906,184 @@ const BTCUSD_DATA = {
     "min_periods_years": 8,
     "window_type": "expanding",
     "asset": "BTCUSD"
+  },
+  "hourly_activity": {
+    "hourly": {
+      "0": {
+        "mean_range_pips": 37552.44,
+        "mean_activity_pips": 128097.28,
+        "n_days": 2792
+      },
+      "1": {
+        "mean_range_pips": 35465.7,
+        "mean_activity_pips": 120626.6,
+        "n_days": 2776
+      },
+      "2": {
+        "mean_range_pips": 32248.72,
+        "mean_activity_pips": 109606.49,
+        "n_days": 2786
+      },
+      "3": {
+        "mean_range_pips": 28990.98,
+        "mean_activity_pips": 99889.36,
+        "n_days": 2777
+      },
+      "4": {
+        "mean_range_pips": 27635.79,
+        "mean_activity_pips": 93907.32,
+        "n_days": 2783
+      },
+      "5": {
+        "mean_range_pips": 26953.23,
+        "mean_activity_pips": 92956.41,
+        "n_days": 2781
+      },
+      "6": {
+        "mean_range_pips": 27883.13,
+        "mean_activity_pips": 94056.92,
+        "n_days": 2784
+      },
+      "7": {
+        "mean_range_pips": 29132.98,
+        "mean_activity_pips": 97123.37,
+        "n_days": 2791
+      },
+      "8": {
+        "mean_range_pips": 31127.12,
+        "mean_activity_pips": 104167.26,
+        "n_days": 2796
+      },
+      "9": {
+        "mean_range_pips": 29771.91,
+        "mean_activity_pips": 101324.2,
+        "n_days": 2782
+      },
+      "10": {
+        "mean_range_pips": 28654.4,
+        "mean_activity_pips": 98654.61,
+        "n_days": 2792
+      },
+      "11": {
+        "mean_range_pips": 29064.29,
+        "mean_activity_pips": 100209.28,
+        "n_days": 2797
+      },
+      "12": {
+        "mean_range_pips": 35401.94,
+        "mean_activity_pips": 118636.62,
+        "n_days": 2814
+      },
+      "13": {
+        "mean_range_pips": 42073.77,
+        "mean_activity_pips": 142180.46,
+        "n_days": 2817
+      },
+      "14": {
+        "mean_range_pips": 49149.27,
+        "mean_activity_pips": 167169.32,
+        "n_days": 2821
+      },
+      "15": {
+        "mean_range_pips": 45203.6,
+        "mean_activity_pips": 157572.16,
+        "n_days": 2819
+      },
+      "16": {
+        "mean_range_pips": 41377.44,
+        "mean_activity_pips": 147285.06,
+        "n_days": 2811
+      },
+      "17": {
+        "mean_range_pips": 38304.64,
+        "mean_activity_pips": 135223.5,
+        "n_days": 2796
+      },
+      "18": {
+        "mean_range_pips": 36752.02,
+        "mean_activity_pips": 130025.46,
+        "n_days": 2792
+      },
+      "19": {
+        "mean_range_pips": 36273.31,
+        "mean_activity_pips": 127346.67,
+        "n_days": 2787
+      },
+      "20": {
+        "mean_range_pips": 37982.41,
+        "mean_activity_pips": 129562.71,
+        "n_days": 2693
+      },
+      "21": {
+        "mean_range_pips": 36205.11,
+        "mean_activity_pips": 120736.32,
+        "n_days": 2692
+      },
+      "22": {
+        "mean_range_pips": 35542.17,
+        "mean_activity_pips": 118670.54,
+        "n_days": 2778
+      },
+      "23": {
+        "mean_range_pips": 31287.31,
+        "mean_activity_pips": 110028.91,
+        "n_days": 2785
+      }
+    },
+    "session_windows": {
+      "asian_only": {
+        "hours": [
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "mean_range_pips": 31002.16,
+        "mean_activity_pips": 106146.16
+      },
+      "asian_london_overlap": {
+        "hours": [
+          7
+        ],
+        "mean_range_pips": 29132.98,
+        "mean_activity_pips": 97123.37
+      },
+      "london_only": {
+        "hours": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "mean_range_pips": 29654.43,
+        "mean_activity_pips": 101088.84
+      },
+      "london_ny_overlap": {
+        "hours": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "mean_range_pips": 42957.14,
+        "mean_activity_pips": 146389.64
+      },
+      "ny_only": {
+        "hours": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "mean_range_pips": 38137.96,
+        "mean_activity_pips": 133888.68
+      }
+    },
+    "asset": "BTCUSD"
   }
 };

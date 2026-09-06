@@ -3922,5 +3922,184 @@ const WTI_DATA = {
     "min_periods_years": 8,
     "window_type": "expanding",
     "asset": "WTI"
+  },
+  "hourly_activity": {
+    "hourly": {
+      "0": {
+        "mean_range_pips": 31.74,
+        "mean_activity_pips": 107.09,
+        "n_days": 2199
+      },
+      "1": {
+        "mean_range_pips": 40.85,
+        "mean_activity_pips": 142.62,
+        "n_days": 2254
+      },
+      "2": {
+        "mean_range_pips": 30.59,
+        "mean_activity_pips": 106.79,
+        "n_days": 2199
+      },
+      "3": {
+        "mean_range_pips": 24.52,
+        "mean_activity_pips": 86.65,
+        "n_days": 2116
+      },
+      "4": {
+        "mean_range_pips": 20.35,
+        "mean_activity_pips": 69.31,
+        "n_days": 1958
+      },
+      "5": {
+        "mean_range_pips": 29.27,
+        "mean_activity_pips": 97.87,
+        "n_days": 2142
+      },
+      "6": {
+        "mean_range_pips": 33.37,
+        "mean_activity_pips": 121.12,
+        "n_days": 2296
+      },
+      "7": {
+        "mean_range_pips": 42.86,
+        "mean_activity_pips": 156.36,
+        "n_days": 2359
+      },
+      "8": {
+        "mean_range_pips": 51.79,
+        "mean_activity_pips": 191.12,
+        "n_days": 2369
+      },
+      "9": {
+        "mean_range_pips": 49.81,
+        "mean_activity_pips": 175.01,
+        "n_days": 2369
+      },
+      "10": {
+        "mean_range_pips": 44.93,
+        "mean_activity_pips": 160.44,
+        "n_days": 2369
+      },
+      "11": {
+        "mean_range_pips": 45.64,
+        "mean_activity_pips": 159.93,
+        "n_days": 2370
+      },
+      "12": {
+        "mean_range_pips": 52.85,
+        "mean_activity_pips": 189.48,
+        "n_days": 2369
+      },
+      "13": {
+        "mean_range_pips": 74.68,
+        "mean_activity_pips": 267.27,
+        "n_days": 2373
+      },
+      "14": {
+        "mean_range_pips": 80.06,
+        "mean_activity_pips": 288.81,
+        "n_days": 2373
+      },
+      "15": {
+        "mean_range_pips": 74.03,
+        "mean_activity_pips": 268.81,
+        "n_days": 2372
+      },
+      "16": {
+        "mean_range_pips": 60.52,
+        "mean_activity_pips": 222.81,
+        "n_days": 2360
+      },
+      "17": {
+        "mean_range_pips": 55.11,
+        "mean_activity_pips": 198.02,
+        "n_days": 2329
+      },
+      "18": {
+        "mean_range_pips": 54.99,
+        "mean_activity_pips": 195.58,
+        "n_days": 2307
+      },
+      "19": {
+        "mean_range_pips": 38.7,
+        "mean_activity_pips": 136.44,
+        "n_days": 2260
+      },
+      "20": {
+        "mean_range_pips": 30.73,
+        "mean_activity_pips": 102.92,
+        "n_days": 1932
+      },
+      "21": {
+        "mean_range_pips": 25.4,
+        "mean_activity_pips": 82.05,
+        "n_days": 572
+      },
+      "22": {
+        "mean_range_pips": 37.2,
+        "mean_activity_pips": 115.07,
+        "n_days": 1242
+      },
+      "23": {
+        "mean_range_pips": 27.92,
+        "mean_activity_pips": 89.01,
+        "n_days": 1977
+      }
+    },
+    "session_windows": {
+      "asian_only": {
+        "hours": [
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "mean_range_pips": 29.83,
+        "mean_activity_pips": 102.56
+      },
+      "asian_london_overlap": {
+        "hours": [
+          7
+        ],
+        "mean_range_pips": 42.86,
+        "mean_activity_pips": 156.36
+      },
+      "london_only": {
+        "hours": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "mean_range_pips": 48.04,
+        "mean_activity_pips": 171.62
+      },
+      "london_ny_overlap": {
+        "hours": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "mean_range_pips": 70.41,
+        "mean_activity_pips": 253.59
+      },
+      "ny_only": {
+        "hours": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "mean_range_pips": 48.01,
+        "mean_activity_pips": 171.15
+      }
+    },
+    "asset": "WTI"
   }
 };

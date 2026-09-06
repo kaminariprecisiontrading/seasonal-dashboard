@@ -303,6 +303,35 @@ Design decided so far, each still needing empirical validation before becoming a
   specifically (as opposed to "London," which currently starts at 07:00 UTC, already close to
   Frankfurt's own open) can be built.
 
+**Update (2026-09-05) — step 2 done for both branches, with opposite outcomes:**
+
+- **Liquidity-sweep step 2 (the descriptive study): parked, no real effect found.** Tested both
+  session-pairs (Asian swept by London; London swept by NY) across GBPUSD/EURUSD/XAUUSD and the
+  4 candidate thresholds (3/6/10/15% of the piercing session's own ASR). The `close_position`
+  metric showed a consistent-looking cross-asset pattern, but it's very likely **mechanical, not
+  predictive** — a sweep event mechanically creates the day's own new high/low by definition,
+  which pulls the close away from that fresh extreme almost by construction regardless of any
+  real edge. The cleaner point-to-point metric (price change strictly *after* the rejection, not
+  conflated with the sweep itself) showed **no consistent effect**: near-zero/wrong-signed on the
+  intraday Asian→London case, and inconsistent across assets on the overnight London→NY case
+  (GBPUSD showed a clean-looking but hypothesis-*opposite* split; EURUSD/XAUUSD didn't replicate
+  it, showing both bear- and bull-setups elevated the same direction, most likely each asset's own
+  secular drift leaking into the comparison rather than a real event-specific signal). Per this
+  section's own build-order rule ("only if that shows something real..."), **step 3 (a formal
+  profile) is not justified on this evidence** — user decision: park this branch rather than keep
+  iterating on the definition.
+- **Session-overlap activity: real, replicated, shipped.** Measured mean intra-hour range (UTC)
+  across full history for GBPUSD/EURUSD/XAUUSD (`pipeline/session_activity.py`, re-parses the raw
+  M1 file like `export_profile_examples.py`, reusing `clean_mt5_csv.py`'s own `load_raw()`/
+  `to_utc()`). Both overlap windows show real, consistently elevated activity versus their
+  neighboring single-session hours, in every asset tested — not an event-conditioned comparison,
+  so no tautological-artifact risk like the sweep study's `close_position` metric. London-NY
+  overlap (12:00-15:00 UTC) is the most active window of the entire day in all three assets,
+  dramatically so for XAUUSD (~994 pips/hour vs. ~582-588 pips/hour in the surrounding London-only/
+  NY-only hours — a ~70% jump). GBPUSD/EURUSD show the same shape at smaller scale. Shipped as an
+  "Hourly Activity" chart on the Profiling tab's Daily view — see `seasonal-dashboard`'s
+  `js/profiling.js`.
+
 Tracked in `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` as **Tier 5b** — a sibling to Tier 5's
 coarser (Daily→Weekly→Monthly→Yearly) direction, going finer (sub-daily/session-relative) instead.
 

@@ -3864,5 +3864,184 @@ const US30_DATA = {
     "min_periods_years": 8,
     "window_type": "expanding",
     "asset": "US30"
+  },
+  "hourly_activity": {
+    "hourly": {
+      "0": {
+        "mean_range_pips": 58.06,
+        "mean_activity_pips": 213.4,
+        "n_days": 1065
+      },
+      "1": {
+        "mean_range_pips": 53.36,
+        "mean_activity_pips": 196.46,
+        "n_days": 1065
+      },
+      "2": {
+        "mean_range_pips": 41.76,
+        "mean_activity_pips": 155.06,
+        "n_days": 1063
+      },
+      "3": {
+        "mean_range_pips": 38.05,
+        "mean_activity_pips": 137.18,
+        "n_days": 1064
+      },
+      "4": {
+        "mean_range_pips": 33.33,
+        "mean_activity_pips": 121.49,
+        "n_days": 1063
+      },
+      "5": {
+        "mean_range_pips": 42.36,
+        "mean_activity_pips": 153.97,
+        "n_days": 1063
+      },
+      "6": {
+        "mean_range_pips": 54.29,
+        "mean_activity_pips": 197.49,
+        "n_days": 1064
+      },
+      "7": {
+        "mean_range_pips": 74.5,
+        "mean_activity_pips": 279.83,
+        "n_days": 1065
+      },
+      "8": {
+        "mean_range_pips": 78.14,
+        "mean_activity_pips": 297.97,
+        "n_days": 1063
+      },
+      "9": {
+        "mean_range_pips": 67.79,
+        "mean_activity_pips": 250.27,
+        "n_days": 1064
+      },
+      "10": {
+        "mean_range_pips": 69.64,
+        "mean_activity_pips": 252.59,
+        "n_days": 1065
+      },
+      "11": {
+        "mean_range_pips": 76.05,
+        "mean_activity_pips": 271.51,
+        "n_days": 1065
+      },
+      "12": {
+        "mean_range_pips": 100.03,
+        "mean_activity_pips": 336.78,
+        "n_days": 1065
+      },
+      "13": {
+        "mean_range_pips": 171.81,
+        "mean_activity_pips": 585.7,
+        "n_days": 1063
+      },
+      "14": {
+        "mean_range_pips": 191.08,
+        "mean_activity_pips": 698.46,
+        "n_days": 1064
+      },
+      "15": {
+        "mean_range_pips": 160.71,
+        "mean_activity_pips": 609.67,
+        "n_days": 1064
+      },
+      "16": {
+        "mean_range_pips": 132.6,
+        "mean_activity_pips": 509.28,
+        "n_days": 1063
+      },
+      "17": {
+        "mean_range_pips": 129.8,
+        "mean_activity_pips": 487.32,
+        "n_days": 1044
+      },
+      "18": {
+        "mean_range_pips": 130.11,
+        "mean_activity_pips": 491.72,
+        "n_days": 1026
+      },
+      "19": {
+        "mean_range_pips": 138.93,
+        "mean_activity_pips": 530.56,
+        "n_days": 1027
+      },
+      "20": {
+        "mean_range_pips": 97.09,
+        "mean_activity_pips": 345.63,
+        "n_days": 953
+      },
+      "21": {
+        "mean_range_pips": 63.48,
+        "mean_activity_pips": 223.83,
+        "n_days": 316
+      },
+      "22": {
+        "mean_range_pips": 66.06,
+        "mean_activity_pips": 222.6,
+        "n_days": 702
+      },
+      "23": {
+        "mean_range_pips": 51.08,
+        "mean_activity_pips": 183.98,
+        "n_days": 1064
+      }
+    },
+    "session_windows": {
+      "asian_only": {
+        "hours": [
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "mean_range_pips": 46.54,
+        "mean_activity_pips": 169.88
+      },
+      "asian_london_overlap": {
+        "hours": [
+          7
+        ],
+        "mean_range_pips": 74.5,
+        "mean_activity_pips": 279.83
+      },
+      "london_only": {
+        "hours": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "mean_range_pips": 72.91,
+        "mean_activity_pips": 268.09
+      },
+      "london_ny_overlap": {
+        "hours": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "mean_range_pips": 155.91,
+        "mean_activity_pips": 557.65
+      },
+      "ny_only": {
+        "hours": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "mean_range_pips": 125.71,
+        "mean_activity_pips": 472.9
+      }
+    },
+    "asset": "US30"
   }
 };

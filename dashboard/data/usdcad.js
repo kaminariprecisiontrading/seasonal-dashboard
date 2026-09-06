@@ -3973,5 +3973,184 @@ const USDCAD_DATA = {
     "min_periods_years": 8,
     "window_type": "expanding",
     "asset": "USDCAD"
+  },
+  "hourly_activity": {
+    "hourly": {
+      "0": {
+        "mean_range_pips": 13.99,
+        "mean_activity_pips": 53.24,
+        "n_days": 5625
+      },
+      "1": {
+        "mean_range_pips": 13.64,
+        "mean_activity_pips": 52.86,
+        "n_days": 5537
+      },
+      "2": {
+        "mean_range_pips": 11.85,
+        "mean_activity_pips": 46.39,
+        "n_days": 5481
+      },
+      "3": {
+        "mean_range_pips": 10.67,
+        "mean_activity_pips": 42.98,
+        "n_days": 5509
+      },
+      "4": {
+        "mean_range_pips": 10.84,
+        "mean_activity_pips": 43.53,
+        "n_days": 5603
+      },
+      "5": {
+        "mean_range_pips": 14.45,
+        "mean_activity_pips": 56.04,
+        "n_days": 6192
+      },
+      "6": {
+        "mean_range_pips": 18.48,
+        "mean_activity_pips": 71.62,
+        "n_days": 6595
+      },
+      "7": {
+        "mean_range_pips": 20.43,
+        "mean_activity_pips": 79.11,
+        "n_days": 6696
+      },
+      "8": {
+        "mean_range_pips": 20.34,
+        "mean_activity_pips": 78.51,
+        "n_days": 6666
+      },
+      "9": {
+        "mean_range_pips": 19.47,
+        "mean_activity_pips": 75.54,
+        "n_days": 6671
+      },
+      "10": {
+        "mean_range_pips": 20.57,
+        "mean_activity_pips": 78.82,
+        "n_days": 6822
+      },
+      "11": {
+        "mean_range_pips": 25.36,
+        "mean_activity_pips": 92.96,
+        "n_days": 7020
+      },
+      "12": {
+        "mean_range_pips": 29.57,
+        "mean_activity_pips": 107.65,
+        "n_days": 7090
+      },
+      "13": {
+        "mean_range_pips": 31.21,
+        "mean_activity_pips": 114.85,
+        "n_days": 7055
+      },
+      "14": {
+        "mean_range_pips": 30.62,
+        "mean_activity_pips": 113.95,
+        "n_days": 7058
+      },
+      "15": {
+        "mean_range_pips": 26.51,
+        "mean_activity_pips": 101.19,
+        "n_days": 6897
+      },
+      "16": {
+        "mean_range_pips": 21.81,
+        "mean_activity_pips": 83.55,
+        "n_days": 6649
+      },
+      "17": {
+        "mean_range_pips": 20.13,
+        "mean_activity_pips": 75.77,
+        "n_days": 6462
+      },
+      "18": {
+        "mean_range_pips": 19.4,
+        "mean_activity_pips": 73.44,
+        "n_days": 6281
+      },
+      "19": {
+        "mean_range_pips": 17.43,
+        "mean_activity_pips": 66.45,
+        "n_days": 6270
+      },
+      "20": {
+        "mean_range_pips": 15.26,
+        "mean_activity_pips": 57.69,
+        "n_days": 5294
+      },
+      "21": {
+        "mean_range_pips": 12.38,
+        "mean_activity_pips": 44.71,
+        "n_days": 4991
+      },
+      "22": {
+        "mean_range_pips": 11.54,
+        "mean_activity_pips": 41.33,
+        "n_days": 5440
+      },
+      "23": {
+        "mean_range_pips": 12.62,
+        "mean_activity_pips": 46.14,
+        "n_days": 5675
+      }
+    },
+    "session_windows": {
+      "asian_only": {
+        "hours": [
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "mean_range_pips": 13.32,
+        "mean_activity_pips": 51.6
+      },
+      "asian_london_overlap": {
+        "hours": [
+          7
+        ],
+        "mean_range_pips": 20.43,
+        "mean_activity_pips": 79.11
+      },
+      "london_only": {
+        "hours": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "mean_range_pips": 21.44,
+        "mean_activity_pips": 81.46
+      },
+      "london_ny_overlap": {
+        "hours": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "mean_range_pips": 29.48,
+        "mean_activity_pips": 109.41
+      },
+      "ny_only": {
+        "hours": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "mean_range_pips": 18.81,
+        "mean_activity_pips": 71.38
+      }
+    },
+    "asset": "USDCAD"
   }
 };

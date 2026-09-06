@@ -6,7 +6,8 @@ as several separate manual commands:
 
     clean_mt5_csv.py -> profile_taxonomy.py -> stats_engine.py
         -> profile_taxonomy_weekly.py -> profile_taxonomy_monthly.py
-        -> profile_taxonomy_yearly.py -> build_dashboard_data.py
+        -> profile_taxonomy_yearly.py -> session_activity.py
+        -> build_dashboard_data.py
         -> export_profile_examples.py -> export_calendar_data.py
 
 profile_taxonomy_weekly.py / profile_taxonomy_monthly.py / profile_taxonomy_yearly.py
@@ -17,6 +18,12 @@ profile_summary.json, folded into the dashboard bundle by
 build_dashboard_data.py's --weekly-summary/--monthly-summary/--yearly-summary
 flags. See market-profiling-system-spec.md §4 and HANDOVER.md §5 for the
 methodology and the empirical validation behind each.
+
+session_activity.py (Tier 5b, added 2026-09-05) needs the raw M1 file (like
+export_profile_examples.py) but its output is folded into the same dashboard
+bundle (--hourly-activity -> bundle.hourly_activity), so it has to run
+*before* build_dashboard_data.py, unlike export_profile_examples.py which
+writes its own separate file and can run after.
 
 Built to be safe to re-run at any cadence (daily/weekly/monthly/ad hoc) --
 every stage always reprocesses the *complete* history from the current raw
@@ -48,6 +55,8 @@ Usage:
     --skip-weekly     skip the weekly profile taxonomy (Tier 5)
     --skip-monthly    skip the monthly profile taxonomy (Tier 5)
     --skip-yearly     skip the yearly profile taxonomy (Tier 5)
+    --skip-hourly-activity   skip the hourly session-activity export (Tier 5b —
+                       re-parses the full raw M1 file, like --skip-examples)
 """
 import sys
 import os
@@ -103,6 +112,7 @@ def main():
     ap.add_argument("--skip-weekly", action="store_true")
     ap.add_argument("--skip-monthly", action="store_true")
     ap.add_argument("--skip-yearly", action="store_true")
+    ap.add_argument("--skip-hourly-activity", action="store_true")
     args = ap.parse_args()
 
     asset = args.asset.upper()
@@ -141,6 +151,7 @@ def main():
     monthly_summary_json = os.path.join(output_dir, f"{asset_lower}_monthly_profile_summary.json")
     yearly_profiles_csv  = os.path.join(clean_dir, f"{asset_lower}_yearly_profiles.csv")
     yearly_summary_json  = os.path.join(output_dir, f"{asset_lower}_yearly_profile_summary.json")
+    hourly_activity_json = os.path.join(output_dir, f"{asset_lower}_hourly_activity.json")
     dashboard_js = os.path.join(dashboard_data_dir, f"{asset_lower}.js")
     examples_js  = os.path.join(dashboard_data_dir, "profile-examples", f"{asset_lower}.js")
     calendar_dir = os.path.join(dashboard_data_dir, "calendar")
@@ -170,6 +181,11 @@ def main():
         build_dashboard_cmd += ["--yearly-summary", yearly_summary_json]
     else:
         print("\n(skipped --skip-yearly)", file=sys.stderr)
+    if not args.skip_hourly_activity:
+        run([py, "session_activity.py", raw_csv, hourly_activity_json, "--asset", asset, "--pip", str(pip)])
+        build_dashboard_cmd += ["--hourly-activity", hourly_activity_json]
+    else:
+        print("\n(skipped --skip-hourly-activity)", file=sys.stderr)
     run(build_dashboard_cmd)
 
     if not args.skip_examples:

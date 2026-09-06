@@ -3898,5 +3898,184 @@ const USTECH_DATA = {
     "min_periods_years": 8,
     "window_type": "expanding",
     "asset": "USTECH"
+  },
+  "hourly_activity": {
+    "hourly": {
+      "0": {
+        "mean_range_pips": 484.96,
+        "mean_activity_pips": 1739.04,
+        "n_days": 1064
+      },
+      "1": {
+        "mean_range_pips": 438.37,
+        "mean_activity_pips": 1618.1,
+        "n_days": 1065
+      },
+      "2": {
+        "mean_range_pips": 348.42,
+        "mean_activity_pips": 1309.11,
+        "n_days": 1064
+      },
+      "3": {
+        "mean_range_pips": 310.61,
+        "mean_activity_pips": 1154.43,
+        "n_days": 1064
+      },
+      "4": {
+        "mean_range_pips": 285.2,
+        "mean_activity_pips": 1048.08,
+        "n_days": 1063
+      },
+      "5": {
+        "mean_range_pips": 362.66,
+        "mean_activity_pips": 1295.26,
+        "n_days": 1063
+      },
+      "6": {
+        "mean_range_pips": 401.88,
+        "mean_activity_pips": 1492.83,
+        "n_days": 1064
+      },
+      "7": {
+        "mean_range_pips": 512.61,
+        "mean_activity_pips": 1926.01,
+        "n_days": 1064
+      },
+      "8": {
+        "mean_range_pips": 557.11,
+        "mean_activity_pips": 2095.39,
+        "n_days": 1063
+      },
+      "9": {
+        "mean_range_pips": 470.66,
+        "mean_activity_pips": 1774.76,
+        "n_days": 1064
+      },
+      "10": {
+        "mean_range_pips": 441.6,
+        "mean_activity_pips": 1695.48,
+        "n_days": 1065
+      },
+      "11": {
+        "mean_range_pips": 498.18,
+        "mean_activity_pips": 1864.54,
+        "n_days": 1065
+      },
+      "12": {
+        "mean_range_pips": 687.89,
+        "mean_activity_pips": 2354.48,
+        "n_days": 1065
+      },
+      "13": {
+        "mean_range_pips": 1126.24,
+        "mean_activity_pips": 3866.46,
+        "n_days": 1063
+      },
+      "14": {
+        "mean_range_pips": 1328.3,
+        "mean_activity_pips": 4852.69,
+        "n_days": 1064
+      },
+      "15": {
+        "mean_range_pips": 1099.07,
+        "mean_activity_pips": 4208.04,
+        "n_days": 1064
+      },
+      "16": {
+        "mean_range_pips": 888.91,
+        "mean_activity_pips": 3417.5,
+        "n_days": 1063
+      },
+      "17": {
+        "mean_range_pips": 839.0,
+        "mean_activity_pips": 3175.11,
+        "n_days": 1044
+      },
+      "18": {
+        "mean_range_pips": 823.79,
+        "mean_activity_pips": 3156.65,
+        "n_days": 1026
+      },
+      "19": {
+        "mean_range_pips": 884.63,
+        "mean_activity_pips": 3350.26,
+        "n_days": 1027
+      },
+      "20": {
+        "mean_range_pips": 677.54,
+        "mean_activity_pips": 2335.35,
+        "n_days": 953
+      },
+      "21": {
+        "mean_range_pips": 487.6,
+        "mean_activity_pips": 1592.47,
+        "n_days": 316
+      },
+      "22": {
+        "mean_range_pips": 510.03,
+        "mean_activity_pips": 1723.6,
+        "n_days": 702
+      },
+      "23": {
+        "mean_range_pips": 411.37,
+        "mean_activity_pips": 1460.47,
+        "n_days": 1064
+      }
+    },
+    "session_windows": {
+      "asian_only": {
+        "hours": [
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "mean_range_pips": 380.43,
+        "mean_activity_pips": 1389.66
+      },
+      "asian_london_overlap": {
+        "hours": [
+          7
+        ],
+        "mean_range_pips": 512.61,
+        "mean_activity_pips": 1926.01
+      },
+      "london_only": {
+        "hours": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "mean_range_pips": 491.89,
+        "mean_activity_pips": 1857.54
+      },
+      "london_ny_overlap": {
+        "hours": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "mean_range_pips": 1060.38,
+        "mean_activity_pips": 3820.42
+      },
+      "ny_only": {
+        "hours": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "mean_range_pips": 822.77,
+        "mean_activity_pips": 3086.97
+      }
+    },
+    "asset": "USTECH"
   }
 };

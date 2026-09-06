@@ -4006,5 +4006,184 @@ const USDJPY_DATA = {
     "min_periods_years": 8,
     "window_type": "expanding",
     "asset": "USDJPY"
+  },
+  "hourly_activity": {
+    "hourly": {
+      "0": {
+        "mean_range_pips": 22.63,
+        "mean_activity_pips": 81.95,
+        "n_days": 7031
+      },
+      "1": {
+        "mean_range_pips": 19.41,
+        "mean_activity_pips": 73.15,
+        "n_days": 6935
+      },
+      "2": {
+        "mean_range_pips": 16.41,
+        "mean_activity_pips": 63.03,
+        "n_days": 6711
+      },
+      "3": {
+        "mean_range_pips": 16.12,
+        "mean_activity_pips": 61.56,
+        "n_days": 6920
+      },
+      "4": {
+        "mean_range_pips": 16.58,
+        "mean_activity_pips": 64.02,
+        "n_days": 7041
+      },
+      "5": {
+        "mean_range_pips": 19.07,
+        "mean_activity_pips": 74.09,
+        "n_days": 7111
+      },
+      "6": {
+        "mean_range_pips": 22.14,
+        "mean_activity_pips": 85.0,
+        "n_days": 7130
+      },
+      "7": {
+        "mean_range_pips": 23.24,
+        "mean_activity_pips": 89.03,
+        "n_days": 7132
+      },
+      "8": {
+        "mean_range_pips": 22.06,
+        "mean_activity_pips": 85.34,
+        "n_days": 7127
+      },
+      "9": {
+        "mean_range_pips": 20.0,
+        "mean_activity_pips": 79.31,
+        "n_days": 7128
+      },
+      "10": {
+        "mean_range_pips": 19.09,
+        "mean_activity_pips": 76.44,
+        "n_days": 7130
+      },
+      "11": {
+        "mean_range_pips": 22.69,
+        "mean_activity_pips": 85.44,
+        "n_days": 7131
+      },
+      "12": {
+        "mean_range_pips": 26.91,
+        "mean_activity_pips": 98.47,
+        "n_days": 7135
+      },
+      "13": {
+        "mean_range_pips": 28.21,
+        "mean_activity_pips": 105.1,
+        "n_days": 7134
+      },
+      "14": {
+        "mean_range_pips": 27.11,
+        "mean_activity_pips": 102.75,
+        "n_days": 7136
+      },
+      "15": {
+        "mean_range_pips": 23.07,
+        "mean_activity_pips": 88.6,
+        "n_days": 7078
+      },
+      "16": {
+        "mean_range_pips": 19.02,
+        "mean_activity_pips": 73.8,
+        "n_days": 6944
+      },
+      "17": {
+        "mean_range_pips": 17.98,
+        "mean_activity_pips": 68.62,
+        "n_days": 6819
+      },
+      "18": {
+        "mean_range_pips": 16.79,
+        "mean_activity_pips": 64.41,
+        "n_days": 6614
+      },
+      "19": {
+        "mean_range_pips": 14.95,
+        "mean_activity_pips": 58.1,
+        "n_days": 6549
+      },
+      "20": {
+        "mean_range_pips": 13.58,
+        "mean_activity_pips": 51.94,
+        "n_days": 5739
+      },
+      "21": {
+        "mean_range_pips": 13.5,
+        "mean_activity_pips": 48.2,
+        "n_days": 5811
+      },
+      "22": {
+        "mean_range_pips": 16.27,
+        "mean_activity_pips": 57.17,
+        "n_days": 6760
+      },
+      "23": {
+        "mean_range_pips": 20.5,
+        "mean_activity_pips": 72.78,
+        "n_days": 7069
+      }
+    },
+    "session_windows": {
+      "asian_only": {
+        "hours": [
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "mean_range_pips": 19.11,
+        "mean_activity_pips": 71.95
+      },
+      "asian_london_overlap": {
+        "hours": [
+          7
+        ],
+        "mean_range_pips": 23.24,
+        "mean_activity_pips": 89.03
+      },
+      "london_only": {
+        "hours": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "mean_range_pips": 20.96,
+        "mean_activity_pips": 81.63
+      },
+      "london_ny_overlap": {
+        "hours": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "mean_range_pips": 26.33,
+        "mean_activity_pips": 98.73
+      },
+      "ny_only": {
+        "hours": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "mean_range_pips": 16.46,
+        "mean_activity_pips": 63.37
+      }
+    },
+    "asset": "USDJPY"
   }
 };
