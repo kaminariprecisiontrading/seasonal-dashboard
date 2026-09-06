@@ -280,18 +280,32 @@ covering the three profile families noted in `KPT-Market-Profiling/market-profil
 liquidity-sweep / false-move profiles. Full design detail lives in that spec doc, not duplicated
 here — this entry exists so the workstream has a tier of its own, same visibility as Tier 5.
 
-**Status:** infrastructure step one is done — `clean_mt5_csv.py` now computes each named session's
-own OHLC per day (`asian_/london_/ny_open/high/low/close`), which the whole family depends on.
-Everything past that (sweep-threshold derivation, the descriptive validation study, an actual
-formal profile, Frankfurt as a distinct session, the news/event annotation layer) is intentionally
-sequenced step-by-step per the user's explicit preference, not designed or built ahead of need.
+**Status (2026-09-05):** infrastructure step one done — `clean_mt5_csv.py` computes each named
+session's own OHLC per day (`asian_/london_/ny_open/high/low/close`). Step two done for both
+branches noted so far, with **opposite outcomes**:
 
-**Sequencing:** independent of Tier 5 — the two can run in either order or interleaved, since they
-touch different granularities of the same underlying taxonomy idea. **Decided (2026-09-05): paused
-here.** The 21:00-23:00 UTC session gap the infrastructure step surfaced was deliberately left
-open rather than closed (a same-day attempt to widen the Asian session to close it was reverted —
-see `KPT-Market-Profiling/HANDOVER.md` §5 for why). Tier 5's Weekly Profile is picked up next; the
-sweep-threshold derivation/descriptive study resumes only after that's done and reviewed.
+- **Liquidity-sweep / false-move profiles: parked, no real effect found.** The descriptive study
+  (GBPUSD/EURUSD/XAUUSD, 4 candidate thresholds, both session-pairs) found no clean, non-noise,
+  cross-asset effect — a `close_position`-based metric looked consistent but is very likely
+  mechanical (the sweep event itself creates the day's new extreme, which mechanically pulls the
+  close away from it); the cleaner point-to-point follow-through metric showed no consistent
+  signal. Per the spec's own build-order rule, **not pushed to a formal profile** — parked rather
+  than iterated on further. Full write-up: `KPT-Market-Profiling/market-profiling-system-spec.md`
+  §4.5's 2026-09-05 update.
+- **Session-overlap activity: real, replicated, shipped.** Mean intra-hour range across full
+  history, all three test assets: both overlap windows (Asian/London ~07:00 UTC, London/New York
+  12:00-16:00 UTC) show consistently elevated activity vs. their single-session neighbors, with
+  London-NY the most active window of the day in every asset (XAUUSD: ~994 pips/hour vs. ~582-588
+  in the surrounding hours — a ~70% jump). Not an event-conditioned comparison, so no
+  tautological-artifact risk like the sweep study had. Shipped as an "Hourly Activity" chart on
+  the Profiling tab's Daily view, backfilled for all 14 assets
+  (`KPT-Market-Profiling/pipeline/session_activity.py` → `build_dashboard_data.py
+  --hourly-activity` → `bundle.hourly_activity`).
+
+Still open, not designed or built ahead of need: session-defined extreme profiles, news-release-
+timing profiles, Frankfurt as a distinct session boundary. The 21:00-23:00 UTC session gap the
+infrastructure step surfaced remains deliberately left open (a same-day attempt to widen the
+Asian session to close it was reverted — see `KPT-Market-Profiling/HANDOVER.md` §5 for why).
 
 ---
 
@@ -363,7 +377,8 @@ for a real back-and-forth:
    card grid, disclosed small-sample, and a "Year High/Low — Month Pairing" heatmap) are all done
    and dashboard-wired for all 14 Profiling assets, full detail/compare-page support grouped
    Daily/Weekly/Monthly/Yearly. The full Daily → Weekly → Monthly → Yearly ladder is complete.
-5. **Tier 5b** — ongoing, independent of Tier 5 (different granularity direction), also
-   step-by-step and not rushed. Session-OHLC infrastructure done; sweep-threshold derivation and
-   the descriptive validation study are next, only when explicitly picked up again.
+5. **Tier 5b** — ongoing. Liquidity-sweep branch: descriptive study done, **parked** (no real
+   cross-asset effect found). Session-overlap activity branch: ✅ done, an "Hourly Activity" chart
+   shipped on the Profiling tab's Daily view. Still open: session-defined extreme profiles,
+   news-release-timing profiles, Frankfurt as a distinct session.
 6. **Tier 6** — parked, no action until explicitly raised again.

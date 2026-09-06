@@ -83,6 +83,37 @@
   var WEEKDAY_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+  // Per-UTC-hour session/color/label lookup for the Hourly Activity chart --
+  // matches session_activity.py's own SESSION_WINDOWS exactly (Tier 5b).
+  // Built here rather than imported from KPTPCharts' private SESSION_COLOR
+  // (that map is module-scoped inside profiling-charts.js's KPTPCharts IIFE,
+  // not exported) -- same CSS custom-property names, so colors stay
+  // visually identical to the Daily High/Low session-colored heatmaps above.
+  var HOUR_SESSION_COLOR = {};
+  var HOUR_SESSION_LABEL = {};
+  (function () {
+    var windows = {
+      asian_only: [23, 0, 1, 2, 3, 4, 5, 6],
+      asian_london_overlap: [7],
+      london_only: [8, 9, 10, 11],
+      london_ny_overlap: [12, 13, 14, 15],
+      ny_only: [16, 17, 18, 19, 20]
+    };
+    var color = {
+      asian_only: 'var(--kptp-asian)', asian_london_overlap: 'var(--kptp-overlap)',
+      london_only: 'var(--kptp-london)', london_ny_overlap: 'var(--kptp-overlap)',
+      ny_only: 'var(--kptp-ny)'
+    };
+    var label = {
+      asian_only: 'Asian session', asian_london_overlap: 'Asian / London overlap',
+      london_only: 'London session', london_ny_overlap: 'London / New York overlap',
+      ny_only: 'New York session'
+    };
+    Object.keys(windows).forEach(function (w) {
+      windows[w].forEach(function (h) { HOUR_SESSION_COLOR[h] = color[w]; HOUR_SESSION_LABEL[h] = label[w]; });
+    });
+  })();
+
   /* ─── Small formatting helpers (module-local — source left these global) ── */
   function concentrationBadge(R) {
     if (R >= 0.25) return { cls: 'kptp-conc-high', label: 'Tight clustering' };
@@ -231,6 +262,15 @@
         '<div class="kptp-panel-title">Daily Low</div>' +
         '<div id="kptp-heatmap-low"></div>' +
         '<div class="kptp-clock-caption" id="kptp-heatmap-low-caption"></div>' +
+        '<div class="kptp-session-legend"></div>' +
+      '</div>' +
+
+      '<div class="kptp-section-label" id="kptp-hourly-activity-label" hidden>Hourly Activity</div>' +
+      '<div class="kptp-section-note" id="kptp-hourly-activity-note" hidden></div>' +
+      '<div class="kptp-panel-card" id="kptp-hourly-activity-card" hidden>' +
+        '<div class="kptp-panel-title">Mean Range by Hour of Day (UTC)</div>' +
+        '<div id="kptp-hourly-activity-chart"></div>' +
+        '<div class="kptp-section-note" id="kptp-hourly-activity-caption" style="margin:10px 0 0;"></div>' +
         '<div class="kptp-session-legend"></div>' +
       '</div>' +
     '</div>' +
@@ -433,6 +473,63 @@
         return '<span><span class="kptp-dot" style="background:' + pair[1] + '"></span>' + pair[0] + '</span>';
       }).join('');
     });
+  }
+
+  // Mean intra-hour range across full history, one bar per UTC hour --
+  // Tier 5b's session-overlap activity finding (market-profiling-system-spec.md
+  // Sec4.5): validated across GBPUSD/EURUSD/XAUUSD, both overlap windows
+  // (Asian/London ~07:00 UTC, London/New York ~12:00-16:00 UTC) show real,
+  // consistently elevated activity versus their neighboring single-session
+  // hours -- not an artifact of any one asset. See
+  // KPT-Market-Profiling/pipeline/session_activity.py.
+  function renderHourlyActivity() {
+    var label = document.getElementById('kptp-hourly-activity-label');
+    var note = document.getElementById('kptp-hourly-activity-note');
+    var card = document.getElementById('kptp-hourly-activity-card');
+    if (!card || !bundle.hourly_activity) return;
+
+    label.hidden = false;
+    note.hidden = false;
+    card.hidden = false;
+
+    var ha = bundle.hourly_activity;
+    var entries = [];
+    for (var h = 0; h < 24; h++) {
+      var hd = ha.hourly[String(h)];
+      var hourLabel = String(h).padStart(2, '0') + ':00';
+      var nextLabel = String((h + 1) % 24).padStart(2, '0') + ':00';
+      var sessionLabel = HOUR_SESSION_LABEL[h] || 'Outside main sessions';
+      var color = HOUR_SESSION_COLOR[h] || 'var(--muted)';
+      var value = hd ? hd.mean_range_pips : 0;
+      var tooltip = hd
+        ? ('<b>' + hourLabel + '&ndash;' + nextLabel + ' UTC</b><br>' + sessionLabel + '<br>Mean range: ' + hd.mean_range_pips + ' ' + unit + ' (n=' + hd.n_days + ' days)')
+        : ('<b>' + hourLabel + ' UTC</b><br>No data');
+      entries.push({ label: hourLabel, value: value, color: color, tooltip: tooltip });
+    }
+    KPTPCharts.renderBarChart(document.getElementById('kptp-hourly-activity-chart'), entries, {
+      valueFmt: function (v) { return Math.round(v); }
+    });
+
+    if (note) {
+      note.innerHTML =
+        'Average range within each UTC hour, full history &mdash; how much price typically ' +
+        'moves during that hour, not where the day&rsquo;s high/low tends to land (that&rsquo;s the Time of Extreme section above). ' +
+        'Both session-overlap windows (amber) show real, consistently elevated activity versus their neighboring single-session ' +
+        'hours &mdash; validated across GBPUSD/EURUSD/XAUUSD, not specific to this one asset. Always full history, not affected by the lookback window.';
+      kptpAttachGlossaryIcons(note);
+    }
+
+    var sw = ha.session_windows;
+    var cap = document.getElementById('kptp-hourly-activity-caption');
+    if (cap && sw) {
+      cap.innerHTML =
+        '<b>' + pairUpper + '</b> &mdash; Asian: ' + sw.asian_only.mean_range_pips + ' ' + unit +
+        ' &middot; Asian/London overlap: <b>' + sw.asian_london_overlap.mean_range_pips + ' ' + unit + '</b>' +
+        ' &middot; London: ' + sw.london_only.mean_range_pips + ' ' + unit +
+        ' &middot; London/NY overlap: <b>' + sw.london_ny_overlap.mean_range_pips + ' ' + unit + '</b>' +
+        ' &middot; NY: ' + sw.ny_only.mean_range_pips + ' ' + unit +
+        ' <span class="kptp-muted-inline">(mean range per hour, averaged across each window&rsquo;s hours)</span>';
+    }
   }
 
   function renderWeeklyMonthly() {
@@ -918,6 +1015,7 @@
   renderRangeSection('full');
   renderTimeSection('full');
   renderSessionLegend();
+  renderHourlyActivity();
   renderWeeklyMonthly();
   renderWeekdayPairHeatmap();
   renderWeekOfMonthPairHeatmap();
