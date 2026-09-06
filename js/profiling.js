@@ -264,6 +264,12 @@
         '<div class="kptp-clock-caption" id="kptp-heatmap-low-caption"></div>' +
         '<div class="kptp-session-legend"></div>' +
       '</div>' +
+      '<div class="kptp-panel-card" id="kptp-session-pair-card" hidden>' +
+        '<div class="kptp-panel-title">Day High/Low &mdash; Session Pairing</div>' +
+        '<div class="kptp-section-note" style="margin-bottom:12px;">The two charts above show which session tends to have the high and which tends to have the low, ' +
+          '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often an Asian low pairs with a London-NY-overlap high, specifically. Rows = low session, columns = high session. Darker = more frequent; the diagonal (same session) is real but consistently rare.</div>' +
+        '<div id="kptp-session-pair-heatmap"></div>' +
+      '</div>' +
 
       '<div class="kptp-section-label" id="kptp-hourly-activity-label" hidden>Hourly Activity</div>' +
       '<div class="kptp-section-note" id="kptp-hourly-activity-note" hidden></div>' +
@@ -933,6 +939,64 @@
     container.innerHTML = html;
   }
 
+  // The joint (low_session, high_session) table -- e.g. "how often does an
+  // Asian low pair with a London-NY-overlap high, specifically" -- not just
+  // the two existing marginal Daily High/Daily Low heatmaps (which session
+  // tends to have the high, which tends to have the low, tracked
+  // separately). Lives in bundle.stats (not bundle.profiles/weekly/monthly/
+  // yearly like the other pairing tables) since it's computed by
+  // stats_engine.py alongside the other Time-of-Extreme stats, not a
+  // profile-taxonomy script. See
+  // KPT-Market-Profiling/pipeline/stats_engine.py's
+  // session_pair_distribution() for how this is computed -- already
+  // excludes is_daily_only-era days (found and fixed 2026-09-06; a
+  // single-bar day's high/low session tags are a data-format artifact, not
+  // a real fact, and would otherwise inject a false same-session spike).
+  function renderSessionPairHeatmap() {
+    var card = document.getElementById('kptp-session-pair-card');
+    var container = document.getElementById('kptp-session-pair-heatmap');
+    var sp = bundle.stats && bundle.stats.daily_session_pair_distribution;
+    if (!card || !container || !sp) return;
+
+    card.hidden = false;
+    var tags = ['Asian', 'Asian_London_Overlap', 'London', 'London_NY_Overlap', 'New_York', 'Other'];
+    var shortTag = {
+      Asian: 'Asian', Asian_London_Overlap: 'A/L', London: 'London',
+      London_NY_Overlap: 'L/NY', New_York: 'NY', Other: 'Other'
+    };
+
+    var maxPct = 0;
+    tags.forEach(function (lo) { tags.forEach(function (hi) { maxPct = Math.max(maxPct, sp.pairs[lo][hi].pct); }); });
+
+    var html = '<div style="overflow-x:auto;"><table style="border-collapse:collapse;width:100%;font-size:11px;">';
+    html += '<tr><td style="padding:6px 8px;"></td>' +
+      '<td colspan="6" style="padding:6px 8px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;">High Session &rarr;</td></tr>';
+    html += '<tr><td style="padding:6px 8px;"></td>' + tags.map(function (t) {
+      return '<td style="padding:6px 6px;text-align:center;color:var(--muted);font-weight:600;">' + shortTag[t] + '</td>';
+    }).join('') + '</tr>';
+
+    tags.forEach(function (lo) {
+      html += '<tr>';
+      html += '<td style="padding:6px 8px;color:var(--muted);font-weight:600;white-space:nowrap;">' + shortTag[lo] + ' low</td>';
+      tags.forEach(function (hi) {
+        var cell = sp.pairs[lo][hi];
+        var isSameSession = lo === hi;
+        var intensity = maxPct ? cell.pct / maxPct : 0;
+        var bg = isSameSession
+          ? 'rgba(148,163,184,' + (0.06 + intensity * 0.1) + ')'
+          : 'rgba(34,197,94,' + (0.05 + intensity * 0.55) + ')';
+        html += '<td title="' + shortTag[lo] + ' low + ' + shortTag[hi] + ' high: ' + cell.pct + '% (n=' + cell.n + ')' + (isSameSession ? ' — same session' : '') + '"' +
+          ' style="padding:7px 4px;text-align:center;background:' + bg + ';border:1px solid var(--border);' + (isSameSession ? 'color:var(--muted);' : 'color:var(--text);') + '">' +
+          cell.pct + '%</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</table></div>';
+    html += '<div class="kptp-section-note" style="margin-top:10px;margin-bottom:0;">n=' + sp.n_days + ' days &middot; same-session (diagonal) occurs in ' + sp.same_session_pct + '% of days. Hover any cell for the exact count.</div>';
+
+    container.innerHTML = html;
+  }
+
   function buildDial() {
     var dial = document.getElementById('kptp-dial');
     if (!dial) return;
@@ -1015,6 +1079,7 @@
   renderRangeSection('full');
   renderTimeSection('full');
   renderSessionLegend();
+  renderSessionPairHeatmap();
   renderHourlyActivity();
   renderWeeklyMonthly();
   renderWeekdayPairHeatmap();
