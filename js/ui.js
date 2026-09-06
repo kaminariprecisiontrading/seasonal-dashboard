@@ -206,10 +206,29 @@
     el.dataset.kptPanel = panelName;
   }
 
-  // Mark the combined (seasonals) section
-  var seasonalHeaders = collectPreceding(combinedWrap || aiPanel);
+  // Mark the combined (seasonals) section. Walk back from the month quick-jump
+  // bar (injected by accordion.js's buildQuickJump(), sits directly before
+  // .combined-wrap) when present, not from combined-wrap itself — the
+  // quick-jump bar is not a .section-label/<p>, so collectPreceding(combinedWrap)
+  // would stop on it immediately and leave the section-label + intro paragraph
+  // above it permanently untagged (and therefore permanently visible on every
+  // tab, never touched by the [data-kpt-panel] show/hide rule). Mirrors the
+  // same qj-anchored pattern the secondary TF sub-tab system below already
+  // uses for this exact reason.
+  var quickjump     = scope.querySelector('.month-quickjump');
+  var seasonalAnchor = quickjump || combinedWrap || aiPanel;
+  var seasonalHeaders = collectPreceding(seasonalAnchor);
   seasonalHeaders.forEach(function (el) { markPanel(el, 'seasonals'); });
+  if (quickjump) markPanel(quickjump, 'seasonals');
   markPanel(combinedWrap, 'seasonals');
+
+  // Mark the legend (and its toggle header) as part of the seasonals panel —
+  // its color key only explains the Seasonals accordion/combined-bias colors
+  // and sits outside collectPreceding()'s walk entirely (above the divider),
+  // so it was never touched by any [data-kpt-panel] rule and stayed visible
+  // on every tab regardless of which one was active.
+  markPanel(scope.querySelector('.legend-header'), 'seasonals');
+  markPanel(scope.querySelector('.legend'), 'seasonals');
 
   // Mark any .table-wrap sections (TF tables, hand-built files) as seasonals
   // These appear after the combined-wrap, before the AI panel

@@ -231,7 +231,28 @@ Scans for all `[data-kpt-panel]` elements in the DOM. The full ordered tab list 
 
 Only tabs whose panel element exists in the DOM are rendered. Tags discovered elements with `data-kpt-panel` using `collectPreceding()` to also capture immediately preceding `.section-label` and `<p>` elements. Builds a `kpt-tabs` bar and inserts it before the first `[data-kpt-panel]` element. Tab switching applies/removes `.kpt-panel-active` (CSS handles visibility). If fewer than 2 panels are found, aborts gracefully.
 
-**Key detail — `.month-quickjump` interrupt:** `collectPreceding()` stops at any non-section-label element. The quickjump bar sits between the "Combined Bias" section-label and `.combined-wrap`, so that label does not get `data-kpt-panel`. This is handled by building `combinedGroupEls` differently (walking back from the quickjump element itself, then appending quickjump + combined-wrap). The orphaned label is a known minor cosmetic issue on Chart/Analysis tabs.
+**Key detail — `.month-quickjump` interrupt — ✅ fixed:** `collectPreceding()` stops at any
+non-section-label element. The quickjump bar sits between the "Net Seasonal Bias" section-label and
+`.combined-wrap`, so a naive `collectPreceding(combinedWrap)` stops on the quickjump bar immediately
+and never reaches the section-label/paragraph above it. This used to leave the section-label,
+paragraph, quickjump bar, and `.legend`/`.legend-header` (which sit outside this walk entirely,
+above the divider) permanently untagged and therefore permanently visible on *every* tab, not just
+Seasonals — reported directly by the user via a Trend-tab screenshot. Fixed by anchoring the walk to
+the quickjump bar itself when present (`quickjump || combinedWrap || aiPanel`, then explicitly
+tagging quickjump and the legend/legend-header too) — the same anchoring pattern the secondary TF
+sub-tab system's `combinedGroupEls` already used for this exact reason, just not previously applied
+to the primary tab system's own `markPanel()` calls.
+
+Fixing this also surfaced a second, independent bug: `.legend`/`.month-quickjump` each define their
+own `display: flex` in CSS at equal specificity to `[data-kpt-panel]{display:none}` — for
+`.month-quickjump` specifically, whose own rule sits *after* the panel rule in source order, the tie
+went the wrong way and it stayed visible on every tab even once tagged. Fixed with a small,
+deliberately non-`!important` specificity bump (`html [data-kpt-panel]` instead of `[data-kpt-panel]`)
+— `!important` was tried first and rejected: it also beats inline styles, which would have broken
+the secondary sub-tab system's own `el.style.display` toggling for elements (quickjump,
+combined-wrap) that carry both a primary panel tag and secondary sub-tab membership. A plain
+specificity bump beats same-specificity component rules but still correctly loses to inline styles.
+See `css/dashboard.css`'s `[data-kpt-panel]` rule block for the resulting three rules.
 
 ### Secondary TF Sub-Tabs
 Builds a `kpt-tabs kpt-subtabs` bar for the four timeframe views: Combined · 5-YR · 15-YR · Long-term. Only activates if at least 3 `.table-wrap` elements exist (skips FX pages and pages without TF tables). Sub-tab switching uses `el.style.display` (inline styles win over `.kpt-panel-active` CSS specificity). Selected sub-tab is persisted to `localStorage` as `kpt-sub-{assetId}`.

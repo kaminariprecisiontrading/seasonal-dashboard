@@ -2,6 +2,42 @@
 
 ---
 
+## v1.15 — September 2026
+**Fix: Seasonals-only content (legend, header, month quick-jump) leaking onto every tab**
+
+### Summary
+
+User-reported via a Trend-tab screenshot: the legend, "Net Seasonal Bias" section header, intro
+paragraph, and month quick-jump bar were all visible above the tab bar regardless of which tab was
+active — a pre-existing bug (documented in `ARCHITECTURE.md` as a "known minor cosmetic issue,"
+apparently never fully diagnosed) that this session tracked down and fixed properly. Affected every
+one of the 98 asset pages, on every tab except Seasonals itself.
+
+### Changes
+
+- **Root cause 1** (`js/ui.js`): `collectPreceding(combinedWrap)` walks backward collecting
+  `.section-label`/`<p>` siblings, stopping at the first non-matching element. The month quick-jump
+  bar (injected by `accordion.js`, sits directly before `.combined-wrap`) isn't a `.section-label`,
+  so the walk stopped on it immediately and never reached the section-label/paragraph above it —
+  leaving them (and `.legend`/`.legend-header`, which sit outside the walk entirely) permanently
+  untagged with `data-kpt-panel`, and therefore permanently visible on every tab. Fixed by anchoring
+  the walk to the quick-jump bar itself when present, mirroring the pattern the secondary TF
+  sub-tab system already used for this exact reason, and explicitly tagging the legend too.
+- **Root cause 2** (`css/dashboard.css`): fixing root cause 1 exposed a second bug — `.legend` and
+  `.month-quickjump` each define their own `display: flex`, at equal CSS specificity to
+  `[data-kpt-panel]{display:none}`. For `.month-quickjump`, whose rule happens to sit *after* the
+  panel rule in the stylesheet, the tie went the wrong way and it stayed visible even once tagged.
+  Fixed with a small specificity bump (`html [data-kpt-panel]`) rather than `!important` — an
+  `!important` attempt was tried first and reverted because it also overrides inline styles, which
+  broke the secondary Combined/5-YR/15-YR/LT sub-tab toggle (which hides its groups via
+  `el.style.display`) for elements that carry both a primary tag and secondary sub-tab membership.
+- Verified via headless-browser tests across 7 pages spanning FX/futures/indices/crypto, clicking
+  through every tab and back, confirming: no leaked content on any non-Seasonals tab, the legend's
+  flex layout renders correctly (not collapsed to a stacked block), and the Combined/5-YR/15-YR/LT
+  sub-tab toggle still works correctly for a page with static TF tables.
+
+---
+
 ## v1.14 — September 2026
 **Analysis tab — download result as .md, and force the model to actually use Profiling data**
 

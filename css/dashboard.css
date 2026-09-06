@@ -637,8 +637,26 @@ tbody td:first-child {
   border-bottom-color: var(--accent-combined);
 }
 
-[data-kpt-panel] { display: none; }
+/* The leading "html " is a deliberate specificity bump, not decoration: a
+   tagged element with its own display rule of equal specificity (e.g.
+   .month-quickjump{display:flex} at line ~670, which sits AFTER this rule
+   in source order) would otherwise win the tie on source order alone and
+   stay visible on every tab regardless of active state — this is exactly
+   how the quick-jump bar leaked onto every non-Seasonals tab before this
+   fix. Deliberately NOT !important: the secondary TF sub-tab system (below)
+   hides/shows some of these same elements via inline el.style.display, and
+   !important on an author stylesheet rule would beat that inline style
+   outright, breaking the Combined/5-YR/15-YR/LT toggle while on the
+   Seasonals tab. A plain specificity bump beats same-specificity component
+   rules but still correctly loses to inline styles either way. */
+html [data-kpt-panel] { display: none; }
 [data-kpt-panel].kpt-panel-active { display: block; }
+/* .legend/.legend-header/.month-quickjump are flex rows — restore that once
+   active (the block rule above would otherwise collapse them to a stacked
+   layout whenever their tab is active). */
+.legend[data-kpt-panel].kpt-panel-active,
+.legend-header[data-kpt-panel].kpt-panel-active,
+.month-quickjump[data-kpt-panel].kpt-panel-active { display: flex; }
 
 /* Dividers hidden when tabs are active */
 .kpt-divider-hidden { display: none; }
