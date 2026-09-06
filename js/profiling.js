@@ -270,6 +270,12 @@
           '<i>separately</i>. This is the <i>joint</i> pattern &mdash; e.g. how often an Asian low pairs with a London-NY-overlap high, specifically. Rows = low session, columns = high session. Darker = more frequent; the diagonal (same session) is real but consistently rare.</div>' +
         '<div id="kptp-session-pair-heatmap"></div>' +
       '</div>' +
+      '<div class="kptp-panel-card" id="kptp-hour-pair-card" hidden>' +
+        '<div class="kptp-panel-title">Daily High/Low &mdash; Hour Pairing</div>' +
+        '<div class="kptp-section-note" style="margin-bottom:12px;">The session pairing above shows which whole <i>session</i> tends to pair with which. This drills into which <i>specific UTC hour</i> ' +
+          'drives that relationship &mdash; e.g. is the "London-NY overlap low + Asian high" pattern concentrated at one edge of each window, or spread evenly across it. Rows = low hour, columns = high hour. Darker = more frequent; the diagonal (same hour) is real but consistently rare.</div>' +
+        '<div id="kptp-hour-pair-heatmap"></div>' +
+      '</div>' +
 
       '<div class="kptp-section-label" id="kptp-hourly-activity-label" hidden>Hourly Activity</div>' +
       '<div class="kptp-section-note" id="kptp-hourly-activity-note" hidden></div>' +
@@ -997,6 +1003,54 @@
     container.innerHTML = html;
   }
 
+  // Finer-grained sibling of renderSessionPairHeatmap() -- which specific
+  // UTC hour (not just which session) drives the day's high/low pairing.
+  // 24x24 is much denser than the 6x6 session table, so cells stay blank
+  // when pct is 0 (same convention Yearly's sparse month_pair_distribution
+  // table already uses) rather than printing "0.0%" 576 times. See
+  // KPT-Market-Profiling/pipeline/stats_engine.py's hour_pair_distribution().
+  function renderHourPairHeatmap() {
+    var card = document.getElementById('kptp-hour-pair-card');
+    var container = document.getElementById('kptp-hour-pair-heatmap');
+    var hp = bundle.stats && bundle.stats.daily_hour_pair_distribution;
+    if (!card || !container || !hp) return;
+
+    card.hidden = false;
+    var hours = [];
+    for (var i = 0; i < 24; i++) hours.push(String(i));
+
+    var maxPct = 0;
+    hours.forEach(function (lo) { hours.forEach(function (hi) { maxPct = Math.max(maxPct, hp.pairs[lo][hi].pct); }); });
+
+    var html = '<div style="overflow-x:auto;"><table style="border-collapse:collapse;width:100%;font-size:9px;">';
+    html += '<tr><td style="padding:3px 4px;"></td>' +
+      '<td colspan="24" style="padding:3px 4px;text-align:center;color:var(--muted);font-size:8px;letter-spacing:1px;text-transform:uppercase;">High Hour (UTC) &rarr;</td></tr>';
+    html += '<tr><td style="padding:3px 4px;"></td>' + hours.map(function (h) {
+      return '<td style="padding:3px 1px;text-align:center;color:var(--muted);font-weight:600;">' + h + '</td>';
+    }).join('') + '</tr>';
+
+    hours.forEach(function (lo) {
+      html += '<tr>';
+      html += '<td style="padding:3px 4px;color:var(--muted);font-weight:600;white-space:nowrap;">' + lo + ' low</td>';
+      hours.forEach(function (hi) {
+        var cell = hp.pairs[lo][hi];
+        var isSameHour = lo === hi;
+        var intensity = maxPct ? cell.pct / maxPct : 0;
+        var bg = isSameHour
+          ? 'rgba(148,163,184,' + (0.06 + intensity * 0.1) + ')'
+          : (cell.n > 0 ? 'rgba(34,197,94,' + (0.08 + intensity * 0.6) + ')' : 'transparent');
+        html += '<td title="' + lo + ':00 low + ' + hi + ':00 high (UTC): ' + cell.pct + '% (n=' + cell.n + ')' + (isSameHour ? ' — same hour' : '') + '"' +
+          ' style="padding:3px 1px;text-align:center;background:' + bg + ';border:1px solid var(--border);' + (isSameHour ? 'color:var(--muted);' : 'color:var(--text);') + '">' +
+          (cell.pct > 0 ? cell.pct : '') + '</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</table></div>';
+    html += '<div class="kptp-section-note" style="margin-top:10px;margin-bottom:0;">n=' + hp.n_days + ' days &middot; same-hour (diagonal) occurs in ' + hp.same_hour_pct + '% of days &middot; cells show %, blank = 0. Hover any cell for the exact count.</div>';
+
+    container.innerHTML = html;
+  }
+
   function buildDial() {
     var dial = document.getElementById('kptp-dial');
     if (!dial) return;
@@ -1080,6 +1134,7 @@
   renderTimeSection('full');
   renderSessionLegend();
   renderSessionPairHeatmap();
+  renderHourPairHeatmap();
   renderHourlyActivity();
   renderWeeklyMonthly();
   renderWeekdayPairHeatmap();
