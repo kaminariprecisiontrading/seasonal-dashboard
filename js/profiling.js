@@ -396,7 +396,10 @@
 
     '<div class="kptp-footnote">' +
       'Historical data: TradersWay MT5 export, ' + pairUpper + (bundle.stats && bundle.stats.n_days ? (', ' + bundle.stats.n_days + ' trading days through ' + bundle.stats.as_of) : '') + ' (data-gap days excluded from statistics). Statistics are probability-weighted historical tendencies, not guaranteed outcomes.' +
-      '<span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">&copy; 2026 Kaminari Precision Trading. All rights reserved. &nbsp;&middot;&nbsp; Market Profiling methodology and pipeline by Kaminari Precision Trading, built from raw MT5 price history.</span>' +
+      // No "&copy; 2026 Kaminari Precision Trading. All rights reserved." prefix here —
+      // the universal .footnote immediately below this panel (see insertBefore below)
+      // already carries that line; repeating it here just duplicated it back-to-back.
+      '<span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">Market Profiling methodology and pipeline by Kaminari Precision Trading, built from raw MT5 price history.</span>' +
     '</div>';
 
   var footnote = document.querySelector('.footnote');
