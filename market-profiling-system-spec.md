@@ -332,6 +332,33 @@ Design decided so far, each still needing empirical validation before becoming a
   "Hourly Activity" chart on the Profiling tab's Daily view — see `seasonal-dashboard`'s
   `js/profiling.js`.
 
+**Update (2026-09-06) — session-defined extreme profiles: shipped, as a joint table not a
+collapsed 6-bucket taxonomy.** Validated the joint (`low_time_session`, `high_time_session`)
+distribution first on GBPUSD/EURUSD/XAUUSD (same-session diagonal genuinely rare, 4.8-8.9% once
+correctly excluding `is_daily_only`-era days — see the bug entry below) before building anything.
+Found the spec's originally-proposed simplified 3-session bucket naming would lose real
+information: `session_tag()`'s Overlap and Other tags carry substantial, non-trivial weight (e.g.
+London-NY overlap is the single most common session for *both* the high and the low in every
+asset checked, consistent with the overlap-activity finding above), so — same design principle as
+every other pairing table in this pipeline (Weekly's `weekday_pair_distribution`, Monthly's
+`week_of_month_pair_distribution`, Yearly's `month_pair_distribution`) — kept the full natural
+6×6 category set rather than forcing a simplification. Added `session_pair_distribution()` to
+`stats_engine.py` (as `daily_session_pair_distribution`, alongside the existing Time-of-Extreme
+stats it's a joint version of, not a separate profile-taxonomy script) and a "Day High/Low —
+Session Pairing" heatmap on the Profiling tab's Daily view.
+
+**Bug found and fixed while validating this (2026-09-06):** `stats_engine.py`'s Full History
+`daily_high_time`/`daily_low_time` `session_distribution`/`windowed_circular_stats` didn't exclude
+`is_daily_only`-era days — a single-bar day's `high_time`/`low_time` both collapse to that bar's
+timestamp (a data-format artifact, not a real intraday fact), which `session_tag()` bucketed as if
+real. For XAUUSD (64% daily-only) this inflated Full History to a false `concentration_R=0.672`
+(every legitimate finding elsewhere in this pipeline tops out ~0.25-0.30). Fixed with a narrowly-
+scoped `daily_valid_intraday`, used only where real intraday timestamps are needed; `n_days`/
+`as_of`/calendar marginals correctly stay inclusive. 11 of 14 assets affected; only the Full
+History window (5Y/1Y/3mo never touch this era). Post-fix, US500/USTECH/US30 still show elevated
+concentration around the NYSE/NASDAQ cash-session open — a real, asset-appropriate finding for
+equity indices, not residual contamination. Full write-up: `HANDOVER.md` §5.
+
 Tracked in `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` as **Tier 5b** — a sibling to Tier 5's
 coarser (Daily→Weekly→Monthly→Yearly) direction, going finer (sub-daily/session-relative) instead.
 

@@ -2502,6 +2502,169 @@ const BRENT_DATA = {
         }
       }
     },
+    "daily_session_pair_distribution": {
+      "n_days": 2656,
+      "same_session_n": 149,
+      "same_session_pct": 5.61,
+      "pairs": {
+        "Asian": {
+          "Asian": {
+            "n": 19,
+            "pct": 0.72
+          },
+          "Asian_London_Overlap": {
+            "n": 2,
+            "pct": 0.08
+          },
+          "London": {
+            "n": 57,
+            "pct": 2.15
+          },
+          "London_NY_Overlap": {
+            "n": 206,
+            "pct": 7.76
+          },
+          "New_York": {
+            "n": 296,
+            "pct": 11.14
+          },
+          "Other": {
+            "n": 21,
+            "pct": 0.79
+          }
+        },
+        "Asian_London_Overlap": {
+          "Asian": {
+            "n": 3,
+            "pct": 0.11
+          },
+          "Asian_London_Overlap": {
+            "n": 0,
+            "pct": 0.0
+          },
+          "London": {
+            "n": 10,
+            "pct": 0.38
+          },
+          "London_NY_Overlap": {
+            "n": 37,
+            "pct": 1.39
+          },
+          "New_York": {
+            "n": 60,
+            "pct": 2.26
+          },
+          "Other": {
+            "n": 1,
+            "pct": 0.04
+          }
+        },
+        "London": {
+          "Asian": {
+            "n": 62,
+            "pct": 2.33
+          },
+          "Asian_London_Overlap": {
+            "n": 8,
+            "pct": 0.3
+          },
+          "London": {
+            "n": 17,
+            "pct": 0.64
+          },
+          "London_NY_Overlap": {
+            "n": 110,
+            "pct": 4.14
+          },
+          "New_York": {
+            "n": 242,
+            "pct": 9.11
+          },
+          "Other": {
+            "n": 17,
+            "pct": 0.64
+          }
+        },
+        "London_NY_Overlap": {
+          "Asian": {
+            "n": 226,
+            "pct": 8.51
+          },
+          "Asian_London_Overlap": {
+            "n": 44,
+            "pct": 1.66
+          },
+          "London": {
+            "n": 149,
+            "pct": 5.61
+          },
+          "London_NY_Overlap": {
+            "n": 92,
+            "pct": 3.46
+          },
+          "New_York": {
+            "n": 188,
+            "pct": 7.08
+          },
+          "Other": {
+            "n": 8,
+            "pct": 0.3
+          }
+        },
+        "New_York": {
+          "Asian": {
+            "n": 242,
+            "pct": 9.11
+          },
+          "Asian_London_Overlap": {
+            "n": 48,
+            "pct": 1.81
+          },
+          "London": {
+            "n": 187,
+            "pct": 7.04
+          },
+          "London_NY_Overlap": {
+            "n": 211,
+            "pct": 7.94
+          },
+          "New_York": {
+            "n": 20,
+            "pct": 0.75
+          },
+          "Other": {
+            "n": 8,
+            "pct": 0.3
+          }
+        },
+        "Other": {
+          "Asian": {
+            "n": 15,
+            "pct": 0.56
+          },
+          "Asian_London_Overlap": {
+            "n": 2,
+            "pct": 0.08
+          },
+          "London": {
+            "n": 11,
+            "pct": 0.41
+          },
+          "London_NY_Overlap": {
+            "n": 21,
+            "pct": 0.79
+          },
+          "New_York": {
+            "n": 15,
+            "pct": 0.56
+          },
+          "Other": {
+            "n": 1,
+            "pct": 0.04
+          }
+        }
+      }
+    },
     "weekly_high_day": {
       "Monday": 161,
       "Friday": 160,

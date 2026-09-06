@@ -116,6 +116,50 @@ def session_distribution(session_series: pd.Series) -> dict:
     return {k: {"n": int(counts[k]), "pct": float(pct[k])} for k in counts.index}
 
 
+# Tier 5b's session-defined extreme profile (market-profiling-system-spec.md
+# §4.5): the joint (low_session, high_session) pattern -- not just the two
+# existing marginal session_distribution()s (which session tends to have
+# the high, which tends to have the low, tracked separately). Same full-
+# joint-table treatment as Weekly's weekday_pair_distribution / Monthly's
+# week_of_month_pair_distribution / Yearly's month_pair_distribution, one
+# level finer (sub-daily). Uses session_tag()'s real 6-tag scheme (Asian/
+# London/New_York/both overlaps/Other) rather than the spec's originally-
+# proposed simplified 3-session bucket names -- validated (2026-09-06) that
+# the overlap and Other tags carry real, non-trivial weight (e.g. London-NY
+# overlap is the single most common session for both the high and the low
+# in every asset checked), so collapsing them away would lose real
+# information, matching how every other pairing table in this pipeline
+# keeps the full natural category set rather than a forced simplification.
+SESSION_TAGS = ["Asian", "Asian_London_Overlap", "London", "London_NY_Overlap", "New_York", "Other"]
+
+
+def session_pair_distribution(high_session: pd.Series, low_session: pd.Series) -> dict:
+    """high_session/low_session must already exclude is_data_gap and
+    is_daily_only rows -- an is_daily_only day's high_time/low_time both
+    collapse to its single bar's timestamp (a data-format artifact, not a
+    genuine intraday fact), which would otherwise inject a false same-
+    session spike (found 2026-09-06 while building this: XAUUSD's
+    daily-only era showed 100% Other/Other before this exclusion)."""
+    valid = pd.DataFrame({"high": high_session, "low": low_session}).dropna()
+    valid = valid[valid["high"].isin(SESSION_TAGS) & valid["low"].isin(SESSION_TAGS)]
+
+    n = len(valid)
+    pairs = {}
+    for low_tag in SESSION_TAGS:
+        pairs[low_tag] = {}
+        for high_tag in SESSION_TAGS:
+            count = int(((valid["low"] == low_tag) & (valid["high"] == high_tag)).sum())
+            pairs[low_tag][high_tag] = {"n": count, "pct": round(count / n * 100, 2) if n else 0.0}
+
+    same_session_n = sum(pairs[t][t]["n"] for t in SESSION_TAGS)
+    return {
+        "n_days": n,
+        "same_session_n": same_session_n,
+        "same_session_pct": round(same_session_n / n * 100, 2) if n else 0.0,
+        "pairs": pairs,  # pairs[low_session][high_session] = {n, pct}
+    }
+
+
 # ---------------------------------------------------------------------------
 # Range distribution statistics
 # ---------------------------------------------------------------------------
@@ -386,6 +430,9 @@ def main():
             "windowed_circular_stats": windowed_circular_stats(daily_valid_intraday, "date", "low_time"),
             "session_distribution": session_distribution(daily_valid_intraday["low_time_session"]),
         },
+        "daily_session_pair_distribution": session_pair_distribution(
+            daily_valid_intraday["high_time_session"], daily_valid_intraday["low_time_session"]
+        ),
 
         "weekly_high_day": weekly["high_weekday"].value_counts().to_dict(),
         "weekly_low_day": weekly["low_weekday"].value_counts().to_dict(),

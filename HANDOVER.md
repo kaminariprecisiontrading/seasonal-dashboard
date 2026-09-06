@@ -75,7 +75,7 @@ first step in Claude Code.
 | `profile_taxonomy_weekly.py` | Tier 5's Weekly Profile — parallel sibling to `profile_taxonomy.py`, same two axes and 8-profile scheme re-derived (not assumed) at weekly granularity, plus two secondary tags (`extreme_timing`, `extreme_spread`) and a top-level `weekday_pair_distribution` (the full joint high/low weekday table). Part of `refresh_asset.py`'s chain (`--skip-weekly` to opt out). Folded into the dashboard bundle by `build_dashboard_data.py --weekly-summary`. See §5. |
 | `<asset>_weekly_profiles.csv` / `<asset>_weekly_profile_summary.json` | Weekly taxonomy output, one pair per asset, same role as the daily profiles/summary pair. |
 | `<asset>_daily_clean.csv` | Cleaned daily output, one per asset, full available history (back to 1993 for most majors) — see §5's asset roster. File naming deliberately drops the date-range suffix these files originally had (`_2000_2019` etc.): the range keeps growing with every refresh, so a baked-in suffix would immediately go stale. Freshness is tracked via each output's own `as_of` field instead. |
-| `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, and weekly/monthly aggregates. |
+| `stats_engine.py` | Phase 1 stats engine: reads the cleaned daily CSV, produces range distributions, circular time-of-extreme stats, weekly/monthly aggregates, and (Tier 5b, added 2026-09-06) `daily_session_pair_distribution` — the joint (low-session × high-session) table. Excludes `is_daily_only`-era days from every intraday-timing-dependent stat (fixed 2026-09-06 — see §5's decision log). |
 | `<asset>_stats.json` | Stats engine output, one per asset — everything the dashboard (Phase 3) will consume. |
 | `profile_taxonomy.py` | Phase 2 pipeline: reads the cleaned daily CSV, assigns each day one of 8 named profiles (see spec §4) from two independent, self-calibrating axes (range regime, closing shape) plus a secondary extreme-timing tag. `is_daily_only` days flow through normally (their OHLC-derived range regime/shape are real) but the intrabar-dependent `extreme_timing` tag naturally resolves to `Insufficient_History` for them (zero intraday time span) — no special-casing needed. |
 | `<asset>_daily_profiles.csv` | Per-day profile labels + underlying features, one per asset — the labeled historical dataset for backtesting/dashboard use. |
@@ -432,6 +432,17 @@ API and a database (if/when migrating off static files) are evaluated later — 
   sane 0.148; US500/USTECH/US30 still show elevated R≈0.43 around the NYSE/NASDAQ cash-session
   open (13:30-20:00 UTC) — a real, asset-class-appropriate finding for equity indices, not a
   residual bug. Re-ran `refresh_asset.py` for all 11 affected assets.
+- **Session-defined extreme profiles shipped (2026-09-06):** the Tier 5b item this bug was found
+  while validating. Added `session_pair_distribution()` to `stats_engine.py`
+  (`daily_session_pair_distribution`) — the joint (low-session × high-session) table, validated
+  first on GBPUSD/EURUSD/XAUUSD (same-session diagonal genuinely rare at 4.8-8.9% once the
+  `is_daily_only` days above were correctly excluded). Kept the full natural 6×6 category set
+  (`session_tag()`'s Asian/London/New_York/both overlaps/Other) rather than the spec's originally-
+  proposed simplified 3-session bucket naming — the Overlap/Other tags carry real, non-trivial
+  weight (London-NY overlap is the single most common session for both the high and the low in
+  every asset checked), same design principle as every other pairing table in this pipeline. Full
+  write-up: spec §4.5. Backfilled for all 14 assets, shipped as a "Day High/Low — Session Pairing"
+  heatmap on the Profiling tab's Daily view (`seasonal-dashboard`'s `js/profiling.js`).
 
 ---
 
