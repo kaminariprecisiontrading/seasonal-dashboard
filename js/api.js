@@ -21,7 +21,14 @@
  *   kpt-cfg-ollama-url — Ollama base URL  (default: http://localhost:11434)
  *   kpt-cfg-ollama-mdl — Ollama model     (default: llama3.2)
  *
- * Analysis cache keyed per asset + provider + ISO week.
+ * Analysis cache keyed per asset + provider + ISO week (kpt-ai-{id}-{provider}-
+ * {year}-w{week}, stores {text, generatedAt} so a cache-restored result can
+ * still be downloaded with a real generation timestamp, not the reload time).
+ *
+ * A result — fresh or cache-restored — can be downloaded as a timestamped
+ * .md file via the "⬇ Download .md" button in the result bar above the
+ * output (_downloadAnalysisMarkdown()).
+ *
  * Load order: after data.js, before ui.js
  */
 
@@ -53,8 +60,19 @@ function _cacheKey() {
   return 'kpt-ai-' + ASSET_CONFIG.id + '-' + _getProvider() + '-' + now.getFullYear() + '-w' + _isoWeek(now);
 }
 
+// Returns { text, generatedAt } or null. generatedAt is an ISO string, or
+// null for a cache value written before this field existed (legacy plain
+// string) — still readable, just without a real generation timestamp.
 function _cacheGet() {
-  try { return localStorage.getItem(_cacheKey()); } catch (_) { return null; }
+  try {
+    var raw = localStorage.getItem(_cacheKey());
+    if (!raw) return null;
+    try {
+      var parsed = JSON.parse(raw);
+      if (parsed && typeof parsed.text === 'string') return parsed;
+    } catch (_) {}
+    return { text: raw, generatedAt: null }; // legacy pre-download-feature cache value
+  } catch (_) { return null; }
 }
 
 function _cacheSet(text) {
@@ -65,7 +83,7 @@ function _cacheSet(text) {
       var k = localStorage.key(i);
       if (k && k.indexOf(prefix) === 0 && k !== cur) localStorage.removeItem(k);
     }
-    localStorage.setItem(cur, text);
+    localStorage.setItem(cur, JSON.stringify({ text: text, generatedAt: new Date().toISOString() }));
   } catch (_) {}
 }
 
@@ -487,6 +505,7 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
   L.push('| Seasonal Signal | [current week combined signal + star rating] | [brief context] |');
   L.push('| Historical Accuracy | [overall win rate % — or N/A if no backtest data] | [most vs least reliable months] |');
   L.push('| Curve Position | [rising/falling/flat + above/below zero] | [what the seasonal arc implies] |');
+  L.push('| Market Profile | [most common daily/weekly shape + dominant timing — or N/A if no Profiling data] | [does it reinforce or conflict with the seasonal signal? note any event risk this week] |');
   L.push('| Best Entry Window | [top session + top day of week — or N/A if no intraday data] | [timing note] |');
   L.push('| Key Risk | [main conflicting signal or caveat] | [what would invalidate the bias] |');
   L.push('');
@@ -499,6 +518,7 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
   L.push('- [Risk note — any seasonal/historical conflict or reason for caution]');
   L.push('');
   L.push('Be concise and data-driven. No padding. If a data layer is unavailable, mark it N/A and move on.');
+  L.push('If MARKET PROFILING data was provided above, you must fill in the Market Profile row — do not skip it or leave it generic. If EVENT RISK (NFP) data was provided, mention it explicitly in either Key Risk or Trade Notes.');
 
   return L.join('\n');
 }
@@ -822,7 +842,100 @@ async function _readSSE(resp, output, extractor) {
   setProvider(_getProvider());
   _updateCtxBar();
   window._kptUpdateCtxBar = _updateCtxBar; // expose so other tabs can refresh it
+  window._kptProviderLabel = _providerLabel; // expose so _downloadAnalysisMarkdown() can reuse it
 }());
+
+/* ─── Download the current analysis as a .md file ────────────────────────── */
+// _lastMarkdown/_lastMarkdownAt hold whichever result is currently on screen —
+// set on a fresh run's success and on a cache restore — so the download
+// button works identically in both cases without re-deriving text from the
+// rendered HTML (lossy/fragile; the raw markdown is already sitting right
+// here, it's the same string _cacheSet() already persists).
+
+var _lastMarkdown   = null;
+var _lastMarkdownAt = null;
+
+function _pad2(n) { return n < 10 ? '0' + n : String(n); }
+
+function _formatLocalTimestamp(d) {
+  return d.getFullYear() + '-' + _pad2(d.getMonth() + 1) + '-' + _pad2(d.getDate()) +
+    ' ' + _pad2(d.getHours()) + ':' + _pad2(d.getMinutes());
+}
+
+// Filesystem-safe filename fragment: strips characters Windows/macOS/Linux
+// all disallow, collapses whitespace, no leading/trailing dashes.
+function _sanitizeFilenamePart(s) {
+  return String(s || 'asset')
+    .replace(/[\/\\:*?"<>|]+/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function _downloadAnalysisMarkdown() {
+  if (!_lastMarkdown) return;
+  var assetName = typeof ASSET_CONFIG !== 'undefined' ? (ASSET_CONFIG.name || ASSET_CONFIG.id) : 'Asset';
+  var when      = _lastMarkdownAt || new Date();
+  var prov      = _getProvider();
+  var provLabel = typeof window._kptProviderLabel === 'function'
+    ? window._kptProviderLabel(prov)
+    : (prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama · ' + _getOllamaModel() : 'Claude Sonnet 5');
+
+  var stampForFilename = when.getFullYear() + '-' + _pad2(when.getMonth() + 1) + '-' + _pad2(when.getDate()) +
+    '_' + _pad2(when.getHours()) + _pad2(when.getMinutes());
+  var filename = _sanitizeFilenamePart(assetName) + '_Analysis_' + stampForFilename + '.md';
+
+  var header = '# ' + assetName + ' — Seasonal Bias Analysis\n\n' +
+    'Generated: ' + _formatLocalTimestamp(when) + ' (local time) · Provider: ' + provLabel + '\n\n---\n\n';
+
+  var blob = new Blob([header + _lastMarkdown], { type: 'text/markdown;charset=utf-8' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href     = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+}
+
+// Shared result-bar builder — shown above #ai-output whenever there's a
+// completed analysis on screen (fresh or cache-restored). Always offers the
+// download button; the clear/re-run button only makes sense for a cached
+// result the user hasn't re-run yet.
+function _showResultBar(opts) {
+  var output = document.getElementById('ai-output');
+  if (!output) return;
+  var bar = document.getElementById('ai-cache-bar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'ai-cache-bar';
+    bar.className = 'ai-cache-bar';
+    output.parentNode.insertBefore(bar, output);
+  }
+
+  var note = opts.cached ? 'Cached result for this week' : 'Analysis generated ' + _formatLocalTimestamp(_lastMarkdownAt);
+
+  bar.innerHTML =
+    '<span class="ai-cache-note">' + note + '</span>' +
+    '<span class="ai-bar-actions">' +
+      '<button class="ai-download-btn" id="ai-download-btn">⬇ Download .md</button>' +
+      (opts.cached ? '<button class="ai-cache-clear-btn" id="ai-cache-clear">✕ Clear &amp; re-run</button>' : '') +
+    '</span>';
+
+  document.getElementById('ai-download-btn').addEventListener('click', _downloadAnalysisMarkdown);
+
+  if (opts.cached) {
+    document.getElementById('ai-cache-clear').addEventListener('click', function () {
+      try { localStorage.removeItem(_cacheKey()); } catch (_) {}
+      bar.remove();
+      output.innerHTML = '';
+      var btn = document.getElementById('run-btn');
+      if (btn) btn.textContent = '▶  Run Analysis';
+      runAnalysis();
+    });
+  }
+}
 
 /* ─── Load cached analysis on page open ─────────────────────────────────── */
 
@@ -833,34 +946,20 @@ async function _readSSE(resp, output, extractor) {
   var btn    = document.getElementById('run-btn');
   if (!output || !btn) return;
 
+  _lastMarkdown   = cached.text;
+  _lastMarkdownAt = cached.generatedAt ? new Date(cached.generatedAt) : new Date();
+
   function _showCached(text) {
     btn.textContent = '↺  Cached — Re-run';
-    // Inject a clear-cache button above the output
-    var existingClearBar = document.getElementById('ai-cache-bar');
-    if (!existingClearBar) {
-      var bar = document.createElement('div');
-      bar.id = 'ai-cache-bar';
-      bar.className = 'ai-cache-bar';
-      bar.innerHTML =
-        '<span class="ai-cache-note">Cached result for this week</span>' +
-        '<button class="ai-cache-clear-btn" id="ai-cache-clear">✕ Clear &amp; re-run</button>';
-      output.parentNode.insertBefore(bar, output);
-      document.getElementById('ai-cache-clear').addEventListener('click', function () {
-        try { localStorage.removeItem(_cacheKey()); } catch(_) {}
-        bar.remove();
-        output.innerHTML = '';
-        btn.textContent = '▶  Run Analysis';
-        runAnalysis();
-      });
-    }
+    _showResultBar({ cached: true });
   }
 
   _ensureMarked().then(function () {
-    output.innerHTML = window.marked.parse(cached);
-    _showCached(cached);
+    output.innerHTML = window.marked.parse(cached.text);
+    _showCached(cached.text);
   }).catch(function () {
-    output.textContent = cached;
-    _showCached(cached);
+    output.textContent = cached.text;
+    _showCached(cached.text);
   });
 }());
 
@@ -888,6 +987,9 @@ async function runAnalysis() {
   if (idtCtx)  ctxLayers.push('session');
   if (profCtx) ctxLayers.push('profiling');
 
+  var staleBar = document.getElementById('ai-cache-bar');
+  if (staleBar) staleBar.remove();
+
   btn.disabled    = true;
   btn.textContent = '⟳  Analysing via ' + provLabel + '...';
   output.innerHTML = '<span class="loading">Synthesising ' + ctxLayers.join(' · ') + ' data via ' + provLabel + '...</span>';
@@ -909,6 +1011,10 @@ async function runAnalysis() {
     /* Final markdown render */
     output.innerHTML = window.marked.parse(full);
     _cacheSet(full);
+
+    _lastMarkdown   = full;
+    _lastMarkdownAt = new Date();
+    _showResultBar({ cached: false });
 
     btn.textContent = '✓  Analysis complete — Re-run';
     btn.disabled    = false;

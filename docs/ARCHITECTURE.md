@@ -564,6 +564,42 @@ Called once at page load. Inserts before `#run-btn`:
   chips permanently showed unavailable regardless of what the user had uploaded)
 - Hint text showing which provider is active
 
+### Required Output Format — Market Profile row
+
+The fixed `REQUIRED OUTPUT FORMAT` table `_buildPrompt()` instructs the model to produce now
+includes a `Market Profile` row (added alongside the Weekly/Monthly/Yearly/NFP context additions
+above) — without a dedicated row, the model would often ignore the Profiling context entirely even
+when it was present in the prompt (observed directly: Ollama's `gemma3:e2b` produced a full verdict
+with zero mention of Profiling data despite the context block being included). The closing
+instruction line also now explicitly says the row must be filled in, not left generic, when
+Profiling data was provided — same reasoning as the NFP block's own explicit "factor this in" line.
+
+### Result Bar — download as `.md`
+
+Once an analysis completes (fresh run or cache-restored), a result bar (`#ai-cache-bar`, reused
+from the pre-existing cache-bar element — built by `_showResultBar(opts)`) appears above
+`#ai-output` with a generation-time note and a "⬇ Download .md" button
+(`_downloadAnalysisMarkdown()`); a cache-restored result also gets the "✕ Clear & re-run" button
+next to it. Downloading works identically whether the result is a fresh run or a cache restore,
+since the raw markdown is captured into module-level `_lastMarkdown`/`_lastMarkdownAt` at both
+points — `_lastMarkdownAt` for a restored result is the *original* generation time (the cache
+value's own `generatedAt` field, not the moment of reload/download), so downloading later still
+reflects when the analysis was actually produced.
+
+- **Filename:** `{asset name, sanitized}_Analysis_{YYYY-MM-DD}_{HHmm}.md`, e.g.
+  `EUR-USD_Analysis_2026-09-02_1400.md` — `_sanitizeFilenamePart()` strips filesystem-unsafe
+  characters and collapses whitespace to `-`.
+- **File content:** a small header (asset name, generation timestamp, provider label — reused from
+  the UI-injection IIFE's `_providerLabel()`, exposed as `window._kptProviderLabel` for this) above
+  the raw markdown body verbatim.
+- **Mechanism:** a `Blob` + `URL.createObjectURL()` + a synthetic `<a download>` click, revoked
+  after 1s — standard client-side download, no backend involved (this repo has none).
+- **Cache format change:** `kpt-ai-{id}-{provider}-{year}-w{week}` now stores
+  `{text, generatedAt}` (was a bare string) so a restored result carries its real generation time.
+  `_cacheGet()` reads a legacy bare-string value back as `{text: rawValue, generatedAt: null}` — old
+  cached entries from before this change still load, just without a real timestamp (falls back to
+  "now" for filename purposes).
+
 ### Dynamic Panel Headings (`_updatePanelHeadings(prov)`)
 
 Rewrites two DOM elements at runtime on every provider switch and on page load:

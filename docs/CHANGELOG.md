@@ -2,6 +2,37 @@
 
 ---
 
+## v1.14 — September 2026
+**Analysis tab — download result as .md, and force the model to actually use Profiling data**
+
+### Summary
+
+Two follow-ups from live-testing v1.13's richer Analysis prompt. First, a user-visible screenshot
+(Ollama, `gemma3:e2b`) showed the model producing a full verdict that never mentioned Profiling
+data at all, despite it being present in the prompt — the context block existed but nothing forced
+the model to actually reference it. Second, adds a "download as .md" button, requested directly.
+
+### Changes
+
+- **New `Market Profile` row** in `_buildPrompt()`'s required output table, plus an explicit
+  closing instruction that the row must be filled in (not skipped or left generic) whenever
+  Profiling data was provided. A dedicated required row is a far stronger compliance lever than
+  hoping a model naturally weaves optional context into a freeform note — especially for smaller
+  local models, which is exactly what the screenshot caught.
+- **New "⬇ Download .md" button** in the Analysis tab's result bar (works for both a fresh run and
+  a cache-restored result). Filename: `{asset}_Analysis_{date}_{time}.md`. File content: a small
+  header (asset, generation time, provider) above the raw markdown body.
+- **Cache format change:** `kpt-ai-{id}-{provider}-{year}-w{week}` now stores `{text, generatedAt}`
+  instead of a bare string, so a restored result downloads with its real generation timestamp, not
+  the moment of reload. Old bare-string cache values still load fine (read back with
+  `generatedAt: null`, falls back to "now" for the filename).
+- Verified via headless-browser tests: intercepted-and-fulfilled a fake streaming response to
+  confirm the download fires with the correct filename/content for both a fresh run and a
+  cache-restored result (using the original generation time, not the test's fake "now"), and that
+  "Clear & re-run" still works correctly alongside the new button.
+
+---
+
 ## v1.13 — September 2026
 **Analysis tab — richer AI context (Weekly/Monthly/Yearly Profiles, NFP event risk) + a Tier 4 leftover bug fix**
 
