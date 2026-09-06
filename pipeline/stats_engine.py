@@ -332,6 +332,20 @@ def main():
 
     daily = pd.read_csv(args.daily_csv, parse_dates=["date", "open_time", "high_time", "low_time", "close_time"])
     daily_valid = daily[~daily["is_data_gap"]]
+    # is_daily_only days (pre-M1-coverage era, one EOD bar per day) have no
+    # real intraday high_time/low_time -- that single bar's timestamp is a
+    # data-format artifact, not a genuine "the extreme occurred here" fact,
+    # so session_tag() bucketing it (or the circular-stats calc) injects a
+    # false, tightly-clustered-looking signal into the Full History window
+    # (found 2026-09-06: XAUUSD's Full History daily-high concentration_R
+    # was 0.672 -- every legitimate finding elsewhere in this pipeline tops
+    # out around 0.25-0.30 -- driven entirely by 64% of XAUUSD's history
+    # being this era). The 5Y/1Y/3mo windows are unaffected since this era
+    # is always the oldest part of history by construction. Everything else
+    # that uses daily_valid (n_days, as_of, weekday/week-of-month/month-of-
+    # year marginals) is a calendar fact independent of intraday timing and
+    # correctly stays inclusive of these days.
+    daily_valid_intraday = daily_valid[~daily_valid["is_daily_only"]]
 
     weekly = build_weekly(daily, args.pip)
     monthly = build_monthly(daily, args.pip)
@@ -365,12 +379,12 @@ def main():
         },
 
         "daily_high_time": {
-            "windowed_circular_stats": windowed_circular_stats(daily_valid, "date", "high_time"),
-            "session_distribution": session_distribution(daily_valid["high_time_session"]),
+            "windowed_circular_stats": windowed_circular_stats(daily_valid_intraday, "date", "high_time"),
+            "session_distribution": session_distribution(daily_valid_intraday["high_time_session"]),
         },
         "daily_low_time": {
-            "windowed_circular_stats": windowed_circular_stats(daily_valid, "date", "low_time"),
-            "session_distribution": session_distribution(daily_valid["low_time_session"]),
+            "windowed_circular_stats": windowed_circular_stats(daily_valid_intraday, "date", "low_time"),
+            "session_distribution": session_distribution(daily_valid_intraday["low_time_session"]),
         },
 
         "weekly_high_day": weekly["high_weekday"].value_counts().to_dict(),

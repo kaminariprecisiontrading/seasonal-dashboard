@@ -434,253 +434,253 @@
   "daily_high_time": {
     "windowed_circular_stats": {
       "full": {
-        "n": 4212,
-        "mode_bucket_start_utc": "21:00",
-        "mode_bucket_end_utc": "21:30",
-        "mode_bucket_pct_of_days": 40.7,
-        "circular_mean_utc": "20:53",
-        "circular_median_utc": "21:00",
-        "concentration_R": 0.772,
+        "n": 1316,
+        "mode_bucket_start_utc": "19:30",
+        "mode_bucket_end_utc": "20:00",
+        "mode_bucket_pct_of_days": 7.0,
+        "circular_mean_utc": "17:56",
+        "circular_median_utc": "18:30",
+        "concentration_R": 0.431,
         "histogram": [
           {
             "bucket_start_utc": "00:00",
             "count": 22,
-            "pct": 0.52
+            "pct": 1.67
           },
           {
             "bucket_start_utc": "00:30",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           },
           {
             "bucket_start_utc": "01:00",
             "count": 15,
-            "pct": 0.36
+            "pct": 1.14
           },
           {
             "bucket_start_utc": "01:30",
             "count": 17,
-            "pct": 0.4
+            "pct": 1.29
           },
           {
             "bucket_start_utc": "02:00",
             "count": 7,
-            "pct": 0.17
+            "pct": 0.53
           },
           {
             "bucket_start_utc": "02:30",
             "count": 7,
-            "pct": 0.17
+            "pct": 0.53
           },
           {
             "bucket_start_utc": "03:00",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "03:30",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "04:00",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "04:30",
             "count": 2,
-            "pct": 0.05
+            "pct": 0.15
           },
           {
             "bucket_start_utc": "05:00",
             "count": 7,
-            "pct": 0.17
+            "pct": 0.53
           },
           {
             "bucket_start_utc": "05:30",
             "count": 6,
-            "pct": 0.14
+            "pct": 0.46
           },
           {
             "bucket_start_utc": "06:00",
             "count": 15,
-            "pct": 0.36
+            "pct": 1.14
           },
           {
             "bucket_start_utc": "06:30",
             "count": 8,
-            "pct": 0.19
+            "pct": 0.61
           },
           {
             "bucket_start_utc": "07:00",
             "count": 28,
-            "pct": 0.66
+            "pct": 2.13
           },
           {
             "bucket_start_utc": "07:30",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           },
           {
             "bucket_start_utc": "08:00",
             "count": 27,
-            "pct": 0.64
+            "pct": 2.05
           },
           {
             "bucket_start_utc": "08:30",
             "count": 12,
-            "pct": 0.28
+            "pct": 0.91
           },
           {
             "bucket_start_utc": "09:00",
             "count": 16,
-            "pct": 0.38
+            "pct": 1.22
           },
           {
             "bucket_start_utc": "09:30",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "10:00",
             "count": 12,
-            "pct": 0.28
+            "pct": 0.91
           },
           {
             "bucket_start_utc": "10:30",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           },
           {
             "bucket_start_utc": "11:00",
             "count": 17,
-            "pct": 0.4
+            "pct": 1.29
           },
           {
             "bucket_start_utc": "11:30",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "12:00",
             "count": 18,
-            "pct": 0.43
+            "pct": 1.37
           },
           {
             "bucket_start_utc": "12:30",
             "count": 27,
-            "pct": 0.64
+            "pct": 2.05
           },
           {
             "bucket_start_utc": "13:00",
             "count": 38,
-            "pct": 0.9
+            "pct": 2.89
           },
           {
             "bucket_start_utc": "13:30",
             "count": 57,
-            "pct": 1.35
+            "pct": 4.33
           },
           {
             "bucket_start_utc": "14:00",
             "count": 69,
-            "pct": 1.64
+            "pct": 5.24
           },
           {
             "bucket_start_utc": "14:30",
             "count": 48,
-            "pct": 1.14
+            "pct": 3.65
           },
           {
             "bucket_start_utc": "15:00",
             "count": 54,
-            "pct": 1.28
+            "pct": 4.1
           },
           {
             "bucket_start_utc": "15:30",
             "count": 20,
-            "pct": 0.47
+            "pct": 1.52
           },
           {
             "bucket_start_utc": "16:00",
             "count": 40,
-            "pct": 0.95
+            "pct": 3.04
           },
           {
             "bucket_start_utc": "16:30",
             "count": 36,
-            "pct": 0.85
+            "pct": 2.74
           },
           {
             "bucket_start_utc": "17:00",
             "count": 25,
-            "pct": 0.59
+            "pct": 1.9
           },
           {
             "bucket_start_utc": "17:30",
             "count": 36,
-            "pct": 0.85
+            "pct": 2.74
           },
           {
             "bucket_start_utc": "18:00",
             "count": 40,
-            "pct": 0.95
+            "pct": 3.04
           },
           {
             "bucket_start_utc": "18:30",
             "count": 39,
-            "pct": 0.93
+            "pct": 2.96
           },
           {
             "bucket_start_utc": "19:00",
             "count": 84,
-            "pct": 1.99
+            "pct": 6.38
           },
           {
             "bucket_start_utc": "19:30",
             "count": 92,
-            "pct": 2.18
+            "pct": 6.99
           },
           {
             "bucket_start_utc": "20:00",
             "count": 92,
-            "pct": 2.18
+            "pct": 6.99
           },
           {
             "bucket_start_utc": "20:30",
             "count": 71,
-            "pct": 1.69
+            "pct": 5.4
           },
           {
             "bucket_start_utc": "21:00",
-            "count": 1713,
-            "pct": 40.67
+            "count": 23,
+            "pct": 1.75
           },
           {
             "bucket_start_utc": "21:30",
             "count": 16,
-            "pct": 0.38
+            "pct": 1.22
           },
           {
             "bucket_start_utc": "22:00",
-            "count": 1267,
-            "pct": 30.08
+            "count": 61,
+            "pct": 4.64
           },
           {
             "bucket_start_utc": "22:30",
             "count": 8,
-            "pct": 0.19
+            "pct": 0.61
           },
           {
             "bucket_start_utc": "23:00",
             "count": 42,
-            "pct": 1.0
+            "pct": 3.19
           },
           {
             "bucket_start_utc": "23:30",
             "count": 10,
-            "pct": 0.24
+            "pct": 0.76
           }
         ]
       },
@@ -1439,282 +1439,282 @@
       }
     },
     "session_distribution": {
-      "Other": {
-        "n": 3004,
-        "pct": 71.3
-      },
       "New_York": {
         "n": 555,
-        "pct": 13.2
+        "pct": 42.2
       },
       "London_NY_Overlap": {
         "n": 331,
-        "pct": 7.9
+        "pct": 25.2
       },
       "Asian": {
         "n": 182,
-        "pct": 4.3
+        "pct": 13.8
+      },
+      "Other": {
+        "n": 108,
+        "pct": 8.2
       },
       "London": {
         "n": 103,
-        "pct": 2.4
+        "pct": 7.8
       },
       "Asian_London_Overlap": {
         "n": 37,
-        "pct": 0.9
+        "pct": 2.8
       }
     }
   },
   "daily_low_time": {
     "windowed_circular_stats": {
       "full": {
-        "n": 4212,
-        "mode_bucket_start_utc": "21:00",
-        "mode_bucket_end_utc": "21:30",
-        "mode_bucket_pct_of_days": 40.9,
-        "circular_mean_utc": "20:58",
-        "circular_median_utc": "21:00",
-        "concentration_R": 0.756,
+        "n": 1316,
+        "mode_bucket_start_utc": "22:00",
+        "mode_bucket_end_utc": "22:30",
+        "mode_bucket_pct_of_days": 5.4,
+        "circular_mean_utc": "17:57",
+        "circular_median_utc": "18:00",
+        "concentration_R": 0.359,
         "histogram": [
           {
             "bucket_start_utc": "00:00",
             "count": 41,
-            "pct": 0.97
+            "pct": 3.12
           },
           {
             "bucket_start_utc": "00:30",
             "count": 14,
-            "pct": 0.33
+            "pct": 1.06
           },
           {
             "bucket_start_utc": "01:00",
             "count": 34,
-            "pct": 0.81
+            "pct": 2.58
           },
           {
             "bucket_start_utc": "01:30",
             "count": 14,
-            "pct": 0.33
+            "pct": 1.06
           },
           {
             "bucket_start_utc": "02:00",
             "count": 10,
-            "pct": 0.24
+            "pct": 0.76
           },
           {
             "bucket_start_utc": "02:30",
             "count": 7,
-            "pct": 0.17
+            "pct": 0.53
           },
           {
             "bucket_start_utc": "03:00",
             "count": 11,
-            "pct": 0.26
+            "pct": 0.84
           },
           {
             "bucket_start_utc": "03:30",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "04:00",
             "count": 6,
-            "pct": 0.14
+            "pct": 0.46
           },
           {
             "bucket_start_utc": "04:30",
             "count": 6,
-            "pct": 0.14
+            "pct": 0.46
           },
           {
             "bucket_start_utc": "05:00",
             "count": 5,
-            "pct": 0.12
+            "pct": 0.38
           },
           {
             "bucket_start_utc": "05:30",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           },
           {
             "bucket_start_utc": "06:00",
             "count": 21,
-            "pct": 0.5
+            "pct": 1.6
           },
           {
             "bucket_start_utc": "06:30",
             "count": 6,
-            "pct": 0.14
+            "pct": 0.46
           },
           {
             "bucket_start_utc": "07:00",
             "count": 30,
-            "pct": 0.71
+            "pct": 2.28
           },
           {
             "bucket_start_utc": "07:30",
             "count": 12,
-            "pct": 0.28
+            "pct": 0.91
           },
           {
             "bucket_start_utc": "08:00",
             "count": 28,
-            "pct": 0.66
+            "pct": 2.13
           },
           {
             "bucket_start_utc": "08:30",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           },
           {
             "bucket_start_utc": "09:00",
             "count": 24,
-            "pct": 0.57
+            "pct": 1.82
           },
           {
             "bucket_start_utc": "09:30",
             "count": 6,
-            "pct": 0.14
+            "pct": 0.46
           },
           {
             "bucket_start_utc": "10:00",
             "count": 18,
-            "pct": 0.43
+            "pct": 1.37
           },
           {
             "bucket_start_utc": "10:30",
             "count": 8,
-            "pct": 0.19
+            "pct": 0.61
           },
           {
             "bucket_start_utc": "11:00",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           },
           {
             "bucket_start_utc": "11:30",
             "count": 11,
-            "pct": 0.26
+            "pct": 0.84
           },
           {
             "bucket_start_utc": "12:00",
             "count": 23,
-            "pct": 0.55
+            "pct": 1.75
           },
           {
             "bucket_start_utc": "12:30",
             "count": 35,
-            "pct": 0.83
+            "pct": 2.66
           },
           {
             "bucket_start_utc": "13:00",
             "count": 21,
-            "pct": 0.5
+            "pct": 1.6
           },
           {
             "bucket_start_utc": "13:30",
             "count": 64,
-            "pct": 1.52
+            "pct": 4.86
           },
           {
             "bucket_start_utc": "14:00",
             "count": 58,
-            "pct": 1.38
+            "pct": 4.41
           },
           {
             "bucket_start_utc": "14:30",
             "count": 43,
-            "pct": 1.02
+            "pct": 3.27
           },
           {
             "bucket_start_utc": "15:00",
             "count": 49,
-            "pct": 1.16
+            "pct": 3.72
           },
           {
             "bucket_start_utc": "15:30",
             "count": 37,
-            "pct": 0.88
+            "pct": 2.81
           },
           {
             "bucket_start_utc": "16:00",
             "count": 37,
-            "pct": 0.88
+            "pct": 2.81
           },
           {
             "bucket_start_utc": "16:30",
             "count": 23,
-            "pct": 0.55
+            "pct": 1.75
           },
           {
             "bucket_start_utc": "17:00",
             "count": 45,
-            "pct": 1.07
+            "pct": 3.42
           },
           {
             "bucket_start_utc": "17:30",
             "count": 39,
-            "pct": 0.93
+            "pct": 2.96
           },
           {
             "bucket_start_utc": "18:00",
             "count": 52,
-            "pct": 1.23
+            "pct": 3.95
           },
           {
             "bucket_start_utc": "18:30",
             "count": 32,
-            "pct": 0.76
+            "pct": 2.43
           },
           {
             "bucket_start_utc": "19:00",
             "count": 70,
-            "pct": 1.66
+            "pct": 5.32
           },
           {
             "bucket_start_utc": "19:30",
             "count": 57,
-            "pct": 1.35
+            "pct": 4.33
           },
           {
             "bucket_start_utc": "20:00",
             "count": 69,
-            "pct": 1.64
+            "pct": 5.24
           },
           {
             "bucket_start_utc": "20:30",
             "count": 47,
-            "pct": 1.12
+            "pct": 3.57
           },
           {
             "bucket_start_utc": "21:00",
-            "count": 1721,
-            "pct": 40.86
+            "count": 31,
+            "pct": 2.36
           },
           {
             "bucket_start_utc": "21:30",
             "count": 4,
-            "pct": 0.09
+            "pct": 0.3
           },
           {
             "bucket_start_utc": "22:00",
-            "count": 1277,
-            "pct": 30.32
+            "count": 71,
+            "pct": 5.4
           },
           {
             "bucket_start_utc": "22:30",
             "count": 13,
-            "pct": 0.31
+            "pct": 0.99
           },
           {
             "bucket_start_utc": "23:00",
             "count": 43,
-            "pct": 1.02
+            "pct": 3.27
           },
           {
             "bucket_start_utc": "23:30",
             "count": 9,
-            "pct": 0.21
+            "pct": 0.68
           }
         ]
       },
@@ -2473,29 +2473,29 @@
       }
     },
     "session_distribution": {
-      "Other": {
-        "n": 3015,
-        "pct": 71.6
-      },
       "New_York": {
         "n": 471,
-        "pct": 11.2
+        "pct": 35.8
       },
       "London_NY_Overlap": {
         "n": 330,
-        "pct": 7.8
+        "pct": 25.1
       },
       "Asian": {
         "n": 241,
-        "pct": 5.7
+        "pct": 18.3
+      },
+      "Other": {
+        "n": 119,
+        "pct": 9.0
       },
       "London": {
         "n": 113,
-        "pct": 2.7
+        "pct": 8.6
       },
       "Asian_London_Overlap": {
         "n": 42,
-        "pct": 1.0
+        "pct": 3.2
       }
     }
   },

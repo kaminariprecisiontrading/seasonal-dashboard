@@ -412,6 +412,26 @@ API and a database (if/when migrating off static files) are evaluated later — 
   (`--skip-hourly-activity` to opt out) and `build_dashboard_data.py` (`--hourly-activity` →
   `bundle.hourly_activity`), backfilled for all 14 assets, and shipped as an "Hourly Activity"
   chart on the Profiling tab's Daily view (`seasonal-dashboard`'s `js/profiling.js`).
+- **Bug found and fixed (2026-09-06), discovered while validating the next Tier 5b item
+  (session-defined extreme profiles — which session contains the day's high/low):** `stats_engine.py`'s
+  `daily_high_time`/`daily_low_time` `session_distribution`/`windowed_circular_stats` didn't exclude
+  `is_daily_only`-era days (the pre-M1-coverage era, one EOD bar per day, no real intraday
+  timestamp). A single-bar day's `high_time`/`low_time` both collapse to that one bar's timestamp,
+  which `session_tag()` bucketed as if real — for XAUUSD (64% daily-only) this inflated the **Full
+  History** window to a false `concentration_R=0.672`/38% mode at 21:00 UTC, vs. every legitimate
+  finding elsewhere in this pipeline topping out around 0.25-0.30. Fixed with a narrowly-scoped
+  `daily_valid_intraday = daily_valid[~daily_valid["is_daily_only"]]`, used only for those 4 calls
+  — `n_days`/`as_of`/weekday-and-calendar marginals correctly stay inclusive, since those are
+  calendar facts independent of intraday timing. Only the **Full History** window was affected (5Y/
+  1Y/3mo never touch this era, since it's always the oldest part of history by construction).
+  Checked `profile_taxonomy.py`'s Daily `extreme_timing` tag for the same risk — it already
+  self-protects (a single-bar day's elapsed-time-fraction hits a 0/0 division, correctly falling
+  through to `Insufficient_History` rather than injecting a false label), so no fix needed there.
+  11 of 14 assets affected (GBPUSD/EURUSD/AUDUSD/USDCAD/USDJPY/XAUUSD/BRENT/WTI/US500/USTECH/US30);
+  NZDUSD/USDCHF/BTCUSD have no `is_daily_only` era. Post-fix, GBPUSD's Full History R dropped to a
+  sane 0.148; US500/USTECH/US30 still show elevated R≈0.43 around the NYSE/NASDAQ cash-session
+  open (13:30-20:00 UTC) — a real, asset-class-appropriate finding for equity indices, not a
+  residual bug. Re-ran `refresh_asset.py` for all 11 affected assets.
 
 ---
 
