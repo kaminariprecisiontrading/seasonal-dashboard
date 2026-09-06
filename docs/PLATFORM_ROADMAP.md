@@ -302,10 +302,26 @@ branches noted so far, with **opposite outcomes**:
   (`KPT-Market-Profiling/pipeline/session_activity.py` → `build_dashboard_data.py
   --hourly-activity` → `bundle.hourly_activity`).
 
-Still open, not designed or built ahead of need: session-defined extreme profiles, news-release-
-timing profiles, Frankfurt as a distinct session boundary. The 21:00-23:00 UTC session gap the
-infrastructure step surfaced remains deliberately left open (a same-day attempt to widen the
-Asian session to close it was reverted — see `KPT-Market-Profiling/HANDOVER.md` §5 for why).
+- **Session-defined extreme profiles: shipped (2026-09-06), as a joint table not a collapsed
+  bucket scheme.** Validated the joint (low-session × high-session) distribution first — same-
+  session diagonal genuinely rare (4.8-8.9%) once correctly excluding `is_daily_only`-era days (a
+  real bug found in the process, see below). Kept the full natural 6×6 category set rather than
+  the spec's originally-proposed simplified 3-session bucket naming, since London-NY overlap is
+  the single most common session for both the high and the low in every asset checked — collapsing
+  it away would lose real information. Shipped as a "Day High/Low — Session Pairing" heatmap on
+  the Profiling tab's Daily view, backfilled for all 14 assets
+  (`KPT-Market-Profiling/pipeline/stats_engine.py`'s `session_pair_distribution()` →
+  `bundle.stats.daily_session_pair_distribution`).
+- **Bug found and fixed (2026-09-06):** `stats_engine.py`'s Full History Time-of-Extreme stats
+  didn't exclude `is_daily_only`-era days — inflated XAUUSD's Full History daily-high
+  `concentration_R` to a false 0.672 (every legitimate finding elsewhere tops out ~0.25-0.30).
+  Fixed narrowly (11 of 14 assets affected, only the Full History window). Full write-up:
+  `KPT-Market-Profiling/HANDOVER.md` §5.
+
+Still open, not designed or built ahead of need: news-release-timing profiles, Frankfurt as a
+distinct session boundary. The 21:00-23:00 UTC session gap the infrastructure step surfaced
+remains deliberately left open (a same-day attempt to widen the Asian session to close it was
+reverted — see `KPT-Market-Profiling/HANDOVER.md` §5 for why).
 
 ---
 
