@@ -262,6 +262,20 @@ macro-calendar shorthand like "NFP" is common financial vocabulary, not propriet
 jargon (like ICT terms) — the naming rule in §4.4.5 is about avoiding a specific school-of-trading's
 invented terminology, not about avoiding all abbreviations a trader would already recognize.
 
+**NFP shipped (2026-09-06).** Validated first on GBPUSD/EURUSD/XAUUSD, comparing NFP Fridays
+against every other Friday using the identical measurement (not an event-conditioned metric like
+the sweep study's `close_position`, so no tautology risk — both groups are measured the same way).
+Found a real, consistent, cross-asset difference: NFP Fridays run **8-12% bigger daily range** and
+land the day's own high or low inside the release window (15 min before to 90 min after 8:30am NY
+local, DST-aware) **markedly more often** than other Fridays — GBPUSD +4.8 percentage points
+(30.0% vs. 25.2%), EURUSD +15.8pp (41.9% vs. 26.1%), XAUUSD +14.0pp (45.8% vs. 31.8%). Added
+`nfp_profile()` to `stats_engine.py`, backfilled for all 14 assets, shipped as an "NFP Fridays vs.
+Other Fridays" stat panel on the Profiling tab's Daily view. Known simplification, disclosed: uses
+the *calendar rule* ("first Friday of the month"), not the exact historical NFP release calendar
+(which occasionally shifts for a holiday) — the news/event annotation layer would be needed to do
+better, and remains out of scope. The generic "8:30 NY news embargo" idea below is still blocked on
+that same layer, unlike NFP's calendar-derivable case.
+
 **Liquidity-sweep / false-move profiles (added 2026-09-05).** A finer-grained, cross-session
 sibling to the session-defined family above: not "which session contained the day's extreme" but
 "did an *earlier* session's own high/low get pierced by a small margin during a *later* session,

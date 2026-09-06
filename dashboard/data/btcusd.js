@@ -5024,6 +5024,23 @@ const BTCUSD_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 104,
+        "mean_range_pips": 197882.9,
+        "median_range_pips": 122094.0,
+        "extreme_in_release_window_pct": 17.3
+      },
+      "other_fridays": {
+        "n": 352,
+        "mean_range_pips": 187762.6,
+        "median_range_pips": 138258.0,
+        "extreme_in_release_window_pct": 18.2
+      },
+      "all_days_mean_range_pips": 182195.1,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Monday": 142,
       "Friday": 79,

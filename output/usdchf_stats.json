@@ -5021,6 +5021,23 @@
       }
     }
   },
+  "nfp_profile": {
+    "nfp_fridays": {
+      "n": 304,
+      "mean_range_pips": 114.4,
+      "median_range_pips": 103.5,
+      "extreme_in_release_window_pct": 39.5
+    },
+    "other_fridays": {
+      "n": 1024,
+      "mean_range_pips": 97.0,
+      "median_range_pips": 81.8,
+      "extreme_in_release_window_pct": 27.5
+    },
+    "all_days_mean_range_pips": 97.9,
+    "release_window_minutes_before": 15,
+    "release_window_minutes_after": 90
+  },
   "weekly_high_day": {
     "Friday": 386,
     "Monday": 375,

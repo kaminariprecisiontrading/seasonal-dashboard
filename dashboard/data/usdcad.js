@@ -5024,6 +5024,23 @@ const USDCAD_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 327,
+        "mean_range_pips": 108.1,
+        "median_range_pips": 98.5,
+        "extreme_in_release_window_pct": 34.3
+      },
+      "other_fridays": {
+        "n": 1106,
+        "mean_range_pips": 96.4,
+        "median_range_pips": 86.6,
+        "extreme_in_release_window_pct": 31.2
+      },
+      "all_days_mean_range_pips": 95.0,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Friday": 415,
       "Monday": 382,

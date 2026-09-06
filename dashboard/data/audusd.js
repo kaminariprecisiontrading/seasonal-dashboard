@@ -5024,6 +5024,23 @@ const AUDUSD_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 327,
+        "mean_range_pips": 88.2,
+        "median_range_pips": 79.0,
+        "extreme_in_release_window_pct": 33.0
+      },
+      "other_fridays": {
+        "n": 1106,
+        "mean_range_pips": 78.2,
+        "median_range_pips": 67.8,
+        "extreme_in_release_window_pct": 22.0
+      },
+      "all_days_mean_range_pips": 81.7,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Friday": 470,
       "Monday": 432,

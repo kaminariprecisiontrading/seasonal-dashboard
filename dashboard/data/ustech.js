@@ -5024,6 +5024,23 @@ const USTECH_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 60,
+        "mean_range_pips": 3942.1,
+        "median_range_pips": 3379.5,
+        "extreme_in_release_window_pct": 43.3
+      },
+      "other_fridays": {
+        "n": 200,
+        "mean_range_pips": 3318.5,
+        "median_range_pips": 2909.0,
+        "extreme_in_release_window_pct": 37.0
+      },
+      "all_days_mean_range_pips": 3471.8,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Friday": 292,
       "Monday": 143,

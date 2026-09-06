@@ -5024,6 +5024,23 @@ const WTI_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 118,
+        "mean_range_pips": 237.1,
+        "median_range_pips": 189.5,
+        "extreme_in_release_window_pct": 30.5
+      },
+      "other_fridays": {
+        "n": 399,
+        "mean_range_pips": 208.2,
+        "median_range_pips": 169.0,
+        "extreme_in_release_window_pct": 27.8
+      },
+      "all_days_mean_range_pips": 229.0,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Monday": 238,
       "Friday": 208,

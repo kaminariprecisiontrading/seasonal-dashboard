@@ -5024,6 +5024,23 @@ const US500_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 60,
+        "mean_range_pips": 860.2,
+        "median_range_pips": 756.5,
+        "extreme_in_release_window_pct": 48.3
+      },
+      "other_fridays": {
+        "n": 200,
+        "mean_range_pips": 722.4,
+        "median_range_pips": 631.5,
+        "extreme_in_release_window_pct": 29.0
+      },
+      "all_days_mean_range_pips": 729.7,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Friday": 315,
       "Monday": 158,

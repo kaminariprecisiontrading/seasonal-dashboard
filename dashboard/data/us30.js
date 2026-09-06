@@ -5024,6 +5024,23 @@ const US30_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 57,
+        "mean_range_pips": 590.2,
+        "median_range_pips": 545.0,
+        "extreme_in_release_window_pct": 45.6
+      },
+      "other_fridays": {
+        "n": 194,
+        "mean_range_pips": 521.3,
+        "median_range_pips": 461.0,
+        "extreme_in_release_window_pct": 30.9
+      },
+      "all_days_mean_range_pips": 518.4,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Friday": 201,
       "Monday": 135,

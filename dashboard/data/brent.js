@@ -5024,6 +5024,23 @@ const BRENT_DATA = {
         }
       }
     },
+    "nfp_profile": {
+      "nfp_fridays": {
+        "n": 119,
+        "mean_range_pips": 230.6,
+        "median_range_pips": 184.0,
+        "extreme_in_release_window_pct": 27.7
+      },
+      "other_fridays": {
+        "n": 404,
+        "mean_range_pips": 204.0,
+        "median_range_pips": 166.5,
+        "extreme_in_release_window_pct": 24.5
+      },
+      "all_days_mean_range_pips": 221.2,
+      "release_window_minutes_before": 15,
+      "release_window_minutes_after": 90
+    },
     "weekly_high_day": {
       "Monday": 161,
       "Friday": 160,
