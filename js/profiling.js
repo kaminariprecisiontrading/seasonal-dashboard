@@ -293,6 +293,11 @@
         '<div class="kptp-stat-grid" id="kptp-nfp-stat-grid"></div>' +
         '<div class="kptp-section-note" id="kptp-nfp-caption" style="margin:10px 0 0;"></div>' +
       '</div>' +
+
+      '<div class="kptp-section-note" id="kptp-nfp-profile-note" hidden style="margin-top:24px;"></div>' +
+      '<div class="kptp-profile-grid" id="kptp-nfp-profile-grid" hidden></div>' +
+      '<div class="kptp-section-note" id="kptp-nfp-examples-note" hidden style="margin-top:20px;"></div>' +
+      '<div id="kptp-nfp-examples-wrap" hidden></div>' +
     '</div>' +
 
     // ── Weekly panel ─────────────────────────────────────────────────────
@@ -608,6 +613,101 @@
       cap.innerHTML = '<b>' + pairUpper + '</b> &mdash; NFP Fridays run ' + (rangeDiffPct != null ? (rangeDiffPct >= 0 ? '+' : '') + rangeDiffPct + '%' : 'n/a') +
         ' bigger range and land an extreme in the release window ' + (windowDiffPts >= 0 ? '+' : '') + windowDiffPts + ' percentage points more often than other Fridays.';
     }
+  }
+
+  // NFP Fridays' Daily Profile Taxonomy breakdown -- reuse-based design
+  // (2026-09-06, at the user's request): rather than inventing new
+  // breakout/fakeout/whipsaw labels, shows the EXISTING 8-profile Daily
+  // taxonomy's distribution specifically on NFP days (profile_taxonomy.py's
+  // nfp_profile_distribution(), bundle.profiles.nfp). Same profile cards
+  // and detail-page links as renderProfiles() -- these are the identical
+  // profile names, no new taxonomy to explain. Candlestick examples for
+  // the top profiles are loaded separately (renderNfpExamples()) since
+  // they need the profile-examples data file, not yet loaded on this page.
+  var NFP_TOP_N_EXAMPLES = 3;
+
+  function nfpSortedProfiles() {
+    var nfp = bundle.profiles && bundle.profiles.nfp;
+    if (!nfp || !nfp.nfp_profile_distribution) return null;
+    var dist = nfp.nfp_profile_distribution;
+    return Object.keys(dist).map(function (k) { return [k, dist[k]]; }).sort(function (a, b) { return b[1].n - a[1].n; });
+  }
+
+  function renderNfpProfileGrid() {
+    var note = document.getElementById('kptp-nfp-profile-note');
+    var grid = document.getElementById('kptp-nfp-profile-grid');
+    var entries = nfpSortedProfiles();
+    if (!note || !grid || !entries) return;
+
+    note.hidden = false;
+    grid.hidden = false;
+    note.innerHTML =
+      '<b>NFP Day Profile Breakdown</b> &mdash; which of the existing Daily profiles NFP Fridays actually land in. ' +
+      'A whipsaw ("both sides destroyed") day shows up as <b>Volatile Reversal Day</b> (big range, closed back near the middle); ' +
+      'a clean breakout as <b>Trend Day</b>; an ambiguous, no-clear-resolution day as <b>Volatile Day</b>. Same cards, same detail pages as the main Daily Profile Taxonomy above.';
+
+    grid.innerHTML = '';
+    entries.forEach(function (entry) {
+      var name = entry[0], v = entry[1];
+      var a = document.createElement('a');
+      a.className = 'kptp-profile-card';
+      a.href = '../profiling-profiles/detail.html?p=' + kptpProfileSlug(name) + '&a=' + assetKey;
+      a.style.setProperty('--card-accent', KPTP_PROFILE_COLOR[name] || 'var(--muted)');
+      a.innerHTML =
+        '<div class="kptp-profile-card-top">' +
+          '<div><div class="kptp-profile-name">' + name + '</div><div class="kptp-profile-pct">' + v.pct + '%</div></div>' +
+          kptpProfileIconSvg(name, 46) +
+        '</div>' +
+        '<div class="kptp-profile-meta">' +
+          'n=' + v.n + ' NFP days &middot; avg range ' + v.mean_range_pips + ' ' + unit +
+        '</div>' +
+        '<div class="kptp-profile-card-link">See profile details &rarr;</div>';
+      grid.appendChild(a);
+    });
+  }
+
+  // Loads the profile-examples data file on demand (not loaded by default
+  // on this page -- only detail.html/compare.html load it today) via
+  // KPTPData.loadAsset(), then renders real candlestick examples for the
+  // top NFP profiles. Async because of the dynamic script load; every
+  // other render*() call on this page is synchronous against data already
+  // in `bundle`, so this one is deliberately kept separate rather than
+  // forcing the whole init sequence to wait on it.
+  function renderNfpExamples() {
+    var note = document.getElementById('kptp-nfp-examples-note');
+    var wrap = document.getElementById('kptp-nfp-examples-wrap');
+    var entries = nfpSortedProfiles();
+    if (!note || !wrap || !entries || !entries.length) return;
+
+    KPTPData.loadAsset(assetKey, '../data/profiling').then(function () {
+      var ex = window.KPT_PROFILING_EXAMPLES && window.KPT_PROFILING_EXAMPLES[assetKey];
+      var nfpEx = ex && ex._nfp;
+      if (!nfpEx) return;
+
+      var top = entries.filter(function (e) { return nfpEx[e[0]]; }).slice(0, NFP_TOP_N_EXAMPLES);
+      if (!top.length) return;
+
+      note.hidden = false;
+      note.innerHTML = '<b>Real NFP-day examples</b> &mdash; the ' + top.length + ' most common NFP profile' + (top.length > 1 ? 's' : '') +
+        ' for ' + pairUpper + ', each a genuine historical NFP Friday closest to that profile&rsquo;s own average NFP-day range (not cherry-picked). M15 candles, UTC.';
+
+      wrap.hidden = false;
+      wrap.innerHTML = '';
+      top.forEach(function (entry) {
+        var name = entry[0];
+        var example = nfpEx[name];
+        var panel = document.createElement('div');
+        panel.className = 'kptp-panel-card';
+        var chartId = 'kptp-nfp-candle-' + kptpProfileSlug(name);
+        panel.innerHTML =
+          '<div class="kptp-panel-title">' + name + ' &mdash; ' + example.date + '</div>' +
+          '<div id="' + chartId + '"></div>';
+        wrap.appendChild(panel);
+        KPTPCharts.renderCandlestick(document.getElementById(chartId), example.bars);
+      });
+    }).catch(function (err) {
+      console.error('renderNfpExamples: failed to load profile-examples data', err);
+    });
   }
 
   function renderWeeklyMonthly() {
@@ -1203,6 +1303,8 @@
   renderHourPairHeatmap();
   renderHourlyActivity();
   renderNfpProfile();
+  renderNfpProfileGrid();
+  renderNfpExamples();
   renderWeeklyMonthly();
   renderWeekdayPairHeatmap();
   renderWeekOfMonthPairHeatmap();
