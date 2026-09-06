@@ -809,7 +809,7 @@ async function _readSSE(resp, output, extractor) {
     var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash (Google)' :
                     prov === 'ollama' ? 'Ollama (local — ' + _getOllamaModel() + ')' :
                                        'Claude (Anthropic)';
-    el.textContent = provLabel + ' · seasonal + curve + backtest + session + profiling context · cached per week';
+    el.textContent = provLabel + ' · seasonal + curve + history + session + profiling context · cached per week';
   }
 
   /* ── Context availability bar ── */
