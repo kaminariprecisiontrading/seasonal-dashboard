@@ -317,9 +317,22 @@ branches noted so far, with **opposite outcomes**:
   `concentration_R` to a false 0.672 (every legitimate finding elsewhere tops out ~0.25-0.30).
   Fixed narrowly (11 of 14 assets affected, only the Full History window). Full write-up:
   `KPT-Market-Profiling/HANDOVER.md` §5.
+- **Hour pairing shipped (2026-09-06), at the user's explicit follow-up request:** "which specific
+  hours are causing the relationship shown by the Session Pairing" — the full 24×24 (low-hour ×
+  high-hour) joint table, `hour_pair_distribution()` → `bundle.stats.daily_hour_pair_distribution`.
+  Completes the standing preference from spec §4.6 (built alongside the session-level version,
+  not deferred). Shipped as a "Daily High/Low — Hour Pairing" heatmap directly below Session
+  Pairing; zero cells render blank rather than "0.0%" given the 576-cell density.
+- **NFP profile shipped (2026-09-06):** the one case in the news-release-timing family that's
+  calendar-computable (first Friday of the month, 8:30am NY local, DST-aware) without the
+  not-yet-built news/event annotation layer. Validated first — NFP Fridays run 8-12% bigger daily
+  range and land an extreme in the release window markedly more often than other Fridays (GBPUSD
+  +4.8pp, EURUSD +15.8pp, XAUUSD +14.0pp). Shipped as an "NFP Fridays vs. Other Fridays" stat panel
+  on the Profiling tab's Daily view, backfilled for all 14 assets.
 
-Still open, not designed or built ahead of need: news-release-timing profiles, Frankfurt as a
-distinct session boundary. The 21:00-23:00 UTC session gap the infrastructure step surfaced
+Still open, not designed or built ahead of need: the generic "8:30 NY news embargo" profile (still
+blocked on the news/event annotation layer, unlike NFP's calendar-derivable case) and Frankfurt as
+a distinct session boundary. The 21:00-23:00 UTC session gap the infrastructure step surfaced
 remains deliberately left open (a same-day attempt to widen the Asian session to close it was
 reverted — see `KPT-Market-Profiling/HANDOVER.md` §5 for why).
 

@@ -285,6 +285,14 @@
         '<div class="kptp-section-note" id="kptp-hourly-activity-caption" style="margin:10px 0 0;"></div>' +
         '<div class="kptp-session-legend"></div>' +
       '</div>' +
+
+      '<div class="kptp-section-label" id="kptp-nfp-label" hidden>NFP Fridays</div>' +
+      '<div class="kptp-section-note" id="kptp-nfp-note" hidden></div>' +
+      '<div class="kptp-panel-card" id="kptp-nfp-card" hidden>' +
+        '<div class="kptp-panel-title">NFP Fridays vs. Other Fridays</div>' +
+        '<div class="kptp-stat-grid" id="kptp-nfp-stat-grid"></div>' +
+        '<div class="kptp-section-note" id="kptp-nfp-caption" style="margin:10px 0 0;"></div>' +
+      '</div>' +
     '</div>' +
 
     // ── Weekly panel ─────────────────────────────────────────────────────
@@ -541,6 +549,64 @@
         ' &middot; London/NY overlap: <b>' + sw.london_ny_overlap.mean_range_pips + ' ' + unit + '</b>' +
         ' &middot; NY: ' + sw.ny_only.mean_range_pips + ' ' + unit +
         ' <span class="kptp-muted-inline">(mean range per hour, averaged across each window&rsquo;s hours)</span>';
+    }
+  }
+
+  // Tier 5b's news-release-timing profile family (market-profiling-system-
+  // spec.md §4.5) -- the NFP case specifically, the one that's calendar-
+  // computable (first Friday of the month, 8:30am NY local, DST-aware)
+  // without the not-yet-built news/event annotation layer the general case
+  // needs. Validated (2026-09-06) across GBPUSD/EURUSD/XAUUSD before this
+  // was built: NFP Fridays show a real, consistent, cross-asset difference
+  // from other Fridays -- larger range and markedly more clustering of the
+  // day's own high/low inside the release window. See
+  // KPT-Market-Profiling/pipeline/stats_engine.py's nfp_profile().
+  function renderNfpProfile() {
+    var label = document.getElementById('kptp-nfp-label');
+    var note = document.getElementById('kptp-nfp-note');
+    var card = document.getElementById('kptp-nfp-card');
+    var np = bundle.stats && bundle.stats.nfp_profile;
+    if (!card || !np) return;
+
+    label.hidden = false;
+    note.hidden = false;
+    card.hidden = false;
+
+    if (note) {
+      note.innerHTML =
+        'NFP is always the first Friday of the month, 8:30am NY local time (a calendar rule, not the exact historical release ' +
+        'calendar, which occasionally shifts for a holiday). Compares NFP Fridays against every other Friday using the identical ' +
+        'release-window definition (' + np.release_window_minutes_before + ' min before to ' + np.release_window_minutes_after +
+        ' min after 8:30am NY, DST-aware) &mdash; so the difference below is a genuine NFP-specific effect, not an artifact of how it&rsquo;s measured.';
+    }
+
+    var grid = document.getElementById('kptp-nfp-stat-grid');
+    if (grid) {
+      var tiles = [
+        { label: 'NFP Fridays (n)', value: np.nfp_fridays.n, unit: '' },
+        { label: 'NFP Mean Range', value: np.nfp_fridays.mean_range_pips, unit: unit },
+        { label: 'NFP Extreme in Release Window', value: np.nfp_fridays.extreme_in_release_window_pct, unit: '%' },
+        { label: 'Other Fridays (n)', value: np.other_fridays.n, unit: '' },
+        { label: 'Other Fri Mean Range', value: np.other_fridays.mean_range_pips, unit: unit },
+        { label: 'Other Fri Extreme in Window', value: np.other_fridays.extreme_in_release_window_pct, unit: '%' }
+      ];
+      grid.innerHTML = '';
+      tiles.forEach(function (t) {
+        var div = document.createElement('div');
+        div.className = 'kptp-stat-tile';
+        div.innerHTML = '<div class="kptp-stat-label">' + t.label + '</div><div class="kptp-stat-value">' + t.value + '<span class="kptp-unit">' + t.unit + '</span></div>';
+        grid.appendChild(div);
+      });
+    }
+
+    var cap = document.getElementById('kptp-nfp-caption');
+    if (cap) {
+      var rangeDiffPct = np.other_fridays.mean_range_pips
+        ? Math.round((np.nfp_fridays.mean_range_pips / np.other_fridays.mean_range_pips - 1) * 1000) / 10
+        : null;
+      var windowDiffPts = Math.round((np.nfp_fridays.extreme_in_release_window_pct - np.other_fridays.extreme_in_release_window_pct) * 10) / 10;
+      cap.innerHTML = '<b>' + pairUpper + '</b> &mdash; NFP Fridays run ' + (rangeDiffPct != null ? (rangeDiffPct >= 0 ? '+' : '') + rangeDiffPct + '%' : 'n/a') +
+        ' bigger range and land an extreme in the release window ' + (windowDiffPts >= 0 ? '+' : '') + windowDiffPts + ' percentage points more often than other Fridays.';
     }
   }
 
@@ -1136,6 +1202,7 @@
   renderSessionPairHeatmap();
   renderHourPairHeatmap();
   renderHourlyActivity();
+  renderNfpProfile();
   renderWeeklyMonthly();
   renderWeekdayPairHeatmap();
   renderWeekOfMonthPairHeatmap();
