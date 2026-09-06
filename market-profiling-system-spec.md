@@ -407,16 +407,21 @@ per §4.4's standing rule, and because they didn't transfer identically:
   (including the same-week case); Yearly's is which month. `profile_taxonomy_weekly.py`'s
   `extreme_spread` is the reference implementation for how to handle the same-period case
   correctly (as a real, explicitly-tracked outcome, not a dropped edge case) when those are built.
-  **User preference (2026-09-05), for when Daily's own pairing is eventually built (Tier 5b, not
-  yet started):** don't stop at a coarse bucket summary the way `extreme_spread` currently is —
-  build the same *full joint table* treatment `weekday_pair_distribution` (§ below) gives Weekly,
-  applied to Daily's own two pairings: **which hour had the day's high vs. which hour had the
-  low** (a 24×24 table — session-relative work already has the per-session OHLC and UTC hour
-  data this needs, see §4.5's session-defined/liquidity-sweep notes), and **which session had the
-  high vs. which had the low** (a small session×session table, e.g. Asian/London/NY, the direct
-  joint version of §4.5's "session-defined extreme profiles" idea). Same design principle as
-  Weekly's heatmap: marginal charts already exist (which hour/session tends to have the high,
-  tracked separately) — the value is in the *pairing*, not restating the marginals.
+  **User preference (2026-09-05), for when Daily's own pairing is eventually built:** don't stop
+  at a coarse bucket summary the way `extreme_spread` currently is — build the same *full joint
+  table* treatment `weekday_pair_distribution` (§ below) gives Weekly, applied to Daily's own two
+  pairings: **which hour had the day's high vs. which hour had the low**, and **which session had
+  the high vs. which had the low**. Same design principle as Weekly's heatmap: marginal charts
+  already exist (which hour/session tends to have the high, tracked separately) — the value is in
+  the *pairing*, not restating the marginals. **Both done (2026-09-06):** the session version
+  shipped first as `session_pair_distribution()` (§4.5's Tier 5b update), then the hour version at
+  the user's explicit follow-up request — `hour_pair_distribution()`, the full 24×24 (low-hour ×
+  high-hour) table, added right alongside it in `stats_engine.py` as
+  `daily_hour_pair_distribution`. Dense enough (576 cells) that the dashboard heatmap shows blank
+  rather than "0.0%" for zero cells (same convention Yearly's sparse `month_pair_distribution`
+  table already uses, for the opposite reason — there, too few samples; here, too many cells).
+  Shipped as a "Daily High/Low — Hour Pairing" heatmap directly below the Session Pairing one, so
+  the session-level relationship can be drilled into at hour granularity.
 - **Dashboard-wired (2026-09-05).** `build_dashboard_data.py` now accepts `--weekly-summary` and
   folds the full weekly summary JSON into the same per-asset bundle as `stats`/`profiles`
   (`bundle.weekly`) — `refresh_asset.py` passes it automatically unless `--skip-weekly`. A fourth

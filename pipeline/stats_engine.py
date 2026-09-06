@@ -160,6 +160,40 @@ def session_pair_distribution(high_session: pd.Series, low_session: pd.Series) -
     }
 
 
+HOURS = list(range(24))
+
+
+def hour_pair_distribution(high_time: pd.Series, low_time: pd.Series) -> dict:
+    """Finer-grained sibling of session_pair_distribution() -- which
+    *specific* UTC hour (not just which session) carries the day's high vs.
+    low. Added 2026-09-06 at the user's request, to see which hours drive
+    the session-pairing relationship above (e.g. is "London-NY overlap low
+    + Asian high" concentrated at one edge of each window's hour range, or
+    spread evenly across it). Same is_daily_only exclusion requirement as
+    session_pair_distribution() -- a single-bar day's high_time/low_time
+    are both a data-format artifact, not genuine intraday facts."""
+    valid = pd.DataFrame({
+        "high": high_time.dt.hour if hasattr(high_time, "dt") else high_time,
+        "low": low_time.dt.hour if hasattr(low_time, "dt") else low_time,
+    }).dropna()
+
+    n = len(valid)
+    pairs = {}
+    for low_h in HOURS:
+        pairs[str(low_h)] = {}
+        for high_h in HOURS:
+            count = int(((valid["low"] == low_h) & (valid["high"] == high_h)).sum())
+            pairs[str(low_h)][str(high_h)] = {"n": count, "pct": round(count / n * 100, 2) if n else 0.0}
+
+    same_hour_n = sum(pairs[str(h)][str(h)]["n"] for h in HOURS)
+    return {
+        "n_days": n,
+        "same_hour_n": same_hour_n,
+        "same_hour_pct": round(same_hour_n / n * 100, 2) if n else 0.0,
+        "pairs": pairs,  # pairs[low_hour][high_hour] = {n, pct}
+    }
+
+
 # ---------------------------------------------------------------------------
 # Range distribution statistics
 # ---------------------------------------------------------------------------
@@ -432,6 +466,9 @@ def main():
         },
         "daily_session_pair_distribution": session_pair_distribution(
             daily_valid_intraday["high_time_session"], daily_valid_intraday["low_time_session"]
+        ),
+        "daily_hour_pair_distribution": hour_pair_distribution(
+            daily_valid_intraday["high_time"], daily_valid_intraday["low_time"]
         ),
 
         "weekly_high_day": weekly["high_weekday"].value_counts().to_dict(),
