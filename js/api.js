@@ -146,14 +146,17 @@ function _gatherCurveCtx() {
 
 function _gatherBacktestCtx(assetId) {
   try {
-    var s = JSON.parse(localStorage.getItem('kpt-bt-' + assetId) || 'null');
+    var r = JSON.parse(localStorage.getItem('kpt-up-' + assetId) || 'null');
+    var s = r && r.historyStats;
     if (!s || !s.matrix || !s.yearRange) return null;
+    var slots = s.slots || 4;
 
     // Month-level win rates across all directional (non-chop) weeks
+    // (slots === 1 for a Monthly-bar upload — a single "week" per month)
     var monthWR = [];
     for (var m = 0; m < 12; m++) {
       var wins = 0, total = 0;
-      for (var w = 0; w < 4; w++) {
+      for (var w = 0; w < slots; w++) {
         var c = s.matrix[m][w];
         if (c && c.signal !== 'chop' && c.total > 0) { wins += c.wins; total += c.total; }
       }
@@ -186,13 +189,14 @@ function _gatherBacktestCtx(assetId) {
 
 function _gatherIntradayCtx(assetId) {
   try {
-    var s = JSON.parse(localStorage.getItem('kpt-idt-' + assetId) || 'null');
-    if (!s || s.schemaVer !== 3 || !s.groups || !s.groups.all) return null;
+    var r = JSON.parse(localStorage.getItem('kpt-up-' + assetId) || 'null');
+    var s = r && r.sessionStats;
+    if (!s || !s.groups || !s.groups.all) return null;
 
     var grp = s.groups.all;
 
-    // Session label maps matching corrected UTC+2 definitions in intraday.js
-    var sessDefs = s.tfType === 'H4' ? [
+    // Session label maps matching corrected UTC+2 definitions in upload.js
+    var sessDefs = s.tier === 'H4' ? [
       { id: 'lateNY',  label: 'Late NY/Sydney (00 broker / ~22 UTC)' },
       { id: 'asian',   label: 'Asian (04–08 broker / 02–06 UTC)'     },
       { id: 'london',  label: 'London (12 broker / 10 UTC)'          },
@@ -221,7 +225,7 @@ function _gatherIntradayCtx(assetId) {
     }).filter(Boolean).sort(function (a, b) { return b.avg - a.avg; });
 
     return {
-      tfType:       s.tfType,
+      tfType:       s.tier,
       totalBars:    s.meta.intradayBars,
       dateRange:    s.meta.firstDate + ' to ' + s.meta.lastDate,
       bestSession:  sessArr[0]  || null,

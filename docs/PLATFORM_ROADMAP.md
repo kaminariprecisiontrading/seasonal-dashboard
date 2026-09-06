@@ -92,12 +92,28 @@ mobile treatment (horizontal scroll strip) as part of that restructure anyway.
 
 ---
 
-## Tier 4 — Tab/column restructure
+## Tier 4 — Tab/column restructure — ✅ Complete (2026-09-06)
 
-**Current 8 tabs:** Seasonals · Trend · Price · History · Sessions · Macro · Profiling · Analysis
+**Was 8 tabs:** Seasonals · Trend · Price · History · Sessions · Macro · Profiling · Analysis
 
-**Proposed 7 tabs:** Seasonals (HTF) · Trend (HTF) · Profiling (LTF) · Live Price · Macro ·
+**Now 7 tabs, shipped exactly as user-finalized (no HTF/LTF label annotations — those were this
+doc's own descriptive shorthand, dropped):** Seasonals · Trend · Profiling · Live Price · Macro ·
 Upload · Analysis
+
+Shipped on Option 2 — the "clean end state" below, not the interim sub-view path — with one
+scope expansion beyond what this doc originally proposed: the unified parser's timeframe detector
+handles **any granularity from 1-minute to Monthly bars** (nine tiers: M1/M5/M15/M30/H1/H4/D1/W1/
+MN1), not just D1/H1/H4. See `docs/ARCHITECTURE.md`'s "Upload Panel" section for the full
+technical writeup (parser, `detectTier()`'s median-timestamp-gap detection, the two views, result
+schema, and the `kptUpRefresh`/restore-on-load ordering bug found and fixed during testing).
+`js/backtest.js` and `js/intraday.js` are deleted; `js/upload.js` replaces both across all 98
+asset pages (`scripts/patch_swap_upload.js`, one-shot codemod, preserved for reference). `js/api.js`'s
+AI-context gatherers were repointed from the old `kpt-bt-{id}`/`kpt-idt-{id}` keys to the new
+`kpt-up-{id}` key's nested `historyStats`/`sessionStats` — caught and fixed during testing, since
+nothing would otherwise have written the old keys anymore.
+
+<details>
+<summary>Original proposal (kept for context)</summary>
 
 Endorsed direction — the order reads as a coherent narrative: macro seasonal bias → trend
 confirmation → granular timing stats → where price actually is → external risk calendar → your
@@ -162,6 +178,8 @@ Touches `ui.js`'s shared tabs array (all 97 pages) plus a real merge of two subs
 and changes/removes existing tab labels and panel ids. Treat as its own phase with the same
 branch-and-test discipline used for the Profiling merge (`docs/MARKET_PROFILING_INTEGRATION.md`
 §6) — not a quick edit.
+
+</details>
 
 ---
 

@@ -1045,7 +1045,9 @@ tbody td:first-child {
 /* This Week accordion styles are in index.html <style> block (index-only) */
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   BACKTEST PANEL  (js/backtest.js)
+   UPLOAD PANEL — Seasonal Tendency view (js/upload.js)
+   .bt-* names kept from the pre-Tier-4 js/backtest.js this view replaced —
+   upload.js reuses these classes directly rather than duplicating them.
    ══════════════════════════════════════════════════════════════════════════════ */
 
 /* ── Upload area (initial / empty state) ─────────────────────────────────── */
@@ -1729,7 +1731,9 @@ tbody td:first-child {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   INTRADAY BIAS PANEL (Phase 2.5 — js/intraday.js)
+   UPLOAD PANEL — Intraday Timing view (js/upload.js)
+   .idt-* names kept from the pre-Tier-4 js/intraday.js this view replaced —
+   upload.js reuses these classes directly rather than duplicating them.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .idt-panel {
@@ -2231,8 +2235,8 @@ tbody td:first-child {
   .legend { display: flex !important; }
 
   /* ── Remove backgrounds / borders that look bad on white ───────────────── */
-  .surface, .bt-panel, .bt-section,
-  .scurve-panel, .idt-panel, .macro-panel, .ai-panel {
+  .surface, .up-panel, .bt-section,
+  .scurve-panel, .macro-panel, .ai-panel {
     background: #f9f9f9 !important;
     border-color: #ccc !important;
     box-shadow: none !important;
@@ -2280,9 +2284,8 @@ tbody td:first-child {
 
   /* ── Page breaks ─────────────────────────────────────────────────────────── */
   .combined-wrap      { page-break-before: always; }
-  .bt-panel           { page-break-before: always; }
   .scurve-panel       { page-break-before: always; }
-  .idt-panel          { page-break-before: always; }
+  .up-panel           { page-break-before: always; }
   .ai-panel           { page-break-before: always; }
   tr                  { page-break-inside: avoid; }
   .acc-month-row      { page-break-inside: avoid; }
@@ -2443,6 +2446,37 @@ tbody td:first-child {
    already separates it from the Range Distribution label that follows. */
 .kptp-dial-slot { margin-top: 40px; } /* matches .kptp-section-label's own top margin, for the same rhythm */
 .kptp-dial-slot:empty { margin-top: 0; } /* no gap while parked in a hidden panel */
+
+/* ── Upload tab view switcher (Seasonal Tendency / Intraday Timing) ───────
+   Same underline-tab visual language as .kptp-gran-switch — only shown when
+   an upload's detected timeframe supports both views. */
+.up-view-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0 28px;
+  border-bottom: 1px solid var(--border);
+}
+.up-view-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+.up-view-btn:hover { color: var(--text); }
+.up-view-btn.active {
+  color: var(--accent-combined);
+  border-bottom-color: var(--accent-combined);
+}
+.up-view-panel[hidden] { display: none; }
 
 /* ── Lookback dial ──────────────────────────────────────────────────────── */
 .kptp-dial {

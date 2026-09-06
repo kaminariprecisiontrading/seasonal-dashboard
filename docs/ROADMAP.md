@@ -332,7 +332,7 @@ The raw material already exists in `MONTHS[]` via star ratings and signal values
 A 12×4 grid (months × weeks) colour-coded by signal strength / win rate. Extremely readable at a glance — far more scannable than the accordion for full-year pattern recognition. Implemented as a toggle on the Seasonals tab ("Accordion / Heatmap" view switch); no data changes required, just a new rendering mode in `accordion.js`.
 
 ### 9C — Backtesting Equity Curve (Medium)
-The History tab currently shows per-trade backtest results as a bar chart. Extend with a cumulative equity curve: running P&L if every seasonal signal had been traded with a fixed lot size. Makes the historical edge visually compelling. Implemented in `backtest.js` as a second Chart.js dataset on the existing chart or a separate chart below.
+The Upload tab's Seasonal Tendency view currently shows per-period backtest results as a bar chart. Extend with a cumulative equity curve: running P&L if every seasonal signal had been traded with a fixed lot size. Makes the historical edge visually compelling. Would be implemented in `js/upload.js` (post-Tier-4, replaces the former `backtest.js`) as a second Chart.js dataset on the existing chart or a separate chart below.
 
 ### 9D — Cross-Asset Correlation Explorer (Larger)
 A dedicated view (index page or new analysis page) showing signal confluence across all 97 assets in a matrix. "In September, which assets are all aligned bullish?" Requires a manifest-style aggregation of all monthly signals — similar in concept to `signals_manifest.js` but covering all months × weeks, not just the current week.

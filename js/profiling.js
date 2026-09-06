@@ -7,8 +7,8 @@
  * ~15 fixed-ID containers). This module instead builds its own
  * <section data-kpt-panel="profiling"> and all inner containers, then runs
  * the same rendering logic against them — so it can sit inside one panel
- * among seven other tabs, injected before .footnote exactly like
- * js/macro.js/js/intraday.js.
+ * among six other tabs, injected before .footnote exactly like
+ * js/macro.js/js/upload.js.
  *
  * Creates <section data-kpt-panel="profiling"> — ui.js discovers it and adds
  * the Profiling tab automatically, on exactly the pages that load this
@@ -1291,7 +1291,7 @@
   /* ─── Init ────────────────────────────────────────────────────────────
    * Script is `defer`-loaded, so the DOM is already parsed by the time this
    * runs — no DOMContentLoaded wrapper needed (matches this repo's own
-   * macro.js/intraday.js/backtest.js convention).
+   * macro.js/upload.js convention).
    */
   renderStatTiles();
   buildGranularitySwitch();

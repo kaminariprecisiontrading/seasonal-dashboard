@@ -4,7 +4,7 @@
  * output/<key>_seasonal.json) into data/<id>.js, in the exact bare
  * `const ASSET_CONFIG = {...}; const MONTHS = [...];` format the other 96
  * hand-authored Moore Research asset files use — so the existing
- * js/accordion.js, js/backtest.js etc. render it identically, with zero
+ * js/accordion.js, js/upload.js etc. render it identically, with zero
  * changes to any shared file.
  *
  * For assets with no Moore Research coverage (crypto, and eventually
@@ -61,7 +61,7 @@ function buildDataFile(asset, seasonal) {
   const footnote = `Statistically derived from ${seasonal.elapsed_years} years of real ${asset.key.toUpperCase()} price history ` +
     `(${seasonal.first_date} → ${seasonal.as_of}), sourced via TradersWay MT5 export and cleaned by the ` +
     `KPT-Market-Profiling pipeline. Moore Research Center does not cover crypto — this signal uses the site's own ` +
-    `Raw Price Tendency methodology (js/backtest.js) instead of hand-authored chart analysis. The 15-YR column shows ` +
+    `Raw Price Tendency methodology (js/upload.js) instead of hand-authored chart analysis. The 15-YR column shows ` +
     `the same full-history computation as the ${ltYears}-YR column, since that much price history does not exist yet. ` +
     `Star conviction is capped below the site's usual maximum for this reason — see the page's derived-note box.`;
 
@@ -98,7 +98,7 @@ ${monthsLiteral}
 function patchSignalsManifest(asset, seasonal) {
   const flat = [];
   seasonal.months.forEach((mo) => mo.weeks.forEach((w) => flat.push(w.com)));
-  // Match backtest.js/accordion.js's own 4-per-line convention for readability.
+  // Match upload.js/accordion.js's own 4-per-line convention for readability.
   const rows = [];
   for (let i = 0; i < flat.length; i += 4) {
     rows.push('    ' + flat.slice(i, i + 4).map(jsStr).join(', ') + (i + 4 < flat.length ? ',' : ''));

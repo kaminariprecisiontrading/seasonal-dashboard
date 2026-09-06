@@ -238,14 +238,13 @@
 
   // Build the tab bar
   var tabs = [
-    { id: 'seasonals', label: 'Seasonals' },
-    { id: 'scurve',    label: 'Trend'     },
-    { id: 'chart',     label: 'Price'     },
-    { id: 'backtest',  label: 'History'   },
-    { id: 'intraday',  label: 'Sessions'  },
-    { id: 'macro',     label: 'Macro'     },
-    { id: 'profiling', label: 'Profiling' },
-    { id: 'analysis',  label: 'Analysis'  }
+    { id: 'seasonals', label: 'Seasonals'  },
+    { id: 'scurve',    label: 'Trend'      },
+    { id: 'profiling', label: 'Profiling'  },
+    { id: 'chart',     label: 'Live Price' },
+    { id: 'macro',     label: 'Macro'      },
+    { id: 'upload',    label: 'Upload'     },
+    { id: 'analysis',  label: 'Analysis'   }
   ];
 
   // Only include tabs that have content
@@ -405,13 +404,9 @@
     });
     // Show secondary tab bar only while Seasonals is active
     if (subBar) subBar.style.display = (panelId === 'seasonals') ? 'flex' : 'none';
-    // Resize Chart.js canvas when Backtest tab becomes visible
-    if (panelId === 'backtest' && typeof window.kptBtRefresh === 'function') {
-      window.kptBtRefresh();
-    }
-    // Resize Chart.js canvas when Intraday tab becomes visible
-    if (panelId === 'intraday' && typeof window.kptIdtRefresh === 'function') {
-      window.kptIdtRefresh();
+    // Resize Chart.js canvas when Upload tab becomes visible
+    if (panelId === 'upload' && typeof window.kptUpRefresh === 'function') {
+      window.kptUpRefresh();
     }
     // When switching to chart tab — re-trigger layout so TradingView iframe renders
     if (panelId === 'chart' && tvSection) {
