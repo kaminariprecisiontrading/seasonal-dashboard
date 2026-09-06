@@ -2,6 +2,51 @@
 
 ---
 
+## v1.16 — September 2026
+**Mobile responsiveness pass (Tier 3) — fixes page-wide horizontal scroll on phones**
+
+### Summary
+
+A UX audit measured the problem directly: at a 390px viewport, `fx-gbpusd.html` forced ~657px of
+total content width, requiring horizontal scroll on any phone-width screen. There was zero
+phone-tier `@media` breakpoint anywhere in the codebase before this — the six pre-existing queries
+all collapse a 2/3-column grid in the 720–1100px "tablet" range only. Added a
+`@media (max-width: 600px)` phone tier addressing each root cause found, without touching any
+existing tablet-tier behavior.
+
+### Changes
+
+- **`.topbar`** — 6 non-shrinking children in one `flex-wrap:nowrap` row with no overflow control
+  was the primary source of the page-wide overflow; now wraps on phones. Its title span also
+  lacked `min-width:0`, silently defeating its own `text-overflow:ellipsis` under flexbox's default
+  auto-minimum-size behavior — fixed unconditionally (zero effect at desktop widths).
+- **`.kpt-tabs`/`.kpt-tab-btn`** — no row wrap meant button *text* wrapped internally instead
+  ("Live Price" split across two lines). Fixed to `flex-wrap:wrap` + `white-space:nowrap`,
+  unconditional (desktop already fits all 7 tabs on one line). Inherited by `.kpt-subtabs`.
+- **`.ai-output table`** — the one table on the site with no scroll container of its own; a real bug
+  at any narrow window, not just phones. `display:block`+`overflow-x:auto` directly on the table
+  doesn't work (CSS resolves a `min-width`/`width` conflict in `min-width`'s favor, so the table's
+  own box just grows to 700px instead of scrolling) — the scroll boundary has to live on the
+  parent `.ai-output` instead.
+- **`.combined-wrap`** (Seasonals accordion) — already scrolled horizontally rather than overflowing
+  the page, but had no sticky first column, so scrolling right to see Signal/Conviction/Trade Note
+  lost the Month label. Added it, scoped to `.acc-table` specifically after a first attempt using a
+  bare `table` descendant selector also caught the *nested* `.wk-table` inside each expanded row.
+- **`.component-grid`** (FX pages) turned out to be defined inline in each of 28
+  `assets/fx-*.html` pages' own `<style>` block, not in `dashboard.css` — the shared override
+  needed `!important` to win against that (equal specificity, later source order).
+- **`.idt-sess-card`/`.idt-dow-cards`** (Upload tab) and **`.kptp-dial`** (Profiling) — fixed-column/
+  nowrap layouts with no overflow guard, now stack/wrap/scroll respectively on phones.
+- **`index.html`'s `.tw-body-inner`** (This Week accordion) — a fixed 3-column grid that had simply
+  been missed; every sibling grid elsewhere already collapses to 1 column. Its header row got the
+  same wrap fix as `.topbar`.
+- Verified via headless-browser tests: `document.body.scrollWidth` vs `window.innerWidth` at 390px
+  now match exactly (was 657 vs 390) across every tab on both a Profiling-enabled and a plain page;
+  full desktop-width regression sweep confirms nothing broke at 1400px; the secondary Combined/
+  5-YR/15-YR/LT sub-tab toggle still works.
+
+---
+
 ## v1.15 — September 2026
 **Fix: Seasonals-only content (legend, header, month quick-jump) leaking onto every tab**
 

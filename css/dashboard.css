@@ -241,6 +241,40 @@ tbody td:first-child {
   gap: 10px;
 }
 
+/* ── Sticky Month column on the accordion ──────────────────────────────────
+   .combined-wrap already scrolls horizontally (overflow-x:auto above) rather
+   than blowing out the page, but without a sticky first column, scrolling
+   right to reach the Signal/Conviction/Trade Note columns loses the Month
+   label entirely — the actual complaint, not a missing scroll container.
+   Mirrors the .table-wrap sticky-column pattern further down this file, but
+   the accordion has three row backgrounds (default/hover/open) that pattern
+   doesn't, each needing its own sticky-cell background — a semi-transparent
+   background on a sticky cell would let scrolled-under content show through,
+   so these are --bg-composited solid approximations of the row tints above.
+   Scoped to .acc-table specifically, NOT a bare "table" descendant selector
+   — .combined-wrap also contains the nested .wk-table (the expanded
+   week-by-week breakdown inside each open row) — its own <tr> elements
+   carry no class, so a selector scoped to tr.acc-row-month specifically
+   (rather than a bare tbody/tr descendant chain, which would still reach
+   into the nested table regardless of DOM depth) excludes it correctly: a
+   first attempt using ".combined-wrap table tbody td:first-child" caught
+   the nested table too, sticking its "Wk N" cell to the outer scroll
+   container's edge and overlapping it with the Action/Note column text. */
+.combined-wrap .acc-table thead th:first-child,
+.combined-wrap .acc-table tbody tr.acc-row-month td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.5);
+}
+.combined-wrap .acc-table thead th:first-child {
+  background: #0b1714; /* rgba(34,197,94,0.06) pre-composited over --bg */
+  z-index: 3;
+}
+.acc-row-month td:first-child { background: var(--bg); }
+.acc-row-month:hover td:first-child { background: var(--surface2); }
+.acc-row-month.is-open td:first-child { background: #0b1312; /* rgba(34,197,94,0.04) pre-composited over --bg */ }
+
 .chevron {
   display: inline-block;
   width: 14px;
@@ -399,6 +433,9 @@ tbody td:first-child {
   line-height: 1.8;
   white-space: pre-wrap;
   font-size: 12.5px;
+  overflow-x: auto; /* scroll boundary lives on the PARENT — see .ai-output
+    table below for why display:block+overflow-x on the table itself doesn't
+    work (min-width beats width in CSS's own conflict resolution) */
 }
 
 /* Markdown output styles (when marked.js renders HTML into ai-output) */
@@ -420,6 +457,16 @@ tbody td:first-child {
   margin: 14px 0 18px;
   font-size: 11.5px;
   white-space: normal;
+  /* The bare `table` selector elsewhere in this file sets min-width:700px on
+     the table element itself — CSS resolves a width/min-width conflict by
+     always honoring min-width, so display:block+overflow-x:auto put directly
+     on the table (tried first) has nothing to scroll: the table's own OUTER
+     box just becomes 700px and pushes its parent wider, since there's no
+     narrower box around it to contain that overflow. The scroll boundary
+     has to live one level up, on .ai-output itself (see above) — this table
+     is otherwise the one element in the site with no scroll container of
+     its own, so without that parent-level fix a markdown table from an AI
+     response would force the whole page to scroll horizontally. */
 }
 
 .ai-output th {
@@ -538,6 +585,12 @@ tbody td:first-child {
   gap: 12px;
   flex-wrap: nowrap;
 }
+@media (max-width: 600px) {
+  /* Six non-shrinking children in one nowrap row is what forces the whole
+     page to scroll horizontally on phones — let it wrap to a second row
+     instead of overflowing. */
+  .topbar { flex-wrap: wrap; row-gap: 8px; }
+}
 
 .back-link {
   color: var(--muted);
@@ -555,6 +608,8 @@ tbody td:first-child {
   font-size: 11px;
   letter-spacing: 1px;
   flex: 1;
+  min-width: 0; /* flex items default to min-width:auto, which silently defeats
+                   the ellipsis below by refusing to shrink past content width */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -576,6 +631,18 @@ tbody td:first-child {
 .container {
   max-width: 1400px;
   margin: 0 auto;
+}
+
+/* ── FX pages' Long/Short component cards (mobile override) ─────────────────
+   .component-grid itself is NOT defined in this shared file — each of the 28
+   assets/fx-*.html pages defines it inline in its own <head><style> block as
+   a fixed `grid-template-columns: 1fr 1fr`. A media query here needs
+   !important to win: the page's own inline <style> has equal CSS specificity
+   for this selector and comes later in the cascade (linked stylesheet, then
+   inline block), so without !important this rule would silently lose on
+   every one of those 28 pages rather than override them. */
+@media (max-width: 600px) {
+  .component-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ── Prev / Next navigation ────────────────────────────────────────────────── */
@@ -612,6 +679,10 @@ tbody td:first-child {
 /* ── Tab Navigation (asset pages) ─────────────────────────────────────────── */
 .kpt-tabs {
   display: flex;
+  flex-wrap: wrap; /* at desktop widths all 7 tabs already fit on one line, so
+                       this changes nothing there; on phones it wraps whole
+                       buttons to a second row instead of the row overflowing
+                       (inherited by .kpt-subtabs, which shares this class) */
   gap: 0;
   margin: 0 0 28px;
   border-bottom: 1px solid var(--border);
@@ -630,6 +701,9 @@ tbody td:first-child {
   cursor: pointer;
   transition: all 0.15s;
   margin-bottom: -1px;
+  white-space: nowrap; /* pairs with .kpt-tabs' flex-wrap above: the ROW wraps,
+                           not the label text inside a button (which used to
+                           split e.g. "Live Price" across two lines) */
 }
 .kpt-tab-btn:hover { color: var(--text); }
 .kpt-tab-btn.active {
@@ -2076,6 +2150,11 @@ html [data-kpt-panel] { display: none; }
   border-radius: 4px;
   border-left-width: 3px;
 }
+@media (max-width: 600px) {
+  /* Four columns of nowrap stat text squeeze into overflow at phone widths
+     with no scroll container of their own — stack instead. */
+  .idt-sess-card { grid-template-columns: 1fr; gap: 4px; text-align: left; }
+}
 
 .idt-card--bull { border-left-color: #22c55e; }
 .idt-card--bear { border-left-color: #ef4444; }
@@ -2131,6 +2210,13 @@ html [data-kpt-panel] { display: none; }
 .idt-dow-cards {
   display: flex;
   gap: 8px;
+}
+@media (max-width: 600px) {
+  /* 7 equal-width flex:1 cards in one unwrapped row squeeze too far on
+     phones (nowrap stat text inside each forces the row wider than the
+     viewport) — wrap to roughly 3 per row instead. */
+  .idt-dow-cards { flex-wrap: wrap; }
+  .idt-dow-card { flex: 1 1 30%; }
 }
 
 .idt-dow-card {
@@ -2517,6 +2603,13 @@ html [data-kpt-panel] { display: none; }
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 18px;
+}
+@media (max-width: 600px) {
+  /* inline-flex with no wrap + overflow:hidden clips rather than adapting
+     when the dial has several options — let it scroll instead. overflow-x
+     here overrides only that axis; overflow-y stays hidden from the rule
+     above, keeping the rounded-corner clipping intact. */
+  .kptp-dial { overflow-x: auto; max-width: 100%; }
 }
 .kptp-dial button {
   font-family: 'IBM Plex Mono', monospace;

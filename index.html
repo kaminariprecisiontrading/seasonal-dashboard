@@ -162,6 +162,11 @@
     transition: background 0.15s;
   }
   .tw-toggle:hover { background: rgba(255,255,255,0.02); }
+  @media (max-width: 600px) {
+    /* chevron+title+date+3 pills in one nowrap row overflows on phones —
+       same shape of bug as the asset pages' .topbar; let it wrap. */
+    .tw-toggle { flex-wrap: wrap; }
+  }
 
   .tw-toggle-left {
     display: flex;
@@ -228,6 +233,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     border-top: 1px solid var(--border);
+  }
+  @media (max-width: 600px) {
+    /* Every sibling 2/3-column grid elsewhere in this codebase already
+       collapses to 1 column below a breakpoint (dashboard.css: .macro-body,
+       .sc-exp-grid, .idt-exp-grid, .idt-lower, .kptp-two-col) — this one was
+       missed. At ~340px available width each of 3 columns becomes ~100px,
+       squeezing the .tw-ticker min-width:72px badge into overflow. */
+    .tw-body-inner { grid-template-columns: 1fr; }
   }
 
   .tw-col {

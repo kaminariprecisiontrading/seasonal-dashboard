@@ -80,15 +80,58 @@ Full record: `docs/CHANGELOG.md` v1.9 (original) and its same-day amendment.
 
 ---
 
-## Tier 3 — Mobile responsiveness pass
+## Tier 3 — Mobile responsiveness pass — ✅ Complete (2026-09-06)
 
-Already tracked as ROADMAP.md Phase 6C ("Planned," never started). Re-flagged here because
-Profiling's stat-grids and two-column layouts (range distribution, weekly/monthly/yearly
-extremes) make the gap more visible than it was pre-Profiling, and because Tier 4's tab
-restructure is a natural point to do this once rather than twice — the tab bar itself needs
-mobile treatment (horizontal scroll strip) as part of that restructure anyway.
+Shipped after Tier 4 rather than alongside it as originally planned, once a UX audit measured the
+problem directly: at a 390px viewport, `fx-gbpusd.html` forced ~657px of total content width,
+requiring horizontal scroll on any phone. Traced to specific, addressable rules rather than a
+wholesale redesign — the codebase had **zero phone-tier breakpoint anywhere** before this (the six
+pre-existing `@media` queries all collapse a 2/3-column grid somewhere in the 720–1100px "tablet"
+range; none touched flex-row wrapping, tab bars, the topbar, or tables). Added a
+`@media (max-width: 600px)` phone tier without touching any of that existing tablet-tier behavior.
 
-**Recommendation:** sequence this pass together with Tier 4, not before or fully separately.
+Root causes fixed, each traced to a concrete measured problem:
+- `.topbar` (`css/dashboard.css`) had `flex-wrap: nowrap` across 6 non-shrinking children with no
+  overflow control — the primary source of the page-wide horizontal overflow. Now wraps to a
+  second row on phones; its title span also got a `min-width: 0` fix (unconditional, zero effect
+  at desktop widths) so its existing ellipsis can actually engage.
+- `.kpt-tabs`/`.kpt-tab-btn` had no row wrap and no `white-space: nowrap` on the button, so button
+  *text* wrapped internally ("Live Price" split across two lines) instead of the row wrapping.
+  Fixed to `flex-wrap: wrap` + `white-space: nowrap`, applied unconditionally — desktop already
+  fits all 7 tabs on one line so nothing changes there; phones get whole buttons on a clean second
+  row. Inherited automatically by `.kpt-subtabs`/`.kpt-subtab-btn`.
+- `.ai-output table` (Analysis tab's rendered markdown tables) was the one table on the whole site
+  with no scroll container — a real bug at any narrow *window*, not just phones. Fixed by moving
+  the scroll boundary to the parent `.ai-output` (a `display:block`+`overflow-x:auto` attempt
+  directly on the table itself doesn't work: CSS always resolves a `min-width`/`width` conflict in
+  `min-width`'s favor, so the table's own box just grows to 700px and pushes its parent wider
+  instead of scrolling — the container has to be one level up).
+- `.combined-wrap` (Seasonals accordion) already scrolled horizontally rather than blowing out the
+  page, but had no sticky first column — scrolling right to reach Signal/Conviction/Trade Note lost
+  the Month label, the actual complaint. Added the sticky column, scoped carefully to `.acc-table`
+  specifically (a first attempt using a bare `table` descendant selector also caught the *nested*
+  `.wk-table` inside each expanded row, sticking its "Wk N" cell to the wrong edge).
+- `.component-grid` (FX pages' Long/Short component cards) turned out to be defined per-page,
+  inline, inside each of 28 `assets/fx-*.html` files' own `<style>` block — not in `dashboard.css`
+  at all. The shared-file override needed `!important` to win against that inline block (equal
+  specificity, later source order), rather than editing 28 files individually.
+- `.idt-sess-card`/`.idt-dow-cards` (Upload tab) and `.kptp-dial` (Profiling lookback control) had
+  fixed-column/nowrap layouts with no overflow guard — stacked/wrapped/scrolled respectively.
+- `index.html`'s `.tw-body-inner` (This Week accordion) was a fixed 3-column grid that had simply
+  been missed — every sibling 2/3-column grid elsewhere already collapses to 1 column below a
+  breakpoint. Its header row (`.tw-toggle`) had the same topbar-shaped bug (nowrap row, several
+  non-shrinking children) and got the same wrap fix.
+
+**Confirmed already fine, no action needed:** the legend, search box, signal-filter pills, the
+asset-card grid (already `auto-fill, minmax(230px,1fr)`), the Macro tab's 1100px tablet query
+(already covers phone widths), every Profiling SVG chart (`viewBox`+`width:100%`, scales down
+fine), and all 5 session/hour/weekday/week-of-month/year-month pairing tables in
+`js/profiling.js` (each already wrapped in its own inline `overflow-x:auto` div).
+
+**Deliberately not done:** rescaling Profiling's SVG chart font-sizes (soft legibility concern at
+extreme widths, not an overflow bug), scroll-affordance fade edges, touch-target size increases,
+and `index.html`'s oversized `<h1>` — kept this pass scoped to genuine overflow/usability breaks
+that were actually measured, not a general mobile redesign.
 
 ---
 
