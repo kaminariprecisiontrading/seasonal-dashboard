@@ -5239,6 +5239,104 @@ const BRENT_DATA = {
         "median": 314.0
       }
     },
+    "nfp": {
+      "n_nfp_days": 122,
+      "n_other_fridays": 414,
+      "nfp_profile_distribution": {
+        "Normal Day": {
+          "n": 72,
+          "pct": 59.02,
+          "mean_range_pips": 202.7,
+          "median_range_pips": 184.0
+        },
+        "Compression Day": {
+          "n": 20,
+          "pct": 16.39,
+          "mean_range_pips": 110.4,
+          "median_range_pips": 102.0
+        },
+        "Volatile Day": {
+          "n": 12,
+          "pct": 9.84,
+          "mean_range_pips": 353.2,
+          "median_range_pips": 295.5
+        },
+        "Trend Day (Up)": {
+          "n": 8,
+          "pct": 6.56,
+          "mean_range_pips": 412.2,
+          "median_range_pips": 284.0
+        },
+        "Volatile Reversal Day": {
+          "n": 7,
+          "pct": 5.74,
+          "mean_range_pips": 391.9,
+          "median_range_pips": 381.0
+        },
+        "Trend Day (Down)": {
+          "n": 2,
+          "pct": 1.64,
+          "mean_range_pips": 392.0,
+          "median_range_pips": 392.0
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 1,
+          "pct": 0.82,
+          "mean_range_pips": 104.0,
+          "median_range_pips": 104.0
+        }
+      },
+      "other_friday_profile_distribution": {
+        "Normal Day": {
+          "n": 240,
+          "pct": 57.97,
+          "mean_range_pips": 195.3,
+          "median_range_pips": 171.0
+        },
+        "Compression Day": {
+          "n": 88,
+          "pct": 21.26,
+          "mean_range_pips": 106.1,
+          "median_range_pips": 95.5
+        },
+        "Volatile Day": {
+          "n": 32,
+          "pct": 7.73,
+          "mean_range_pips": 352.6,
+          "median_range_pips": 287.0
+        },
+        "Trend Day (Up)": {
+          "n": 15,
+          "pct": 3.62,
+          "mean_range_pips": 387.2,
+          "median_range_pips": 317.0
+        },
+        "Volatile Reversal Day": {
+          "n": 14,
+          "pct": 3.38,
+          "mean_range_pips": 421.7,
+          "median_range_pips": 312.5
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 11,
+          "pct": 2.66,
+          "mean_range_pips": 132.0,
+          "median_range_pips": 104.0
+        },
+        "Trend Day (Down)": {
+          "n": 11,
+          "pct": 2.66,
+          "mean_range_pips": 313.5,
+          "median_range_pips": 284.0
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 3,
+          "pct": 0.72,
+          "mean_range_pips": 95.7,
+          "median_range_pips": 112.0
+        }
+      }
+    },
     "asset": "BRENT"
   },
   "weekly": {

@@ -5263,6 +5263,110 @@ const NZDUSD_DATA = {
         "median": 110.0
       }
     },
+    "nfp": {
+      "n_nfp_days": 301,
+      "n_other_fridays": 1017,
+      "nfp_profile_distribution": {
+        "Normal Day": {
+          "n": 180,
+          "pct": 59.8,
+          "mean_range_pips": 76.9,
+          "median_range_pips": 73.0
+        },
+        "Volatile Day": {
+          "n": 46,
+          "pct": 15.28,
+          "mean_range_pips": 113.3,
+          "median_range_pips": 101.4
+        },
+        "Compression Day": {
+          "n": 29,
+          "pct": 9.63,
+          "mean_range_pips": 44.8,
+          "median_range_pips": 40.7
+        },
+        "Trend Day (Up)": {
+          "n": 18,
+          "pct": 5.98,
+          "mean_range_pips": 116.2,
+          "median_range_pips": 111.8
+        },
+        "Trend Day (Down)": {
+          "n": 15,
+          "pct": 4.98,
+          "mean_range_pips": 136.7,
+          "median_range_pips": 137.9
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 6,
+          "pct": 1.99,
+          "mean_range_pips": 41.3,
+          "median_range_pips": 40.3
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 4,
+          "pct": 1.33,
+          "mean_range_pips": 42.2,
+          "median_range_pips": 41.0
+        },
+        "Volatile Reversal Day": {
+          "n": 3,
+          "pct": 1.0,
+          "mean_range_pips": 89.2,
+          "median_range_pips": 90.5
+        }
+      },
+      "other_friday_profile_distribution": {
+        "Normal Day": {
+          "n": 593,
+          "pct": 58.31,
+          "mean_range_pips": 72.7,
+          "median_range_pips": 69.1
+        },
+        "Compression Day": {
+          "n": 209,
+          "pct": 20.55,
+          "mean_range_pips": 41.7,
+          "median_range_pips": 39.6
+        },
+        "Volatile Day": {
+          "n": 59,
+          "pct": 5.8,
+          "mean_range_pips": 124.6,
+          "median_range_pips": 110.0
+        },
+        "Trend Day (Down)": {
+          "n": 45,
+          "pct": 4.42,
+          "mean_range_pips": 126.9,
+          "median_range_pips": 118.6
+        },
+        "Trend Day (Up)": {
+          "n": 44,
+          "pct": 4.33,
+          "mean_range_pips": 127.5,
+          "median_range_pips": 116.5
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 24,
+          "pct": 2.36,
+          "mean_range_pips": 45.6,
+          "median_range_pips": 45.4
+        },
+        "Volatile Reversal Day": {
+          "n": 22,
+          "pct": 2.16,
+          "mean_range_pips": 120.8,
+          "median_range_pips": 109.8
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 21,
+          "pct": 2.06,
+          "mean_range_pips": 44.9,
+          "median_range_pips": 43.9
+        }
+      }
+    },
     "asset": "NZDUSD"
   },
   "weekly": {

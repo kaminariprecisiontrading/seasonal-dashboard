@@ -5267,6 +5267,110 @@ const USDCAD_DATA = {
         "median": 135.9
       }
     },
+    "nfp": {
+      "n_nfp_days": 335,
+      "n_other_fridays": 1137,
+      "nfp_profile_distribution": {
+        "Normal Day": {
+          "n": 184,
+          "pct": 54.93,
+          "mean_range_pips": 91.6,
+          "median_range_pips": 88.0
+        },
+        "Volatile Day": {
+          "n": 41,
+          "pct": 12.24,
+          "mean_range_pips": 146.8,
+          "median_range_pips": 133.9
+        },
+        "Compression Day": {
+          "n": 34,
+          "pct": 10.15,
+          "mean_range_pips": 55.7,
+          "median_range_pips": 53.2
+        },
+        "Trend Day (Down)": {
+          "n": 29,
+          "pct": 8.66,
+          "mean_range_pips": 170.2,
+          "median_range_pips": 167.0
+        },
+        "Trend Day (Up)": {
+          "n": 22,
+          "pct": 6.57,
+          "mean_range_pips": 158.4,
+          "median_range_pips": 156.2
+        },
+        "Volatile Reversal Day": {
+          "n": 20,
+          "pct": 5.97,
+          "mean_range_pips": 148.2,
+          "median_range_pips": 127.4
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 3,
+          "pct": 0.9,
+          "mean_range_pips": 54.9,
+          "median_range_pips": 66.0
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 2,
+          "pct": 0.6,
+          "mean_range_pips": 48.2,
+          "median_range_pips": 48.2
+        }
+      },
+      "other_friday_profile_distribution": {
+        "Normal Day": {
+          "n": 674,
+          "pct": 59.28,
+          "mean_range_pips": 89.8,
+          "median_range_pips": 85.5
+        },
+        "Compression Day": {
+          "n": 186,
+          "pct": 16.36,
+          "mean_range_pips": 52.4,
+          "median_range_pips": 50.4
+        },
+        "Volatile Day": {
+          "n": 102,
+          "pct": 8.97,
+          "mean_range_pips": 158.1,
+          "median_range_pips": 140.4
+        },
+        "Trend Day (Down)": {
+          "n": 50,
+          "pct": 4.4,
+          "mean_range_pips": 155.1,
+          "median_range_pips": 142.4
+        },
+        "Trend Day (Up)": {
+          "n": 48,
+          "pct": 4.22,
+          "mean_range_pips": 145.1,
+          "median_range_pips": 141.1
+        },
+        "Volatile Reversal Day": {
+          "n": 38,
+          "pct": 3.34,
+          "mean_range_pips": 159.0,
+          "median_range_pips": 135.4
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 20,
+          "pct": 1.76,
+          "mean_range_pips": 57.5,
+          "median_range_pips": 57.8
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 19,
+          "pct": 1.67,
+          "mean_range_pips": 58.6,
+          "median_range_pips": 57.6
+        }
+      }
+    },
     "asset": "USDCAD"
   },
   "weekly": {

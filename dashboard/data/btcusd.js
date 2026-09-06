@@ -5237,6 +5237,104 @@ const BTCUSD_DATA = {
         "median": 337873.0
       }
     },
+    "nfp": {
+      "n_nfp_days": 101,
+      "n_other_fridays": 343,
+      "nfp_profile_distribution": {
+        "Normal Day": {
+          "n": 46,
+          "pct": 45.54,
+          "mean_range_pips": 158396.0,
+          "median_range_pips": 130364.0
+        },
+        "Compression Day": {
+          "n": 22,
+          "pct": 21.78,
+          "mean_range_pips": 46111.0,
+          "median_range_pips": 29505.5
+        },
+        "Volatile Day": {
+          "n": 15,
+          "pct": 14.85,
+          "mean_range_pips": 296159.0,
+          "median_range_pips": 247060.0
+        },
+        "Trend Day (Up)": {
+          "n": 8,
+          "pct": 7.92,
+          "mean_range_pips": 566198.1,
+          "median_range_pips": 458345.0
+        },
+        "Trend Day (Down)": {
+          "n": 5,
+          "pct": 4.95,
+          "mean_range_pips": 337854.2,
+          "median_range_pips": 367279.0
+        },
+        "Volatile Reversal Day": {
+          "n": 4,
+          "pct": 3.96,
+          "mean_range_pips": 303326.8,
+          "median_range_pips": 294094.5
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 1,
+          "pct": 0.99,
+          "mean_range_pips": 10083.0,
+          "median_range_pips": 10083.0
+        }
+      },
+      "other_friday_profile_distribution": {
+        "Normal Day": {
+          "n": 190,
+          "pct": 55.39,
+          "mean_range_pips": 163128.1,
+          "median_range_pips": 140863.5
+        },
+        "Compression Day": {
+          "n": 62,
+          "pct": 18.08,
+          "mean_range_pips": 60105.5,
+          "median_range_pips": 32015.5
+        },
+        "Volatile Day": {
+          "n": 27,
+          "pct": 7.87,
+          "mean_range_pips": 383022.9,
+          "median_range_pips": 405799.0
+        },
+        "Trend Day (Up)": {
+          "n": 22,
+          "pct": 6.41,
+          "mean_range_pips": 322508.6,
+          "median_range_pips": 297144.0
+        },
+        "Volatile Reversal Day": {
+          "n": 18,
+          "pct": 5.25,
+          "mean_range_pips": 294235.2,
+          "median_range_pips": 217615.5
+        },
+        "Trend Day (Down)": {
+          "n": 15,
+          "pct": 4.37,
+          "mean_range_pips": 453329.1,
+          "median_range_pips": 458413.0
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 7,
+          "pct": 2.04,
+          "mean_range_pips": 52765.1,
+          "median_range_pips": 22544.0
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 2,
+          "pct": 0.58,
+          "mean_range_pips": 23808.5,
+          "median_range_pips": 23808.5
+        }
+      }
+    },
     "asset": "BTCUSD"
   },
   "weekly": {

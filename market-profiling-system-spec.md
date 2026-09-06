@@ -276,6 +276,37 @@ the *calendar rule* ("first Friday of the month"), not the exact historical NFP 
 better, and remains out of scope. The generic "8:30 NY news embargo" idea below is still blocked on
 that same layer, unlike NFP's calendar-derivable case.
 
+**NFP profile breakdown + candlestick examples, reuse-based design (2026-09-06), at the user's
+follow-up request.** Wanted to see the different ways an NFP day actually behaves (breakout / a
+fakeout-then-real-move / a whipsaw where "both sides get destroyed"), with real candlestick
+examples, so the NFP finding is more actionable. **Decided against inventing new labels** for
+these — the mapping onto the *existing* Daily Profile Taxonomy is nearly 1:1: whipsaw = `Volatile
+Reversal Day` (Expansion + Balanced — huge range, closes back near the middle, so both the high
+and low were real moves that ultimately canceled out); fakeout-then-real-move = `Trend Day` +
+`Late_Push` timing specifically (the "wrong-side" extreme forms early, price grinds to the real
+extreme late in the day, matching the close — that combination is literally what `Late_Push`
+already means); clean breakout = `Trend Day` generally; ambiguous/no resolution = `Volatile Day`
+(Expansion + Mixed). Validated first on GBPUSD/EURUSD/XAUUSD (against the same "other Fridays"
+baseline as the range/timing comparison above, to control for the generic Friday effect, not just
+vs. all days): `Compression Day` roughly **halves** on NFP Fridays across all three assets (e.g.
+GBPUSD 10.6% vs. 17.7%), while `Volatile Day`/`Trend Day`/`Volatile Reversal Day` (the Expansion-
+regime profiles) are all **elevated** — consistent with NFP Fridays' already-known bigger range
+and release-window clustering. One nuance surfaced, disclosed rather than smoothed over: the
+`Late_Push` rate *within* Trend Day is actually **lower** on NFP Fridays for GBPUSD/EURUSD (55.0%
+vs. 70.4%, 52.5% vs. 66.8%) — meaning NFP-driven trend days are somewhat *less* likely to show the
+clean "early fake, late real move" shape than a typical Trend Day, not more; XAUUSD is roughly flat
+(31.1% vs. 29.3%). Added `nfp_profile_distribution()` to `profile_taxonomy.py` (output as the
+`nfp` field, nested `nfp_profile_distribution`/`other_friday_profile_distribution`, each with
+n/pct/mean/median range per profile) and `pick_nfp_exemplar_days()` to
+`export_profile_examples.py` (targets each profile's *NFP-conditioned* mean range, not the
+unconditional one — "a typical NFP day of this profile," not just any day of this profile that
+happened to land on an NFP Friday — output nested under a `_nfp` key in the same examples file, no
+new file/sync-script change needed). Shipped as an "NFP Day Profile Breakdown" card grid (same
+cards, same detail-page links as the main Daily Profile Taxonomy — no new UI vocabulary) plus real
+candlestick examples for the 3 most common NFP profiles, loaded on demand via `KPTPData.loadAsset()`
+since the examples data isn't loaded by default on the main asset page. Same reuse-based approach
+noted as the plan for the generic "8:30 NY news embargo" profile once that's built.
+
 **Liquidity-sweep / false-move profiles (added 2026-09-05).** A finer-grained, cross-session
 sibling to the session-defined family above: not "which session contained the day's extreme" but
 "did an *earlier* session's own high/low get pierced by a small margin during a *later* session,

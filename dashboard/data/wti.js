@@ -5253,6 +5253,110 @@ const WTI_DATA = {
         "median": 313.5
       }
     },
+    "nfp": {
+      "n_nfp_days": 182,
+      "n_other_fridays": 616,
+      "nfp_profile_distribution": {
+        "Normal Day": {
+          "n": 105,
+          "pct": 57.69,
+          "mean_range_pips": 207.6,
+          "median_range_pips": 191.0
+        },
+        "Compression Day": {
+          "n": 26,
+          "pct": 14.29,
+          "mean_range_pips": 112.5,
+          "median_range_pips": 105.0
+        },
+        "Volatile Day": {
+          "n": 20,
+          "pct": 10.99,
+          "mean_range_pips": 300.4,
+          "median_range_pips": 295.0
+        },
+        "Trend Day (Up)": {
+          "n": 11,
+          "pct": 6.04,
+          "mean_range_pips": 487.2,
+          "median_range_pips": 317.0
+        },
+        "Volatile Reversal Day": {
+          "n": 10,
+          "pct": 5.49,
+          "mean_range_pips": 408.6,
+          "median_range_pips": 328.0
+        },
+        "Trend Day (Down)": {
+          "n": 5,
+          "pct": 2.75,
+          "mean_range_pips": 286.4,
+          "median_range_pips": 227.0
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 3,
+          "pct": 1.65,
+          "mean_range_pips": 119.7,
+          "median_range_pips": 115.0
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 2,
+          "pct": 1.1,
+          "mean_range_pips": 142.0,
+          "median_range_pips": 142.0
+        }
+      },
+      "other_friday_profile_distribution": {
+        "Normal Day": {
+          "n": 359,
+          "pct": 58.28,
+          "mean_range_pips": 191.5,
+          "median_range_pips": 173.0
+        },
+        "Compression Day": {
+          "n": 121,
+          "pct": 19.64,
+          "mean_range_pips": 106.3,
+          "median_range_pips": 100.0
+        },
+        "Volatile Day": {
+          "n": 51,
+          "pct": 8.28,
+          "mean_range_pips": 355.5,
+          "median_range_pips": 299.0
+        },
+        "Volatile Reversal Day": {
+          "n": 22,
+          "pct": 3.57,
+          "mean_range_pips": 381.0,
+          "median_range_pips": 323.5
+        },
+        "Trend Day (Down)": {
+          "n": 21,
+          "pct": 3.41,
+          "mean_range_pips": 311.0,
+          "median_range_pips": 298.0
+        },
+        "Trend Day (Up)": {
+          "n": 20,
+          "pct": 3.25,
+          "mean_range_pips": 407.6,
+          "median_range_pips": 335.0
+        },
+        "Quiet Drift Day (Up)": {
+          "n": 18,
+          "pct": 2.92,
+          "mean_range_pips": 133.2,
+          "median_range_pips": 107.0
+        },
+        "Quiet Drift Day (Down)": {
+          "n": 4,
+          "pct": 0.65,
+          "mean_range_pips": 109.8,
+          "median_range_pips": 106.5
+        }
+      }
+    },
     "asset": "WTI"
   },
   "weekly": {

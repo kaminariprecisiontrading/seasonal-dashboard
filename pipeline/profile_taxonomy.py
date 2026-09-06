@@ -145,6 +145,63 @@ def build_profiles(daily: pd.DataFrame) -> pd.DataFrame:
     return result
 
 
+def is_nfp_day(date_series: pd.Series) -> pd.Series:
+    """First Friday of the month -- the calendar-computable part of the NFP
+    release rule (8:30am NY local), a known simplification (calendar rule,
+    not the exact historical release calendar, which occasionally shifts
+    for a holiday). Duplicated here rather than imported from
+    stats_engine.py (which has the fuller DST-aware release-window
+    version) -- matches this pipeline's convention of independent,
+    parallel scripts rather than sharing logic across them."""
+    return (date_series.dt.day_name() == "Friday") & (date_series.dt.day <= 7)
+
+
+def nfp_profile_distribution(result: pd.DataFrame) -> dict:
+    """Tier 5b's NFP profile, reuse-based design (2026-09-06): rather than
+    inventing new breakout/fakeout/whipsaw labels, shows the EXISTING
+    Daily Profile Taxonomy's distribution specifically on NFP Fridays vs.
+    other Fridays (not vs. all days, to control for any generic Friday
+    effect -- same comparison stats_engine.py's nfp_profile() already
+    uses for range/timing). Validated on GBPUSD/EURUSD/XAUUSD before
+    building: Compression Day roughly halves on NFP Fridays while
+    Volatile/Trend/Volatile Reversal Day (the Expansion-regime profiles)
+    are all elevated -- consistent with NFP Fridays' already-known bigger
+    range and release-window clustering (stats_engine.py's nfp_profile()).
+    Feeds export_profile_examples.py's NFP-specific exemplar picking."""
+    labeled = result[~result["profile"].isin(["Data_Gap", "Insufficient_History"])].copy()
+    labeled["is_nfp"] = is_nfp_day(labeled["date"])
+    fridays = labeled[labeled["date"].dt.day_name() == "Friday"]
+
+    nfp = fridays[fridays["is_nfp"]]
+    other_fri = fridays[~fridays["is_nfp"]]
+
+    def dist(sub):
+        n = len(sub)
+        if n == 0:
+            return {}, 0
+        counts = sub["profile"].value_counts()
+        range_stats = sub.groupby("profile")["daily_range_pips"].agg(["mean", "median"]).round(1)
+        out = {}
+        for p in counts.index:
+            out[p] = {
+                "n": int(counts[p]),
+                "pct": round(float(counts[p] / n * 100), 2),
+                "mean_range_pips": float(range_stats.loc[p, "mean"]),
+                "median_range_pips": float(range_stats.loc[p, "median"]),
+            }
+        return out, n
+
+    nfp_dist, n_nfp = dist(nfp)
+    other_dist, n_other = dist(other_fri)
+
+    return {
+        "n_nfp_days": n_nfp,
+        "n_other_fridays": n_other,
+        "nfp_profile_distribution": nfp_dist,
+        "other_friday_profile_distribution": other_dist,
+    }
+
+
 def summarize(result: pd.DataFrame) -> dict:
     labeled = result[~result["profile"].isin(["Data_Gap", "Insufficient_History"])]
     profile_counts = labeled["profile"].value_counts()
@@ -166,6 +223,7 @@ def summarize(result: pd.DataFrame) -> dict:
         },
         "extreme_timing_by_profile": timing_by_profile,
         "avg_range_pips_by_profile": range_by_profile.to_dict(orient="index"),
+        "nfp": nfp_profile_distribution(result),
     }
 
 

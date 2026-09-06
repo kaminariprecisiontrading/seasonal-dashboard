@@ -45,6 +45,35 @@ def pick_exemplar_days(daily_profiles: pd.DataFrame, profile_summary: dict) -> d
     return exemplars
 
 
+def pick_nfp_exemplar_days(daily_profiles: pd.DataFrame, nfp_summary: dict) -> dict:
+    """Tier 5b's NFP profile, reuse-based design (2026-09-06): same
+    exemplar-picking logic as pick_exemplar_days(), restricted to NFP days
+    only and targeting each profile's NFP-conditioned mean range (not the
+    unconditional mean) -- "a typical NFP day of this profile," not just
+    "a typical day of this profile that happened to also be an NFP day."
+    Recomputes the NFP calendar rule directly (profile_taxonomy.py's own
+    per-day CSV doesn't carry an is_nfp column) -- matches this pipeline's
+    convention of independent, parallel scripts rather than importing it."""
+    nfp_dist = nfp_summary.get("nfp_profile_distribution", {})
+    if not nfp_dist:
+        return {}
+
+    is_nfp = (daily_profiles["date"].dt.day_name() == "Friday") & (daily_profiles["date"].dt.day <= 7)
+    nfp_days = daily_profiles[is_nfp]
+    has_intraday = ~nfp_days.get("is_daily_only", False).astype(bool)
+
+    exemplars = {}
+    for profile, stats in nfp_dist.items():
+        target_mean = stats["mean_range_pips"]
+        sub = nfp_days[(nfp_days["profile"] == profile) & has_intraday].copy()
+        if sub.empty:
+            continue
+        sub["dist_from_mean"] = (sub["daily_range_pips"] - target_mean).abs()
+        best = sub.sort_values("dist_from_mean").iloc[0]
+        exemplars[profile] = str(best["date"])[:10]
+    return exemplars
+
+
 def bars_for_day(df_m1: pd.DataFrame, target_date) -> list:
     day_bars = df_m1[df_m1["trading_day"] == target_date].sort_values("utc_dt").set_index("utc_dt")
     if day_bars.empty:
@@ -92,6 +121,25 @@ def main():
             continue
         result[profile] = {"date": date_str, "bars": bars}
         print(f"  {profile}: {date_str} ({len(bars)} M15 bars)", file=sys.stderr)
+
+    # NFP profile exemplars (Tier 5b), nested under "_nfp" -- a profile name
+    # can never literally be "_nfp" so this can't collide with the keys
+    # above. Kept in the same output file/bundle rather than a separate one
+    # so sync_profiling_data.js needs no changes (it already copies this
+    # file verbatim).
+    nfp_summary = profile_summary.get("nfp", {})
+    nfp_exemplars = pick_nfp_exemplar_days(daily_profiles, nfp_summary)
+    nfp_result = {}
+    for profile, date_str in nfp_exemplars.items():
+        target_date = pd.Timestamp(date_str).date()
+        bars = bars_for_day(df, target_date)
+        if not bars:
+            print(f"  WARNING: no M1 bars found for NFP {profile} on {date_str} — skipped", file=sys.stderr)
+            continue
+        nfp_result[profile] = {"date": date_str, "bars": bars}
+        print(f"  NFP {profile}: {date_str} ({len(bars)} M15 bars)", file=sys.stderr)
+    if nfp_result:
+        result["_nfp"] = nfp_result
 
     var_name = f"{args.asset.upper()}_PROFILE_EXAMPLES"
     with open(args.output_js, "w", encoding="utf-8") as f:

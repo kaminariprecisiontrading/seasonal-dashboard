@@ -128,5 +128,109 @@
       "median": 187.3
     }
   },
+  "nfp": {
+    "n_nfp_days": 388,
+    "n_other_fridays": 1322,
+    "nfp_profile_distribution": {
+      "Normal Day": {
+        "n": 233,
+        "pct": 60.05,
+        "mean_range_pips": 126.1,
+        "median_range_pips": 119.1
+      },
+      "Volatile Day": {
+        "n": 48,
+        "pct": 12.37,
+        "mean_range_pips": 217.7,
+        "median_range_pips": 193.5
+      },
+      "Compression Day": {
+        "n": 41,
+        "pct": 10.57,
+        "mean_range_pips": 73.6,
+        "median_range_pips": 71.4
+      },
+      "Trend Day (Down)": {
+        "n": 22,
+        "pct": 5.67,
+        "mean_range_pips": 214.2,
+        "median_range_pips": 216.9
+      },
+      "Trend Day (Up)": {
+        "n": 18,
+        "pct": 4.64,
+        "mean_range_pips": 229.3,
+        "median_range_pips": 206.2
+      },
+      "Volatile Reversal Day": {
+        "n": 17,
+        "pct": 4.38,
+        "mean_range_pips": 183.5,
+        "median_range_pips": 176.0
+      },
+      "Quiet Drift Day (Down)": {
+        "n": 5,
+        "pct": 1.29,
+        "mean_range_pips": 57.1,
+        "median_range_pips": 59.7
+      },
+      "Quiet Drift Day (Up)": {
+        "n": 4,
+        "pct": 1.03,
+        "mean_range_pips": 87.1,
+        "median_range_pips": 71.8
+      }
+    },
+    "other_friday_profile_distribution": {
+      "Normal Day": {
+        "n": 781,
+        "pct": 59.08,
+        "mean_range_pips": 120.1,
+        "median_range_pips": 113.0
+      },
+      "Compression Day": {
+        "n": 234,
+        "pct": 17.7,
+        "mean_range_pips": 70.3,
+        "median_range_pips": 68.0
+      },
+      "Volatile Day": {
+        "n": 115,
+        "pct": 8.7,
+        "mean_range_pips": 227.8,
+        "median_range_pips": 193.0
+      },
+      "Trend Day (Up)": {
+        "n": 56,
+        "pct": 4.24,
+        "mean_range_pips": 216.9,
+        "median_range_pips": 207.8
+      },
+      "Trend Day (Down)": {
+        "n": 49,
+        "pct": 3.71,
+        "mean_range_pips": 221.6,
+        "median_range_pips": 212.5
+      },
+      "Volatile Reversal Day": {
+        "n": 35,
+        "pct": 2.65,
+        "mean_range_pips": 238.8,
+        "median_range_pips": 190.2
+      },
+      "Quiet Drift Day (Down)": {
+        "n": 30,
+        "pct": 2.27,
+        "mean_range_pips": 71.7,
+        "median_range_pips": 66.1
+      },
+      "Quiet Drift Day (Up)": {
+        "n": 22,
+        "pct": 1.66,
+        "mean_range_pips": 72.9,
+        "median_range_pips": 74.4
+      }
+    }
+  },
   "asset": "GBPUSD"
 }

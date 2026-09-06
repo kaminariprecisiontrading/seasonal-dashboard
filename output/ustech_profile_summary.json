@@ -121,5 +121,97 @@
       "median": 2325.5
     }
   },
+  "nfp": {
+    "n_nfp_days": 175,
+    "n_other_fridays": 586,
+    "nfp_profile_distribution": {
+      "Normal Day": {
+        "n": 99,
+        "pct": 56.57,
+        "mean_range_pips": 1637.3,
+        "median_range_pips": 870.0
+      },
+      "Volatile Day": {
+        "n": 31,
+        "pct": 17.71,
+        "mean_range_pips": 3089.2,
+        "median_range_pips": 3216.0
+      },
+      "Compression Day": {
+        "n": 16,
+        "pct": 9.14,
+        "mean_range_pips": 808.4,
+        "median_range_pips": 729.0
+      },
+      "Trend Day (Up)": {
+        "n": 10,
+        "pct": 5.71,
+        "mean_range_pips": 2333.6,
+        "median_range_pips": 1280.0
+      },
+      "Trend Day (Down)": {
+        "n": 8,
+        "pct": 4.57,
+        "mean_range_pips": 4856.2,
+        "median_range_pips": 1734.0
+      },
+      "Volatile Reversal Day": {
+        "n": 7,
+        "pct": 4.0,
+        "mean_range_pips": 3009.4,
+        "median_range_pips": 2344.0
+      },
+      "Quiet Drift Day (Up)": {
+        "n": 4,
+        "pct": 2.29,
+        "mean_range_pips": 416.0,
+        "median_range_pips": 412.0
+      }
+    },
+    "other_friday_profile_distribution": {
+      "Normal Day": {
+        "n": 350,
+        "pct": 59.73,
+        "mean_range_pips": 1427.4,
+        "median_range_pips": 827.5
+      },
+      "Compression Day": {
+        "n": 77,
+        "pct": 13.14,
+        "mean_range_pips": 898.0,
+        "median_range_pips": 587.0
+      },
+      "Volatile Day": {
+        "n": 56,
+        "pct": 9.56,
+        "mean_range_pips": 3212.7,
+        "median_range_pips": 2928.0
+      },
+      "Trend Day (Up)": {
+        "n": 32,
+        "pct": 5.46,
+        "mean_range_pips": 2916.4,
+        "median_range_pips": 1544.0
+      },
+      "Trend Day (Down)": {
+        "n": 28,
+        "pct": 4.78,
+        "mean_range_pips": 3566.1,
+        "median_range_pips": 3444.0
+      },
+      "Quiet Drift Day (Up)": {
+        "n": 25,
+        "pct": 4.27,
+        "mean_range_pips": 867.3,
+        "median_range_pips": 611.0
+      },
+      "Volatile Reversal Day": {
+        "n": 18,
+        "pct": 3.07,
+        "mean_range_pips": 3113.4,
+        "median_range_pips": 2849.5
+      }
+    }
+  },
   "asset": "USTECH"
 }
