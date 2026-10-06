@@ -103,6 +103,22 @@ python -m venv .venv
 .venv/Scripts/pip install pandas numpy scipy   # Windows; use .venv/bin/pip on macOS/Linux
 ```
 
+### Range Outlook (TimesFM) environment
+
+The Range Outlook stage (`pipeline/forecast_range.py`, TimesFM 2.5 daily-range forecasts) needs
+PyTorch, so it has its own venv rather than bloating `.venv/`:
+
+```bash
+python -m venv .venv-forecast
+.venv-forecast/Scripts/python.exe -m pip install "timesfm[torch]" pandas scipy
+```
+
+`refresh_asset.py` finds `.venv-forecast/` automatically and runs the stage with it; without it,
+the stage is skipped with a warning and the bundle has no `range_forecast` (the seasonal-dashboard
+card then stays hidden). The first run per asset computes ~1,000 forecasts (~5 min on CPU) and
+caches them in `data/forecast/<asset>_timesfm_cache.csv`; later refreshes only compute the new
+days. Validation behind it: `research/timesfm_benchmark/README.md`.
+
 ## Viewing the dashboard
 
 Plain static files — open `dashboard/index.html` directly in a browser, or serve the folder:

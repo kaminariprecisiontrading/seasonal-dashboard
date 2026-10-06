@@ -109,5 +109,9 @@ Relative MAE (< 1 = better than what the dashboard shows today):
 - **Ongoing scoring:** log every published forecast and score it on the next refresh (spec §6 /
   dashboard roadmap §9.4), so bad regimes like 2022 are visible rather than assumed away.
 
+**Built (2026-10-06):** `pipeline/forecast_range.py` implements exactly this design and is part
+of `refresh_asset.py`'s chain; the seasonal-dashboard shows it as the Profiling tab's "Range
+Outlook" card.
+
 Not tested (possible follow-ups): covariates (NFP flag, weekday) via XReg; context length
 (512/2048); fine-tuning; a TimesFM/HAR ensemble for the non-FX assets.

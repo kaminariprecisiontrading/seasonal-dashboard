@@ -84,6 +84,10 @@ first step in Claude Code.
 | `export_profile_examples.py` | Phase 3 pipeline: picks one real "typical" exemplar day per profile (closest to that profile's own average range) per asset, extracts its M1 bars from the raw export, resamples to M15, and writes `dashboard/data/profile-examples/<asset>.js` — the real-chart data behind the profile detail pages. Excludes `is_daily_only` days from exemplar candidacy (a single EOD bar can't back a candlestick chart). Also picks (Tier 5b, added 2026-09-06) NFP-specific exemplars via `pick_nfp_exemplar_days()`, nested under a `_nfp` key in the same output file — targets each profile's NFP-conditioned mean range, not the unconditional one. Re-run if the raw CSV, `profile_taxonomy.py`, or its thresholds change. |
 | `export_calendar_data.py` | Phase 3 pipeline: builds the calendar feature's per-day data — one JS file per asset per year (`dashboard/data/calendar/<asset>/<year>.js`, chunked so the dashboard doesn't load all ~5,185 days upfront) plus a manifest of available years. Imports `build_weekly()`/`build_monthly()` from `stats_engine.py` so each day's week/month context reuses that logic rather than duplicating it. |
 | `session_activity.py` | Tier 5b: mean intra-hour range (UTC) across full history, one value per hour 0-23, plus a summary of the two session-overlap windows vs. their single-session neighbors. Re-parses the raw M1 file like `export_profile_examples.py` (reuses `clean_mt5_csv.py`'s `load_raw()`/`to_utc()`). Validated (2026-09-05) as a real, cross-asset signal, unlike the liquidity-sweep branch it was tested alongside — see spec §4.5. Folded into the dashboard bundle by `build_dashboard_data.py --hourly-activity`. |
+| `forecast_range.py` | Range Outlook (added 2026-10-06): TimesFM 2.5 forecasts of the next day's range (mean + recalibrated q10–q90 band) and the next 5/20 days' average range, plus its own track record over the last 500 forecasts (MAE vs ADR20 per horizon, band coverage) and the last 60 next-day forecasts vs actuals. Runs under `.venv-forecast/` (PyTorch); part of `refresh_asset.py`'s chain when that venv exists (`--skip-forecast` to opt out). Folded into the bundle by `build_dashboard_data.py --range-forecast`. Validated first — see §5 and `research/timesfm_benchmark/`. |
+| `<asset>_range_forecast.json` | `forecast_range.py` output, one per asset (`output/`). |
+| `data/forecast/<asset>_timesfm_cache.csv` | Forecast cache for `forecast_range.py`: one row per forecast origin, keyed by date + a hash of the exact 1,024-day input window, so a cached row is only reused if the data behind it is unchanged. A pure speed-up (deleting it only costs recompute time), committed so a fresh checkout doesn't need ~70 CPU-minutes to rebuild all 14. |
+| `research/timesfm_benchmark/` | The validate-first study behind the Range Outlook: TimesFM 2.5 vs naive / ADR20 / log-HAR on next-day, 5-day and 20-day range, all 14 assets, 2016–2026. Findings + verdict in its README. Not part of the pipeline. |
 | `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
 ---
@@ -94,6 +98,11 @@ first step in Claude Code.
 python3 -m pip install pandas numpy scipy --break-system-packages   # (or in a venv)
 ```
 Tested with: pandas 3.0.2, numpy, scipy 1.17.1, Python 3.
+
+The Range Outlook stage (`forecast_range.py`) additionally needs PyTorch + `timesfm`, kept in a
+separate `.venv-forecast/` (gitignored) — see README "Range Outlook (TimesFM) environment".
+Tested with timesfm 3.0.2 (TimesFM 2.5 200M checkpoint, `google/timesfm-2.5-200m-pytorch`),
+torch 2.14 CPU build, Python 3.13.
 
 No other services or API keys are required for Phases 1–2. A free economic-calendar
 API and a database (if/when migrating off static files) are evaluated later — see spec §7–§8.
@@ -481,6 +490,22 @@ API and a database (if/when migrating off static files) are evaluated later — 
   3 most common NFP profiles per asset, loaded on demand via `KPTPData.loadAsset()`. Full
   write-up: spec §4.5.
 
+- **Range Outlook — TimesFM daily-range forecasts (2026-10-06).** Validated before building,
+  per the standing rule: `research/timesfm_benchmark/` backtested TimesFM 2.5 (200M, zero-shot,
+  1,024-day context) against naive, ADR20 and direct log-HAR on next-day / 5-day / 20-day
+  average range, every trading day 2016–2026, all 14 assets. TimesFM's **mean** output beat ADR20
+  in 42/42 asset × horizon cells (40 at p < 0.05, Diebold-Mariano), beat HAR across FX and tied
+  it at H5/H20 on most commodities/indices — never significantly worse. Its raw q10–q90 band
+  under-covered the upper tail on every asset (11.6–15.1% above q90); a trailing per-quantile
+  recalibration over the last 500 forecasts fixed that (10.1–11.1%) at negligible pinball cost.
+  **Decided:** direction is out of scope (published evidence: ~coin-flip zero-shot); show the
+  mean, not the median; calibrate the band, show only H1's band (H5/H20 mean only); keep a
+  self-scoring track record in the output so a bad regime (2022 was ADR20-level) is visible.
+  Production stage `forecast_range.py` reproduces the benchmark's method exactly (forecasts
+  match the benchmark cache to the float). TimesFM runs in its own venv so the core pipeline
+  stays dependency-light; without that venv the stage is skipped and the dashboard hides the
+  card — a missing forecast, never a stale one built from older data.
+
 ---
 
 ## 6. Known open items / things to watch
@@ -500,6 +525,13 @@ API and a database (if/when migrating off static files) are evaluated later — 
   (concentration R ≈ 0.14–0.18), tightening somewhat in shorter/recent windows
   (R ≈ 0.19–0.29). This is a real, honest finding — not a bug — and should inform how
   confidently the eventual dashboard/trading logic presents time-of-extreme predictions.
+- **Range Outlook freshness:** forecasts start from the cleaned data's last date. With MT5
+  exports done by hand, the dashboard will usually show a *historical* forecast (it says so
+  explicitly when the next-day target date has passed). The feature earns its keep only with a
+  regular export cadence — or the live feed (spec §9 Phase 4).
+- **Range Outlook model drift:** the cache is keyed on the model id; switching TimesFM version
+  (e.g. 3.0, whose weights are non-commercial) recomputes everything and should be re-run
+  through `research/timesfm_benchmark/` first rather than swapped in blind.
 - **Weekly extremes cluster on Friday/Monday** in this dataset, not Tuesday/Wednesday as
   ICT lore suggests. Worth keeping in mind when building the Phase 2 profile taxonomy —
   your own labels may end up meaningfully different from ICT's.

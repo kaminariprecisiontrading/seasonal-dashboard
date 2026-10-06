@@ -7,7 +7,7 @@ as several separate manual commands:
     clean_mt5_csv.py -> profile_taxonomy.py -> stats_engine.py
         -> profile_taxonomy_weekly.py -> profile_taxonomy_monthly.py
         -> profile_taxonomy_yearly.py -> session_activity.py
-        -> build_dashboard_data.py
+        -> forecast_range.py -> build_dashboard_data.py
         -> export_profile_examples.py -> export_calendar_data.py
 
 profile_taxonomy_weekly.py / profile_taxonomy_monthly.py / profile_taxonomy_yearly.py
@@ -24,6 +24,16 @@ export_profile_examples.py) but its output is folded into the same dashboard
 bundle (--hourly-activity -> bundle.hourly_activity), so it has to run
 *before* build_dashboard_data.py, unlike export_profile_examples.py which
 writes its own separate file and can run after.
+
+forecast_range.py (Range Outlook, added 2026-10-06) needs PyTorch + timesfm,
+which live in a separate venv (.venv-forecast/) so the core pipeline's .venv
+stays light. It is run with that venv's interpreter when it exists; when it
+doesn't, the stage is skipped with a warning and the bundle simply has no
+range_forecast (the dashboard hides the card) -- never a stale one. Validated
+first in research/timesfm_benchmark/. Its forecast cache
+(data/forecast/<asset>_timesfm_cache.csv) is a pure speed-up keyed by each
+forecast's exact input window, so this stage keeps the "always reprocess
+everything" contract below.
 
 Built to be safe to re-run at any cadence (daily/weekly/monthly/ad hoc) --
 every stage always reprocesses the *complete* history from the current raw
@@ -57,6 +67,8 @@ Usage:
     --skip-yearly     skip the yearly profile taxonomy (Tier 5)
     --skip-hourly-activity   skip the hourly session-activity export (Tier 5b —
                        re-parses the full raw M1 file, like --skip-examples)
+    --skip-forecast   skip the TimesFM Range Outlook stage (the bundle then
+                       has no range_forecast)
 """
 import sys
 import os
@@ -96,6 +108,15 @@ ASSET_REGISTRY = {
 }
 
 
+def find_forecast_python():
+    """Interpreter of the separate forecast venv (Windows or POSIX layout), or None."""
+    for rel in (("Scripts", "python.exe"), ("bin", "python")):
+        p = os.path.join(ROOT, ".venv-forecast", *rel)
+        if os.path.exists(p):
+            return p
+    return None
+
+
 def run(cmd):
     print(f"\n$ {' '.join(cmd)}", file=sys.stderr)
     subprocess.run(cmd, check=True, cwd=HERE)
@@ -113,6 +134,7 @@ def main():
     ap.add_argument("--skip-monthly", action="store_true")
     ap.add_argument("--skip-yearly", action="store_true")
     ap.add_argument("--skip-hourly-activity", action="store_true")
+    ap.add_argument("--skip-forecast", action="store_true")
     args = ap.parse_args()
 
     asset = args.asset.upper()
@@ -152,6 +174,7 @@ def main():
     yearly_profiles_csv  = os.path.join(clean_dir, f"{asset_lower}_yearly_profiles.csv")
     yearly_summary_json  = os.path.join(output_dir, f"{asset_lower}_yearly_profile_summary.json")
     hourly_activity_json = os.path.join(output_dir, f"{asset_lower}_hourly_activity.json")
+    range_forecast_json  = os.path.join(output_dir, f"{asset_lower}_range_forecast.json")
     dashboard_js = os.path.join(dashboard_data_dir, f"{asset_lower}.js")
     examples_js  = os.path.join(dashboard_data_dir, "profile-examples", f"{asset_lower}.js")
     calendar_dir = os.path.join(dashboard_data_dir, "calendar")
@@ -186,6 +209,16 @@ def main():
         build_dashboard_cmd += ["--hourly-activity", hourly_activity_json]
     else:
         print("\n(skipped --skip-hourly-activity)", file=sys.stderr)
+    forecast_py = find_forecast_python()
+    if args.skip_forecast:
+        print("\n(skipped --skip-forecast)", file=sys.stderr)
+    elif forecast_py is None:
+        print("\nWARNING: .venv-forecast/ not found -- skipping the Range Outlook stage "
+              "(forecast_range.py needs PyTorch + timesfm). See README 'Range Outlook' to set it up.",
+              file=sys.stderr)
+    else:
+        run([forecast_py, "forecast_range.py", clean_csv, range_forecast_json, "--asset", asset])
+        build_dashboard_cmd += ["--range-forecast", range_forecast_json]
     run(build_dashboard_cmd)
 
     if not args.skip_examples:
