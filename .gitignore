@@ -16,3 +16,6 @@ Thumbs.db
 # Editor/IDE
 .vscode/
 .idea/
+# TimesFM benchmark (research/timesfm_benchmark) — separate heavy venv + regenerable model cache
+.venv-forecast/
+research/timesfm_benchmark/cache/
