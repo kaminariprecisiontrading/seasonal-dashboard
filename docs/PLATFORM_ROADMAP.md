@@ -465,15 +465,25 @@ for a real back-and-forth:
 
 1. **Tier 1** — ✅ done (v1.8).
 2. **Tier 2** — ✅ done (v1.9).
-3. **Tier 3 + Tier 4 together** — mobile pass done as part of the tab restructure, not before it.
+3. **Tier 4** — ✅ done (v1.12, 2026-09-06). 7-tab layout, unified Upload tab.
+   **Tier 3** — ✅ done (v1.16, 2026-09-06). Originally planned alongside Tier 4; shipped just
+   after it, once a UX audit measured the phone-width overflow directly.
 4. **Tier 5** — ✅ done (2026-09-05). Daily, **Weekly** (a "Weekly Profile Taxonomy" card grid and
    a "Week High/Low — Day Pairing" heatmap), **Monthly** (a "Monthly Profile Taxonomy" card grid
    and a "Month High/Low — Week Pairing" heatmap), and **Yearly** (a "Yearly Profile Taxonomy"
    card grid, disclosed small-sample, and a "Year High/Low — Month Pairing" heatmap) are all done
    and dashboard-wired for all 14 Profiling assets, full detail/compare-page support grouped
    Daily/Weekly/Monthly/Yearly. The full Daily → Weekly → Monthly → Yearly ladder is complete.
-5. **Tier 5b** — ongoing. Liquidity-sweep branch: descriptive study done, **parked** (no real
-   cross-asset effect found). Session-overlap activity branch: ✅ done, an "Hourly Activity" chart
-   shipped on the Profiling tab's Daily view. Still open: session-defined extreme profiles,
-   news-release-timing profiles, Frankfurt as a distinct session.
-6. **Tier 6** — parked, no action until explicitly raised again.
+5. **Tier 5b** — mostly done (2026-09-06). Shipped on the Profiling tab's Daily view: "Hourly
+   Activity" chart, "Day High/Low — Session Pairing" and "Daily High/Low — Hour Pairing"
+   heatmaps, and the "NFP Fridays vs. Other Fridays" panel (+ NFP profile breakdown). Liquidity-
+   sweep branch **parked** (no real cross-asset effect found). Still open: the generic 8:30 NY
+   news-embargo profile (blocked on a news/event annotation layer) and Frankfurt as a distinct
+   session.
+6. **Tier 6** — parked, no action until explicitly raised again. The Analysis tab's "near-term"
+   one-shot item under Tier 6 is ✅ done (v1.13–v1.14); the chat interface itself is not started.
+
+**Status as of 2026-10-06:** no work since v1.16 (2026-09-06). All Profiling data is as of
+2026-09-03 (the last MT5 M1 export); a refresh needs new exports first (see `README.md` →
+"Market Profiling"). For un-started work outside this doc (PWA, themes, statistical-depth
+features), see `ROADMAP.md` Phases 6B–9.

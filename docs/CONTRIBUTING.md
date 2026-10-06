@@ -74,7 +74,7 @@ This regenerates `data/signals_manifest.js` so the new asset's live signal chip 
 Open the page via Live Server (not by opening the file directly — relative paths require a server). Check:
 - Accordion builds with 12 months and correct week data
 - AI Analysis tab panel appears (pill buttons visible)
-- TradingView chart loads on the Price tab
+- TradingView chart loads on the Live Price tab
 - No console errors
 
 ### 6. Deploy

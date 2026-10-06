@@ -2,9 +2,9 @@
 
 **Project:** Kaminari Precision Trading — Seasonal Confluence Engine  
 **Project Start:** April 2026  
-**Current Status:** v1.6 — All 5 build phases complete · 97 assets · 7 tabs per dashboard  
+**Current Status:** v1.16 (September 2026) — 98 asset pages · 7 tabs per dashboard · Market Profiling live for 14 assets · Platform roadmap Tiers 1–5 complete (see `PLATFORM_ROADMAP.md`)  
 **Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode  
-**Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex)  
+**Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex) · MT5 M1 history via the sibling `KPT-Market-Profiling` pipeline (Profiling tab, BTCUSD seasonals)  
 **Repository:** Private GitHub repo — `seasonal-dashboard`  
 **Deployment:** Netlify — https://kpt-seasonals.netlify.app/ (free static hosting; auto-deploys from private GitHub repo on push)
 
@@ -14,21 +14,23 @@
 
 A personal trading confluence engine that converts Moore Research Center seasonal tendency charts into structured, interactive HTML dashboards. Each dashboard provides directional bias — Bullish, Bearish, or Choppy — broken down by timeframe (5-YR, 15-YR, long-term) and by granularity (yearly arc → monthly → weekly Wk1–4).
 
-**All five confluence layers are now live.** Every asset dashboard has seven tabs:
+**All confluence layers are live.** Every asset dashboard has seven tabs (order set by `PLATFORM_ROADMAP.md` Tier 4, v1.12):
 
 | Tab | Panel | What it does |
 |-----|-------|-------------|
 | Seasonals | Accordion | Combined + individual TF tables; month quick-jump; current month auto-opens |
 | Trend | Seasonal curve | Cumulative directional-bias chart from `MONTHS[]`; NOW marker; monthly shading |
-| Price | TradingView | Embedded live/delayed price chart |
-| History | Backtest | Upload MT5 D1 CSV → raw tendency, win-rate, and avg-return heatmaps vs the seasonal model |
-| Sessions | Intraday bias | Upload MT5 H1/H4 CSV → average return by hour, by session, by day of week; filterable by seasonal signal |
+| Profiling | Market Profiling | Pre-computed statistics from full MT5 M1 history (14 assets only — see below): Daily/Weekly/Monthly/Yearly profile taxonomies, range distributions, time-of-extreme timing, high/low pairing heatmaps (session, hour, weekday, week-of-month, month), hourly activity, NFP Fridays panel, profiling calendar |
+| Live Price | TradingView | Embedded live/delayed price chart |
 | Macro | Calendar | Investing.com economic calendar filtered per asset + collapsible interpretation guide |
-| Analysis | AI synthesis | Claude Sonnet / Gemini Flash / Ollama — structured LONG/SHORT/NEUTRAL/WAIT verdict drawing on all available data layers |
+| Upload | Your own data | Upload any MT5 CSV (M1 → MN1, timeframe auto-detected) → seasonal-tendency backtest (raw tendency, win-rate, avg-return vs the seasonal model) and, for intraday data, by-hour / by-session / by-day-of-week bias. Replaced the former History + Sessions tabs |
+| Analysis | AI synthesis | Claude Sonnet 5 / Gemini Flash / Ollama — structured LONG/SHORT/NEUTRAL/WAIT verdict drawing on all available data layers, including Profiling; downloadable as `.md` |
+
+Pages without Profiling data show the Profiling tab's empty state; everything else is identical across all 98 pages. The layout is phone-responsive (≤600px tier, v1.16).
 
 The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP / FLIP) on every asset card, derived from each asset's `MONTHS[]` data via `data/signals_manifest.js` at page load.
 
-**Vision achieved:** A single-destination confluence tool — seasonal tendency + historical validation + macro calendar + intraday timing + AI synthesis — where the trader brings their own execution framework and the dashboard provides objective data from every relevant angle.
+**Vision achieved:** A single-destination confluence tool — seasonal tendency + statistical market profiling + historical validation + macro calendar + intraday timing + AI synthesis — where the trader brings their own execution framework and the dashboard provides objective data from every relevant angle.
 
 ---
 
@@ -39,7 +41,7 @@ The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP /
 | `README.md` | This file. Project overview, asset roster, vision. |
 | `ARCHITECTURE.md` | Technical deep-dive: code structure, file layout, ASSET_CONFIG pattern, adding new assets. |
 | `CHANGELOG.md` | Full version history of what was built and when. |
-| `ROADMAP.md` | Completed items + prioritised future development. |
+| `ROADMAP.md` | Original phase roadmap (Phases 1–9). Still the home for un-started Phases 6B–9 (PWA, themes, AI chat, statistical depth); `PLATFORM_ROADMAP.md` supersedes it for everything since v1.7. |
 | `DATA_DICTIONARY.md` | Complete schema reference — ASSET_CONFIG fields, MONTHS[] structure, signal vocabulary, localStorage keys. |
 | `CONTRIBUTING.md` | Step-by-step checklists for adding new assets, updating data, and adding new tabs. |
 | `USER_GUIDE.md` | End-user guide — how to use every tab, upload CSVs, configure AI providers, and print. |
@@ -53,6 +55,7 @@ The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP /
 - `ARCHITECTURE.md` — how the code is structured
 - `CHANGELOG.md` — what's been built and decided
 - `SKILL.md` — how to build new assets
+- `PLATFORM_ROADMAP.md` — current plan and status since v1.7
 
 ---
 
@@ -218,9 +221,31 @@ All 27 derived FX pairs are complete. Each pair combines two CME futures seasona
 
 ---
 
+## Crypto — Live Assets (1)
+
+| Asset | File | Source | Key Finding |
+|-------|------|--------|-------------|
+| BTCUSD | `assets/btc.html` | Statistically derived from MT5 daily history (`KPT-Market-Profiling/pipeline/gen_seasonal_signal.py`) — no Moore Research data exists for crypto | First crypto page; Seasonals + Profiling. ~18 other crypto tickers (incl. MTCUSD) are `PLANNED` cards on the index. See `DATA_DICTIONARY.md` → "Statistically-derived assets" |
+
+---
+
+## Market Profiling — Assets with Profiling Data (14)
+
+Data comes from the sibling `KPT-Market-Profiling` repo (Python pipeline over full MT5 M1 history, TradersWay) and is copied into `data/profiling/` by `node scripts/sync_profiling_data.js`. Each asset's data freshness is its `asOf` date in `data/profiling/manifest.js`.
+
+| Asset key | Page(s) |
+|-----------|---------|
+| gbpusd, eurusd, audusd, nzdusd, usdcad, usdchf, usdjpy | futures currency page + matching FX pair page (e.g. `gbp.html` + `fx-gbpusd.html`) |
+| xauusd, brent, wti, us500, ustech, us30 | `xau.html`, `brent.html`, `cl.html`, `sp500.html`, `nq.html`, `ym.html` |
+| btcusd | `btc.html` |
+
+**To refresh:** export new M1 bars from MT5 → merge into `data/raw/<ASSET>_M1_full.csv` with `concat_raw_csv.py` → `python pipeline/refresh_asset.py <ASSET>` (in `KPT-Market-Profiling`) → `node scripts/sync_profiling_data.js` (here). Re-running the pipeline without new raw data changes nothing. **To add an asset:** `CONTRIBUTING.md` → "Adding a New Profiling Asset".
+
+---
+
 ## Dynamic Index Signals
 
-Each status-complete card on the landing page shows a runtime-derived signal computed at page load from `data/signals_manifest.js`. The manifest contains the full 12-month × 4-week `com` string for all 97 assets. The landing page reads `currentMonth` and `currentWeek` from the system clock and maps the relevant entry to BULL / BEAR / CHOP / FLIP / AVOID.
+Each status-complete card on the landing page shows a runtime-derived signal computed at page load from `data/signals_manifest.js`. The manifest contains the full 12-month × 4-week `com` string for all 98 assets. The landing page reads `currentMonth` and `currentWeek` from the system clock and maps the relevant entry to BULL / BEAR / CHOP / FLIP / AVOID.
 
 A **signal filter bar** (All / Bull / Bear / Other) allows filtering the index by signal type. Each card is tagged with `data-sig-type` during the manifest injection pass. A **manifest freshness note** below the filter bar shows when the manifest was last regenerated, sourced from `const SIGNALS_GENERATED` in `signals_manifest.js`.
 
@@ -228,7 +253,7 @@ A **signal filter bar** (All / Bull / Bear / Other) allows filtering the index b
 ```
 node gen_signals_manifest.js
 ```
-Run from the `scripts/` directory. The script reads all 97 data files and overwrites `data/signals_manifest.js`.
+The script reads every `data/*.js` file and overwrites `data/signals_manifest.js` (98 entries as of v1.16). **Note:** `gen_signals_manifest.js` is not committed to this repo (see `scripts/README.md`). The manifest only needs regenerating when a `data/*.js` seasonal file changes; the current-week signal is resolved from the system clock at page load, so the manifest does not go stale with time.
 
 ---
 
@@ -238,15 +263,19 @@ Run from the `scripts/` directory. The script reads all 97 data files and overwr
 |-------|-------|--------|-----|
 | Seasonal tendency | Phase 1 | ✅ Complete (v1.0) | Seasonals |
 | Seasonal curve chart | Phase 4 | ✅ Complete (v1.4) | Trend |
-| Live price chart | Quick win | ✅ Complete (v1.1) | Price |
-| D1 price backtest | Phase 2 | ✅ Complete (v1.2) | History |
-| H1/H4 intraday bias | Phase 2.5 | ✅ Complete (v1.5) | Sessions |
+| Market Profiling (Daily) | v1.7 | ✅ Complete | Profiling |
+| Weekly/Monthly/Yearly profiles | Platform Tier 5 | ✅ Complete | Profiling |
+| Sub-session profiles (session/hour pairing, hourly activity, NFP) | Platform Tier 5b | ✅ Shipped (liquidity-sweep branch parked) | Profiling |
+| Live price chart | Quick win | ✅ Complete (v1.1) | Live Price |
 | Macro calendar | Phase 3 | ✅ Complete (v1.3) | Macro |
-| AI synthesis | Phase 5 | ✅ Complete (v1.5) | Analysis |
+| D1 backtest + intraday bias | Phases 2/2.5, unified in Tier 4 | ✅ Complete (v1.12) | Upload |
+| AI synthesis | Phase 5 | ✅ Complete (v1.5, context expanded v1.13–v1.14) | Analysis |
 
-**All seven layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, backtest win rates, and intraday session bias — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet, Gemini Flash, or any local Ollama model.
+**All layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, Upload-tab backtest win rates and intraday session bias, and Profiling statistics (daily-through-yearly profile shapes, NFP-week event risk) — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet 5, Gemini Flash, or any local Ollama model.
 
-**v1.6 additions (UX layer):** Configurable broker timezone offset on Sessions tab · AI cache clear button · TradingView symbol override (`tvSymbol`) · Single-tab print mode · Signal filter bar + manifest freshness on index · Three new reference docs (DATA_DICTIONARY, CONTRIBUTING, USER_GUIDE) · `scripts/` folder with utility script documentation.
+**Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass. Details: `CHANGELOG.md`.
+
+**v1.6 additions (UX layer):** Configurable broker timezone offset on Sessions tab (now part of the Upload tab) · AI cache clear button · TradingView symbol override (`tvSymbol`) · Single-tab print mode · Signal filter bar + manifest freshness on index · Three new reference docs (DATA_DICTIONARY, CONTRIBUTING, USER_GUIDE) · `scripts/` folder with utility script documentation.
 
 **Scope boundary:** No annotated chart interpretation (Elliott waves, Fibonacci, market structure). The tool provides objective data confluence. The trader applies their own execution framework.
 
@@ -265,22 +294,25 @@ The combined accordion auto-opens to the current month. Read the week-level comb
 **3. Confirm direction on the Trend tab.**
 The seasonal curve shows the cumulative directional bias across the year. The NOW marker shows where the asset sits in its seasonal cycle today. A rising curve confirms a bullish seasonal; a curve already past its peak is a caution signal even if the week reads BULL.
 
-**4. Check current price on the Price tab.**
+**4. Check the statistical profile on the Profiling tab** *(14 assets)*.
+Expected daily range (median, ADR20), the most common profile shapes at each granularity, and when the day's/week's high and low typically form. This turns "bullish this week" into "how far, and at what time of day/week, does a move usually happen." The NFP panel shows how much first-Friday releases change the picture.
+
+**5. Check current price on the Live Price tab.**
 The live TradingView chart shows where price is trading relative to recent structure. Seasonal bias is directional context — not an entry signal. Price should be approaching a logical level before acting.
 
-**5. Validate the edge on the History tab.**
-Upload a D1 CSV export from MT5 (see `USER_GUIDE.md` for the 7-step export process). The backtest panel shows raw tendency, win rate, and average return for each month and week historically. A seasonal signal with a 35% win rate over 30 years is much less interesting than one with 70%.
+**6. Validate the edge on the Upload tab.**
+Upload a CSV export from MT5 (see `USER_GUIDE.md` for the export process); any timeframe from M1 to monthly works, and sub-daily bars are aggregated to daily closes. The Seasonal Tendency view shows raw tendency, win rate, and average return for each month and week historically. A seasonal signal with a 35% win rate over 30 years is much less interesting than one with 70%.
 
-**6. Find the timing window on the Sessions tab.**
-Upload an H1 or H4 CSV. The Sessions panel breaks down average return by hour of day, by session (London / New York / Asian / Pacific), and by day of week. This answers "given the seasonal is bullish this week, *when* in the week has price historically moved?" Filter the session cards by seasonal signal to isolate the relevant subset.
+**7. Find the timing window (also on the Upload tab).**
+If the upload is intraday (M1–H4), the Upload tab also breaks down average return by hour of day, by session (London / New York / Asian / Pacific), and by day of week. This answers "given the seasonal is bullish this week, *when* in the week has price historically moved?" Filter the session cards by seasonal signal to isolate the relevant subset.
 
-**7. Check for macro risk on the Macro tab.**
+**8. Check for macro risk on the Macro tab.**
 The Investing.com calendar is pre-filtered to the currencies and events most relevant to the asset. A high-impact event mid-week can override any seasonal tendency. The interpretation guide explains which event types matter most for each asset class.
 
-**8. Run the AI synthesis on the Analysis tab.**
-Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant.
+**9. Run the AI synthesis on the Analysis tab.**
+Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant, and can be downloaded as a `.md` file.
 
-**9. Apply your own execution framework.**
+**10. Apply your own execution framework.**
 The dashboard provides objective confluence data. Entry trigger, position sizing, stop placement, and trade management are the trader's own decisions. The tool's job is to ensure every angle has been considered before a bias is formed.
 
 > For detailed usage instructions on any tab, see `docs/USER_GUIDE.md`.
@@ -291,7 +323,7 @@ The dashboard provides objective confluence data. Entry trigger, position sizing
 
 - **Chart Source:** Moore Research Center (mooreres.com) — seasonal tendency overlays
 - **AI Engine (building):** Claude via claude.ai (Cowork) — design, analysis, dashboard generation
-- **AI Engine (in-dashboard, option 1):** Anthropic API — Claude Sonnet (`claude-sonnet-4-20250514`)
+- **AI Engine (in-dashboard, option 1):** Anthropic API — Claude Sonnet 5 (`claude-sonnet-5`)
 - **AI Engine (in-dashboard, option 2):** Google AI Studio API — Gemini Flash (`gemini-2.0-flash`)
 - **AI Engine (in-dashboard, option 3):** Ollama — any local model (e.g. `mistral:latest`)
 - **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
@@ -304,6 +336,7 @@ The dashboard provides objective confluence data. Entry trigger, position sizing
 | Context | Tool | Best Used For |
 |---------|------|--------------|
 | Design & planning | Claude.ai / Cowork | New asset analysis, architectural decisions, doc updates |
+| Market data pipeline | `KPT-Market-Profiling` (Python) | Cleans MT5 M1 exports, computes all Profiling statistics |
 | Dashboard AI (cloud) | Claude API / Gemini API | Production weekly analysis with structured verdict output |
 | Dashboard AI (local) | Ollama | Offline analysis; no API costs; model choice (mistral, llama3, etc.) |
 

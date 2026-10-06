@@ -18,10 +18,10 @@ Each asset dashboard has seven tabs along the top:
 |-----|---------------|
 | **Seasonals** | The seasonal tendency accordion — month-by-month analysis, week-by-week breakdown |
 | **Trend** | The seasonal bias curve — visual representation of the full-year seasonal arc |
-| **Price** | A live TradingView price chart for the asset |
-| **History** | Upload your MT5 price data to validate the seasonal model against real price history |
-| **Sessions** | Upload your MT5 intraday data to see which sessions and days of week tend to perform |
+| **Profiling** | Statistics from decades of real price data: typical range, profile shapes, and when highs/lows form (14 assets) |
+| **Live Price** | A live TradingView price chart for the asset |
 | **Macro** | Investing.com economic calendar filtered for this asset's relevant currencies |
+| **Upload** | Upload your own MT5 price data (any timeframe) to validate the seasonal model and see intraday timing |
 | **Analysis** | AI-generated seasonal analysis using Claude, Gemini, or your own local Ollama model |
 
 ---
@@ -54,59 +54,79 @@ Monthly background shading reflects the combined signal for each month: green = 
 
 ---
 
-## History Tab — Validating Seasonals Against Real Price Data
+## Profiling Tab — Statistical Market Profile
 
-Upload your MetaTrader 5 daily (D1) price data to see how well the seasonal model has performed historically.
+Available for **14 assets** with full MT5 minute-level history behind them: GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD, USDCHF, USDJPY (on both the futures currency page and the FX pair page), Gold (XAU), Brent, WTI crude, S&P 500, Nasdaq 100, DJIA and BTCUSD. On every other asset the tab shows an empty state.
+
+Where the Seasonals tab says *which direction* this time of year tends to favour, Profiling says *how far price usually moves and when*, measured directly from decades of real price data.
+
+- **Granularity switcher** — Daily / Weekly / Monthly / Yearly. Each shows the profile taxonomy, range distribution, and timing of the period's high and low at that scale.
+- **Lookback dial** — choose how much history the stats use (e.g. recent years vs. full history). Hidden on Yearly, where it has no effect.
+- **Profile Taxonomy** — how often each profile shape occurs (Trend Day, Normal Day, Volatile Day, Compression Day, etc.). Click a profile card to open its detail page, with a real example chart; from there **Compare across assets** opens a side-by-side view of up to 10 assets.
+- **Range Distribution** — the typical size of a day/week/month/year's range (median, percentiles, ADR20).
+- **Time of Extreme** — when the high and low usually form.
+- **Pairing heatmaps** — which session / hour (Daily), weekday (Weekly), week-of-month (Monthly) or month (Yearly) the high and low tend to land in *together*. Same-period highs and lows are rare, which is useful for anticipating where the opposite extreme forms.
+- **Hourly Activity** (Daily) — average range per hour; the London–New York overlap is the most active window for every asset.
+- **NFP Fridays vs. Other Fridays** (Daily) — how first-Friday US jobs reports change the day's range and the chance of an extreme forming in the release window.
+- **Profiling calendar** — a day-by-day calendar of past profiles, linked from the tab.
+
+**Yearly** statistics are based on only ~20–34 years of data per asset, and the page says so. Treat them as context, not as a tested edge.
+
+Data freshness: the **Data As Of** figure shows the last date included. It updates only when new MT5 data is exported and the pipeline is re-run (a developer task).
+
+---
+
+## Live Price Tab
+
+An embedded TradingView chart (weekly interval by default) for checking where price is right now relative to its seasonal and statistical context. You can change the interval and symbol inside the widget.
+
+---
+
+## Upload Tab — Your Own Price Data
+
+Upload a MetaTrader 5 CSV export at **any timeframe from M1 (1-minute) up to MN1 (monthly)**. The timeframe is detected automatically, and the tab shows whichever views the data supports. This tab replaced the former History and Sessions tabs.
 
 ### Exporting from MT5
 
 1. Open MetaTrader 5
 2. Go to **View → Symbols** → select your asset
 3. Click the **Bars** tab
-4. Set timeframe to **D1** (daily)
+4. Choose a timeframe: **D1** is enough for the seasonal backtest; **H1** (or any of M1–H4) also gives you the intraday timing view
 5. Set the date range to cover your full history (e.g. 1993 to today)
 6. Click **Request**, then **Export Bars** in the bottom toolbar
 7. Save the file as CSV
-8. Drag and drop the CSV file onto the upload area in the History tab
-
-### Reading the Results
-
-**Raw Price Tendency heatmap** — shows the % of years that price actually rose during each (month, week) cell, based purely on price data with no reference to the seasonal model. Green = rose more than 60% of years, amber = 40–59%, red = less than 40%. This is the objective baseline.
-
-**Win Rate by Period** — shows how often the seasonal signal (Long/Short/Chop) was directionally correct. A cell with a high win rate means the seasonal model reliably predicted direction during that period. Green ≥ 65%, amber 50–64%, red < 50%. Chop/Flip periods show `~` (no directional claim).
-
-**Average Weekly Return by Month** — bar chart showing the average magnitude of weekly moves per month. Pair this with Win Rate: a high win rate + tall bar = the seasonal signal was right AND the moves were meaningful. A high win rate + short bar = right direction but moves were small.
-
-Your uploaded data is saved in the browser (no re-upload needed on next visit).
-
----
-
-## Sessions Tab — Intraday Bias Analysis
-
-Upload MetaTrader 5 hourly (H1) or 4-hour (H4) data to see which times of day, trading sessions, and days of week tend to be most favourable for this asset.
-
-### Exporting from MT5
-
-Same steps as the History tab — but select **H1** (or H4) instead of D1 at step 4.
+8. Drag and drop the CSV file onto the upload area in the Upload tab
 
 ### Broker Timezone
 
-Before uploading, set your broker's server timezone using the offset dropdown (UTC+0 to UTC+3). Most MT5 brokers run on **EET (UTC+2 winter, UTC+3 summer)**. If your broker uses a different offset, change this before uploading so that session boundaries (Asian Open, London Open, etc.) are correctly identified.
+For intraday (M1–H4) uploads, set your broker's server timezone using the offset dropdown. Most MT5 brokers run on **EET (UTC+2 winter, UTC+3 summer)**. If your broker uses a different offset, change this before uploading so that session boundaries (Asian, London, etc.) are identified correctly. The offset is saved per asset, and it doesn't affect daily or higher-timeframe uploads.
 
-The offset is saved per asset, so you only need to set it once per asset.
+### Seasonal Tendency view (every timeframe)
 
-### Reading the Results
+Sub-daily bars are aggregated to daily closes first.
 
-**By Hour chart** — shows average return per hour slot across all uploaded history. The amber line overlay shows the % of bars that closed positive. Session background shading identifies the major session windows.
+**Raw Price Tendency heatmap**: the % of years that price actually rose during each (month, week) cell, based purely on price data with no reference to the seasonal model. Green means it rose in more than 60% of years, amber 40–59%, red less than 40%. This is the objective baseline.
 
-**By Session cards** — one card per trading session (Late NY/Asian, Asian, London, London/NY Overlap, New York, After-hours):
+**Win Rate by Period**: how often the seasonal signal (Long/Short/Chop) was directionally correct. A high win rate means the seasonal model reliably predicted direction during that period. Green ≥ 65%, amber 50–64%, red < 50%. Chop/Flip periods show `~` (no directional claim).
+
+**Average Weekly Return by Month**: a bar chart of the average size of weekly moves per month. Read it together with Win Rate: a high win rate with a tall bar means the signal was right AND the moves were meaningful. A high win rate with a short bar means the direction was right but the moves were small.
+
+A monthly (MN1) upload collapses the week axis to a single "Month" slot, since one bar per month has no weekly detail.
+
+### Intraday Timing view (M1–H4 uploads only)
+
+**By Hour chart**: average return per hour slot across all uploaded history. The amber line overlay shows the % of bars that closed positive. Session background shading identifies the major session windows.
+
+**By Session cards**: one card per trading session (Late NY/Asian, Asian, London, London/NY Overlap, New York, After-hours).
 - The large number is the average return for that session
-- `"847 / 1,653 sessions"` means the session closed up on 847 days out of 1,653 total days where data was available for that session window
-- Positive average + high session count = reliable bullish session tendency
+- `"847 / 1,653 sessions"` means the session closed up on 847 of the 1,653 days with data for that session window
+- A positive average across a high session count means a reliable bullish session tendency
 
-**By Day of Week cards** — one card per weekday. The count `"682 / 1,654 days"` means price closed up on 682 out of 1,654 trading days that fell on that weekday.
+**By Day of Week cards**: one card per weekday. The count `"682 / 1,654 days"` means price closed up on 682 of the 1,654 trading days that fell on that weekday.
 
-**Signal filter** — the filter row (All / Long weeks / Short weeks / Chop weeks) narrows the dataset to only dates that fall within weeks whose seasonal signal matches. This lets you see, for example, how the London session performs specifically during the bearish seasonal period vs the bullish one.
+**Signal filter**: the filter row (All / Long weeks / Short weeks / Chop weeks) narrows the data to dates in weeks whose seasonal signal matches. For example, you can compare how the London session performs in the bearish seasonal period against the bullish one.
+
+Your uploaded data is saved in the browser (no re-upload needed on next visit).
 
 ---
 
@@ -134,31 +154,34 @@ Click the **⚙** (gear) icon to open the settings panel. You only need to do th
 
 ### Context Chips
 
-Below the provider selector, four chips show which data layers will be included in the AI's analysis:
+Below the provider selector, five chips show which data layers will be included in the AI's analysis:
 
 - **Seasonal** — month-by-month seasonal analysis from the data file. Always available.
 - **Curve** — the cumulative seasonal bias curve summary. Always available.
-- **History** — win rates and best/worst months from your uploaded D1 CSV. Shows ✓ after uploading on the History tab.
-- **Sessions** — best/worst session and day-of-week from your uploaded H1/H4 CSV. Shows ✓ after uploading on the Sessions tab.
+- **History**: win rates and best/worst months from your upload. Shows ✓ after uploading any CSV on the Upload tab.
+- **Sessions**: best/worst session and day of week. Shows ✓ after uploading an intraday (M1–H4) CSV on the Upload tab.
+- **Profiling**: typical range, the most common daily/weekly/monthly/yearly profile shape, and dominant high/low timing. Shows ✓ automatically on the 14 Profiling assets. During an NFP week, the event risk is included too.
 
-Upload both CSVs before running analysis to get the full four-layer context.
+A single intraday upload (e.g. H1) lights up both History and Sessions.
 
 ### Running Analysis
 
 Select a provider with the pill buttons, then click **Run Analysis**. The response streams in live. Results are cached for the current week — if you re-open the page during the same week, the cached result loads instantly.
 
-If you upload new CSV data mid-week and want the AI to reflect the new data, click the **✕** on the cached result to clear it and re-run.
+If you upload new CSV data mid-week and want the AI to reflect the new data, click **✕ Clear & re-run** on the cached result.
+
+Click **⬇ Download .md** to save the result as a Markdown file (`{asset}_Analysis_{date}_{time}.md`).
 
 ### Reading the Output
 
 The AI always produces a structured response:
 
 - **VERDICT block** — `LONG`, `SHORT`, `NEUTRAL`, or `WAIT` with a brief rationale
-- **Data table** — 5-row summary of the current seasonal position across all context layers
+- **Data table**: a 6-row summary (Seasonal Signal, Historical Accuracy, Curve Position, Market Profile, Best Entry Window, Key Risk). Layers without data are marked N/A
 - **3-Month outlook** — a short paragraph covering the next three months' seasonal bias
 - **Trade notes** — 3 bullet points with specific observations or actionable ideas
 
-The verdict reflects the seasonal tendency only — it does not account for current price, news, or technical structure. Use it alongside your own market analysis, not as a standalone entry signal.
+The verdict reflects the dashboard's data layers only. It does not account for current price, news, or technical structure. Use it alongside your own market analysis, not as a standalone entry signal.
 
 ---
 

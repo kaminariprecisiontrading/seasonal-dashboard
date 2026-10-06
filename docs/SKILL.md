@@ -111,7 +111,7 @@ The accordion must:
 
 The Analysis tab in v1.5 supports three AI providers, selectable via pill buttons at the top of the panel:
 
-**Claude (Anthropic)** — SSE streaming, `claude-sonnet-4-20250514`
+**Claude (Anthropic)** — SSE streaming, `claude-sonnet-5`
 **Gemini Flash (Google)** — SSE streaming, `gemini-1.5-flash`  
 **Ollama (local)** — NDJSON streaming, any locally-pulled model
 

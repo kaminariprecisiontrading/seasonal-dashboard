@@ -2,6 +2,26 @@
 
 ---
 
+## v1.16.1 — October 2026
+**Docs catch-up — no code changes**
+
+- **`README.md`** was still describing v1.6. Updated: status line, the 7-tab table (Profiling,
+  Live Price, Upload replacing History/Sessions), new Crypto and Market Profiling asset sections
+  (including the refresh chain), build-status table, the trade-idea workflow, and the model string
+  (`claude-sonnet-5`).
+- **`USER_GUIDE.md`**: added Profiling and Live Price sections; merged the History and Sessions
+  sections into one Upload section (any M1–MN1 timeframe); context chips now 5 (adds Profiling);
+  documented `.md` download and the 6-row output table.
+- **`PLATFORM_ROADMAP.md`**: corrected the execution-order summary (Tier 3/4 ordering; Tier 5b's
+  shipped items were still listed as open) and added a dated status note.
+- **`ROADMAP.md`**: Phase 6C marked largely complete via Platform Tier 3.
+- Stale tab names/model strings fixed in `SKILL.md`, `CONTRIBUTING.md`, `PROMPTS.md`.
+- Data refresh checked: all 14 Profiling assets' raw MT5 exports end 2026-09-03/04 and were
+  already processed, so re-running the pipeline would change nothing. A refresh needs new MT5
+  exports first.
+
+---
+
 ## v1.16 — September 2026
 **Mobile responsiveness pass (Tier 3) — fixes page-wide horizontal scroll on phones**
 

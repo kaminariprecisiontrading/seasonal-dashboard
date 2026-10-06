@@ -187,24 +187,24 @@ The Analysis tab supports three providers. Select via the pill buttons at the to
 - Model: whatever you have pulled (e.g. `mistral:latest`, `llama3.2`)
 - Stored as `kpt-cfg-ollama-url` and `kpt-cfg-ollama-mdl`
 
-**Context chips** below the provider row show ✓ or ○ for each data layer. Upload a D1 CSV on the History tab and an H1/H4 CSV on the Sessions tab to unlock all four context layers before running analysis.
+**Context chips** below the provider row show ✓ or ○ for each data layer. Upload an intraday (M1–H4) CSV on the Upload tab to unlock both the History and Sessions layers; Profiling is automatic on the 14 Profiling assets.
 
 ---
 
 ## 8. Intraday CSV Upload Steps
 
-**Used for:** Getting the right CSV from MT5 for the Sessions tab.
+**Used for:** Getting the right CSV from MT5 for the Upload tab.
 
-The Sessions tab accepts **H1 or H4** exports from MetaTrader 5. Steps:
+The Upload tab accepts any MT5 export from **M1 to MN1**; the timeframe is auto-detected. For the intraday timing view, export **H1** (or any of M1–H4). Steps:
 1. Open MetaTrader 5
 2. View → Symbols → select your asset
 3. Go to the **Bars** tab
-4. Select timeframe: **H1** (or H4) — NOT D1, NOT M1
+4. Select timeframe: **H1** (or H4/M30/M15/M5/M1). D1 or higher gives only the seasonal backtest view
 5. Set start and end date (all available history recommended)
 6. Click **Request**, then **Export Bars** in the bottom toolbar
-7. Save as CSV, then drag-and-drop onto the Sessions tab upload area
+7. Save as CSV, then drag-and-drop onto the Upload tab upload area
 
-**Important:** The file must include a TIME column (`HH:MM`). The same steps used for the History tab (D1) apply — just change the timeframe selection.
+**Important:** Intraday files must include a TIME column (`HH:MM`).
 
 ---
 

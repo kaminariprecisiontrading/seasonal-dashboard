@@ -264,8 +264,14 @@ Adds installability and offline support. Requires three files, no framework, no 
 
 PWA benefits: full-screen native-app feel on iPhone/iPad, instant load from cache, works offline (localStorage AI cache + all seasonals data remain accessible).
 
-### 6C — Mobile-Responsive Layout (Planned)
-The dashboard was built desktop-first. Responsive work required:
+### 6C — Mobile-Responsive Layout — ✅ Largely complete (v1.16)
+Delivered as `PLATFORM_ROADMAP.md` Tier 3: a `@media (max-width: 600px)` phone tier fixing every
+measured overflow (topbar, tab bar now wraps instead of scrolling, Seasonals accordion with a
+sticky Month column, AI output tables, Upload/Profiling layouts). Pages no longer scroll sideways at a
+390px width. Not done, deliberately: collapsing the accordion to combined-signal-only, icon-only filter bar,
+larger touch targets, smaller Profiling chart fonts. The original plan is kept below for reference.
+
+The dashboard was built desktop-first. Responsive work required (original plan):
 - Horizontal tab bar → scrollable strip on narrow screens
 - Accordion table columns → collapse to combined signal only on mobile; tap to expand TF detail
 - TradingView chart panel → constrained height on narrow screens
