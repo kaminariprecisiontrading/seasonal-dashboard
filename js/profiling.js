@@ -209,6 +209,22 @@
 
     '<div class="kptp-stat-grid" id="kptp-stat-grid"></div>' +
 
+    // Range Outlook (TimesFM forecast, bundle.range_forecast) -- above the
+    // granularity switcher rather than inside one panel: it spans next-day,
+    // next-week and next-month horizons, so it belongs to no single granularity.
+    // Hidden entirely when the bundle has no range_forecast (pipeline run
+    // without .venv-forecast/), never shown half-empty.
+    '<div class="kptp-section-label" id="kptp-outlook-label" hidden>Range Outlook</div>' +
+    '<div class="kptp-section-note" id="kptp-outlook-note" hidden></div>' +
+    '<div class="kptp-outlook-stale" id="kptp-outlook-stale" hidden></div>' +
+    '<div class="kptp-panel-card" id="kptp-outlook-card" hidden>' +
+      '<div class="kptp-stat-grid kptp-outlook-grid" id="kptp-outlook-grid"></div>' +
+      '<div class="kptp-panel-title" style="margin-top:4px;">Recent next-day forecasts vs. actual range</div>' +
+      '<div id="kptp-outlook-chart"></div>' +
+      '<div class="kptp-outlook-legend" id="kptp-outlook-legend"></div>' +
+      '<div class="kptp-section-note" id="kptp-outlook-track" style="margin:10px 0 0;"></div>' +
+    '</div>' +
+
     // Granularity switcher -- the primary navigation for everything below.
     // Added 2026-09-05 after user feedback that scrolling through all four
     // granularities stacked on one page took too long; content that used to
@@ -432,6 +448,85 @@
       grid.appendChild(div);
     });
     kptpAttachGlossaryIcons(grid);
+  }
+
+  // Range Outlook -- TimesFM 2.5 forecasts of the upcoming daily range from
+  // KPT-Market-Profiling/pipeline/forecast_range.py. Validated before it was
+  // built (KPT-Market-Profiling/research/timesfm_benchmark/: beat ADR20 on all
+  // 14 assets x 3 horizons, 2016-2026); the band is the recalibrated q10-q90.
+  // The track record shown is re-scored on every pipeline refresh, so a period
+  // where the model does worse than ADR20 shows up here rather than being hidden.
+  function renderRangeOutlook() {
+    var rf = bundle.range_forecast;
+    var card = document.getElementById('kptp-outlook-card');
+    if (!card || !rf || !rf.forecast || !rf.forecast.h1) return;
+    ['kptp-outlook-label', 'kptp-outlook-note', 'kptp-outlook-card'].forEach(function (id) {
+      document.getElementById(id).hidden = false;
+    });
+
+    var f = rf.forecast;
+    var adr = rf.adr20;
+    function vsAdr(v) {
+      if (v == null || !adr) return '';
+      var d = Math.round((v / adr - 1) * 100);
+      return 'vs ADR20 ' + adr + ' (' + (d > 0 ? '+' : '') + d + '%)';
+    }
+    var stepWord = rf.trades_weekends ? 'days' : 'trading days';
+    var tiles = [
+      { label: 'Next day &middot; ' + f.h1.target_date, value: f.h1.mean,
+        sub: (f.h1.q10 != null ? '80% band ' + f.h1.q10 + '&ndash;' + f.h1.q90 + ' &middot; ' : '') + vsAdr(f.h1.mean) },
+      { label: 'Next 5 ' + stepWord + ' (avg/day)', value: f.h5 && f.h5.mean, sub: vsAdr(f.h5 && f.h5.mean) },
+      { label: 'Next 20 ' + stepWord + ' (avg/day)', value: f.h20 && f.h20.mean, sub: vsAdr(f.h20 && f.h20.mean) }
+    ];
+    var grid = document.getElementById('kptp-outlook-grid');
+    grid.innerHTML = tiles.map(function (t) {
+      return '<div class="kptp-stat-tile"><div class="kptp-stat-label">' + t.label + '</div>' +
+        '<div class="kptp-stat-value">' + (t.value != null ? t.value : '&mdash;') + '<span class="kptp-unit">' + unit + '</span></div>' +
+        '<div class="kptp-stat-sub">' + t.sub + '</div></div>';
+    }).join('');
+
+    var note = document.getElementById('kptp-outlook-note');
+    note.innerHTML =
+      'How much ' + pairUpper + ' is likely to move, <b>not which way</b>. Forecast by TimesFM 2.5 (Google&rsquo;s pretrained ' +
+      'time-series model) from the last ' + (rf.context_days || 1024) + ' daily ranges. Before it was added it was tested ' +
+      'against ADR20' + kptpGlossaryIcon('adr') + ' on all 14 Profiling assets over 2016&ndash;2026 and beat it on every one. ' +
+      'The 80% band should contain the next day&rsquo;s range about 8 days in 10.';
+    kptpAttachGlossaryIcons(note);
+
+    // Stale = the next-day target is already in the past (no MT5 refresh since).
+    var now = new Date();
+    var todayIso = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+    var stale = document.getElementById('kptp-outlook-stale');
+    if (f.h1.target_date < todayIso) {
+      stale.hidden = false;
+      stale.innerHTML = '<b>Historical forecast.</b> Made from data through ' + rf.as_of + ' for ' + f.h1.target_date +
+        ', which has already passed. It updates when new MT5 data is exported and the pipeline is re-run.';
+    }
+
+    KPTPCharts.renderForecastBand(document.getElementById('kptp-outlook-chart'), rf.recent, unit);
+    document.getElementById('kptp-outlook-legend').innerHTML =
+      '<span><span class="kptp-swatch kptp-swatch-band"></span>80% band</span>' +
+      '<span><span class="kptp-swatch kptp-swatch-line"></span>Forecast</span>' +
+      '<span><span class="kptp-dot" style="background:var(--dim)"></span>Actual (inside band)</span>' +
+      '<span><span class="kptp-dot" style="background:var(--kptp-expansion)"></span>Above band</span>' +
+      '<span><span class="kptp-dot" style="background:var(--kptp-compression)"></span>Below band</span>';
+
+    var tr = rf.track_record;
+    var track = document.getElementById('kptp-outlook-track');
+    if (tr && tr.rel_mae_vs_adr20) {
+      var parts = [['h1', 'next day'], ['h5', '5-day'], ['h20', '20-day']].map(function (h) {
+        var r = tr.rel_mae_vs_adr20[h[0]];
+        if (r == null) return null;
+        var pct = Math.round((1 - r) * 100);
+        return h[1] + ' <b>' + Math.abs(pct) + '% ' + (pct >= 0 ? 'lower' : 'higher') + '</b>';
+      }).filter(Boolean);
+      track.innerHTML =
+        '<b>Track record</b>, last ' + (tr.n ? tr.n.h1 : '') + ' forecasts (' + tr.from + ' &rarr; ' + tr.to + '): forecast error vs. ADR20 &mdash; ' +
+        parts.join(' &middot; ') +
+        (tr.band_coverage != null ? '. The 80% band contained <b>' + Math.round(tr.band_coverage * 100) + '%</b> of days (' +
+          Math.round(tr.above_q90 * 100) + '% above, ' + Math.round(tr.below_q10 * 100) + '% below).' : '.') +
+        ' <span class="kptp-muted-inline">Re-scored every time the data is refreshed.</span>';
+    }
   }
 
   function renderRangeSection(windowKey) {
@@ -1297,6 +1392,7 @@
    * macro.js/upload.js convention).
    */
   renderStatTiles();
+  renderRangeOutlook();
   buildGranularitySwitch();
   buildDial();
   renderRangeSection('full');

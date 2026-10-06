@@ -728,11 +728,89 @@ var KPTPCharts = (function () {
     container.appendChild(svg);
   }
 
+  // Range Outlook chart (bundle.range_forecast.recent): each recent day's
+  // next-day forecast band (q10-q90, shaded) and mean (line) vs. the range that
+  // actually happened (dots, coloured when outside the band). The final point
+  // has no actual yet -- it's the live forecast, drawn as a hollow marker.
+  function renderForecastBand(container, recent, unitLabel) {
+    clear(container);
+    unitLabel = unitLabel || 'pips';
+    if (!recent || recent.length < 2) { container.textContent = 'Not enough forecast history yet.'; return; }
+    // Drawing width follows the screen (1 unit ~ 1px) rather than the fixed
+    // 1000-unit viewBox the other charts use: a 60-point time series squashed
+    // to phone width at 1000:190 would be ~55px tall and unreadable. The panel
+    // is usually hidden (inactive tab) at render time, so its own clientWidth
+    // is 0 -- fall back to the viewport width.
+    var W = Math.round(Math.min(1000, Math.max(320, container.clientWidth || (window.innerWidth - 60))));
+    var H = 190, padL = 44, padR = 40, padT = 10, padB = 22;
+    var labelEvery = W < 600 ? 15 : 10;
+    var n = recent.length;
+    var hi = 0;
+    recent.forEach(function (p) { hi = Math.max(hi, p.q90 || 0, p.actual || 0, p.mean || 0); });
+    hi = hi * 1.05 || 1;
+    function sx(i) { return padL + (i / (n - 1)) * (W - padL - padR); }
+    function sy(v) { return padT + (1 - v / hi) * (H - padT - padB); }
+
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'kptp-forecast-svg' });
+
+    for (var g = 0; g <= 4; g++) {
+      var gv = hi * g / 4, gy = sy(gv);
+      svg.appendChild(el('line', { x1: padL, x2: W - padR, y1: gy, y2: gy, stroke: 'var(--border)', 'stroke-width': 1 }));
+      var gt = el('text', { x: padL - 6, y: gy + 3, 'font-size': 9, fill: 'var(--muted)', 'text-anchor': 'end' });
+      gt.textContent = Math.round(gv);
+      svg.appendChild(gt);
+    }
+
+    var banded = [];
+    recent.forEach(function (p, i) { if (p.q10 != null && p.q90 != null) banded.push(i); });
+    if (banded.length > 1) {
+      var top = banded.map(function (i) { return sx(i) + ',' + sy(recent[i].q90); });
+      var bot = banded.slice().reverse().map(function (i) { return sx(i) + ',' + sy(recent[i].q10); });
+      svg.appendChild(el('polygon', { points: top.concat(bot).join(' '), fill: 'var(--accent-combined)', opacity: 0.14 }));
+    }
+    var meanPts = [];
+    recent.forEach(function (p, i) { if (p.mean != null) meanPts.push(sx(i) + ',' + sy(p.mean)); });
+    svg.appendChild(el('polyline', { points: meanPts.join(' '), fill: 'none', stroke: 'var(--accent-combined)', 'stroke-width': 1.8 }));
+
+    var slot = (W - padL - padR) / (n - 1);
+    recent.forEach(function (p, i) {
+      var x = sx(i);
+      var isLive = p.actual == null;
+      var band = (p.q10 != null) ? (p.q10 + '–' + p.q90 + ' ' + unitLabel) : 'n/a';
+      var tip;
+      if (isLive) {
+        svg.appendChild(el('line', { x1: x, x2: x, y1: sy(p.q90 || p.mean), y2: sy(p.q10 || p.mean), stroke: 'var(--accent-combined)', 'stroke-width': 2 }));
+        svg.appendChild(el('circle', { cx: x, cy: sy(p.mean), r: 5, fill: 'var(--bg)', stroke: 'var(--accent-combined)', 'stroke-width': 2 }));
+        var lt = el('text', { x: x + 8, y: sy(p.mean) + 3, 'font-size': 9, fill: 'var(--text)' });
+        lt.textContent = 'next';
+        svg.appendChild(lt);
+        tip = '<b>' + p.date + ' — live forecast</b><br>Expected range: ' + p.mean + ' ' + unitLabel + '<br>80% band: ' + band;
+      } else {
+        var outside = (p.q90 != null && p.actual > p.q90) ? 'above' : (p.q10 != null && p.actual < p.q10) ? 'below' : null;
+        var color = outside === 'above' ? 'var(--kptp-expansion)' : outside === 'below' ? 'var(--kptp-compression)' : 'var(--dim)';
+        svg.appendChild(el('circle', { cx: x, cy: sy(p.actual), r: outside ? 3.5 : 2.5, fill: color }));
+        tip = '<b>' + p.date + '</b><br>Actual range: ' + p.actual + ' ' + unitLabel + '<br>Forecast: ' + p.mean + ' ' + unitLabel +
+          '<br>80% band: ' + band + (outside ? '<br><i>Outside the band (' + outside + ')</i>' : '');
+      }
+      var hit = el('rect', { x: x - slot / 2, y: padT, width: slot, height: H - padT - padB, fill: 'transparent' });
+      hover(hit, tip);
+      svg.appendChild(hit);
+      if ((i % labelEvery === 0 && i < n - 4) || isLive) {
+        var xt = el('text', { x: x, y: H - 6, 'font-size': 9, fill: 'var(--muted)', 'text-anchor': 'middle' });
+        xt.textContent = p.date.slice(5);
+        svg.appendChild(xt);
+      }
+    });
+
+    container.appendChild(svg);
+  }
+
   return {
     renderRangeStrip: renderRangeStrip,
     renderTimeHeatmap: renderTimeHeatmap,
     renderBarChart: renderBarChart,
     renderCandlestick: renderCandlestick,
+    renderForecastBand: renderForecastBand,
     sessionTag: sessionTag
   };
 })();

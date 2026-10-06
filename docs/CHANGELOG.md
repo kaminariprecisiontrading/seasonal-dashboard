@@ -2,6 +2,39 @@
 
 ---
 
+## v1.17 — October 2026
+**Range Outlook: TimesFM daily-range forecasts on the Profiling tab**
+
+### Summary
+
+Adds a forward-looking volatility layer to the 14 Profiling assets: Google's TimesFM 2.5 forecasts
+of the next day's range (with a calibrated 80% band) and the next 5 / 20 trading days' average
+range, compared against ADR20, with a self-scoring track record. Built only after a validate-first
+benchmark (`KPT-Market-Profiling/research/timesfm_benchmark/`) showed the forecasts beat ADR20 on
+every asset and horizon over 2016–2026. Volatility only, no direction.
+
+### Changes
+
+- **Pipeline (KPT-Market-Profiling):** new `pipeline/forecast_range.py` stage, run by
+  `refresh_asset.py` under a separate `.venv-forecast/` (PyTorch) when present; output folded into
+  the bundle as `range_forecast` (`build_dashboard_data.py --range-forecast`). Forecasts are cached
+  by date + input-window hash, so refreshes only compute new days.
+- **`js/profiling.js`:** `renderRangeOutlook()` — Range Outlook block above the granularity
+  switcher: three forecast tiles, a recent-forecasts-vs-actual chart, a track-record line and a
+  "Historical forecast" notice whenever the next-day target date has already passed. Hidden
+  entirely when a bundle has no `range_forecast`.
+- **`js/profiling-charts.js`:** `KPTPCharts.renderForecastBand()` — band/line/dots chart, sized to
+  the screen width so it stays legible on phones.
+- **`js/api.js`:** Analysis prompt gains a `RANGE OUTLOOK` block (framed as "how much, not which
+  way", with a stale note when applicable). Also fixes the Profiling/NFP prompt lines hardcoding
+  "pips" on non-FX assets — they now use the bundle's unit.
+- **`css/dashboard.css`:** `.kptp-outlook-*`, `.kptp-stat-sub`, `.kptp-forecast-svg`, swatches.
+- Verified via headless-browser tests at 1400px and 390px (no horizontal overflow, no page
+  errors), card hidden on bundles without a forecast, and the prompt block rendered with the
+  correct unit.
+
+---
+
 ## v1.16.1 — October 2026
 **Docs catch-up — no code changes**
 

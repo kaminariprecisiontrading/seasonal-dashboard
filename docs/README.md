@@ -20,7 +20,7 @@ A personal trading confluence engine that converts Moore Research Center seasona
 |-----|-------|-------------|
 | Seasonals | Accordion | Combined + individual TF tables; month quick-jump; current month auto-opens |
 | Trend | Seasonal curve | Cumulative directional-bias chart from `MONTHS[]`; NOW marker; monthly shading |
-| Profiling | Market Profiling | Pre-computed statistics from full MT5 M1 history (14 assets only — see below): Daily/Weekly/Monthly/Yearly profile taxonomies, range distributions, time-of-extreme timing, high/low pairing heatmaps (session, hour, weekday, week-of-month, month), hourly activity, NFP Fridays panel, profiling calendar |
+| Profiling | Market Profiling | Pre-computed statistics from full MT5 M1 history (14 assets only — see below): Daily/Weekly/Monthly/Yearly profile taxonomies, range distributions, time-of-extreme timing, high/low pairing heatmaps (session, hour, weekday, week-of-month, month), hourly activity, NFP Fridays panel, profiling calendar, and a **Range Outlook** (TimesFM forecast of next-day / 5-day / 20-day range vs ADR20, with its own track record) |
 | Live Price | TradingView | Embedded live/delayed price chart |
 | Macro | Calendar | Investing.com economic calendar filtered per asset + collapsible interpretation guide |
 | Upload | Your own data | Upload any MT5 CSV (M1 → MN1, timeframe auto-detected) → seasonal-tendency backtest (raw tendency, win-rate, avg-return vs the seasonal model) and, for intraday data, by-hour / by-session / by-day-of-week bias. Replaced the former History + Sessions tabs |
@@ -266,6 +266,7 @@ The script reads every `data/*.js` file and overwrites `data/signals_manifest.js
 | Market Profiling (Daily) | v1.7 | ✅ Complete | Profiling |
 | Weekly/Monthly/Yearly profiles | Platform Tier 5 | ✅ Complete | Profiling |
 | Sub-session profiles (session/hour pairing, hourly activity, NFP) | Platform Tier 5b | ✅ Shipped (liquidity-sweep branch parked) | Profiling |
+| Range Outlook (TimesFM volatility forecast) | Platform Tier 7 | ✅ Complete (v1.17) | Profiling |
 | Live price chart | Quick win | ✅ Complete (v1.1) | Live Price |
 | Macro calendar | Phase 3 | ✅ Complete (v1.3) | Macro |
 | D1 backtest + intraday bias | Phases 2/2.5, unified in Tier 4 | ✅ Complete (v1.12) | Upload |
@@ -273,7 +274,7 @@ The script reads every `data/*.js` file and overwrites `data/signals_manifest.js
 
 **All layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, Upload-tab backtest win rates and intraday session bias, and Profiling statistics (daily-through-yearly profile shapes, NFP-week event risk) — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet 5, Gemini Flash, or any local Ollama model.
 
-**Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass. Details: `CHANGELOG.md`.
+**Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass · v1.17 Range Outlook (TimesFM). Details: `CHANGELOG.md`.
 
 **v1.6 additions (UX layer):** Configurable broker timezone offset on Sessions tab (now part of the Upload tab) · AI cache clear button · TradingView symbol override (`tvSymbol`) · Single-tab print mode · Signal filter bar + manifest freshness on index · Three new reference docs (DATA_DICTIONARY, CONTRIBUTING, USER_GUIDE) · `scripts/` folder with utility script documentation.
 
@@ -295,7 +296,7 @@ The combined accordion auto-opens to the current month. Read the week-level comb
 The seasonal curve shows the cumulative directional bias across the year. The NOW marker shows where the asset sits in its seasonal cycle today. A rising curve confirms a bullish seasonal; a curve already past its peak is a caution signal even if the week reads BULL.
 
 **4. Check the statistical profile on the Profiling tab** *(14 assets)*.
-Expected daily range (median, ADR20), the most common profile shapes at each granularity, and when the day's/week's high and low typically form. This turns "bullish this week" into "how far, and at what time of day/week, does a move usually happen." The NFP panel shows how much first-Friday releases change the picture.
+The Range Outlook at the top forecasts how big the next day, week and month's ranges are likely to be (and says when that forecast is out of date). Below it: expected daily range (median, ADR20), the most common profile shapes at each granularity, and when the day's/week's high and low typically form. This turns "bullish this week" into "how far, and at what time of day/week, does a move usually happen." The NFP panel shows how much first-Friday releases change the picture.
 
 **5. Check current price on the Live Price tab.**
 The live TradingView chart shows where price is trading relative to recent structure. Seasonal bias is directional context — not an entry signal. Price should be approaching a logical level before acting.

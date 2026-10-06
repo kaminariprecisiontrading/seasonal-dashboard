@@ -150,6 +150,32 @@ A `const` string at file scope containing a structured plain-text representation
 
 ---
 
+## bundle.range_forecast (Profiling, v1.17)
+
+Optional key on a Profiling bundle (`window.KPT_PROFILING.<asset>`), written by
+`KPT-Market-Profiling/pipeline/forecast_range.py`. Absent when the pipeline ran without its
+forecast venv — `js/profiling.js` then hides the Range Outlook card. All range values are in the
+bundle's own unit (`stats.unit`: pips for FX, points otherwise).
+
+| Field | Type | Meaning |
+|-------|------|---------|
+| `as_of` | `YYYY-MM-DD` | Last day of data the forecast saw |
+| `model` | string | Checkpoint id, e.g. `google/timesfm-2.5-200m-pytorch` |
+| `context_days` | int | History length fed to the model (1024) |
+| `calibration_window` | int | Trailing forecasts used to calibrate the band and score the track record (500) |
+| `trades_weekends` | bool | `true` for 24/7 assets (BTCUSD): horizons are calendar days, not trading days |
+| `adr20` | number | 20-day average daily range at `as_of` (comparison baseline) |
+| `forecast.h1` | object | Next trading day: `target_date`, `mean`, `q10`/`q90` (calibrated 80% band), `q10_raw`/`q90_raw` (model's own band, for reference) |
+| `forecast.h5.mean` / `forecast.h20.mean` | number | Average daily range over the next 5 / 20 trading days |
+| `track_record.rel_mae_vs_adr20` | `{h1,h5,h20}` | Forecast MAE ÷ ADR20 MAE over the last `n` scored forecasts (< 1 = better than ADR20) |
+| `track_record.mae` | `{h1:{timesfm,adr20},…}` | The underlying MAEs |
+| `track_record.n` | `{h1,h5,h20}` | Forecasts scored per horizon |
+| `track_record.from` / `to` | date | Origin dates spanned by the band scoring |
+| `track_record.band_coverage` / `above_q90` / `below_q10` | 0–1 | Share of next-day outcomes inside / above / below the calibrated band (target 0.80 / 0.10 / 0.10) |
+| `recent[]` | array | Last ~60 next-day forecasts: `{date, actual, mean, q10, q90}`; the final entry is the live forecast with `actual: null` |
+
+---
+
 ## localStorage Keys
 
 These keys are written by the shared JS modules and keyed by `ASSET_CONFIG.id`:

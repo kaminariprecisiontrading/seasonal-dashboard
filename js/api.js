@@ -299,6 +299,28 @@ function _thisWeeksNfpFriday() {
   return { date: friday, iso: friday.getFullYear() + '-' + mm + '-' + dd };
 }
 
+// TimesFM Range Outlook (KPT-Market-Profiling/pipeline/forecast_range.py ->
+// bundle.range_forecast). A volatility forecast only — no directional content.
+// `stale` = its next-day target date is already in the past (MT5 data not
+// refreshed since), so the prompt can tell the model to treat it as history.
+function _gatherRangeOutlook(rf) {
+  if (!rf || !rf.forecast || !rf.forecast.h1) return null;
+  var now = new Date();
+  var todayIso = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  var tr = rf.track_record || {};
+  return {
+    asOf:       rf.as_of,
+    targetDate: rf.forecast.h1.target_date,
+    h1:         rf.forecast.h1,
+    h5:         rf.forecast.h5 ? rf.forecast.h5.mean : null,
+    h20:        rf.forecast.h20 ? rf.forecast.h20.mean : null,
+    adr20:      rf.adr20,
+    relMae:     tr.rel_mae_vs_adr20 || null,
+    trackN:     tr.n ? tr.n.h1 : null,
+    stale:      rf.forecast.h1.target_date < todayIso
+  };
+}
+
 function _gatherProfilingCtx() {
   try {
     var cur = window.KPT_PROFILING_CURRENT;
@@ -351,7 +373,9 @@ function _gatherProfilingCtx() {
       monthlyTiming:      monthlyTiming,
       yearlyTop:          yearlyTop,
       yearlySampleN:      b.yearly ? b.yearly.n_labeled_years : null,
-      nfpInfo:            nfpInfo
+      nfpInfo:            nfpInfo,
+      unit:               s.unit || 'pips',
+      rangeOutlook:       _gatherRangeOutlook(b.range_forecast)
     };
   } catch (e) { return null; }
 }
@@ -469,7 +493,8 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
   if (profCtx) {
     L.push('');
     L.push('=== MARKET PROFILING (statistical, pre-computed' + (profCtx.asOf ? ', data as of ' + profCtx.asOf : '') + ') ===');
-    if (profCtx.medianDailyRange != null) L.push('Median daily range: ' + profCtx.medianDailyRange + ' pips' + (profCtx.adr20 != null ? ' (20-day ADR: ' + profCtx.adr20 + ' pips)' : ''));
+    var u = ' ' + (profCtx.unit || 'pips');
+    if (profCtx.medianDailyRange != null) L.push('Median daily range: ' + profCtx.medianDailyRange + u + (profCtx.adr20 != null ? ' (20-day ADR: ' + profCtx.adr20 + u + ')' : ''));
     if (profCtx.mostCommonProfile) L.push('Most common daily shape: ' + profCtx.mostCommonProfile.name + ' (' + profCtx.mostCommonProfile.pct + '% of days)' +
       (profCtx.topTiming ? ' — dominant timing: ' + profCtx.topTiming.replace(/_/g, ' ') : ''));
     if (profCtx.weeklyTop) L.push('Most common weekly shape: ' + profCtx.weeklyTop.name + ' (' + profCtx.weeklyTop.pct + '% of weeks)' +
@@ -478,6 +503,22 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
       (profCtx.monthlyTiming ? ' — dominant timing: ' + profCtx.monthlyTiming.replace(/_/g, ' ') : ''));
     if (profCtx.yearlyTop) L.push('Most common yearly shape: ' + profCtx.yearlyTop.name + ' (' + profCtx.yearlyTop.pct + '% of years, n=' + profCtx.yearlySampleN +
       ' — small sample, treat as directional context only, not a strong signal)');
+    var ro = profCtx.rangeOutlook;
+    if (ro) {
+      L.push('');
+      L.push('=== RANGE OUTLOOK (TimesFM 2.5 volatility forecast, from data through ' + ro.asOf + ') ===');
+      L.push('Next trading day (' + ro.targetDate + '): expected range ~' + ro.h1.mean + u +
+        (ro.h1.q10 != null ? ' (80% band ' + ro.h1.q10 + '–' + ro.h1.q90 + u + ')' : '') + '.');
+      if (ro.h5 != null)  L.push('Next 5 trading days: ~' + ro.h5 + u + ' average daily range.');
+      if (ro.h20 != null) L.push('Next 20 trading days: ~' + ro.h20 + u + ' average daily range.');
+      if (ro.adr20 != null) L.push('For comparison, current 20-day ADR: ' + ro.adr20 + u + '.');
+      if (ro.relMae && ro.relMae.h1 != null) {
+        var pct = Math.round((1 - ro.relMae.h1) * 100);
+        L.push('Track record (last ' + ro.trackN + ' forecasts): next-day error ' + Math.abs(pct) + '% ' + (pct >= 0 ? 'lower' : 'higher') + ' than using ADR20.');
+      }
+      L.push('This is a forecast of HOW MUCH price is likely to move, not WHICH WAY. Use it for expected-move, stop-distance and position-size context only.');
+      if (ro.stale) L.push('NOTE: the forecast target date has already passed (price data not refreshed since ' + ro.asOf + ') — treat it as historical context, not a current outlook.');
+    }
   }
 
   if (profCtx && profCtx.nfpInfo) {
@@ -486,7 +527,7 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
     L.push('=== EVENT RISK THIS WEEK — NON-FARM PAYROLLS (' + nfp.fridayDate + ') ===');
     L.push('This week\'s Friday is a Non-Farm Payrolls release day (calendar rule: first Friday of the month, 8:30am NY, DST-aware).');
     L.push('Historically (n=' + nfp.nNfpDays + ' NFP Fridays), NFP days run wider than other Fridays: mean range ' +
-      nfp.nfpMeanRangePips + ' pips vs ' + nfp.otherFridayMeanRangePips + ' pips.');
+      nfp.nfpMeanRangePips + ' ' + (profCtx.unit || 'pips') + ' vs ' + nfp.otherFridayMeanRangePips + ' ' + (profCtx.unit || 'pips') + '.');
     L.push('The day\'s extreme falls inside the release window (15min before to 90min after) on ' +
       nfp.nfpExtremeInWindowPct + '% of NFP days, vs ' + nfp.otherFridayExtremeInWindowPct + '% on other Fridays.');
     if (nfp.topNfpProfile) L.push('Most common NFP-day shape: ' + nfp.topNfpProfile.name + ' (' + nfp.topNfpProfile.pct + '% of NFP days).');
@@ -518,7 +559,7 @@ function _buildPrompt(curveCtx, btCtx, idtCtx, profCtx) {
   L.push('- [Risk note — any seasonal/historical conflict or reason for caution]');
   L.push('');
   L.push('Be concise and data-driven. No padding. If a data layer is unavailable, mark it N/A and move on.');
-  L.push('If MARKET PROFILING data was provided above, you must fill in the Market Profile row — do not skip it or leave it generic. If EVENT RISK (NFP) data was provided, mention it explicitly in either Key Risk or Trade Notes.');
+  L.push('If MARKET PROFILING data was provided above, you must fill in the Market Profile row — do not skip it or leave it generic. If EVENT RISK (NFP) data was provided, mention it explicitly in either Key Risk or Trade Notes. If a RANGE OUTLOOK was provided, use it for expected-move context in the Market Profile row or Trade Notes — never as a directional signal.');
 
   return L.join('\n');
 }

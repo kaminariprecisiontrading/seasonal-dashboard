@@ -60,6 +60,7 @@ Available for **14 assets** with full MT5 minute-level history behind them: GBPU
 
 Where the Seasonals tab says *which direction* this time of year tends to favour, Profiling says *how far price usually moves and when*, measured directly from decades of real price data.
 
+- **Range Outlook** (top of the tab) — a forecast of *how much* price is likely to move, not which way: the next day's expected range with an 80% band, and the average daily range expected over the next 5 and 20 trading days, each compared to ADR20. Made by TimesFM, Google's pretrained time-series model, from the asset's last ~4 years of daily ranges; it was tested against ADR20 on all 14 assets over 2016–2026 before being added. The chart shows the last 60 forecasts against what actually happened (coloured dots fell outside the band), and the **Track record** line shows how it has done recently, updated every time the data is refreshed. If the forecast was made for a date that has already passed, an amber **Historical forecast** notice says so: it updates only when new MT5 data is exported and the pipeline is re-run.
 - **Granularity switcher** — Daily / Weekly / Monthly / Yearly. Each shows the profile taxonomy, range distribution, and timing of the period's high and low at that scale.
 - **Lookback dial** — choose how much history the stats use (e.g. recent years vs. full history). Hidden on Yearly, where it has no effect.
 - **Profile Taxonomy** — how often each profile shape occurs (Trend Day, Normal Day, Volatile Day, Compression Day, etc.). Click a profile card to open its detail page, with a real example chart; from there **Compare across assets** opens a side-by-side view of up to 10 assets.
@@ -160,7 +161,7 @@ Below the provider selector, five chips show which data layers will be included 
 - **Curve** — the cumulative seasonal bias curve summary. Always available.
 - **History**: win rates and best/worst months from your upload. Shows ✓ after uploading any CSV on the Upload tab.
 - **Sessions**: best/worst session and day of week. Shows ✓ after uploading an intraday (M1–H4) CSV on the Upload tab.
-- **Profiling**: typical range, the most common daily/weekly/monthly/yearly profile shape, and dominant high/low timing. Shows ✓ automatically on the 14 Profiling assets. During an NFP week, the event risk is included too.
+- **Profiling**: typical range, the most common daily/weekly/monthly/yearly profile shape, dominant high/low timing, and the Range Outlook forecast. Shows ✓ automatically on the 14 Profiling assets. During an NFP week, the event risk is included too.
 
 A single intraday upload (e.g. H1) lights up both History and Sessions.
 

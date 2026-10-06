@@ -2721,6 +2721,25 @@ html [data-kpt-panel] { display: none; }
 }
 .kptp-session-legend .kptp-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
 
+/* ── Range Outlook (TimesFM forecast card) ─────────────────────────────── */
+.kptp-outlook-grid { margin-bottom: 14px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.kptp-stat-tile .kptp-stat-sub { font-size: 10px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.kptp-outlook-stale {
+  font-size: 11px;
+  color: var(--text);
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+.kptp-forecast-svg { width: 100%; height: auto; display: block; }
+.kptp-outlook-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 9.5px; color: var(--muted); margin-top: 8px; letter-spacing: 0.5px; }
+.kptp-outlook-legend .kptp-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.kptp-swatch { display: inline-block; width: 14px; height: 8px; margin-right: 5px; vertical-align: -1px; }
+.kptp-swatch-band { background: var(--accent-combined); opacity: 0.3; border-radius: 2px; }
+.kptp-swatch-line { height: 2px; vertical-align: 2px; background: var(--accent-combined); }
+
 .kptp-concentration-badge {
   display: inline-block;
   font-size: 9.5px;

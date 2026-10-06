@@ -488,7 +488,7 @@ The source `KPT-Market-Profiling/dashboard/js/dashboard.js` assumes it owns the 
 No dependency on `ASSET_CONFIG` or page structure — loaded by the 4 asset pages (before `profiling.js`) **and** directly by `profiling-calendar/index.html` and `profiling-profiles/detail.html`. Contains:
 
 - `KPTPTooltip` — floating hover tooltip (glossary icons + every chart element attach here)
-- `KPTPCharts` — vanilla-SVG chart primitives (`renderRangeStrip`, `renderTimeHeatmap`, `renderBarChart`, `renderCandlestick`) — no charting library, same zero-dependency approach as `accordion.js`/`seasonal-chart.js`
+- `KPTPCharts` — vanilla-SVG chart primitives (`renderRangeStrip`, `renderTimeHeatmap`, `renderBarChart`, `renderCandlestick`, `renderForecastBand` (v1.17, Range Outlook)) — no charting library, same zero-dependency approach as `accordion.js`/`seasonal-chart.js`
 - `KPT_PROFILING_GLOSSARY` + `kptpGlossaryIcon()`/`kptpAttachGlossaryIcons()` — plain-language explanations for every statistical term (percentile, IQR, concentration, etc.)
 - `KPTP_PROFILE_COLOR` / `KPTP_PROFILE_ICON_PATH` / `KPTP_PROFILE_META` + `kptpProfileSlug()`/`kptpProfileIconSvg()` — the 8-profile taxonomy's colour, stylized icon, and rule/why/timing copy (sourced from `KPT-Market-Profiling/market-profiling-system-spec.md` §4.2 — keep in sync by hand if either changes)
 
@@ -515,6 +515,36 @@ Reads `../KPT-Market-Profiling/dashboard/data/{<asset>.js, profile-examples/<ass
 - `data/profiling/manifest.js` → `window.KPT_PROFILING_META` (per-asset `asOf` freshness, sourced from each bundle's own `stats.as_of`)
 
 Run any time the KPT-Market-Profiling pipeline is re-run for an asset. Adding a new asset is: add its key to `ASSETS`, re-run the script, add its id(s) to `profiling.js`'s asset-key map, add the 4 script tags + attribution to its page(s).
+
+### Range Outlook (v1.17) — TimesFM daily-range forecasts
+
+A card at the top of the Profiling tab (between the stat tiles and the Daily/Weekly/Monthly/Yearly
+switcher, since it spans horizons rather than belonging to one granularity). Renders
+`bundle.range_forecast` (schema: `DATA_DICTIONARY.md` → "bundle.range_forecast"), produced by
+`KPT-Market-Profiling/pipeline/forecast_range.py` — Google's TimesFM 2.5 (200M, zero-shot) run
+over the asset's last 1,024 daily ranges. No new sync logic: the sync script already copies the
+whole bundle.
+
+- **Why it exists / evidence:** validated before it was built
+  (`KPT-Market-Profiling/research/timesfm_benchmark/`): the mean forecast beat ADR20 on all 14
+  Profiling assets at next-day, 5-day and 20-day horizons, 2016–2026. It is a *volatility*
+  forecast only — direction is deliberately out of scope (published evidence puts zero-shot
+  direction calls at ~coin-flip).
+- **What renders (`renderRangeOutlook()`, `js/profiling.js`):** three tiles (next day with its
+  80% band; next 5 / 20 trading days' average daily range; each compared to ADR20), the
+  `KPTPCharts.renderForecastBand()` chart of the last 60 next-day forecasts vs. actual ranges
+  (dots coloured when outside the band; the live forecast as a hollow marker), and a
+  track-record line (error vs ADR20 per horizon and band coverage over the last 500 forecasts —
+  re-scored by the pipeline on every refresh, so a bad stretch shows rather than hides).
+- **Staleness:** if the next-day target date is before today (local date), an amber
+  "Historical forecast" notice says so. With manual MT5 exports this is the normal state between
+  refreshes.
+- **Absent data:** the whole block stays `hidden` when the bundle has no `range_forecast` (the
+  pipeline was run without its `.venv-forecast/`), never half-rendered.
+- **Chart sizing:** unlike the other primitives' fixed 1000-unit viewBox, `renderForecastBand()`
+  sizes its drawing width to the screen (the panel is usually hidden at render time, so it falls
+  back to `window.innerWidth`) — a 60-point series squashed at 1000:190 to phone width was ~55px
+  tall. `.kptp-forecast-svg` uses `height:auto`.
 
 ---
 
@@ -568,6 +598,14 @@ breaking:
   comparison, plus the top profile shape for NFP days from `profiles.nfp.nfp_profile_distribution`.
   Feeds a dedicated `=== EVENT RISK THIS WEEK — NON-FARM PAYROLLS ===` prompt block, explicitly
   framed to the model as a volatility/timing factor, not a directional one.
+
+- Range Outlook (v1.17, via `_gatherRangeOutlook(bundle.range_forecast)`): next-day forecast +
+  band, 5/20-day averages, ADR20 for comparison, and the next-day track record. Feeds a
+  `=== RANGE OUTLOOK ===` block framed explicitly as "how much, not which way", with a
+  stale-forecast note when the target date has passed; the closing instruction tells the model
+  to use it for expected-move context, never direction. Same pass: the Profiling/NFP prompt
+  lines now use the bundle's own unit (`stats.unit`) instead of a hardcoded "pips", which was
+  wrong on every non-FX Profiling page (gold, oil, indices, BTC).
 
 Deliberately **not** pulled into the prompt: `hourly_activity` and the session/hour pairing tables
 — range-*magnitude* diagnostics with no directional read, better suited to the Profiling tab's own

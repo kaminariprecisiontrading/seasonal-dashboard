@@ -461,6 +461,21 @@ for a real back-and-forth:
 
 ---
 
+## Tier 7 — Range Outlook (TimesFM forecasts) — ✅ Complete (v1.17, 2026-10-06)
+
+First *forward-looking* layer on the platform: TimesFM 2.5 forecasts of upcoming daily range for
+all 14 Profiling assets, shown as the Profiling tab's "Range Outlook" card and fed into the
+Analysis prompt. Followed the same validate-first rule as every profile tier: a benchmark
+(`KPT-Market-Profiling/research/timesfm_benchmark/`) against ADR20 and log-HAR came first, and its
+verdict ("go" for all 14, mean forecast, calibrated band) defined the build. Direction forecasting
+was considered and rejected on published evidence (zero-shot ≈ coin flip).
+
+Still open (from the benchmark's "not tested" list, not started): covariates (NFP flag, weekday)
+via TimesFM's XReg; context-length tuning; a TimesFM/HAR blend for the non-FX assets. The
+feature's usefulness is capped by data freshness — see the status note below.
+
+---
+
 ## Summary — execution order
 
 1. **Tier 1** — ✅ done (v1.8).
@@ -480,10 +495,11 @@ for a real back-and-forth:
    sweep branch **parked** (no real cross-asset effect found). Still open: the generic 8:30 NY
    news-embargo profile (blocked on a news/event annotation layer) and Frankfurt as a distinct
    session.
-6. **Tier 6** — parked, no action until explicitly raised again. The Analysis tab's "near-term"
+6. **Tier 6** — parked, no action until explicitly raised again.
+7. **Tier 7** — ✅ done (v1.17, 2026-10-06). Range Outlook (TimesFM) on all 14 Profiling assets. The Analysis tab's "near-term"
    one-shot item under Tier 6 is ✅ done (v1.13–v1.14); the chat interface itself is not started.
 
-**Status as of 2026-10-06:** no work since v1.16 (2026-09-06). All Profiling data is as of
+**Status as of 2026-10-06:** v1.17 (Tier 7, Range Outlook) built on a branch; before it, no work since v1.16 (2026-09-06). All Profiling data is as of
 2026-09-03 (the last MT5 M1 export); a refresh needs new exports first (see `README.md` →
 "Market Profiling"). For un-started work outside this doc (PWA, themes, statistical-depth
 features), see `ROADMAP.md` Phases 6B–9.
