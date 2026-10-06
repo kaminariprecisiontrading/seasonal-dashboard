@@ -7,7 +7,8 @@ TimesFM clearly beats ADR20 out-of-sample does a pipeline stage get built.
 
 Design
   - Series: daily_range_pips from data/clean/<asset>_daily_clean.csv (weekend stub rows and
-    NaN-range rows dropped).
+    NaN-range rows dropped; full weekend sessions kept for 24/7 assets, so for BTCUSD the
+    horizons are calendar days).
   - Origins: every trading day t from --start onward. A forecast made at origin t sees only
     y[0..t] (the close of day t). Targets:
         H1  = y[t+1]
@@ -27,6 +28,8 @@ Design
         adr20_emp — adr20 x trailing-500-origin empirical quantiles of y[s+1]/adr20_s
         har_emp   — har x trailing-500-origin empirical quantiles of y[s+1]/har_s
         timesfm   — the model's own quantile head
+        timesfm_cal250/500 — the same quantiles recalibrated on the trailing 250/500 origins'
+                    realized/forecast ratios (fixes the raw head's thin upper tail)
   - Metrics: MAE, RMSE, QLIKE (y/f - log(y/f) - 1), relative MAE vs adr20, Diebold-Mariano
     test vs adr20 on absolute error (Newey-West, lag = horizon); mean pinball loss and
     q10-q90 coverage (nominal 80%); per-year relative MAE.
@@ -61,7 +64,14 @@ MAX_H = max(HORIZONS)
 # ── data ────────────────────────────────────────────────────────────────────────────────
 def load_series(asset):
     d = pd.read_csv(CLEAN / f"{asset}_daily_clean.csv", parse_dates=["date"])
-    d = d[d.date.dt.dayofweek < 5]
+    # Weekend rows are short stubs for FX/CFDs (drop) but full sessions for 24/7 assets
+    # like BTCUSD (keep). Decided by how many weekend rows exist relative to an average weekday
+    # (BTC ~0.65, FX/CFDs < 0.01), not by bar counts: assets whose history is mostly the
+    # daily-only era (n_bars = 1 every day) would make a bar-count comparison meaningless.
+    dow = d.date.dt.dayofweek
+    wkend = dow >= 5
+    if wkend.sum() / 2 < 0.5 * (~wkend).sum() / 5:
+        d = d[~wkend]
     d = d[d.daily_range_pips.notna() & (d.daily_range_pips > 0)]
     return d.date.reset_index(drop=True), d.daily_range_pips.to_numpy(float)
 
@@ -157,6 +167,22 @@ def empirical_quantiles(base_all, y_next_all, origins, window=500):
     return q
 
 
+def recalibrate(q_raw, y1, window):
+    """Trailing per-quantile multiplicative recalibration (split-conformal style).
+    For decile tau at origin j: scale q_raw[j, tau] by the tau-quantile of y/q_raw[., tau]
+    over the previous `window` origins, all of whose targets (next-day ranges) are already
+    observed by origin j. Fixes systematic tail under/over-coverage without touching the
+    model. NaN for the first `window` origins (no calibration history yet)."""
+    out = np.full_like(q_raw, np.nan)
+    ratio = y1[:, None] / q_raw
+    for j in range(window, len(q_raw)):
+        r = ratio[j - window:j]
+        r = r[np.isfinite(r).all(1)]
+        c = np.array([np.quantile(r[:, i], tau) for i, tau in enumerate(QUANTILES)])
+        out[j] = np.sort(q_raw[j] * c)                     # re-sort: no quantile crossing
+    return out
+
+
 # ── metrics ─────────────────────────────────────────────────────────────────────────────
 def qlike(y, f):
     r = y / f
@@ -244,9 +270,14 @@ def run_asset(asset, args):
         "timesfm": tf_quant[:, 0, 1:],                     # index 0 is the mean; 1..9 = q10..q90
     }
     y1 = tgt[1][origins]
+    for w in (250, 500):
+        ivals[f"timesfm_cal{w}"] = recalibrate(ivals["timesfm"], y1, w)
+    # Every interval model is scored on the same origins: those after the longest
+    # recalibration warm-up (500), so the calibrated variants are compared like-for-like.
+    common = np.arange(len(origins)) >= 500
     iv_rows = []
     for name, q in ivals.items():
-        ok = np.isfinite(y1) & np.isfinite(q).all(1)
+        ok = common & np.isfinite(y1) & np.isfinite(q).all(1)
         pl = pinball(y1[ok], q[ok])
         iv_rows.append(dict(
             asset=asset, model=name, n=int(ok.sum()), pinball=pl.mean(),
@@ -281,11 +312,13 @@ def write_summary(pt, yr, iv, args):
         L.append("")
     L += ["## H1 intervals (q10–q90)", "",
           "Nominal coverage is 80%. Lower pinball = better calibrated *and* sharper. "
-          "`width` is the q10–q90 band width as a multiple of ADR20.", "",
-          "| Asset | Model | pinball | cover 80% | < q10 | > q90 | width |",
-          "|---|---|---:|---:|---:|---:|---:|"]
+          "`width` is the q10–q90 band width as a multiple of ADR20. `timesfm_calN` = TimesFM "
+          "quantiles recalibrated on the trailing N origins' realized ratios. All rows are scored "
+          "on the same origins (after a 500-origin warm-up), so `n` is smaller than in the point tables.", "",
+          "| Asset | Model | n | pinball | cover 80% | < q10 | > q90 | width |",
+          "|---|---|---:|---:|---:|---:|---:|---:|"]
     for _, r in iv.iterrows():
-        L.append(f"| {r.asset} | {r.model} | {r.pinball:.2f} | {r.cover_80:.1%} | "
+        L.append(f"| {r.asset} | {r.model} | {r.n} | {r.pinball:.2f} | {r.cover_80:.1%} | "
                  f"{r.below_q10:.1%} | {r.above_q90:.1%} | {r.width_80_rel:.2f} |")
     L += ["", "## Per-year relative MAE vs ADR20 (TimesFM and HAR)", ""]
     piv = (yr[yr.model.isin(["timesfm", "har"])]
