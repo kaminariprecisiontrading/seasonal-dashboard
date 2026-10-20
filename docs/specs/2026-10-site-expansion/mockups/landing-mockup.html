@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<title>KPT Seasonals — Seasonal Tendency Analysis</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+body{margin:0;background:#0a0c0f}
+a{color:#e8eaed}a:hover{color:#ffffff}
+</style></head>
+<body>
+
+
+<div style="background: #0a0c0f; color: #e8eaed; font-family: 'Barlow', system-ui, sans-serif; min-height: 100vh">
+
+<!-- NAV -->
+<header style="border-bottom: 1px solid #1c2129">
+<nav aria-label="Primary" style="max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #e8eaed">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; line-height: 1">KPT Seasonals</span>
+</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase">
+<a href="#purpose" style="padding: 12px 12px; text-decoration: none; color: #a9b1bd">Purpose</a>
+<a href="#features" style="padding: 12px 12px; text-decoration: none; color: #a9b1bd">Features</a>
+<a href="#how" style="padding: 12px 12px; text-decoration: none; color: #a9b1bd">How to use</a>
+<a href="#coverage" style="padding: 12px 12px; text-decoration: none; color: #a9b1bd">Coverage</a>
+<a href="https://kpt-seasonals.netlify.app/" style="margin-left: 8px; padding: 12px 18px; border: 1px solid #22c55e; color: #22c55e; text-decoration: none; border-radius: 4px">Open dashboard →</a>
+</div>
+</nav>
+</header>
+
+<!-- HERO -->
+<section id="top" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: #8a9bc0">
+<span style="width: 32px; height: 2px; background: #22c55e"></span>
+<span>Kaminari Precision Trading · Seasonal Confluence Engine</span>
+</div>
+<h1 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(56px, 8vw, 104px); line-height: 0.92; letter-spacing: 1px">Trade with the season,<br><span style="color: #22c55e">not against it.</span></h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #b7bec9; max-width: 560px">Decades of seasonal tendency data, turned into a clear weekly bias — <strong style="color: #e8eaed; font-weight: 600">Bullish, Bearish or Choppy</strong> — for 98 futures, forex and crypto markets. Then profiling, macro and AI synthesis stacked on top, so every angle is checked before you form a view.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<a href="https://kpt-seasonals.netlify.app/" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 28px; background: #22c55e; color: #04130a; text-decoration: none; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase">See this week's signals →</a>
+<a href="#how" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border: 1px solid #2a313b; color: #e8eaed; text-decoration: none; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase">How it works</a>
+</div>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">FREE · NO SIGN-UP · HISTORICAL PATTERNS ONLY · <a href="risk.html" style="color: #a9b1bd">NOT FINANCIAL ADVICE</a></span>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0; border-top: 1px solid #1c2129; padding-top: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1">98</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8b93a1">Assets live</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1">7</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8b93a1">Tabs per asset</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1">3</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8b93a1">Timeframes / signal</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1">40 YR</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8b93a1">Deepest history</span></div>
+</div>
+</div>
+
+<!-- HERO PANEL -->
+<div style="flex: 1 1 440px; min-width: 0; background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-family: 'JetBrains Mono', monospace">
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px">This week</span><span style="font-size: 12px; letter-spacing: 2px; color: #8b93a1">OCT WK3 · 2026</span></div>
+<div style="display: flex; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px">
+<span style="padding: 5px 10px; border: 1px solid #1d5c35; background: #0d2416; color: #4ade80; border-radius: 3px">BULL 38</span>
+<span style="padding: 5px 10px; border: 1px solid #6b2424; background: #2a1012; color: #f87171; border-radius: 3px">BEAR 20</span>
+<span style="padding: 5px 10px; border: 1px solid #6b4a12; background: #2a1d08; color: #fbbf24; border-radius: 3px">OTHER 40</span>
+</div>
+</div>
+<figure style="margin: 0; background: #0b0e12; border: 1px solid #1a1f27; border-radius: 6px; padding: 16px 16px 8px">
+<svg role="img" aria-label="Illustrative seasonal curve with a NOW marker in October" viewBox="0 0 560 220" style="width: 100%; height: auto; display: block">
+<rect x="391" y="10" width="43" height="180" fill="#ffffff" opacity="0.04"></rect>
+<line x1="20" y1="100" x2="540" y2="100" stroke="#262c36" stroke-dasharray="3 5"></line>
+<path d="M20 150 C 50 140, 70 90, 105 70 S 150 40, 175 60 S 215 140, 250 150 S 300 110, 320 120 S 360 170, 390 175 S 420 150, 440 120 S 490 40, 540 35" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"></path>
+<line x1="412" y1="14" x2="412" y2="190" stroke="#e8eaed" stroke-width="1.5"></line>
+<rect x="388" y="2" width="48" height="18" rx="3" fill="#e8eaed"></rect>
+<text x="412" y="15" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#0a0c0f">NOW</text>
+<g font-family="JetBrains Mono, monospace" font-size="11" fill="#8b93a1" text-anchor="middle">
+<text x="40" y="212">J</text><text x="83" y="212">F</text><text x="126" y="212">M</text><text x="169" y="212">A</text><text x="212" y="212">M</text><text x="255" y="212">J</text><text x="298" y="212">J</text><text x="341" y="212">A</text><text x="384" y="212">S</text><text x="412" y="212" fill="#e8eaed">O</text><text x="470" y="212">N</text><text x="513" y="212">D</text>
+</g>
+</svg>
+<figcaption style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #8b93a1; padding-top: 6px">ILLUSTRATIVE TREND CURVE · NOT A LIVE ASSET</figcaption>
+</figure>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: #0f1217; border: 1px solid #1a1f27; border-left: 3px solid #8b5cf6; border-radius: 4px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">EURUSD</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1; letter-spacing: 1px">EUR CME · USD ICE</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="display: flex; gap: 4px" aria-label="Conviction 5 of 5"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 4px 10px; border: 1px solid #6b2424; background: #2a1012; color: #f87171; border-radius: 3px">BEAR</span></div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: #0f1217; border: 1px solid #1a1f27; border-left: 3px solid #f59e0b; border-radius: 4px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">USDCAD</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1; letter-spacing: 1px">USD ICE · CAD CME</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="display: flex; gap: 4px" aria-label="Conviction 4 of 5"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #2a313b"></span></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 4px 10px; border: 1px solid #1d5c35; background: #0d2416; color: #4ade80; border-radius: 3px">BULL</span></div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: #0f1217; border: 1px solid #1a1f27; border-left: 3px solid #22c55e; border-radius: 4px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">GBPUSD</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1; letter-spacing: 1px">GBP CME · USD ICE</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="display: flex; gap: 4px" aria-label="Conviction 2 of 5"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #2a313b"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #2a313b"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: #2a313b"></span></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 4px 10px; border: 1px solid #6b4a12; background: #2a1d08; color: #fbbf24; border-radius: 3px">CHOP</span></div>
+</div>
+</div>
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #8b93a1">SNAPSHOT FROM THE LIVE INDEX · SIGNALS UPDATE WEEKLY FROM THE SYSTEM CLOCK</p>
+</div>
+</section>
+
+<!-- 01 PURPOSE -->
+<section id="purpose" style="border-top: 1px solid #1c2129; background: #0c0f13">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">01 · PURPOSE</span>
+<h2 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: 1px">One destination for objective confluence</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #b7bec9">Markets repeat. Harvests, heating seasons, fiscal year-ends and fund flows leave footprints that show up year after year. KPT Seasonals converts those historical tendencies into structured, interactive dashboards — then checks them against price behaviour, the macro calendar and your own data, so a seasonal bias is never taken on faith.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Seasonal context first</span>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #a9b1bd">Every signal blends 5-year, 15-year and long-term data, broken down from the yearly arc to the month and down to Week 1–4.</p>
+</div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Every angle in one place</span>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #a9b1bd">Seasonality, market profiling, live price, macro events, your own backtest and an AI verdict — side by side instead of across ten browser tabs.</p>
+</div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">You keep the trigger</span>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #a9b1bd">The dashboard supplies the data, not the trade. Entries, stops, sizing and management stay with your own execution framework. <a href="risk.html" style="color: #4ade80">Read the risk disclosure</a>.</p>
+</div>
+</div>
+
+<!-- signal legend -->
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 1px">Read a signal in two seconds</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">SHOWN ON EVERY ASSET CARD</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; padding: 6px 12px; border: 1px solid #1d5c35; background: #0d2416; color: #4ade80; border-radius: 3px">BULL</span><span style="font-size: 15px; line-height: 1.5; color: #a9b1bd">Historically, price has tended to rise this week.</span></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; padding: 6px 12px; border: 1px solid #6b2424; background: #2a1012; color: #f87171; border-radius: 3px">BEAR</span><span style="font-size: 15px; line-height: 1.5; color: #a9b1bd">Historically, price has tended to fall this week.</span></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; padding: 6px 12px; border: 1px solid #6b4a12; background: #2a1d08; color: #fbbf24; border-radius: 3px">CHOP</span><span style="font-size: 15px; line-height: 1.5; color: #a9b1bd">No clean directional tendency — timeframes disagree or price ranges.</span></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; padding: 6px 12px; border: 1px solid #3a4250; background: #181c23; color: #cbd2dc; border-radius: 3px">FLIP</span><span style="font-size: 15px; line-height: 1.5; color: #a9b1bd">The tendency reverses inside the period — expect a turn.</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; border-top: 1px solid #1f252e; padding-top: 20px">
+<span style="display: flex; gap: 5px" aria-label="Five filled dots"><span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e"></span></span>
+<span style="font-size: 15px; color: #b7bec9">Conviction dots — five filled means all three timeframes agree. Fewer dots, weaker confluence.</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 02 FEATURES -->
+<section id="features" style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">02 · INSIDE EVERY ASSET</span>
+<h2 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: 1px">Seven tabs, seven layers of evidence</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #b7bec9">Open any asset card and you get the same seven-tab workspace — ordered from broad context down to the final synthesis.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 1</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Seasonals</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">Combined and per-timeframe tables in an accordion. The current month opens automatically, with week-level signals and conviction.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 4-6 5 4"></path><path d="M3 21h18"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 2</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Trend</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">The cumulative seasonal curve with a NOW marker — see instantly whether the asset is still climbing toward its seasonal peak or already past it.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 3 · 14 ASSETS</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Profiling</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">Statistics from full M1 price history: range distributions, profile shapes, when highs and lows form, NFP effects, plus a forward Range Outlook.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M6 8h3v6H6M14 2v20M14 6h3v9h-3"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 4</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Live Price</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">An embedded TradingView chart, so you can check where price actually sits against recent structure before acting on a bias.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 5</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Macro</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">An economic calendar pre-filtered to the events that move this asset, with a guide to which releases matter most.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 6</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Upload</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">Drop in any MT5 CSV (M1 to monthly). Get a seasonal backtest — win rate and average return — plus hour, session and weekday bias.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #22c55e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">TAB 7</span></div>
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1">Analysis</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">AI synthesis across every layer, returning LONG, SHORT, NEUTRAL or WAIT with rationale and a risk note. Claude, Gemini or a local Ollama model; export as .md.</p>
+</div>
+
+<div style="background: #0c0f13; border: 1px dashed #2a313b; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 12px">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; line-height: 1.1">Plus on the index</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #a9b1bd">Search by name, filter Bull / Bear / Other, jump by asset class, and a weekly tally of every signal.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- 03 HOW -->
+<section id="how" style="border-top: 1px solid #1c2129; background: #0c0f13">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">03 · HOW TO USE IT</span>
+<h2 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: 1px">From a weekly scan to a reasoned bias</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #b7bec9">Work top-down. Each step narrows the picture, and any step can tell you to stand aside.</p>
+<a href="https://github.com/kaminariprecisiontrading/seasonal-dashboard" style="align-self: flex-start; margin-top: 8px; display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border: 1px solid #2a313b; text-decoration: none; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase">Read the full user guide</a>
+</div>
+<ol style="flex: 2 1 560px; min-width: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0">
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #1f252e"><span style="flex: 0 0 auto; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #22c55e; width: 48px">01</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Scan the index</span><span style="font-size: 16px; line-height: 1.55; color: #a9b1bd">Every card shows this week's signal. Filter to Bull or Bear, or search an asset by name.</span></div></li>
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #1f252e"><span style="flex: 0 0 auto; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #22c55e; width: 48px">02</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Open the asset · Seasonals</span><span style="font-size: 16px; line-height: 1.55; color: #a9b1bd">Read the week's combined signal and conviction, then check neighbouring weeks: is the bias building or fading?</span></div></li>
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #1f252e"><span style="flex: 0 0 auto; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #22c55e; width: 48px">03</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Confirm on Trend</span><span style="font-size: 16px; line-height: 1.55; color: #a9b1bd">Where is the NOW marker? A curve already past its peak is a caution flag, even on a BULL week.</span></div></li>
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #1f252e"><span style="flex: 0 0 auto; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #22c55e; width: 48px">04</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Size and locate the move</span><span style="font-size: 16px; line-height: 1.55; color: #a9b1bd">Profiling shows typical range and timing; Live Price shows whether price is near a level worth acting on.</span></div></li>
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #1f252e"><span style="flex: 0 0 auto; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #22c55e; width: 48px">05</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Validate and de-risk</span><span style="font-size: 16px; line-height: 1.55; color: #a9b1bd">Upload your own data to test the win rate, find the best session, and check Macro for events that could override the season.</span></div></li>
+<li style="display: flex; gap: 24px; padding: 24px 0"><span style="flex: 0 0 auto; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #22c55e; width: 48px">06</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px">Synthesise, then execute your way</span><span style="font-size: 16px; line-height: 1.55; color: #a9b1bd">Run Analysis for a structured verdict. Entry, stop and size remain your call.</span></div></li>
+</ol>
+</div>
+</section>
+
+<!-- 04 COVERAGE -->
+<section id="coverage" style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">04 · COVERAGE &amp; DATA</span>
+<h2 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: 1px">98 markets across three asset groups</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px">Futures</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: #22c55e">70</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">
+<span>Currencies · 10</span><span>Metals · 5</span><span>Energy · 6</span><span>Rates · 14</span><span>Indices · 13</span><span>Softs · 8</span><span>Grains · 8</span><span>Fiber · 2</span><span>Meats &amp; Dairy · 4</span>
+</div>
+<p style="margin: 0; border-top: 1px solid #1f252e; padding-top: 16px; font-size: 14px; line-height: 1.55; color: #8b93a1">Source: Moore Research Center seasonal tendencies across CME, CBOT, ICE, NYMEX, EUREX, LIFFE, SFE and HKFE.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px">Forex</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: #22c55e">27</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">
+<span>Majors · 6</span><span>Minors · 9</span><span>Crosses · 12</span>
+</div>
+<p style="margin: 0; margin-top: auto; border-top: 1px solid #1f252e; padding-top: 16px; font-size: 14px; line-height: 1.55; color: #8b93a1">Synthesised from two CME futures components — base currency direct, quote currency inverted — so you can see when they align or collide.</p>
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px">Crypto</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: #22c55e">1<span style="font-size: 24px; color: #8b93a1"> + 19 planned</span></span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">
+<span>BTC/USD · live</span><span>ETH, SOL, XRP… · soon</span>
+</div>
+<p style="margin: 0; margin-top: auto; border-top: 1px solid #1f252e; padding-top: 16px; font-size: 14px; line-height: 1.55; color: #8b93a1">Statistically derived from real price history, since Moore Research does not cover crypto.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="border-top: 1px solid #1c2129; background: #0c0f13">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+<svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+<h2 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(44px, 6vw, 80px); line-height: 1; letter-spacing: 1px">This week's bias is already waiting.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #b7bec9; max-width: 600px">No sign-up. Open the dashboard, find your market, and work through the layers.</p>
+<a href="https://kpt-seasonals.netlify.app/" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 36px; background: #22c55e; color: #04130a; text-decoration: none; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase">Enter the dashboard →</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 56px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px">Kaminari Precision Trading</span>
+<div style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="https://kpt-seasonals.netlify.app/" style="padding: 12px; text-decoration: none; color: #a9b1bd">DASHBOARD</a>
+<a href="https://github.com/kaminariprecisiontrading/seasonal-dashboard" style="padding: 12px; text-decoration: none; color: #a9b1bd">GITHUB</a>
+<a href="whatchanged.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">THIS WEEK</a>
+<a href="heatmap.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">HEATMAP</a>
+<a href="trackrecord.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">TRACK RECORD</a>
+<a href="methodology.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">METHODOLOGY</a>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #1c2129; padding-top: 12px">
+<nav aria-label="Legal" style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="risk.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">RISK DISCLOSURE</a><a href="terms.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">TERMS</a><a href="privacy.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">PRIVACY</a><a href="sources.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">DATA SOURCES</a><a href="about.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">ABOUT &amp; CONTACT</a>
+</nav>
+<label style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #8b93a1">EMBEDS
+<select style="min-height: 40px; padding: 0 10px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-family: 'JetBrains Mono', monospace; font-size: 12px"><option>Ask each time</option><option>Always load</option></select></label>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #8b93a1; max-width: 900px">Historical patterns only · Not financial advice. Seasonal tendencies describe what has happened, not what will happen. Kaminari Seasonals Dashboard is a free personal project by G T, published as Kaminari Precision Trading. Futures seasonal data: Moore Research Center © 2020 · © 2026 Kaminari Precision Trading.</p>
+</div>
+</footer>
+
+</div>
+
+
+
+
+</body></html>

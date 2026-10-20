@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<title>KPT Seasonals — This Week</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+body{margin:0;background:#0a0c0f}
+a{color:#e8eaed}a:hover{color:#ffffff}
+.pill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:4px 10px;border-radius:3px;border:1px solid;letter-spacing:1px;display:inline-block}
+.bull{color:#4ade80;background:#0d2416;border-color:#1d5c35}
+.bear{color:#f87171;background:#2a1012;border-color:#6b2424}
+.chop{color:#fbbf24;background:#2a1d08;border-color:#6b4a12}
+.flip{color:#cbd2dc;background:#181c23;border-color:#3a4250}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.seg{min-height:44px;padding:0 20px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px;cursor:pointer;background:#11141a;border:1px solid #2a313b;color:#a9b1bd}
+.seg-on{background:#0d2416;border-color:#22c55e;color:#4ade80}
+</style></head>
+<body>
+
+
+<div style="background: #0a0c0f; color: #e8eaed; font-family: 'Barlow', system-ui, sans-serif; min-height: 100vh">
+
+<header style="border-bottom: 1px solid #1c2129">
+<nav aria-label="Primary" style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="landing-mockup.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #e8eaed"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px">KPT Seasonals</span></a>
+<div style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="https://kpt-seasonals.netlify.app/" style="padding: 12px; text-decoration: none; color: #a9b1bd">DASHBOARD</a>
+<a href="whatchanged.html" aria-current="page" style="padding: 12px; text-decoration: none; color: #22c55e; border-bottom: 2px solid #22c55e">THIS WEEK</a>
+<a href="heatmap.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">HEATMAP</a>
+<a href="trackrecord.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">TRACK RECORD</a>
+<a href="methodology.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">METHODOLOGY</a>
+</div>
+</nav>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 80px; display: flex; flex-direction: column; gap: 40px">
+
+<!-- header -->
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">WEEKLY DIGEST</span>
+<h1 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(48px, 6vw, 80px); line-height: 0.95; letter-spacing: 1px">Oct Wk3 · 2026</h1>
+<span style="font-size: 17px; color: #b7bec9">What changed since last week, and what's coming in the next four.</span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" aria-label="Previous week" style="width: 44px; height: 44px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-size: 18px; cursor: pointer">‹</button>
+<button type="button" aria-label="Next week" style="width: 44px; height: 44px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-size: 18px; cursor: pointer">›</button>
+</div>
+</div>
+
+<div role="note" style="padding: 10px 14px; border: 1px dashed #6b4a12; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #fbbf24">SAMPLE DATA FOR LAYOUT. THE REAL PAGE READS SIGNALS_MANIFEST.JS FOR THIS WEEK AND LAST WEEK.</div>
+
+<!-- tallies -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span class="pill bull" style="align-self: flex-start">BULL</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1">38</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #4ade80">▲ 6 vs last week</span></div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span class="pill bear" style="align-self: flex-start">BEAR</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1">20</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #f87171">▼ 4 vs last week</span></div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span class="pill chop" style="align-self: flex-start">OTHER</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1">40</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">▼ 2 vs last week</span></div>
+<div style="background: #11141a; border: 1px solid #22c55e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">SIGNALS CHANGED</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: #22c55e">17</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">of 98 assets</span></div>
+</div>
+
+<!-- watchlist -->
+<section aria-labelledby="wl" style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<h2 id="wl" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 34px; letter-spacing: 1px">★ Your watchlist</h2>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1">STAR ANY ASSET CARD TO ADD IT · SAVED IN THIS BROWSER</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px; background: #11141a; border: 1px solid #1f252e; border-radius: 6px; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; line-height: 1">XAU Gold</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Metals · CMX</span></span>
+<span style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span class="pill bull">BULL</span><span aria-label="Conviction 3 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #2a313b"></span><span class="dot" style="background: #2a313b"></span></span></span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px; background: #11141a; border: 1px solid #1f252e; border-radius: 6px; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; line-height: 1">EURUSD</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">FX major</span></span>
+<span style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span class="pill bear">BEAR</span><span aria-label="Conviction 5 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span></span></span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px; background: #11141a; border: 1px solid #1f252e; border-radius: 6px; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; line-height: 1">Nasdaq 100</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Indices · CME</span></span>
+<span style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span class="pill bull">BULL</span><span aria-label="Conviction 4 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #2a313b"></span></span></span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px; background: #11141a; border: 1px solid #1f252e; border-radius: 6px; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; line-height: 1">BTC/USD</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Crypto · price-derived</span></span>
+<span style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span class="pill chop">CHOP</span><span aria-label="Conviction 2 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #2a313b"></span><span class="dot" style="background: #2a313b"></span><span class="dot" style="background: #2a313b"></span></span></span>
+</a>
+
+</div>
+</section>
+
+<!-- changed + new high conviction -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<section aria-labelledby="chg" style="flex: 3 1 520px; min-width: 0; background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 6px">
+<h2 id="chg" style="margin: 0 0 10px; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 1px">Signals that flipped</h2>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: grid; grid-template-columns: minmax(0, 1.4fr) auto auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">Natural Gas</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Energy · NYMEX</span></span>
+<span class="pill chop" style="opacity: 0.7">CHOP</span>
+<span aria-hidden="true" style="color: #8b93a1">→</span>
+<span class="pill bull">BULL</span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: grid; grid-template-columns: minmax(0, 1.4fr) auto auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">GBPJPY</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">FX cross</span></span>
+<span class="pill chop" style="opacity: 0.7">CHOP</span>
+<span aria-hidden="true" style="color: #8b93a1">→</span>
+<span class="pill bull">BULL</span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: grid; grid-template-columns: minmax(0, 1.4fr) auto auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">Sugar #11</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Softs · ICE</span></span>
+<span class="pill bear" style="opacity: 0.7">BEAR</span>
+<span aria-hidden="true" style="color: #8b93a1">→</span>
+<span class="pill bull">BULL</span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: grid; grid-template-columns: minmax(0, 1.4fr) auto auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">USD Index</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Currencies · ICE</span></span>
+<span class="pill bull" style="opacity: 0.7">BULL</span>
+<span aria-hidden="true" style="color: #8b93a1">→</span>
+<span class="pill bear">BEAR</span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: grid; grid-template-columns: minmax(0, 1.4fr) auto auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">EURCHF</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">FX minor</span></span>
+<span class="pill flip" style="opacity: 0.7">FLIP</span>
+<span aria-hidden="true" style="color: #8b93a1">→</span>
+<span class="pill bear">BEAR</span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="display: grid; grid-template-columns: minmax(0, 1.4fr) auto auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e; text-decoration: none; color: #e8eaed">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1">Live Cattle</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">Meats · CME</span></span>
+<span class="pill chop" style="opacity: 0.7">CHOP</span>
+<span aria-hidden="true" style="color: #8b93a1">→</span>
+<span class="pill bull">BULL</span>
+</a>
+
+<a href="https://kpt-seasonals.netlify.app/" style="margin-top: 8px; padding: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #22c55e; text-decoration: none">SEE ALL 17 CHANGES →</a>
+</section>
+<section aria-labelledby="hc" style="flex: 2 1 340px; min-width: 0; background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 6px">
+<h2 id="hc" style="margin: 0 0 10px; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 1px">New max conviction</h2>
+<span style="font-size: 14px; color: #a9b1bd; margin-bottom: 6px">All three timeframes agree this week.</span>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px">EURUSD</span>
+<span style="display: flex; align-items: center; gap: 10px"><span aria-label="Conviction 5 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span></span><span class="pill bear">BEAR</span></span>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px">GBPCAD</span>
+<span style="display: flex; align-items: center; gap: 10px"><span aria-label="Conviction 5 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span></span><span class="pill bull">BULL</span></span>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px">Natural Gas</span>
+<span style="display: flex; align-items: center; gap: 10px"><span aria-label="Conviction 5 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span></span><span class="pill bull">BULL</span></span>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #1f252e">
+<span style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px">EURJPY</span>
+<span style="display: flex; align-items: center; gap: 10px"><span aria-label="Conviction 5 of 5" style="display: flex; gap: 3px"><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span><span class="dot" style="background: #22c55e"></span></span><span class="pill bear">BEAR</span></span>
+</div>
+
+</section>
+</div>
+
+<!-- coming up -->
+<section aria-labelledby="up" style="display: flex; flex-direction: column; gap: 16px">
+<h2 id="up" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 34px; letter-spacing: 1px">Coming up · high-conviction windows</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #8a9bc0">OCT WK4</span>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">GBPCAD</span><span class="pill bull">BULL</span></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">S&amp;P 500</span><span class="pill bull">BULL</span></div>
+
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #8a9bc0">NOV WK1</span>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">GBP/USD</span><span class="pill bull">BULL</span></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">T-Bonds 30Y</span><span class="pill bull">BULL</span></div>
+
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #8a9bc0">NOV WK2</span>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">DAX</span><span class="pill bull">BULL</span></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">EURAUD</span><span class="pill bear">BEAR</span></div>
+
+</div>
+
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #8a9bc0">NOV WK3</span>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">EURJPY</span><span class="pill bear">BEAR</span></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1f252e"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px">Nikkei 225</span><span class="pill bull">BULL</span></div>
+
+</div>
+
+</div>
+</section>
+
+<!-- alerts -->
+<section aria-labelledby="al" style="background: #0c0f13; border: 1px solid #22c55e; border-radius: 8px; padding: 32px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 4px 10px; border: 1px dashed #6b4a12; border-radius: 3px; color: #fbbf24">LATER · NOT IN CURRENT BUILD</span>
+<h2 id="al" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 38px; letter-spacing: 1px">Get this every Monday</h2>
+<span style="font-size: 16px; line-height: 1.55; color: #b7bec9">The weekly digest, delivered before the London open. You can unsubscribe in one click.</span>
+</div>
+
+<form style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap">
+<legend style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1; margin-bottom: 8px">DELIVER BY</legend>
+<button type="button" aria-pressed="true" class="seg seg-on">Email</button>
+<button type="button" aria-pressed="false" class="seg">Telegram</button>
+</fieldset>
+<label style="display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">EMAIL ADDRESS<input type="text" placeholder="you@example.com" style="min-height: 48px; padding: 0 14px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-family: 'Barlow', sans-serif; font-size: 16px"></label>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #b7bec9; min-height: 44px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #22c55e">Watchlist assets only</label>
+<button type="button" style="align-self: flex-start; min-height: 50px; padding: 0 28px; background: #22c55e; color: #04130a; border: 0; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; cursor: pointer">SUBSCRIBE</button>
+<span style="font-size: 13px; line-height: 1.5; color: #8b93a1">By subscribing you agree to the <a href="privacy.html" style="color: #4ade80">Privacy Policy</a>. One-click unsubscribe in every message. Not financial advice.</span>
+</form>
+
+
+</section>
+
+</main>
+
+<footer style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<nav aria-label="Legal" style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="risk.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">RISK DISCLOSURE</a><a href="terms.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">TERMS</a><a href="privacy.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">PRIVACY</a><a href="sources.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">DATA SOURCES</a><a href="about.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">ABOUT &amp; CONTACT</a>
+</nav>
+<label style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #8b93a1">EMBEDS<select style="min-height: 40px; padding: 0 10px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-family: 'JetBrains Mono', monospace; font-size: 12px"><option>Ask each time</option><option>Always load</option></select></label>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #8b93a1">Historical patterns only · Not financial advice. Kaminari Seasonals Dashboard is a personal project by G T, published as Kaminari Precision Trading. Futures seasonal data: Moore Research Center © 2020 · © 2026 Kaminari Precision Trading.</p>
+</div>
+</footer>
+</div>
+
+
+
+
+</body></html>

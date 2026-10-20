@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<title>Data Sources &amp; Attribution — Kaminari Seasonals Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+body{margin:0;background:#0a0c0f}
+a{color:#4ade80}a:hover{color:#86efac}
+.lg h2{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:32px;letter-spacing:1px;line-height:1.1;margin:44px 0 12px;color:#e8eaed;scroll-margin-top:24px}
+.lg p,.lg li{font-size:17px;line-height:1.7;color:#b7bec9}
+.lg p{margin:0 0 14px}
+.lg strong{color:#e8eaed;font-weight:600}
+.lg table{width:100%;min-width:640px;border-collapse:collapse;font-size:15px}
+.lg th{text-align:left;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;font-weight:500;color:#8b93a1;background:#11141a}
+.lg td{padding:12px 14px;border-top:1px solid #1f252e;color:#b7bec9;vertical-align:top;line-height:1.5}
+.lg td:first-child{color:#e8eaed}
+.toc a{display:block;padding:9px 0;color:#a9b1bd;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:13px;border-bottom:1px solid #1a1f27}
+.toc a:hover{color:#e8eaed}
+.nav a{padding:12px;text-decoration:none;color:#a9b1bd}
+.foot a{padding:10px 8px;text-decoration:none;color:#a9b1bd}
+</style></head>
+<body>
+
+
+<div style="background: #0a0c0f; color: #e8eaed; font-family: 'Barlow', system-ui, sans-serif; min-height: 100vh">
+
+<header style="border-bottom: 1px solid #1c2129">
+<nav aria-label="Primary" style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="landing-mockup.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #e8eaed"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px">KPT Seasonals</span></a>
+<div class="nav" style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="https://kpt-seasonals.netlify.app/">DASHBOARD</a><a href="whatchanged.html">THIS WEEK</a><a href="heatmap.html">HEATMAP</a><a href="trackrecord.html">TRACK RECORD</a><a href="methodology.html">METHODOLOGY</a>
+</div>
+</nav>
+</header>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 40px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">LEGAL</span>
+<h1 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(52px, 7vw, 88px); line-height: 0.95; letter-spacing: 1px">Data Sources &amp; Attribution</h1>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8b93a1">Last updated: 20 October 2026</span>
+<p style="margin: 6px 0 0; font-size: 19px; line-height: 1.6; color: #b7bec9; max-width: 760px">Where the dashboard's data comes from, and who owns what.</p>
+</section>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+<nav aria-label="On this page" class="toc" style="flex: 1 1 220px; min-width: 0; max-width: 280px">
+<span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; color: #8b93a1; padding-bottom: 8px">ON THIS PAGE</span>
+<a href="#s1">1. Market data</a><a href="#s2">2. Embedded services</a><a href="#s3">3. AI providers</a><a href="#s4">4. Open-source software</a><a href="#s5">5. Trademarks</a><a href="#s6">6. Corrections &amp; rights holders</a>
+</nav>
+<article class="lg" style="flex: 999 1 560px; min-width: 0; max-width: 820px">
+
+<h2 id="s1" style="margin-top: 0">1. Market data</h2>
+<div style="overflow-x: auto; border: 1px solid #1f252e; border-radius: 8px; margin-bottom: 14px">
+<table>
+<thead><tr><th scope="col">SOURCE</th><th scope="col">USED FOR</th><th scope="col">RIGHTS</th></tr></thead>
+<tbody>
+<tr><td>Moore Research Center, Inc.</td><td>Seasonal tendency data for 70 futures contracts (5-YR, 15-YR and long-term)</td><td>© Moore Research Center. All rights in the underlying data remain with MRCI.</td></tr>
+<tr><td>Kaminari Precision Trading (derived)</td><td>27 forex pairs, synthesised from two MRCI currency futures components</td><td>Derived analysis © 2026 Kaminari Precision Trading; underlying data as above</td></tr>
+<tr><td>Broker price history via MetaTrader 5</td><td>BTCUSD seasonals; Profiling statistics and Range Outlook (14 assets); Track Record grading</td><td>Price data from the operator's broker feed</td></tr>
+<tr><td>Your own CSV files</td><td>Upload tab backtests</td><td>Yours, and processed only in your browser</td></tr>
+</tbody>
+</table>
+</div>
+<p>Exchange and contract names (CME, CBOT, COMEX, NYMEX, ICE, EUREX, LIFFE, SFE, HKFE, SGX and others) are used only to identify the contracts the data refers to.</p>
+
+<h2 id="s2">2. Embedded services</h2>
+<div style="overflow-x: auto; border: 1px solid #1f252e; border-radius: 8px; margin-bottom: 14px">
+<table>
+<thead><tr><th scope="col">SERVICE</th><th scope="col">WHERE</th><th scope="col">NOTES</th></tr></thead>
+<tbody>
+<tr><td>TradingView</td><td>Live Price tab</td><td>Chart widget provided by TradingView. Loads only when you choose.</td></tr>
+<tr><td>Investing.com</td><td>Macro tab</td><td>Economic calendar widget provided by Investing.com. Loads only when you choose.</td></tr>
+<tr><td>Forex Factory</td><td>Macro tab</td><td>External link only</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="s3">3. AI providers</h2>
+<p>The Analysis tab can use <strong>Claude</strong> (Anthropic), <strong>Gemini</strong> (Google) or a local model run with <strong>Ollama</strong>, using your own key or server. Output is generated by those models; the dashboard doesn't edit it.</p>
+
+<h2 id="s4">4. Open-source software</h2>
+<div style="overflow-x: auto; border: 1px solid #1f252e; border-radius: 8px; margin-bottom: 14px">
+<table>
+<thead><tr><th scope="col">COMPONENT</th><th scope="col">PURPOSE</th><th scope="col">LICENCE</th></tr></thead>
+<tbody>
+<tr><td>Chart.js</td><td>Charts</td><td>MIT</td></tr>
+<tr><td>marked</td><td>Formatting AI output</td><td>MIT</td></tr>
+<tr><td>Bebas Neue, JetBrains Mono, Barlow, IBM Plex Mono</td><td>Typefaces</td><td>SIL Open Font License 1.1</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="s5">5. Trademarks</h2>
+<p>All product names, logos and brands, including Moore Research Center, TradingView, Investing.com, Forex Factory, MetaTrader, Claude, Anthropic, Gemini, Google, Ollama and the exchange names above, are the property of their respective owners. They're used for identification only. <strong>Kaminari Seasonals Dashboard is independent</strong> and is not affiliated with, sponsored by or endorsed by any of them.</p>
+
+<h2 id="s6">6. Corrections and rights holders</h2>
+<p>Spotted a data error, or own rights in content shown here and have a concern? Email <a href="mailto:kaminariprecisiontrading@gmail.com">kaminariprecisiontrading@gmail.com</a> and it will be looked at promptly, including removing content where appropriate.</p>
+</article>
+</div>
+
+<footer style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<div class="foot" style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="risk.html">RISK DISCLOSURE</a><a href="terms.html">TERMS</a><a href="privacy.html">PRIVACY</a><a href="sources.html" aria-current="page" style="color: #e8eaed">DATA SOURCES</a><a href="about.html">ABOUT &amp; CONTACT</a>
+</div>
+<label style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #8b93a1">EMBEDS<select style="min-height: 40px; padding: 0 10px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-family: 'JetBrains Mono', monospace; font-size: 12px"><option>Ask each time</option><option>Always load</option></select></label>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #8b93a1">Historical patterns only · Not financial advice. Kaminari Seasonals Dashboard is a personal project by G T, published as Kaminari Precision Trading. Futures seasonal data: Moore Research Center © 2020 · © 2026 Kaminari Precision Trading.</p>
+</div>
+</footer>
+</div>
+
+
+
+
+</body></html>

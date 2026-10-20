@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<title>KPT Seasonals — Track Record</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+body{margin:0;background:#0a0c0f}
+a{color:#e8eaed}a:hover{color:#ffffff}
+.pill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:4px 10px;border-radius:3px;border:1px solid;letter-spacing:1px;display:inline-block}
+.bull{color:#4ade80;background:#0d2416;border-color:#1d5c35}
+.bear{color:#f87171;background:#2a1012;border-color:#6b2424}
+.chop{color:#fbbf24;background:#2a1d08;border-color:#6b4a12}
+.flip{color:#cbd2dc;background:#181c23;border-color:#3a4250}
+.seg{min-height:44px;padding:0 16px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px;cursor:pointer;background:#11141a;border:1px solid #2a313b;color:#a9b1bd}
+.seg-on{background:#0d2416;border-color:#22c55e;color:#4ade80}
+.hit{color:#4ade80}.miss{color:#f87171}.ng{color:#8b93a1}
+.src{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;padding:3px 8px;border-radius:3px;border:1px solid;display:inline-block}
+.src-live{color:#7dd3fc;border-color:#1e3a52;background:#0d1a24}
+.src-back{color:#a9b1bd;border-color:#3a4250;background:#181c23}
+</style></head>
+<body>
+
+
+<div style="background: #0a0c0f; color: #e8eaed; font-family: 'Barlow', system-ui, sans-serif; min-height: 100vh">
+
+<header style="border-bottom: 1px solid #1c2129">
+<nav aria-label="Primary" style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="landing-mockup.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #e8eaed"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px">KPT Seasonals</span></a>
+<div style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="https://kpt-seasonals.netlify.app/" style="padding: 12px; text-decoration: none; color: #a9b1bd">DASHBOARD</a>
+<a href="whatchanged.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">THIS WEEK</a>
+<a href="heatmap.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">HEATMAP</a>
+<a href="trackrecord.html" aria-current="page" style="padding: 12px; text-decoration: none; color: #22c55e; border-bottom: 2px solid #22c55e">TRACK RECORD</a>
+<a href="methodology.html" style="padding: 12px; text-decoration: none; color: #a9b1bd">METHODOLOGY</a>
+</div>
+</nav>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 80px; display: flex; flex-direction: column; gap: 36px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">TRACK RECORD</span>
+<h1 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(48px, 6vw, 80px); line-height: 0.95; letter-spacing: 1px">Did the season deliver?</h1>
+<span style="font-size: 17px; line-height: 1.55; color: #b7bec9">Every past weekly signal, graded against what price actually did. It covers the 14 assets with full MT5 price history, and it reports the misses as well as the hits.</span>
+</div>
+<div role="group" aria-label="Period" style="display: flex; gap: 6px; flex-wrap: wrap">
+<button type="button" aria-pressed="false" class="seg">12W</button><button type="button" aria-pressed="true" class="seg seg-on">26W</button><button type="button" aria-pressed="false" class="seg">52W</button><button type="button" aria-pressed="false" class="seg">All</button>
+</div>
+</div>
+
+<div role="note" style="padding: 10px 14px; border: 1px dashed #6b4a12; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #fbbf24">SAMPLE NUMBERS FOR LAYOUT ONLY. THE REAL VALUES COME FROM GRADING PAST SIGNALS AGAINST KPT-MARKET-PROFILING PRICE DATA.</div>
+
+<!-- KPIs -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+<div style="background: #11141a; border: 1px solid #22c55e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">HIT RATE</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: #22c55e">57%</span><span style="font-size: 14px; color: #a9b1bd">of directional signals moved the right way</span></div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">SIGNALS GRADED</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1">241</span><span style="font-size: 14px; color: #a9b1bd">BULL + BEAR + FLIP · CHOP excluded</span></div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">AVG MOVE · HIT / MISS</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1"><span class="hit">+0.9×</span> <span style="color: #3a4250">/</span> <span class="miss">−0.8×</span></span><span style="font-size: 14px; color: #a9b1bd">in multiples of ADR20</span></div>
+<div style="background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">5-DOT HIT RATE</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1">64%</span><span style="font-size: 14px; color: #a9b1bd">does conviction actually matter?</span></div>
+</div>
+
+<p role="note" style="margin: -12px 0 0; font-size: 14px; line-height: 1.55; color: #a9b1bd">Past performance doesn't predict future results. Figures are hypothetical and exclude trading costs. <strong style="color: #e8eaed; font-weight: 600">Backfilled</strong> results are in-sample; only <strong style="color: #e8eaed; font-weight: 600">live-recorded</strong> results reflect signals as shown at the time. <a href="risk.html" style="color: #4ade80">Risk Disclosure</a></p>
+
+<!-- charts -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<section aria-labelledby="byc" style="flex: 1 1 460px; min-width: 0; background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 id="byc" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 1px">Hit rate by conviction</h2><span style="font-size: 14px; color: #a9b1bd">If the dots mean anything, the bars should rise from 1 to 5.</span></div>
+
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 56px; align-items: center; gap: 12px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">1 dot</span>
+<span style="height: 22px; background: #0b0e12; border-radius: 3px; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 49%; background: #22c55e; opacity: 0.4; border-radius: 3px"></span><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #8b93a1"></span></span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right">49%</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 56px; align-items: center; gap: 12px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">2 dots</span>
+<span style="height: 22px; background: #0b0e12; border-radius: 3px; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 52%; background: #22c55e; opacity: 1; border-radius: 3px"></span><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #8b93a1"></span></span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right">52%</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 56px; align-items: center; gap: 12px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">3 dots</span>
+<span style="height: 22px; background: #0b0e12; border-radius: 3px; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 55%; background: #22c55e; opacity: 1; border-radius: 3px"></span><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #8b93a1"></span></span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right">55%</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 56px; align-items: center; gap: 12px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">4 dots</span>
+<span style="height: 22px; background: #0b0e12; border-radius: 3px; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 59%; background: #22c55e; opacity: 1; border-radius: 3px"></span><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #8b93a1"></span></span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right">59%</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 56px; align-items: center; gap: 12px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b7bec9">5 dots</span>
+<span style="height: 22px; background: #0b0e12; border-radius: 3px; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 64%; background: #22c55e; opacity: 1; border-radius: 3px"></span><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #8b93a1"></span></span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right">64%</span>
+</div>
+
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">GREY LINE = 50% (COIN FLIP)</span>
+</section>
+<section aria-labelledby="bys" style="flex: 1 1 460px; min-width: 0; background: #11141a; border: 1px solid #1f252e; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 id="bys" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 1px">Last 12 weeks</h2><span style="font-size: 14px; color: #a9b1bd">Weekly hit rate across all graded signals.</span></div>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; align-items: end; height: 160px">
+<span title="A3: 62%" style="height: 99.2px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="A4: 48%" style="height: 76.80000000000001px; background: #1d5c35; border-radius: 3px 3px 0 0"></span><span title="S1: 55%" style="height: 88px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="S2: 71%" style="height: 113.60000000000001px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="S3: 44%" style="height: 70.4px; background: #1d5c35; border-radius: 3px 3px 0 0"></span><span title="S4: 58%" style="height: 92.80000000000001px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="O1: 60%" style="height: 96px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="O2: 53%" style="height: 84.80000000000001px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="O3: 66%" style="height: 105.60000000000001px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="O4: 41%" style="height: 65.60000000000001px; background: #1d5c35; border-radius: 3px 3px 0 0"></span><span title="N1: 57%" style="height: 91.2px; background: #22c55e; border-radius: 3px 3px 0 0"></span><span title="N2: 63%" style="height: 100.80000000000001px; background: #22c55e; border-radius: 3px 3px 0 0"></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #8b93a1; text-align: center">
+<span>A3</span><span>A4</span><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>O1</span><span>O2</span><span>O3</span><span>O4</span><span>N1</span><span>N2</span>
+</div>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1">BRIGHT = ABOVE 50% · DIM = BELOW</span>
+</section>
+</div>
+
+<!-- log -->
+<section aria-labelledby="log" style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px">
+<h2 id="log" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 34px; letter-spacing: 1px">Signal log</h2>
+<label style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1">ASSET<select style="min-height: 44px; padding: 0 12px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-family: 'JetBrains Mono', monospace; font-size: 13px"><option>All 14 assets</option><option>EURUSD</option><option>GBPUSD</option><option>XAUUSD</option><option>US500</option><option>BTCUSD</option></select></label>
+</div>
+<div style="overflow-x: auto; border: 1px solid #1f252e; border-radius: 8px">
+
+
+
+
+
+
+
+
+<table style="width: 100%; min-width: 720px; border-collapse: collapse; font-size: 15px">
+<thead><tr style="background: #11141a; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1; text-align: left"><th scope="col" style="padding: 14px 18px; font-weight: 500">WEEK</th><th scope="col" style="padding: 14px 18px; font-weight: 500">ASSET</th><th scope="col" style="padding: 14px 18px; font-weight: 500">SIGNAL</th><th scope="col" style="padding: 14px 18px; font-weight: 500">CONVICTION</th><th scope="col" style="padding: 14px 18px; font-weight: 500; text-align: right">WEEK MOVE</th><th scope="col" style="padding: 14px 18px; font-weight: 500">RESULT</th><th scope="col" style="padding: 14px 18px; font-weight: 500">SOURCE</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #1f252e"><td style="padding: 12px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #a9b1bd"></td><td style="padding: 12px 18px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px"></td><td style="padding: 12px 18px"><span class=""></span></td><td style="padding: 12px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #22c55e"></td><td style="padding: 12px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right"></td><td style="padding: 12px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700"><span class=""></span></td><td style="padding: 12px 18px"><span class=""></span></td></tr>
+
+</tbody>
+</table>
+</div>
+</section>
+
+<section aria-labelledby="rules" style="background: #0c0f13; border: 1px solid #1f252e; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<h2 id="rules" style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 28px; letter-spacing: 1px">Grading rules</h2>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.55; color: #b7bec9">
+<li><strong style="color: #e8eaed">Hit:</strong> the week's close-to-close move went the way of the signal (Monday open to Friday close, broker time).</li>
+<li><strong style="color: #e8eaed">CHOP</strong> isn't graded. <strong style="color: #e8eaed">FLIP</strong> is graded on the second half of the week, after the turn.</li>
+<li>Moves are shown as multiples of ADR20, so gold and EURUSD can be compared fairly.</li>
+<li>The signal that was live <em>at the time</em> is the one graded. Later data edits never rewrite history.</li>
+</ul>
+</section>
+
+</main>
+
+<footer style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<nav aria-label="Legal" style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a href="risk.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">RISK DISCLOSURE</a><a href="terms.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">TERMS</a><a href="privacy.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">PRIVACY</a><a href="sources.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">DATA SOURCES</a><a href="about.html" style="padding: 10px 8px; text-decoration: none; color: #a9b1bd">ABOUT &amp; CONTACT</a>
+</nav>
+<label style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #8b93a1">EMBEDS<select style="min-height: 40px; padding: 0 10px; background: #11141a; border: 1px solid #2a313b; border-radius: 4px; color: #e8eaed; font-family: 'JetBrains Mono', monospace; font-size: 12px"><option>Ask each time</option><option>Always load</option></select></label>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #8b93a1">Historical patterns only · Not financial advice. Kaminari Seasonals Dashboard is a personal project by G T, published as Kaminari Precision Trading. Futures seasonal data: Moore Research Center © 2020 · © 2026 Kaminari Precision Trading.</p>
+</div>
+</footer>
+</div>
+
+
+
+
+</body></html>
