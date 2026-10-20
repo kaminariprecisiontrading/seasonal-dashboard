@@ -30,6 +30,8 @@ Each asset dashboard has seven tabs along the top:
 
 The top menu on the landing page, dashboard and content pages links to: **Dashboard** · **This Week** · **Heatmap** · **Track Record** · **Methodology**.
 
+- **This Week** (`/this-week`) — the weekly digest: BULL / BEAR / OTHER counts and how they changed since last week, every signal that flipped (top 6, then **See all**), new five-dot signals, your watchlist, and the strongest BULL/BEAR windows in each of the next four weeks. Use **‹ ›** to look at other weeks; the address bar keeps the week so you can bookmark it.
+- **Watchlist** — click the **☆** on any dashboard card or next to an asset's name at the top of its page to star it (★). Starred assets appear on This Week, and the dashboard's **★ Watchlist** filter shows only them. The list is saved in this browser only (`kpt-watchlist`); with site storage blocked it can't be saved.
 - **Methodology** (`/methodology`) — how a signal is built, what CHOP / FLIP / AVOID mean, how conviction is set, how forex pairs are synthesised, and what a seasonal signal is *not*.
 
 ## Seasonals Tab

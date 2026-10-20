@@ -768,6 +768,14 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
 - **Content pages (v1.22+).** `methodology.html` (and the later This Week / Heatmap / Track Record
   pages) are root-level files at clean routes, styled by `site.css` + `css/pages.css`, with the
   shared nav (`aria-current` on the active route) and footer.
+- **This Week + watchlist (v1.23).** `this-week.html` + `js/this-week.js` compute everything
+  through `KptSignals` (tallies, changes vs the previous week, new five-dot signals, next 4 weeks'
+  top BULL/BEAR at ≥4 dots), so they always match the dashboard. `KptWatchlist` (`js/site.js`)
+  stores starred ids in `kpt-watchlist` and renders ★ toggles (`aria-pressed`, "Add X to
+  watchlist"): in each asset page's topbar (site.js) and on every live dashboard card
+  (`js/dashboard.js` wraps each card in a `.kpt-card-cell` so the button sits beside — not inside
+  — the card link; `:has()` hides the cell when the card is filtered out). The dashboard filter bar
+  gained ★ Watchlist (`data-filter="watch"`).
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

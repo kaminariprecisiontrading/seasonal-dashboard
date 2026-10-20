@@ -195,4 +195,5 @@ These keys are written by the shared JS modules. Per-asset keys use `ASSET_CONFI
 | `kpt-tz-{id}` | `upload.js` | Broker UTC offset in hours (e.g. `2` for EET) |
 | `kpt-sub-{id}` | `ui.js` | Last-selected sub-tab on the Seasonals tab (previously documented as `kpt-subtab-{id}`; the code has always used `kpt-sub-`) |
 | `kpt-tw-open` | `dashboard.html` | Whether the dashboard's This Week accordion is open (`1` / `0`) |
+| `kpt-watchlist` | `site.js` (`KptWatchlist`) | JSON array of starred asset ids (dashboard ids, e.g. `["fx-eurusd","xau"]`). Used by `/this-week` and the dashboard's ★ Watchlist filter |
 | `kpt-embeds` | `site.js` | `always` = load TradingView / Investing.com embeds without asking; absent = ask each time (default). Set from the footer's Embeds setting or a placeholder's "Always load" checkbox |

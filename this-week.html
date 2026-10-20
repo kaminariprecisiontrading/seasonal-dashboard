@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPT Seasonals — This Week</title>
+<meta name="description" content="The weekly digest: what changed in the seasonal signals since last week, new maximum-conviction signals, your watchlist, and the high-conviction windows coming up.">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+<!-- Layout from docs/specs/2026-10-site-expansion/mockups/whatchanged.html; all data live from
+     data/signals_manifest.js via js/signals.js (js/this-week.js). Alerts deferred (brief §2c). -->
+<header data-kpt-nav></header>
+<main class="wrap tw-page">
+  <div class="tw-head">
+    <div class="tw-head-text">
+      <span class="eyebrow">Weekly digest</span>
+      <h1 class="display tw-h1" id="tw-h1">This week</h1>
+      <span class="tw-sub">What changed since last week, and what's coming in the next four.</span>
+    </div>
+    <div class="tw-arrows">
+      <button type="button" class="tw-arrow" id="tw-prev" aria-label="Previous week">‹</button>
+      <button type="button" class="tw-arrow" id="tw-next" aria-label="Next week">›</button>
+    </div>
+  </div>
+
+  <p class="tw-fallback-msg" id="tw-fallback" hidden>Signal data couldn't be loaded. <a class="link-accent" href="/dashboard">Open the dashboard</a> instead.</p>
+
+  <div id="tw-content" hidden>
+    <div class="tally-grid" id="tw-tallies"></div>
+
+    <section aria-labelledby="wl" class="tw-block">
+      <div class="tw-block-head">
+        <h2 id="wl" class="display tw-h2">★ Your watchlist</h2>
+        <span class="mini-lbl">STAR ANY ASSET CARD TO ADD IT · SAVED IN THIS BROWSER</span>
+      </div>
+      <div class="wl-grid" id="tw-watchlist"></div>
+    </section>
+
+    <div class="tw-two">
+      <section aria-labelledby="chg" class="tw-block tw-flipped">
+        <h2 id="chg" class="display tw-h3">Signals that flipped</h2>
+        <div id="tw-flips"></div>
+      </section>
+      <section aria-labelledby="hc" class="tw-block tw-maxconv">
+        <h2 id="hc" class="display tw-h3">New max conviction</h2>
+        <span class="note">Five-dot conviction this week, up from fewer dots last week.</span>
+        <div id="tw-maxconv"></div>
+      </section>
+    </div>
+
+    <section aria-labelledby="up" class="tw-block">
+      <h2 id="up" class="display tw-h2">Coming up · high-conviction windows</h2>
+      <div class="upcoming-grid" id="tw-upcoming"></div>
+    </section>
+  </div>
+</main>
+<footer data-kpt-footer></footer>
+<script src="/data/signals_manifest.js" defer></script>
+<script src="/data/asset_index.js" defer></script>
+<script src="/js/signals.js" defer></script>
+<script src="/js/site.js" defer></script>
+<script src="/js/this-week.js" defer></script>
+</body>
+</html>

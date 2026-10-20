@@ -1171,6 +1171,7 @@ html [data-kpt-panel] { display: none; }
 .sig-filter-btn:hover        { color: var(--text); border-color: #334155; }
 .sig-filter-btn.active       { color: var(--text); border-color: #475569; background: rgba(255,255,255,0.04); }
 .sig-filter-btn.bull-filter.active { border-color: #22c55e; color: #22c55e; background: rgba(34,197,94,0.06); }
+.sig-filter-btn.watch-filter.active { border-color: #fbbf24; color: #fbbf24; background: rgba(251,191,36,0.06); }
 .sig-filter-btn.bear-filter.active { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.06); }
 .sig-filter-btn.chop-filter.active { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.06); }
 .signal-filter-count {

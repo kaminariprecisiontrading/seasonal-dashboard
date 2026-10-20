@@ -238,7 +238,9 @@
       var allComplete = document.querySelectorAll('.asset-card.status-complete');
       allComplete.forEach(function (card) {
         total++;
-        var show = filter === 'all' || card.dataset.sigType === filter;
+        // 'watch' = ★ Watchlist filter (v1.23): cards whose asset is starred.
+        var show = filter === 'all' ||
+          (filter === 'watch' ? !!(window.KptWatchlist && KptWatchlist.has(cardAssetId(card))) : card.dataset.sigType === filter);
         card.classList.toggle('sig-hidden', !show);
         if (show) visible++;
       });
@@ -257,7 +259,35 @@
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () { applySignalFilter(btn.dataset.filter); });
     });
+    // Un-starring a card while the Watchlist filter is on should drop it straight away.
+    window.addEventListener('kpt-watchlist-change', function () {
+      if (activeFilter === 'watch') applySignalFilter('watch');
+    });
   }
+
+  /* ── Watchlist stars on live cards (v1.23) ── */
+  // Each live card is wrapped in a .kpt-card-cell with a ★ button beside (not inside)
+  // the card link — a button nested in an <a> is invalid HTML. KptWatchlist comes
+  // from js/site.js, which is deferred, so wait for DOMContentLoaded.
+  function cardAssetId(card) {
+    var m = (card.getAttribute('href') || '').match(/assets\/([^./?#]+)/);
+    return m ? m[1] : null;
+  }
+  function addStars() {
+    if (!window.KptWatchlist) return;
+    document.querySelectorAll('.asset-card.status-complete').forEach(function (card) {
+      var id = cardAssetId(card);
+      if (!id || (card.parentElement && card.parentElement.classList.contains('kpt-card-cell'))) return;
+      var cell = document.createElement('div');
+      cell.className = 'kpt-card-cell';
+      card.parentNode.insertBefore(cell, card);
+      cell.appendChild(card);
+      var label = ((card.querySelector('.card-ticker') || {}).textContent || id).trim();
+      cell.appendChild(KptWatchlist.button(id, label));
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addStars);
+  else addStars();
 
   /* ── Accordion toggle ── */
   var toggle   = document.getElementById('tw-toggle');

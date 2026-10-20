@@ -86,6 +86,28 @@ var KptSignals = (function () {
     }).filter(function (x) { return x.assets.length; });
   }
 
+  // Short group labels for compact rows ("Metals · CMX", "FX cross").
+  var GROUP_SHORT = {
+    'fx-majors': 'FX major', 'fx-minors': 'FX minor', 'fx-crosses': 'FX cross',
+    'fut-currencies': 'Currencies', 'fut-metals': 'Metals', 'fut-energy': 'Energy', 'fut-rates': 'Rates',
+    'fut-indices': 'Indices', 'fut-softs': 'Softs', 'fut-grains': 'Grains', 'fut-fiber': 'Fiber',
+    'fut-meats': 'Meats & Dairy', 'crypto-major': 'Crypto'
+  };
+  function groupShort(groupId) { return GROUP_SHORT[groupId] || groupId; }
+  // FX pairs read best by ticker (EURUSD); futures by name without the exchange suffix (Gold).
+  function displayName(a) {
+    if (!a) return '';
+    if (a.block === 'forex') return a.ticker;
+    return (a.name || a.ticker).replace(/\s*\([^)]*\)\s*$/, '') || a.ticker;
+  }
+  // "Metals · CMX", "FX major", "Crypto · price-derived"
+  function subLabel(a) {
+    if (!a) return '';
+    var m = /\(([^)]*)\)\s*$/.exec(a.name || '');
+    var extra = a.block === 'crypto' ? 'price-derived' : (a.block === 'forex' ? '' : (m ? m[1] : ''));
+    return groupShort(a.group) + (extra ? ' · ' + extra : '');
+  }
+
   /** tally(month, week) → { bull, bear, other, total } over live assets in the manifest. */
   function tally(month, week) {
     var t = { bull: 0, bear: 0, other: 0, total: 0 };
@@ -123,6 +145,7 @@ var KptSignals = (function () {
     weekParam: weekParam, parseWeekParam: parseWeekParam,
     comToTag: comToTag, starCount: starCount, getSignal: getSignal,
     liveAssets: liveAssets, asset: asset, assetHref: assetHref, assetsByGroup: assetsByGroup, tally: tally,
+    groupShort: groupShort, displayName: displayName, subLabel: subLabel,
     convPips: convPips, convDots: convDots, pill: pill,
     hasManifest: function () { return !!manifest(); }
   };

@@ -106,6 +106,56 @@
     });
     if (KptEmbeds.get() === 'always' && panelActive()) load();
   };
+  /* ── Watchlist (kpt-watchlist: JSON array of asset ids) ─────────────────── */
+  // Starred from dashboard cards and asset-page headers; shown on /this-week and as
+  // the dashboard's ★ Watchlist filter. Storage blocked → an empty list that can't
+  // be saved; nothing breaks.
+  var WATCH_KEY = 'kpt-watchlist';
+  window.KptWatchlist = {
+    get: function () {
+      try { var v = JSON.parse(KptStore.local.get(WATCH_KEY) || '[]'); return Array.isArray(v) ? v.filter(function (x) { return typeof x === 'string'; }) : []; }
+      catch (e) { return []; }
+    },
+    has: function (id) { return this.get().indexOf(id) !== -1; },
+    toggle: function (id) {
+      var list = this.get(), i = list.indexOf(id);
+      if (i === -1) list.push(id); else list.splice(i, 1);
+      var saved = KptStore.local.set(WATCH_KEY, JSON.stringify(list));
+      window.dispatchEvent(new CustomEvent('kpt-watchlist-change', { detail: { list: list, saved: saved } }));
+      return i === -1;
+    },
+    // A ★ toggle button for an asset (aria-pressed + label kept in sync everywhere).
+    button: function (id, label, cls) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'kpt-star' + (cls ? ' ' + cls : '');
+      b.dataset.assetId = id;
+      function sync() {
+        var on = KptWatchlist.has(id);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.setAttribute('aria-label', (on ? 'Remove ' : 'Add ') + label + (on ? ' from' : ' to') + ' watchlist');
+        b.title = on ? 'On your watchlist' : 'Add to watchlist';
+        b.textContent = on ? '★' : '☆';
+      }
+      b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); KptWatchlist.toggle(id); });
+      window.addEventListener('kpt-watchlist-change', sync);
+      sync();
+      return b;
+    }
+  };
+  window.addEventListener('storage', function (e) {
+    if (e.key === WATCH_KEY) window.dispatchEvent(new CustomEvent('kpt-watchlist-change', { detail: { list: KptWatchlist.get() } }));
+  });
+
+  // Asset pages: ★ in the topbar, next to the asset name.
+  function renderAssetStar() {
+    if (typeof ASSET_CONFIG === 'undefined' || !ASSET_CONFIG.id) return;
+    var title = document.querySelector('.topbar .topbar-title');
+    if (!title || document.querySelector('.topbar .kpt-star')) return;
+    var label = (title.textContent || ASSET_CONFIG.id).replace(/\s*\/\s*/g, '').trim();
+    title.parentNode.insertBefore(KptWatchlist.button(ASSET_CONFIG.id, label, 'kpt-star-topbar'), title.nextSibling);
+  }
+
   // Embed modules (tradingview.js, macro.js) load before this file on asset pages,
   // so they wait for this event before calling KptEmbeds.gate().
   window.dispatchEvent(new CustomEvent('kpt-site-ready'));
@@ -213,6 +263,7 @@
 
   function init() {
     fillOperator();
+    renderAssetStar();
     renderNav();
     renderFooter();
     fullBleed(document.querySelector('[data-kpt-nav]'), 'top');

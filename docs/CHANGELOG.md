@@ -2,6 +2,40 @@
 
 ---
 
+## v1.23 — October 2026
+**This Week digest (`/this-week`) + ★ watchlist**
+
+Built from `NEW_PAGES_BUILD_NOTES.md` Phase 2 (2a digest, 2b watchlist). 2c alerts deferred as
+specified — the alerts section is left out of the page.
+
+### Changes
+
+- **`/this-week`:** week header with ‹ › (crosses month and year ends; `?w=YYYY-M-W` in the URL),
+  BULL / BEAR / OTHER tallies with change vs last week, "Signals changed" count, Signals that
+  flipped (`from → to`, by conviction, top 6 + See all N), New max conviction (5 dots now, <5 last
+  week), Coming up (next 4 weeks, top 3 at ≥4 dots), watchlist strip. Planned assets excluded.
+  All live from the manifest via `js/signals.js`; asset rows link to their pages.
+- **Watchlist:** ★ toggle on all 98 dashboard cards and every asset page header (`aria-pressed`,
+  "Add EURUSD to watchlist"); stored in `kpt-watchlist` (key name unified as `kpt-watchlist` —
+  the briefs used both `kpt-watchlist` and `kpt.watchlist`); dashboard ★ Watchlist filter; works
+  (empty, unsaved) with storage blocked.
+- `js/signals.js`: `groupShort()`, `displayName()`, `subLabel()` for compact asset rows.
+
+### Wording / behaviour vs the mockup
+
+- "New max conviction" subtitle: "All three timeframes agree this week." → "Five-dot conviction
+  this week, up from fewer dots last week." (five dots ≠ always 3/3 agreement — see v1.22).
+- "Coming up" lists only BULL/BEAR signals (a 4–5-dot CHOP isn't a tradeable window).
+
+### Tests
+
+Against two independent dashboard loads (Oct Wk3 vs Oct Wk2): tallies, the 21 changed assets
+and the new-max-conviction list match exactly; arrows Oct Wk4 → Nov Wk1 and Dec Wk4 2026 → Jan
+Wk1 2027 and back; watchlist star/filter/persistence/header toggle; storage blocked; 1440 / 768 /
+390px; dashboard signals still identical to the original baseline.
+
+---
+
 ## v1.22 — October 2026
 **Methodology page (`/methodology`)**
 
