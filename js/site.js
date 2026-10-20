@@ -55,6 +55,61 @@
     if (e.key === EMBEDS_KEY) window.dispatchEvent(new CustomEvent('kpt-embeds-change', { detail: { value: KptEmbeds.get() } }));
   });
 
+  /**
+   * KptEmbeds.gate(cfg) — click-to-load for a third-party embed. Nothing from the
+   * embed's domain is requested until cfg.load() runs, which happens when:
+   *   - the user clicks the placeholder's Load button, or
+   *   - the setting is "always" and the embed's tab (cfg.panel) is opened.
+   * Loading one embed never loads another unless "always" is set.
+   *
+   * cfg: { host (element the placeholder goes in), panel ('chart' | 'macro'),
+   *        title, domain, button, icon (svg markup), load (fn) }
+   */
+  var ICONS = {
+    chart: '<svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 4-6 5 4"/><path d="M3 21h18"/></svg>',
+    calendar: '<svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>'
+  };
+  KptEmbeds.gate = function (cfg) {
+    var loaded = false;
+    var gate = document.createElement('div');
+    gate.className = 'kpt-embed-gate';
+    gate.innerHTML =
+      '<div class="kpt-embed-gate-card">' + (ICONS[cfg.icon] || '') +
+        '<span class="kpt-embed-gate-title">' + cfg.title + '</span>' +
+        '<span class="kpt-embed-gate-note">This ' + cfg.noun + ' is loaded from ' + cfg.domain + ', which may set its own cookies. <a href="/privacy">Privacy</a></span>' +
+        '<button type="button" class="kpt-embed-gate-btn">' + cfg.button + '</button>' +
+        '<label class="kpt-embed-gate-always"><input type="checkbox"> Always load embeds on this device</label>' +
+      '</div>';
+    cfg.host.appendChild(gate);
+    var box = gate.querySelector('input');
+    box.checked = KptEmbeds.get() === 'always';
+
+    function panelActive() {
+      var el = cfg.host.closest('[data-kpt-panel]');
+      // No tab system on the page (or panel not tabbed) → treat as visible.
+      return !el || el.classList.contains('kpt-panel-active') || !document.querySelector('.kpt-tabs');
+    }
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      if (gate.parentElement) gate.parentElement.removeChild(gate);
+      cfg.load();
+    }
+    gate.querySelector('button').addEventListener('click', load);
+    box.addEventListener('change', function () { KptEmbeds.set(box.checked ? 'always' : 'ask'); });
+    window.addEventListener('kpt-embeds-change', function (e) {
+      box.checked = e.detail.value === 'always';
+      if (e.detail.value === 'always' && panelActive()) load();
+    });
+    window.addEventListener('kpt-tab-activated', function (e) {
+      if (e.detail.panel === cfg.panel && KptEmbeds.get() === 'always') load();
+    });
+    if (KptEmbeds.get() === 'always' && panelActive()) load();
+  };
+  // Embed modules (tradingview.js, macro.js) load before this file on asset pages,
+  // so they wait for this event before calling KptEmbeds.gate().
+  window.dispatchEvent(new CustomEvent('kpt-site-ready'));
+
   /* ── Routes ───────────────────────────────────────────────────────────── */
   var NAV = [
     ['/dashboard', 'Dashboard'],

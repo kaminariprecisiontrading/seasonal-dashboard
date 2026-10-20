@@ -2,6 +2,36 @@
 
 ---
 
+## v1.20 — October 2026
+**Click-to-load embeds, fonts fully self-hosted**
+
+Built from `LEGAL_PAGES_BUILD_NOTES.md` §3–4.
+
+### Changes
+
+- **Click-to-load TradingView (Live Price) and Investing.com (Macro):** neither embed is in the
+  initial HTML any more. `KptEmbeds.gate()` (`js/site.js`) shows a placeholder with a Load button
+  and an "Always load embeds on this device" checkbox; with `kpt-embeds` = `always` an embed loads
+  when its tab is opened — which also means embeds for tabs you never open are never loaded
+  (previously the TradingView script loaded on every asset page view). Loading one doesn't load the
+  other. Checkbox and footer setting stay in sync; blocked storage = "Ask each time".
+  `ui.js` fires `kpt-tab-activated`; `tvSymbol` overrides unchanged.
+- **Fonts:** removed the last Google Fonts `<link>`s (`assets/cad.html`, `chf.html`, `eur.html`);
+  every page now uses the self-hosted files from v1.18. Privacy §8 already says so.
+- **Fix (pre-existing, all asset pages):** the Live Price section label's "TradingView — Weekly"
+  text overflowed onto the banner below because `.section-label span` gave every span in a label
+  the 8×8 dot box. Scoped to the empty dot span (`.section-label > span:empty`).
+
+### Tests (headless, fresh profile)
+
+Zero requests to tradingview.com / investing.com / Google Fonts across landing, dashboard, two
+legal pages and three asset pages incl. opening both tabs; Load chart requests TradingView only;
+Macro stays gated until its own Load; Always-load persists across reload, loads on tab open (not
+before), syncs the footer; "Ask each time" clears the key; blocked storage shows the placeholder
+with no page errors; Bebas Neue / IBM Plex Mono / Barlow all load from this site.
+
+---
+
 ## v1.19 — October 2026
 **Legal & trust pages, site-wide footer**
 

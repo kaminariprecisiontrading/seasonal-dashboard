@@ -81,6 +81,8 @@ Data freshness: the **Data As Of** figure shows the last date included. It updat
 
 An embedded TradingView chart (weekly interval by default) for checking where price is right now relative to its seasonal and statistical context. You can change the interval and symbol inside the widget.
 
+**Third-party embeds load only when you choose.** The Live Price chart (TradingView) and the Macro calendar (Investing.com) are provided by other companies that may set their own cookies, so nothing is requested from them until you click **Load chart** / **Load calendar**. Loading one doesn't load the other. To skip the button, tick **Always load embeds on this device**, or set **Embeds → Always load** in the site footer — the two settings are the same and stay in sync. With "Always load" on, an embed loads as soon as you open its tab (never before). If your browser blocks site storage, the setting can't be saved and the site falls back to asking each time.
+
 ---
 
 ## Upload Tab — Your Own Price Data
@@ -190,7 +192,7 @@ The verdict reflects the dashboard's data layers only. It does not account for c
 
 Shows the Investing.com economic calendar, pre-filtered for the currencies and country events relevant to this asset. Useful for identifying upcoming high-impact events that may accelerate or disrupt the seasonal tendency.
 
-The calendar widget may take 20–30 seconds to load on first open (it is an embedded third-party iframe). Change the date range using the widget's own controls. The importance filter (High / Medium / Low) can be toggled within the widget.
+Click **Load calendar** to load it (see the Live Price tab for how embeds and the **Always load** setting work). The calendar widget may take 20–30 seconds to load on first open (it is an embedded third-party iframe). Change the date range using the widget's own controls. The importance filter (High / Medium / Low) can be toggled within the widget.
 
 **Note for anyone testing locally:** the widget only loads correctly on the deployed site (`kpt-seasonals.netlify.app`) — it will not load via Live Server on `127.0.0.1`, since Investing.com's free embed requires the parent domain to be registered with them. This is expected and not a bug.
 

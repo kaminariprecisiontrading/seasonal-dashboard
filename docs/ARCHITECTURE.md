@@ -121,7 +121,7 @@ Injects `ltLabel` into `id="acc-lt-header"`. Handles current month detection. Au
 
 **`api.js`** is the multi-provider AI analysis engine. Gathers up to four context layers (seasonal, curve, backtest, intraday) before calling the selected provider. Supports Claude Sonnet (Anthropic SSE), Gemini Flash (Google SSE), and Ollama (local NDJSON streaming). Config and API keys stored in `localStorage` under `kpt-cfg-*` keys. Injects the provider selector, settings panel, and context bar before `#run-btn` at page load. Dynamically overwrites the panel heading and subtitle at runtime so the label reflects the active provider without requiring HTML changes to any of the 97 asset files. Output streamed token-by-token; rendered as Markdown via dynamically loaded `marked.js`. AI response cached per `kpt-ai-{id}-{provider}-{year}-w{week}`.
 
-**`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Live Price tab activation to force iframe render.
+**`tradingview.js`** injects a TradingView embedded chart widget into `#tv-chart-section > .tv-widget-inner`. Contains a 97-entry symbol lookup table mapping asset IDs to TradingView symbol strings. Widget config: Weekly interval · Dark theme · Allow symbol change · 430px height. Re-triggers layout on Live Price tab activation to force iframe render. **Click-to-load (v1.20):** the widget script is only injected by `KptEmbeds.gate()` (`js/site.js`) — on the placeholder's Load button, or on opening the Live Price tab when `kpt-embeds` = `always`; the inversion/proxy banners (no network) still render immediately, `tvSymbol` overrides still apply.
 
 **`upload.js`** (Tier 4, replaces the former `backtest.js` + `intraday.js`) is the unified CSV upload tool. One shared parser/timeframe detector accepts any MT5 export granularity from M1 (1-minute) through MN1 (Monthly) — a real median inter-bar-timestamp gap in minutes is matched to the nearest standard tier, robust to weekend/holiday gaps. Two views, shown only when the detected tier supports them: Seasonal Tendency (ex-Backtest — raw up-frequency, win-rate vs. the seasonal model, and average return per month/week-of-month slot; available for every tier, with MN1 uploads collapsing to a single "Month" slot since a monthly bar has no week-of-month resolution) and Intraday Timing (ex-Sessions — average return by hour, session, and day of week; only possible for sub-daily tiers M1–H4). It injects a single `<section data-kpt-panel="upload">` before the footnote. Must load before `ui.js`. See the Upload Panel section below.
 
@@ -296,7 +296,7 @@ Builds a `kpt-tabs kpt-subtabs` bar for the four timeframe views: Combined · 5-
 
 ## Macro Panel (`js/macro.js`)
 
-A fully client-side economic calendar panel injected on all 97 asset pages. Displays a currency-filtered Investing.com calendar iframe alongside a collapsible asset-class-specific interpretation guide.
+A fully client-side economic calendar panel injected on all 97 asset pages. Displays a currency-filtered Investing.com calendar iframe alongside a collapsible asset-class-specific interpretation guide. **Click-to-load (v1.20):** the iframe isn't in the initial markup; `KptEmbeds.gate()` creates it on the Load button, or on opening the Macro tab when `kpt-embeds` = `always`.
 
 ### Panel Injection
 
@@ -733,6 +733,14 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   Operator name in page text is marked `data-kpt-operator` and filled from `KPT_SITE.OPERATOR_NAME`.
   The site footer also reaches every asset and profiling page via `scripts/patch_add_site_chrome.js`
   (adds `chrome.css` + `site.js`), and marks the current legal page with `aria-current`.
+- **Click-to-load embeds (v1.20).** `KptEmbeds.gate(cfg)` in `js/site.js` puts a placeholder
+  (title, "may set its own cookies" + Privacy link, Load button, "Always load embeds on this
+  device" checkbox) in the embed's host element and calls `cfg.load()` only on the button, or when
+  the setting is `always` and the embed's tab opens (`ui.js` now fires a `kpt-tab-activated`
+  event from `activateTab`). The checkbox and the footer's Embeds select both write `kpt-embeds`
+  and stay in sync via a `kpt-embeds-change` event (and the `storage` event across tabs). Storage
+  access is wrapped (`KptStore`); blocked storage behaves as "Ask each time". `tradingview.js` and
+  `macro.js` load before `site.js`, so they register on a `kpt-site-ready` event.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

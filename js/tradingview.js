@@ -191,9 +191,10 @@
   var inner = wrap.querySelector('.tv-widget-inner');
   if (!inner) return;
 
-  /* ─── Skeleton shimmer placeholder ──────────────────────────────────── */
+  /* ─── Skeleton shimmer placeholder (shown once the widget starts loading) ─ */
   var container = wrap.querySelector('.tradingview-widget-container');
-  if (container) {
+  function showSkeleton() {
+    if (!container) return;
     var skel = document.createElement('div');
     skel.className = 'tv-skeleton';
     container.appendChild(skel);
@@ -243,25 +244,40 @@
     );
   }
 
-  /* ─── Inject TradingView widget script ──────────────────────────────── */
-  var script    = document.createElement('script');
-  script.type   = 'text/javascript';
-  script.src    = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-  script.async  = true;
-  script.text   = JSON.stringify({
-    width:              '100%',
-    height:             430,
-    symbol:             symbol,
-    interval:           'W',
-    timezone:           'Etc/UTC',
-    theme:              'dark',
-    style:              '1',
-    locale:             'en',
-    allow_symbol_change: true,
-    calendar:           false,
-    support_host:       'https://www.tradingview.com'
-  });
+  /* ─── Inject TradingView widget script — click-to-load ──────────────── */
+  // Nothing is requested from tradingview.com until the visitor loads the chart
+  // (or has chosen "Always load" and opens the Live Price tab) — KptEmbeds.gate,
+  // js/site.js. ASSET_CONFIG.tvSymbol overrides still apply (resolved above).
+  function loadWidget() {
+    showSkeleton();
+    var script    = document.createElement('script');
+    script.type   = 'text/javascript';
+    script.src    = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    script.async  = true;
+    script.text   = JSON.stringify({
+      width:              '100%',
+      height:             430,
+      symbol:             symbol,
+      interval:           'W',
+      timezone:           'Etc/UTC',
+      theme:              'dark',
+      style:              '1',
+      locale:             'en',
+      allow_symbol_change: true,
+      calendar:           false,
+      support_host:       'https://www.tradingview.com'
+    });
+    inner.appendChild(script);
+  }
 
-  inner.appendChild(script);
+  function gate() {
+    KptEmbeds.gate({
+      host: inner, panel: 'chart', icon: 'chart', noun: 'chart',
+      title: 'Live chart from TradingView', domain: 'tradingview.com', button: 'Load chart',
+      load: loadWidget
+    });
+  }
+  if (window.KptEmbeds && KptEmbeds.gate) gate();
+  else window.addEventListener('kpt-site-ready', gate);
 
 })();

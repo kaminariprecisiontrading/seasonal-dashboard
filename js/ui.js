@@ -437,6 +437,9 @@
         inner.style.display = '';
       }
     }
+    // Lets click-to-load embeds (TradingView on 'chart', Investing.com on 'macro')
+    // load only when their tab is actually opened — see KptEmbeds.gate in site.js.
+    window.dispatchEvent(new CustomEvent('kpt-tab-activated', { detail: { panel: panelId } }));
   }
 
 })();

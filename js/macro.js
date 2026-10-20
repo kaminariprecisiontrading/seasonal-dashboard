@@ -312,10 +312,8 @@
     /* Two-column body */
     '<div class="macro-body">' +
 
-      /* Left: calendar embed */
-      '<div class="macro-embed-outer">' +
-        '<iframe class="macro-iframe" src="' + embedUrl + '" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>' +
-      '</div>' +
+      /* Left: calendar embed — iframe created on load only (click-to-load, below) */
+      '<div class="macro-embed-outer"></div>' +
 
       /* Right: collapsible guide */
       '<div class="macro-guide">' +
@@ -337,5 +335,29 @@
   } else {
     (document.querySelector('.container') || document.body).appendChild(panel);
   }
+
+  /* ─── Click-to-load the Investing.com calendar ───────────────────────── */
+  // No request goes to investing.com until the visitor loads the calendar (or has
+  // chosen "Always load" and opens the Macro tab) — KptEmbeds.gate, js/site.js.
+  var outer = panel.querySelector('.macro-embed-outer');
+  function loadCalendar() {
+    var iframe = document.createElement('iframe');
+    iframe.className = 'macro-iframe';
+    iframe.src = embedUrl;
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('scrolling', 'yes');
+    iframe.setAttribute('allowtransparency', 'true');
+    iframe.title = 'Economic calendar (Investing.com)';
+    outer.appendChild(iframe);
+  }
+  function gate() {
+    KptEmbeds.gate({
+      host: outer, panel: 'macro', icon: 'calendar', noun: 'calendar',
+      title: 'Economic calendar from Investing.com', domain: 'investing.com', button: 'Load calendar',
+      load: loadCalendar
+    });
+  }
+  if (window.KptEmbeds && KptEmbeds.gate) gate();
+  else window.addEventListener('kpt-site-ready', gate);
 
 })();
