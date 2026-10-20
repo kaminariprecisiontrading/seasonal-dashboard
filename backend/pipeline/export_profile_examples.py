@@ -1,0 +1,154 @@
+"""
+Phase 3 support — Illustrative profile example export (Kaminari Market
+Profiling System)
+
+For each named profile, picks one real historical trading day as a
+"typical" example — the day within that profile whose daily_range_pips is
+closest to the profile's own average (per profile_summary.json), not a
+cherry-picked extreme — extracts that day's intraday M1 bars from the raw
+MT5 export, resamples to M15, and exports a small JS bundle the dashboard's
+profile detail pages load to draw a real illustrative candlestick chart per
+profile ("see the profile in action").
+
+Reuses clean_mt5_csv.py's load_raw()/to_utc() so the UTC conversion and
+trading-day boundary logic (§ HANDOVER decisions) stay in exactly one place.
+
+Usage:
+    python3 export_profile_examples.py <raw_m1_csv> <daily_profiles_csv> \
+        <profile_summary_json> <output_js> --asset GBPUSD
+"""
+
+import sys
+import json
+import argparse
+import pandas as pd
+
+from clean_mt5_csv import load_raw, to_utc
+
+RESAMPLE_FREQ = "15min"
+
+
+def pick_exemplar_days(daily_profiles: pd.DataFrame, profile_summary: dict) -> dict:
+    avg_range = profile_summary["avg_range_pips_by_profile"]
+    exemplars = {}
+    has_intraday = ~daily_profiles.get("is_daily_only", False).astype(bool)
+    for profile, stats in avg_range.items():
+        target_mean = stats["mean"]
+        # daily-only-era days (single EOD bar, no intrabar path) can't back a
+        # candlestick chart -- exclude them from exemplar candidacy
+        sub = daily_profiles[(daily_profiles["profile"] == profile) & has_intraday].copy()
+        if sub.empty:
+            continue
+        sub["dist_from_mean"] = (sub["daily_range_pips"] - target_mean).abs()
+        best = sub.sort_values("dist_from_mean").iloc[0]
+        exemplars[profile] = str(best["date"])[:10]
+    return exemplars
+
+
+def pick_nfp_exemplar_days(daily_profiles: pd.DataFrame, nfp_summary: dict) -> dict:
+    """Tier 5b's NFP profile, reuse-based design (2026-09-06): same
+    exemplar-picking logic as pick_exemplar_days(), restricted to NFP days
+    only and targeting each profile's NFP-conditioned mean range (not the
+    unconditional mean) -- "a typical NFP day of this profile," not just
+    "a typical day of this profile that happened to also be an NFP day."
+    Recomputes the NFP calendar rule directly (profile_taxonomy.py's own
+    per-day CSV doesn't carry an is_nfp column) -- matches this pipeline's
+    convention of independent, parallel scripts rather than importing it."""
+    nfp_dist = nfp_summary.get("nfp_profile_distribution", {})
+    if not nfp_dist:
+        return {}
+
+    is_nfp = (daily_profiles["date"].dt.day_name() == "Friday") & (daily_profiles["date"].dt.day <= 7)
+    nfp_days = daily_profiles[is_nfp]
+    has_intraday = ~nfp_days.get("is_daily_only", False).astype(bool)
+
+    exemplars = {}
+    for profile, stats in nfp_dist.items():
+        target_mean = stats["mean_range_pips"]
+        sub = nfp_days[(nfp_days["profile"] == profile) & has_intraday].copy()
+        if sub.empty:
+            continue
+        sub["dist_from_mean"] = (sub["daily_range_pips"] - target_mean).abs()
+        best = sub.sort_values("dist_from_mean").iloc[0]
+        exemplars[profile] = str(best["date"])[:10]
+    return exemplars
+
+
+def bars_for_day(df_m1: pd.DataFrame, target_date) -> list:
+    day_bars = df_m1[df_m1["trading_day"] == target_date].sort_values("utc_dt").set_index("utc_dt")
+    if day_bars.empty:
+        return []
+    ohlc = day_bars.resample(RESAMPLE_FREQ).agg(
+        {"open": "first", "high": "max", "low": "min", "close": "last"}
+    ).dropna()
+    return [
+        {
+            "t": ts.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "o": round(float(row.open), 5),
+            "h": round(float(row.high), 5),
+            "l": round(float(row.low), 5),
+            "c": round(float(row.close), 5),
+        }
+        for ts, row in ohlc.iterrows()
+    ]
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("raw_m1_csv")
+    ap.add_argument("daily_profiles_csv")
+    ap.add_argument("profile_summary_json")
+    ap.add_argument("output_js")
+    ap.add_argument("--asset", required=True)
+    args = ap.parse_args()
+
+    print(f"Loading raw M1 data for {args.asset}...", file=sys.stderr)
+    df = load_raw(args.raw_m1_csv)
+    df = to_utc(df)
+
+    daily_profiles = pd.read_csv(args.daily_profiles_csv, parse_dates=["date"])
+    with open(args.profile_summary_json, encoding="utf-8") as f:
+        profile_summary = json.load(f)
+
+    exemplars = pick_exemplar_days(daily_profiles, profile_summary)
+
+    result = {}
+    for profile, date_str in exemplars.items():
+        target_date = pd.Timestamp(date_str).date()
+        bars = bars_for_day(df, target_date)
+        if not bars:
+            print(f"  WARNING: no M1 bars found for {profile} on {date_str} — skipped", file=sys.stderr)
+            continue
+        result[profile] = {"date": date_str, "bars": bars}
+        print(f"  {profile}: {date_str} ({len(bars)} M15 bars)", file=sys.stderr)
+
+    # NFP profile exemplars (Tier 5b), nested under "_nfp" -- a profile name
+    # can never literally be "_nfp" so this can't collide with the keys
+    # above. Kept in the same output file/bundle rather than a separate one
+    # so sync_profiling_data.js needs no changes (it already copies this
+    # file verbatim).
+    nfp_summary = profile_summary.get("nfp", {})
+    nfp_exemplars = pick_nfp_exemplar_days(daily_profiles, nfp_summary)
+    nfp_result = {}
+    for profile, date_str in nfp_exemplars.items():
+        target_date = pd.Timestamp(date_str).date()
+        bars = bars_for_day(df, target_date)
+        if not bars:
+            print(f"  WARNING: no M1 bars found for NFP {profile} on {date_str} — skipped", file=sys.stderr)
+            continue
+        nfp_result[profile] = {"date": date_str, "bars": bars}
+        print(f"  NFP {profile}: {date_str} ({len(bars)} M15 bars)", file=sys.stderr)
+    if nfp_result:
+        result["_nfp"] = nfp_result
+
+    var_name = f"{args.asset.upper()}_PROFILE_EXAMPLES"
+    with open(args.output_js, "w", encoding="utf-8") as f:
+        f.write("// Auto-generated by pipeline/export_profile_examples.py — do not edit by hand.\n")
+        f.write(f"const {var_name} = ")
+        json.dump(result, f, indent=2)
+        f.write(";\n")
+    print(f"wrote {args.output_js}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()

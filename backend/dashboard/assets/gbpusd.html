@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBPUSD — Kaminari Market Profiling</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<a href="../index.html" class="back-link">&larr; All Assets</a>
+<div class="header">
+  <h1>GBPUSD</h1>
+  <div class="sub">Market Profiling &amp; Statistics &middot; Daily / Weekly / Monthly / Yearly &middot; 2000&ndash;2019</div>
+</div>
+<a href="../calendar/asset.html?a=GBPUSD" class="calendar-link-btn">Browse GBPUSD by date &rarr;</a>
+
+<div class="stat-grid" id="stat-grid"></div>
+
+<div class="section-label">Range Distribution</div>
+<div class="section-note">Daily/weekly/monthly/yearly range percentile<span class="glossary-icon" data-glossary-key="percentile">?</span> strips (p05&ndash;p95), IQR<span class="glossary-icon" data-glossary-key="iqr">?</span> boxed, median<span class="glossary-icon" data-glossary-key="median">?</span> marked. Dashed lines mark the compression<span class="glossary-icon" data-glossary-key="compression">?</span> (p20) / expansion<span class="glossary-icon" data-glossary-key="expansion">?</span> (p80) regime thresholds used by the profile taxonomy below. Hover any part of a chart for an explanation. The lookback window<span class="glossary-icon" data-glossary-key="lookback_window">?</span> affects the daily/weekly/monthly charts &mdash; not the yearly chart, which only has ~20 samples total and always shows full history.</div>
+<div class="dial" id="dial"></div>
+
+<div class="panel">
+  <div class="panel-title">Daily Range</div>
+  <div class="range-strip-wrap"><div id="range-daily"></div></div>
+  <div class="range-strip-caption" id="range-daily-caption"></div>
+  <div class="mode-note" id="range-daily-mode-note"></div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Weekly Range</div>
+    <div class="range-strip-wrap"><div id="range-weekly"></div></div>
+    <div class="range-strip-caption" id="range-weekly-caption"></div>
+    <div class="mode-note" id="range-weekly-mode-note"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Monthly Range</div>
+    <div class="range-strip-wrap"><div id="range-monthly"></div></div>
+    <div class="range-strip-caption" id="range-monthly-caption"></div>
+    <div class="mode-note" id="range-monthly-mode-note"></div>
+  </div>
+</div>
+<div class="panel">
+  <div class="panel-title">Yearly Range</div>
+  <div class="range-strip-wrap"><div id="range-yearly"></div></div>
+  <div class="range-strip-caption" id="range-yearly-caption"></div>
+  <div class="mode-note" id="range-yearly-mode-note"></div>
+  <div class="section-note" id="range-yearly-sample-note" style="margin-top:10px;margin-bottom:0;"></div>
+</div>
+
+<div class="section-label">Time of Extreme</div>
+<div class="section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean<span class="glossary-icon" data-glossary-key="circular_mean">?</span>. Bars are coloured by FX session<span class="glossary-icon" data-glossary-key="session">?</span>. The badge shows how tightly clustered (concentrated<span class="glossary-icon" data-glossary-key="concentration">?</span>) the timing actually is &mdash; hover any bar for its exact time window.</div>
+
+<div class="panel">
+  <div class="panel-title">Daily High</div>
+  <div id="heatmap-high"></div>
+  <div class="clock-caption" id="heatmap-high-caption"></div>
+  <div class="session-legend"></div>
+</div>
+<div class="panel">
+  <div class="panel-title">Daily Low</div>
+  <div id="heatmap-low"></div>
+  <div class="clock-caption" id="heatmap-low-caption"></div>
+  <div class="session-legend"></div>
+</div>
+
+<div class="section-label">Weekly, Monthly and Yearly Extremes</div>
+<div class="section-note">Which weekday the week's high/low falls on; which week-of-month the month's high/low falls on; which calendar month the year's high/low falls in. Full history &mdash; not affected by the lookback dial above. Hover any bar for the exact count. The yearly charts are built from only ~20 yearly samples &mdash; the weakest-sample charts on this page, shown anyway for completeness rather than left out.</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Week High &mdash; Day of Week</div>
+    <div id="weekday-high-chart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Week Low &mdash; Day of Week</div>
+    <div id="weekday-low-chart"></div>
+  </div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Month High &mdash; Week of Month</div>
+    <div id="wom-high-chart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Month Low &mdash; Week of Month</div>
+    <div id="wom-low-chart"></div>
+  </div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Year High &mdash; Month</div>
+    <div id="year-high-month-chart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Year Low &mdash; Month</div>
+    <div id="year-low-month-chart"></div>
+  </div>
+</div>
+
+<div class="section-label">Profile Taxonomy</div>
+<div class="section-note" id="profile-summary-note">Rule-based daily profile classification, built from closing strength<span class="glossary-icon" data-glossary-key="closing_strength">?</span> and range regime. Hover a card's timing tag for what extreme timing<span class="glossary-icon" data-glossary-key="extreme_timing">?</span> means. See market-profiling-system-spec.md &sect;4 for full definitions and naming rationale.</div>
+<div class="profile-grid" id="profile-grid"></div>
+
+<div class="footnote">
+  Historical data: TradersWay MT5 export, GBPUSD, 2000-01-03 &rarr; 2019-12-31 (see Trading Days tile above; data-gap days excluded from statistics). Statistics are probability-weighted historical tendencies, not guaranteed outcomes.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">&copy; 2026 Kaminari Precision Trading. All rights reserved.</span>
+</div>
+
+<script src="../data/gbpusd.js"></script>
+<script>window.ASSET_DATA = GBPUSD_DATA;</script>
+<script src="../js/tooltip.js"></script>
+<script src="../js/glossary.js"></script>
+<script src="../js/profile-meta.js"></script>
+<script src="../js/charts.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

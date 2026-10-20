@@ -1,0 +1,21 @@
+# Raw MT5 exports — too large for GitHub (GitHub hard-blocks anything over 100MB,
+# and warns above 50MB). Keep these local only.
+data/raw/*.csv
+*_M1_*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+# TimesFM benchmark (research/timesfm_benchmark) — separate heavy venv + regenerable model cache
+.venv-forecast/
+research/timesfm_benchmark/cache/

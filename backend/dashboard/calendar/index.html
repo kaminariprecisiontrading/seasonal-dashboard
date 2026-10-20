@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar — Kaminari Market Profiling</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<a href="../index.html" class="back-link">&larr; All Assets</a>
+<div class="header">
+  <h1>Calendar</h1>
+  <div class="sub">All assets, one date at a time &middot; 2000&ndash;2019</div>
+</div>
+<div class="section-note">Grid is colored by GBPUSD's profile for that day. Click any day to see both assets' stats side by side. For a single-asset calendar, open that asset's dashboard and use its own Calendar link.</div>
+
+<div class="calendar-controls">
+  <button id="cal-prev" class="calendar-nav-btn" aria-label="Previous month">&larr;</button>
+  <select id="cal-month-select" class="calendar-select"></select>
+  <select id="cal-year-select" class="calendar-select"></select>
+  <button id="cal-next" class="calendar-nav-btn" aria-label="Next month">&rarr;</button>
+  <span class="calendar-label" id="cal-label"></span>
+</div>
+
+<div id="calendar-grid"></div>
+
+<div class="session-legend calendar-profile-legend" id="calendar-legend"></div>
+
+<div class="panel" id="calendar-detail" style="display:none;"></div>
+
+<div class="footnote">
+  Historical data: TradersWay MT5 export, 2000&ndash;2019. Statistics are probability-weighted historical
+  tendencies, not guaranteed outcomes.
+  <span class="copyright" style="display:block;margin-top:10px;padding-top:10px;border-top:1px solid #1e2430;color:#94a3b8;letter-spacing:0.8px;font-size:11px;">&copy; 2026 Kaminari Precision Trading. All rights reserved.</span>
+</div>
+
+<script src="../js/tooltip.js"></script>
+<script src="../js/glossary.js"></script>
+<script src="../js/profile-meta.js"></script>
+<script src="../js/calendar.js"></script>
+<script src="../js/calendar-home.js"></script>
+</body>
+</html>

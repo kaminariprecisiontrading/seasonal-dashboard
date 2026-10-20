@@ -1,0 +1,11 @@
+year_start,is_short_year,year_end,open,high,low,close,range_pips,high_month,low_month,close_position,cs,direction,range_pctile,cs_pctile,range_regime,shape,close_side_month,far_side_month,extreme_timing,extreme_spread,n_days,profile
+2017-10-17,True,,,,,,,,,,,,,,,,,,,,,Short_Year
+2018-01-02,False,2018-12-31,13429.45,16630.45,3183.27,3739.1,1344718.0,1.0,12.0,0.04133431693485176,0.9173313661302964,Down,,,Insufficient_History,Insufficient_History,12.0,1.0,Late_Push,Spread,238.0,Insufficient_History
+2019-01-02,False,2019-12-31,3789.39,13851.89,3358.36,7153.09,1049353.0,6.0,2.0,0.3616256874474081,0.27674862510518383,Down,,,Insufficient_History,Insufficient_History,2.0,6.0,Early_Resolution,Spread,259.0,Insufficient_History
+2020-01-02,False,2020-12-31,7200.68,29301.96,3855.01,28951.54,2544695.0,12.0,3.0,0.9862293909486206,0.9724587818972412,Up,,,Insufficient_History,Insufficient_History,12.0,3.0,Late_Push,Spread,264.0,Insufficient_History
+2021-01-02,False,2021-12-31,29245.64,68989.4,27676.11,46314.8,4131329.0,11.0,1.0,0.4511548220923583,0.0976903558152834,Down,,,Insufficient_History,Insufficient_History,1.0,11.0,Fade_Risk,Spread,362.0,Insufficient_History
+2022-01-02,False,2022-12-31,47331.0,48175.57,15440.71,16539.84,3273486.0,3.0,11.0,0.033576743569393636,0.9328465128612127,Down,,,Insufficient_History,Insufficient_History,11.0,3.0,Late_Push,Spread,364.0,Insufficient_History
+2023-01-01,False,2023-12-31,16539.51,44775.04,16457.56,42554.74,2831748.0,12.0,1.0,0.9215925993414668,0.8431851986829335,Up,,,Insufficient_History,Insufficient_History,12.0,1.0,Late_Push,Spread,365.0,Insufficient_History
+2024-01-01,False,2024-12-31,42574.94,108341.74,38543.84,93877.04,6979790.0,12.0,1.0,0.7927631060533339,0.5855262121066678,Up,,,Insufficient_History,Insufficient_History,12.0,1.0,Late_Push,Spread,365.0,Insufficient_History
+2025-01-01,False,2025-12-31,93870.37,126189.1,74457.34,87757.98,5173176.0,10.0,4.0,0.2571078192584207,0.4857843614831586,Down,87.5,37.5,Expansion,Mixed,4.0,10.0,Fade_Risk,Spread,365.0,Volatile Year
+2026-01-01,False,2026-09-03,87758.01,97905.04,57769.41,81416.59,4013563.0,1.0,7.0,0.5891817320420782,0.1783634640841565,Up,66.66666666666666,22.22222222222222,Normal,Balanced,1.0,7.0,Fade_Risk,Spread,246.0,Normal Year

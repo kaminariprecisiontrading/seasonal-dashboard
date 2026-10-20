@@ -1,0 +1,485 @@
+{
+  "asset": "BTCUSD",
+  "as_of": "2026-09-03",
+  "first_date": "2017-10-17",
+  "n_years": 10,
+  "elapsed_years": 8.9,
+  "year_range": "2017-2026",
+  "recent_window_years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "months": [
+    {
+      "month": "January",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 3/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2605\u2606",
+          "note": "80% of last 5 years positive (5-YR); 89% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "chop",
+          "s15": "bear",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 22% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "February",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 3/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 78% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bear",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "20% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "chop",
+          "s15": "bear",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "March",
+      "sig5": "bull",
+      "sig15": "bull",
+      "combined": "bull",
+      "combinedLabel": "LONG",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 long lean, 4/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 75% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2606\u2606\u2606\u2606",
+          "note": "80% of last 5 years positive (5-YR); 62% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 62% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 62% of 8 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "April",
+      "sig5": "bull",
+      "sig15": "bull",
+      "combined": "bull",
+      "combinedLabel": "LONG",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 long lean, 3/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bear",
+          "s15": "bear",
+          "com": "SHORT \u2605\u2605\u2606\u2606\u2606",
+          "note": "20% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 67% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2606\u2606",
+          "note": "80% of last 5 years positive (5-YR); 78% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 78% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "May",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 3/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 78% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "chop",
+          "s15": "bear",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "June",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 2/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bear",
+          "s15": "bear",
+          "com": "SHORT \u2605\u2605\u2606\u2606\u2606",
+          "note": "20% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bear",
+          "s15": "bear",
+          "com": "SHORT \u2605\u2605\u2606\u2606\u2606",
+          "note": "20% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "July",
+      "sig5": "bull",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 1,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 4/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "60% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bear",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "20% of last 5 years positive (5-YR); 44% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "August",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 2/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2606\u2606\u2606",
+          "note": "80% of last 5 years positive (5-YR); 67% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 56% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bear",
+          "s15": "bear",
+          "com": "SHORT \u2605\u2605\u2606\u2606\u2606",
+          "note": "20% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "September",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 2/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "chop",
+          "s15": "bear",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "40% of last 5 years positive (5-YR); 33% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2605\u2606",
+          "note": "100% of last 4 years positive (5-YR); 88% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "chop",
+          "s15": "bear",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "50% of last 4 years positive (5-YR); 38% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2606\u2606\u2606\u2606",
+          "note": "75% of last 4 years positive (5-YR); 62% of 8 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "October",
+      "sig5": "bull",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 2/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "75% of last 4 years positive (5-YR); 50% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "bear",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "25% of last 4 years positive (5-YR); 50% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2606\u2606",
+          "note": "75% of last 4 years positive (5-YR); 75% of 8 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2606\u2606\u2606",
+          "note": "75% of last 4 years positive (5-YR); 67% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "November",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 2/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2605\u2605\u2606",
+          "note": "75% of last 4 years positive (5-YR); 89% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "50% of last 4 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "50% of last 4 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bull",
+          "s15": "bull",
+          "com": "LONG \u2605\u2605\u2606\u2606\u2606",
+          "note": "75% of last 4 years positive (5-YR); 67% of 9 years positive (full history)."
+        }
+      ]
+    },
+    {
+      "month": "December",
+      "sig5": "chop",
+      "sig15": "chop",
+      "combined": "chop",
+      "combinedLabel": "MIXED",
+      "stars": 2,
+      "note": "Statistically derived from real price history \u2014 mixed lean, 3/4 weeks agree.",
+      "weeks": [
+        {
+          "wk": "Wk 1",
+          "s5": "chop",
+          "s15": "bear",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "50% of last 4 years positive (5-YR); 33% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 2",
+          "s5": "chop",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "50% of last 4 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 3",
+          "s5": "bear",
+          "s15": "chop",
+          "com": "CHOP \u2605\u2606\u2606\u2606\u2606",
+          "note": "25% of last 4 years positive (5-YR); 44% of 9 years positive (full history)."
+        },
+        {
+          "wk": "Wk 4",
+          "s5": "bear",
+          "s15": "bear",
+          "com": "SHORT \u2605\u2605\u2605\u2605\u2606",
+          "note": "0% of last 4 years positive (5-YR); 11% of 9 years positive (full history)."
+        }
+      ]
+    }
+  ]
+}
