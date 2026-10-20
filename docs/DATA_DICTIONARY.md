@@ -178,7 +178,7 @@ bundle's own unit (`stats.unit`: pips for FX, points otherwise).
 
 ## localStorage Keys
 
-These keys are written by the shared JS modules and keyed by `ASSET_CONFIG.id`:
+These keys are written by the shared JS modules. Per-asset keys use `ASSET_CONFIG.id`; the rest are site-wide. Every read/write is wrapped so the site still works when storage is blocked. **Keep this table and the Privacy Policy's storage table (`privacy.html` §3) in sync** with the keys actually used in the code.
 
 | Key | Written by | Contents |
 |-----|-----------|----------|
@@ -190,4 +190,6 @@ These keys are written by the shared JS modules and keyed by `ASSET_CONFIG.id`:
 | `kpt-cfg-ollama-mdl` | `api.js` | Ollama model name (global) |
 | `kpt-cfg-provider` | `api.js` | Last-selected provider (`claude` / `gemini` / `ollama`) |
 | `kpt-tz-{id}` | `upload.js` | Broker UTC offset in hours (e.g. `2` for EET) |
-| `kpt-subtab-{id}` | `ui.js` | Last-selected sub-tab on the Seasonals tab |
+| `kpt-sub-{id}` | `ui.js` | Last-selected sub-tab on the Seasonals tab (previously documented as `kpt-subtab-{id}`; the code has always used `kpt-sub-`) |
+| `kpt-tw-open` | `dashboard.html` | Whether the dashboard's This Week accordion is open (`1` / `0`) |
+| `kpt-embeds` | `site.js` | `always` = load TradingView / Investing.com embeds without asking; absent = ask each time (default). Set from the footer's Embeds setting or a placeholder's "Always load" checkbox |

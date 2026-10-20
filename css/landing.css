@@ -2,7 +2,6 @@
  * Visual spec: docs/specs/2026-10-site-expansion/mockups/landing-mockup.html */
 
 .accent { color: var(--accent); }
-.link-accent { color: var(--bull); }
 
 /* ── Hero ────────────────────────────────────────────────────────────────── */
 .hero { padding-top: 88px; padding-bottom: 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }

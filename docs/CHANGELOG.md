@@ -2,6 +2,48 @@
 
 ---
 
+## v1.19 — October 2026
+**Legal & trust pages, site-wide footer**
+
+Built from `docs/specs/2026-10-site-expansion/LEGAL_PAGES_BUILD_NOTES.md` §0–2 (pages + footer).
+
+### Changes
+
+- **New pages:** `/risk`, `/terms`, `/privacy`, `/sources`, `/about` (200 rewrites in
+  `netlify.toml`). Risk/Terms/Privacy/Sources are generated from the approved mockups by
+  `scripts/build_legal_pages.js`, so the text is verbatim; About is hand-built from its mockup.
+  Shared `.legal` layout in `css/site.css` with print styles.
+- **Site-wide footer on every page:** `scripts/patch_add_site_chrome.js` added `chrome.css` +
+  `site.js` to all 98 asset pages and the 3 profiling pages (101 files). The current legal page is
+  marked `aria-current` in the footer.
+- **Operator name** comes from one constant (`KPT_SITE.OPERATOR_NAME`); legal/about text marks it
+  `data-kpt-operator` and `site.js` fills it in.
+- **Storage keys reconciled with the code:** `DATA_DICTIONARY.md` documented `kpt-subtab-{id}`
+  while `ui.js` uses `kpt-sub-{id}` — docs fixed. Added `kpt-tw-open` (dashboard This Week
+  panel; missing from the mockup's table) and `kpt-embeds`.
+
+### Wording changes vs. the approved mockups
+
+- **ChatGPT added** (user decision, built in v1.21): Risk §5, Terms §7 and §10, Privacy §5 and §10,
+  Sources §3 and §5 now name OpenAI / ChatGPT alongside Anthropic and Google.
+- **Privacy §3 storage table:** AI-settings row now mentions `kpt-cfg-keep` and that
+  session-only keys live in session storage; Preferences row adds `kpt-tw-open`.
+- **Privacy §8:** fonts are self-hosted, so "Fonts are served from this site." is kept and the
+  amber build note removed.
+- **Sources §4:** versions confirmed from the actual script URLs (Chart.js 4.4.0, marked 9.1.6 —
+  both MIT); typefaces list now "Bebas Neue, IBM Plex Mono, Barlow" (JetBrains Mono isn't used).
+- **Terms meta description** says "the operator" instead of the name (page text unchanged).
+- **Note on the "never write" list:** "registered" appears only in the approved Risk text's
+  negations ("not licensed, registered or authorised", "Not registered with NBFIRA") and in
+  "not a company or registered business" — kept as approved.
+
+### Tests
+
+Headless at 1440 / 768 / 390px: all five pages, an FX and a futures asset page and the profiling
+calendar — footer present, no horizontal scroll, no console errors.
+
+---
+
 ## v1.18 — October 2026
 **Landing page at `/`, dashboard moved to `/dashboard`, shared nav/footer and self-hosted fonts**
 

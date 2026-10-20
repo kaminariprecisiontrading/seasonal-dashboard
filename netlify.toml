@@ -24,3 +24,29 @@
   to = "/404.html"
   status = 404
   force = true
+
+# Legal & trust pages (v1.19)
+[[redirects]]
+  from = "/risk"
+  to = "/risk.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/sources"
+  to = "/sources.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200

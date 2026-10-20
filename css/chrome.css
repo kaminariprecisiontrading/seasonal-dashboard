@@ -43,6 +43,7 @@
 .kpt-sitefoot-links { display: flex; flex-wrap: wrap; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
 .kpt-sitefoot-links a { padding: 10px 8px; text-decoration: none; color: var(--c-link); }
 .kpt-sitefoot-links a:hover { color: #fff; }
+.kpt-sitefoot-links a[aria-current="page"] { color: var(--c-text); }
 .kpt-sitefoot-embeds { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1px; color: var(--c-muted); text-transform: uppercase; }
 .kpt-sitefoot-embeds select {
   min-height: 40px; padding: 0 10px; background: var(--c-surface); border: 1px solid #2a313b; border-radius: 4px;

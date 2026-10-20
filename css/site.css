@@ -100,10 +100,86 @@ img, svg { max-width: 100%; }
 .notice-warn a { color: var(--chop); }
 .notice-info { background: #0d1a24; border: 1px solid #1e3a52; color: #b7d4ea; }
 
+.link-accent { color: var(--bull); }
+.link-accent:hover { color: #86efac; }
+
+/* ── Legal pages (risk, terms, privacy, sources) — shared layout ─────────── */
+.legal-head { padding-top: 64px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 14px; }
+.legal-h1 { font-size: clamp(52px, 7vw, 88px); line-height: 0.95; }
+.legal-updated { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.legal-lead { margin: 6px 0 0; font-size: 19px; line-height: 1.6; color: var(--body); max-width: 760px; }
+.legal-layout { padding-bottom: 80px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start; }
+/* Contents column: stacks above the article at narrow widths (flex-wrap); never sticky. */
+.legal-toc { flex: 1 1 220px; min-width: 0; max-width: 280px; }
+.legal-toc .lbl { display: block; padding-bottom: 8px; }
+.legal-toc a { display: block; padding: 9px 0; color: var(--soft); text-decoration: none; font-family: var(--font-mono); font-size: 13px; border-bottom: 1px solid #1a1f27; }
+.legal-toc a:hover { color: var(--text); }
+.legal { flex: 999 1 560px; min-width: 0; max-width: 820px; }
+.legal a { color: var(--bull); }
+.legal a:hover { color: #86efac; }
+.legal h2 { font-family: var(--font-display); font-weight: 400; font-size: 32px; letter-spacing: 1px; line-height: 1.1; margin: 44px 0 12px; color: var(--text); scroll-margin-top: 24px; }
+.legal h2.legal-first { margin-top: 0; }
+.legal p, .legal li { font-size: 17px; line-height: 1.7; color: var(--body); }
+.legal p { margin: 0 0 14px; }
+.legal ul { margin: 0 0 14px; padding-left: 22px; }
+.legal li { margin-bottom: 6px; }
+.legal strong { color: var(--text); font-weight: 600; }
+.legal code { font-family: var(--font-mono); font-size: 13px; color: var(--text); background: #181c23; padding: 2px 6px; border-radius: 3px; }
+.legal-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 14px; }
+.legal table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 15px; }
+.legal th { text-align: left; padding: 12px 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; font-weight: 500; color: var(--muted); background: var(--surface); }
+.legal td { padding: 12px 14px; border-top: 1px solid var(--border); color: var(--body); vertical-align: top; line-height: 1.5; }
+.legal-summary { background: var(--surface); border-radius: 8px; padding: 24px 26px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.legal-summary-warn { border: 1px solid #6b4a12; }
+.legal-summary-ok { border: 1px solid #1d5c35; }
+.legal-summary-title { color: var(--chop); }
+.legal-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 24px; }
+.legal-summary.legal-summary-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px 24px; }
+.legal-summary-text { font-size: 15px; line-height: 1.55; color: var(--soft); }
+
+/* ── About ───────────────────────────────────────────────────────────────── */
+.about { padding-top: 64px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 48px; }
+.about-head { display: flex; flex-direction: column; gap: 18px; max-width: 860px; }
+.about-lead { margin: 0; font-size: 20px; line-height: 1.6; color: var(--body); }
+.about-lead strong { color: var(--text); font-weight: 600; }
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.about-card-title { font-size: 28px; }
+.about-contact { background: var(--surface-2); border: 1px solid var(--accent); border-radius: 8px; padding: 36px; display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start; }
+.about-contact-main { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.about-contact-title { font-size: 44px; }
+.about-mail { align-self: flex-start; text-transform: none; letter-spacing: 0; overflow-wrap: anywhere; }
+.about-reply { font-size: 15px; color: var(--muted); }
+.about-topics { flex: 1 1 360px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.about-topics > div { padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--soft); }
+.about-topic { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; color: var(--text); }
+
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 @media (max-width: 600px) {
   .wrap { padding: 0 16px; }
   .section { padding: 64px 0; gap: 32px; }
   .card { padding: 22px; }
+  .legal-head { padding-top: 40px; padding-bottom: 28px; }
+  .legal-toc { max-width: none; flex-basis: 100%; }
+  .legal-layout { gap: 32px; }
+  .legal p, .legal li { font-size: 16px; }
+  .about { padding-top: 40px; }
+  .about-contact { padding: 22px; }
+  .about-topics { grid-template-columns: 1fr; }
+}
+
+/* Print: legal (and other site) pages print as plain dark-on-white text. */
+@media print {
+  body { background: #fff; color: #000; }
+  .legal-toc, .kpt-sitenav, .kpt-sitefoot { display: none !important; }
+  .legal-layout { display: block; padding-bottom: 0; }
+  .legal { max-width: none; }
+  .legal-head, .legal-layout { padding-left: 0; padding-right: 0; }
+  .legal h2, .legal p, .legal li, .legal strong, .legal td, .legal th, .legal-h1, .legal-lead, .legal-updated,
+  .about-lead, .about-lead strong, .card p, .card-title, .eyebrow, .lbl, .legal-summary-text, .legal code { color: #000 !important; background: none !important; }
+  .legal a { color: #000; text-decoration: underline; }
+  .legal-summary, .legal-table-wrap, .card { border: 1px solid #999; background: none; }
+  .legal th { background: #eee !important; }
+  .legal h2 { break-after: avoid; }
+  .legal tr { break-inside: avoid; }
 }

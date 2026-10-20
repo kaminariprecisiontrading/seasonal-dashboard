@@ -77,6 +77,22 @@ Regenerates `data/profiling/*` from the sibling `KPT-Market-Profiling` repo's pi
 
 ## Site Scripts — Run As Needed
 
+### `build_legal_pages.js`
+
+Generates `risk.html`, `terms.html`, `privacy.html` and `sources.html` from the approved mockups in `docs/specs/2026-10-site-expansion/mockups/`: extracts the header, contents list and article verbatim, maps the mockups' inline styles to the shared `.legal` classes (fails on any unmapped style), points mockup links at the real routes, marks the operator name for `js/site.js`, and applies the explicit `EDITS` wording changes (each must match exactly once).
+
+- **Added in:** v1.19
+- **Run:** `node scripts/build_legal_pages.js` — only if the mockups/EDITS change; otherwise edit the generated pages directly.
+
+### `patch_add_site_chrome.js`
+
+One-shot codemod: adds `../css/chrome.css` and `../js/site.js` to every asset page and the three profiling pages so they get the shared site footer. Idempotent.
+
+- **Added in:** v1.19
+- **Status:** Already applied — 101 pages (98 asset + 3 profiling).
+- **Run:** `node scripts/patch_add_site_chrome.js`
+
+
 ### `gen_asset_index.js`
 
 Regenerates `data/asset_index.js` — the shared asset registry (`window.KPT_ASSETS`, `window.KPT_ASSET_GROUPS`: id, ticker, name, badges, accent colour, dashboard section, live/planned) — from `dashboard.html`'s asset cards. Used by `js/signals.js` and every page outside the dashboard.

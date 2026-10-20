@@ -11,6 +11,7 @@ seasonal-dashboard/          ← root of GitHub repo
 ├── index.html               ← landing page (/) — v1.18
 ├── dashboard.html           ← dashboard index (/dashboard): sticky nav + asset card grid
 ├── 404.html                 ← styled not-found page
+├── risk.html, terms.html, privacy.html, sources.html, about.html  ← legal & trust pages (v1.19)
 ├── netlify.toml             ← clean-route 200 rewrites, /docs + /scripts forced 404s
 ├── assets/
 │   ├── aud.html             ← AUD futures dashboard shell
@@ -723,6 +724,15 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   `dashboard.html`'s cards: id, ticker, name, badges, accent, dashboard section, status (`live` /
   `planned`). Re-run it after adding or renaming a card. Pages outside the dashboard (landing,
   This Week, Heatmap) read names and groups from it instead of keeping their own lists.
+- **Legal pages (v1.19).** `risk/terms/privacy/sources.html` are generated from the approved mockups
+  by `scripts/build_legal_pages.js` (verbatim text, inline styles mapped to the `.legal` classes in
+  `site.css`, links pointed at real routes, explicit `EDITS` list for the few wording changes);
+  `about.html` is hand-built from its mockup. Shared layout: eyebrow, H1, last-updated, lead, a
+  non-sticky "On this page" contents column that stacks above the article on phones, ~780px article,
+  `scroll-margin-top` on section anchors, print styles (no nav/footer/contents, dark on white).
+  Operator name in page text is marked `data-kpt-operator` and filled from `KPT_SITE.OPERATOR_NAME`.
+  The site footer also reaches every asset and profiling page via `scripts/patch_add_site_chrome.js`
+  (adds `chrome.css` + `site.js`), and marks the current legal page with `aria-current`.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

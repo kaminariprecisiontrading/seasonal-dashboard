@@ -57,6 +57,30 @@ routes. Plain static servers (Live Server, `python -m http.server`) can't resolv
 
 ---
 
+## Legal & Trust Pages (v1.19)
+
+| Route | Page |
+|-------|------|
+| `/risk` | Risk Disclosure |
+| `/terms` | Terms of Use |
+| `/privacy` | Privacy Policy (incl. the browser-storage key table) |
+| `/sources` | Data Sources & Attribution |
+| `/about` | About & Contact |
+
+**Operator:** Kaminari Seasonals Dashboard is a free, non-commercial personal project created and run by
+**G T**, who publishes under the name **Kaminari Precision Trading**. It is not a company or registered
+business. The name lives in one constant (`KPT_SITE.OPERATOR_NAME` in `js/site.js`), filled into the
+pages at runtime. Contact: kaminariprecisiontrading@gmail.com. Governing law: Botswana (Data Protection
+Act, 2024 · IDPC). Every page — landing, dashboard, all asset pages, legal and new pages — carries the
+same footer with these links and the Embeds setting.
+
+The legal texts were generated from the approved mockups by `scripts/build_legal_pages.js` (text kept
+verbatim; wording changes listed in `CHANGELOG.md` v1.19). They are plain-language drafts for a free
+personal project, not legal advice. **Open item (owner):** Moore Research Center redistribution
+permission — the pages credit MRCI but don't grant any rights.
+
+---
+
 ## Document Index
 
 | File | Purpose |

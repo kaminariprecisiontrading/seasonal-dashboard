@@ -120,7 +120,7 @@
         '</div>' +
         '<div class="kpt-sitefoot-row">' +
           '<nav class="kpt-sitefoot-links" aria-label="Legal">' +
-            LEGAL.map(function (n) { return '<a href="' + n[0] + '">' + n[1] + '</a>'; }).join('') +
+            LEGAL.map(function (n) { return '<a href="' + n[0] + '"' + (currentRoute() === n[0] ? ' aria-current="page"' : '') + '>' + n[1] + '</a>'; }).join('') +
           '</nav>' +
           '<label class="kpt-sitefoot-embeds">Embeds' +
             '<select data-kpt-embeds-select aria-label="Third-party embeds">' +
@@ -150,7 +150,14 @@
     else el.style.marginBottom = -(parseFloat(cs.paddingBottom) || 0) + 'px';
   }
 
+  // Operator name in page text (legal/about pages mark it `data-kpt-operator`) comes
+  // from KPT_SITE.OPERATOR_NAME, so it can be changed in one place.
+  function fillOperator() {
+    document.querySelectorAll('[data-kpt-operator]').forEach(function (el) { el.textContent = SITE.OPERATOR_NAME; });
+  }
+
   function init() {
+    fillOperator();
     renderNav();
     renderFooter();
     fullBleed(document.querySelector('[data-kpt-nav]'), 'top');
