@@ -3,7 +3,7 @@ gen_seasonal_signal.py — Derives a Moore-Research-shaped seasonal signal from
 raw price history, for assets MRCI doesn't cover (crypto, and eventually
 synthetics — see docs/PLATFORM_ROADMAP.md Tier 6).
 
-Replicates frontend/js/backtest.js's week-of-month bucketing and
+Replicates the site's backtest (frontend/js/upload.js, formerly backtest.js) week-of-month bucketing and
 "Raw Price Tendency" convention exactly, so the derived signal means the same
 thing as the site's own validation tooling (its only existing "derive stats
 from raw price" precedent):

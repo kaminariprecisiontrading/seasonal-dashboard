@@ -11,10 +11,14 @@ merge.
 **Source project:** `KPT-Market-Profiling` (sibling repo, `../KPT-Market-Profiling`) — a statistical
 market-profiling system for GBPUSD/EURUSD spot FX (percentile range distributions, time-of-extreme
 clustering, a rule-based daily "profile" taxonomy, a date calendar, and profile detail pages with
-real illustrative charts). Read `KPT-Market-Profiling/HANDOVER.md` and
-`KPT-Market-Profiling/market-profiling-system-spec.md` for full background on how that data was
+real illustrative charts). Read `backend/HANDOVER.md` and
+`backend/market-profiling-system-spec.md` for full background on how that data was
 built and why — this doc only covers the *integration*, not the underlying methodology.
 
+
+> **v1.27 note:** `KPT-Market-Profiling` was a sibling repo when this was written. It has since been
+> merged into this repo as `backend/` (full history kept), so `../KPT-Market-Profiling/…` paths
+> below are now `backend/…`, and site paths are under `frontend/`.
 ---
 
 ## 1. Why this merge, and the intended relationship
@@ -207,7 +211,7 @@ captured here so it isn't lost, and so a future session doesn't have to re-deriv
 The current data is 2019-vintage (matching KPT-Market-Profiling's pipeline output at merge time).
 The user will download fresh MT5 CSVs (2000 → present, and rolling forward) and re-run that repo's
 pipeline periodically. Refreshing this repo is then just: re-run the pipeline in
-`KPT-Market-Profiling`, then `node scripts/sync_profiling_data.js` from `seasonal-dashboard/` root.
+`KPT-Market-Profiling`, then `node scripts/sync_profiling_data.js` from the repo root.
 No other step should be required — if one ever is, that's a bug in the sync script, not an expected
 manual step.
 
@@ -247,7 +251,7 @@ exists (`index.html`'s new "Crypto" `.source-block`) with BTCUSD as its first li
 `assets/btc.html` — both the standard Profiling tab (this section's feature) and a statistically-
 derived Seasonal Tendency tab (no Moore Research data exists for crypto; see
 `docs/DATA_DICTIONARY.md`'s "Statistically-derived assets" section and
-`KPT-Market-Profiling/pipeline/gen_seasonal_signal.py` for that methodology — a separate feature
+`backend/pipeline/gen_seasonal_signal.py` for that methodology — a separate feature
 from Profiling, covered in `docs/CHANGELOG.md` v1.11, not detailed further in this document since
 it's outside Profiling's scope). The other ~18 crypto tickers remain `PLANNED` cards, not wired.
 
@@ -264,7 +268,7 @@ section isn't read as a still-current, separate plan.
 
 ### 9.4 Live feed + prediction accuracy tracking (already spec'd elsewhere, unchanged)
 
-Already covered by `KPT-Market-Profiling/market-profiling-system-spec.md` §6 (log a predicted
+Already covered by `backend/market-profiling-system-spec.md` §6 (log a predicted
 profile/range before the outcome is known, score it against the next real CSV update) and §9's
 phase order there (gated on a live data feed, Phase 4, before accuracy tracking, Phase 5). Nothing
 new to design here — noted so it stays on record alongside the rest of this roadmap. This is the

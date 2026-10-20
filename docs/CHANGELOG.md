@@ -2,6 +2,38 @@
 
 ---
 
+## v1.27 — October 2026
+**Monorepo: `frontend/` · `backend/` · `scripts/` · `docs/`; lean README**
+
+### Changes
+
+- **Site moved into `frontend/`.** `netlify.toml` now sets `[build] publish = "frontend"` (no build
+  command), so only the site is served. The old forced-404 rules for `/docs/*` and `/scripts/*` are
+  gone because those folders are no longer published. Every script resolves the site root via
+  `__dirname` (`path.join(__dirname, '..', 'frontend')`), and `scripts/serve_local.js` serves
+  `frontend/` while reading `netlify.toml` from the repo root.
+- **Pipeline merged in as `backend/`** (formerly the sibling `KPT-Market-Profiling` repo; its full
+  commit history was kept via an unrelated-histories merge, so use `git log --follow backend/…` for
+  per-file history). Sync scripts read `backend/output/` and `backend/dashboard/data/`.
+  `grade_signals.py` now defaults to `../frontend` (`--site`; `--dashboard` kept as an alias). Raw
+  MT5 exports (`backend/data/raw/`, ~6 GB) and the two venvs stay local and gitignored. Packages are
+  pinned in `backend/requirements.txt` and `backend/requirements-forecast.txt`.
+- **Docs:** a new lean root `README.md` (overview, screenshot, layout, local preview, doc links).
+  `docs/README.md` is now the docs index plus project facts. The asset roster moved to the new
+  `docs/ASSETS.md`, the trade-idea workflow to `USER_GUIDE.md`, and the routes table and build
+  status to `ARCHITECTURE.md`, which also gets a new repo tree and data-flow note. All docs,
+  `scripts/README.md` and the backend docs were updated for the new paths.
+
+### Tests
+
+All page suites re-run green on the new layout (site, embeds, CSP + AI, This Week, Heatmap, Track
+Record). Dashboard signals are identical to v1.26 at four dates. `/docs/`, `/scripts/` and
+`/netlify.toml` return 404 locally. The pipeline re-run from `backend/` reproduces the track record
+exactly (5,367 graded, 53.1%), and the forecast stage (new `.venv-forecast`) gives an identical
+EURUSD output from cache. Regenerated data files differ only in header comments.
+
+---
+
 ## v1.26 — October 2026
 **One signal mapping everywhere — fixes 899 weeks shown as CHOP; manifest resynced**
 

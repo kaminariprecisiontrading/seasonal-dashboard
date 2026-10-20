@@ -1,418 +1,83 @@
-# Seasonal Trading Dashboard — Project Documentation
+# Documentation Index
 
-**Project:** Kaminari Precision Trading — Seasonal Confluence Engine  
-**Project Start:** April 2026  
-**Current Status:** v1.18 (October 2026) — 98 asset pages · 7 tabs per dashboard · Market Profiling live for 14 assets · Platform roadmap Tiers 1–5 complete (see `PLATFORM_ROADMAP.md`)  
-**Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode  
-**Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex) · MT5 M1 history via the sibling `KPT-Market-Profiling` pipeline (Profiling tab, BTCUSD seasonals)  
-**Repository:** Public GitHub repo — [`kaminariprecisiontrading/seasonal-dashboard`](https://github.com/kaminariprecisiontrading/seasonal-dashboard)  
-**Deployment:** Netlify — https://kpt-seasonals.netlify.app/ (free static hosting; auto-deploys from the GitHub repo's `main` branch on push)
+Project documentation for **KPT Seasonals** (Kaminari Precision Trading's Seasonal Confluence
+Engine). For a short overview of the project, see the [root README](../README.md).
 
----
+**Current version:** v1.27 (October 2026). 98 asset pages with 7 tabs each, Market Profiling for 14
+assets, and site-wide This Week, Heatmap and Track Record pages. Since v1.27 the project is a single
+repo: `frontend/` (the published site), `backend/` (the Python pipeline, formerly the separate
+`KPT-Market-Profiling` repo), `scripts/` and `docs/`.
 
-## What This Project Is
-
-A personal trading confluence engine that converts Moore Research Center seasonal tendency charts into structured, interactive HTML dashboards. Each dashboard provides directional bias — Bullish, Bearish, or Choppy — broken down by timeframe (5-YR, 15-YR, long-term) and by granularity (yearly arc → monthly → weekly Wk1–4).
-
-**All confluence layers are live.** Every asset dashboard has seven tabs (order set by `PLATFORM_ROADMAP.md` Tier 4, v1.12):
-
-| Tab | Panel | What it does |
-|-----|-------|-------------|
-| Seasonals | Accordion | Combined + individual TF tables; month quick-jump; current month auto-opens |
-| Trend | Seasonal curve | Cumulative directional-bias chart from `MONTHS[]`; NOW marker; monthly shading |
-| Profiling | Market Profiling | Pre-computed statistics from full MT5 M1 history (14 assets only — see below): Daily/Weekly/Monthly/Yearly profile taxonomies, range distributions, time-of-extreme timing, high/low pairing heatmaps (session, hour, weekday, week-of-month, month), hourly activity, NFP Fridays panel, profiling calendar, and a **Range Outlook** (TimesFM forecast of next-day / 5-day / 20-day range vs ADR20, with its own track record) |
-| Live Price | TradingView | Embedded live/delayed price chart |
-| Macro | Calendar | Investing.com economic calendar filtered per asset + collapsible interpretation guide |
-| Upload | Your own data | Upload any MT5 CSV (M1 → MN1, timeframe auto-detected) → seasonal-tendency backtest (raw tendency, win-rate, avg-return vs the seasonal model) and, for intraday data, by-hour / by-session / by-day-of-week bias. Replaced the former History + Sessions tabs |
-| Analysis | AI synthesis | Claude Sonnet 5 / ChatGPT / Gemini Flash / Ollama — structured LONG/SHORT/NEUTRAL/WAIT verdict drawing on all available data layers, including Profiling; downloadable as `.md` |
-
-Pages without Profiling data show the Profiling tab's empty state; everything else is identical across all 98 pages. The layout is phone-responsive (≤600px tier, v1.16).
-
-The site opens on a **landing page** (`/`) that explains the project and shows this week's live signal tally. The **dashboard index** (`/dashboard`) displays real-time seasonal signals (BULL / BEAR / CHOP / FLIP) on every asset card, derived from each asset's `MONTHS[]` data via `data/signals_manifest.js` at page load.
-
-**Vision achieved:** A single-destination confluence tool — seasonal tendency + statistical market profiling + historical validation + macro calendar + intraday timing + AI synthesis — where the trader brings their own execution framework and the dashboard provides objective data from every relevant angle.
+**Paths in these docs:** site files (`js/`, `css/`, `data/`, `assets/`, the `.html` pages) live in
+`frontend/`. Pipeline files (`pipeline/`, `output/`, `data/raw/`, `data/clean/`) live in
+`backend/`. Commands run from the repo root unless a doc says "from `backend/`".
 
 ---
 
-## Site Pages & Routes (v1.18)
-
-The site opens on a landing page that explains the project; the asset index moved to `/dashboard`.
-Every page is a root-level `.html` file served at a clean route by a 200 rewrite in `netlify.toml`.
-
-| Route | File | What it is |
-|-------|------|-----------|
-| `/` | `index.html` | Landing page: purpose, features, how to use, coverage, with a live "This week" tally and 3 featured signals |
-| `/dashboard` | `dashboard.html` | The dashboard index: search, signal filter, asset-class nav, This Week accordion, all asset cards |
-| `/assets/<id>.html` | `assets/*.html` | The 98 asset dashboards (unchanged URLs) |
-| `/this-week` | `this-week.html` | Weekly digest: tallies vs last week, signals that flipped, new max conviction, your ★ watchlist, high-conviction windows in the next 4 weeks; ‹ › browse weeks (`?w=YYYY-M-W`) |
-| `/heatmap` | `heatmap.html` | Every live market × 12 months (month-level verdicts) or a rolling 12 weeks (the dashboard's weekly signals), coloured by conviction, filterable by asset group |
-| `/track-record` | `track-record.html` | Past weekly signals graded against price (14 MT5 assets, since 2016): hit rate, by-conviction, last 12 weeks, paginated signal log, LIVE vs BACKFILL rows |
-| `/methodology` | `methodology.html` | How a signal is built (chart → MONTHS[] → combined reading → today's week → label), real timeframe examples, FX synthesis, data sources, limits |
-| any unknown path | `404.html` | Styled "page not found" with links home and to the dashboard |
-
-`/docs/*` and `/scripts/*` are force-404'd (build specs, mockups and maintenance scripts live in the
-published root but must not be served). Every page shares one nav and footer (`js/site.js`,
-`css/chrome.css`) and self-hosted fonts (`css/fonts.css`); signal logic is shared via
-`js/signals.js`, so the landing page and the dashboard always agree for the same week.
-
-**Local preview:** `node scripts/serve_local.js` → http://localhost:8888/ — applies `netlify.toml`'s
-routes. Plain static servers (Live Server, `python -m http.server`) can't resolve clean routes like
-`/dashboard`.
-
----
-
-## Legal & Trust Pages (v1.19)
-
-| Route | Page |
-|-------|------|
-| `/risk` | Risk Disclosure |
-| `/terms` | Terms of Use |
-| `/privacy` | Privacy Policy (incl. the browser-storage key table) |
-| `/sources` | Data Sources & Attribution |
-| `/about` | About & Contact |
-
-**Operator:** Kaminari Seasonals Dashboard is a free, non-commercial personal project created and run by
-**G T**, who publishes under the name **Kaminari Precision Trading**. It is not a company or registered
-business. The name lives in one constant (`KPT_SITE.OPERATOR_NAME` in `js/site.js`), filled into the
-pages at runtime. Contact: kaminariprecisiontrading@gmail.com. Governing law: Botswana (Data Protection
-Act, 2024 · IDPC). Every page — landing, dashboard, all asset pages, legal and new pages — carries the
-same footer with these links and the Embeds setting.
-
-The legal texts were generated from the approved mockups by `scripts/build_legal_pages.js` (text kept
-verbatim; wording changes listed in `CHANGELOG.md` v1.19). They are plain-language drafts for a free
-personal project, not legal advice. **Open item (owner):** Moore Research Center redistribution
-permission — the pages credit MRCI but don't grant any rights.
-
----
-
-## Security & Privacy (v1.21)
-
-- **Content-Security-Policy** (enforcing, `netlify.toml`): scripts only from this site, cdnjs
-  (Chart.js, marked) and TradingView's widget loader — no inline script anywhere; frames only for
-  TradingView (`*.tradingview.com`, `*.tradingview-widget.com`) and Investing.com; connections only
-  to this site, the three AI APIs and a local Ollama (`localhost`/`127.0.0.1:11434`). Plus
-  `Referrer-Policy`, `X-Content-Type-Options: nosniff`, `Permissions-Policy`.
-- **Third-party embeds are click-to-load** (Embeds setting in every footer). No analytics, no cookies
-  of the site's own.
-- **AI keys** default to session-only storage, can be remembered per device, are shown masked, can be
-  cleared in one click, and are sent only to their own provider in a request header.
-
----
-
-## Document Index
+## Documents
 
 | File | Purpose |
 |------|---------|
-| `README.md` | This file. Project overview, asset roster, vision. |
-| `ARCHITECTURE.md` | Technical deep-dive: code structure, file layout, ASSET_CONFIG pattern, adding new assets. |
-| `CHANGELOG.md` | Full version history of what was built and when. |
-| `ROADMAP.md` | Original phase roadmap (Phases 1–9). Still the home for un-started Phases 6B–9 (PWA, themes, AI chat, statistical depth); `PLATFORM_ROADMAP.md` supersedes it for everything since v1.7. |
-| `DATA_DICTIONARY.md` | Complete schema reference — ASSET_CONFIG fields, MONTHS[] structure, signal vocabulary, localStorage keys. |
-| `CONTRIBUTING.md` | Step-by-step checklists for adding new assets, updating data, and adding new tabs. |
-| `USER_GUIDE.md` | End-user guide — how to use every tab, upload CSVs, configure AI providers, and print. |
-| `PROMPTS.md` | Copy-paste prompt library for all key Claude interactions. |
-| `SKILL.md` | How to recreate any asset dashboard from scratch. Step-by-step prompt guide for Claude sessions. |
-| `MARKET_PROFILING_INTEGRATION.md` | Design + build record for the Profiling tab (v1.7): what shipped, how it works, near-term asset rollout. |
-| `PLATFORM_ROADMAP.md` | Current source of truth for platform-wide plans beyond the Profiling merge — quick wins, tab restructure, multi-timeframe profiles, parked ideas. |
+| [USER_GUIDE.md](USER_GUIDE.md) | Using the site: every page and tab, the step-by-step trade-idea workflow, CSV upload, AI setup, printing. |
+| [ASSETS.md](ASSETS.md) | Every market on the site: data source, timeframes, key seasonal finding; which assets have Profiling data. |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Technical reference: repo layout, routes, shared modules, each tab's code, data flow, security headers, build status. |
+| [DATA_DICTIONARY.md](DATA_DICTIONARY.md) | Schemas: ASSET_CONFIG, MONTHS[], signal vocabulary and mapping, generated data files, storage keys. |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Checklists: adding futures/forex/profiling/derived assets, updating data, changing shared JS, adding tabs. |
+| [CHANGELOG.md](CHANGELOG.md) | Full version history: what was built, when, and why. |
+| [PLATFORM_ROADMAP.md](PLATFORM_ROADMAP.md) | Current plan and status for platform work since v1.7. |
+| [ROADMAP.md](ROADMAP.md) | Original phase roadmap (Phases 1–9). Still the home for un-started Phases 6B–9; `PLATFORM_ROADMAP.md` supersedes it for everything since v1.7. |
+| [MARKET_PROFILING_INTEGRATION.md](MARKET_PROFILING_INTEGRATION.md) | Design and build record for the Profiling tab (v1.7). |
+| [SKILL.md](SKILL.md) | How to recreate an asset dashboard from scratch with Claude. |
+| [PROMPTS.md](PROMPTS.md) | Copy-paste prompt library for the key Claude interactions. |
+| [../scripts/README.md](../scripts/README.md) | Every Node script: purpose, run command, status. |
+| [../backend/README.md](../backend/README.md) | The data pipeline: setup, refreshing an asset, outputs. |
+| [../backend/HANDOVER.md](../backend/HANDOVER.md) | Pipeline handover notes and design decisions. |
+| [../backend/market-profiling-system-spec.md](../backend/market-profiling-system-spec.md) | Market profiling spec (profile taxonomy, statistics). |
+| [specs/](specs/) | Build briefs and approved mockups (e.g. the October 2026 site expansion). |
 
-**Recommended Claude project files** (load these at the start of every new session):
-- `README.md` — what the project is and where it stands
-- `ARCHITECTURE.md` — how the code is structured
-- `CHANGELOG.md` — what's been built and decided
-- `SKILL.md` — how to build new assets
-- `PLATFORM_ROADMAP.md` — current plan and status since v1.7
-
----
-
-## Futures Seasonals — Live Assets (70 assets)
-
-### Currencies (10)
-
-| Asset | File | Timeframes | Key Finding |
-|-------|------|-----------|-------------|
-| AUD/USD | `assets/aud.html` | 5-YR · 15-YR · 34-YR | Q1 bull, Apr Wk1 peak→flip, May–Jun bear |
-| USD Index | `assets/usd.html` | 5-YR · 15-YR · 35-YR | Double cycle: Feb/Mar peak→May trough→Jul bounce→Oct trough→Nov/Dec peak |
-| JPY/USD | `assets/jpy.html` | 5-YR · 15-YR · 40-YR | Mar bull, Jul–Aug peak, Sep highest conviction SHORT |
-| GBP/USD | `assets/gbp.html` | 5-YR · 15-YR · 40-YR | Feb trough→Mar–Apr unanimous peak ~100→May waterfall→Sep trough→Oct–Nov bull |
-| CAD/USD | `assets/cad.html` | 5-YR · 15-YR · 40-YR | Jan spike-and-collapse, Apr Wk1 bull→Wk2 flip short, May–Jun waterfall |
-| EUR/USD | `assets/eur.html` | 5-YR · 15-YR · 22-YR | EUR launched 1999 (22-YR only); strong Q1 bull, Apr Wk4 highest conviction LONG |
-| CHF/USD | `assets/chf.html` | 5-YR · 15-YR · 40-YR | May ~100 peak; Dec year-end secondary peak on 40-YR |
-| NZD/USD | `assets/nzd.html` | 5-YR · 15-YR · 23-YR | Jan waterfall, May Wk2 highest conviction short, Nov Wk4→Dec year-end surge |
-| MXN | `assets/mxn.html` | 5-YR · 15-YR · long-YR | Long-hold bear Apr→Dec; one of the dashboard's sustained trend instruments |
-| BRL | `assets/brl.html` | 5-YR · 15-YR · long-YR | Apr→mid-May bear; BRL seasonal arc shorter and sharper than MXN |
-
-### Metals (5)
-
-| Asset | File | Timeframes | Key Finding |
-|-------|------|-----------|-------------|
-| XAU Gold | `assets/xau.html` | 5-YR · 15-YR · long-YR | Jan bull, Feb–Mar peak, Apr Wk2 short, Jul/Aug/Sep secondary surge |
-| XAG Silver | `assets/xag.html` | 5-YR · 15-YR · long-YR | Apr Wk3/4 short; more volatile than Gold |
-| Copper | `assets/copper.html` | 5-YR · 15-YR · long-YR | Apr Wk4 short; Jan–Feb bull; Sep recovery |
-| Platinum | `assets/platinum.html` | 5-YR · 15-YR · long-YR | Apr Wk1 buy + Wk4 sell; Feb–Mar peak |
-| Palladium | `assets/palladium.html` | 5-YR · 15-YR · long-YR | Apr Wk1 buy; Wk4 sell; most volatile metal |
-
-### Energy (6)
-
-| Asset | File | Exchange | Key Finding |
-|-------|------|---------|-------------|
-| Crude Oil | `assets/cl.html` | NYMEX | Q1 bull, summer peak, autumn trough |
-| Brent Crude | `assets/brent.html` | ICE | Similar arc to WTI; slightly earlier seasonal peaks |
-| Natural Gas | `assets/ng.html` | NYMEX | Oct–Nov annual high; Apr–Aug trough zone |
-| Heating Oil/ULSD | `assets/ulsd.html` | NYMEX | Winter-driven; Jan–Feb peak, spring decline |
-| Gasoline/RBOB | `assets/rb.html` | NYMEX | Spring driving season; Apr–May peak |
-| Gas Oil | `assets/gasoil.html` | ICE | European distillate; winter-driven like Heating Oil |
-
-### Interest Rates (14)
-
-| Asset | File | Exchange | TF | Key Finding |
-|-------|------|---------|---|-------------|
-| T-Bonds | `assets/tbonds.html` | CBOT | 40-YR | Nov/Dec annual high; June/Jul annual low |
-| T-Notes 10Y | `assets/tnotes10.html` | CBOT | 39-YR | Similar to T-Bonds with 10Y compression |
-| T-Notes 5Y | `assets/tnotes5.html` | CBOT | 33-YR | More volatile version of 10Y pattern |
-| T-Notes 2Y | `assets/tnotes2.html` | CBOT | 30-YR | Shortest US rate; most monetary-policy-reactive |
-| Eurodollar | `assets/eurodollar.html` | CME | 39-YR | Dec annual high; Jun/Jul annual low |
-| Aus T-Bonds 10Y | `assets/austbonds10.html` | SFE | 36-YR | Year-end bull; Q2 trough |
-| Aus T-Bonds 3Y | `assets/austbonds3.html` | SFE | 33-YR | Similar to 10Y with higher short-TF volatility |
-| Aus T-Bills 3M | `assets/austbills3m.html` | SFE | 40-YR | Smoothest Australian rates instrument |
-| Long Gilt | `assets/longgilt.html` | LIFFE | 38-YR | UK rates; year-end highs; summer trough |
-| Short Sterling | `assets/shortsterling.html` | LIFFE | 38-YR | UK short rate; similar arc to Long Gilt |
-| Euro-Bund | `assets/eurobund.html` | EUREX | 30-YR | Year-end extreme highs; Feb-Mar spike then crash; Aug reversal |
-| Euro-Bobl | `assets/eurobobl.html` | EUREX | 23-YR | Year-end extreme highs (23-YR ~100); Nov annual high |
-| Euro-Yen | `assets/euroyen.html` | SGX | 31-YR | Feb EXPLOSIVE spike (31-YR 1→100); most dramatic move in rates complex |
-| Fed Funds | `assets/fedfunds.html` | CBOT | 32-YR | INVERTED instrument: Jan 5-YR at annual HIGH; Jun/Jul at absolute trough |
-
-### Indices (13)
-
-| Asset | File | Exchange | TF | Key Finding |
-|-------|------|---------|---|-------------|
-| S&P 500 | `assets/sp500.html` | CME | 39-YR | Nov/Dec annual high; strong Q4 bull |
-| S&P eMini | `assets/es.html` | CME | 23-YR | Similar to SP500; confirmed by shorter dataset |
-| Russell 2000 | `assets/rty.html` | CME | 17-YR | Small-cap divergence; Jan/Dec peaks |
-| DJIA eMini | `assets/ym.html` | CBOT | 23-YR | Blue-chip seasonals; Nov annual high |
-| Nasdaq 100 | `assets/nq.html` | CME | 24-YR | Tech bias; Jan/Dec surges; summer weakness |
-| S&P 400 | `assets/md.html` | CME | 29-YR | Mid-cap; less volatile than RTY |
-| GSCI | `assets/gsci.html` | CME | 29-YR | Commodity index; unique seasonal driven by energy weightings |
-| Nikkei 225 | `assets/nk.html` | SIMEX | 34-YR | Jan/Feb peak; Sep trough; year-end recovery |
-| FTSE 100 | `assets/ftse.html` | LIFFE | 37-YR | Jan bull; May/Jun weakness; Nov/Dec recovery |
-| SPI 200 | `assets/spi.html` | SFE | 21-YR | Australian equities; Apr peak; Sep/Oct trough |
-| DAX | `assets/dax.html` | EUREX | 30-YR | Jan bull; May correction; Nov/Dec annual high |
-| CAC 40 | `assets/cac.html` | MATIF | 32-YR | Mirrors DAX with slight lag |
-| Hang Seng | `assets/hsi.html` | HKFE | 34-YR | Jan surge; Q2 weakness; Oct/Nov recovery |
-
-### Softs (8)
-
-| Asset | File | Exchange | TF | Key Finding |
-|-------|------|---------|---|-------------|
-| Coffee "C" | `assets/coffee.html` | ICE | 40-YR | Jan 5-YR high; Feb 15-YR peak; Jun annual trough; Jul flip long |
-| Sugar #11 | `assets/sugar11.html` | ICE | 40-YR | DUAL TROUGH: Jun first trough, Sep second trough; Oct explosive surge |
-| Cocoa | `assets/cocoa.html` | ICE | 40-YR | May: 40-YR at 0 while 5-YR/15-YR at 100 (most extreme TF divergence in dashboard) |
-| Orange Juice | `assets/oj.html` | ICE | 40-YR | Jan 5-YR at annual HIGH; 40-YR dual crashes (Feb + Aug near 0) |
-| Rough Rice | `assets/roughrice.html` | CBOT | 34-YR | Dec/Jan annual high ~99→crashes to 5 on Jan 3; April near-0 trough = best long entry |
-| London Sugar | `assets/londonsugar.html` | LCE | 30-YR | June 30-YR ANNUAL HIGH (~95-100); most dramatic LCE spike; August annual trough near 0 |
-| London Cocoa | `assets/londoncocoa.html` | LCE | 34-YR | 34-YR visits near 0 FOUR TIMES per year (Jan/Apr/Aug/Oct); Feb 34-YR annual high |
-| Robusta Coffee | `assets/robusta.html` | LCE | 29-YR | Year ENDS at trough; Feb 29-YR annual high (~95-100); Oct annual low near 0 |
-
-### Grains (8)
-
-| Asset | File | Exchange | TF | Key Finding |
-|-------|------|---------|---|-------------|
-| Soybeans | `assets/soybeans.html` | CBOT | 40-YR | Jun/Jul annual high; harvest pressure Sep/Oct |
-| Soy Meal | `assets/sbmeal.html` | CBOT | 40-YR | Similar arc to Soybeans; tighter seasonal range |
-| Soy Oil | `assets/sboil.html` | CBOT | 40-YR | More volatile than Meal; tropical oil linkage |
-| Wheat (CBOT) | `assets/wheat.html` | CBOT | 40-YR | Jul annual high; winter wheat planting dip |
-| Wheat (KCBT) | `assets/wheatk.html` | KCBT | 40-YR | Hard red winter wheat; similar to CBOT Wheat |
-| Wheat (MGE) | `assets/wheatm.html` | MGE | 40-YR | Spring wheat; Jul peak aligns with CBOT/KCBT |
-| Corn | `assets/corn.html` | CBOT | 40-YR | Jun/Jul annual high; Sep harvest pressure trough |
-| Oats | `assets/oats.html` | CBOT | 40-YR | Feb/Mar peak; Oct trough; thinner market |
-
-### Fiber, Meats & Dairy (6)
-
-| Asset | File | Exchange | Key Finding |
-|-------|------|---------|-------------|
-| Cotton | `assets/cotton.html` | NYBOT | Mar peak; Sep/Oct trough |
-| Lumber | `assets/lumber.html` | CME | Spring building season surge; winter trough |
-| Live Cattle | `assets/lc.html` | CME | Q1 bull; summer trough; Q4 recovery |
-| Feeder Cattle | `assets/fc.html` | CME | Similar to Live Cattle; corn-feed cost linkage |
-| Lean Hogs | `assets/lh.html` | CME | May/Jun peak (summer BBQ season); winter trough |
-| Class III Milk | `assets/milk.html` | CME | Feb/Mar peak (butter/cheese demand); Jul/Aug trough |
+**Recommended Claude project files** (load these at the start of a new session):
+`docs/README.md` (this file), `ARCHITECTURE.md`, `CHANGELOG.md`, `SKILL.md`, `PLATFORM_ROADMAP.md`.
 
 ---
 
-## Forex Seasonals — Live Assets (27 pairs)
+## Project Facts
 
-All 27 derived FX pairs are complete. Each pair combines two CME futures seasonal components — base currency direct, quote currency inverted.
-
-**Majors**
-
-| Pair | File | Components | Key Signal |
-|------|------|-----------|-----------|
-| AUDUSD | `assets/fx-audusd.html` | AUD CME + USD ICE (inv.) | Jan–Mar LONG strongest; Oct–Nov SHORT (USD dominant) |
-| EURUSD | `assets/fx-eurusd.html` | EUR CME + USD ICE (inv.) | Jan–Feb SHORT strongest; Mar FLIP MONTH; May SHORT (component collision) |
-| GBPUSD | `assets/fx-gbpusd.html` | GBP CME + USD ICE (inv.) | Mar LONG; Nov–Dec SHORT (GBP lows + USD peak) |
-| USDCAD | `assets/fx-usdcad.html` | USD ICE + CAD CME (inv.) | Jan–Feb & May LONG strongest; Apr SHORT (flip collision) |
-| USDCHF | `assets/fx-usdchf.html` | USD ICE + CHF CME (inv.) | Jan–Feb LONG; Mar FLIP MONTH → SHORT; Apr SHORT continuation |
-| USDJPY | `assets/fx-usdjpy.html` | USD ICE + JPY CME (inv.) | Sep LONG standout — JPY collapse + USD recovery |
-
-**Minors**
-
-| Pair | File | Components | Key Signal |
-|------|------|-----------|-----------|
-| AUDCAD | `assets/fx-audcad.html` | AUD CME + CAD CME (inv.) | Jan–Mar LONG strongest run; Apr FLIP MONTH |
-| AUDCHF | `assets/fx-audchf.html` | AUD CME + CHF CME (inv.) | Jan–Feb LONG; Apr FLIP MONTH; May SHORT |
-| AUDNZD | `assets/fx-audnzd.html` | AUD CME + NZD CME (inv.) | Jan–Mar LONG strongest run; Apr FLIP MONTH |
-| EURAUD | `assets/fx-euraud.html` | EUR CME + AUD CME (inv.) | Jan–Feb SHORT; Apr FLIP MONTH; Nov SHORT |
-| EURCHF | `assets/fx-eurchf.html` | EUR CME + CHF CME (inv.) | May & Sep–Nov SHORT; Jun LONG |
-| EURGBP | `assets/fx-eurgbp.html` | EUR CME + GBP CME (inv.) | Apr FLIP MONTH; Nov SHORT; Dec LONG |
-| GBPAUD | `assets/fx-gbpaud.html` | GBP CME + AUD CME (inv.) | Jan & Dec SHORT; Oct LONG |
-| GBPCHF | `assets/fx-gbpchf.html` | GBP CME + CHF CME (inv.) | Oct DOUBLE ALIGNMENT LONG; Dec DOUBLE ALIGNMENT SHORT |
-| NZDUSD | `assets/fx-nzdusd.html` | NZD CME + USD ICE (inv.) | Jan/Feb/Jun DOUBLE ALIGNMENT SHORT; Aug DOUBLE ALIGNMENT LONG |
-
-**Crosses**
-
-| Pair | File | Components | Key Signal |
-|------|------|-----------|-----------|
-| AUDJPY | `assets/fx-audjpy.html` | AUD CME + JPY CME (inv.) | Jan DOUBLE ALIGNMENT LONG; Feb LONG |
-| CADCHF | `assets/fx-cadchf.html` | CAD CME + CHF CME (inv.) | Jul DOUBLE ALIGNMENT LONG; Dec SHORT |
-| CADJPY | `assets/fx-cadjpy.html` | CAD CME + JPY CME (inv.) | Mar SHORT standout |
-| EURCAD | `assets/fx-eurcad.html` | EUR CME + CAD CME (inv.) | May SHORT stand-off; Jun DOUBLE ALIGNMENT LONG; Jul & Nov SHORT |
-| EURJPY | `assets/fx-eurjpy.html` | EUR CME + JPY CME (inv.) | May, Jul & Nov SHORT strongest |
-| EURNZD | `assets/fx-eurnzd.html` | EUR CME + NZD CME (inv.) | May MAXIMUM CONFLICT; Jun DOUBLE ALIGNMENT LONG; Dec defining year-end collision |
-| GBPCAD | `assets/fx-gbpcad.html` | GBP CME + CAD CME (inv.) | Sep MAXIMUM CONFLICT; Oct–Nov DOUBLE ALIGNMENT LONG |
-| GBPJPY | `assets/fx-gbpjpy.html` | GBP CME + JPY CME (inv.) | Mar & Sep MAXIMUM CONFLICT; Oct–Nov DOUBLE ALIGNMENT LONG |
-| GBPNZD | `assets/fx-gbpnzd.html` | GBP CME + NZD CME (inv.) | May & Dec defining collisions |
-| NZDCAD | `assets/fx-nzdcad.html` | NZD CME + CAD CME (inv.) | Sep rare dual-flip collision; Dec clean LONG dominance |
-| NZDCHF | `assets/fx-nzdchf.html` | NZD CME + CHF CME (inv.) | THREE maximum-conviction collisions (May, Sep, Dec) |
-| NZDJPY | `assets/fx-nzdjpy.html` | NZD CME + JPY CME (inv.) | Sep defining collision; Dec year-end stand-off |
-
----
-
-## Crypto — Live Assets (1)
-
-| Asset | File | Source | Key Finding |
-|-------|------|--------|-------------|
-| BTCUSD | `assets/btc.html` | Statistically derived from MT5 daily history (`KPT-Market-Profiling/pipeline/gen_seasonal_signal.py`) — no Moore Research data exists for crypto | First crypto page; Seasonals + Profiling. ~18 other crypto tickers (incl. MTCUSD) are `PLANNED` cards on the index. See `DATA_DICTIONARY.md` → "Statistically-derived assets" |
-
----
-
-## Market Profiling — Assets with Profiling Data (14)
-
-Data comes from the sibling `KPT-Market-Profiling` repo (Python pipeline over full MT5 M1 history, TradersWay) and is copied into `data/profiling/` by `node scripts/sync_profiling_data.js`. Each asset's data freshness is its `asOf` date in `data/profiling/manifest.js`.
-
-| Asset key | Page(s) |
-|-----------|---------|
-| gbpusd, eurusd, audusd, nzdusd, usdcad, usdchf, usdjpy | futures currency page + matching FX pair page (e.g. `gbp.html` + `fx-gbpusd.html`) |
-| xauusd, brent, wti, us500, ustech, us30 | `xau.html`, `brent.html`, `cl.html`, `sp500.html`, `nq.html`, `ym.html` |
-| btcusd | `btc.html` |
-
-**To refresh:** export new M1 bars from MT5 → merge into `data/raw/<ASSET>_M1_full.csv` with `concat_raw_csv.py` → `python pipeline/refresh_asset.py <ASSET>` (in `KPT-Market-Profiling`) → `node scripts/sync_profiling_data.js` (here). Re-running the pipeline without new raw data changes nothing. **To add an asset:** `CONTRIBUTING.md` → "Adding a New Profiling Asset".
-
----
-
-## Dynamic Index Signals
-
-Each status-complete card on the dashboard index shows a runtime-derived signal computed at page load from `data/signals_manifest.js`. The manifest contains the full 12-month × 4-week `com` string for all 98 assets. The dashboard index reads `currentMonth` and `currentWeek` from the system clock and maps the relevant entry to BULL / BEAR / CHOP / FLIP / AVOID — via `js/signals.js`, the same module the landing page uses for its hero tally.
-
-A **signal filter bar** (All / Bull / Bear / Other) allows filtering the index by signal type. Each card is tagged with `data-sig-type` during the manifest injection pass. A **manifest freshness note** below the filter bar shows when the manifest was last regenerated, sourced from `const SIGNALS_GENERATED` in `signals_manifest.js`.
-
-**To regenerate the manifest** (after updating any data file):
-```
-node gen_signals_manifest.js
-```
-The script reads every `data/*.js` file and overwrites `data/signals_manifest.js` (98 entries as of v1.16). **Note:** `gen_signals_manifest.js` is not committed to this repo (see `scripts/README.md`). The manifest only needs regenerating when a `data/*.js` seasonal file changes; the current-week signal is resolved from the system clock at page load, so the manifest does not go stale with time.
-
----
-
-## Confluence Engine — Build Status
-
-| Layer | Phase | Status | Tab |
-|-------|-------|--------|-----|
-| Seasonal tendency | Phase 1 | ✅ Complete (v1.0) | Seasonals |
-| Seasonal curve chart | Phase 4 | ✅ Complete (v1.4) | Trend |
-| Market Profiling (Daily) | v1.7 | ✅ Complete | Profiling |
-| Weekly/Monthly/Yearly profiles | Platform Tier 5 | ✅ Complete | Profiling |
-| Sub-session profiles (session/hour pairing, hourly activity, NFP) | Platform Tier 5b | ✅ Shipped (liquidity-sweep branch parked) | Profiling |
-| Range Outlook (TimesFM volatility forecast) | Platform Tier 7 | ✅ Complete (v1.17) | Profiling |
-| Live price chart | Quick win | ✅ Complete (v1.1) | Live Price |
-| Macro calendar | Phase 3 | ✅ Complete (v1.3) | Macro |
-| D1 backtest + intraday bias | Phases 2/2.5, unified in Tier 4 | ✅ Complete (v1.12) | Upload |
-| AI synthesis | Phase 5 | ✅ Complete (v1.5, context expanded v1.13–v1.14) | Analysis |
-
-**All layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, Upload-tab backtest win rates and intraday session bias, and Profiling statistics (daily-through-yearly profile shapes, NFP-week event risk) — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet 5, ChatGPT (OpenAI, default `gpt-6-astra`, editable), Gemini Flash, or any local Ollama model.
-
-**Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass · v1.17 Range Outlook (TimesFM) · v1.18 landing page at `/`, dashboard moved to `/dashboard`, shared nav/footer, self-hosted fonts. Details: `CHANGELOG.md`.
-
-**v1.6 additions (UX layer):** Configurable broker timezone offset on Sessions tab (now part of the Upload tab) · AI cache clear button · TradingView symbol override (`tvSymbol`) · Single-tab print mode · Signal filter bar + manifest freshness on index · Three new reference docs (DATA_DICTIONARY, CONTRIBUTING, USER_GUIDE) · `scripts/` folder with utility script documentation.
-
-**Scope boundary:** No annotated chart interpretation (Elliott waves, Fibonacci, market structure). The tool provides objective data confluence. The trader applies their own execution framework.
-
----
-
-## Building a Trade Idea — Step-by-Step Workflow
-
-The dashboard is designed to be worked through in layer order, from broad seasonal context down to execution timing. Each step narrows the picture.
-
-**1. Scan the index for current-week bias.**
-Open the dashboard (`/dashboard`). Every asset card shows a live signal (BULL / BEAR / CHOP / FLIP) for the current week, derived from the signals manifest. Use the filter bar to isolate all BULL or BEAR assets at a glance. The freshness note shows when the manifest was last regenerated.
-
-**2. Open an asset and check the Seasonals tab.**
-The combined accordion auto-opens to the current month. Read the week-level combined signal and conviction stars (★★★★★ = maximum confluence across all three timeframes). Expand adjacent weeks to see whether the bias is building or fading. Use the quick-jump buttons to check the broader monthly arc.
-
-**3. Confirm direction on the Trend tab.**
-The seasonal curve shows the cumulative directional bias across the year. The NOW marker shows where the asset sits in its seasonal cycle today. A rising curve confirms a bullish seasonal; a curve already past its peak is a caution signal even if the week reads BULL.
-
-**4. Check the statistical profile on the Profiling tab** *(14 assets)*.
-The Range Outlook at the top forecasts how big the next day, week and month's ranges are likely to be (and says when that forecast is out of date). Below it: expected daily range (median, ADR20), the most common profile shapes at each granularity, and when the day's/week's high and low typically form. This turns "bullish this week" into "how far, and at what time of day/week, does a move usually happen." The NFP panel shows how much first-Friday releases change the picture.
-
-**5. Check current price on the Live Price tab.**
-The live TradingView chart shows where price is trading relative to recent structure. Seasonal bias is directional context — not an entry signal. Price should be approaching a logical level before acting.
-
-**6. Validate the edge on the Upload tab.**
-Upload a CSV export from MT5 (see `USER_GUIDE.md` for the export process); any timeframe from M1 to monthly works, and sub-daily bars are aggregated to daily closes. The Seasonal Tendency view shows raw tendency, win rate, and average return for each month and week historically. A seasonal signal with a 35% win rate over 30 years is much less interesting than one with 70%.
-
-**7. Find the timing window (also on the Upload tab).**
-If the upload is intraday (M1–H4), the Upload tab also breaks down average return by hour of day, by session (London / New York / Asian / Pacific), and by day of week. This answers "given the seasonal is bullish this week, *when* in the week has price historically moved?" Filter the session cards by seasonal signal to isolate the relevant subset.
-
-**8. Check for macro risk on the Macro tab.**
-The Investing.com calendar is pre-filtered to the currencies and events most relevant to the asset. A high-impact event mid-week can override any seasonal tendency. The interpretation guide explains which event types matter most for each asset class.
-
-**9. Run the AI synthesis on the Analysis tab.**
-Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, ChatGPT, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant, and can be downloaded as a `.md` file.
-
-**10. Apply your own execution framework.**
-The dashboard provides objective confluence data. Entry trigger, position sizing, stop placement, and trade management are the trader's own decisions. The tool's job is to ensure every angle has been considered before a bias is formed.
-
-> For detailed usage instructions on any tab, see `docs/USER_GUIDE.md`.
+- **Project start:** April 2026
+- **Operator:** a free, non-commercial personal project created and run by **G T**, publishing as
+  **Kaminari Precision Trading**; not a company or registered business. The name lives in one
+  constant (`KPT_SITE.OPERATOR_NAME` in `js/site.js`). Contact: kaminariprecisiontrading@gmail.com.
+  Governing law: Botswana (Data Protection Act, 2024 · IDPC).
+- **Repository:** [`kaminariprecisiontrading/seasonal-dashboard`](https://github.com/kaminariprecisiontrading/seasonal-dashboard) (public)
+- **Hosting:** Netlify, https://kpt-seasonals.netlify.app/. Free tier; auto-deploys `main` on
+  push and publishes only `frontend/` (`netlify.toml` → `[build] publish`).
+- **Data sources:** Moore Research Center seasonal charts (futures), derived synthesis (forex), MT5 M1
+  history from TradersWay via the `backend/` pipeline (Profiling tab, BTCUSD seasonals, Range Outlook,
+  Track Record).
+- **Legal pages:** `/risk`, `/terms`, `/privacy`, `/sources`, `/about` (v1.19), plain-language drafts
+  for a free personal project, not legal advice. **Open item (owner):** Moore Research Center
+  redistribution permission. The pages credit MRCI but don't grant any rights.
+- **Scope boundary:** no annotated chart interpretation (Elliott waves, Fibonacci, market structure).
+  The tool provides objective data confluence; the trader applies their own execution framework.
 
 ---
 
 ## Tools & Environment
 
-- **Chart Source:** Moore Research Center (mooreres.com) — seasonal tendency overlays
-- **AI Engine (building):** Claude via claude.ai (Cowork) — design, analysis, dashboard generation
-- **AI Engine (in-dashboard, option 1):** Anthropic API — Claude Sonnet 5 (`claude-sonnet-5`)
-- **AI Engine (in-dashboard, option 2):** OpenAI Responses API — ChatGPT (`gpt-6-astra` by default, editable in Settings)
-- **AI Engine (in-dashboard, option 3):** Google AI Studio API — Gemini Flash (`gemini-2.0-flash`)
-- **AI Engine (in-dashboard, option 4):** Ollama — any local model (e.g. `mistral:latest`)
-- **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
-- **Code Editor:** Visual Studio Code
-- **Version Control:** Git + GitHub (public repository)
-- **Hosting:** Netlify — https://kpt-seasonals.netlify.app/ · free tier · auto-deploys from the GitHub repo on every push to `main` · HTTPS included
-- **Local Preview:** `node scripts/serve_local.js` (http://localhost:8888/) — applies `netlify.toml`'s routes, so `/dashboard` and the other clean routes work locally; do not open HTML files directly via `file://`
-- **Local AI server:** Ollama — requires `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat` automates this
+- **Local preview:** `node scripts/serve_local.js` → http://localhost:8888/. Serves `frontend/` with
+  `netlify.toml`'s routes and headers, so `/dashboard` and the other clean routes work. Plain static
+  servers (VS Code Live Server, `python -m http.server`) and `file://` don't apply them.
+- **Pipeline:** Python 3.13 with two venvs in `backend/`: `.venv` (pandas, numpy, scipy) for the main
+  pipeline and `.venv-forecast` (TimesFM 2.5 + PyTorch) for range forecasts. Setup in
+  [backend/README.md](../backend/README.md).
+- **In-dashboard AI** (the user's own key): Anthropic API (Claude Sonnet 5), OpenAI Responses API
+  (ChatGPT, `gpt-6-astra` by default, editable), Google AI Studio (Gemini Flash), or a local Ollama
+  model (start it with `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat`
+  automates this).
+- **Building:** Claude (claude.ai / Claude Code) for design, analysis and code; VS Code; Git + GitHub.
 
-| Context | Tool | Best Used For |
-|---------|------|--------------|
-| Design & planning | Claude.ai / Cowork | New asset analysis, architectural decisions, doc updates |
-| Market data pipeline | `KPT-Market-Profiling` (Python) | Cleans MT5 M1 exports, computes all Profiling statistics |
-| Dashboard AI (cloud) | Claude API / Gemini API | Production weekly analysis with structured verdict output |
-| Dashboard AI (local) | Ollama | Offline analysis; no API costs; model choice (mistral, llama3, etc.) |
-
----
-
-## Copyright & Attribution
-
-All pages carry dual attribution:
-- **Moore Research Center © 2020** — seasonal tendency data source
-- **© 2026 Kaminari Precision Trading** — dashboard interface design and analysis framework
-
-The copyright line uses **inline styles** on the `<span>` (not a CSS class) so it always renders regardless of CSS load order or caching.
+| Context | Tool | Best used for |
+|---------|------|---------------|
+| Design & planning | Claude | New asset analysis, architectural decisions, doc updates |
+| Market data pipeline | `backend/` (Python) | Cleans MT5 M1 exports, computes all Profiling statistics, forecasts, track record |
+| Dashboard AI (cloud) | Claude / ChatGPT / Gemini APIs | Weekly analysis with a structured verdict |
+| Dashboard AI (local) | Ollama | Offline analysis, no API costs |

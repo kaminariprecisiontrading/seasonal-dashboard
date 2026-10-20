@@ -4,85 +4,111 @@ Complete technical documentation for the seasonal trading dashboard system.
 
 ---
 
-## Repository Structure
+## Repository Structure (v1.27 monorepo)
 
 ```
-seasonal-dashboard/          ← root of GitHub repo
-├── index.html               ← landing page (/) — v1.18
-├── dashboard.html           ← dashboard index (/dashboard): sticky nav + asset card grid
-├── 404.html                 ← styled not-found page
-├── risk.html, terms.html, privacy.html, sources.html, about.html  ← legal & trust pages (v1.19)
-├── netlify.toml             ← clean-route 200 rewrites, /docs + /scripts forced 404s
-├── assets/
-│   ├── aud.html             ← AUD futures dashboard shell
-│   ├── usd.html             ← USD futures dashboard shell
-│   ├── jpy.html             ← JPY futures dashboard shell
-│   ├── gbp.html             ← GBP futures dashboard shell
-│   ├── cad.html             ← CAD futures dashboard shell
-│   ├── eur.html             ← EUR futures dashboard shell
-│   ├── chf.html             ← CHF futures dashboard shell
-│   ├── nzd.html             ← NZD futures dashboard shell
-│   ├── fx-audusd.html       ← AUDUSD forex dashboard shell
-│   ├── fx-usdjpy.html       ← USDJPY forex dashboard shell
-│   ├── fx-gbpusd.html       ← GBPUSD forex dashboard shell
-│   └── [asset].html         ← future assets follow same pattern
-├── css/
-│   ├── dashboard.css        ← dashboard + all 98 asset pages
-│   ├── fonts.css            ← self-hosted @font-face (files in assets/fonts/)
-│   ├── chrome.css           ← shared nav + footer (every page)
-│   ├── site.css             ← base for landing / legal / new pages
-│   └── landing.css          ← landing-page extras
-├── js/
-│   ├── accordion.js         ← shared accordion builder + buildTFTables() + buildQuickJump()
-│   ├── api.js               ← multi-provider AI panel (Claude / Gemini / Ollama); enriched context
-│   ├── tradingview.js       ← TradingView widget injector (97-entry symbol table)
-│   ├── macro.js             ← Investing.com economic calendar embed + asset-class guide
-│   ├── seasonal-chart.js    ← seasonal bias curve chart (Chart.js, 48-point cumulative)
-│   ├── upload.js            ← unified CSV upload tool (Tier 4): any timeframe M1–MN1 → seasonal
-│   │                            tendency (ex-Backtest) + intraday timing (ex-Sessions) stats
-│   ├── ui.js                ← shared UI layer: tabs, sub-tabs, topbar, legend toggle
-│   ├── site.js              ← shared nav/footer, KPT_SITE facts, KptStore, Embeds setting
-│   ├── signals.js           ← KptSignals: manifest → signal/conviction, week maths, groups
-│   └── landing.js           ← landing page's live This-week panel + counts
-├── data/
-│   ├── aud.js               ← AUD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── usd.js               ← USD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── jpy.js               ← JPY: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── gbp.js               ← GBP: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── cad.js               ← CAD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── eur.js               ← EUR: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── chf.js               ← CHF: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── nzd.js               ← NZD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
-│   ├── fx-audusd.js         ← AUDUSD forex: derived synthesis data
-│   ├── fx-usdjpy.js         ← USDJPY forex: derived synthesis data
-│   ├── fx-gbpusd.js         ← GBPUSD forex: derived synthesis data
-│   ├── asset_index.js       ← generated asset registry (scripts/gen_asset_index.js)
-│   └── [asset].js           ← future assets follow same pattern
-├── scripts/
-│   ├── README.md                    ← documents all scripts (purpose, run command, status)
-│   ├── patch_add_macro.js           ← one-shot: inserted macro.js into all 97 HTML files
-│   ├── patch_add_seasonal_chart.js  ← one-shot: inserted seasonal-chart.js into all 97 HTML files
-│   ├── patch_swap_upload.js         ← one-shot (Tier 4): replaced backtest.js+intraday.js tags
-│   │                                    with upload.js across all 98 HTML files
-│   ├── gen_asset_index.js           ← regenerates data/asset_index.js from dashboard.html cards
-│   ├── patch_dashboard_links.js     ← one-shot (v1.18): ../index.html → /dashboard links
-│   └── serve_local.js               ← local preview server that applies netlify.toml
-└── docs/
-    ├── README.md
-    ├── SKILL.md
-    ├── ARCHITECTURE.md      ← this file
-    ├── CHANGELOG.md
-    ├── ROADMAP.md
-    ├── PROMPTS.md
-    ├── CONTRIBUTING.md      ← add-an-asset checklist; update/maintain guide
-    ├── USER_GUIDE.md        ← end-user guide (CSV upload, AI setup, reading outputs)
-    └── DATA_DICTIONARY.md   ← ASSET_CONFIG and MONTHS[] field reference
+seasonal-dashboard/              ← root of the GitHub repo
+├── README.md                    ← short project overview (GitHub front page)
+├── netlify.toml                 ← publish = "frontend"; clean-route 200 rewrites; security headers + CSP
+├── frontend/                    ← THE PUBLISHED SITE (the only folder Netlify serves)
+│   ├── index.html               ← landing page (/)
+│   ├── dashboard.html           ← dashboard index (/dashboard): nav, filters, asset card grid
+│   ├── this-week.html, heatmap.html, track-record.html, methodology.html  ← content pages (v1.22–v1.25)
+│   ├── risk.html, terms.html, privacy.html, sources.html, about.html     ← legal & trust pages (v1.19)
+│   ├── 404.html                 ← styled not-found page
+│   ├── assets/
+│   │   ├── <id>.html            ← 98 asset dashboard shells (aud.html, fx-eurusd.html, btc.html, …)
+│   │   └── fonts/               ← self-hosted woff2 + OFL licences
+│   ├── css/
+│   │   ├── dashboard.css        ← dashboard + all 98 asset pages
+│   │   ├── fonts.css            ← @font-face for the self-hosted fonts
+│   │   ├── chrome.css           ← shared nav + footer (every page)
+│   │   ├── site.css             ← base for landing / legal / content pages
+│   │   └── landing.css, pages.css  ← landing extras; content-page components
+│   ├── js/
+│   │   ├── accordion.js         ← accordion builder + buildTFTables() + buildQuickJump()
+│   │   ├── api.js               ← AI panel (Claude / ChatGPT / Gemini / Ollama); context gatherers
+│   │   ├── tradingview.js       ← TradingView widget (click-to-load)
+│   │   ├── macro.js             ← Investing.com calendar (click-to-load) + asset-class guide
+│   │   ├── seasonal-chart.js    ← Trend tab curve (Chart.js)
+│   │   ├── upload.js            ← Upload tab: any MT5 CSV → seasonal tendency + intraday timing
+│   │   ├── profiling*.js        ← Profiling tab + calendar / compare / profile-detail pages
+│   │   ├── ui.js                ← tabs, sub-tabs, topbar, legend toggle
+│   │   ├── site.js              ← nav/footer, KPT_SITE, KptStore, KptEmbeds, KptWatchlist
+│   │   ├── signals.js           ← KptSignals: the one com → signal mapping, week maths, groups
+│   │   └── dashboard.js, landing.js, this-week.js, heatmap.js, track-record.js  ← page scripts
+│   ├── data/
+│   │   ├── <id>.js              ← per asset: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
+│   │   ├── signals_manifest.js  ← 48 weekly com strings per asset (scripts/gen_signals_manifest.js)
+│   │   ├── asset_index.js, month_signals.js  ← generated registry / month verdicts
+│   │   ├── track_record.js      ← graded signals (scripts/sync_track_record.js)
+│   │   ├── signal_history/      ← weekly snapshots of the live signals (scripts/snapshot_signals.js)
+│   │   └── profiling/           ← Profiling data synced from backend/ (scripts/sync_profiling_data.js)
+│   └── profiling-calendar/, profiling-profiles/  ← Profiling detail pages
+├── backend/                     ← Python data pipeline (formerly the KPT-Market-Profiling repo; history kept)
+│   ├── pipeline/                ← clean_mt5_csv, stats_engine, profile_taxonomy, refresh_asset,
+│   │                               gen_seasonal_signal, forecast_range (TimesFM), grade_signals, …
+│   ├── data/raw/                ← MT5 M1 exports (local only, gitignored — several GB)
+│   ├── data/clean/, data/forecast/  ← cleaned daily OHLC; TimesFM forecast caches
+│   ├── output/                  ← JSON outputs read by the sync scripts
+│   ├── dashboard/               ← the pipeline's own prototype viewer; its data/ is the sync source
+│   ├── research/timesfm_benchmark/  ← TimesFM vs ADR20 benchmark
+│   ├── .venv/, .venv-forecast/  ← local venvs (gitignored)
+│   └── README.md, HANDOVER.md, market-profiling-system-spec.md
+├── scripts/                     ← Node: sync backend → frontend/data, generators, codemods, local server
+│   └── README.md                ← every script: purpose, run command, status
+└── docs/                        ← documentation (index: docs/README.md), images/, specs/ + mockups
 ```
 
-**Deployment:** Netlify — connected to the public GitHub repo (`kaminariprecisiontrading/seasonal-dashboard`), auto-deploys on every push to `main`.
+Paths elsewhere in this document (`js/…`, `css/…`, `data/…`, `assets/…`) are relative to
+`frontend/`; `pipeline/…` and `output/…` are relative to `backend/`.
+
+**Data flow:** MT5 exports → `backend/pipeline/*` → `backend/output/` and `backend/dashboard/data/`
+→ `scripts/sync_*.js` → `frontend/data/` → pages. Moore Research seasonal data is hand-built into
+`frontend/data/<id>.js` (see `SKILL.md`), then `scripts/gen_signals_manifest.js` rebuilds the manifest.
+
+**Deployment:** Netlify, connected to the public GitHub repo
+(`kaminariprecisiontrading/seasonal-dashboard`), auto-deploys every push to `main`. There is no build
+step; `netlify.toml` sets `publish = "frontend"`, so `docs/`, `scripts/` and `backend/` are never
+served.
 - Live URL: https://kpt-seasonals.netlify.app/ (landing) · /dashboard (index) · /assets/<id>.html (asset pages)
 
-**Local development:** run `node scripts/serve_local.js` (http://localhost:8888/). It applies `netlify.toml`'s rewrites/forced 404s and Netlify's pretty-URL behaviour, so clean routes like `/dashboard` work locally — Live Server can't. Opening HTML files directly from the filesystem doesn't work.
+**Local development:** run `node scripts/serve_local.js` (http://localhost:8888/) from the repo root.
+It serves `frontend/` and applies `netlify.toml`'s rewrites, headers and Netlify's pretty-URL
+behaviour, so clean routes like `/dashboard` work locally. Plain static servers (VS Code Live Server,
+`python -m http.server`) and opening files via `file://` don't.
+
+### Routes
+
+Every page is a `.html` file at the top of `frontend/`, served at a clean route by a 200 rewrite.
+
+| Route | File | What it is |
+|-------|------|-----------|
+| `/` | `index.html` | Landing page: purpose, features, how to use, coverage, live "This week" tally and 3 featured signals |
+| `/dashboard` | `dashboard.html` | Dashboard index: search, signal filter, asset-class nav, This Week accordion, all asset cards |
+| `/assets/<id>.html` | `assets/*.html` | The 98 asset dashboards |
+| `/this-week` | `this-week.html` | Weekly digest: tallies vs last week, flips, new max conviction, ★ watchlist, next 4 weeks; `?w=YYYY-M-W` |
+| `/heatmap` | `heatmap.html` | Every live market × 12 months, or a rolling 12 weeks, coloured by conviction |
+| `/track-record` | `track-record.html` | Past weekly signals graded against price (14 MT5 assets, since 2016), LIVE vs BACKFILL |
+| `/methodology` | `methodology.html` | How a signal is built, timeframe examples, FX synthesis, sources, limits |
+| `/risk` `/terms` `/privacy` `/sources` `/about` | `*.html` | Legal & trust pages |
+| any unknown path | `404.html` | Styled not-found page |
+
+### Build Status
+
+| Layer | Phase | Status | Tab / page |
+|-------|-------|--------|-----|
+| Seasonal tendency | Phase 1 | ✅ v1.0 | Seasonals |
+| Seasonal curve chart | Phase 4 | ✅ v1.4 | Trend |
+| Market Profiling (daily → yearly, sub-session) | v1.7, Tier 5/5b | ✅ (liquidity-sweep branch parked) | Profiling |
+| Range Outlook (TimesFM) | Tier 7 | ✅ v1.17 | Profiling |
+| Live price chart | Quick win | ✅ v1.1 | Live Price |
+| Macro calendar | Phase 3 | ✅ v1.3 | Macro |
+| D1 backtest + intraday bias | Phases 2/2.5, Tier 4 | ✅ v1.12 | Upload |
+| AI synthesis | Phase 5 | ✅ v1.5 (context v1.13–v1.14, ChatGPT v1.21) | Analysis |
+| Landing, legal, content pages | Site expansion | ✅ v1.18–v1.25 | `/`, `/this-week`, `/heatmap`, `/track-record`, … |
+| Security headers + enforcing CSP | Site expansion | ✅ v1.21 | all |
+| Monorepo (frontend / backend / scripts / docs) | — | ✅ v1.27 | — |
 
 ---
 
@@ -322,7 +348,7 @@ The `filters` feature parameter exposes an in-widget importance toggle bar, so u
 
 **Loading time:** The iframe makes a cold HTTP request to Investing.com on each page load. Expect ~30 seconds on first reveal. The panel header notes this. Within-widget navigation (forward/back week) is fast once loaded.
 
-**Local testing caveat (found v1.7):** The widget works correctly on the deployed domain (`kpt-seasonals.netlify.app`) but fails to load when testing via Live Server on `127.0.0.1` — most likely because Investing.com's free embed widget requires the parent domain to be registered with them, and localhost obviously never was. This is a local-testing-only limitation, not a code bug; don't "fix" it by replacing the iframe based on local test results alone. (An earlier pass in v1.7 mistakenly did exactly this — see `CHANGELOG.md`'s correction entry — after a headless-browser automated check returned a 403 even on the live domain, which turned out to be bot-detection against the automated traffic itself, not a real embedding block. Verify any future Macro-tab issue against a real browser on the live domain before concluding the embed is actually broken.)
+**Local testing caveat (found v1.7):** The widget works correctly on the deployed domain (`kpt-seasonals.netlify.app`) but fails to load when testing locally on `localhost`/`127.0.0.1` — most likely because Investing.com's free embed widget requires the parent domain to be registered with them, and localhost obviously never was. This is a local-testing-only limitation, not a code bug; don't "fix" it by replacing the iframe based on local test results alone. (An earlier pass in v1.7 mistakenly did exactly this — see `CHANGELOG.md`'s correction entry — after a headless-browser automated check returned a 403 even on the live domain, which turned out to be bot-detection against the automated traffic itself, not a real embedding block. Verify any future Macro-tab issue against a real browser on the live domain before concluding the embed is actually broken.)
 
 **Dark-mode treatment:** The embed uses a white theme. `filter: invert(1) hue-rotate(180deg)` is applied to the iframe — inverts lightness to match the dark dashboard, and the 180° hue rotation corrects colour inversion (red stays red, green stays green).
 
@@ -482,11 +508,11 @@ Called by `ui.js` each time the Upload tab is activated. Resizes whichever Chart
 
 ## Profiling Panel (`js/profiling.js`, `js/profiling-charts.js`) — v1.7
 
-A statistical market-profiling browser — range distributions, time-of-extreme clustering, and a rule-based 8-profile daily taxonomy — ported from the sibling `KPT-Market-Profiling` repo. Unlike every other panel, it's **not** injected on all 97 pages: only on `gbp.html`, `fx-gbpusd.html`, `eur.html`, `fx-eurusd.html` (the 4 pages with ported GBPUSD/EURUSD data). Full background: `docs/MARKET_PROFILING_INTEGRATION.md`.
+A statistical market-profiling browser — range distributions, time-of-extreme clustering, and a rule-based 8-profile daily taxonomy — ported from the pipeline in `backend/` (formerly the separate `KPT-Market-Profiling` repo). Unlike every other panel, it's **not** injected on all 97 pages: only on `gbp.html`, `fx-gbpusd.html`, `eur.html`, `fx-eurusd.html` (the 4 pages with ported GBPUSD/EURUSD data). Full background: `docs/MARKET_PROFILING_INTEGRATION.md`.
 
 ### Data source
 
-`KPT-Market-Profiling` is a pure Python data-pipeline repo (sibling, `../KPT-Market-Profiling`) — its `stats_engine.py` and `profile_taxonomy.py` compute everything this panel displays from cleaned MT5 daily OHLC history. `scripts/sync_profiling_data.js` (run from this repo's root) reads that pipeline's output and regenerates `data/profiling/*` — re-run it any time the pipeline is re-run for an asset (new CSV, taxonomy change). Not a one-time port: adding an asset means adding it to the script's `ASSETS` list and re-running.
+`backend/` is the pure Python data pipeline (merged in from the former `KPT-Market-Profiling` repo in v1.27) — its `stats_engine.py` and `profile_taxonomy.py` compute everything this panel displays from cleaned MT5 daily OHLC history. `scripts/sync_profiling_data.js` (run from this repo's root) reads that pipeline's output and regenerates `data/profiling/*` — re-run it any time the pipeline is re-run for an asset (new CSV, taxonomy change). Not a one-time port: adding an asset means adding it to the script's `ASSETS` list and re-running.
 
 ### Panel injection
 
@@ -494,7 +520,7 @@ A statistical market-profiling browser — range distributions, time-of-extreme 
 
 ### Why it's a from-scratch DOM build, not a static template
 
-The source `KPT-Market-Profiling/dashboard/js/dashboard.js` assumes it owns the whole page — its HTML shell pre-declares ~15 fixed-ID containers (`#stat-grid`, `#dial`, `#range-daily`, `#heatmap-high`, etc.) that it fills in. That doesn't work inside one panel among seven other tabs, so `profiling.js` instead builds those same containers itself (prefixed `kptp-`) and runs the ported rendering logic against them. The statistical/SVG-drawing logic itself (`js/profiling-charts.js`) has no DOM-ownership assumption baked in — only the "expects a static template" half needed adapting.
+The source `backend/dashboard/js/dashboard.js` assumes it owns the whole page — its HTML shell pre-declares ~15 fixed-ID containers (`#stat-grid`, `#dial`, `#range-daily`, `#heatmap-high`, etc.) that it fills in. That doesn't work inside one panel among seven other tabs, so `profiling.js` instead builds those same containers itself (prefixed `kptp-`) and runs the ported rendering logic against them. The statistical/SVG-drawing logic itself (`js/profiling-charts.js`) has no DOM-ownership assumption baked in — only the "expects a static template" half needed adapting.
 
 ### `js/profiling-charts.js` — shared, page-independent library
 
@@ -503,11 +529,11 @@ No dependency on `ASSET_CONFIG` or page structure — loaded by the 4 asset page
 - `KPTPTooltip` — floating hover tooltip (glossary icons + every chart element attach here)
 - `KPTPCharts` — vanilla-SVG chart primitives (`renderRangeStrip`, `renderTimeHeatmap`, `renderBarChart`, `renderCandlestick`, `renderForecastBand` (v1.17, Range Outlook)) — no charting library, same zero-dependency approach as `accordion.js`/`seasonal-chart.js`
 - `KPT_PROFILING_GLOSSARY` + `kptpGlossaryIcon()`/`kptpAttachGlossaryIcons()` — plain-language explanations for every statistical term (percentile, IQR, concentration, etc.)
-- `KPTP_PROFILE_COLOR` / `KPTP_PROFILE_ICON_PATH` / `KPTP_PROFILE_META` + `kptpProfileSlug()`/`kptpProfileIconSvg()` — the 8-profile taxonomy's colour, stylized icon, and rule/why/timing copy (sourced from `KPT-Market-Profiling/market-profiling-system-spec.md` §4.2 — keep in sync by hand if either changes)
+- `KPTP_PROFILE_COLOR` / `KPTP_PROFILE_ICON_PATH` / `KPTP_PROFILE_META` + `kptpProfileSlug()`/`kptpProfileIconSvg()` — the 8-profile taxonomy's colour, stylized icon, and rule/why/timing copy (sourced from `backend/market-profiling-system-spec.md` §4.2 — keep in sync by hand if either changes)
 
 ### CSS — `.kptp-` namespace (critical)
 
-`KPT-Market-Profiling/dashboard/css/dashboard.css` was seeded from an early, much smaller snapshot of this repo's own CSS — several of its class names (`.panel`, `.section-label`, `.header`, `.sub`, `.divider`, `.footnote`, `.dial`, `.mode-note`) now collide with this file's own, unrelated, already-load-bearing classes (`.section-label` in particular is read by `ui.js`'s tab-grouping walk). Every class the Profiling feature introduces is therefore prefixed `.kptp-`, including ones that don't currently collide — this is a blanket rule, not a per-class judgment call. Seven new CSS variables (`--kptp-compression`, `--kptp-expansion`, `--kptp-normal`, `--kptp-asian`, `--kptp-london`, `--kptp-ny`, `--kptp-overlap`) were added to `:root`; the 11 base tokens (`--bg`, `--surface`, `--surface2`, `--border`, `--accent-combined`, `--bull`, `--bear`, `--chop`, `--text`, `--muted`, `--dim`) are reused directly since they're byte-for-byte identical between both repos' `:root` blocks.
+`backend/dashboard/css/dashboard.css` was seeded from an early, much smaller snapshot of this repo's own CSS — several of its class names (`.panel`, `.section-label`, `.header`, `.sub`, `.divider`, `.footnote`, `.dial`, `.mode-note`) now collide with this file's own, unrelated, already-load-bearing classes (`.section-label` in particular is read by `ui.js`'s tab-grouping walk). Every class the Profiling feature introduces is therefore prefixed `.kptp-`, including ones that don't currently collide — this is a blanket rule, not a per-class judgment call. Seven new CSS variables (`--kptp-compression`, `--kptp-expansion`, `--kptp-normal`, `--kptp-asian`, `--kptp-london`, `--kptp-ny`, `--kptp-overlap`) were added to `:root`; the 11 base tokens (`--bg`, `--surface`, `--surface2`, `--border`, `--accent-combined`, `--bull`, `--bear`, `--chop`, `--text`, `--muted`, `--dim`) are reused directly since they're byte-for-byte identical between both stylesheets' `:root` blocks.
 
 ### `profiling-calendar/` and `profiling-profiles/` (repo root)
 
@@ -520,26 +546,26 @@ Not sub-tabs — linked from inside the Profiling tab panel ("View full calendar
 
 ### `scripts/sync_profiling_data.js`
 
-Reads `../KPT-Market-Profiling/dashboard/data/{<asset>.js, profile-examples/<asset>.js, calendar/<asset>/}` for each asset in its `ASSETS` list (`vm.createContext` to safely evaluate the source's `const X = {...}` files) and writes:
+Reads `backend/dashboard/data/{<asset>.js, profile-examples/<asset>.js, calendar/<asset>/}` for each asset in its `ASSETS` list (`vm.createContext` to safely evaluate the source's `const X = {...}` files) and writes:
 
-- `data/profiling/<asset>.js` → `window.KPT_PROFILING.<asset> = {...}` (const-vs-window fix — the source declares a bare `const`, a lexical binding invisible to `window`, same gotcha `KPT-Market-Profiling`'s own calendar loader already had to solve once)
+- `data/profiling/<asset>.js` → `window.KPT_PROFILING.<asset> = {...}` (const-vs-window fix — the source declares a bare `const`, a lexical binding invisible to `window`, same gotcha the pipeline's own calendar loader already had to solve once)
 - `data/profiling/profile-examples/<asset>.js` → `window.KPT_PROFILING_EXAMPLES.<asset> = {...}` (same fix)
 - `data/profiling/calendar/<asset>/*` — copied verbatim (already correctly namespaced by the source pipeline)
 - `data/profiling/manifest.js` → `window.KPT_PROFILING_META` (per-asset `asOf` freshness, sourced from each bundle's own `stats.as_of`)
 
-Run any time the KPT-Market-Profiling pipeline is re-run for an asset. Adding a new asset is: add its key to `ASSETS`, re-run the script, add its id(s) to `profiling.js`'s asset-key map, add the 4 script tags + attribution to its page(s).
+Run any time the pipeline is re-run for an asset. Adding a new asset is: add its key to `ASSETS`, re-run the script, add its id(s) to `profiling.js`'s asset-key map, add the 4 script tags + attribution to its page(s).
 
 ### Range Outlook (v1.17) — TimesFM daily-range forecasts
 
 A card at the top of the Profiling tab (between the stat tiles and the Daily/Weekly/Monthly/Yearly
 switcher, since it spans horizons rather than belonging to one granularity). Renders
 `bundle.range_forecast` (schema: `DATA_DICTIONARY.md` → "bundle.range_forecast"), produced by
-`KPT-Market-Profiling/pipeline/forecast_range.py` — Google's TimesFM 2.5 (200M, zero-shot) run
+`backend/pipeline/forecast_range.py` — Google's TimesFM 2.5 (200M, zero-shot) run
 over the asset's last 1,024 daily ranges. No new sync logic: the sync script already copies the
 whole bundle.
 
 - **Why it exists / evidence:** validated before it was built
-  (`KPT-Market-Profiling/research/timesfm_benchmark/`): the mean forecast beat ADR20 on all 14
+  (`backend/research/timesfm_benchmark/`): the mean forecast beat ADR20 on all 14
   Profiling assets at next-day, 5-day and 20-day horizons, 2016–2026. It is a *volatility*
   forecast only — direction is deliberately out of scope (published evidence puts zero-shot
   direction calls at ~coin-flip).
@@ -720,7 +746,8 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   (`/dashboard` → `dashboard.html`; later pages follow the same pattern). Netlify ignores trailing
   slashes when matching, so `/dashboard/` is served too — which is why `dashboard.html` and
   `index.html` use **root-absolute** resource and card paths (`/css/…`, `/assets/…`): relative
-  paths would resolve under `/dashboard/` and break. `/docs/*` and `/scripts/*` are forced 404s.
+  paths would resolve under `/dashboard/` and break. Only `frontend/` is published (v1.27), so
+  `docs/`, `scripts/` and `backend/` can't be served.
 - **Shared nav + footer (`js/site.js` + `css/chrome.css`).** Nav renders into a
   `<header data-kpt-nav>` placeholder (landing, dashboard, 404, new pages; asset pages keep their
   own topbar). Footer renders into `<footer data-kpt-footer>` or is appended to `<body>`; when the
@@ -781,7 +808,7 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   (`KptSignals.getMonthSignal`, see DATA_DICTIONARY), Weeks view from `KptSignals.getSignal` over a
   rolling 12 weeks. Grid built as one HTML string with one delegated click listener; cells are
   `<button>`s with aria-labels; the grid scrolls inside `.hm-scroll` with a sticky name column.
-- **Track Record (v1.25).** `KPT-Market-Profiling/pipeline/grade_signals.py` grades the dashboard's
+- **Track Record (v1.25).** `backend/pipeline/grade_signals.py` grades the dashboard's
   weekly signals for the 14 MT5 assets (rules on the page and in that script's docstring) into
   `output/track_record.json`; `scripts/sync_track_record.js` copies it to `data/track_record.js`
   (`window.KPT_TRACK_RECORD`, compact rows). `scripts/snapshot_signals.js` writes
@@ -966,7 +993,7 @@ Every asset footnote must use this exact pattern:
 | `<strong>` text in upload guide breaks to new line | `.bt-upload-steps li` uses `position: absolute` for the step number — do not change to `display: grid` or `display: flex`, which turns `<strong>` inline elements into separate grid/flex items |
 | Macro tab missing from tab bar | `macro.js` must load before `ui.js` — the `[data-kpt-panel="macro"]` element must exist when `ui.js` scans the DOM |
 | Macro calendar shows wrong country events | Check `FF_CURRENCIES` map in `macro.js` has the correct asset ID and currency codes; check `CC` map has the correct Investing.com country ID for that currency |
-| Macro embed shows blank white iframe / "restore the link" message when testing locally | Expected on `127.0.0.1`/Live Server — Investing.com's free widget requires the parent domain to be registered with them; localhost isn't. Works correctly on the deployed domain. Do not treat this as evidence the embed is broken in production — verify against the live site with a real browser before "fixing" anything here (see v1.7's correction entry in `CHANGELOG.md`). |
+| Macro embed shows blank white iframe / "restore the link" message when testing locally | Expected on `localhost`/`127.0.0.1` — Investing.com's free widget requires the parent domain to be registered with them; localhost isn't. Works correctly on the deployed domain. Do not treat this as evidence the embed is broken in production — verify against the live site with a real browser before "fixing" anything here (see v1.7's correction entry in `CHANGELOG.md`). |
 | Macro embed white theme clashing with dark dashboard | `filter: invert(1) hue-rotate(180deg)` on `.macro-iframe` — check it hasn't been removed from `dashboard.css` |
 | Macro guide shows wrong content | Check `ASSET_CLASS` map in `macro.js` has the correct asset ID mapped to one of: fx, rates, indices, metals, energy, ags |
 | New asset has no macro tab | Add the new asset ID to both `FF_CURRENCIES` and `ASSET_CLASS` in `macro.js`; ensure `macro.js` script tag is in the asset HTML before `ui.js` |
@@ -993,5 +1020,5 @@ Every asset footnote must use this exact pattern:
 | Profiling tab missing on gbp/eur pages | `profiling.js` must load before `ui.js`, and both `data/profiling/manifest.js` + `data/profiling/{gbpusd\|eurusd}.js` must load before `profiling.js` — check the 4 script tags are present and in order (see the Profiling load-order exception above). `profiling.js` also silently no-ops if `ASSET_CONFIG.id` isn't in its internal asset-key map. |
 | Profiling tab shows on a page it shouldn't | Only add the `profiling.js`/`profiling-charts.js`/data script tags to pages with ported data — `profiling.js`'s early-return means it's harmless but pointless to load elsewhere; keep the convention of only wiring the 4 (growing) in-scope pages |
 | Profiling charts/tooltips broken or unstyled | Check `js/profiling-charts.js` loads before `js/profiling.js`; check no new profiling class was introduced without the `.kptp-` prefix (audit `css/dashboard.css`'s Market Profiling block before adding one) |
-| Profiling data stale after a fresh CSV upload | Re-run the KPT-Market-Profiling pipeline, then `node scripts/sync_profiling_data.js` from `seasonal-dashboard/` root — the Profiling tab shows "Data as of …" sourced from `data/profiling/manifest.js`, regenerated by that script |
+| Profiling data stale after a fresh CSV upload | Re-run the pipeline (`backend/`), then `node scripts/sync_profiling_data.js` from the repo root — the Profiling tab shows "Data as of …" sourced from `data/profiling/manifest.js`, regenerated by that script |
 | Profiling calendar/profile-detail/compare page blank or console error | `profiling-calendar/index.html`, `profiling-profiles/detail.html`, and `profiling-profiles/compare.html` each load `js/profiling-charts.js` directly (they're outside the tab system, not `ASSET_CONFIG`-dependent) — check that tag is present. `detail.html` and `compare.html` no longer hardcode per-asset data script tags — they load via `KPTPData.loadAsset()` on demand; check the browser network tab for a failed `data/profiling/<key>.js` or `profile-examples/<key>.js` request if a specific asset's data doesn't appear. `compare.html` also needs `data/profiling/manifest.js` loaded for its asset picker. |

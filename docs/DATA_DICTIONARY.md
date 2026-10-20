@@ -46,7 +46,7 @@ ltKey:    "s9",
 ```
 The signal itself isn't hand-authored from Moore Research charts — it's computed from real daily
 price history using the site's own Raw Price Tendency methodology (`js/upload.js`'s week-of-month
-bucketing and return calculation), by `KPT-Market-Profiling/pipeline/gen_seasonal_signal.py` and
+bucketing and return calculation), by `backend/pipeline/gen_seasonal_signal.py` and
 bridged into `data/{id}.js` by `scripts/sync_derived_seasonal.js` — see that script's own header
 comment for the full pipeline. Because `accordion.js` hardcodes literal "5-YR"/"15-YR" column
 headers (not config-driven — only the long-term column's header comes from `ltLabel`), and a short
@@ -167,7 +167,7 @@ A `const` string at file scope containing a structured plain-text representation
 ## bundle.range_forecast (Profiling, v1.17)
 
 Optional key on a Profiling bundle (`window.KPT_PROFILING.<asset>`), written by
-`KPT-Market-Profiling/pipeline/forecast_range.py`. Absent when the pipeline ran without its
+`backend/pipeline/forecast_range.py`. Absent when the pipeline ran without its
 forecast venv — `js/profiling.js` then hides the Range Outlook card. All range values are in the
 bundle's own unit (`stats.unit`: pips for FX, points otherwise).
 
@@ -210,7 +210,7 @@ signals. Re-run the generator after changing any `data/<asset>.js`.
 ## Track Record data (v1.25)
 
 **`data/track_record.js`** — `window.KPT_TRACK_RECORD = { generatedAt, asOf, since, assets[], columns[], rows[] }`,
-synced from `KPT-Market-Profiling/output/track_record.json`. `assets[i] = {key, id, label}` (pipeline
+synced from `backend/output/track_record.json`. `assets[i] = {key, id, label}` (pipeline
 key, dashboard page id, display label). Each row:
 
 | # | Field | Values |

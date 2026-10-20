@@ -1,5 +1,8 @@
 # CONTRIBUTING.md — Adding Assets & Maintaining the Dashboard
 
+> Site paths below (`assets/`, `data/`, `js/`, `dashboard.html`, …) are inside `frontend/`;
+> pipeline paths (`pipeline/`, `output/`) are inside `backend/`. Run `node scripts/…` from the repo root.
+
 The definitive checklist for adding a new asset, updating existing data, and keeping the system consistent. For architectural context see `ARCHITECTURE.md`; for field-by-field schema see `DATA_DICTIONARY.md`.
 
 ---
@@ -157,10 +160,10 @@ To add a new tab to all 97 pages:
 
 ## Adding a New Profiling Asset (Phase B)
 
-Once a new asset's MT5 CSV has been cleaned and run through `KPT-Market-Profiling`'s pipeline (`clean_mt5_csv.py` → `stats_engine.py` → `profile_taxonomy.py` → `build_dashboard_data.py`/`export_profile_examples.py`/`export_calendar_data.py`):
+Once a new asset's MT5 CSV has been cleaned and run through the pipeline in `backend/` (`clean_mt5_csv.py` → `stats_engine.py` → `profile_taxonomy.py` → `build_dashboard_data.py`/`export_profile_examples.py`/`export_calendar_data.py`):
 
 1. Add the asset's lowercase key (e.g. `"audusd"`) to the `ASSETS` array in `scripts/sync_profiling_data.js`.
-2. Run `node scripts/sync_profiling_data.js` from `seasonal-dashboard/` root — regenerates `data/profiling/<key>.js`, `data/profiling/profile-examples/<key>.js`, `data/profiling/calendar/<key>/`, and `data/profiling/manifest.js`.
+2. Run `node scripts/sync_profiling_data.js` from the repo root — regenerates `frontend/data/profiling/<key>.js`, `data/profiling/profile-examples/<key>.js`, `data/profiling/calendar/<key>/`, and `data/profiling/manifest.js`.
 3. Add the asset's id(s) to `js/profiling.js`'s `ASSET_MAP` (e.g. `{ aud: 'audusd', 'fx-audusd': 'audusd' }`) — decide which seasonal-dashboard page(s) should show this Profiling data using the same reasoning as `docs/MARKET_PROFILING_INTEGRATION.md` §2 (any page displaying related data for that currency/instrument, not just the most technically "correct" one).
 4. Add the corresponding reverse mapping to `js/profiling-calendar.js`'s `ASSET_PAGES` (for the "back to dashboard" links on the calendar page).
 5. Nothing to do for `profiling-profiles/detail.html` or `compare.html` — both load asset data on demand via `KPTPData.loadAsset()` (`js/profiling-charts.js`) and read the available-assets list from `window.KPT_PROFILING_META` (`data/profiling/manifest.js`), so a new asset appears in the profile-detail flow and the compare-page picker automatically once its data is synced (step 2). No hardcoded per-asset script tags or asset arrays to update in either file.
@@ -168,7 +171,7 @@ Once a new asset's MT5 CSV has been cleaned and run through `KPT-Market-Profilin
 7. Update the attribution/footnote text if the new asset needs asset-specific sourcing notes.
    **Range Outlook (v1.17):** if `.venv-forecast/` exists, `refresh_asset.py` already produced the
    asset's TimesFM forecast and the card appears automatically. Before relying on it for a *new*
-   asset, run `KPT-Market-Profiling/research/timesfm_benchmark/run_benchmark.py --assets <key>`
+   asset, run `backend/research/timesfm_benchmark/run_benchmark.py --assets <key>`
    and check it beats ADR20 there too: the benchmark showed the size of the gain varies by asset.
    If it doesn't, re-run the pipeline with `--skip-forecast` so the card stays hidden.
 8. Test per the shared-JS-file checklist below, plus a manual check of `profiling-calendar/index.html` (with and without `?a=`) and `profiling-profiles/detail.html?p=<slug>&a=<key>` — confirm the new asset appears in `compare.html`'s asset picker without any code change.
@@ -183,16 +186,16 @@ Tier 6) — no `MONTHS[]` chart-derived data exists, but a Profiling-style clean
 history does. `assets/btc.html`/`data/btc.js` (BTCUSD) is the worked example; follow it rather than
 the standard futures/forex recipes above.
 
-1. Clean the asset's raw MT5 export through the normal `KPT-Market-Profiling` pipeline
+1. Clean the asset's raw MT5 export through the normal pipeline (`backend/`)
    (`refresh_asset.py`) first, same as any Profiling asset.
-2. Run `python3 pipeline/gen_seasonal_signal.py <ASSET>` from `KPT-Market-Profiling/` — derives a
+2. Run `python3 pipeline/gen_seasonal_signal.py <ASSET>` from `backend/` — derives a
    `MONTHS[]`-shaped seasonal signal from the cleaned daily CSV using the site's own Raw Price
    Tendency methodology (`js/upload.js`'s week-of-month bucketing/return calculation), writing
    `output/<asset_lower>_seasonal.json`. See that script's own docstring for the full algorithm and
    why star conviction is capped for a short sample.
 3. Add the asset to `scripts/sync_derived_seasonal.js`'s `ASSETS` array (key, page id, display
    name, accent color, `tvSymbol`) and run `node scripts/sync_derived_seasonal.js` from
-   `seasonal-dashboard/` — writes `data/{id}.js` in the exact bare `ASSET_CONFIG`/`MONTHS[]` format
+   the repo root — writes `frontend/data/{id}.js` in the exact bare `ASSET_CONFIG`/`MONTHS[]` format
    the other 96 files use, and patches `data/signals_manifest.js` directly (the "rebuild signals
    manifest" step below doesn't apply — `scripts/gen_signals_manifest.js` isn't present in this
    repo; see `scripts/README.md`).

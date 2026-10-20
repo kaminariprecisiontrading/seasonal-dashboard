@@ -229,7 +229,7 @@ branch-and-test discipline used for the Profiling merge (`docs/MARKET_PROFILING_
 ## Tier 5 — Multi-timeframe profiles (Daily → Weekly → Monthly → Yearly), absorbing former "Phase C"
 
 **The unifying idea:** the daily profile taxonomy (Trend Day, Volatile Day, Compression Day,
-etc. — already built, `KPT-Market-Profiling/pipeline/profile_taxonomy.py`) is one granularity of
+etc. — already built, `backend/pipeline/profile_taxonomy.py`) is one granularity of
 a more general concept. The same range-regime × closing-shape methodology, applied to weekly,
 monthly, and yearly bars instead of daily ones, would produce Weekly/Monthly/Yearly Profiles.
 
@@ -255,7 +255,7 @@ sample size drops fast as granularity coarsens (over a 20-year history):
 | Monthly | ~240 | Getting thin |
 | Yearly | **~20** | Very thin |
 
-`KPT-Market-Profiling/market-profiling-system-spec.md` §4.4 is explicit that a new axis needs
+`backend/market-profiling-system-spec.md` §4.4 is explicit that a new axis needs
 empirical validation (distribution/cross-tab analysis on real data) before it becomes a real
 profile — this isn't optional rigor, it's the standing rule for this taxonomy. And the pipeline
 already treats yearly-granularity stats with extra caution for exactly this reason (yearly range
@@ -289,7 +289,7 @@ without a Seasonals view just because they lack MT5 coverage.
 
 Paced by MT5 data availability, not a blocking phase — runs alongside Tier-6-adjacent asset
 rollout (adding more Profiling assets as CSVs are cleaned). Daily is done. **Weekly is done and
-dashboard-wired** (2026-09-05) — `KPT-Market-Profiling/pipeline/profile_taxonomy_weekly.py`,
+dashboard-wired** (2026-09-05) — `backend/pipeline/profile_taxonomy_weekly.py`,
 validated across GBPUSD/EURUSD/XAUUSD, not just one asset; full methodology and findings in that
 repo's `market-profiling-system-spec.md` §4.6 and `HANDOVER.md` §5, not duplicated here. Headline
 result: the same trend-day timing signature Daily found was independently reproduced at weekly
@@ -301,7 +301,7 @@ detail/compare-page support.
 
 **Monthly is done and dashboard-wired** (2026-09-05, same pass this time — unlike Weekly, which
 had its dashboard wiring as a separate follow-up) —
-`KPT-Market-Profiling/pipeline/profile_taxonomy_monthly.py`, same validate-first process across
+`backend/pipeline/profile_taxonomy_monthly.py`, same validate-first process across
 GBPUSD/EURUSD/XAUUSD; full methodology and findings in `market-profiling-system-spec.md` §4.7 and
 `HANDOVER.md` §5. Same generalizing pattern as Weekly's, one level coarser (same-week-of-month
 suppressed to 3.5-5.6% of months vs. independence); one deliberate deviation from Daily/Weekly's
@@ -311,7 +311,7 @@ Profiling assets — a "Monthly Profile Taxonomy" card grid, a "Month High/Low �
 heatmap, and full detail/compare-page support (now grouped Daily/Weekly/Monthly).
 
 **Yearly is done and dashboard-wired** (2026-09-05, same day) —
-`KPT-Market-Profiling/pipeline/profile_taxonomy_yearly.py`; full methodology and findings in
+`backend/pipeline/profile_taxonomy_yearly.py`; full methodology and findings in
 `market-profiling-system-spec.md` §4.8 and `HANDOVER.md` §5. This granularity needed the most
 methodological care, per the sample-size table above (~20-34 years, "very thin") — validated
 first, then presented the user an explicit fork before writing any permanent code: full 8-name
@@ -336,7 +336,7 @@ support (now grouped Daily/Weekly/Monthly/Yearly).
 
 **The sibling direction to Tier 5:** Tier 5 generalizes the daily taxonomy *coarser*
 (Weekly/Monthly/Yearly). This tier generalizes it *finer* — sub-daily, session-relative patterns —
-covering the three profile families noted in `KPT-Market-Profiling/market-profiling-system-spec.md`
+covering the three profile families noted in `backend/market-profiling-system-spec.md`
 §4.5: session-defined extreme profiles, news-release-timing profiles, and (added 2026-09-05)
 liquidity-sweep / false-move profiles. Full design detail lives in that spec doc, not duplicated
 here — this entry exists so the workstream has a tier of its own, same visibility as Tier 5.
@@ -351,7 +351,7 @@ branches noted so far, with **opposite outcomes**:
   mechanical (the sweep event itself creates the day's new extreme, which mechanically pulls the
   close away from it); the cleaner point-to-point follow-through metric showed no consistent
   signal. Per the spec's own build-order rule, **not pushed to a formal profile** — parked rather
-  than iterated on further. Full write-up: `KPT-Market-Profiling/market-profiling-system-spec.md`
+  than iterated on further. Full write-up: `backend/market-profiling-system-spec.md`
   §4.5's 2026-09-05 update.
 - **Session-overlap activity: real, replicated, shipped.** Mean intra-hour range across full
   history, all three test assets: both overlap windows (Asian/London ~07:00 UTC, London/New York
@@ -360,7 +360,7 @@ branches noted so far, with **opposite outcomes**:
   in the surrounding hours — a ~70% jump). Not an event-conditioned comparison, so no
   tautological-artifact risk like the sweep study had. Shipped as an "Hourly Activity" chart on
   the Profiling tab's Daily view, backfilled for all 14 assets
-  (`KPT-Market-Profiling/pipeline/session_activity.py` → `build_dashboard_data.py
+  (`backend/pipeline/session_activity.py` → `build_dashboard_data.py
   --hourly-activity` → `bundle.hourly_activity`).
 
 - **Session-defined extreme profiles: shipped (2026-09-06), as a joint table not a collapsed
@@ -371,13 +371,13 @@ branches noted so far, with **opposite outcomes**:
   the single most common session for both the high and the low in every asset checked — collapsing
   it away would lose real information. Shipped as a "Day High/Low — Session Pairing" heatmap on
   the Profiling tab's Daily view, backfilled for all 14 assets
-  (`KPT-Market-Profiling/pipeline/stats_engine.py`'s `session_pair_distribution()` →
+  (`backend/pipeline/stats_engine.py`'s `session_pair_distribution()` →
   `bundle.stats.daily_session_pair_distribution`).
 - **Bug found and fixed (2026-09-06):** `stats_engine.py`'s Full History Time-of-Extreme stats
   didn't exclude `is_daily_only`-era days — inflated XAUUSD's Full History daily-high
   `concentration_R` to a false 0.672 (every legitimate finding elsewhere tops out ~0.25-0.30).
   Fixed narrowly (11 of 14 assets affected, only the Full History window). Full write-up:
-  `KPT-Market-Profiling/HANDOVER.md` §5.
+  `backend/HANDOVER.md` §5.
 - **Hour pairing shipped (2026-09-06), at the user's explicit follow-up request:** "which specific
   hours are causing the relationship shown by the Session Pairing" — the full 24×24 (low-hour ×
   high-hour) joint table, `hour_pair_distribution()` → `bundle.stats.daily_hour_pair_distribution`.
@@ -395,7 +395,7 @@ Still open, not designed or built ahead of need: the generic "8:30 NY news embar
 blocked on the news/event annotation layer, unlike NFP's calendar-derivable case) and Frankfurt as
 a distinct session boundary. The 21:00-23:00 UTC session gap the infrastructure step surfaced
 remains deliberately left open (a same-day attempt to widen the Asian session to close it was
-reverted — see `KPT-Market-Profiling/HANDOVER.md` §5 for why).
+reverted — see `backend/HANDOVER.md` §5 for why).
 
 ---
 
@@ -439,7 +439,7 @@ profile shape (Yearly explicitly caveated as small-sample), and a new conditiona
 fires only during an actual NFP week (calendar-computed, not price-feed-dependent). Session/hour
 pairing and hourly-activity were deliberately left out — magnitude diagnostics with no directional
 read, not a good fit for a concise synthesis prompt. See `docs/ARCHITECTURE.md`'s Analysis Panel
-section for the full writeup. Any liquidity-sweep profile (parked, `KPT-Market-Profiling/
+section for the full writeup. Any liquidity-sweep profile (parked, `backend/
 market-profiling-system-spec.md` §4.5 addendum) would be a natural future addition to this same
 gatherer once it exists.
 
@@ -466,7 +466,7 @@ for a real back-and-forth:
 First *forward-looking* layer on the platform: TimesFM 2.5 forecasts of upcoming daily range for
 all 14 Profiling assets, shown as the Profiling tab's "Range Outlook" card and fed into the
 Analysis prompt. Followed the same validate-first rule as every profile tier: a benchmark
-(`KPT-Market-Profiling/research/timesfm_benchmark/`) against ADR20 and log-HAR came first, and its
+(`backend/research/timesfm_benchmark/`) against ADR20 and log-HAR came first, and its
 verdict ("go" for all 14, mean forecast, calibrated band) defined the build. Direction forecasting
 was considered and rejected on published evidence (zero-shot ≈ coin flip).
 

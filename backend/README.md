@@ -1,7 +1,12 @@
-# Kaminari Market Profiling & Statistics Dashboard
+# Kaminari Market Profiling & Statistics — Data Pipeline (`backend/`)
 
-A statistical market-profiling system for GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD, USDCHF and
-USDJPY (TradersWay MT5 export, full available history per asset — back to 1993 for most majors).
+> **Monorepo (v1.27):** this was the standalone `KPT-Market-Profiling` repo; it now lives in the
+> seasonal-dashboard repo as `backend/`, with its full history. The published site is `../frontend/`
+> and the Node sync scripts are in `../scripts/`. Run the Python commands below from `backend/`.
+
+A statistical market-profiling system for 14 instruments: GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD,
+USDCHF, USDJPY, XAUUSD, BRENT, WTI, US500, USTECH, US30 and BTCUSD (TradersWay MT5 export, full
+available history per asset — back to 1993 for most majors).
 It answers three questions from historical OHLC data:
 
 1. **When** does the daily/weekly/monthly/yearly high and low statistically tend to form?
@@ -13,8 +18,9 @@ Every statistic is shown as a probability-weighted tendency alongside its sample
 confidence/concentration measure — never as a guaranteed outcome. The dashboard is a static site
 (no backend, no build step) meant to sit alongside a trader's chart platform each morning.
 
-Companion project: the [Kaminari Seasonals Dashboard](https://kpt-seasonals.netlify.app/), which is available on GitHub as https://github.com/kaminariprecisiontrading/seasonal-dashboard, which
-gives the top-level macro/monthly-bias view — this project is the zoomed-in daily/weekly view.
+It feeds the [Kaminari Seasonals site](https://kpt-seasonals.netlify.app/) (`../frontend/`): the
+Profiling tab, BTCUSD's derived seasonals, the Range Outlook and the Track Record. The site gives the
+top-level macro/monthly-bias view; this pipeline is the zoomed-in daily/weekly view.
 
 ---
 
@@ -30,11 +36,12 @@ gives the top-level macro/monthly-bias view — this project is the zoomed-in da
 ## Project structure
 
 ```
-KPT-Market-Profiling/
+backend/
 ├── data/
 │   ├── raw/                  Raw MT5 M1 CSV exports (gitignored — too large for GitHub)
 │   │                         <ASSET>_M1_full.csv — one continuous full-history file per asset
-│   └── clean/                Cleaned daily OHLC CSVs + per-day profile labels, all assets
+│   ├── clean/                Cleaned daily OHLC CSVs + per-day profile labels, all assets
+│   └── forecast/             TimesFM forecast caches (Range Outlook)
 ├── pipeline/                 Python data pipeline (see below)
 ├── output/                   Stats engine + profile taxonomy JSON output
 ├── dashboard/                Static dashboard (plain HTML/CSS/JS, no build step)
@@ -45,7 +52,9 @@ KPT-Market-Profiling/
 │   ├── data/                    Generated data-as-JS-file bundles (do not hand-edit)
 │   ├── css/                       Shared styles
 │   └── js/                          Chart rendering, tooltips, glossary, page controllers
-└── .venv/                    Local Python virtualenv (gitignored)
+├── research/timesfm_benchmark/  TimesFM vs ADR20 benchmark
+├── requirements.txt, requirements-forecast.txt  Pinned packages for the two venvs
+└── .venv/, .venv-forecast/   Local Python virtualenvs (gitignored)
 ```
 
 ## Pipeline
@@ -100,19 +109,19 @@ Replace `<ASSET>`/`<asset>` with the uppercase/lowercase asset symbol, e.g. `GBP
 
 ```bash
 python -m venv .venv
-.venv/Scripts/pip install pandas numpy scipy   # Windows; use .venv/bin/pip on macOS/Linux
+.venv/Scripts/python -m pip install -r requirements.txt   # Windows; use .venv/bin/python on macOS/Linux
 ```
 
 ### Track Record grading (all assets at once)
 
-After refreshing assets, grade the seasonal-dashboard's weekly signals and sync them over:
+After refreshing assets, grade the site's weekly signals and sync them over:
 
 ```bash
 python pipeline/grade_signals.py            # → output/track_record.json (since 2016-01-04 by default)
-cd ../seasonal-dashboard && node scripts/sync_track_record.js
+cd .. && node scripts/sync_track_record.js
 ```
 
-Weeks with a snapshot in `seasonal-dashboard/data/signal_history/` are graded as *live-recorded*
+Weeks with a snapshot in `../frontend/data/signal_history/` are graded as *live-recorded*
 (the signals shown at the time); all others as *backfilled* (today's data, in-sample).
 
 ### Range Outlook (TimesFM) environment
@@ -122,18 +131,20 @@ PyTorch, so it has its own venv rather than bloating `.venv/`:
 
 ```bash
 python -m venv .venv-forecast
-.venv-forecast/Scripts/python.exe -m pip install "timesfm[torch]" pandas scipy
+.venv-forecast/Scripts/python.exe -m pip install -r requirements-forecast.txt   # timesfm[torch], pandas, scipy
 ```
 
 `refresh_asset.py` finds `.venv-forecast/` automatically and runs the stage with it; without it,
-the stage is skipped with a warning and the bundle has no `range_forecast` (the seasonal-dashboard
+the stage is skipped with a warning and the bundle has no `range_forecast` (the site's
 card then stays hidden). The first run per asset computes ~1,000 forecasts (~5 min on CPU) and
 caches them in `data/forecast/<asset>_timesfm_cache.csv`; later refreshes only compute the new
 days. Validation behind it: `research/timesfm_benchmark/README.md`.
 
-## Viewing the dashboard
+## Viewing the pipeline's own dashboard
 
-Plain static files — open `dashboard/index.html` directly in a browser, or serve the folder:
+The published site is `../frontend/` (`node scripts/serve_local.js` from the repo root). This
+folder's `dashboard/` is the pipeline's original prototype viewer and the source the sync scripts
+read from. Plain static files — open `dashboard/index.html` directly in a browser, or serve the folder:
 
 ```bash
 cd dashboard && python -m http.server 8000
@@ -146,7 +157,7 @@ Then visit `http://localhost:8000/`.
 ## Status
 
 Phases 1–2 (data pipeline + daily profile taxonomy) and an initial Phase 3 dashboard are complete
-for all 7 assets (GBPUSD, EURUSD, AUDUSD, NZDUSD, USDCAD, USDCHF, USDJPY), including profile
+for all 14 assets, including profile
 detail pages with real illustrative charts and a calendar feature. Data source is TradersWay MT5
 export exclusively (a prior session accidentally mixed in an IC Markets export for some recent
 data — since corrected with a full clean re-download per asset). See `HANDOVER.md` §7 for exactly

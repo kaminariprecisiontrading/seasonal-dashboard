@@ -1,4 +1,7 @@
 # Handover — Kaminari Market Profiling & Statistics Dashboard
+
+> **Monorepo (v1.27):** this pipeline now lives in the seasonal-dashboard repo as `backend/`; references
+> below to "this repo" / "the seasonal-dashboard repo" mean `backend/` / the rest of the monorepo.
 ### For continuing this project in Claude Code
 
 This document is the entry point for a new Claude Code session. Read this first, then
@@ -23,7 +26,7 @@ Full scope, architecture decisions, and phased roadmap: **`market-profiling-syst
 ## 2. Suggested local folder structure
 
 ```
-KPT-Market-Profiling/
+backend/                                 (was the KPT-Market-Profiling repo; merged into seasonal-dashboard in v1.27)
 ├── HANDOVER.md                          (this file)
 ├── market-profiling-system-spec.md      (canonical spec — read this next)
 ├── data/
@@ -87,7 +90,7 @@ first step in Claude Code.
 | `forecast_range.py` | Range Outlook (added 2026-10-06): TimesFM 2.5 forecasts of the next day's range (mean + recalibrated q10–q90 band) and the next 5/20 days' average range, plus its own track record over the last 500 forecasts (MAE vs ADR20 per horizon, band coverage) and the last 60 next-day forecasts vs actuals. Runs under `.venv-forecast/` (PyTorch); part of `refresh_asset.py`'s chain when that venv exists (`--skip-forecast` to opt out). Folded into the bundle by `build_dashboard_data.py --range-forecast`. Validated first — see §5 and `research/timesfm_benchmark/`. |
 | `<asset>_range_forecast.json` | `forecast_range.py` output, one per asset (`output/`). |
 | `data/forecast/<asset>_timesfm_cache.csv` | Forecast cache for `forecast_range.py`: one row per forecast origin, keyed by date + a hash of the exact 1,024-day input window, so a cached row is only reused if the data behind it is unchanged. A pure speed-up (deleting it only costs recompute time), committed so a fresh checkout doesn't need ~70 CPU-minutes to rebuild all 14. |
-| `grade_signals.py` | Track Record (added 2026-10-20): grades the seasonal-dashboard's weekly signals graded against price for the 14 MT5 assets (Monday open → Friday close, ADR20 multiples, CHOP/AVOID ungraded, FLIP graded on the week's second half in the post-turn direction). Backfilled (in-sample, today's data) vs live-recorded (weekly snapshots of what the site showed). Reads `../seasonal-dashboard/data/signals_manifest.js` and `../seasonal-dashboard/data/signal_history/*.json`, writes `output/track_record.json` (synced into the dashboard by its `scripts/sync_track_record.js`). Mirrors the dashboard's com → signal mapping — keep in sync with `seasonal-dashboard/js/signals.js`. Not part of `refresh_asset.py` (it spans all 14 assets); run after refreshing. |
+| `grade_signals.py` | Track Record (added 2026-10-20): grades the site's weekly signals against price for the 14 MT5 assets (Monday open → Friday close, ADR20 multiples, CHOP/AVOID ungraded, FLIP graded on the week's second half in the post-turn direction). Backfilled (in-sample, today's data) vs live-recorded (weekly snapshots of what the site showed). Reads `../seasonal-dashboard/data/signals_manifest.js` and `../seasonal-dashboard/data/signal_history/*.json`, writes `output/track_record.json` (synced into the dashboard by its `scripts/sync_track_record.js`). Mirrors the dashboard's com → signal mapping — keep in sync with `seasonal-dashboard/js/signals.js`. Not part of `refresh_asset.py` (it spans all 14 assets); run after refreshing. |
 | `research/timesfm_benchmark/` | The validate-first study behind the Range Outlook: TimesFM 2.5 vs naive / ADR20 / log-HAR on next-day, 5-day and 20-day range, all 14 assets, 2016–2026. Findings + verdict in its README. Not part of the pipeline. |
 | `dashboard/` | Phase 3 static dashboard — see §5 for what's built and §7 for what's left. |
 
@@ -281,7 +284,7 @@ API and a database (if/when migrating off static files) are evaluated later — 
 - **`pipeline/gen_seasonal_signal.py` added (2026-09-05):** derives a Moore-Research-*shaped*
   seasonal signal (12 months × 4 weeks, `bull`/`bear`/`chop` per bucket) from a cleaned daily CSV,
   for assets MRCI doesn't cover — currently just BTCUSD. Deliberately replicates
-  `seasonal-dashboard/js/backtest.js`'s exact week-of-month bucketing (day-of-month buckets, not
+  `frontend/js/backtest.js`'s (since replaced by `upload.js`) exact week-of-month bucketing (day-of-month buckets, not
   ISO weeks) and Raw Price Tendency thresholds (60%/40%), so the derived signal means the same
   thing as that site's own validation tooling instead of inventing a new methodology. Star
   conviction is capped globally, not per-bucket — a ~9-year sample gives almost every bucket the
@@ -556,7 +559,7 @@ profile, click any day for its full day/week/month context).
 
 **Merge into the Kaminari Seasonals Dashboard is now the plan for deployment** (superseding the
 old "push this dashboard to Netlify standalone" item) — see
-`../seasonal-dashboard/docs/MARKET_PROFILING_INTEGRATION.md` for the full execution brief. Repo
+`../docs/MARKET_PROFILING_INTEGRATION.md` for the full execution brief. Repo
 roles going forward: **this repo becomes the data pipeline** (Python scripts stay here, and this
 remains the fast local testbed for pipeline/taxonomy changes without risking the live site); the
 standalone `dashboard/` here is a staging area to build/verify against, not the long-term

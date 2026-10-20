@@ -36,6 +36,44 @@ The top menu on the landing page, dashboard and content pages links to: **Dashbo
 - **Track Record** (`/track-record`) — how past weekly signals actually did on the 14 assets with full price history: hit rate, average move on hits vs misses (in ADR20 multiples), whether higher conviction did better, the last 12 weeks, and every graded signal in the log. **BACKFILL** rows are graded with today's seasonal data (which already contains those years, so they flatter the signals); **LIVE** rows use the signals exactly as the site showed them that week. The grading rules are on the page. Past results don't predict future ones.
 - **Methodology** (`/methodology`) — how a signal is built, what CHOP / FLIP / AVOID mean, how conviction is set, how forex pairs are synthesised, and what a seasonal signal is *not*.
 
+---
+
+## Building a Trade Idea — Step-by-Step Workflow
+
+The dashboard is designed to be worked through in layer order, from broad seasonal context down to execution timing. Each step narrows the picture.
+
+**1. Scan the index for current-week bias.**
+Open the dashboard (`/dashboard`). Every asset card shows a live signal (BULL / BEAR / CHOP / FLIP) for the current week, derived from the signals manifest. Use the filter bar to isolate all BULL or BEAR assets at a glance. The freshness note shows when the manifest was last regenerated.
+
+**2. Open an asset and check the Seasonals tab.**
+The combined accordion auto-opens to the current month. Read the week-level combined signal and conviction stars (★★★★★ = maximum confluence across all three timeframes). Expand adjacent weeks to see whether the bias is building or fading. Use the quick-jump buttons to check the broader monthly arc.
+
+**3. Confirm direction on the Trend tab.**
+The seasonal curve shows the cumulative directional bias across the year. The NOW marker shows where the asset sits in its seasonal cycle today. A rising curve confirms a bullish seasonal; a curve already past its peak is a caution signal even if the week reads BULL.
+
+**4. Check the statistical profile on the Profiling tab** *(14 assets)*.
+The Range Outlook at the top forecasts how big the next day, week and month's ranges are likely to be (and says when that forecast is out of date). Below it: expected daily range (median, ADR20), the most common profile shapes at each granularity, and when the day's/week's high and low typically form. This turns "bullish this week" into "how far, and at what time of day/week, does a move usually happen." The NFP panel shows how much first-Friday releases change the picture.
+
+**5. Check current price on the Live Price tab.**
+The live TradingView chart shows where price is trading relative to recent structure. Seasonal bias is directional context — not an entry signal. Price should be approaching a logical level before acting.
+
+**6. Validate the edge on the Upload tab.**
+Upload a CSV export from MT5 (see [Exporting from MT5](#exporting-from-mt5)); any timeframe from M1 to monthly works, and sub-daily bars are aggregated to daily closes. The Seasonal Tendency view shows raw tendency, win rate, and average return for each month and week historically. A seasonal signal with a 35% win rate over 30 years is much less interesting than one with 70%.
+
+**7. Find the timing window (also on the Upload tab).**
+If the upload is intraday (M1–H4), the Upload tab also breaks down average return by hour of day, by session (London / New York / Asian / Pacific), and by day of week. This answers "given the seasonal is bullish this week, *when* in the week has price historically moved?" Filter the session cards by seasonal signal to isolate the relevant subset.
+
+**8. Check for macro risk on the Macro tab.**
+The Investing.com calendar is pre-filtered to the currencies and events most relevant to the asset. A high-impact event mid-week can override any seasonal tendency. The interpretation guide explains which event types matter most for each asset class.
+
+**9. Run the AI synthesis on the Analysis tab.**
+Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, ChatGPT, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant, and can be downloaded as a `.md` file.
+
+**10. Apply your own execution framework.**
+The dashboard provides objective confluence data. Entry trigger, position sizing, stop placement, and trade management are the trader's own decisions. The tool's job is to ensure every angle has been considered before a bias is formed.
+
+---
+
 ## Seasonals Tab
 
 This is the main tab. The combined accordion shows all 12 months of the year:
@@ -219,7 +257,7 @@ Shows the Investing.com economic calendar, pre-filtered for the currencies and c
 
 Click **Load calendar** to load it (see the Live Price tab for how embeds and the **Always load** setting work). The calendar widget may take 20–30 seconds to load on first open (it is an embedded third-party iframe). Change the date range using the widget's own controls. The importance filter (High / Medium / Low) can be toggled within the widget.
 
-**Note for anyone testing locally:** the widget only loads correctly on the deployed site (`kpt-seasonals.netlify.app`) — it will not load via Live Server on `127.0.0.1`, since Investing.com's free embed requires the parent domain to be registered with them. This is expected and not a bug.
+**Note for anyone testing locally:** the widget only loads correctly on the deployed site (`kpt-seasonals.netlify.app`) — it will not load on a local preview (`localhost`), since Investing.com's free embed requires the parent domain to be registered with them. This is expected and not a bug.
 
 ---
 

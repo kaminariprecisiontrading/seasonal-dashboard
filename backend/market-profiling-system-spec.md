@@ -404,7 +404,7 @@ History window (5Y/1Y/3mo never touch this era). Post-fix, US500/USTECH/US30 sti
 concentration around the NYSE/NASDAQ cash-session open — a real, asset-appropriate finding for
 equity indices, not residual contamination. Full write-up: `HANDOVER.md` §5.
 
-Tracked in `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` as **Tier 5b** — a sibling to Tier 5's
+Tracked in `docs/PLATFORM_ROADMAP.md` as **Tier 5b** — a sibling to Tier 5's
 coarser (Daily→Weekly→Monthly→Yearly) direction, going finer (sub-daily/session-relative) instead.
 
 ### 4.6 Weekly profile taxonomy (Tier 5, implemented 2026-09-05)
@@ -474,7 +474,7 @@ per §4.4's standing rule, and because they didn't transfer identically:
   (low-weekday × high-weekday) joint table — not just the 3-bucket `extreme_spread` summary
   attached to each profile — so "how often does a Monday-low pair with a Friday-high,
   specifically" has a direct answer (e.g. GBPUSD: 13.68%), not just an aggregated bucket. See
-  `seasonal-dashboard/docs/PLATFORM_ROADMAP.md` Tier 5 and that repo's own `js/profiling.js`/
+  `docs/PLATFORM_ROADMAP.md` Tier 5 and that repo's own `js/profiling.js`/
   `js/profiling-profile-detail.js`/`js/profiling-compare.js` for the consuming side (a new "Weekly
   Profile Taxonomy" card grid mirroring Daily's, a "Week High/Low — Day Pairing" heatmap, and full
   detail/compare-page support including Daily/Weekly-grouped nav).

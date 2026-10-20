@@ -1,6 +1,6 @@
 # scripts/ — Utility Scripts
 
-One-shot and maintenance scripts for the KPT Seasonal Dashboard. All scripts run from the **`seasonal-dashboard/` root** (not from within this folder) and require Node.js.
+One-shot and maintenance scripts for the KPT Seasonal Dashboard. All scripts run from the **repo root** (not from within this folder) and require Node.js. Site files they read and write are under `frontend/`; pipeline output they sync from is under `backend/`.
 
 ---
 
@@ -44,7 +44,7 @@ Removed the `backtest.js`/`intraday.js` script tags and inserted a single `<scri
 
 - **Added in:** v1.12 (`docs/PLATFORM_ROADMAP.md` Tier 4)
 - **Status:** Already applied to all 98 files
-- **Run:** `node scripts/patch_swap_upload.js` (from `seasonal-dashboard/`) — accepts an optional list of specific filenames to patch a subset instead of all pages (used during Tier 4's own branch-and-test rollout)
+- **Run:** `node scripts/patch_swap_upload.js` (from the repo root) — accepts an optional list of specific filenames to patch a subset instead of all pages (used during Tier 4's own branch-and-test rollout)
 
 ### `patch_dashboard_links.js`
 
@@ -66,11 +66,11 @@ Inserts a `<link rel="icon">` (inline SVG data URI, no separate asset file) righ
 
 ### `sync_profiling_data.js`
 
-Regenerates `data/profiling/*` from the sibling `KPT-Market-Profiling` repo's pipeline output (`../KPT-Market-Profiling/dashboard/data/`). Not a one-shot — this is the repeatable bridge between that data-pipeline repo and this one; re-run any time the pipeline is re-run for an asset (new/updated CSV, taxonomy change).
+Regenerates `frontend/data/profiling/*` from the pipeline's output (`backend/dashboard/data/`). Not a one-shot — this is the repeatable bridge between the pipeline and the site; re-run any time the pipeline is re-run for an asset (new/updated CSV, taxonomy change).
 
 - **Added in:** v1.7 (Profiling tab)
 - **Status:** Maintenance script, run as needed (not idempotent-skip like the patch scripts above — it always regenerates)
-- **Run:** `node scripts/sync_profiling_data.js` (from `seasonal-dashboard/`)
+- **Run:** `node scripts/sync_profiling_data.js` (from the repo root)
 - **To add a new asset:** add its lowercase key to the `ASSETS` array at the top of the script, then re-run. See `docs/CONTRIBUTING.md` → "Adding a New Profiling Asset" for the full downstream checklist (asset-key maps in `js/profiling.js`/`js/profiling-calendar.js`/`js/profiling-profile-detail.js`, script tags on the relevant page(s)).
 
 ---
@@ -135,7 +135,7 @@ Archives the current week's signals (all 98 assets' `com` strings for this week 
 
 ### `sync_track_record.js`
 
-Copies `../KPT-Market-Profiling/output/track_record.json` (from `pipeline/grade_signals.py`) into `data/track_record.js`.
+Copies `backend/output/track_record.json` (from `pipeline/grade_signals.py`) into `data/track_record.js`.
 
 - **Added in:** v1.25
 - **Run:** `node scripts/sync_track_record.js` after re-running the grader.
@@ -166,7 +166,7 @@ Reads all 97 `data/*.js` files and writes `data/signals_manifest.js`, which powe
 - The calendar has advanced to a new month and you want index cards to reflect the new current-week signals
 - You change any `MONTHS[].weeks[].com` values in any data file
 
-To rebuild, run from `seasonal-dashboard/`: `node scripts/gen_signals_manifest.js`
+To rebuild, run from the repo root: `node scripts/gen_signals_manifest.js`
 
 The generated file includes a `SIGNALS_GENERATED` timestamp so you can see when it was last rebuilt.
 
