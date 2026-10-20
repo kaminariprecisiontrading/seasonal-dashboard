@@ -68,6 +68,17 @@ def com_to_signal(com):
     for p, sig in _PREFIX:
         if u.startswith(p):
             return sig
+    # v1.26 direction labels (mirror of js/signals.js): BULL / LEAN LONG / DOUBLE ALIGNMENT … LONG
+    # → BULL; BEAR / LEAN SHORT / DOUBLE ALIGNMENT … SHORT → BEAR; anything else → CHOP.
+    if u.startswith("BULL") or u.startswith("LEAN LONG"):
+        return "BULL"
+    if u.startswith("BEAR") or u.startswith("LEAN SHORT"):
+        return "BEAR"
+    if u.startswith("DOUBLE ALIGNMENT"):
+        if re.search(r"\bLONG\b", u):
+            return "BULL"
+        if re.search(r"\bSHORT\b", u):
+            return "BEAR"
     return "CHOP"
 
 
