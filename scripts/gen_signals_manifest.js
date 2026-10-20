@@ -9,7 +9,7 @@
  * longgilt, shortsterling — 192 weeks), so the dashboard cards disagreed with those
  * assets' own pages. The data files are the source of truth.
  *
- * Run from the site root after changing any data/<asset>.js:
+ * Run from the repo root after changing any frontend/data/<asset>.js:
  *   node scripts/gen_signals_manifest.js           (writes the file)
  *   node scripts/gen_signals_manifest.js --check   (exit 1 if the manifest is out of date)
  */
@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const SITE = path.join(__dirname, '..');
+const SITE = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
 const OUT = path.join(SITE, 'data', 'signals_manifest.js');
 const ids = fs.readdirSync(path.join(SITE, 'assets')).filter(f => f.endsWith('.html')).map(f => f.replace('.html', ''));
 

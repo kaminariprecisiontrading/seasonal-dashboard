@@ -34,7 +34,7 @@ const ASSETS = [
 ];
 
 const SRC_ROOT = path.join(__dirname, '..', '..', 'KPT-Market-Profiling', 'output');
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const DATA_DIR = path.join(__dirname, '..', 'frontend', 'data');
 const MANIFEST_PATH = path.join(DATA_DIR, 'signals_manifest.js');
 
 function jsStr(s) { return JSON.stringify(s); }

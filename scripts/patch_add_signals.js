@@ -3,12 +3,12 @@
  * right after the page's own data/<id>.js, so the Trend curve (seasonal-chart.js), the
  * Upload backtest (upload.js) and the AI prompt (api.js) use the same week → signal mapping
  * as the dashboard and the site pages (KptSignals.comToTag / comDirection).
- * Idempotent. Run from the repo's site root:  node scripts/patch_add_signals.js
+ * Idempotent. Run from the repo root:  node scripts/patch_add_signals.js
  */
 const fs = require('fs');
 const path = require('path');
 
-const SITE = path.join(__dirname, '..');
+const SITE = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
 let changed = 0, skipped = 0;
 fs.readdirSync(path.join(SITE, 'assets')).filter(f => f.endsWith('.html')).forEach(f => {
   const p = path.join(SITE, 'assets', f);

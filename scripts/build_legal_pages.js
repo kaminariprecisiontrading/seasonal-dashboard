@@ -17,8 +17,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
-const MOCK = path.join(ROOT, 'docs', 'specs', '2026-10-site-expansion', 'mockups');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
+const MOCK = path.join(__dirname, '..', 'docs', 'specs', '2026-10-site-expansion', 'mockups');
 
 const ROUTES = {
   'risk.html': '/risk', 'terms.html': '/terms', 'privacy.html': '/privacy', 'sources.html': '/sources',

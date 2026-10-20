@@ -15,7 +15,7 @@
 const fs   = require('fs');
 const path = require('path');
 
-const ASSETS_DIR  = path.join(__dirname, '..', 'assets');
+const ASSETS_DIR  = path.join(__dirname, '..', 'frontend', 'assets');
 const UI_TAG       = '<script src="../js/ui.js" defer></script>';
 const UPLOAD_TAG   = '<script src="../js/upload.js" defer></script>';
 const BT_RE         = /[ \t]*<script src="\.\.\/js\/backtest\.js" defer><\/script>\r?\n/g;

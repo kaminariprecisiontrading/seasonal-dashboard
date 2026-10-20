@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
 const args = process.argv.slice(2);
 const dateArg = args.includes('--date') ? args[args.indexOf('--date') + 1] : null;
 const force = args.includes('--force');

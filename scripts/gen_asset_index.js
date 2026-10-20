@@ -14,7 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
 const html = fs.readFileSync(path.join(ROOT, 'dashboard.html'), 'utf8');
 
 function text(s) {

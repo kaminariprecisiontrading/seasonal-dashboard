@@ -10,8 +10,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
-const SRC = path.join(ROOT, '..', 'KPT-Market-Profiling', 'output', 'track_record.json');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
+const SRC = path.join(__dirname, '..', '..', 'KPT-Market-Profiling', 'output', 'track_record.json');
 const data = JSON.parse(fs.readFileSync(SRC, 'utf8'));
 if (!Array.isArray(data.rows) || !Array.isArray(data.assets)) throw new Error('unexpected track_record.json shape');
 fs.writeFileSync(path.join(ROOT, 'data', 'track_record.js'), [

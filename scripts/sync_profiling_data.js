@@ -23,7 +23,7 @@ const ASSETS = [
 ];
 
 const SRC_ROOT = path.join(__dirname, '..', '..', 'KPT-Market-Profiling', 'dashboard', 'data');
-const OUT_ROOT = path.join(__dirname, '..', 'data', 'profiling');
+const OUT_ROOT = path.join(__dirname, '..', 'frontend', 'data', 'profiling');
 
 function loadConst(filePath, constName) {
   const code = fs.readFileSync(filePath, 'utf8');

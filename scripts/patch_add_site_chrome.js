@@ -13,7 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
 const files = []
   .concat(fs.readdirSync(path.join(ROOT, 'assets')).filter(f => f.endsWith('.html')).map(f => path.join('assets', f)))
   .concat(['profiling-calendar/index.html', 'profiling-profiles/detail.html', 'profiling-profiles/compare.html']);

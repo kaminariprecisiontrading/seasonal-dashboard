@@ -15,7 +15,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
+const TOML = path.join(__dirname, '..', 'netlify.toml');  // at the repo root, like Netlify reads it
 const PORT = +process.argv[2] || 8888;
 
 const TYPES = {
@@ -25,7 +26,7 @@ const TYPES = {
 };
 
 function parseToml() {
-  const file = path.join(ROOT, 'netlify.toml');
+  const file = TOML;
   const redirects = [], headers = [];
   if (!fs.existsSync(file)) return { redirects, headers };
   const src = fs.readFileSync(file, 'utf8');

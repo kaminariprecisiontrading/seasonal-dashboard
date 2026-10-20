@@ -11,7 +11,7 @@
 const fs   = require('fs');
 const path = require('path');
 
-const ASSETS_DIR = path.join(__dirname, 'assets');
+const ASSETS_DIR = path.join(__dirname, '..', 'frontend', 'assets');
 const TARGET     = '<script src="../js/ui.js" defer></script>';
 const INSERT     = '<script src="../js/intraday.js" defer></script>\n  ';
 

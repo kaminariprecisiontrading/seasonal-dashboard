@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'frontend');  // site root — the published directory (v1.27)
 const ids = fs.readdirSync(path.join(ROOT, 'assets')).filter(f => f.endsWith('.html')).map(f => f.replace('.html', '')).sort();
 const out = {};
 ids.forEach(id => {
