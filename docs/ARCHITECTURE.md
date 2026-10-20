@@ -765,6 +765,9 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   original draft policy); `connect-src 'self'` + Anthropic, OpenAI, Google + local Ollama;
   `font-src 'self'`; `style-src 'self' 'unsafe-inline'` (inline `style=` attributes are used
   widely). `scripts/serve_local.js` applies the same headers locally.
+- **Content pages (v1.22+).** `methodology.html` (and the later This Week / Heatmap / Track Record
+  pages) are root-level files at clean routes, styled by `site.css` + `css/pages.css`, with the
+  shared nav (`aria-current` on the active route) and footer.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

@@ -1,0 +1,59 @@
+/* pages.css — extras shared by the content pages on top of site.css:
+ * Methodology, This Week, Track Record, Heatmap. Visual specs: the mockups in
+ * docs/specs/2026-10-site-expansion/mockups/. */
+
+.page-head { padding-top: 80px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px; }
+.page-head .lead { max-width: 760px; font-size: 20px; }
+.page-head .h1 { max-width: 900px; }
+.h-section { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 48px; letter-spacing: 1px; line-height: 1.05; }
+.sect { padding: 80px 0; display: flex; flex-direction: column; gap: 32px; }
+.prose p { margin: 0; font-size: 17px; line-height: 1.65; color: var(--body); }
+.prose p + p { margin-top: 14px; }
+.prose strong { color: var(--text); }
+.cols { display: flex; flex-wrap: wrap; gap: 48px; }
+.cols > * { min-width: 0; }
+.sect.cols { flex-direction: row; align-items: flex-start; }
+.mini-lbl { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+.up { color: var(--bull); }
+.down { color: var(--bear); }
+.flat { color: var(--muted); }
+.sample-banner { display: flex; gap: 10px; padding: 10px 14px; border-radius: 6px; background: #2a1d08; border: 1px solid #6b4a12; color: #fde68a; font-size: 14px; }
+
+/* ── Methodology ─────────────────────────────────────────────────────────── */
+.steps5 { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.steps5 li { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 6px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.steps5 li.hl { border-color: var(--accent); }
+.steps5 .t { font-family: var(--font-display); font-size: 24px; letter-spacing: 1px; }
+.steps5 .d { font-size: 15px; line-height: 1.5; color: var(--soft); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.tf-row { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 13px; }
+.tf-row .res { display: flex; align-items: center; gap: 10px; }
+.tf-src { grid-column: 1 / -1; font-size: 11px; color: var(--muted); letter-spacing: 0.5px; }
+.def-list { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 14px; align-items: start; font-size: 15px; line-height: 1.5; color: var(--body); }
+.def-list dt { margin: 0; }
+.def-list dd { margin: 0; }
+.fx-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.fx-card .k { font-family: var(--font-mono); font-size: 13px; }
+.fx-card .t { font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; }
+.fx-card .d { font-size: 15px; line-height: 1.5; color: var(--soft); }
+.data-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+.data-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; }
+.data-table th { background: var(--surface); font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; color: var(--muted); text-align: left; padding: 14px 18px; font-weight: 500; }
+.data-table td { padding: 14px 18px; border-top: 1px solid var(--border); color: var(--body); }
+.data-table td:first-child { color: var(--text); }
+.data-table td.mono { font-family: var(--font-mono); font-size: 13px; }
+.limit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.limit { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.limit .t { font-family: var(--font-display); font-size: 24px; letter-spacing: 1px; }
+.limit .d { font-size: 15px; line-height: 1.55; color: var(--soft); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px; padding-top: 8px; }
+
+@media (max-width: 600px) {
+  .page-head { padding-top: 48px; padding-bottom: 40px; }
+  .sect { padding: 56px 0; gap: 24px; }
+  .h-section { font-size: 38px; }
+  .tf-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tf-row .res { grid-column: 1 / -1; }
+  .cols { gap: 32px; }
+  .btn-row .btn, .btn-row .btn-ghost { width: 100%; }
+}

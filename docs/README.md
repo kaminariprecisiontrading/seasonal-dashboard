@@ -44,6 +44,7 @@ Every page is a root-level `.html` file served at a clean route by a 200 rewrite
 | `/` | `index.html` | Landing page: purpose, features, how to use, coverage, with a live "This week" tally and 3 featured signals |
 | `/dashboard` | `dashboard.html` | The dashboard index: search, signal filter, asset-class nav, This Week accordion, all asset cards |
 | `/assets/<id>.html` | `assets/*.html` | The 98 asset dashboards (unchanged URLs) |
+| `/methodology` | `methodology.html` | How a signal is built (chart → MONTHS[] → combined reading → today's week → label), real timeframe examples, FX synthesis, data sources, limits |
 | any unknown path | `404.html` | Styled "page not found" with links home and to the dashboard |
 
 `/docs/*` and `/scripts/*` are force-404'd (build specs, mockups and maintenance scripts live in the

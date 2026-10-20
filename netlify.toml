@@ -51,6 +51,12 @@
   to = "/about.html"
   status = 200
 
+# Content pages (v1.22+)
+[[redirects]]
+  from = "/methodology"
+  to = "/methodology.html"
+  status = 200
+
 # ── Security headers (v1.21) ──────────────────────────────────────────────────
 # CSP (enforcing — validated report-only first): scripts only from this site + cdnjs (Chart.js, marked) + TradingView's widget
 # loader; no inline script anywhere (see scripts/patch_csp_inline.js). Frames only for

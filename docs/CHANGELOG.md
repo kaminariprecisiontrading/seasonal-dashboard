@@ -2,6 +2,45 @@
 
 ---
 
+## v1.22 — October 2026
+**Methodology page (`/methodology`)**
+
+Built from `NEW_PAGES_BUILD_NOTES.md` Phase 1 (shared nav, `site.css`, `js/signals.js` were done
+in v1.18). New `css/pages.css` holds styles shared by the content pages.
+
+### Claims checked against the data and code (brief: "report anything that doesn't match")
+
+Measured over all 98 data files (4,704 weeks):
+- **Conviction is hand-assigned**, not computed: the 1–5 stars are written into each week's `com`
+  string when the chart is read. It tracks timeframe agreement closely — 526 of 555 five-star
+  futures weeks (95%) have all three timeframes agreeing — but weeks where all three agree range
+  from 0 to 5 stars. Page text now says so (Step 03 and a new paragraph). The landing page's
+  "five filled means all three timeframes agree" is therefore ~95% true; left as approved.
+- **CHOP vs FLIP vs AVOID:** of 159 futures weeks where the timeframes point bull *and* bear, 126
+  read CHOP, 15 FLIP, 18 directional — "When they disagree, the dashboard says so" → "usually says
+  so (CHOP or FLIP)". AVOID (47 weeks, all "Other") is now explained.
+- **Signal mapping gap (pre-existing, not changed — owner decision):** the dashboard's mapping only
+  recognises com strings starting LONG / SHORT / FLIP / AVOID / HOLD / NEUTRAL / MIXED / WATCH.
+  899 weeks (19%) start with other words and display as **CHOP**, including plain `BULL` (264
+  weeks), `BEAR` (188), FX `DOUBLE ALIGNMENT / LONG|SHORT` (109) and `LEAN LONG|SHORT` (43).
+  The Methodology text describes what the site does today ("also shown for weeks labelled
+  CONTESTED, CONFLICT, LEAN or HOLD"); fixing the mapping would change signals site-wide.
+- **Illustrative timeframe rows** replaced with real weeks: Gold July Wk3 (▲▲▲ → BULL, 5),
+  GBP/USD futures December Wk3 (▼▼– → BEAR, 3), Brent June Wk2 (▼▲▲ → CHOP, 2).
+- **FX terms:** the data uses "double alignment" (303×), "collision" (130×), "maximum conflict"
+  (111×), never "one-sided" — the middle card is now **Maximum conflict**, order Double alignment
+  · Collision · Maximum conflict.
+- **Step 04** now states the week-of-month rule (days 1–7 = Wk1 … 22+ = Wk4).
+- Data sources table matches the README. Risk Disclosure linked from the "What a seasonal signal is
+  not" section and the closing buttons (/track-record · /dashboard · /risk).
+
+### Tests
+
+Headless at 1440 / 768 / 390px: no horizontal scroll, no console errors, footer present, nav marks
+Methodology as current.
+
+---
+
 ## v1.21 — October 2026
 **AI key hardening, ChatGPT provider, disclaimers, Content-Security-Policy**
 

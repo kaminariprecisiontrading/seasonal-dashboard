@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPT Seasonals — Methodology</title>
+<meta name="description" content="How a KPT Seasonals signal is built — from Moore Research seasonal charts to a weekly BULL / BEAR / CHOP / FLIP label with 1–5 conviction — and the honest limits of what it can tell you.">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+<!-- Text from docs/specs/2026-10-site-expansion/mockups/methodology.html (approved copy); claims checked
+     against the data and code — wording changes listed in docs/CHANGELOG.md v1.22. -->
+<header data-kpt-nav></header>
+<main>
+
+<section class="wrap page-head">
+  <span class="eyebrow">Methodology</span>
+  <h1 class="display h1">How a signal is built — and where it stops</h1>
+  <p class="lead">Every BULL, BEAR, CHOP or FLIP label on the dashboard traces back to decades of historical price behaviour. Here's the full path from raw chart to weekly signal, and the honest limits of what it can tell you.</p>
+</section>
+
+<!-- PIPELINE -->
+<section class="band-alt">
+  <div class="wrap sect">
+    <h2 class="h-section">From chart to signal in five steps</h2>
+    <ol class="steps5">
+      <li><span class="mini-lbl">01 · SOURCE</span><span class="t">Seasonal charts</span><span class="d">Moore Research Center tendency overlays for each futures contract: 5-YR, 15-YR and long-term (up to 40 YR).</span></li>
+      <li><span class="mini-lbl">02 · DIGITISE</span><span class="t">Months × weeks</span><span class="d">Each chart is read into a MONTHS[] table: 12 months, weeks 1–4, a direction per timeframe.</span></li>
+      <li><span class="mini-lbl">03 · COMBINE</span><span class="t">One combined reading</span><span class="d">The three timeframes merge into a single weekly reading, rated 1–5 for conviction when the chart is read. The more they agree, the higher the conviction.</span></li>
+      <li><span class="mini-lbl">04 · RESOLVE</span><span class="t">Today's week</span><span class="d">When the page loads, your clock picks the current month and week from the signals manifest (days 1–7 = Week 1, 8–14 = Week 2, 15–21 = Week 3, 22 onwards = Week 4).</span></li>
+      <li class="hl"><span class="mini-lbl">05 · LABEL</span><span class="t">Signal + conviction</span><span class="pills"><span class="pill bull">BULL</span><span class="pill bear">BEAR</span><span class="pill chop">CHOP</span><span class="pill flip">FLIP</span></span><span class="d">Plus 1–5 conviction dots.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- TIMEFRAMES -->
+<section class="band">
+  <div class="wrap sect cols">
+    <div class="prose" style="flex: 1 1 380px;">
+      <h2 class="h-section" style="margin-bottom: 16px;">Why three timeframes</h2>
+      <p>The <strong>5-year</strong> view reflects the current regime. The <strong>15-year</strong> view smooths out one-off shocks. The <strong>long-term</strong> view (up to 40 years) captures structural cycles like harvests, heating demand and fiscal year-ends.</p>
+      <p>When all three point the same way, the tendency has held across very different market eras. When they disagree, the dashboard usually says so (CHOP or FLIP) instead of picking a side.</p>
+      <p>Conviction is rated by hand as each chart is read, not by a formula, but it tracks agreement closely: across the futures data, <strong>95% of five-dot weeks</strong> have all three timeframes pointing the same way.</p>
+    </div>
+    <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 14px;">
+      <div class="tf-row">
+        <span>5-YR <span class="up" aria-label="up">▲</span></span><span>15-YR <span class="up" aria-label="up">▲</span></span><span>40-YR <span class="up" aria-label="up">▲</span></span>
+        <span class="res"><span class="dots" role="img" aria-label="Conviction 5 of 5"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><span class="pill bull">BULL</span></span>
+        <span class="tf-src">Gold · July Week 3 · "LONG ★★★★★"</span>
+      </div>
+      <div class="tf-row">
+        <span>5-YR <span class="down" aria-label="down">▼</span></span><span>15-YR <span class="down" aria-label="down">▼</span></span><span>40-YR <span class="flat" aria-label="flat">–</span></span>
+        <span class="res"><span class="dots" role="img" aria-label="Conviction 3 of 5"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="pill bear">BEAR</span></span>
+        <span class="tf-src">GBP/USD futures · December Week 3 · "SHORT ★★★☆☆"</span>
+      </div>
+      <div class="tf-row">
+        <span>5-YR <span class="down" aria-label="down">▼</span></span><span>15-YR <span class="up" aria-label="up">▲</span></span><span>31-YR <span class="up" aria-label="up">▲</span></span>
+        <span class="res"><span class="dots" role="img" aria-label="Conviction 2 of 5"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="pill chop">CHOP</span></span>
+        <span class="tf-src">Brent crude · June Week 2 · "CHOP ★★"</span>
+      </div>
+      <span class="mini-lbl">REAL WEEKS FROM THE DATA · MAPPING PER DATA_DICTIONARY.MD</span>
+      <dl class="def-list">
+        <dt><span class="pill chop">CHOP</span></dt><dd>No clean tendency: the timeframes disagree, or the chart reads as a range. Also shown for weeks labelled with words like CONTESTED, CONFLICT, LEAN or HOLD.</dd>
+        <dt><span class="pill flip">FLIP</span></dt><dd>The tendency reverses inside the period — expect a turn.</dd>
+        <dt><span class="pill chop">AVOID</span></dt><dd>A rare label for weeks too unreliable to trade at all. Counted with CHOP and FLIP under "Other".</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- FX SYNTHESIS -->
+<section class="band-alt">
+  <div class="wrap sect">
+    <div class="prose" style="max-width: 780px;">
+      <h2 class="h-section" style="margin-bottom: 14px;">How forex pairs are synthesised</h2>
+      <p>There's no futures contract for most spot pairs, so each one is built from two currency futures: the <strong>base currency read directly</strong> and the <strong>quote currency inverted</strong>. EURUSD = EUR futures (CME) + USD Index (ICE, inverted).</p>
+    </div>
+    <div class="grid-auto">
+      <div class="fx-card"><span class="k">Base <span class="up">▲</span> + Quote inv. <span class="up">▲</span></span><span class="t up">Double alignment</span><span class="d">Both components push the pair the same way. These are the pair's strongest windows.</span></div>
+      <div class="fx-card"><span class="k">Base <span class="up">▲</span> + Quote inv. <span class="down">▼</span></span><span class="t" style="color: var(--chop);">Collision</span><span class="d">The components fight each other, which usually reads as CHOP. Stand aside unless other layers decide it.</span></div>
+      <div class="fx-card"><span class="k">Base <span class="up">▲▲</span> + Quote inv. <span class="down">▼▼</span></span><span class="t" style="color: var(--bear);">Maximum conflict</span><span class="d">Both components are strong and point opposite ways — the hardest weeks to call. Read as CHOP.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="band">
+  <div class="wrap sect">
+    <h2 class="h-section">Data sources</h2>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th scope="col">SOURCE</th><th scope="col">USED FOR</th><th scope="col">HISTORY</th></tr></thead>
+        <tbody>
+          <tr><td>Moore Research Center</td><td>70 futures · 27 FX pairs (via synthesis)</td><td class="mono">5 · 15 · up to 40 yrs</td></tr>
+          <tr><td>MT5 daily history</td><td>BTCUSD seasonals (price-derived)</td><td class="mono">9 yrs</td></tr>
+          <tr><td>MT5 M1 history</td><td>Profiling tab · Range Outlook (14 assets)</td><td class="mono">Full available</td></tr>
+          <tr><td>Investing.com</td><td>Macro calendar</td><td class="mono">Live</td></tr>
+          <tr><td>TradingView</td><td>Live price chart</td><td class="mono">Live / delayed</td></tr>
+          <tr><td>Your MT5 CSV</td><td>Upload tab backtest · session bias</td><td class="mono">Whatever you upload</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section class="band-alt">
+  <div class="wrap sect">
+    <h2 class="h-section">What a seasonal signal is <span class="down">not</span></h2>
+    <div class="limit-grid">
+      <div class="limit"><span class="t">Not a forecast</span><span class="d">It's an average of past years. This year can and will differ.</span></div>
+      <div class="limit"><span class="t">Not an entry</span><span class="d">It gives directional context only. Price structure and your own framework decide the trade.</span></div>
+      <div class="limit"><span class="t">Averages hide outliers</span><span class="d">One extreme year can bend a curve. Use the Upload tab to check the win rate.</span></div>
+      <div class="limit"><span class="t">Regimes change</span><span class="d">A 40-year pattern may predate today's market structure. That's why the 5-YR view is shown alongside it.</span></div>
+      <div class="limit"><span class="t">Events override</span><span class="d">A central-bank surprise outweighs any season. Always check the Macro tab.</span></div>
+      <div class="limit"><span class="t">Weekly resolution</span><span class="d">It says nothing about the time of day. Profiling and the Upload tab cover timing.</span></div>
+    </div>
+    <p class="note" style="margin: 0;">Trading on any of this carries real risk — read the <a class="link-accent" href="/risk">Risk Disclosure</a>.</p>
+    <div class="btn-row">
+      <a class="btn btn-lg" href="/track-record">See how signals performed →</a>
+      <a class="btn-ghost btn-lg" href="/dashboard">Open dashboard</a>
+      <a class="btn-ghost btn-lg" href="/risk">Read the risk disclosure</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer data-kpt-footer></footer>
+<script src="/js/site.js" defer></script>
+</body>
+</html>

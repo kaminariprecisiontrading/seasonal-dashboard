@@ -26,6 +26,12 @@ Each asset dashboard has seven tabs along the top:
 
 ---
 
+## Site Pages
+
+The top menu on the landing page, dashboard and content pages links to: **Dashboard** · **This Week** · **Heatmap** · **Track Record** · **Methodology**.
+
+- **Methodology** (`/methodology`) — how a signal is built, what CHOP / FLIP / AVOID mean, how conviction is set, how forex pairs are synthesised, and what a seasonal signal is *not*.
+
 ## Seasonals Tab
 
 This is the main tab. The combined accordion shows all 12 months of the year:
