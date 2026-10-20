@@ -2,11 +2,11 @@
 
 **Project:** Kaminari Precision Trading — Seasonal Confluence Engine  
 **Project Start:** April 2026  
-**Current Status:** v1.16 (September 2026) — 98 asset pages · 7 tabs per dashboard · Market Profiling live for 14 assets · Platform roadmap Tiers 1–5 complete (see `PLATFORM_ROADMAP.md`)  
+**Current Status:** v1.18 (October 2026) — 98 asset pages · 7 tabs per dashboard · Market Profiling live for 14 assets · Platform roadmap Tiers 1–5 complete (see `PLATFORM_ROADMAP.md`)  
 **Primary Tool:** Claude (claude.ai) + Anthropic API + VSCode  
 **Data Source:** Moore Research Center seasonal charts (futures) · Derived synthesis (forex) · MT5 M1 history via the sibling `KPT-Market-Profiling` pipeline (Profiling tab, BTCUSD seasonals)  
-**Repository:** Private GitHub repo — `seasonal-dashboard`  
-**Deployment:** Netlify — https://kpt-seasonals.netlify.app/ (free static hosting; auto-deploys from private GitHub repo on push)
+**Repository:** Public GitHub repo — [`kaminariprecisiontrading/seasonal-dashboard`](https://github.com/kaminariprecisiontrading/seasonal-dashboard)  
+**Deployment:** Netlify — https://kpt-seasonals.netlify.app/ (free static hosting; auto-deploys from the GitHub repo's `main` branch on push)
 
 ---
 
@@ -28,9 +28,32 @@ A personal trading confluence engine that converts Moore Research Center seasona
 
 Pages without Profiling data show the Profiling tab's empty state; everything else is identical across all 98 pages. The layout is phone-responsive (≤600px tier, v1.16).
 
-The index landing page displays real-time seasonal signals (BULL / BEAR / CHOP / FLIP) on every asset card, derived from each asset's `MONTHS[]` data via `data/signals_manifest.js` at page load.
+The site opens on a **landing page** (`/`) that explains the project and shows this week's live signal tally. The **dashboard index** (`/dashboard`) displays real-time seasonal signals (BULL / BEAR / CHOP / FLIP) on every asset card, derived from each asset's `MONTHS[]` data via `data/signals_manifest.js` at page load.
 
 **Vision achieved:** A single-destination confluence tool — seasonal tendency + statistical market profiling + historical validation + macro calendar + intraday timing + AI synthesis — where the trader brings their own execution framework and the dashboard provides objective data from every relevant angle.
+
+---
+
+## Site Pages & Routes (v1.18)
+
+The site opens on a landing page that explains the project; the asset index moved to `/dashboard`.
+Every page is a root-level `.html` file served at a clean route by a 200 rewrite in `netlify.toml`.
+
+| Route | File | What it is |
+|-------|------|-----------|
+| `/` | `index.html` | Landing page: purpose, features, how to use, coverage, with a live "This week" tally and 3 featured signals |
+| `/dashboard` | `dashboard.html` | The dashboard index: search, signal filter, asset-class nav, This Week accordion, all asset cards |
+| `/assets/<id>.html` | `assets/*.html` | The 98 asset dashboards (unchanged URLs) |
+| any unknown path | `404.html` | Styled "page not found" with links home and to the dashboard |
+
+`/docs/*` and `/scripts/*` are force-404'd (build specs, mockups and maintenance scripts live in the
+published root but must not be served). Every page shares one nav and footer (`js/site.js`,
+`css/chrome.css`) and self-hosted fonts (`css/fonts.css`); signal logic is shared via
+`js/signals.js`, so the landing page and the dashboard always agree for the same week.
+
+**Local preview:** `node scripts/serve_local.js` → http://localhost:8888/ — applies `netlify.toml`'s
+routes. Plain static servers (Live Server, `python -m http.server`) can't resolve clean routes like
+`/dashboard`.
 
 ---
 
@@ -245,7 +268,7 @@ Data comes from the sibling `KPT-Market-Profiling` repo (Python pipeline over fu
 
 ## Dynamic Index Signals
 
-Each status-complete card on the landing page shows a runtime-derived signal computed at page load from `data/signals_manifest.js`. The manifest contains the full 12-month × 4-week `com` string for all 98 assets. The landing page reads `currentMonth` and `currentWeek` from the system clock and maps the relevant entry to BULL / BEAR / CHOP / FLIP / AVOID.
+Each status-complete card on the dashboard index shows a runtime-derived signal computed at page load from `data/signals_manifest.js`. The manifest contains the full 12-month × 4-week `com` string for all 98 assets. The dashboard index reads `currentMonth` and `currentWeek` from the system clock and maps the relevant entry to BULL / BEAR / CHOP / FLIP / AVOID — via `js/signals.js`, the same module the landing page uses for its hero tally.
 
 A **signal filter bar** (All / Bull / Bear / Other) allows filtering the index by signal type. Each card is tagged with `data-sig-type` during the manifest injection pass. A **manifest freshness note** below the filter bar shows when the manifest was last regenerated, sourced from `const SIGNALS_GENERATED` in `signals_manifest.js`.
 
@@ -274,7 +297,7 @@ The script reads every `data/*.js` file and overwrites `data/signals_manifest.js
 
 **All layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, Upload-tab backtest win rates and intraday session bias, and Profiling statistics (daily-through-yearly profile shapes, NFP-week event risk) — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet 5, Gemini Flash, or any local Ollama model.
 
-**Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass · v1.17 Range Outlook (TimesFM). Details: `CHANGELOG.md`.
+**Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass · v1.17 Range Outlook (TimesFM) · v1.18 landing page at `/`, dashboard moved to `/dashboard`, shared nav/footer, self-hosted fonts. Details: `CHANGELOG.md`.
 
 **v1.6 additions (UX layer):** Configurable broker timezone offset on Sessions tab (now part of the Upload tab) · AI cache clear button · TradingView symbol override (`tvSymbol`) · Single-tab print mode · Signal filter bar + manifest freshness on index · Three new reference docs (DATA_DICTIONARY, CONTRIBUTING, USER_GUIDE) · `scripts/` folder with utility script documentation.
 
@@ -287,7 +310,7 @@ The script reads every `data/*.js` file and overwrites `data/signals_manifest.js
 The dashboard is designed to be worked through in layer order, from broad seasonal context down to execution timing. Each step narrows the picture.
 
 **1. Scan the index for current-week bias.**
-Open `index.html`. Every asset card shows a live signal (BULL / BEAR / CHOP / FLIP) for the current week, derived from the signals manifest. Use the filter bar to isolate all BULL or BEAR assets at a glance. The freshness note shows when the manifest was last regenerated.
+Open the dashboard (`/dashboard`). Every asset card shows a live signal (BULL / BEAR / CHOP / FLIP) for the current week, derived from the signals manifest. Use the filter bar to isolate all BULL or BEAR assets at a glance. The freshness note shows when the manifest was last regenerated.
 
 **2. Open an asset and check the Seasonals tab.**
 The combined accordion auto-opens to the current month. Read the week-level combined signal and conviction stars (★★★★★ = maximum confluence across all three timeframes). Expand adjacent weeks to see whether the bias is building or fading. Use the quick-jump buttons to check the broader monthly arc.
@@ -329,9 +352,9 @@ The dashboard provides objective confluence data. Entry trigger, position sizing
 - **AI Engine (in-dashboard, option 3):** Ollama — any local model (e.g. `mistral:latest`)
 - **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
 - **Code Editor:** Visual Studio Code
-- **Version Control:** Git + GitHub (private repository)
-- **Hosting:** Netlify — https://kpt-seasonals.netlify.app/ · free tier · auto-deploys from private GitHub repo on every push · HTTPS included
-- **Local Preview:** Live Server (VSCode extension) — required for correct `http://` context; do not open HTML files directly via `file://`
+- **Version Control:** Git + GitHub (public repository)
+- **Hosting:** Netlify — https://kpt-seasonals.netlify.app/ · free tier · auto-deploys from the GitHub repo on every push to `main` · HTTPS included
+- **Local Preview:** `node scripts/serve_local.js` (http://localhost:8888/) — applies `netlify.toml`'s routes, so `/dashboard` and the other clean routes work locally; do not open HTML files directly via `file://`
 - **Local AI server:** Ollama — requires `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat` automates this
 
 | Context | Tool | Best Used For |

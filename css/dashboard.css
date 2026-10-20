@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+@import url('fonts.css');  /* self-hosted Bebas Neue / IBM Plex Mono / Barlow — see css/fonts.css */
 
 /* ── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
@@ -1148,7 +1148,7 @@ html [data-kpt-panel] { display: none; }
 
 /* ── Defer / Performance ───────────────────────────────────────────────────── */
 /* (scripts use defer — no style changes needed here) */
-/* This Week accordion styles are in index.html <style> block (index-only) */
+/* This Week accordion styles are in dashboard.html <style> block (dashboard-only) */
 
 /* ══════════════════════════════════════════════════════════════════════════════
    UPLOAD PANEL — Seasonal Tendency view (js/upload.js)

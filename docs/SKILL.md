@@ -21,7 +21,7 @@ This document is a complete recreation guide. Follow these steps in order to pro
 - Access to Claude (claude.ai, Pro plan or higher recommended)
 - Moore Research Center seasonal charts for your target asset
 - An Anthropic API account (console.anthropic.com) with billing enabled
-- VSCode with Live Server extension installed
+- VSCode (local preview: `node scripts/serve_local.js`, which applies `netlify.toml`'s routes)
 - Git + GitHub account with SSH authentication configured
 
 ---
@@ -213,10 +213,11 @@ Script tags — must be in this exact order (8 scripts total):
 
 Do NOT edit any shared JS files for asset-specific changes — they serve all 98 pages. Asset-specific customisation belongs in `data/[asset].js` only.
 
-**3. `index.html`** — find the planned card, change:
+**3. `dashboard.html`** — find the planned card, change:
 - `status-planned` → `status-complete`
-- `href="#"` → `href="assets/[asset].html"`
+- `href="#"` → `href="/assets/[asset].html"`
 - Update timeframe badges
+- Run `node scripts/gen_asset_index.js`
 
 **Deploy:**
 ```bash
@@ -226,16 +227,16 @@ Do NOT edit any shared JS files for asset-specific changes — they serve all 98
 # 3. Sync / Push
 
 # Option B — Git CLI:
-git add data/[asset].js assets/[asset].html index.html data/signals_manifest.js
+git add data/[asset].js assets/[asset].html dashboard.html data/asset_index.js data/signals_manifest.js
 git commit -m "Add [ASSET] seasonal dashboard"
 git push
 ```
 
 Netlify detects the push and auto-deploys within ~60 seconds. Live URL: `https://kpt-seasonals.netlify.app/`
 
-**Netlify note — Pretty URLs:** Netlify rewrites `href="assets/aud.html"` → `href="/assets/aud"` in the served HTML. The signal injection regex in `index.html` already accounts for this (`/assets\/([^./?#]+)/`). Do not change this regex back to `/assets\/(.+)\.html/` — that breaks on Netlify.
+**Netlify note — Pretty URLs:** Netlify rewrites `href="assets/aud.html"` → `href="/assets/aud"` in the served HTML. The signal injection regex in `dashboard.html` already accounts for this (`/assets\/([^./?#]+)/`). Do not change this regex back to `/assets\/(.+)\.html/` — that breaks on Netlify.
 
-**Local preview:** Live Server only. Cannot open HTML files directly from filesystem.
+**Local preview:** `node scripts/serve_local.js` → http://localhost:8888/. Cannot open HTML files directly from filesystem.
 
 ---
 
@@ -349,7 +350,7 @@ If you copy from an old template (pre-v0.6), it may have `id="accordion-body"` a
 | AI button unstyled / looks plain | `.ai-btn` is undefined in `dashboard.css` — must use `class="run-btn"` |
 | Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` and `ltSigKey` / `ltKey` match the month data keys |
 | AI button loading message says wrong TF | Check `ASSET_CONFIG.ltLabel` |
-| Live Server works but Netlify deploy doesn't render correctly | Check relative paths — `../css/dashboard.css` requires `assets/` subfolder; never use absolute paths starting with `/` |
+| Renders locally but not on Netlify | Preview with `node scripts/serve_local.js` (applies `netlify.toml`). Asset pages use relative `../` paths; root pages at clean routes (`dashboard.html`, `index.html`) use root-absolute `/css/…` paths |
 | Signals not injecting on Netlify (index shows STATUS LIVE instead of actual signal) | Netlify Pretty URLs rewrites `href="assets/aud.html"` → `href="/assets/aud"`. The signal injection regex must be `/assets\/([^./?#]+)/`, not `/assets\/(.+)\.html/`. The `.html` pattern never matches Netlify-served hrefs. |
 | Trend tab NOW badge wraps to second line on Netlify | Netlify pages have a vertical scrollbar (~17px narrower than local). With `flex-wrap: wrap` on `.sc-header`, this pushes the NOW badge to a second line. Fix: `flex-wrap: nowrap` on `.sc-header` + `min-width: 0` on `.sc-header-left`. Do not restore `flex-wrap: wrap`. |
 | AI button returns empty | Check API key active at console.anthropic.com |

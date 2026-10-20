@@ -8,9 +8,9 @@ A plain-English guide to using the KPT Seasonal Dashboard. No coding knowledge r
 
 The dashboard is hosted at **[https://kpt-seasonals.netlify.app/](https://kpt-seasonals.netlify.app/)** — open this URL in any browser to access it directly, with no local setup required. The site auto-updates within ~60 seconds of any push to GitHub.
 
-If you are working on the project locally (adding new assets, editing data), open the index page via **Live Server** in VSCode instead. Do not open the HTML files directly from File Explorer — the relative paths (CSS, JS, data) require a local web server to resolve correctly.
+The site opens on a **landing page** that explains what the dashboard does, with this week's signal tally. Click **Dashboard** in the top menu (or any "Open dashboard" button) to reach the **dashboard index** at `/dashboard`, then click any asset card marked **Live** to open its dashboard.
 
-From the index page, click any asset card marked **Live** to open its dashboard.
+If you are working on the project locally (adding new assets, editing data), run `node scripts/serve_local.js` from the repo root and open http://localhost:8888/. It applies the site's routing rules, so `/dashboard` and the other clean addresses work. Do not open the HTML files directly from File Explorer.
 
 Each asset dashboard has seven tabs along the top:
 
@@ -214,6 +214,6 @@ To print only the currently active tab, click the **Print this tab** button in t
 
 **AI cache is weekly:** The AI response refreshes automatically each calendar week. If your seasonal data file is updated, use the ✕ button to clear the cache and get a fresh analysis immediately.
 
-**Signals manifest:** The signal chips on the index page are generated from a static manifest file. If data files are updated, the manifest needs to be rebuilt (a developer task). The "Signal data as of [date]" note at the bottom of the index page shows when it was last generated.
+**Signals manifest:** The signal chips on the dashboard index (and the landing page's tally) are generated from a static manifest file. If data files are updated, the manifest needs to be rebuilt (a developer task). The "Signal data as of [date]" note on the dashboard index shows when it was last generated.
 
 **Local Ollama must be running:** Ollama is not a cloud service — it only works while the `start_kpt.bat` script is running in the background on your computer. If the Analysis tab shows a connection error for Ollama, re-run the batch file.

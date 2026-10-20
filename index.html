@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPT Seasonals — Seasonal Tendency Analysis</title>
+<meta name="description" content="Decades of seasonal tendency data turned into a clear weekly bias — Bullish, Bearish or Choppy — for 98 futures, forex and crypto markets, with market profiling, macro and AI synthesis on top. Free, no sign-up.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KPT Seasonals — Trade with the season, not against it">
+<meta property="og:description" content="A clear weekly seasonal bias for 98 futures, forex and crypto markets, checked against profiling, macro and your own data. Free · historical patterns only · not financial advice.">
+<!-- TODO: add a 1200x630 social card image and point og:image at it. -->
+<meta property="og:image" content="/assets/og/kpt-seasonals-og.png">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+<header data-kpt-nav></header>
+
+<main>
+<!-- HERO -->
+<section id="top" class="wrap hero">
+  <div class="hero-copy">
+    <div class="eyebrow eyebrow-rule hero-eyebrow">Kaminari Precision Trading · Seasonal Confluence Engine</div>
+    <h1 class="display hero-title">Trade with the season,<br><span class="accent">not against it.</span></h1>
+    <p class="hero-lead">Decades of seasonal tendency data, turned into a clear weekly bias — <strong>Bullish, Bearish or Choppy</strong> — for <span data-live-count>98</span> futures, forex and crypto markets. Then profiling, macro and AI synthesis stacked on top, so every angle is checked before you form a view.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="/dashboard">See this week's signals →</a>
+      <a class="btn-ghost btn-lg" href="#how">How it works</a>
+    </div>
+    <span class="hero-disclaimer">FREE · NO SIGN-UP · HISTORICAL PATTERNS ONLY · <a href="/risk">NOT FINANCIAL ADVICE</a></span>
+    <div class="hero-stats">
+      <div><span class="stat-num" data-live-count>98</span><span class="stat-lbl">Assets live</span></div>
+      <div><span class="stat-num">7</span><span class="stat-lbl">Tabs per asset</span></div>
+      <div><span class="stat-num">3</span><span class="stat-lbl">Timeframes / signal</span></div>
+      <div><span class="stat-num">40 YR</span><span class="stat-lbl">Deepest history</span></div>
+    </div>
+  </div>
+
+  <!-- HERO PANEL: live from data/signals_manifest.js via js/signals.js (js/landing.js) -->
+  <div class="hero-panel" aria-labelledby="tw-title">
+    <div class="tw-head">
+      <div class="tw-title-wrap"><span class="tw-title" id="tw-title">This week</span><span class="tw-week" id="tw-week" hidden></span></div>
+      <div class="tw-tally" id="tw-tally" hidden aria-label="Signal tally for this week">
+        <span class="tally bull">BULL <span id="tw-bull"></span></span>
+        <span class="tally bear">BEAR <span id="tw-bear"></span></span>
+        <span class="tally chop">OTHER <span id="tw-other"></span></span>
+      </div>
+    </div>
+    <figure class="tw-curve">
+      <svg role="img" aria-label="Illustrative seasonal curve with a NOW marker in October" viewBox="0 0 560 220">
+        <rect x="391" y="10" width="43" height="180" fill="#ffffff" opacity="0.04"></rect>
+        <line x1="20" y1="100" x2="540" y2="100" stroke="#262c36" stroke-dasharray="3 5"></line>
+        <path d="M20 150 C 50 140, 70 90, 105 70 S 150 40, 175 60 S 215 140, 250 150 S 300 110, 320 120 S 360 170, 390 175 S 420 150, 440 120 S 490 40, 540 35" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"></path>
+        <line x1="412" y1="14" x2="412" y2="190" stroke="#e8eaed" stroke-width="1.5"></line>
+        <rect x="388" y="2" width="48" height="18" rx="3" fill="#e8eaed"></rect>
+        <text x="412" y="15" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#0a0c0f">NOW</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#8b93a1" text-anchor="middle">
+          <text x="40" y="212">J</text><text x="83" y="212">F</text><text x="126" y="212">M</text><text x="169" y="212">A</text><text x="212" y="212">M</text><text x="255" y="212">J</text><text x="298" y="212">J</text><text x="341" y="212">A</text><text x="384" y="212">S</text><text x="412" y="212" fill="#e8eaed">O</text><text x="470" y="212">N</text><text x="513" y="212">D</text>
+        </g>
+      </svg>
+      <figcaption>ILLUSTRATIVE TREND CURVE · NOT A LIVE ASSET</figcaption>
+    </figure>
+    <div class="tw-cards" id="tw-cards" hidden></div>
+    <p class="tw-fallback" id="tw-fallback" hidden><a href="/dashboard">Open the dashboard to see this week's signals</a></p>
+    <noscript><p class="tw-fallback"><a href="/dashboard">Open the dashboard to see this week's signals</a></p></noscript>
+    <p class="tw-foot">SNAPSHOT FROM THE LIVE INDEX · SIGNALS UPDATE WEEKLY FROM THE SYSTEM CLOCK</p>
+  </div>
+</section>
+
+<!-- 01 PURPOSE -->
+<section id="purpose" class="band-alt">
+  <div class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow">01 · Purpose</span>
+      <h2 class="display h2">One destination for objective confluence</h2>
+      <p class="lead">Markets repeat. Harvests, heating seasons, fiscal year-ends and fund flows leave footprints that show up year after year. KPT Seasonals converts those historical tendencies into structured, interactive dashboards — then checks them against price behaviour, the macro calendar and your own data, so a seasonal bias is never taken on faith.</p>
+    </div>
+    <div class="grid-auto">
+      <div class="card"><span class="card-title">Seasonal context first</span><p>Every signal blends 5-year, 15-year and long-term data, broken down from the yearly arc to the month and down to Week 1–4.</p></div>
+      <div class="card"><span class="card-title">Every angle in one place</span><p>Seasonality, market profiling, live price, macro events, your own backtest and an AI verdict — side by side instead of across ten browser tabs.</p></div>
+      <div class="card"><span class="card-title">You keep the trigger</span><p>The dashboard supplies the data, not the trade. Entries, stops, sizing and management stay with your own execution framework. <a class="link-accent" href="/risk">Read the risk disclosure</a>.</p></div>
+    </div>
+
+    <div class="legend-card">
+      <div class="legend-head">
+        <span class="legend-title">Read a signal in two seconds</span>
+        <span class="lbl">Shown on every asset card</span>
+      </div>
+      <div class="legend-grid">
+        <div><span class="pill pill-lg bull">BULL</span><span>Historically, price has tended to rise this week.</span></div>
+        <div><span class="pill pill-lg bear">BEAR</span><span>Historically, price has tended to fall this week.</span></div>
+        <div><span class="pill pill-lg chop">CHOP</span><span>No clean directional tendency — timeframes disagree or price ranges.</span></div>
+        <div><span class="pill pill-lg flip">FLIP</span><span>The tendency reverses inside the period — expect a turn.</span></div>
+      </div>
+      <div class="legend-foot">
+        <span class="dots dots-lg" role="img" aria-label="Five filled dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span>
+        <span>Conviction dots — five filled means all three timeframes agree. Fewer dots, weaker confluence.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FEATURES -->
+<section id="features" class="band">
+  <div class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow">02 · Inside every asset</span>
+      <h2 class="display h2">Seven tabs, seven layers of evidence</h2>
+      <p class="lead">Open any asset card and you get the same seven-tab workspace — ordered from broad context down to the final synthesis.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg><span class="lbl">Tab 1</span></div><span class="feature-title">Seasonals</span><p>Combined and per-timeframe tables in an accordion. The current month opens automatically, with week-level signals and conviction.</p></div>
+      <div class="feature"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 4-6 5 4"></path><path d="M3 21h18"></path></svg><span class="lbl">Tab 2</span></div><span class="feature-title">Trend</span><p>The cumulative seasonal curve with a NOW marker — see instantly whether the asset is still climbing toward its seasonal peak or already past it.</p></div>
+      <div class="feature"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="lbl">Tab 3 · 14 assets</span></div><span class="feature-title">Profiling</span><p>Statistics from full M1 price history: range distributions, profile shapes, when highs and lows form, NFP effects, plus a forward Range Outlook.</p></div>
+      <div class="feature"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M6 8h3v6H6M14 2v20M14 6h3v9h-3"></path></svg><span class="lbl">Tab 4</span></div><span class="feature-title">Live Price</span><p>An embedded TradingView chart, so you can check where price actually sits against recent structure before acting on a bias.</p></div>
+      <div class="feature"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg><span class="lbl">Tab 5</span></div><span class="feature-title">Macro</span><p>An economic calendar pre-filtered to the events that move this asset, with a guide to which releases matter most.</p></div>
+      <div class="feature"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"></path></svg><span class="lbl">Tab 6</span></div><span class="feature-title">Upload</span><p>Drop in any MT5 CSV (M1 to monthly). Get a seasonal backtest — win rate and average return — plus hour, session and weekday bias.</p></div>
+      <div class="feature feature-hl"><div class="feature-top"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg><span class="lbl">Tab 7</span></div><span class="feature-title">Analysis</span><p>AI synthesis across every layer, returning LONG, SHORT, NEUTRAL or WAIT with rationale and a risk note. Claude, Gemini or a local Ollama model; export as .md.</p></div>
+      <div class="feature feature-plus"><span class="feature-title feature-title-sm">Plus on the index</span><p>Search by name, filter Bull / Bear / Other, jump by asset class, and a weekly tally of every signal.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 HOW -->
+<section id="how" class="band-alt">
+  <div class="wrap section how">
+    <div class="how-head">
+      <span class="eyebrow">03 · How to use it</span>
+      <h2 class="display h2">From a weekly scan to a reasoned bias</h2>
+      <p class="lead">Work top-down. Each step narrows the picture, and any step can tell you to stand aside.</p>
+      <a class="btn-ghost how-guide" href="https://github.com/kaminariprecisiontrading/seasonal-dashboard/blob/main/docs/USER_GUIDE.md">Read the full user guide</a>
+    </div>
+    <ol class="steps">
+      <li><span class="step-num">01</span><div><span class="step-title">Scan the index</span><span class="step-text">Every card shows this week's signal. Filter to Bull or Bear, or search an asset by name.</span></div></li>
+      <li><span class="step-num">02</span><div><span class="step-title">Open the asset · Seasonals</span><span class="step-text">Read the week's combined signal and conviction, then check neighbouring weeks: is the bias building or fading?</span></div></li>
+      <li><span class="step-num">03</span><div><span class="step-title">Confirm on Trend</span><span class="step-text">Where is the NOW marker? A curve already past its peak is a caution flag, even on a BULL week.</span></div></li>
+      <li><span class="step-num">04</span><div><span class="step-title">Size and locate the move</span><span class="step-text">Profiling shows typical range and timing; Live Price shows whether price is near a level worth acting on.</span></div></li>
+      <li><span class="step-num">05</span><div><span class="step-title">Validate and de-risk</span><span class="step-text">Upload your own data to test the win rate, find the best session, and check Macro for events that could override the season.</span></div></li>
+      <li><span class="step-num">06</span><div><span class="step-title">Synthesise, then execute your way</span><span class="step-text">Run Analysis for a structured verdict. Entry, stop and size remain your call.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 04 COVERAGE (counts derived from data/asset_index.js by js/landing.js; static values are the fallback) -->
+<section id="coverage" class="band">
+  <div class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow">04 · Coverage &amp; data</span>
+      <h2 class="display h2"><span data-live-count>98</span> markets across three asset groups</h2>
+    </div>
+    <div class="coverage-grid">
+      <div class="cov-card">
+        <div class="cov-head"><span class="cov-name">Futures</span><span class="cov-count" data-cov-block="futures">70</span></div>
+        <div class="cov-list" data-cov-groups="futures">
+          <span>Currencies · 10</span><span>Metals · 5</span><span>Energy · 6</span><span>Rates · 14</span><span>Indices · 13</span><span>Softs · 8</span><span>Grains · 8</span><span>Fiber · 2</span><span>Meats &amp; Dairy · 4</span>
+        </div>
+        <p class="cov-note">Source: Moore Research Center seasonal tendencies across CME, CBOT, ICE, NYMEX, EUREX, LIFFE, SFE and HKFE.</p>
+      </div>
+      <div class="cov-card">
+        <div class="cov-head"><span class="cov-name">Forex</span><span class="cov-count" data-cov-block="forex">27</span></div>
+        <div class="cov-list" data-cov-groups="forex"><span>Majors · 6</span><span>Minors · 9</span><span>Crosses · 12</span></div>
+        <p class="cov-note">Synthesised from two CME futures components — base currency direct, quote currency inverted — so you can see when they align or collide.</p>
+      </div>
+      <div class="cov-card">
+        <div class="cov-head"><span class="cov-name">Crypto</span><span class="cov-count"><span data-cov-block="crypto">1</span><span class="cov-planned"> + <span data-cov-planned>19</span> planned</span></span></div>
+        <div class="cov-list"><span>BTC/USD · live</span><span>ETH, SOL, XRP… · soon</span></div>
+        <p class="cov-note">Statistically derived from real price history, since Moore Research does not cover crypto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="band-alt">
+  <div class="wrap section cta">
+    <svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+    <h2 class="display cta-title">This week's bias is already waiting.</h2>
+    <p class="lead cta-lead">No sign-up. Open the dashboard, find your market, and work through the layers.</p>
+    <a class="btn btn-lg cta-btn" href="/dashboard">Enter the dashboard →</a>
+  </div>
+</section>
+</main>
+
+<footer data-kpt-footer></footer>
+
+<script src="/data/signals_manifest.js" defer></script>
+<script src="/data/asset_index.js" defer></script>
+<script src="/js/signals.js" defer></script>
+<script src="/js/landing.js" defer></script>
+<script src="/js/site.js" defer></script>
+</body>
+</html>

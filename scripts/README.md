@@ -46,9 +46,17 @@ Removed the `backtest.js`/`intraday.js` script tags and inserted a single `<scri
 - **Status:** Already applied to all 98 files
 - **Run:** `node scripts/patch_swap_upload.js` (from `seasonal-dashboard/`) — accepts an optional list of specific filenames to patch a subset instead of all pages (used during Tier 4's own branch-and-test rollout)
 
+### `patch_dashboard_links.js`
+
+Repoints every `href="../index.html"` link to `/dashboard`, after the dashboard index moved from `index.html` to `dashboard.html` (served at `/dashboard`; `/` is now the landing page). Covers all asset pages, the profiling calendar/detail/compare pages and the two JS files that build a "Back to dashboard" link.
+
+- **Added in:** v1.18 (landing page)
+- **Status:** Already applied — 103 files, 123 links. Idempotent (a re-run changes nothing).
+- **Run:** `node scripts/patch_dashboard_links.js`
+
 ### `patch_add_favicon.js`
 
-Inserts a `<link rel="icon">` (inline SVG data URI, no separate asset file) right after `<head>` in every page — `index.html`, `profiling-calendar/index.html`, `profiling-profiles/detail.html`, and all `assets/*.html`. No favicon existed anywhere before this.
+Inserts a `<link rel="icon">` (inline SVG data URI, no separate asset file) right after `<head>` in every page — `index.html` (then the dashboard index; renamed `dashboard.html` in v1.18), `profiling-calendar/index.html`, `profiling-profiles/detail.html`, and all `assets/*.html`. No favicon existed anywhere before this.
 
 - **Added in:** v1.8 (`docs/PLATFORM_ROADMAP.md` Tier 1)
 - **Status:** Already applied to all 100 files
@@ -67,6 +75,24 @@ Regenerates `data/profiling/*` from the sibling `KPT-Market-Profiling` repo's pi
 
 ---
 
+## Site Scripts — Run As Needed
+
+### `gen_asset_index.js`
+
+Regenerates `data/asset_index.js` — the shared asset registry (`window.KPT_ASSETS`, `window.KPT_ASSET_GROUPS`: id, ticker, name, badges, accent colour, dashboard section, live/planned) — from `dashboard.html`'s asset cards. Used by `js/signals.js` and every page outside the dashboard.
+
+- **Added in:** v1.18
+- **Run:** `node scripts/gen_asset_index.js` after adding, renaming or regrouping a dashboard card.
+
+### `serve_local.js`
+
+Local preview server that behaves like Netlify: applies `netlify.toml`'s `[[redirects]]` (200 rewrites, 301s, forced 404s, splats) and `[[headers]]`, Netlify's pretty URLs (`/foo` → `foo.html`), trailing-slash matching and the `404.html` fallback. Needed because the site's clean routes (`/dashboard`, …) don't resolve on plain static servers.
+
+- **Added in:** v1.18
+- **Run:** `node scripts/serve_local.js [port]` → http://localhost:8888/
+
+---
+
 ## Generator Scripts — Run As Needed
 
 These scripts were run from a separate working environment and are not committed to the repo. They are documented here for reference.
@@ -77,7 +103,7 @@ Generates HTML shells for all futures assets from a config table. Produced the i
 
 ### `gen_signals_manifest.js` *(not in repo)*
 
-Reads all 97 `data/*.js` files and writes `data/signals_manifest.js`, which powers the live signal chips on `index.html`. 
+Reads all 97 `data/*.js` files and writes `data/signals_manifest.js`, which powers the live signal chips on the dashboard index (`dashboard.html`) and the landing page's tally. 
 
 **Run this whenever:**
 - A new asset data file is added or updated

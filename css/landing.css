@@ -1,0 +1,110 @@
+/* landing.css — landing page (/) extras on top of site.css.
+ * Visual spec: docs/specs/2026-10-site-expansion/mockups/landing-mockup.html */
+
+.accent { color: var(--accent); }
+.link-accent { color: var(--bull); }
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+.hero { padding-top: 88px; padding-bottom: 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }
+.hero-copy { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.hero-eyebrow { font-size: 13px; }
+.hero-title { font-size: clamp(56px, 8vw, 104px); line-height: 0.92; }
+.hero-lead { margin: 0; font-size: 20px; line-height: 1.55; color: var(--body); max-width: 560px; }
+.hero-lead strong { color: var(--text); font-weight: 600; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-disclaimer { font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; color: var(--muted); }
+.hero-disclaimer a { color: var(--soft); }
+.hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); border-top: 1px solid var(--line); padding-top: 24px; }
+.hero-stats > div { display: flex; flex-direction: column; gap: 4px; }
+.stat-num { font-family: var(--font-display); font-size: 44px; line-height: 1; }
+.stat-lbl { font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+
+/* ── Hero panel (This week) ──────────────────────────────────────────────── */
+.hero-panel { flex: 1 1 440px; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.tw-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-family: var(--font-mono); }
+.tw-title-wrap { display: flex; align-items: baseline; gap: 10px; }
+.tw-title { font-family: var(--font-display); font-size: 24px; letter-spacing: 2px; }
+.tw-week { font-size: 12px; letter-spacing: 2px; color: var(--muted); }
+.tw-tally { display: flex; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; }
+.tally { padding: 5px 10px; border: 1px solid; border-radius: 3px; }
+.tally.bull { border-color: #1d5c35; background: #0d2416; color: var(--bull); }
+.tally.bear { border-color: #6b2424; background: #2a1012; color: var(--bear); }
+.tally.chop { border-color: #6b4a12; background: #2a1d08; color: var(--chop); }
+.tw-curve { margin: 0; background: #0b0e12; border: 1px solid #1a1f27; border-radius: 6px; padding: 16px 16px 8px; }
+.tw-curve svg { width: 100%; height: auto; display: block; }
+.tw-curve figcaption, .tw-foot { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; color: var(--muted); }
+.tw-curve figcaption { padding-top: 6px; }
+.tw-foot { margin: 0; }
+.tw-cards { display: flex; flex-direction: column; gap: 8px; }
+.tw-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px;
+  background: var(--surface-3); border: 1px solid #1a1f27; border-left: 3px solid var(--card-accent, var(--accent));
+  border-radius: 4px; text-decoration: none; color: var(--text);
+}
+.tw-card:hover { border-color: #2a313b; border-left-color: var(--card-accent, var(--accent)); color: var(--text); }
+.tw-card-name { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tw-card-ticker { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; line-height: 1; }
+.tw-card-meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+.tw-card-sig { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
+.tw-fallback { margin: 0; padding: 16px; border: 1px dashed var(--border-strong); border-radius: 6px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-align: center; }
+.tw-fallback a { color: var(--bull); }
+
+/* ── Signal legend ───────────────────────────────────────────────────────── */
+.legend-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+.legend-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; }
+.legend-title { font-family: var(--font-display); font-size: 30px; letter-spacing: 1px; }
+.legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.legend-grid > div { display: flex; flex-direction: column; gap: 10px; }
+.legend-grid .pill { align-self: flex-start; }
+.legend-grid > div > span:last-child { font-size: 15px; line-height: 1.5; color: var(--soft); }
+.legend-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 15px; color: var(--body); }
+
+/* ── Features ────────────────────────────────────────────────────────────── */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.feature { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.feature p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--soft); }
+.feature-top { display: flex; align-items: center; justify-content: space-between; }
+.feature-top .lbl { letter-spacing: 0; font-size: 12px; }
+.feature-title { font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; line-height: 1; }
+.feature-title-sm { font-size: 24px; line-height: 1.1; }
+.feature-hl { border-color: var(--accent); }
+.feature-plus { background: var(--surface-2); border: 1px dashed var(--border-strong); justify-content: center; gap: 12px; }
+
+/* ── How to use ──────────────────────────────────────────────────────────── */
+.how { flex-direction: row; flex-wrap: wrap; gap: 56px; }
+.how-head { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.how-guide { align-self: flex-start; margin-top: 8px; }
+.steps { flex: 2 1 560px; min-width: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+.steps li { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.steps li:last-child { border-bottom: 0; }
+.steps li > div { display: flex; flex-direction: column; gap: 6px; }
+.step-num { flex: 0 0 48px; font-family: var(--font-display); font-size: 40px; line-height: 1; color: var(--accent); }
+.step-title { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; }
+.step-text { font-size: 16px; line-height: 1.55; color: var(--soft); }
+
+/* ── Coverage ────────────────────────────────────────────────────────────── */
+.coverage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.cov-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+.cov-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.cov-name { font-family: var(--font-display); font-size: 32px; letter-spacing: 1px; }
+.cov-count { font-family: var(--font-display); font-size: 48px; line-height: 1; color: var(--accent); }
+.cov-planned { font-size: 24px; color: var(--muted); }
+.cov-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; font-family: var(--font-mono); font-size: 13px; color: var(--body); }
+.cov-note { margin: auto 0 0; border-top: 1px solid var(--border); padding-top: 16px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+
+/* ── CTA ─────────────────────────────────────────────────────────────────── */
+.cta { align-items: center; text-align: center; gap: 24px; }
+.cta-title { font-size: clamp(44px, 6vw, 80px); line-height: 1; }
+.cta-lead { max-width: 600px; }
+.cta-btn { min-height: 56px; padding: 0 36px; font-size: 15px; }
+
+@media (max-width: 600px) {
+  .hero { padding-top: 48px; padding-bottom: 48px; gap: 40px; }
+  .hero-copy, .hero-panel { flex-basis: 100%; }
+  .hero-lead { font-size: 18px; }
+  .hero-panel { padding: 16px; }
+  .coverage-grid { grid-template-columns: 1fr; }
+  .how { gap: 32px; }
+  .steps li { gap: 16px; }
+  .legend-card { padding: 22px; }
+}

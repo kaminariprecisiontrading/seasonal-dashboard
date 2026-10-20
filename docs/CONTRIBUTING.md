@@ -54,12 +54,18 @@ The 9 shared JS scripts must remain in this order, with `ui.js` last:
 <script src="../js/ui.js"></script>
 ```
 
-### 3. Update index.html
+### 3. Update dashboard.html
 
 Find the planned card for this asset (or add a new one). Change:
 - `class="status-planned"` → `class="status-complete"`
-- `href="#"` → `href="assets/{assetid}.html"`
+- `href="#"` → `href="/assets/{assetid}.html"` (root-absolute, like every card)
 - Update timeframe badges to match actual TFs
+
+Then regenerate the shared asset registry so the landing page, This Week and Heatmap see it:
+
+```bash
+node scripts/gen_asset_index.js
+```
 
 ### 4. Rebuild the signals manifest
 
@@ -67,11 +73,11 @@ Find the planned card for this asset (or add a new one). Change:
 node scripts/gen_signals_manifest.js
 ```
 
-This regenerates `data/signals_manifest.js` so the new asset's live signal chip appears on the index page. Run this any time you add or update a data file.
+This regenerates `data/signals_manifest.js` so the new asset's live signal chip appears on the dashboard index. Run this any time you add or update a data file.
 
 ### 5. Verify in browser
 
-Open the page via Live Server (not by opening the file directly — relative paths require a server). Check:
+Run `node scripts/serve_local.js` and open the page at http://localhost:8888/ (not by opening the file directly). Check:
 - Accordion builds with 12 months and correct week data
 - AI Analysis tab panel appears (pill buttons visible)
 - TradingView chart loads on the Live Price tab
@@ -196,7 +202,7 @@ the standard futures/forex recipes above.
    needs. Do not omit that disclosure — see `docs/DATA_DICTIONARY.md`'s "Statistically-derived
    assets" section for exactly what compromises it needs to name (the 15-YR column reusing the
    long-term computation, capped conviction).
-5. Add the asset to `index.html`'s new "Crypto" `.source-block` (or its own new block, for a future
+5. Add the asset to `dashboard.html`'s "Crypto" `.source-block` (or its own new block, for a future
    non-crypto statistically-derived category) as a `status-complete` card — real MRCI assets get a
    `status-planned` placeholder card first and are converted later per the standard recipe above;
    a statistically-derived asset can go straight to live once its signal is generated, since there's

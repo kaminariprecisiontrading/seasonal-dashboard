@@ -1,0 +1,26 @@
+# netlify.toml — routing (and, later, headers) for kpt-seasonals.netlify.app.
+# The site is static and published from the repo root; build settings stay in the
+# Netlify UI. Preview these rules locally with: node scripts/serve_local.js
+#
+# Every page is a root-level .html file served at a clean route by a 200 rewrite,
+# so the URL stays clean and relative asset paths keep resolving from the root.
+# Netlify ignores trailing slashes when matching, so /dashboard/ is covered too.
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard.html"
+  status = 200
+
+# Internal folders must never be served: build specs/mockups and maintenance
+# scripts live in the published root. Forced so real files under them 404 too.
+[[redirects]]
+  from = "/docs/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404.html"
+  status = 404
+  force = true

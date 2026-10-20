@@ -8,7 +8,10 @@ Complete technical documentation for the seasonal trading dashboard system.
 
 ```
 seasonal-dashboard/          ← root of GitHub repo
-├── index.html               ← landing page with sticky nav + asset card grid
+├── index.html               ← landing page (/) — v1.18
+├── dashboard.html           ← dashboard index (/dashboard): sticky nav + asset card grid
+├── 404.html                 ← styled not-found page
+├── netlify.toml             ← clean-route 200 rewrites, /docs + /scripts forced 404s
 ├── assets/
 │   ├── aud.html             ← AUD futures dashboard shell
 │   ├── usd.html             ← USD futures dashboard shell
@@ -23,7 +26,11 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── fx-gbpusd.html       ← GBPUSD forex dashboard shell
 │   └── [asset].html         ← future assets follow same pattern
 ├── css/
-│   └── dashboard.css        ← ALL shared styles — one file governs every dashboard
+│   ├── dashboard.css        ← dashboard + all 98 asset pages
+│   ├── fonts.css            ← self-hosted @font-face (files in assets/fonts/)
+│   ├── chrome.css           ← shared nav + footer (every page)
+│   ├── site.css             ← base for landing / legal / new pages
+│   └── landing.css          ← landing-page extras
 ├── js/
 │   ├── accordion.js         ← shared accordion builder + buildTFTables() + buildQuickJump()
 │   ├── api.js               ← multi-provider AI panel (Claude / Gemini / Ollama); enriched context
@@ -32,7 +39,10 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── seasonal-chart.js    ← seasonal bias curve chart (Chart.js, 48-point cumulative)
 │   ├── upload.js            ← unified CSV upload tool (Tier 4): any timeframe M1–MN1 → seasonal
 │   │                            tendency (ex-Backtest) + intraday timing (ex-Sessions) stats
-│   └── ui.js                ← shared UI layer: tabs, sub-tabs, topbar, legend toggle
+│   ├── ui.js                ← shared UI layer: tabs, sub-tabs, topbar, legend toggle
+│   ├── site.js              ← shared nav/footer, KPT_SITE facts, KptStore, Embeds setting
+│   ├── signals.js           ← KptSignals: manifest → signal/conviction, week maths, groups
+│   └── landing.js           ← landing page's live This-week panel + counts
 ├── data/
 │   ├── aud.js               ← AUD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
 │   ├── usd.js               ← USD: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
@@ -45,13 +55,17 @@ seasonal-dashboard/          ← root of GitHub repo
 │   ├── fx-audusd.js         ← AUDUSD forex: derived synthesis data
 │   ├── fx-usdjpy.js         ← USDJPY forex: derived synthesis data
 │   ├── fx-gbpusd.js         ← GBPUSD forex: derived synthesis data
+│   ├── asset_index.js       ← generated asset registry (scripts/gen_asset_index.js)
 │   └── [asset].js           ← future assets follow same pattern
 ├── scripts/
 │   ├── README.md                    ← documents all scripts (purpose, run command, status)
 │   ├── patch_add_macro.js           ← one-shot: inserted macro.js into all 97 HTML files
 │   ├── patch_add_seasonal_chart.js  ← one-shot: inserted seasonal-chart.js into all 97 HTML files
-│   └── patch_swap_upload.js         ← one-shot (Tier 4): replaced backtest.js+intraday.js tags
-│                                        with upload.js across all 98 HTML files
+│   ├── patch_swap_upload.js         ← one-shot (Tier 4): replaced backtest.js+intraday.js tags
+│   │                                    with upload.js across all 98 HTML files
+│   ├── gen_asset_index.js           ← regenerates data/asset_index.js from dashboard.html cards
+│   ├── patch_dashboard_links.js     ← one-shot (v1.18): ../index.html → /dashboard links
+│   └── serve_local.js               ← local preview server that applies netlify.toml
 └── docs/
     ├── README.md
     ├── SKILL.md
@@ -64,12 +78,10 @@ seasonal-dashboard/          ← root of GitHub repo
     └── DATA_DICTIONARY.md   ← ASSET_CONFIG and MONTHS[] field reference
 ```
 
-**Deployment:** Netlify — connected to the private GitHub repo, auto-deploys on every push to `main`.
-- Live URL: https://kpt-seasonals.netlify.app/
-- GitHub Pages is not used (requires public repo on the free plan)
-- Dashboards: `https://[username].github.io/seasonal-dashboard/assets/aud.html`
+**Deployment:** Netlify — connected to the public GitHub repo (`kaminariprecisiontrading/seasonal-dashboard`), auto-deploys on every push to `main`.
+- Live URL: https://kpt-seasonals.netlify.app/ (landing) · /dashboard (index) · /assets/<id>.html (asset pages)
 
-**Local development:** Use **Live Server** in VSCode. Modular JS imports require a server context — opening HTML files directly from the filesystem fails silently.
+**Local development:** run `node scripts/serve_local.js` (http://localhost:8888/). It applies `netlify.toml`'s rewrites/forced 404s and Netlify's pretty-URL behaviour, so clean routes like `/dashboard` work locally — Live Server can't. Opening HTML files directly from the filesystem doesn't work.
 
 ---
 
@@ -687,7 +699,37 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
 
 ---
 
-## Index Page (`index.html`)
+## Site Pages, Routing & Shared Chrome (v1.18)
+
+- **Routes.** `netlify.toml` serves each root-level page at a clean route with a 200 rewrite
+  (`/dashboard` → `dashboard.html`; later pages follow the same pattern). Netlify ignores trailing
+  slashes when matching, so `/dashboard/` is served too — which is why `dashboard.html` and
+  `index.html` use **root-absolute** resource and card paths (`/css/…`, `/assets/…`): relative
+  paths would resolve under `/dashboard/` and break. `/docs/*` and `/scripts/*` are forced 404s.
+- **Shared nav + footer (`js/site.js` + `css/chrome.css`).** Nav renders into a
+  `<header data-kpt-nav>` placeholder (landing, dashboard, 404, new pages; asset pages keep their
+  own topbar). Footer renders into `<footer data-kpt-footer>` or is appended to `<body>`; when the
+  page already has the inline-styled `.copyright` attribution span (dashboard, asset pages), the
+  footer omits its own copy so it's never shown twice. `chrome.css` is fully namespaced so it
+  looks the same on top of `dashboard.css` or `site.css`; `site.js` cancels `dashboard.css`'s body
+  padding so the nav/footer run edge to edge. Operator/site facts live in one object,
+  `window.KPT_SITE` (`OPERATOR_NAME`, contact, repo URL).
+- **Shared signal logic (`js/signals.js`).** `KptSignals` holds the dashboard's original
+  `com` → BULL/BEAR/CHOP/FLIP/AVOID mapping, star → conviction counting and week-of-month rule,
+  plus `getSignal()`, `tally()`, week arithmetic (`shiftWeek`, URL `?w=` form) and asset grouping.
+  The dashboard's inline script now calls it instead of its own copies (verified identical output
+  for all 98 cards at four dates spanning month/year ends).
+- **Asset registry (`data/asset_index.js`).** Generated by `scripts/gen_asset_index.js` from
+  `dashboard.html`'s cards: id, ticker, name, badges, accent, dashboard section, status (`live` /
+  `planned`). Re-run it after adding or renaming a card. Pages outside the dashboard (landing,
+  This Week, Heatmap) read names and groups from it instead of keeping their own lists.
+- **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
+  (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
+  `dashboard.css` and `site.css`. No page requests Google Fonts.
+
+## Dashboard Index (`dashboard.html`, served at `/dashboard`)
+
+Formerly `index.html` (renamed in v1.18 — `/` is now the landing page).
 
 ### Sticky Navigation Bar
 A `position: sticky; top: 0` nav bar with `backdrop-filter: blur` sits above all content. Contains 13 jump links in two groups:
@@ -780,10 +822,11 @@ Three files required:
 - Footnote — use exact pattern with inline-styled copyright span (see SKILL.md)
 - Script src tags in correct order: `data/[asset].js` → `accordion.js` → `api.js` → `tradingview.js` → `macro.js` → `seasonal-chart.js` → `upload.js` → `ui.js` (8 scripts total)
 
-**3. `index.html`** — find the planned card, change:
+**3. `dashboard.html`** — find the planned card, change:
 - `status-planned` → `status-complete`
-- `href="#"` → `href="assets/[asset].html"`
+- `href="#"` → `href="/assets/[asset].html"`
 - Update timeframe badges to actual TFs
+- Then run `node scripts/gen_asset_index.js` so the landing page / This Week / Heatmap pick it up
 
 **4. If using the generator (`gen_futures_v2.js`):** Add the new asset config to the relevant category array and re-run `node gen_futures_v2.js`. Re-run `node gen_signals_manifest.js` to update the index signals.
 
@@ -841,7 +884,7 @@ Every asset footnote must use this exact pattern:
 | Long-term column shows wrong label | Check `ASSET_CONFIG.ltLabel` matches `ltSigKey` / `ltKey` keys used in `MONTHS[]` |
 | AI button cuts off mid-analysis | Raise `max_tokens` in `js/api.js` (currently 2500) |
 | Copyright not showing | Ensure `<span>` uses inline styles, not CSS class only |
-| Live Server works but Netlify deploy doesn't render correctly | Check relative paths — `../css/dashboard.css` requires assets in `assets/` subfolder; do not use absolute paths starting with `/` |
+| Page renders locally but not on Netlify (or vice versa) | Preview with `node scripts/serve_local.js`, which applies `netlify.toml`. Asset pages use relative paths (`../css/dashboard.css`); root pages served at clean routes (`dashboard.html`, `index.html`, new pages) must use root-absolute paths (`/css/…`) so they also work at a trailing-slash URL |
 | AI button returns empty | Check API key active at console.anthropic.com |
 | Sticky nav doesn't highlight | Check section `id` attributes match nav link `href` values exactly |
 | Index card shows wrong signal (BEAR/BULL on live asset) | Hardcoded signal tags go stale — always use `<span class="bull-tag">Live</span>` until dynamic status is implemented |
@@ -872,8 +915,8 @@ Every asset footnote must use this exact pattern:
 | Gemini / Claude returns 401 | Check API key is saved via the Settings gear icon; key stored in `kpt-cfg-{provider}-key` in localStorage |
 | AI response not cached (re-calls on every page load) | Cache key is `kpt-ai-{id}-{provider}-{year}-w{week}` — check `ASSET_CONFIG.id` is set correctly; cache expires automatically when the week changes |
 | AI cached result doesn't reflect new CSV data | Click the "✕ Clear & re-run" button in the cache bar above the AI output; it removes the localStorage entry and re-runs `runAnalysis()` immediately |
-| Signal filter bar missing or shows no buttons | `data/signals_manifest.js` must be loaded in `index.html` before the signal injection `<script>` block; the filter bar is hidden until `SIGNALS_MANIFEST` is defined |
-| Signal filter shows "0 assets" for a category | The `data-sig-type` attribute is only set during the manifest injection loop — if a card was added to `index.html` without a matching entry in `SIGNALS_MANIFEST`, it will not be tagged and will never show under a filter |
+| Signal filter bar missing or shows no buttons | `data/signals_manifest.js` must be loaded in `dashboard.html` before `js/signals.js` and the signal injection `<script>` block; the filter bar is hidden until `SIGNALS_MANIFEST` is defined |
+| Signal filter shows "0 assets" for a category | The `data-sig-type` attribute is only set during the manifest injection loop — if a card was added to `dashboard.html` without a matching entry in `SIGNALS_MANIFEST`, it will not be tagged and will never show under a filter |
 | Signals freshness note is missing or shows wrong date | `SIGNALS_GENERATED` must be exported as a `const` (not just a comment) in `signals_manifest.js` — run the manifest generator script and verify `const SIGNALS_GENERATED = '…'` is present |
 | Upload: changing timezone shows "re-upload" prompt | Expected behaviour — timezone offset is applied at parse time, so existing cached intraday data cannot be reused; re-upload the CSV to recalculate with the new offset |
 | Intraday hour bars shifted by 1 after broker TZ change | Check `_normHour()` in `upload.js` — formula is `(rawHour - (offset - 2) + 24) % 24`; offset is stored in `kpt-tz-{id}` localStorage key (unchanged from the old Sessions panel); EET (UTC+2) → offset 2 = zero shift |

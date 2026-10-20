@@ -1,0 +1,24 @@
+/* fonts.css — self-hosted web fonts (Latin subset, woff2), shared by every page.
+ *
+ * Imported by css/dashboard.css (dashboard + all asset pages) and css/site.css
+ * (landing, legal and new pages). Self-hosted rather than loaded from Google Fonts
+ * so no page makes a third-party request before the visitor chooses to load an
+ * embed (docs/specs/2026-10-site-expansion/LEGAL_PAGES_BUILD_NOTES.md §4).
+ *
+ * Files and their SIL Open Font License texts live in assets/fonts/.
+ * Site-wide font roles: Bebas Neue = display, IBM Plex Mono = labels/UI/data,
+ * Barlow = body prose (landing, legal and new pages).
+ */
+
+@font-face { font-family: 'Bebas Neue'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/bebas-neue-400.woff2') format('woff2'); }
+
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 300; font-display: swap; src: url('../assets/fonts/ibm-plex-mono-300.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/ibm-plex-mono-400.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/ibm-plex-mono-500.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/ibm-plex-mono-600.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url('../assets/fonts/ibm-plex-mono-700.woff2') format('woff2'); }
+
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/barlow-400.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/barlow-500.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/barlow-600.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 700; font-display: swap; src: url('../assets/fonts/barlow-700.woff2') format('woff2'); }

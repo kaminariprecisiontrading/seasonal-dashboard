@@ -4,8 +4,10 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seasonal Trading Dashboard — Kaminari Precision Trading</title>
-<link rel="stylesheet" href="css/dashboard.css">
+<title>Dashboard — KPT Seasonals</title>
+<meta name="description" content="Live weekly seasonal signals (Bull / Bear / Chop / Flip) for 98 futures, forex and crypto markets.">
+<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="/css/chrome.css">
 <style>
   .index-header { border-left: 4px solid var(--accent-combined); padding-left: 20px; margin-bottom: 12px; }
   .index-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 4px; color: #fff; line-height: 1; }
@@ -299,6 +301,7 @@
 </style>
 </head>
 <body>
+<header data-kpt-nav></header>
 
 <div class="index-header">
   <h1>Seasonal Dashboard</h1>
@@ -378,42 +381,42 @@
   <!-- FX Majors -->
   <div class="grid-section" id="fx-majors">FX Majors</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/fx-audusd.html" style="--card-accent:#e040a0;">
+    <a class="asset-card status-complete" href="/assets/fx-audusd.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUDUSD</div>
       <div class="card-name">Australian Dollar / US Dollar</div>
       <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">USD ICE</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-eurusd.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-eurusd.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURUSD</div>
       <div class="card-name">Euro / US Dollar</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">USD ICE</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-gbpusd.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/fx-gbpusd.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBPUSD</div>
       <div class="card-name">British Pound / US Dollar</div>
       <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">USD ICE</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-usdcad.html" style="--card-accent:#f59e0b;">
+    <a class="asset-card status-complete" href="/assets/fx-usdcad.html" style="--card-accent:#f59e0b;">
       <div class="card-ticker">USDCAD</div>
       <div class="card-name">US Dollar / Canadian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">CAD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-usdchf.html" style="--card-accent:#06b6d4;">
+    <a class="asset-card status-complete" href="/assets/fx-usdchf.html" style="--card-accent:#06b6d4;">
       <div class="card-ticker">USDCHF</div>
       <div class="card-name">US Dollar / Swiss Franc</div>
       <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">CHF CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-usdjpy.html" style="--card-accent:#8b3a2a;">
+    <a class="asset-card status-complete" href="/assets/fx-usdjpy.html" style="--card-accent:#8b3a2a;">
       <div class="card-ticker">USDJPY</div>
       <div class="card-name">US Dollar / Japanese Yen</div>
       <div class="card-meta"><span class="card-badge derived">USD ICE</span><span class="card-badge derived">JPY CME</span></div>
@@ -424,63 +427,63 @@
   <!-- FX Minors -->
   <div class="grid-section" id="fx-minors">FX Minors</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/fx-audcad.html" style="--card-accent:#e040a0;">
+    <a class="asset-card status-complete" href="/assets/fx-audcad.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUDCAD</div>
       <div class="card-name">Australian Dollar / Canadian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CAD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-audchf.html" style="--card-accent:#e040a0;">
+    <a class="asset-card status-complete" href="/assets/fx-audchf.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUDCHF</div>
       <div class="card-name">Australian Dollar / Swiss Franc</div>
       <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">CHF CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-audnzd.html" style="--card-accent:#e040a0;">
+    <a class="asset-card status-complete" href="/assets/fx-audnzd.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUDNZD</div>
       <div class="card-name">Australian Dollar / New Zealand Dollar</div>
       <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">NZD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-euraud.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-euraud.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURAUD</div>
       <div class="card-name">Euro / Australian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">AUD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-eurchf.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-eurchf.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURCHF</div>
       <div class="card-name">Euro / Swiss Franc</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">CHF CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-eurgbp.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-eurgbp.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURGBP</div>
       <div class="card-name">Euro / British Pound</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">GBP CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-gbpaud.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/fx-gbpaud.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBPAUD</div>
       <div class="card-name">British Pound / Australian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">AUD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-gbpchf.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/fx-gbpchf.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBPCHF</div>
       <div class="card-name">British Pound / Swiss Franc</div>
       <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">CHF CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-nzdusd.html" style="--card-accent:#10b981;">
+    <a class="asset-card status-complete" href="/assets/fx-nzdusd.html" style="--card-accent:#10b981;">
       <div class="card-ticker">NZDUSD</div>
       <div class="card-name">New Zealand Dollar / US Dollar</div>
       <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">USD ICE</span></div>
@@ -491,84 +494,84 @@
   <!-- FX Crosses -->
   <div class="grid-section" id="fx-crosses">FX Crosses</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/fx-audjpy.html" style="--card-accent:#e040a0;">
+    <a class="asset-card status-complete" href="/assets/fx-audjpy.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUDJPY</div>
       <div class="card-name">Australian Dollar / Japanese Yen</div>
       <div class="card-meta"><span class="card-badge derived">AUD CME</span><span class="card-badge derived">JPY CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-cadchf.html" style="--card-accent:#f59e0b;">
+    <a class="asset-card status-complete" href="/assets/fx-cadchf.html" style="--card-accent:#f59e0b;">
       <div class="card-ticker">CADCHF</div>
       <div class="card-name">Canadian Dollar / Swiss Franc</div>
       <div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">CHF CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-cadjpy.html" style="--card-accent:#f59e0b;">
+    <a class="asset-card status-complete" href="/assets/fx-cadjpy.html" style="--card-accent:#f59e0b;">
       <div class="card-ticker">CADJPY</div>
       <div class="card-name">Canadian Dollar / Japanese Yen</div>
       <div class="card-meta"><span class="card-badge derived">CAD CME</span><span class="card-badge derived">JPY CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-eurcad.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-eurcad.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURCAD</div>
       <div class="card-name">Euro / Canadian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">CAD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-eurjpy.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-eurjpy.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURJPY</div>
       <div class="card-name">Euro / Japanese Yen</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">JPY CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-eurnzd.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/fx-eurnzd.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EURNZD</div>
       <div class="card-name">Euro / New Zealand Dollar</div>
       <div class="card-meta"><span class="card-badge derived">EUR CME</span><span class="card-badge derived">NZD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-gbpcad.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/fx-gbpcad.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBPCAD</div>
       <div class="card-name">British Pound / Canadian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">CAD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-gbpjpy.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/fx-gbpjpy.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBPJPY</div>
       <div class="card-name">British Pound / Japanese Yen</div>
       <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">JPY CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-gbpnzd.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/fx-gbpnzd.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBPNZD</div>
       <div class="card-name">British Pound / New Zealand Dollar</div>
       <div class="card-meta"><span class="card-badge derived">GBP CME</span><span class="card-badge derived">NZD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-nzdcad.html" style="--card-accent:#10b981;">
+    <a class="asset-card status-complete" href="/assets/fx-nzdcad.html" style="--card-accent:#10b981;">
       <div class="card-ticker">NZDCAD</div>
       <div class="card-name">New Zealand Dollar / Canadian Dollar</div>
       <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">CAD CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-nzdchf.html" style="--card-accent:#10b981;">
+    <a class="asset-card status-complete" href="/assets/fx-nzdchf.html" style="--card-accent:#10b981;">
       <div class="card-ticker">NZDCHF</div>
       <div class="card-name">New Zealand Dollar / Swiss Franc</div>
       <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">CHF CME</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fx-nzdjpy.html" style="--card-accent:#10b981;">
+    <a class="asset-card status-complete" href="/assets/fx-nzdjpy.html" style="--card-accent:#10b981;">
       <div class="card-ticker">NZDJPY</div>
       <div class="card-name">New Zealand Dollar / Japanese Yen</div>
       <div class="card-meta"><span class="card-badge derived">NZD CME</span><span class="card-badge derived">JPY CME</span></div>
@@ -588,70 +591,70 @@
   <div class="grid-section" id="fut-currencies">Currencies</div>
   <div class="asset-grid">
 
-    <a class="asset-card status-complete" href="assets/aud.html" style="--card-accent:#e040a0;">
+    <a class="asset-card status-complete" href="/assets/aud.html" style="--card-accent:#e040a0;">
       <div class="card-ticker">AUD/USD</div>
       <div class="card-name">Australian Dollar (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">34-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/usd.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/usd.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">USD Index</div>
       <div class="card-name">US Dollar Index (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">35-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/jpy.html" style="--card-accent:#8b3a2a;">
+    <a class="asset-card status-complete" href="/assets/jpy.html" style="--card-accent:#8b3a2a;">
       <div class="card-ticker">JPY/USD</div>
       <div class="card-name">Japanese Yen (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/gbp.html" style="--card-accent:#22c55e;">
+    <a class="asset-card status-complete" href="/assets/gbp.html" style="--card-accent:#22c55e;">
       <div class="card-ticker">GBP/USD</div>
       <div class="card-name">British Pound (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/cad.html" style="--card-accent:#f59e0b;">
+    <a class="asset-card status-complete" href="/assets/cad.html" style="--card-accent:#f59e0b;">
       <div class="card-ticker">CAD/USD</div>
       <div class="card-name">Canadian Dollar (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/nzd.html" style="--card-accent:#10b981;">
+    <a class="asset-card status-complete" href="/assets/nzd.html" style="--card-accent:#10b981;">
       <div class="card-ticker">NZD/USD</div>
       <div class="card-name">New Zealand Dollar (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">23-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/eur.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/eur.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">EUR/USD</div>
       <div class="card-name">EuroFX (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">22-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/chf.html" style="--card-accent:#06b6d4;">
+    <a class="asset-card status-complete" href="/assets/chf.html" style="--card-accent:#06b6d4;">
       <div class="card-ticker">CHF/USD</div>
       <div class="card-name">Swiss Franc (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/mxn.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/mxn.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">MXN/USD</div>
       <div class="card-name">Mexican Peso (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">26-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/brl.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/brl.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">BRL/USD</div>
       <div class="card-name">Brazilian Real (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">25-YR</span></div>
@@ -663,35 +666,35 @@
   <!-- Metals -->
   <div class="grid-section" id="fut-metals">Metals</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/xau.html" style="--card-accent:#f59e0b;">
+    <a class="asset-card status-complete" href="/assets/xau.html" style="--card-accent:#f59e0b;">
       <div class="card-ticker">XAU</div>
       <div class="card-name">Gold (CMX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/xag.html" style="--card-accent:#94a3b8;">
+    <a class="asset-card status-complete" href="/assets/xag.html" style="--card-accent:#94a3b8;">
       <div class="card-ticker">XAG</div>
       <div class="card-name">Silver (CMX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/copper.html" style="--card-accent:#ea580c;">
+    <a class="asset-card status-complete" href="/assets/copper.html" style="--card-accent:#ea580c;">
       <div class="card-ticker">Copper</div>
       <div class="card-name">Copper (CMX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/platinum.html" style="--card-accent:#a78bfa;">
+    <a class="asset-card status-complete" href="/assets/platinum.html" style="--card-accent:#a78bfa;">
       <div class="card-ticker">Platinum</div>
       <div class="card-name">Platinum (NYMEX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/palladium.html" style="--card-accent:#34d399;">
+    <a class="asset-card status-complete" href="/assets/palladium.html" style="--card-accent:#34d399;">
       <div class="card-ticker">Palladium</div>
       <div class="card-name">Palladium (NYMEX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
@@ -702,42 +705,42 @@
   <!-- Energy -->
   <div class="grid-section" id="fut-energy">Energy</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/cl.html" style="--card-accent:#d97706;">
+    <a class="asset-card status-complete" href="/assets/cl.html" style="--card-accent:#d97706;">
       <div class="card-ticker">CL</div>
       <div class="card-name">Crude Oil (NYM)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">37-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/brent.html" style="--card-accent:#b45309;">
+    <a class="asset-card status-complete" href="/assets/brent.html" style="--card-accent:#b45309;">
       <div class="card-ticker">Brent</div>
       <div class="card-name">Brent Crude (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">31-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/ng.html" style="--card-accent:#0ea5e9;">
+    <a class="asset-card status-complete" href="/assets/ng.html" style="--card-accent:#0ea5e9;">
       <div class="card-ticker">Nat Gas</div>
       <div class="card-name">Natural Gas (NYM)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">30-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/ulsd.html" style="--card-accent:#78716c;">
+    <a class="asset-card status-complete" href="/assets/ulsd.html" style="--card-accent:#78716c;">
       <div class="card-ticker">ULSD</div>
       <div class="card-name">NY Harbor ULSD (NYM)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/rb.html" style="--card-accent:#65a30d;">
+    <a class="asset-card status-complete" href="/assets/rb.html" style="--card-accent:#65a30d;">
       <div class="card-ticker">RBOB</div>
       <div class="card-name">RBOB Gasoline (NYM)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">35-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/gasoil.html" style="--card-accent:#1d4ed8;">
+    <a class="asset-card status-complete" href="/assets/gasoil.html" style="--card-accent:#1d4ed8;">
       <div class="card-ticker">Gas Oil</div>
       <div class="card-name">Gas Oil (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">34-YR</span></div>
@@ -748,98 +751,98 @@
   <!-- Interest Rates -->
   <div class="grid-section" id="fut-rates">Interest Rates</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/tbonds.html" style="--card-accent:#1d4ed8;">
+    <a class="asset-card status-complete" href="/assets/tbonds.html" style="--card-accent:#1d4ed8;">
       <div class="card-ticker">T-Bond 30Y</div>
       <div class="card-name">30-Year T-Bonds (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/tnotes10.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/tnotes10.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">T-Note 10Y</div>
       <div class="card-name">10-Year T-Notes (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">39-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/tnotes5.html" style="--card-accent:#0891b2;">
+    <a class="asset-card status-complete" href="/assets/tnotes5.html" style="--card-accent:#0891b2;">
       <div class="card-ticker">T-Note 5Y</div>
       <div class="card-name">5-Year T-Notes (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">33-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/tnotes2.html" style="--card-accent:#0369a1;">
+    <a class="asset-card status-complete" href="/assets/tnotes2.html" style="--card-accent:#0369a1;">
       <div class="card-ticker">T-Note 2Y</div>
       <div class="card-name">2-Year T-Notes (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">30-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/eurodollar.html" style="--card-accent:#0284c7;">
+    <a class="asset-card status-complete" href="/assets/eurodollar.html" style="--card-accent:#0284c7;">
       <div class="card-ticker">Eurodollar</div>
       <div class="card-name">Eurodollars (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">39-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/fedfunds.html" style="--card-accent:#0f766e;">
+    <a class="asset-card status-complete" href="/assets/fedfunds.html" style="--card-accent:#0f766e;">
       <div class="card-ticker">Fed Funds</div>
       <div class="card-name">30-Day Fed Funds (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">32-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/austbonds10.html" style="--card-accent:#1e40af;">
+    <a class="asset-card status-complete" href="/assets/austbonds10.html" style="--card-accent:#1e40af;">
       <div class="card-ticker">Aus T-Bond 10Y</div>
       <div class="card-name">10-Year Aus T-Bonds (SFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">36-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/austbonds3.html" style="--card-accent:#1d4ed8;">
+    <a class="asset-card status-complete" href="/assets/austbonds3.html" style="--card-accent:#1d4ed8;">
       <div class="card-ticker">Aus T-Bond 3Y</div>
       <div class="card-name">3-Year Aus T-Bonds (SFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">33-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/austbills3m.html" style="--card-accent:#0369a1;">
+    <a class="asset-card status-complete" href="/assets/austbills3m.html" style="--card-accent:#0369a1;">
       <div class="card-ticker">Aus T-Bill 3M</div>
       <div class="card-name">3-Mth Aus T-Bills (SFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/longgilt.html" style="--card-accent:#7c3aed;">
+    <a class="asset-card status-complete" href="/assets/longgilt.html" style="--card-accent:#7c3aed;">
       <div class="card-ticker">Long Gilt</div>
       <div class="card-name">Long Gilt (LIFFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">38-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/shortsterling.html" style="--card-accent:#6d28d9;">
+    <a class="asset-card status-complete" href="/assets/shortsterling.html" style="--card-accent:#6d28d9;">
       <div class="card-ticker">Short Sterling</div>
       <div class="card-name">3-Mth Short Sterling (LIFFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">38-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/eurobund.html" style="--card-accent:#4338ca;">
+    <a class="asset-card status-complete" href="/assets/eurobund.html" style="--card-accent:#4338ca;">
       <div class="card-ticker">Euro-Bund</div>
       <div class="card-name">Euro-Bund (EUREX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">30-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/eurobobl.html" style="--card-accent:#6366f1;">
+    <a class="asset-card status-complete" href="/assets/eurobobl.html" style="--card-accent:#6366f1;">
       <div class="card-ticker">Euro-Bobl</div>
       <div class="card-name">Euro-Bobl (EUREX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">23-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/euroyen.html" style="--card-accent:#0e7490;">
+    <a class="asset-card status-complete" href="/assets/euroyen.html" style="--card-accent:#0e7490;">
       <div class="card-ticker">Euro-Yen</div>
       <div class="card-name">3-Mth Euro-Yen (SGX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">31-YR</span></div>
@@ -850,91 +853,91 @@
   <!-- Indices -->
   <div class="grid-section" id="fut-indices">Indices</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/sp500.html" style="--card-accent:#1d4ed8;">
+    <a class="asset-card status-complete" href="/assets/sp500.html" style="--card-accent:#1d4ed8;">
       <div class="card-ticker">S&amp;P 500</div>
       <div class="card-name">S&amp;P 500 (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">39-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/es.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/es.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">S&amp;P eMini</div>
       <div class="card-name">S&amp;P 500 eMini (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">23-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/rty.html" style="--card-accent:#7c3aed;">
+    <a class="asset-card status-complete" href="/assets/rty.html" style="--card-accent:#7c3aed;">
       <div class="card-ticker">Russell 2000</div>
       <div class="card-name">Russell 2000 (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">17-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/ym.html" style="--card-accent:#0369a1;">
+    <a class="asset-card status-complete" href="/assets/ym.html" style="--card-accent:#0369a1;">
       <div class="card-ticker">DJIA eMini</div>
       <div class="card-name">DJIA Index eMini (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">23-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/nq.html" style="--card-accent:#0891b2;">
+    <a class="asset-card status-complete" href="/assets/nq.html" style="--card-accent:#0891b2;">
       <div class="card-ticker">Nasdaq 100</div>
       <div class="card-name">Nasdaq 100 eMini (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">24-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/md.html" style="--card-accent:#6d28d9;">
+    <a class="asset-card status-complete" href="/assets/md.html" style="--card-accent:#6d28d9;">
       <div class="card-ticker">S&amp;P 400</div>
       <div class="card-name">S&amp;P 400 MidCap eMini (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">29-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/gsci.html" style="--card-accent:#b45309;">
+    <a class="asset-card status-complete" href="/assets/gsci.html" style="--card-accent:#b45309;">
       <div class="card-ticker">GSCI</div>
       <div class="card-name">GSCI (CME)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">29-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/nk.html" style="--card-accent:#dc2626;">
+    <a class="asset-card status-complete" href="/assets/nk.html" style="--card-accent:#dc2626;">
       <div class="card-ticker">Nikkei 225</div>
       <div class="card-name">Nikkei 225 (SIMEX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">34-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/ftse.html" style="--card-accent:#0284c7;">
+    <a class="asset-card status-complete" href="/assets/ftse.html" style="--card-accent:#0284c7;">
       <div class="card-ticker">FTSE 100</div>
       <div class="card-name">FT-SE 100 (LIFFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">37-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/spi.html" style="--card-accent:#16a34a;">
+    <a class="asset-card status-complete" href="/assets/spi.html" style="--card-accent:#16a34a;">
       <div class="card-ticker">SPI 200</div>
       <div class="card-name">SPI 200 (SFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">21-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/dax.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/dax.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">DAX</div>
       <div class="card-name">DAX (EUREX)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">30-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/cac.html" style="--card-accent:#2563eb;">
+    <a class="asset-card status-complete" href="/assets/cac.html" style="--card-accent:#2563eb;">
       <div class="card-ticker">CAC 40</div>
       <div class="card-name">CAC 40 (MATIF)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">32-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/hsi.html" style="--card-accent:#dc2626;">
+    <a class="asset-card status-complete" href="/assets/hsi.html" style="--card-accent:#dc2626;">
       <div class="card-ticker">Hang Seng</div>
       <div class="card-name">Hang Seng (HKFE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">34-YR</span></div>
@@ -945,56 +948,56 @@
   <!-- Softs -->
   <div class="grid-section" id="fut-softs">Softs</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/coffee.html" style="--card-accent:#78350f;">
+    <a class="asset-card status-complete" href="/assets/coffee.html" style="--card-accent:#78350f;">
       <div class="card-ticker">Coffee</div>
       <div class="card-name">Coffee "C" (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/sugar11.html" style="--card-accent:#d97706;">
+    <a class="asset-card status-complete" href="/assets/sugar11.html" style="--card-accent:#d97706;">
       <div class="card-ticker">Sugar #11</div>
       <div class="card-name">Sugar #11 (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/cocoa.html" style="--card-accent:#92400e;">
+    <a class="asset-card status-complete" href="/assets/cocoa.html" style="--card-accent:#92400e;">
       <div class="card-ticker">Cocoa</div>
       <div class="card-name">Cocoa (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/oj.html" style="--card-accent:#ea580c;">
+    <a class="asset-card status-complete" href="/assets/oj.html" style="--card-accent:#ea580c;">
       <div class="card-ticker">Orange Juice</div>
       <div class="card-name">Orange Juice (ICE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/roughrice.html" style="--card-accent:#ca8a04;">
+    <a class="asset-card status-complete" href="/assets/roughrice.html" style="--card-accent:#ca8a04;">
       <div class="card-ticker">Rough Rice</div>
       <div class="card-name">Rough Rice (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">34-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/londonsugar.html" style="--card-accent:#854d0e;">
+    <a class="asset-card status-complete" href="/assets/londonsugar.html" style="--card-accent:#854d0e;">
       <div class="card-ticker">London Sugar</div>
       <div class="card-name">London Sugar (LCE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">30-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/londoncocoa.html" style="--card-accent:#5c2d09;">
+    <a class="asset-card status-complete" href="/assets/londoncocoa.html" style="--card-accent:#5c2d09;">
       <div class="card-ticker">London Cocoa</div>
       <div class="card-name">London Cocoa (LCE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">34-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/robusta.html" style="--card-accent:#374151;">
+    <a class="asset-card status-complete" href="/assets/robusta.html" style="--card-accent:#374151;">
       <div class="card-ticker">Robusta Coffee</div>
       <div class="card-name">Robusta Coffee (LCE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">29-YR</span></div>
@@ -1005,56 +1008,56 @@
   <!-- Grains & Oilseeds -->
   <div class="grid-section" id="fut-grains">Soybeans, Grains &amp; Oilseeds</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/soybeans.html" style="--card-accent:#78350f;">
+    <a class="asset-card status-complete" href="/assets/soybeans.html" style="--card-accent:#78350f;">
       <div class="card-ticker">Soybeans</div>
       <div class="card-name">Soybeans (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/sbmeal.html" style="--card-accent:#92400e;">
+    <a class="asset-card status-complete" href="/assets/sbmeal.html" style="--card-accent:#92400e;">
       <div class="card-ticker">Soy Meal</div>
       <div class="card-name">Soybean Meal (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/sboil.html" style="--card-accent:#4d7c0f;">
+    <a class="asset-card status-complete" href="/assets/sboil.html" style="--card-accent:#4d7c0f;">
       <div class="card-ticker">Soy Oil</div>
       <div class="card-name">Soybean Oil (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/wheat.html" style="--card-accent:#b45309;">
+    <a class="asset-card status-complete" href="/assets/wheat.html" style="--card-accent:#b45309;">
       <div class="card-ticker">Wheat CBOT</div>
       <div class="card-name">Wheat (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/wheatk.html" style="--card-accent:#a16207;">
+    <a class="asset-card status-complete" href="/assets/wheatk.html" style="--card-accent:#a16207;">
       <div class="card-ticker">Wheat KCBT</div>
       <div class="card-name">Wheat (KCBT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/wheatm.html" style="--card-accent:#7c2d12;">
+    <a class="asset-card status-complete" href="/assets/wheatm.html" style="--card-accent:#7c2d12;">
       <div class="card-ticker">Wheat MGE</div>
       <div class="card-name">Wheat (MGE)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/corn.html" style="--card-accent:#d97706;">
+    <a class="asset-card status-complete" href="/assets/corn.html" style="--card-accent:#d97706;">
       <div class="card-ticker">Corn</div>
       <div class="card-name">Corn (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
       <div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div>
     </a>
 
-    <a class="asset-card status-complete" href="assets/oats.html" style="--card-accent:#65a30d;">
+    <a class="asset-card status-complete" href="/assets/oats.html" style="--card-accent:#65a30d;">
       <div class="card-ticker">Oats</div>
       <div class="card-name">Oats (CBOT)</div>
       <div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div>
@@ -1065,21 +1068,21 @@
   <!-- Fiber -->
   <div class="grid-section" id="fut-fiber">Fiber</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/cotton.html" style="--card-accent:#a16207;"><div class="card-ticker">Cotton</div><div class="card-name">Cotton (ICE)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/cotton.html" style="--card-accent:#a16207;"><div class="card-ticker">Cotton</div><div class="card-name">Cotton (ICE)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
 
-    <a class="asset-card status-complete" href="assets/lumber.html" style="--card-accent:#92400e;"><div class="card-ticker">Lumber</div><div class="card-name">Lumber (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/lumber.html" style="--card-accent:#92400e;"><div class="card-ticker">Lumber</div><div class="card-name">Lumber (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
   </div>
 
   <!-- Meats & Dairy -->
   <div class="grid-section" id="fut-meats">Meats &amp; Dairy</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/lc.html" style="--card-accent:#dc2626;"><div class="card-ticker">Live Cattle</div><div class="card-name">Live Cattle (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/lc.html" style="--card-accent:#dc2626;"><div class="card-ticker">Live Cattle</div><div class="card-name">Live Cattle (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
 
-    <a class="asset-card status-complete" href="assets/fc.html" style="--card-accent:#b91c1c;"><div class="card-ticker">Feeder Cattle</div><div class="card-name">Feeder Cattle (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/fc.html" style="--card-accent:#b91c1c;"><div class="card-ticker">Feeder Cattle</div><div class="card-name">Feeder Cattle (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
 
-    <a class="asset-card status-complete" href="assets/lh.html" style="--card-accent:#e11d48;"><div class="card-ticker">Lean Hogs</div><div class="card-name">Lean Hogs (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/lh.html" style="--card-accent:#e11d48;"><div class="card-ticker">Lean Hogs</div><div class="card-name">Lean Hogs (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">40-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
 
-    <a class="asset-card status-complete" href="assets/milk.html" style="--card-accent:#0891b2;"><div class="card-ticker">Class III Milk</div><div class="card-name">Class III Milk (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">25-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/milk.html" style="--card-accent:#0891b2;"><div class="card-ticker">Class III Milk</div><div class="card-name">Class III Milk (CME)</div><div class="card-meta"><span class="card-badge">5-YR</span><span class="card-badge">15-YR</span><span class="card-badge">25-YR</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
   </div>
 
 </div><!-- /futures block -->
@@ -1092,7 +1095,7 @@
 
   <div class="grid-section" id="crypto-major">Crypto</div>
   <div class="asset-grid">
-    <a class="asset-card status-complete" href="assets/btc.html" style="--card-accent:#f7931a;"><div class="card-ticker">BTC/USD</div><div class="card-name">Bitcoin</div><div class="card-meta"><span class="card-badge derived">9-YR</span><span class="card-badge derived">Price-Derived</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
+    <a class="asset-card status-complete" href="/assets/btc.html" style="--card-accent:#f7931a;"><div class="card-ticker">BTC/USD</div><div class="card-name">Bitcoin</div><div class="card-meta"><span class="card-badge derived">9-YR</span><span class="card-badge derived">Price-Derived</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="bull-tag">Live</span><span class="card-arrow">→</span></div></a>
 
     <a class="asset-card status-planned" href="#" style="--card-accent:#94a3b8;"><div class="card-ticker">ETH/USD</div><div class="card-name">Ethereum</div><div class="card-meta"><span class="card-badge">Planned</span></div><div class="card-signal"><span class="card-signal-label">Status</span><span class="neutral-tag">Planned</span><span class="card-arrow">→</span></div></a>
 
@@ -1214,15 +1217,18 @@
 </script>
 
 <!-- Live signal injection — derived from SIGNALS_MANIFEST at page load time -->
-<script src="data/signals_manifest.js"></script>
+<script src="/data/signals_manifest.js"></script>
+<script src="/js/signals.js"></script>
 <script>
 (function () {
   if (typeof SIGNALS_MANIFEST === 'undefined') return;
 
+  // Signal mapping, conviction and week-of-month all come from js/signals.js —
+  // shared with the landing page, This Week and the Heatmap so they always agree.
   var now   = new Date();
-  var mon   = now.getMonth();
-  var wkIdx = Math.min(3, Math.floor((now.getDate() - 1) / 7));
-  var flat  = mon * 4 + wkIdx;
+  var cw    = KptSignals.weekOf(now);
+  var mon   = cw.month;
+  var wkIdx = cw.week;
 
   /* ── Category map: asset ID → display label ── */
   var ASSET_CAT = {
@@ -1256,30 +1262,7 @@
     'fx-nzdcad':'FX Crosses', 'fx-nzdchf':'FX Crosses', 'fx-nzdjpy':'FX Crosses'
   };
 
-  /* ── Helpers ── */
-  function comToTag(com) {
-    if (!com) return { cls: 'chop-tag', label: 'CHOP', type: 'chop' };
-    var u = com.toUpperCase();
-    if (u.indexOf('LONG')    === 0) return { cls: 'bull-tag',    label: 'BULL',  type: 'bull' };
-    if (u.indexOf('SHORT')   === 0) return { cls: 'bear-tag',    label: 'BEAR',  type: 'bear' };
-    if (u.indexOf('FLIP')    === 0) return { cls: 'chop-tag',    label: 'FLIP',  type: 'chop' };
-    if (u.indexOf('AVOID')   === 0) return { cls: 'neutral-tag', label: 'AVOID', type: 'chop' };
-    if (u.indexOf('HOLD')    === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
-    if (u.indexOf('NEUTRAL') === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
-    if (u.indexOf('MIXED')   === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
-    if (u.indexOf('WATCH')   === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
-    return { cls: 'chop-tag', label: 'CHOP', type: 'chop' };
-  }
-
-  function starCount(com) { return (com.match(/★/g) || []).length; }
-
-  function convPips(n) {
-    var html = '<span class="conv-pips">';
-    for (var i = 0; i < 5; i++) {
-      html += '<span class="conv-pip' + (i < n ? ' filled' : '') + '"></span>';
-    }
-    return html + '</span>';
-  }
+  var convPips = KptSignals.convPips;
 
   /* ── Scan all complete cards → classify into bull/bear/chop ── */
   var bulls = [], bears = [], chops = [];
@@ -1290,17 +1273,16 @@
     var m    = href.match(/assets\/([^./?#]+)/);
     if (!m) return;
     var id   = m[1];
-    var sigs = SIGNALS_MANIFEST[id];
-    if (!sigs) return;
+    var s = KptSignals.getSignal(id, mon, wkIdx);
+    if (!s) return;
 
-    var com    = sigs[flat] || '';
-    var t      = comToTag(com);
-    var stars  = starCount(com);
+    var t      = s;
+    var stars  = s.conviction;
     var sigDiv = card.querySelector('.card-signal');
     if (sigDiv) {
       sigDiv.innerHTML =
         '<span class="card-signal-label">Signal</span>' +
-        '<span class="' + t.cls + '">' + t.label + '</span>' +
+        '<span class="' + t.cls + '">' + t.signal + '</span>' +
         convPips(stars);
     }
     // Tag card with signal type for the filter bar
@@ -1444,5 +1426,6 @@
   }
 })();
 </script>
+<script src="/js/site.js" defer></script>
 </body>
 </html>

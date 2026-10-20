@@ -2,6 +2,48 @@
 
 ---
 
+## v1.18 — October 2026
+**Landing page at `/`, dashboard moved to `/dashboard`, shared nav/footer and self-hosted fonts**
+
+Built from `docs/specs/2026-10-site-expansion/LANDING_PAGE_BUILD_NOTES.md` (mockup: `landing-mockup.html`).
+
+### Changes
+
+- **Routes:** `index.html` (the dashboard index) renamed to `dashboard.html`, served at `/dashboard`
+  by a 200 rewrite in the new `netlify.toml`; the new `index.html` is the landing page.
+  `/docs/*` and `/scripts/*` are now forced 404s, and a styled `404.html` was added.
+  `dashboard.html`/`index.html` use root-absolute paths so `/dashboard/` (trailing slash) works.
+- **Links:** `scripts/patch_dashboard_links.js` repointed every `../index.html` link to
+  `/dashboard` — 103 files, 123 links (98 asset pages, the profiling calendar/detail/compare
+  pages, and two JS-built links).
+- **Landing page:** copy, layout and colours from the approved mockup. The hero "This week" panel
+  is live — week label, BULL/BEAR/OTHER tally and three featured cards (EURUSD, USDCAD, GBPUSD;
+  `FEATURED` const in `js/landing.js`) — and stays hidden until data loads; if the manifest fails
+  it shows a link to the dashboard instead (never 0/0/0). Asset counts and the coverage cards
+  are derived from the dashboard's own card list. The trend curve stays illustrative.
+- **Shared signal module `js/signals.js`:** the dashboard's inline signal mapping, conviction and
+  week logic moved here unchanged and the dashboard now calls it; verified identical rendered
+  signals on all 98 cards at four dates (Jan Wk1, Apr Wk3, Oct Wk3, Dec Wk4).
+- **Asset registry `data/asset_index.js`** generated from the dashboard cards by
+  `scripts/gen_asset_index.js` (98 live in 13 groups + 19 planned crypto).
+- **Shared chrome:** `js/site.js` + `css/chrome.css` render one primary nav (Dashboard · This Week ·
+  Heatmap · Track Record · Methodology) and one site footer (site links, legal links, Embeds
+  setting stored as `kpt-embeds`, disclaimer and operator line). The operator name lives in one
+  constant (`KPT_SITE.OPERATOR_NAME`). Footer doesn't repeat the attribution on pages that
+  already show it. The routes it links to are built in the following steps.
+- **Fonts self-hosted** (`css/fonts.css`, `assets/fonts/` + OFL licences): Bebas Neue, IBM Plex
+  Mono, Barlow. `dashboard.css` no longer imports Google Fonts. The mockups' JetBrains Mono was
+  replaced by IBM Plex Mono (already used on every asset page) so the whole site uses one mono
+  family.
+- **Local preview:** `scripts/serve_local.js` applies `netlify.toml` so clean routes work locally.
+- **Docs:** README (repo is public; routes; "landing page" → "dashboard index" for the old
+  index), ARCHITECTURE, USER_GUIDE, CONTRIBUTING, SKILL, scripts/README.
+- **Tests (headless, local server):** routes incl. `/dashboard/` and the forced 404s; landing
+  week/tally/cards identical to `/dashboard` for the same week; manifest-blocked fallback; no
+  horizontal scroll and no console errors at 1440 / 768 / 390px on `/` and `/dashboard`.
+
+---
+
 ## v1.17 — October 2026
 **Range Outlook: TimesFM daily-range forecasts on the Profiling tab**
 

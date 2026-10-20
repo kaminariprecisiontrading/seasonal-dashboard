@@ -167,7 +167,7 @@
 
     if (!name) {
       document.getElementById('kptp-profile-detail-root').innerHTML =
-        '<div class="kptp-section-note">Unknown profile "' + (slug || '') + '". <a href="../index.html">Back to dashboard</a>.</div>';
+        '<div class="kptp-section-note">Unknown profile "' + (slug || '') + '". <a href="/dashboard">Back to dashboard</a>.</div>';
       return;
     }
 
