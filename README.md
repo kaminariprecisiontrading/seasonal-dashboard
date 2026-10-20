@@ -103,6 +103,18 @@ python -m venv .venv
 .venv/Scripts/pip install pandas numpy scipy   # Windows; use .venv/bin/pip on macOS/Linux
 ```
 
+### Track Record grading (all assets at once)
+
+After refreshing assets, grade the seasonal-dashboard's weekly signals and sync them over:
+
+```bash
+python pipeline/grade_signals.py            # → output/track_record.json (since 2016-01-04 by default)
+cd ../seasonal-dashboard && node scripts/sync_track_record.js
+```
+
+Weeks with a snapshot in `seasonal-dashboard/data/signal_history/` are graded as *live-recorded*
+(the signals shown at the time); all others as *backfilled* (today's data, in-sample).
+
 ### Range Outlook (TimesFM) environment
 
 The Range Outlook stage (`pipeline/forecast_range.py`, TimesFM 2.5 daily-range forecasts) needs
