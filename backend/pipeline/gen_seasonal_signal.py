@@ -1,9 +1,9 @@
 """
 gen_seasonal_signal.py — Derives a Moore-Research-shaped seasonal signal from
 raw price history, for assets MRCI doesn't cover (crypto, and eventually
-synthetics — see seasonal-dashboard's PLATFORM_ROADMAP.md Tier 6).
+synthetics — see docs/PLATFORM_ROADMAP.md Tier 6).
 
-Replicates seasonal-dashboard/js/backtest.js's week-of-month bucketing and
+Replicates frontend/js/backtest.js's week-of-month bucketing and
 "Raw Price Tendency" convention exactly, so the derived signal means the same
 thing as the site's own validation tooling (its only existing "derive stats
 from raw price" precedent):
@@ -24,7 +24,7 @@ Two lookback windows are computed per (month, wkSlot): "5yr" (the most recent
 5 distinct calendar years in the data) and "full" (every year available).
 There is no real 15-year window for an asset with ~9 years of history, so the
 "full" window's result is reused for both the 15-YR and long-term columns —
-see seasonal-dashboard's assets/btc.html .derived-note for the disclosure
+see frontend/assets/btc.html .derived-note for the disclosure
 this requires; do not silently present it as a genuine 15-year sample.
 
 Star conviction is capped GLOBALLY at GLOBAL_MAX_STARS, not per-bucket: this

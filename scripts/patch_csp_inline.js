@@ -8,7 +8,7 @@
  *      same order, into js/dashboard.js, loaded right after js/signals.js.
  * Idempotent.
  *
- * Run from seasonal-dashboard/ root:  node scripts/patch_csp_inline.js
+ * Run from the repo root:  node scripts/patch_csp_inline.js
  */
 const fs = require('fs');
 const path = require('path');

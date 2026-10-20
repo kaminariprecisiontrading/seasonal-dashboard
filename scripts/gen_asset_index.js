@@ -8,7 +8,7 @@
  * than hand-maintaining a second list) means a new card on the dashboard shows up
  * on the landing page, This Week and the Heatmap after one re-run — no drift.
  *
- * Run from seasonal-dashboard/ root after adding/renaming a dashboard card:
+ * Run from the repo root after adding/renaming a dashboard card:
  *   node scripts/gen_asset_index.js
  */
 const fs = require('fs');

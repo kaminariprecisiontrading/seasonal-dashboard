@@ -4,7 +4,7 @@
  * Inserts:  <script src="../js/seasonal-chart.js" defer></script>
  * Before:   <script src="../js/ui.js" defer></script>
  *
- * Run once from the seasonal-dashboard/ directory:
+ * Run once from the repo root:
  *   node patch_add_seasonal_chart.js
  */
 

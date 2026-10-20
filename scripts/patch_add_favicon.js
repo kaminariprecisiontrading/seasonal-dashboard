@@ -9,7 +9,7 @@
  * relative-path risk of the kind that broke the Profiling tab's early links.
  *
  * Idempotent — safe to re-run; skips files that already have a favicon link.
- * Run from seasonal-dashboard/ root: node scripts/patch_add_favicon.js
+ * Run from the repo root: node scripts/patch_add_favicon.js
  */
 const fs = require('fs');
 const path = require('path');

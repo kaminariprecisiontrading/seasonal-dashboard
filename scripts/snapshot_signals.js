@@ -4,12 +4,12 @@
  *
  * Writes data/signal_history/YYYY-MM-Wn.json for the dashboard week slot of the given date
  * (default: today): { week, takenAt, manifestGenerated, signals: { <assetId>: "<com>" } }.
- * KPT-Market-Profiling/pipeline/grade_signals.py grades these snapshots — never the
+ * backend/pipeline/grade_signals.py grades these snapshots — never the
  * current data — once price data for that week exists. Existing snapshots are never
  * overwritten (history must not be rewritten); pass --force only to repair a bad file.
  *
  * Run once a week, ideally on Monday (same week slot rule as the dashboard: days 1-7 =
- * W1, 8-14 = W2, 15-21 = W3, 22+ = W4), from seasonal-dashboard/ root:
+ * W1, 8-14 = W2, 15-21 = W3, 22+ = W4), from the repo root:
  *   node scripts/snapshot_signals.js [--date YYYY-MM-DD] [--force]
  */
 const fs = require('fs');

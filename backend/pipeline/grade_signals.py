@@ -1,6 +1,6 @@
 """
-grade_signals.py — grades the seasonal-dashboard's weekly signals against what price
-actually did, for the seasonal-dashboard's /track-record page
+grade_signals.py — grades the site's weekly signals against what price
+actually did, for the site's /track-record page
 (docs/specs/2026-10-site-expansion/NEW_PAGES_BUILD_NOTES.md Phase 3, grading rules as
 confirmed by the owner 2026-10-20).
 
@@ -26,16 +26,16 @@ Two kinds of history, kept separate (`source`):
   - backfill — graded with today's signals_manifest.js. In-sample: the seasonal charts
     already include those years.
   - live — graded with the signals *as shown at the time*, from weekly snapshots in
-    seasonal-dashboard/data/signal_history/YYYY-MM-Wn.json (written by
-    seasonal-dashboard/scripts/snapshot_signals.js). Where a snapshot exists it replaces
+    frontend/data/signal_history/YYYY-MM-Wn.json (written by
+    scripts/snapshot_signals.js). Where a snapshot exists it replaces
     the backfill row for that week; later edits to the data never rewrite it.
 
-Output: output/track_record.json — synced into seasonal-dashboard/data/track_record.js by
-seasonal-dashboard/scripts/sync_track_record.js.
+Output: backend/output/track_record.json — synced into frontend/data/track_record.js by
+scripts/sync_track_record.js.
 
-Usage (from KPT-Market-Profiling/):
+Usage (from backend/):
     python pipeline/grade_signals.py [--since 2016-01-04]
-        [--dashboard ../seasonal-dashboard] [--out output/track_record.json]
+        [--site ../frontend] [--out output/track_record.json]
 """
 import argparse
 import datetime as dt
@@ -58,7 +58,7 @@ ASSETS = [
     ("us30", "ym", "US30"), ("btcusd", "btc", "BTCUSD"),
 ]
 
-# Mirror of the dashboard's comToTag() (seasonal-dashboard/js/signals.js) — keep in sync.
+# Mirror of the site's comToTag() (frontend/js/signals.js) — keep in sync.
 _PREFIX = [("LONG", "BULL"), ("SHORT", "BEAR"), ("FLIP", "FLIP"), ("AVOID", "AVOID"),
            ("HOLD", "CHOP"), ("NEUTRAL", "CHOP"), ("MIXED", "CHOP"), ("WATCH", "CHOP")]
 
@@ -126,12 +126,13 @@ def weekly_frames(clean_csv):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--since", default="2016-01-04")
-    ap.add_argument("--dashboard", default=os.path.join(ROOT, "..", "seasonal-dashboard"))
+    ap.add_argument("--site", "--dashboard", dest="site", default=os.path.join(ROOT, "..", "frontend"),
+                    help="the published site directory (default: ../frontend)")
     ap.add_argument("--out", default=os.path.join(ROOT, "output", "track_record.json"))
     args = ap.parse_args()
 
-    manifest = load_manifest(args.dashboard)
-    snaps = load_snapshots(args.dashboard)
+    manifest = load_manifest(args.site)
+    snaps = load_snapshots(args.site)
     since = pd.Timestamp(args.since)
     rows, as_of = [], None
 

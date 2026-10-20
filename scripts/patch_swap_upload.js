@@ -7,7 +7,7 @@
  * Inserts: <script src="../js/upload.js" defer></script>
  * Before:  <script src="../js/ui.js" defer></script>
  *
- * Run from the seasonal-dashboard/ directory:
+ * Run from the repo root:
  *   node scripts/patch_swap_upload.js                  (all asset pages)
  *   node scripts/patch_swap_upload.js fx-eurusd.html fx-gbpusd.html   (subset)
  */

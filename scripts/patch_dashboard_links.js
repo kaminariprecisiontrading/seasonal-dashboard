@@ -8,7 +8,7 @@
  * pages, and the two JS files that build a "Back to dashboard" link. Idempotent:
  * re-running finds nothing left to change.
  *
- * Run from seasonal-dashboard/ root:  node scripts/patch_dashboard_links.js
+ * Run from the repo root:  node scripts/patch_dashboard_links.js
  */
 const fs = require('fs');
 const path = require('path');

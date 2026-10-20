@@ -37,7 +37,7 @@ Design
 TimesFM forecasts are cached in cache/ (the expensive step); everything else recomputes in
 seconds, so re-running with different metrics never re-runs the model.
 
-Run from KPT-Market-Profiling/ with the forecast venv:
+Run from backend/ with the forecast venv:
   .venv-forecast/Scripts/python.exe research/timesfm_benchmark/run_benchmark.py
   .venv-forecast/Scripts/python.exe research/timesfm_benchmark/run_benchmark.py --assets gbpusd --start 2024-01-01
 """

@@ -8,7 +8,7 @@
  * behaviour (/foo -> foo.html) and its 404.html fallback, plus the [[headers]]
  * blocks (so the Content-Security-Policy can be tested locally).
  *
- * Run from seasonal-dashboard/ root:  node scripts/serve_local.js [port]
+ * Run from the repo root:  node scripts/serve_local.js [port]
  * Then open http://localhost:8888/
  */
 const http = require('http');

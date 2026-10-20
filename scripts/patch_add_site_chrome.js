@@ -8,7 +8,7 @@
  * js/site.js then appends the footer to <body> (these pages keep their own topbar,
  * so no primary nav). Idempotent: pages that already have site.js are skipped.
  *
- * Run from seasonal-dashboard/ root:  node scripts/patch_add_site_chrome.js
+ * Run from the repo root:  node scripts/patch_add_site_chrome.js
  */
 const fs = require('fs');
 const path = require('path');

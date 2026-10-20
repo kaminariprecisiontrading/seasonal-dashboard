@@ -40,12 +40,12 @@ every stage always reprocesses the *complete* history from the current raw
 CSV, never a delta, so there is no incremental-state to get out of sync.
 Re-running after concat_raw_csv.py has appended new data just regenerates
 every output from scratch, deterministically. See docs/PLATFORM_ROADMAP.md
-(seasonal-dashboard repo) for why "always reprocess everything" is the
+(at the repo root) for why "always reprocess everything" is the
 right design at this data scale, not a shortcut.
 
 Output paths are asset-keyed only (no date range baked into the filename,
 unlike some of the original manual-era files) — freshness is tracked via
-each output's own `as_of` field (and, downstream, the seasonal-dashboard
+each output's own `as_of` field (and, downstream, the site's
 manifest's asOf), not the filename, so re-running never leaves stale dated
 variants behind to track manually.
 
@@ -232,7 +232,7 @@ def main():
         print("(skipped --skip-calendar)", file=sys.stderr)
 
     print(f"\n=== {asset} refresh complete ===", file=sys.stderr)
-    print("Next: from seasonal-dashboard/, add this asset to scripts/sync_profiling_data.js's "
+    print("Next: from the repo root, add this asset to scripts/sync_profiling_data.js's "
           "ASSETS list if new, then run `node scripts/sync_profiling_data.js`.", file=sys.stderr)
 
 

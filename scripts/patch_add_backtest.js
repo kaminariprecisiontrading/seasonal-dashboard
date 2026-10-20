@@ -4,7 +4,7 @@
  * Inserts <script src="../js/backtest.js" defer></script> immediately before
  * <script src="../js/ui.js" defer></script> in every HTML file under assets/.
  *
- * Run once from the seasonal-dashboard root:
+ * Run once from the repo root:
  *   node patch_add_backtest.js
  */
 

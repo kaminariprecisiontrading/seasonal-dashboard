@@ -5,7 +5,7 @@
  * Months view (KptSignals.getMonthSignal) so it can show the month-level verdict
  * without loading all 98 data files.
  *
- * Run from seasonal-dashboard/ root after changing any data/<asset>.js:
+ * Run from the repo root after changing any data/<asset>.js:
  *   node scripts/gen_month_signals.js
  */
 const fs = require('fs');
