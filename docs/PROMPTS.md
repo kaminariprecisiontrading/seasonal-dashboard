@@ -169,21 +169,26 @@ Do not break the existing [PREVIOUS ASSET] data — it should remain accessible 
 
 **Used for:** Configuring the Analysis tab's multi-provider AI panel on first use.
 
-The Analysis tab supports three providers. Select via the pill buttons at the top of the panel, then click ⚙ to enter your credentials.
+The Analysis tab supports four providers. Select via the pill buttons at the top of the panel, then click ⚙ to enter your credentials. Keys are kept for this session only by default (sessionStorage), or remembered on this device (localStorage) if you choose — see `USER_GUIDE.md` → "Keeping your keys safe".
 
 **Claude (Anthropic)**
 - API key from: console.anthropic.com → API Keys
-- Stored in localStorage as `kpt-cfg-claude-key`
+- Stored as `kpt-cfg-claude-key`
 - Model: `claude-sonnet-5` (hardcoded)
+
+**ChatGPT (OpenAI)**
+- API key from: platform.openai.com → API keys
+- Stored as `kpt-cfg-openai-key`
+- Model: `gpt-6-astra` by default; override in Settings (`kpt-cfg-openai-mdl`)
 
 **Gemini (Google)**
 - API key from: aistudio.google.com → Get API Key
-- Stored in localStorage as `kpt-cfg-gemini-key`
-- Model: `gemini-1.5-flash` (hardcoded)
+- Stored as `kpt-cfg-gemini-key`
+- Model: `gemini-2.0-flash` (hardcoded)
 
 **Ollama (local)**
 - Run `start_kpt.bat` (or manually: `set OLLAMA_ORIGINS=* && ollama serve` in cmd)
-- Default URL: `http://localhost:11434` — do NOT add `/v1`
+- Default URL: `http://localhost:11434` — do NOT add `/v1`. The site's CSP only allows `localhost`/`127.0.0.1` on port 11434
 - Model: whatever you have pulled (e.g. `mistral:latest`, `llama3.2`)
 - Stored as `kpt-cfg-ollama-url` and `kpt-cfg-ollama-mdl`
 

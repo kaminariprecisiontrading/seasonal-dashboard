@@ -569,11 +569,25 @@ A multi-provider AI analysis engine that gathers seasonal, curve, history, sessi
 
 | Provider | Model | Endpoint | Streaming |
 |----------|-------|----------|-----------|
-| Claude | claude-sonnet-5 | `api.anthropic.com/v1/messages` | SSE (`text_stream`) |
-| Gemini | gemini-1.5-flash | `generativelanguage.googleapis.com/…/streamGenerateContent?alt=sse` | SSE |
-| Ollama | user-configured | `{url}/api/generate` | NDJSON line-by-line |
+| Claude | claude-sonnet-5 | `api.anthropic.com/v1/messages` (key: `x-api-key`) | SSE (`content_block_delta`) |
+| ChatGPT | `gpt-6-astra` default, editable (`kpt-cfg-openai-mdl`) | `api.openai.com/v1/responses` (key: `Authorization: Bearer`) — reasoning effort `low`, `max_output_tokens` 16000 (includes reasoning), no temperature | SSE (`response.output_text.delta`) |
+| Gemini | gemini-2.0-flash | `generativelanguage.googleapis.com/…/streamGenerateContent?alt=sse` (key: `x-goog-api-key` header — moved out of the URL in v1.21) | SSE |
+| Ollama | user-configured | `{url}/api/generate` — must be `localhost`/`127.0.0.1:11434` under the CSP | NDJSON line-by-line |
 
-Config stored in localStorage: `kpt-cfg-claude-key`, `kpt-cfg-gemini-key`, `kpt-cfg-ollama-url`, `kpt-cfg-ollama-model`.
+**Key storage (v1.21, `_KEYS` in `api.js`).** Keys (`kpt-cfg-{claude,openai,gemini}-key`) live in
+`sessionStorage` ("This session only", default) or `localStorage` ("Remember on this device"),
+chosen by `kpt-cfg-keep`; reads check session first. Users with a pre-v1.21 key in localStorage and no
+`kpt-cfg-keep` are treated as "remember" (nothing breaks). Inputs are `type=password`,
+`autocomplete=off`, `spellcheck=false`, never pre-filled — a saved key is only shown masked
+(`_maskKey`). "Clear all keys" removes all three from both storages with an inline `role=status`
+message. Provider error messages pass through `_scrubKey()` before display. Keys never go to
+`console.*`, the `kpt-ai-*` cache, the downloaded `.md`, or a URL. Non-secret settings (provider,
+models, Ollama URL) stay in localStorage. The Run button's listener is attached here (the inline
+`onclick` was removed for the CSP).
+
+**Disclaimers (pattern C):** an amber "AI output can be wrong…" notice (Risk + Methodology links)
+above Run; the same line in the result bar and as a blockquote at the top of the downloaded `.md`.
+Upload tab: "Processed in your browser. Your file is never uploaded." under the file picker.
 
 ### Context Layers
 
@@ -741,6 +755,16 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   and stay in sync via a `kpt-embeds-change` event (and the `storage` event across tabs). Storage
   access is wrapped (`KptStore`); blocked storage behaves as "Ask each time". `tradingview.js` and
   `macro.js` load before `site.js`, so they register on a `kpt-site-ready` event.
+- **Security headers + CSP (v1.21, `netlify.toml` `[[headers]]`).** Enforcing CSP, validated
+  report-only first with every page/tab, both embeds loaded for real and all four AI providers:
+  `script-src 'self' cdnjs s3.tradingview.com` (no `'unsafe-inline'` — the only inline code on the
+  site, 98 `onclick="runAnalysis()"` and the dashboard's two inline blocks, was removed by
+  `scripts/patch_csp_inline.js`; the dashboard's script is now `js/dashboard.js`);
+  `frame-src *.tradingview.com *.tradingview-widget.com *.investing.com` (the TradingView chart
+  actually renders in an iframe on `www.tradingview-widget.com` — found in testing, not in the
+  original draft policy); `connect-src 'self'` + Anthropic, OpenAI, Google + local Ollama;
+  `font-src 'self'`; `style-src 'self' 'unsafe-inline'` (inline `style=` attributes are used
+  widely). `scripts/serve_local.js` applies the same headers locally.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

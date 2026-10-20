@@ -1015,9 +1015,42 @@ html [data-kpt-panel] { display: none; }
 }
 
 .ai-sett-note {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--muted);
-  margin-left: auto;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* v1.21 — hardened key storage (LEGAL_PAGES_BUILD_NOTES.md §5, pattern B) */
+.ai-settings-grid { grid-template-columns: minmax(150px, 190px) 1fr; }
+.ai-sett-label { white-space: normal; line-height: 1.4; }
+.ai-key-mask { color: var(--accent-combined); letter-spacing: 0.3px; }
+.ai-keep { border: 0; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.ai-keep legend { margin-bottom: 6px; padding: 0; }
+.ai-keep-opt { display: flex; align-items: center; gap: 10px; min-height: 36px; font-size: 11px; color: var(--dim); cursor: pointer; }
+.ai-keep-opt input { width: 16px; height: 16px; accent-color: var(--accent-combined); margin: 0; flex: 0 0 auto; }
+.ai-keep-opt strong { color: var(--text); font-weight: 600; }
+.ai-key-notice { font-size: 11px; line-height: 1.55; color: #b7d4ea; background: #0d1a24; border: 1px solid #1e3a52; border-radius: 5px; padding: 8px 12px; margin-bottom: 12px; }
+.ai-key-notice strong { color: #fff; }
+.ai-key-notice-local { color: var(--bull); background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.25); }
+.ai-sett-clear {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 5px 14px; background: transparent; border: 1px solid rgba(239,68,68,0.45); border-radius: 3px;
+  color: var(--bear); cursor: pointer;
+}
+.ai-sett-clear:hover { background: rgba(239,68,68,0.1); }
+.ai-sett-status { font-size: 10px; color: var(--accent-combined); letter-spacing: 0.5px; }
+.ai-disclaimer {
+  display: flex; gap: 8px; align-items: flex-start; margin: 4px 0 12px; padding: 8px 12px; border-radius: 5px;
+  background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.35); color: #fde68a; font-size: 11px; line-height: 1.55;
+}
+.ai-disclaimer svg { flex: 0 0 auto; margin-top: 2px; }
+.ai-disclaimer a, .ai-result-disclaimer a { color: var(--chop); }
+.ai-cache-bar { flex-wrap: wrap; gap: 4px 10px; }
+.ai-result-disclaimer { flex-basis: 100%; font-size: 10px; color: #a8a29e; letter-spacing: 0.3px; }
+.up-local-note { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 11px; color: var(--accent-combined); }
+@media (max-width: 600px) {
+  .ai-settings-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Phase 5: Context bar ──────────────────────────────────────────────────── */

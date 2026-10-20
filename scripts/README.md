@@ -84,6 +84,14 @@ Generates `risk.html`, `terms.html`, `privacy.html` and `sources.html` from the 
 - **Added in:** v1.19
 - **Run:** `node scripts/build_legal_pages.js` — only if the mockups/EDITS change; otherwise edit the generated pages directly.
 
+### `patch_csp_inline.js`
+
+One-shot codemod so the CSP can forbid inline script: removes `onclick="runAnalysis()"` from all 98 asset pages (`js/api.js` attaches the listener instead) and moves `dashboard.html`'s two inline `<script>` blocks, unchanged and in order, into `js/dashboard.js`. Idempotent.
+
+- **Added in:** v1.21
+- **Status:** Already applied.
+- **Run:** `node scripts/patch_csp_inline.js`
+
 ### `patch_add_site_chrome.js`
 
 One-shot codemod: adds `../css/chrome.css` and `../js/site.js` to every asset page and the three profiling pages so they get the shared site footer. Idempotent.

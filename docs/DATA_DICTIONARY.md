@@ -184,11 +184,14 @@ These keys are written by the shared JS modules. Per-asset keys use `ASSET_CONFI
 |-----|-----------|----------|
 | `kpt-up-{id}` | `upload.js` | Computed Upload tab result (schemaVer: 1) — detected tier, `historyStats` (win rates, heatmap, avg returns), `sessionStats` (hourly, by-session, by-DoW; `null` for D1/W1/MN1 tiers) |
 | `kpt-ai-{id}-{provider}-{year}-w{week}` | `api.js` | Cached AI analysis text, provider-scoped, weekly |
-| `kpt-cfg-claude-key` | `api.js` | Anthropic API key (global, not per-asset) |
-| `kpt-cfg-gemini-key` | `api.js` | Google Gemini API key (global) |
+| `kpt-cfg-claude-key` | `api.js` | Anthropic API key (global). **sessionStorage** by default; localStorage if "Remember on this device" |
+| `kpt-cfg-openai-key` | `api.js` | OpenAI API key (global) — same storage rule |
+| `kpt-cfg-gemini-key` | `api.js` | Google Gemini API key (global) — same storage rule |
+| `kpt-cfg-keep` | `api.js` | Where API keys are kept: `session` (default) / `remember`. Absent + a legacy key in localStorage = treated as `remember` |
+| `kpt-cfg-openai-mdl` | `api.js` | ChatGPT model override (absent = default `gpt-6-astra`) |
 | `kpt-cfg-ollama-url` | `api.js` | Ollama server URL (global) |
 | `kpt-cfg-ollama-mdl` | `api.js` | Ollama model name (global) |
-| `kpt-cfg-provider` | `api.js` | Last-selected provider (`claude` / `gemini` / `ollama`) |
+| `kpt-cfg-provider` | `api.js` | Last-selected provider (`claude` / `openai` / `gemini` / `ollama`) |
 | `kpt-tz-{id}` | `upload.js` | Broker UTC offset in hours (e.g. `2` for EET) |
 | `kpt-sub-{id}` | `ui.js` | Last-selected sub-tab on the Seasonals tab (previously documented as `kpt-subtab-{id}`; the code has always used `kpt-sub-`) |
 | `kpt-tw-open` | `dashboard.html` | Whether the dashboard's This Week accordion is open (`1` / `0`) |

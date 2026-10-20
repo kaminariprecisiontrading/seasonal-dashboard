@@ -1,7 +1,7 @@
 /**
  * api.js — AI Synthesis for seasonal dashboards (Phase 5)
  *
- * Provider-agnostic: Claude (Anthropic) · Gemini Flash (Google) · Ollama (local)
+ * Provider-agnostic: Claude (Anthropic) · ChatGPT (OpenAI) · Gemini Flash (Google) · Ollama (local)
  *
  * Context gathered and passed to the model:
  *   · Seasonal summary — generated live from MONTHS[] by _buildSeasonalSummary()
@@ -14,12 +14,16 @@
  *                        top shapes, plus an NFP event-risk block when this week's
  *                        Friday is an NFP Friday
  *
- * Provider config stored in localStorage (shared across all asset pages):
- *   kpt-cfg-provider   — 'claude' | 'gemini' | 'ollama'
- *   kpt-cfg-claude-key — Anthropic API key
- *   kpt-cfg-gemini-key — Google AI Studio API key
+ * Provider config (shared across all asset pages), localStorage:
+ *   kpt-cfg-provider   — 'claude' | 'openai' | 'gemini' | 'ollama'
+ *   kpt-cfg-keep       — 'session' (default) | 'remember': where API keys are kept
+ *   kpt-cfg-openai-mdl — ChatGPT model     (default: _OPENAI_DEFAULT_MODEL)
  *   kpt-cfg-ollama-url — Ollama base URL  (default: http://localhost:11434)
  *   kpt-cfg-ollama-mdl — Ollama model     (default: llama3.2)
+ * API keys — sessionStorage ("this session only") or localStorage ("remember"):
+ *   kpt-cfg-claude-key · kpt-cfg-openai-key · kpt-cfg-gemini-key
+ *   Sent only to their own provider, in a header (never a URL); masked when shown;
+ *   scrubbed from provider error messages; never cached or written to the .md.
  *
  * Analysis cache keyed per asset + provider + ISO week (kpt-ai-{id}-{provider}-
  * {year}-w{week}, stores {text, generatedAt} so a cache-restored result can
@@ -34,14 +38,85 @@
 
 /* ─── Config helpers ─────────────────────────────────────────────────────── */
 
+// Non-secret settings (provider, models, Ollama URL, key-storage choice): localStorage.
 var _CFG = {
   get: function (k) { try { return localStorage.getItem('kpt-cfg-' + k) || null; } catch (_) { return null; } },
-  set: function (k, v) { try { localStorage.setItem('kpt-cfg-' + k, v); } catch (_) {} }
+  set: function (k, v) { try { localStorage.setItem('kpt-cfg-' + k, v); } catch (_) {} },
+  remove: function (k) { try { localStorage.removeItem('kpt-cfg-' + k); } catch (_) {} }
 };
 
-function _getProvider()    { return _CFG.get('provider')   || 'claude'; }
-function _getClaudeKey()   { return _CFG.get('claude-key') || ''; }
-function _getGeminiKey()   { return _CFG.get('gemini-key') || ''; }
+/*
+ * API keys (kpt-cfg-{claude,openai,gemini}-key). The visitor chooses where they live
+ * (kpt-cfg-keep): "session" (default) → sessionStorage, gone when the tab closes;
+ * "remember" → localStorage. Reads check session first, then local. Keys are only
+ * ever sent to their own provider: never logged, never cached with results, never
+ * written to the downloaded .md, never put in a URL.
+ */
+var _KEY_PROVIDERS = ['claude', 'openai', 'gemini'];
+var _KEYS = {
+  _ss: function (fn) { try { return fn(sessionStorage); } catch (_) { return null; } },
+  _ls: function (fn) { try { return fn(localStorage); } catch (_) { return null; } },
+  get: function (prov) {
+    var k = 'kpt-cfg-' + prov + '-key';
+    return this._ss(function (s) { return s.getItem(k); }) || this._ls(function (s) { return s.getItem(k); }) || '';
+  },
+  set: function (prov, value) {
+    var k = 'kpt-cfg-' + prov + '-key';
+    var remember = _getKeep() === 'remember';
+    this._ss(function (s) { s.removeItem(k); });
+    this._ls(function (s) { s.removeItem(k); });
+    if (!value) return;
+    if (remember) this._ls(function (s) { s.setItem(k, value); });
+    else this._ss(function (s) { s.setItem(k, value); });
+  },
+  clearAll: function () {
+    var self = this;
+    _KEY_PROVIDERS.forEach(function (p) {
+      var k = 'kpt-cfg-' + p + '-key';
+      self._ss(function (s) { s.removeItem(k); });
+      self._ls(function (s) { s.removeItem(k); });
+    });
+  },
+  // Move existing keys to match a changed storage choice.
+  restore: function () {
+    var self = this;
+    _KEY_PROVIDERS.forEach(function (p) { var v = self.get(p); if (v) self.set(p, v); });
+  }
+};
+
+// Existing users (before v1.21) have keys in localStorage and no kpt-cfg-keep:
+// treat them as "remember" so nothing breaks; everyone else defaults to session.
+function _getKeep() {
+  var keep = _CFG.get('keep');
+  if (keep === 'remember' || keep === 'session') return keep;
+  var hasLegacy = _KEYS._ls(function (s) {
+    return _KEY_PROVIDERS.some(function (p) { return !!s.getItem('kpt-cfg-' + p + '-key'); });
+  });
+  return hasLegacy ? 'remember' : 'session';
+}
+
+// Masked display of a saved key: first 6 + "…" + last 4, never the whole key.
+function _maskKey(k) {
+  if (!k) return '';
+  return k.length <= 12 ? '••••' + k.slice(-2) : k.slice(0, 6) + '…' + k.slice(-4);
+}
+
+// Provider error messages are shown on screen; some echo part of an invalid key.
+// Replace the key (and any long run of its characters) before anything is displayed.
+function _scrubKey(msg, key) {
+  msg = String(msg || '');
+  if (key) msg = msg.split(key).join(_maskKey(key));
+  return msg.replace(/\b(sk-[A-Za-z0-9_-]{4})[A-Za-z0-9_*-]{8,}([A-Za-z0-9]{4})\b/g, '$1…$2')
+            .replace(/\b(AIza)[A-Za-z0-9_-]{10,}\b/g, '$1…');
+}
+
+var _OPENAI_DEFAULT_MODEL = 'gpt-6-astra';  // OpenAI's flagship as of 2026-10; editable in Settings
+
+function _getProvider()    { var p = _CFG.get('provider'); return (p === 'openai' || p === 'gemini' || p === 'ollama') ? p : 'claude'; }
+function _getClaudeKey()   { return _KEYS.get('claude'); }
+function _getOpenAIKey()   { return _KEYS.get('openai'); }
+function _getGeminiKey()   { return _KEYS.get('gemini'); }
+function _getOpenAIModel() { return _CFG.get('openai-mdl') || _OPENAI_DEFAULT_MODEL; }
 function _getOllamaUrl()   { return (_CFG.get('ollama-url') || 'http://localhost:11434').replace(/\/$/, ''); }
 function _getOllamaModel() { return _CFG.get('ollama-mdl') || 'llama3.2'; }
 
@@ -588,7 +663,7 @@ async function _callClaude(prompt, output) {
 
   if (!resp.ok) {
     var err = {}; try { err = await resp.json(); } catch (_) {}
-    throw new Error((err.error && err.error.message) || 'HTTP ' + resp.status);
+    throw new Error(_scrubKey((err.error && err.error.message) || 'HTTP ' + resp.status, key));
   }
 
   return _readSSE(resp, output, function (evt) {
@@ -599,18 +674,56 @@ async function _callClaude(prompt, output) {
   });
 }
 
+/* ─── Provider: ChatGPT (OpenAI Responses API, SSE stream) ───────────────── */
+// Default model: OpenAI's current flagship (_OPENAI_DEFAULT_MODEL), overridable in
+// Settings. It's a reasoning model: max_output_tokens includes reasoning tokens,
+// so it gets generous headroom; temperature isn't supported, so none is sent.
+
+async function _callOpenAI(prompt, output) {
+  var key = _getOpenAIKey();
+  if (!key) throw new Error('No OpenAI API key set — click ⚙ Settings to add one.');
+
+  var resp = await fetch('https://api.openai.com/v1/responses', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+    body: JSON.stringify({
+      model: _getOpenAIModel(),
+      input: prompt,
+      stream: true,
+      reasoning: { effort: 'low' },
+      max_output_tokens: 16000
+    })
+  });
+
+  if (!resp.ok) {
+    var err = {}; try { err = await resp.json(); } catch (_) {}
+    throw new Error(_scrubKey((err.error && err.error.message) || 'HTTP ' + resp.status, key));
+  }
+
+  var streamError = null;
+  var full = await _readSSE(resp, output, function (evt) {
+    if (evt.type === 'response.output_text.delta') return evt.delta || '';
+    if (evt.type === 'error') streamError = evt.message || (evt.error && evt.error.message) || 'Stream error';
+    if (evt.type === 'response.failed') streamError = (evt.response && evt.response.error && evt.response.error.message) || 'The request failed';
+    if (evt.type === 'response.incomplete') streamError = 'Response incomplete (' + ((evt.response && evt.response.incomplete_details && evt.response.incomplete_details.reason) || 'unknown reason') + ')';
+    return '';
+  });
+  if (!full && streamError) throw new Error(streamError);
+  return full;
+}
+
 /* ─── Provider: Gemini Flash (Google SSE stream) ─────────────────────────── */
 
 async function _callGemini(prompt, output) {
   var key = _getGeminiKey();
   if (!key) throw new Error('No Gemini API key set — click ⚙ Settings to add one.');
 
-  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent' +
-            '?alt=sse&key=' + encodeURIComponent(key);
+  // Key goes in a header, not the URL (URLs end up in logs, history and error reports).
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse';
 
   var resp = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: { maxOutputTokens: 2500, temperature: 0.3 }
@@ -619,7 +732,7 @@ async function _callGemini(prompt, output) {
 
   if (!resp.ok) {
     var err = {}; try { err = await resp.json(); } catch (_) {}
-    throw new Error((err.error && err.error.message) || 'HTTP ' + resp.status);
+    throw new Error(_scrubKey((err.error && err.error.message) || 'HTTP ' + resp.status, key));
   }
 
   return _readSSE(resp, output, function (evt) {
@@ -674,7 +787,7 @@ async function _callOllama(prompt, output) {
   return full;
 }
 
-/* ─── Shared SSE reader (Claude + Gemini) ────────────────────────────────── */
+/* ─── Shared SSE reader (Claude + ChatGPT + Gemini) ──────────────────────── */
 
 async function _readSSE(resp, output, extractor) {
   var reader = resp.body.getReader();
@@ -712,6 +825,8 @@ async function _readSSE(resp, output, extractor) {
   var btn = document.getElementById('run-btn');
   if (!btn) return;
   var panel = btn.closest('.ai-panel') || btn.parentElement;
+  // Wired here rather than with an inline onclick="" so the CSP can forbid inline script.
+  btn.addEventListener('click', function () { runAnalysis(); });
 
   /* Provider selector row */
   var provRow = document.createElement('div');
@@ -720,34 +835,54 @@ async function _readSSE(resp, output, extractor) {
     '<span class="ai-provider-label">Provider</span>',
     '<div class="ai-provider-btns" id="ai-prov-btns">',
     '  <button class="ai-provider-btn" data-prov="claude">Claude</button>',
+    '  <button class="ai-provider-btn" data-prov="openai">ChatGPT</button>',
     '  <button class="ai-provider-btn" data-prov="gemini">Gemini 2.0 Flash</button>',
     '  <button class="ai-provider-btn" data-prov="ollama">Ollama</button>',
     '</div>',
     '<button class="ai-settings-toggle" id="ai-settings-toggle" title="API key settings">⚙ Settings</button>'
   ].join('');
 
-  /* Settings panel */
+  /* Settings panel — keys: password inputs, never pre-filled, shown masked once saved */
+  var KEY_INPUT = ' type="password" autocomplete="off" spellcheck="false" autocapitalize="off"';
   var settingsPanel = document.createElement('div');
   settingsPanel.id        = 'ai-settings-panel';
   settingsPanel.className = 'ai-settings-panel';
   settingsPanel.style.display = 'none';
   settingsPanel.innerHTML = [
     '<div class="ai-settings-grid">',
-    '  <label class="ai-sett-label">Claude API key</label>',
-    '  <input class="ai-sett-input" id="ai-claude-key" type="password" placeholder="sk-ant-api03-...">',
-    '  <label class="ai-sett-label">Gemini API key</label>',
-    '  <input class="ai-sett-input" id="ai-gemini-key" type="password" placeholder="AIza...">',
-    '  <label class="ai-sett-label">Ollama URL</label>',
-    '  <input class="ai-sett-input" id="ai-ollama-url" type="text" placeholder="http://localhost:11434">',
-    '  <label class="ai-sett-label">Ollama model</label>',
-    '  <input class="ai-sett-input" id="ai-ollama-mdl" type="text" placeholder="llama3.2">',
+    '  <label class="ai-sett-label" for="ai-claude-key">Anthropic API key <span class="ai-key-mask" id="ai-claude-mask"></span></label>',
+    '  <input class="ai-sett-input" id="ai-claude-key"' + KEY_INPUT + ' placeholder="sk-ant-…">',
+    '  <label class="ai-sett-label" for="ai-openai-key">OpenAI API key <span class="ai-key-mask" id="ai-openai-mask"></span></label>',
+    '  <input class="ai-sett-input" id="ai-openai-key"' + KEY_INPUT + ' placeholder="sk-…">',
+    '  <label class="ai-sett-label" for="ai-openai-mdl">ChatGPT model</label>',
+    '  <input class="ai-sett-input" id="ai-openai-mdl" type="text" autocomplete="off" spellcheck="false" placeholder="' + _OPENAI_DEFAULT_MODEL + '">',
+    '  <label class="ai-sett-label" for="ai-gemini-key">Gemini API key <span class="ai-key-mask" id="ai-gemini-mask"></span></label>',
+    '  <input class="ai-sett-input" id="ai-gemini-key"' + KEY_INPUT + ' placeholder="AIza…">',
+    '  <label class="ai-sett-label" for="ai-ollama-url">Ollama URL</label>',
+    '  <input class="ai-sett-input" id="ai-ollama-url" type="text" autocomplete="off" spellcheck="false" placeholder="http://localhost:11434">',
+    '  <label class="ai-sett-label" for="ai-ollama-mdl">Ollama model</label>',
+    '  <input class="ai-sett-input" id="ai-ollama-mdl" type="text" autocomplete="off" spellcheck="false" placeholder="llama3.2">',
     '</div>',
+    '<fieldset class="ai-keep">',
+    '  <legend class="ai-sett-label">Keep my keys</legend>',
+    '  <label class="ai-keep-opt"><input type="radio" name="ai-keep" value="session"><span><strong>This session only</strong> · forgotten when you close the tab (default)</span></label>',
+    '  <label class="ai-keep-opt"><input type="radio" name="ai-keep" value="remember"><span><strong>Remember on this device</strong> · don\'t use on shared computers</span></label>',
+    '</fieldset>',
+    '<div class="ai-key-notice" id="ai-key-notice"></div>',
     '<div class="ai-sett-footer">',
     '  <button class="ai-sett-save" id="ai-sett-save">Save</button>',
-    '  <span class="ai-sett-saved" id="ai-sett-saved" style="display:none;">✓ Saved</span>',
-    '  <span class="ai-sett-note">Keys stored in browser localStorage · never sent to this server</span>',
-    '</div>'
+    '  <button class="ai-sett-clear" id="ai-sett-clear" type="button">Clear all keys</button>',
+    '  <span class="ai-sett-status" id="ai-sett-status" role="status" aria-live="polite"></span>',
+    '</div>',
+    '<div class="ai-sett-note">Keys stay in your browser and are sent only to the provider you pick, directly from your browser — never to this site. Leave a key field blank to keep the saved key.</div>'
   ].join('');
+
+  /* Disclaimer above the Run button */
+  var disclaimer = document.createElement('div');
+  disclaimer.className = 'ai-disclaimer';
+  disclaimer.innerHTML =
+    '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 21h20L12 3z"></path><path d="M12 10v5M12 18h.01"></path></svg>' +
+    '<span>AI output can be wrong. The verdict is model output, not financial advice. <a href="/risk">Risk Disclosure</a> · <a href="/methodology">How signals are built</a></span>';
 
   /* Context availability bar */
   var ctxBar = document.createElement('div');
@@ -764,12 +899,41 @@ async function _readSSE(resp, output, extractor) {
   panel.insertBefore(settingsPanel, btn);
   panel.insertBefore(ctxBar,        btn);
   panel.insertBefore(hint,          btn);
+  panel.insertBefore(disclaimer,    btn);
 
   /* ── Provider display names ── */
   function _providerLabel(prov) {
+    if (prov === 'openai') return 'ChatGPT · ' + _getOpenAIModel();
     if (prov === 'gemini') return 'Gemini 2.0 Flash';
     if (prov === 'ollama') return 'Ollama · ' + _getOllamaModel();
     return 'Claude Sonnet 5';
+  }
+
+  /* ── Key notice for the selected provider ── */
+  var _PROV_COMPANY = { claude: 'Anthropic', openai: 'OpenAI', gemini: 'Google' };
+  function _updateKeyNotice(prov) {
+    var el = document.getElementById('ai-key-notice');
+    if (!el) return;
+    el.className = 'ai-key-notice' + (prov === 'ollama' ? ' ai-key-notice-local' : '');
+    el.innerHTML = prov === 'ollama'
+      ? 'Ollama runs on your own computer: the prompt goes to your local Ollama server and <strong>nothing leaves your computer</strong>. No API key needed.'
+      : 'Your key is sent <strong>only</strong> to ' + _PROV_COMPANY[prov] + ', directly from your browser. Tip: set a <strong>monthly spending limit</strong> on this key in your provider\'s console.';
+  }
+
+  function _refreshMasks() {
+    _KEY_PROVIDERS.forEach(function (p) {
+      var m = document.getElementById('ai-' + p + '-mask');
+      var k = _KEYS.get(p);
+      if (m) m.textContent = k ? '· saved ' + _maskKey(k) : '';
+    });
+  }
+
+  function _status(msg) {
+    var el = document.getElementById('ai-sett-status');
+    if (!el) return;
+    el.textContent = msg;
+    clearTimeout(_status._t);
+    _status._t = setTimeout(function () { el.textContent = ''; }, 4000);
   }
 
   /* ── Update panel headings to reflect active provider ── */
@@ -803,6 +967,7 @@ async function _readSSE(resp, output, extractor) {
     });
     _updatePanelHeadings(prov);
     _updateHint(prov);
+    _updateKeyNotice(prov);
   }
 
   document.getElementById('ai-prov-btns').addEventListener('click', function (e) {
@@ -816,38 +981,68 @@ async function _readSSE(resp, output, extractor) {
     var isOpen = p.style.display !== 'none';
     p.style.display = isOpen ? 'none' : '';
     if (!isOpen) {
-      // Populate fields on open
-      document.getElementById('ai-claude-key').value = _getClaudeKey();
-      document.getElementById('ai-gemini-key').value = _getGeminiKey();
+      // Populate on open: keys are never put back into the inputs (only shown
+      // masked next to their label); non-secret settings are.
+      _KEY_PROVIDERS.forEach(function (p) { document.getElementById('ai-' + p + '-key').value = ''; });
+      _refreshMasks();
+      document.getElementById('ai-openai-mdl').value = _CFG.get('openai-mdl') || '';
       document.getElementById('ai-ollama-url').value = _CFG.get('ollama-url') || '';
       document.getElementById('ai-ollama-mdl').value = _CFG.get('ollama-mdl') || '';
+      var keep = _getKeep();
+      settingsPanel.querySelectorAll('input[name="ai-keep"]').forEach(function (r) { r.checked = r.value === keep; });
     }
+  });
+
+  /* ── Storage choice: applies to saved keys straight away ── */
+  settingsPanel.querySelectorAll('input[name="ai-keep"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      if (!r.checked) return;
+      _CFG.set('keep', r.value);
+      _KEYS.restore();  // move any saved keys to the chosen storage
+      _status(r.value === 'remember' ? 'Keys will be remembered on this device' : 'Keys kept for this session only');
+    });
   });
 
   /* ── Wire save button ── */
   document.getElementById('ai-sett-save').addEventListener('click', function () {
-    _CFG.set('claude-key', document.getElementById('ai-claude-key').value.trim());
-    _CFG.set('gemini-key', document.getElementById('ai-gemini-key').value.trim());
+    var keepEl = settingsPanel.querySelector('input[name="ai-keep"]:checked');
+    _CFG.set('keep', keepEl ? keepEl.value : _getKeep());
+    _KEY_PROVIDERS.forEach(function (p) {
+      var input = document.getElementById('ai-' + p + '-key');
+      var v = input.value.trim();
+      if (v) _KEYS.set(p, v);   // blank = keep the saved key
+      input.value = '';
+    });
+    var omdl = document.getElementById('ai-openai-mdl').value.trim();
+    if (omdl) _CFG.set('openai-mdl', omdl); else _CFG.remove('openai-mdl');
     var url = document.getElementById('ai-ollama-url').value.trim();
     var mdl = document.getElementById('ai-ollama-mdl').value.trim();
     if (url) _CFG.set('ollama-url', url);
     if (mdl) _CFG.set('ollama-mdl', mdl);
 
-    var saved = document.getElementById('ai-sett-saved');
-    saved.style.display = '';
-    setTimeout(function () { saved.style.display = 'none'; }, 2000);
+    _refreshMasks();
+    _status('✓ Saved');
 
-    // Refresh headings + hint in case Ollama model name changed
+    // Refresh headings + hint in case a model name changed
     _updatePanelHeadings(_getProvider());
     _updateHint(_getProvider());
     _updateCtxBar();
+  });
+
+  /* ── Clear all keys (both storages) ── */
+  document.getElementById('ai-sett-clear').addEventListener('click', function () {
+    _KEYS.clearAll();
+    _KEY_PROVIDERS.forEach(function (p) { document.getElementById('ai-' + p + '-key').value = ''; });
+    _refreshMasks();
+    _status('All API keys removed from this browser');
   });
 
   /* ── Hint text updater ── */
   function _updateHint(prov) {
     var el = document.getElementById('ai-hint-text');
     if (!el) return;
-    var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash (Google)' :
+    var provLabel = prov === 'openai' ? 'ChatGPT (OpenAI — ' + _getOpenAIModel() + ')' :
+                    prov === 'gemini' ? 'Gemini 2.0 Flash (Google)' :
                     prov === 'ollama' ? 'Ollama (local — ' + _getOllamaModel() + ')' :
                                        'Claude (Anthropic)';
     el.textContent = provLabel + ' · seasonal + curve + history + session + profiling context · cached per week';
@@ -895,6 +1090,7 @@ async function _readSSE(resp, output, extractor) {
 
 var _lastMarkdown   = null;
 var _lastMarkdownAt = null;
+var _AI_DISCLAIMER  = 'AI output can be wrong. The verdict is model output, not financial advice.';
 
 function _pad2(n) { return n < 10 ? '0' + n : String(n); }
 
@@ -920,13 +1116,14 @@ function _downloadAnalysisMarkdown() {
   var prov      = _getProvider();
   var provLabel = typeof window._kptProviderLabel === 'function'
     ? window._kptProviderLabel(prov)
-    : (prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama · ' + _getOllamaModel() : 'Claude Sonnet 5');
+    : (prov === 'openai' ? 'ChatGPT · ' + _getOpenAIModel() : prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama · ' + _getOllamaModel() : 'Claude Sonnet 5');
 
   var stampForFilename = when.getFullYear() + '-' + _pad2(when.getMonth() + 1) + '-' + _pad2(when.getDate()) +
     '_' + _pad2(when.getHours()) + _pad2(when.getMinutes());
   var filename = _sanitizeFilenamePart(assetName) + '_Analysis_' + stampForFilename + '.md';
 
   var header = '# ' + assetName + ' — Seasonal Bias Analysis\n\n' +
+    '> ' + _AI_DISCLAIMER + ' Risk Disclosure: https://kpt-seasonals.netlify.app/risk\n\n' +
     'Generated: ' + _formatLocalTimestamp(when) + ' (local time) · Provider: ' + provLabel + '\n\n---\n\n';
 
   var blob = new Blob([header + _lastMarkdown], { type: 'text/markdown;charset=utf-8' });
@@ -962,7 +1159,8 @@ function _showResultBar(opts) {
     '<span class="ai-bar-actions">' +
       '<button class="ai-download-btn" id="ai-download-btn">⬇ Download .md</button>' +
       (opts.cached ? '<button class="ai-cache-clear-btn" id="ai-cache-clear">✕ Clear &amp; re-run</button>' : '') +
-    '</span>';
+    '</span>' +
+    '<span class="ai-result-disclaimer">' + _AI_DISCLAIMER + ' <a href="/risk">Risk Disclosure</a></span>';
 
   document.getElementById('ai-download-btn').addEventListener('click', _downloadAnalysisMarkdown);
 
@@ -1022,7 +1220,7 @@ async function runAnalysis() {
   var prompt = _buildPrompt(curveCtx, btCtx, idtCtx, profCtx);
 
   /* Loading state */
-  var provLabel = prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama' : 'Claude';
+  var provLabel = prov === 'openai' ? 'ChatGPT' : prov === 'gemini' ? 'Gemini 2.0 Flash' : prov === 'ollama' ? 'Ollama' : 'Claude';
   var ctxLayers = ['seasonal', 'curve'];
   if (btCtx)   ctxLayers.push('backtest');
   if (idtCtx)  ctxLayers.push('session');
@@ -1039,7 +1237,9 @@ async function runAnalysis() {
     await _ensureMarked();
 
     var full;
-    if (prov === 'gemini') {
+    if (prov === 'openai') {
+      full = await _callOpenAI(prompt, output);
+    } else if (prov === 'gemini') {
       full = await _callGemini(prompt, output);
     } else if (prov === 'ollama') {
       full = await _callOllama(prompt, output);

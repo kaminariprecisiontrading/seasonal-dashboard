@@ -24,7 +24,7 @@ A personal trading confluence engine that converts Moore Research Center seasona
 | Live Price | TradingView | Embedded live/delayed price chart |
 | Macro | Calendar | Investing.com economic calendar filtered per asset + collapsible interpretation guide |
 | Upload | Your own data | Upload any MT5 CSV (M1 → MN1, timeframe auto-detected) → seasonal-tendency backtest (raw tendency, win-rate, avg-return vs the seasonal model) and, for intraday data, by-hour / by-session / by-day-of-week bias. Replaced the former History + Sessions tabs |
-| Analysis | AI synthesis | Claude Sonnet 5 / Gemini Flash / Ollama — structured LONG/SHORT/NEUTRAL/WAIT verdict drawing on all available data layers, including Profiling; downloadable as `.md` |
+| Analysis | AI synthesis | Claude Sonnet 5 / ChatGPT / Gemini Flash / Ollama — structured LONG/SHORT/NEUTRAL/WAIT verdict drawing on all available data layers, including Profiling; downloadable as `.md` |
 
 Pages without Profiling data show the Profiling tab's empty state; everything else is identical across all 98 pages. The layout is phone-responsive (≤600px tier, v1.16).
 
@@ -78,6 +78,20 @@ The legal texts were generated from the approved mockups by `scripts/build_legal
 verbatim; wording changes listed in `CHANGELOG.md` v1.19). They are plain-language drafts for a free
 personal project, not legal advice. **Open item (owner):** Moore Research Center redistribution
 permission — the pages credit MRCI but don't grant any rights.
+
+---
+
+## Security & Privacy (v1.21)
+
+- **Content-Security-Policy** (enforcing, `netlify.toml`): scripts only from this site, cdnjs
+  (Chart.js, marked) and TradingView's widget loader — no inline script anywhere; frames only for
+  TradingView (`*.tradingview.com`, `*.tradingview-widget.com`) and Investing.com; connections only
+  to this site, the three AI APIs and a local Ollama (`localhost`/`127.0.0.1:11434`). Plus
+  `Referrer-Policy`, `X-Content-Type-Options: nosniff`, `Permissions-Policy`.
+- **Third-party embeds are click-to-load** (Embeds setting in every footer). No analytics, no cookies
+  of the site's own.
+- **AI keys** default to session-only storage, can be remembered per device, are shown masked, can be
+  cleared in one click, and are sent only to their own provider in a request header.
 
 ---
 
@@ -319,7 +333,7 @@ The script reads every `data/*.js` file and overwrites `data/signals_manifest.js
 | D1 backtest + intraday bias | Phases 2/2.5, unified in Tier 4 | ✅ Complete (v1.12) | Upload |
 | AI synthesis | Phase 5 | ✅ Complete (v1.5, context expanded v1.13–v1.14) | Analysis |
 
-**All layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, Upload-tab backtest win rates and intraday session bias, and Profiling statistics (daily-through-yearly profile shapes, NFP-week event risk) — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet 5, Gemini Flash, or any local Ollama model.
+**All layers delivered.** The AI Analysis tab draws on all available data — seasonal signals, curve position, Upload-tab backtest win rates and intraday session bias, and Profiling statistics (daily-through-yearly profile shapes, NFP-week event risk) — to produce a structured LONG/SHORT/NEUTRAL/WAIT verdict. Providers: Claude Sonnet 5, ChatGPT (OpenAI, default `gpt-6-astra`, editable), Gemini Flash, or any local Ollama model.
 
 **Since v1.6:** v1.7 Profiling tab · v1.8–v1.9 Platform Tiers 1–2 (quick wins, profile-detail + compare pages) · v1.10–v1.11 Tier 5 profiles + Crypto/BTCUSD · v1.12 Tier 4 tab restructure (Upload tab) · v1.13–v1.14 Analysis context + `.md` download · v1.15 tab-leak fix · v1.16 Tier 3 mobile pass · v1.17 Range Outlook (TimesFM) · v1.18 landing page at `/`, dashboard moved to `/dashboard`, shared nav/footer, self-hosted fonts. Details: `CHANGELOG.md`.
 
@@ -358,7 +372,7 @@ If the upload is intraday (M1–H4), the Upload tab also breaks down average ret
 The Investing.com calendar is pre-filtered to the currencies and events most relevant to the asset. A high-impact event mid-week can override any seasonal tendency. The interpretation guide explains which event types matter most for each asset class.
 
 **9. Run the AI synthesis on the Analysis tab.**
-Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant, and can be downloaded as a `.md` file.
+Click Run Analysis. The AI draws on all available data layers — seasonal signals, curve position, backtest win rates, and session timing — and produces a structured verdict: LONG / SHORT / NEUTRAL / WAIT, with rationale and a risk note. Use the provider toggle to switch between Claude, ChatGPT, Gemini, or a local Ollama model. Results are cached weekly so subsequent opens are instant, and can be downloaded as a `.md` file.
 
 **10. Apply your own execution framework.**
 The dashboard provides objective confluence data. Entry trigger, position sizing, stop placement, and trade management are the trader's own decisions. The tool's job is to ensure every angle has been considered before a bias is formed.
@@ -372,8 +386,9 @@ The dashboard provides objective confluence data. Entry trigger, position sizing
 - **Chart Source:** Moore Research Center (mooreres.com) — seasonal tendency overlays
 - **AI Engine (building):** Claude via claude.ai (Cowork) — design, analysis, dashboard generation
 - **AI Engine (in-dashboard, option 1):** Anthropic API — Claude Sonnet 5 (`claude-sonnet-5`)
-- **AI Engine (in-dashboard, option 2):** Google AI Studio API — Gemini Flash (`gemini-2.0-flash`)
-- **AI Engine (in-dashboard, option 3):** Ollama — any local model (e.g. `mistral:latest`)
+- **AI Engine (in-dashboard, option 2):** OpenAI Responses API — ChatGPT (`gpt-6-astra` by default, editable in Settings)
+- **AI Engine (in-dashboard, option 3):** Google AI Studio API — Gemini Flash (`gemini-2.0-flash`)
+- **AI Engine (in-dashboard, option 4):** Ollama — any local model (e.g. `mistral:latest`)
 - **API Console:** console.anthropic.com / aistudio.google.com — separate billing from claude.ai subscription
 - **Code Editor:** Visual Studio Code
 - **Version Control:** Git + GitHub (public repository)

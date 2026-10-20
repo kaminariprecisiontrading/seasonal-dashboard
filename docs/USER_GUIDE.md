@@ -22,7 +22,7 @@ Each asset dashboard has seven tabs along the top:
 | **Live Price** | A live TradingView price chart for the asset |
 | **Macro** | Investing.com economic calendar filtered for this asset's relevant currencies |
 | **Upload** | Upload your own MT5 price data (any timeframe) to validate the seasonal model and see intraday timing |
-| **Analysis** | AI-generated seasonal analysis using Claude, Gemini, or your own local Ollama model |
+| **Analysis** | AI-generated seasonal analysis using Claude, ChatGPT, Gemini, or your own local Ollama model |
 
 ---
 
@@ -139,21 +139,36 @@ The Analysis tab synthesises all available data layers into a structured seasona
 
 ### Setting Up a Provider
 
-Click the **⚙** (gear) icon to open the settings panel. You only need to do this once.
+Click the **⚙** (gear) icon to open the settings panel.
 
 **Claude (Anthropic)**
 1. Go to [console.anthropic.com](https://console.anthropic.com) → API Keys → Create a new key
-2. Paste the key into the Claude API Key field
+2. Paste the key into the Anthropic API key field
+
+**ChatGPT (OpenAI)**
+1. Go to [platform.openai.com](https://platform.openai.com) → API keys → Create a new secret key
+2. Paste the key into the OpenAI API key field
+3. Optional: **ChatGPT model** — leave blank for OpenAI's current flagship (`gpt-6-astra` as of October 2026; capable but relatively expensive per run), or type another model name your key can use, e.g. a cheaper one
 
 **Gemini (Google)**
 1. Go to [aistudio.google.com](https://aistudio.google.com) → Get API Key
-2. Paste the key into the Gemini API Key field
+2. Paste the key into the Gemini API key field
+
+**Keeping your keys safe**
+- **Keep my keys → This session only** (the default): keys are forgotten when you close the tab. **Remember on this device**: keys survive restarts — don't choose this on a shared computer. Changing the option moves any saved keys straight away. If you saved keys before this option existed, they're treated as remembered, so nothing stops working.
+- Keys are never shown in full again after saving — only a masked form like `sk-ant…a1F9`. To replace a key, type the new one and click **Save**; leaving a field blank keeps the saved key.
+- **Clear all keys** removes every saved key from this browser (both session and remembered).
+- A key is sent **only** to its own provider, directly from your browser — never to this site, and never in a web address. Set a **monthly spending limit** on any key you use here, in your provider's console.
 
 **Ollama (local — no API key needed)**
 1. Download Ollama from [ollama.ai](https://ollama.ai) and install
 2. Run `start_kpt.bat` (found in the `KPT Seasonals` folder alongside the dashboard) — this starts Ollama with the browser CORS permissions it needs
 3. In the settings panel, enter `http://localhost:11434` as the URL (do not add anything else)
 4. Enter your model name exactly as shown by `ollama list` (e.g. `mistral:latest`, `llama3.2`)
+
+The site's security policy only lets the Analysis tab connect to Ollama at `http://localhost:11434` or `http://127.0.0.1:11434`. An Ollama server on another machine or port will be blocked by your browser — run Ollama locally on the default port. With Ollama, nothing leaves your computer.
+
+Above **Run Analysis** you'll always see: *AI output can be wrong. The verdict is model output, not financial advice.* The same line appears above every result and at the top of a downloaded `.md` file.
 
 ### Context Chips
 

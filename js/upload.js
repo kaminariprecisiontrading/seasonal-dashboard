@@ -118,6 +118,7 @@
     '    ↑ &nbsp;Choose CSV',
     '  </label>',
     '  <p class="bt-hint">Tab- or comma-separated MT5 export &nbsp;·&nbsp; any timeframe M1–MN1 &nbsp;·&nbsp; 10+ years recommended for daily-and-coarser data</p>',
+    '  <p class="up-local-note"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Processed in your browser. Your file is never uploaded.</p>',
     '  <div class="idt-tz-row">',
     '    <label class="idt-tz-label" for="up-tz-select">Broker server time (UTC offset):</label>',
     '    <select class="idt-tz-select" id="up-tz-select">',

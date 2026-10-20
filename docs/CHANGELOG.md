@@ -2,6 +2,50 @@
 
 ---
 
+## v1.21 — October 2026
+**AI key hardening, ChatGPT provider, disclaimers, Content-Security-Policy**
+
+Built from `LEGAL_PAGES_BUILD_NOTES.md` §5–7, plus ChatGPT support (user request).
+
+### Changes
+
+- **ChatGPT (OpenAI) provider** on the Analysis tab: OpenAI Responses API, streaming, default
+  model `gpt-6-astra` (OpenAI's flagship per its models page, checked 2026-10-20), editable in
+  Settings (`kpt-cfg-openai-mdl`). Reasoning effort `low`, `max_output_tokens` 16000 (the limit
+  includes reasoning tokens), no `temperature` (not supported by the model).
+- **Key hardening:** "This session only" (default, sessionStorage) / "Remember on this device"
+  (localStorage) via `kpt-cfg-keep`; existing remembered keys keep working (migration); Clear all
+  keys (both storages, inline status, no `alert()`); password inputs with
+  `autocomplete=off`/`spellcheck=false`, never pre-filled, saved keys shown masked; per-provider
+  notice ("sent only to {provider}" + spending-limit tip; Ollama "nothing leaves your computer");
+  old "Keys stored in browser localStorage" note replaced.
+- **Leak fixes:** the Gemini key was sent in the request URL (`?key=`); now the `x-goog-api-key`
+  header. Provider error messages are scrubbed of key text before display. Verified no key in
+  URLs, console, the `kpt-ai-*` cache or the downloaded `.md`.
+- **Disclaimers:** amber "AI output can be wrong…" notice above Run (links: Risk, Methodology);
+  same line in the result bar and at the top of every downloaded `.md`; Upload tab "Processed in
+  your browser. Your file is never uploaded."
+- **Security headers (`netlify.toml`):** enforcing `Content-Security-Policy` (validated
+  report-only first), `Referrer-Policy: strict-origin-when-cross-origin`,
+  `X-Content-Type-Options: nosniff`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`.
+  Differences from the brief's draft policy: `api.openai.com` added to `connect-src` (ChatGPT);
+  `*.tradingview-widget.com` added to `frame-src` (the TradingView chart's real iframe host, found
+  by testing); no `'unsafe-inline'` in `script-src`.
+- **Inline code removed for the CSP** (`scripts/patch_csp_inline.js`): the inline
+  `onclick="runAnalysis()"` on 98 asset pages and the dashboard's two inline scripts (now
+  `js/dashboard.js`, unchanged — verified identical signals on all 98 cards at four dates).
+- **Landing copy:** the Analysis feature card now lists "Claude, ChatGPT, Gemini or a local Ollama
+  model" (wording change vs. the approved mockup, for the new provider).
+
+### Tests (headless, enforcing CSP)
+
+Zero CSP violations across landing, dashboard, legal, 404, profiling calendar/detail and three
+asset pages with every tab opened and both embeds loaded for real. All four providers run end to
+end against faked streaming responses; key storage/migration/clear/masking and the leak checks
+pass; site, embed and landing tests re-run clean.
+
+---
+
 ## v1.20 — October 2026
 **Click-to-load embeds, fonts fully self-hosted**
 
