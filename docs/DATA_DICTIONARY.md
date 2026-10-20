@@ -126,16 +126,30 @@ The `combinedLabel` string is not constrained to a fixed set, but the following 
 "DIRECTION ★★★★☆"
 ```
 
-`upload.js` determines the week's signal for filtering purposes by checking whether `com` contains `LONG`, `SHORT`, `CHOP`, or `FLIP` (case-sensitive substring match). Ensure `com` always starts with one of these keywords. Examples:
+Every page reads `com` through **one** mapping, `KptSignals.comToTag()` in `js/signals.js` (v1.26: also
+used on asset pages by the Trend curve, the Upload backtest and the AI prompt, and mirrored in
+the Track Record grader). Rules, checked against the start of the string (stars ignored):
+
+| `com` starts with | Signal |
+|---|---|
+| `LONG`, `BULL`, `LEAN LONG`, or `DOUBLE ALIGNMENT` + `LONG` | **BULL** |
+| `SHORT`, `BEAR`, `LEAN SHORT`, or `DOUBLE ALIGNMENT` + `SHORT` | **BEAR** |
+| `FLIP` | **FLIP** |
+| `AVOID` | **AVOID** |
+| anything else — `CHOP`, `HOLD`, `NEUTRAL`, `MIXED`, `WATCH`, and conflict/exit-led labels even if they mention a direction (`CONTESTED / SHORT LEAN`, `MAXIMUM CONFLICT`, `STAND-OFF`, `COVER SHORTS`, `EXIT LONGS`, `DOUBLE ALIGNMENT EMERGING`, …) | **CHOP** |
+
+Conviction = number of `★`. Start a `com` with a direction keyword when you mean a direction.
+Examples:
 
 ```javascript
-com: "LONG ★★★★★"          // → intraday maps to 'bull'
-com: "SHORT ★★★★☆"         // → intraday maps to 'bear'
-com: "NEUTRAL ★★☆☆☆"       // → intraday maps to 'chop'
-com: "FLIP ★★★★☆"           // → intraday maps to 'flip'
-com: "LONG → FLIP ★★★★☆"   // → intraday maps to 'bull' (LONG found first)
-com: "SHORT / COVER ★★★☆☆" // → intraday maps to 'bear'
-com: "HOLD ★★★☆☆"           // → intraday maps to 'chop' (no keyword matched)
+com: "LONG ★★★★★"                    // → BULL, 5
+com: "BULL ★★★☆☆"                    // → BULL, 3   (v1.26; was CHOP)
+com: "DOUBLE ALIGNMENT / SHORT ★★★★" // → BEAR, 4   (v1.26; was CHOP)
+com: "LONG → FLIP ★★★★☆"            // → BULL (LONG comes first)
+com: "SHORT / COVER ★★★☆☆"          // → BEAR
+com: "COVER SHORTS ★★"               // → CHOP (exit word leads)
+com: "FLIP ★★★★☆"                    // → FLIP
+com: "HOLD ★★★☆☆"                    // → CHOP
 ```
 
 ---

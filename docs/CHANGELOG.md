@@ -2,6 +2,42 @@
 
 ---
 
+## v1.26 — October 2026
+**One signal mapping everywhere — fixes 899 weeks shown as CHOP; manifest resynced**
+
+### Changes
+
+- **Mapping fix (owner-approved rule):** weeks whose label states a direction without starting
+  `LONG`/`SHORT` now read as that direction: `BULL…` and `LEAN LONG` and `DOUBLE ALIGNMENT / LONG`
+  → BULL; `BEAR…`, `LEAN SHORT`, `DOUBLE ALIGNMENT / SHORT` → BEAR. Conflict/exit-led labels stay
+  CHOP even if they mention a direction (`CONTESTED / SHORT LEAN`, `MAXIMUM CONFLICT`,
+  `COVER SHORTS`, `EXIT LONGS`, `DOUBLE ALIGNMENT EMERGING`, …). Stars unchanged.
+  Across the manifest: BULL 1,493 → 1,914 weeks, BEAR 1,278 → 1,529, CHOP 1,792 → 1,138.
+- **One mapping, everywhere:** the Trend curve (`seasonal-chart.js`), the Upload backtest's signal
+  (`upload.js`) and the AI prompt's curve (`api.js`) each had their own parser (prefix-only, or
+  "LONG/SHORT anywhere" — which counted `EXIT LONGS` as bullish). All now use
+  `KptSignals.comToTag`/`comDirection`; `js/signals.js` is loaded on all 98 asset pages
+  (`scripts/patch_add_signals.js`). The Track Record grader mirrors it exactly (verified: 0
+  differences over all 4,704 weeks).
+- **Manifest drift fixed:** `data/signals_manifest.js` disagreed with five data files
+  (austbills3m, austbonds10, austbonds3, longgilt, shortsterling — 192 weeks), so those dashboard
+  cards contradicted their own asset pages. The never-committed generator was reconstructed as
+  `scripts/gen_signals_manifest.js` (with `--check`) and the manifest regenerated.
+- **Effect on live pages (Oct Wk3 2026):** dashboard / landing tally 38 / 20 / 40 → 51 / 23 / 24
+  (bull / bear / other); 75 of 392 card checks across four test dates changed. The Heatmap's Months
+  view is unaffected (it uses month-level `combined`).
+- **Track Record re-graded:** 4,318 → 5,367 graded weeks; hit rate 53.4% → 53.1%. By conviction:
+  1 dot 60.0% (n=40), 2 dots 50.1% (551), 3 dots 53.7% (1,883), 4 dots 51.9% (1,736), 5 dots
+  54.9% (1,157) — still no rise with conviction.
+- Methodology's CHOP definition updated (no longer lists LEAN).
+
+### Tests
+
+Dashboard cards at four dates = an independent implementation of the rule (0 mismatches over 392);
+JS vs Python mapping 0 differences; all page suites re-run green.
+
+---
+
 ## v1.25 — October 2026
 **Track Record (`/track-record`)**
 

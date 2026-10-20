@@ -327,6 +327,8 @@
     if (!MONTHS || !MONTHS[monthIdx]) return 'chop';
     var wks = MONTHS[monthIdx].weeks;
     if (!wks || !wks[wkIdx]) return 'chop';
+    // Same week → signal mapping as every other page (js/signals.js, v1.26).
+    if (window.KptSignals) return KptSignals.comToTag(wks[wkIdx].com).type;
     var com = (wks[wkIdx].com || '').trim().toUpperCase().replace(/[★☆]/g, '').trim();
     if (com.indexOf('LONG')  === 0 || com.indexOf('BUY')  === 0) return 'bull';
     if (com.indexOf('SHORT') === 0 || com.indexOf('SELL') === 0) return 'bear';

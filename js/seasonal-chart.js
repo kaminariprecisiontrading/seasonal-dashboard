@@ -31,6 +31,7 @@
   /** Convert combined week label ("LONG ★★★") to ±1 / 0 */
   function comDelta(s) {
     if (!s) return 0;
+    if (window.KptSignals) return KptSignals.comDirection(s);  // shared mapping (v1.26)
     var u = String(s).toUpperCase();
     if (u.indexOf('LONG')  !== -1) return 1;
     if (u.indexOf('SHORT') !== -1) return -1;

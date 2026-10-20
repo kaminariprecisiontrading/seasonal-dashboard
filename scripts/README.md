@@ -101,6 +101,17 @@ One-shot codemod: adds `../css/chrome.css` and `../js/site.js` to every asset pa
 - **Run:** `node scripts/patch_add_site_chrome.js`
 
 
+### `gen_signals_manifest.js`
+
+Regenerates `data/signals_manifest.js` (48 week `com` strings per asset + `SIGNALS_GENERATED`) from every `data/<asset>.js`. Reconstructed in v1.26 after the committed manifest was found to have drifted from five data files; keeps the existing format and key order. `--check` exits 1 if the manifest is out of date.
+
+- **Added in:** v1.26
+- **Run:** `node scripts/gen_signals_manifest.js` after changing any data file (`--check` to verify).
+
+### `patch_add_signals.js`
+
+One-shot codemod: loads `js/signals.js` on every asset page (after its data file) so the Trend curve, Upload backtest and AI prompt use the shared signal mapping. Idempotent; already applied to all 98 pages.
+
 ### `gen_asset_index.js`
 
 Regenerates `data/asset_index.js` — the shared asset registry (`window.KPT_ASSETS`, `window.KPT_ASSET_GROUPS`: id, ticker, name, badges, accent colour, dashboard section, live/planned) — from `dashboard.html`'s asset cards. Used by `js/signals.js` and every page outside the dashboard.
@@ -146,7 +157,7 @@ These scripts were run from a separate working environment and are not committed
 
 Generates HTML shells for all futures assets from a config table. Produced the initial 43+ futures `assets/*.html` files. If you need to regenerate futures shells from scratch, this script (or a rebuild of it) would be required.
 
-### `gen_signals_manifest.js` *(not in repo)*
+### `gen_signals_manifest.js` *(original never committed — reconstructed in v1.26, see Site Scripts)*
 
 Reads all 97 `data/*.js` files and writes `data/signals_manifest.js`, which powers the live signal chips on the dashboard index (`dashboard.html`) and the landing page's tally. 
 

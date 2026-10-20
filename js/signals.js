@@ -3,7 +3,10 @@
  *
  * Used by the dashboard, the landing page, This Week and the Heatmap, so they can
  * never disagree about an asset's signal for a given week. The mapping below is
- * the dashboard's original inline logic, moved here unchanged.
+ * the dashboard's original inline logic, extended in v1.26 for direction labels that
+ * don't start LONG/SHORT (BULL, BEAR, LEAN LONG/SHORT, DOUBLE ALIGNMENT / LONG|SHORT).
+ * Also used on asset pages by the Trend curve, the Upload backtest and the AI prompt
+ * (comDirection), and mirrored in backend/pipeline/grade_signals.py — keep in sync.
  *
  * Needs (load first): data/signals_manifest.js (SIGNALS_MANIFEST, 48 `com`
  * strings per asset: Jan-Wk1 … Dec-Wk4) and, for asset names/groups,
@@ -49,7 +52,23 @@ var KptSignals = (function () {
     if (u.indexOf('NEUTRAL') === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
     if (u.indexOf('MIXED')   === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
     if (u.indexOf('WATCH')   === 0) return { cls: 'chop-tag',    label: 'CHOP',  type: 'chop' };
+    // v1.26 — labels that state a direction without starting LONG/SHORT (owner-approved
+    // 2026-10-20). Before this they fell through to CHOP (899 of 4,704 weeks).
+    if (u.indexOf('BULL') === 0 || u.indexOf('LEAN LONG') === 0) return { cls: 'bull-tag', label: 'BULL', type: 'bull' };
+    if (u.indexOf('BEAR') === 0 || u.indexOf('LEAN SHORT') === 0) return { cls: 'bear-tag', label: 'BEAR', type: 'bear' };
+    if (u.indexOf('DOUBLE ALIGNMENT') === 0) {
+      if (/\bLONG\b/.test(u))  return { cls: 'bull-tag', label: 'BULL', type: 'bull' };
+      if (/\bSHORT\b/.test(u)) return { cls: 'bear-tag', label: 'BEAR', type: 'bear' };
+    }
+    // Everything else — including labels led by a conflict or exit word that happen to
+    // mention a direction (CONTESTED / SHORT LEAN, MAXIMUM CONFLICT, COVER SHORTS, EXIT
+    // LONGS, STAND-OFF, DOUBLE ALIGNMENT EMERGING …) — is CHOP.
     return { cls: 'chop-tag', label: 'CHOP', type: 'chop' };
+  }
+  // +1 BULL, -1 BEAR, 0 otherwise — the curve/backtest view of the same mapping.
+  function comDirection(com) {
+    var t = comToTag(com).type;
+    return t === 'bull' ? 1 : t === 'bear' ? -1 : 0;
   }
   // Conviction = filled stars (★) in the com string, 0-5.
   function starCount(com) { return ((com || '').match(/★/g) || []).length; }
@@ -156,7 +175,7 @@ var KptSignals = (function () {
     MONTH_ABBR: MONTH_ABBR,
     weekOf: weekOf, currentWeek: currentWeek, shiftWeek: shiftWeek, weekLabel: weekLabel,
     weekParam: weekParam, parseWeekParam: parseWeekParam,
-    comToTag: comToTag, starCount: starCount, getSignal: getSignal, getMonthSignal: getMonthSignal,
+    comToTag: comToTag, comDirection: comDirection, starCount: starCount, getSignal: getSignal, getMonthSignal: getMonthSignal,
     liveAssets: liveAssets, asset: asset, assetHref: assetHref, assetsByGroup: assetsByGroup, tally: tally,
     groupShort: groupShort, displayName: displayName, subLabel: subLabel,
     convPips: convPips, convDots: convDots, pill: pill,
