@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPT Seasonals — Track Record</title>
+<meta name="description" content="Every past weekly seasonal signal graded against what price actually did, for the 14 assets with full MT5 price history — hits and misses, by conviction and by week.">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+<!-- Layout from docs/specs/2026-10-site-expansion/mockups/trackrecord.html; data from data/track_record.js
+     (KPT-Market-Profiling/pipeline/grade_signals.py → scripts/sync_track_record.js). -->
+<header data-kpt-nav></header>
+<main class="wrap tr-page">
+  <div class="tr-head">
+    <div class="tw-head-text">
+      <span class="eyebrow">Track record</span>
+      <h1 class="display tw-h1">Did the season deliver?</h1>
+      <span class="tw-sub">Every past weekly signal, graded against what price actually did. It covers the 14 assets with full MT5 price history, and it reports the misses as well as the hits.</span>
+    </div>
+    <div role="group" aria-label="Period" class="hm-chips" id="tr-period">
+      <button type="button" class="seg" data-weeks="12" aria-pressed="false">12W</button>
+      <button type="button" class="seg" data-weeks="26" aria-pressed="true">26W</button>
+      <button type="button" class="seg" data-weeks="52" aria-pressed="false">52W</button>
+      <button type="button" class="seg" data-weeks="all" aria-pressed="false">All</button>
+    </div>
+  </div>
+
+  <p class="tw-fallback-msg" id="tr-fallback" hidden>Track record data couldn't be loaded.</p>
+
+  <div id="tr-content" hidden>
+    <p class="tr-basis" id="tr-basis"></p>
+    <div class="tally-grid" id="tr-kpis"></div>
+    <p class="tr-disclaimer" role="note">Past performance doesn't predict future results. Figures are hypothetical and exclude trading costs. <strong>Backfilled</strong> results are in-sample; only <strong>live-recorded</strong> results reflect signals as shown at the time. <a class="link-accent" href="/risk">Risk Disclosure</a></p>
+
+    <div class="tr-charts">
+      <section aria-labelledby="byc" class="tr-card">
+        <div class="tr-card-head"><h2 id="byc" class="display tw-h3">Hit rate by conviction</h2><span class="note">If the dots mean anything, the bars should rise from 1 to 5.</span></div>
+        <div id="tr-byconv"></div>
+        <span class="mini-lbl">GREY LINE = 50% (COIN FLIP) · FADED = FEWER THAN 20 SIGNALS</span>
+      </section>
+      <section aria-labelledby="bys" class="tr-card">
+        <div class="tr-card-head"><h2 id="bys" class="display tw-h3">Last 12 weeks</h2><span class="note">Weekly hit rate across all graded signals.</span></div>
+        <div class="tr-cols" id="tr-weeks"></div>
+        <div class="tr-col-labels" id="tr-week-labels"></div>
+        <span class="mini-lbl">BRIGHT = ABOVE 50% · DIM = BELOW</span>
+      </section>
+    </div>
+
+    <section aria-labelledby="log" class="tr-card">
+      <div class="tr-log-head">
+        <h2 id="log" class="display tw-h3">Signal log</h2>
+        <label class="tr-filter">ASSET <select id="tr-asset"><option value="all">All 14 assets</option></select></label>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table tr-table">
+          <thead><tr><th scope="col">WEEK</th><th scope="col">ASSET</th><th scope="col">SIGNAL</th><th scope="col">CONVICTION</th><th scope="col">WEEK MOVE</th><th scope="col">RESULT</th><th scope="col">SOURCE</th></tr></thead>
+          <tbody id="tr-log"></tbody>
+        </table>
+      </div>
+      <div class="tr-pager">
+        <button type="button" class="seg" id="tr-prev">‹ Newer</button>
+        <span class="mini-lbl" id="tr-page" aria-live="polite"></span>
+        <button type="button" class="seg" id="tr-next">Older ›</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="rules" class="tr-rules prose">
+      <h2 id="rules" class="display tw-h3">Grading rules</h2>
+      <ul>
+        <li><strong>Hit:</strong> the week's close-to-close move went the way of the signal (Monday open to Friday close; in holiday weeks, the first to the last trading day). Trading days end at the 5pm New York close, as in the Profiling data. A flat week counts as a miss.</li>
+        <li><strong>Which signal:</strong> the one the dashboard shows for the week slot the Monday falls in (days 1–7 = Week 1, 8–14 = Week 2, 15–21 = Week 3, 22 onwards = Week 4).</li>
+        <li><strong>CHOP</strong> (and AVOID) isn't graded. <strong>FLIP</strong> is graded on the second half of the week (Wednesday open to Friday close), after the turn, in the post-turn direction: the following week's BULL/BEAR signal, or else the opposite of the previous week's.</li>
+        <li>Moves are shown as multiples of ADR20 (the average daily range of the 20 trading days before the week), so gold and EURUSD can be compared fairly.</li>
+        <li>The signal that was live <em>at the time</em> is the one graded. Weeks marked <strong>LIVE</strong> use the weekly snapshot of what the site showed; <strong>BACKFILL</strong> weeks are graded with today's seasonal data, which already includes those years. Later data edits never rewrite live history.</li>
+      </ul>
+      <p class="note" id="tr-scope"></p>
+    </section>
+  </div>
+</main>
+<footer data-kpt-footer></footer>
+<script src="/data/track_record.js" defer></script>
+<script src="/data/signals_manifest.js" defer></script>
+<script src="/data/asset_index.js" defer></script>
+<script src="/js/signals.js" defer></script>
+<script src="/js/site.js" defer></script>
+<script src="/js/track-record.js" defer></script>
+</body>
+</html>

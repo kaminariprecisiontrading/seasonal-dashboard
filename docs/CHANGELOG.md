@@ -2,6 +2,49 @@
 
 ---
 
+## v1.25 — October 2026
+**Track Record (`/track-record`)**
+
+Built from `NEW_PAGES_BUILD_NOTES.md` Phase 3 with the grading rules confirmed by the owner
+(2026-10-20).
+
+### Changes
+
+- **Grading pipeline** (`KPT-Market-Profiling/pipeline/grade_signals.py`): every Mon–Fri week since
+  2016-01-04 for the 14 MT5 assets, graded against the dashboard page showing that instrument
+  (FX pairs → `fx-*` pages). 7,681 rows, 4,318 graded; overall hit rate 53.4%.
+- **Live vs backfill kept separate:** `scripts/snapshot_signals.js` archives each week's signals
+  (`data/signal_history/`, first one `2026-10-W3`); weeks with a snapshot are graded from it
+  (LIVE), all others from today's data (BACKFILL, in-sample). Headline KPIs switch to live once
+  12+ live weeks are graded — until then the page says the figures are backfilled.
+- **Page:** period 12W / 26W / 52W / All; KPIs (hit rate, graded count, avg move on hits / misses
+  in ADR20 × in the signal's direction, 5-dot hit rate); hit rate by conviction with n per bar
+  (n < 20 faded, "too few signals"), all bars on one scale; last 12 graded weeks (dim below 50%,
+  tooltips); disclaimer under the KPIs; signal log (asset filter, newest first, 25 per page,
+  ✓ HIT / ✗ MISS / — NOT GRADED, LIVE / BACKFILL badges); grading rules.
+
+### Rule details settled while building (stated on the page)
+
+- Weekly signal = the dashboard's signal for the slot the **Monday** falls in.
+- Holiday weeks: first trading day's open → last trading day's close. Trading days end at the
+  5pm New York close (the pipeline's day boundary) — the mockup's "broker time" wording was changed.
+- A flat week is a miss. AVOID is not graded (like CHOP).
+- FLIP post-turn direction = the next week's BULL/BEAR signal, else the opposite of the previous
+  week's; FLIP weeks with neither are not graded (27 of 174).
+- Backfill starts 2016-01-04 (the same window as the TimesFM benchmark) to keep the page light.
+
+### Honest result
+
+Over all graded weeks the hit rate is 53.4%, and it does **not** rise with conviction
+(1 dot 60% on n=40, 2–5 dots 52–55%). The page shows this as-is; the misses are never hidden.
+
+### Tests
+
+KPIs and by-conviction rates for 12W / 26W / 52W / All match an independent recomputation from
+the JSON; pagination, asset filter, newest-first, badges; 1440 / 768 / 390px.
+
+---
+
 ## v1.24 — October 2026
 **Seasonal Heatmap (`/heatmap`)**
 

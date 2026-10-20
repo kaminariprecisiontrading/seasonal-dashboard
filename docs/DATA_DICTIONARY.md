@@ -193,6 +193,29 @@ signals. Re-run the generator after changing any `data/<asset>.js`.
 
 ---
 
+## Track Record data (v1.25)
+
+**`data/track_record.js`** — `window.KPT_TRACK_RECORD = { generatedAt, asOf, since, assets[], columns[], rows[] }`,
+synced from `KPT-Market-Profiling/output/track_record.json`. `assets[i] = {key, id, label}` (pipeline
+key, dashboard page id, display label). Each row:
+
+| # | Field | Values |
+|---|-------|--------|
+| 0 | week | Monday of the graded Mon–Fri week (`YYYY-MM-DD`) |
+| 1 | asset | index into `assets` |
+| 2 | signal | `BULL` / `BEAR` / `CHOP` / `FLIP` / `AVOID` (dashboard mapping of that week slot's `com`) |
+| 3 | conviction | 0–5 |
+| 4 | moveAdr | move of the graded part of the week ÷ ADR20 (+ = up); for FLIP, Wednesday open → Friday close |
+| 5 | result | `H` hit · `M` miss · `-` not graded |
+| 6 | source | `b` backfill (today's data, in-sample) · `l` live (graded from a weekly snapshot) |
+| 7 | flipDir | FLIP only: post-turn direction graded (`BULL` / `BEAR`), else empty |
+
+**`data/signal_history/YYYY-MM-Wn.json`** — one per week, written by `scripts/snapshot_signals.js`:
+`{ week, takenAt, manifestGenerated, signals: { <assetId>: "<com string>" } }` for all 98 assets.
+Never overwritten; these are the "as shown at the time" record the live Track Record grades.
+
+---
+
 ## localStorage Keys
 
 These keys are written by the shared JS modules. Per-asset keys use `ASSET_CONFIG.id`; the rest are site-wide. Every read/write is wrapped so the site still works when storage is blocked. **Keep this table and the Privacy Policy's storage table (`privacy.html` §3) in sync** with the keys actually used in the code.

@@ -781,6 +781,14 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   (`KptSignals.getMonthSignal`, see DATA_DICTIONARY), Weeks view from `KptSignals.getSignal` over a
   rolling 12 weeks. Grid built as one HTML string with one delegated click listener; cells are
   `<button>`s with aria-labels; the grid scrolls inside `.hm-scroll` with a sticky name column.
+- **Track Record (v1.25).** `KPT-Market-Profiling/pipeline/grade_signals.py` grades the dashboard's
+  weekly signals for the 14 MT5 assets (rules on the page and in that script's docstring) into
+  `output/track_record.json`; `scripts/sync_track_record.js` copies it to `data/track_record.js`
+  (`window.KPT_TRACK_RECORD`, compact rows). `scripts/snapshot_signals.js` writes
+  `data/signal_history/YYYY-MM-Wn.json` — the signals as shown that week — which the grader uses
+  instead of today's data (`source` = live); never overwritten. `track-record.html` +
+  `js/track-record.js` render KPIs (headline uses live rows once 12+ live weeks exist), hit rate by
+  conviction (n < 20 faded), last 12 weeks, and a 25-row paginated log.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

@@ -115,6 +115,20 @@ Regenerates `data/month_signals.js` (each asset's 12 month-level `combined` sign
 - **Added in:** v1.24
 - **Run:** `node scripts/gen_month_signals.js` after changing any `data/<asset>.js`.
 
+### `snapshot_signals.js`
+
+Archives the current week's signals (all 98 assets' `com` strings for this week slot) to `data/signal_history/YYYY-MM-Wn.json` — the *live-recorded* history the Track Record grades. Never overwrites an existing snapshot (`--force` only to repair a bad file); `--date YYYY-MM-DD` for a specific week.
+
+- **Added in:** v1.25 — first snapshot `2026-10-W3`.
+- **Run:** `node scripts/snapshot_signals.js` **every week, ideally Monday** (commit the new file). A missed week can't be recreated later — it would fall back to backfill.
+
+### `sync_track_record.js`
+
+Copies `../KPT-Market-Profiling/output/track_record.json` (from `pipeline/grade_signals.py`) into `data/track_record.js`.
+
+- **Added in:** v1.25
+- **Run:** `node scripts/sync_track_record.js` after re-running the grader.
+
 ### `serve_local.js`
 
 Local preview server that behaves like Netlify: applies `netlify.toml`'s `[[redirects]]` (200 rewrites, 301s, forced 404s, splats) and `[[headers]]`, Netlify's pretty URLs (`/foo` → `foo.html`), trailing-slash matching and the `404.html` fallback. Needed because the site's clean routes (`/dashboard`, …) don't resolve on plain static servers.
