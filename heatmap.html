@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0f'/%3E%3Cpath d='M7 23 L13 15 L18 19 L25 8' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='8' r='2.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPT Seasonals — Heatmap</title>
+<meta name="description" content="The whole seasonal year for every market on one grid: month-by-month or week-by-week BULL / BEAR / CHOP / FLIP signals, coloured by conviction, grouped by asset class.">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+<!-- Layout from docs/specs/2026-10-site-expansion/mockups/heatmap.html; live data via js/heatmap.js. -->
+<header data-kpt-nav></header>
+<main class="wrap hm-page">
+  <div class="hm-head">
+    <span class="eyebrow">Seasonal heatmap</span>
+    <h1 class="display tw-h1">The whole year, every market</h1>
+    <span class="tw-sub">Spot clusters at a glance, like grains weakening into harvest or indices firming into year-end. Click any cell for details.</span>
+  </div>
+
+  <p class="tw-fallback-msg" id="hm-fallback" hidden>Signal data couldn't be loaded. <a class="link-accent" href="/dashboard">Open the dashboard</a> instead.</p>
+
+  <div class="hm-controls" id="hm-controls" hidden>
+    <div role="group" aria-label="Asset group" class="hm-chips" id="hm-groups"></div>
+    <div role="group" aria-label="Resolution" class="hm-chips">
+      <button type="button" class="seg" data-view="months" aria-pressed="true">Months</button>
+      <button type="button" class="seg" data-view="weeks" aria-pressed="false" id="hm-weeks-btn">Weeks</button>
+    </div>
+  </div>
+
+  <div class="hm-layout" id="hm-layout" hidden>
+    <div class="hm-scroll" tabindex="0" aria-label="Heatmap grid (scrolls sideways on small screens)">
+      <div class="hm-grid" id="hm-grid"></div>
+    </div>
+    <aside class="hm-side">
+      <div class="hm-selected" id="hm-selected" aria-live="polite"></div>
+      <div class="hm-legend">
+        <span class="mini-lbl">LEGEND</span>
+        <div class="hm-legend-row"><span class="hm-swatch" style="background: rgba(34,197,94,0.75)">▲</span><span>BULL</span></div>
+        <div class="hm-legend-row"><span class="hm-swatch" style="background: rgba(239,68,68,0.75)">▼</span><span>BEAR</span></div>
+        <div class="hm-legend-row"><span class="hm-swatch" style="background: rgba(245,158,11,0.3)">–</span><span>CHOP (incl. AVOID)</span></div>
+        <div class="hm-legend-row"><span class="hm-swatch" style="background: #2a313b">↻</span><span>FLIP</span></div>
+        <span class="hm-legend-note" id="hm-legend-note">Stronger colour means higher conviction. The current period is highlighted in its column header.</span>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer data-kpt-footer></footer>
+<script src="/data/signals_manifest.js" defer></script>
+<script src="/data/month_signals.js" defer></script>
+<script src="/data/asset_index.js" defer></script>
+<script src="/js/signals.js" defer></script>
+<script src="/js/site.js" defer></script>
+<script src="/js/heatmap.js" defer></script>
+</body>
+</html>

@@ -68,6 +68,19 @@ var KptSignals = (function () {
     return { com: com, signal: t.label, type: t.type, cls: t.cls, conviction: starCount(com) };
   }
 
+  /**
+   * getMonthSignal(assetId, month) → { signal, type, cls, conviction } or null.
+   * The month-level verdict from MONTHS[].combined / .stars (data/month_signals.js),
+   * used by the Heatmap's Months view. Not the same thing as any one week's signal.
+   */
+  var MONTH_SIG = { bull: ['BULL', 'bull', 'bull-tag'], bear: ['BEAR', 'bear', 'bear-tag'], chop: ['CHOP', 'chop', 'chop-tag'], flip: ['FLIP', 'chop', 'chop-tag'] };
+  function getMonthSignal(id, month) {
+    var m = window.KPT_MONTH_SIGNALS && window.KPT_MONTH_SIGNALS[id];
+    if (!m || !m[month]) return null;
+    var t = MONTH_SIG[m[month][0]] || MONTH_SIG.chop;
+    return { signal: t[0], type: t[1], cls: t[2], conviction: m[month][1] };
+  }
+
   /* ── Assets ───────────────────────────────────────────────────────────── */
   function liveAssets() {
     return (window.KPT_ASSETS || []).filter(function (a) { return a.status === 'live' && a.id; });
@@ -143,7 +156,7 @@ var KptSignals = (function () {
     MONTH_ABBR: MONTH_ABBR,
     weekOf: weekOf, currentWeek: currentWeek, shiftWeek: shiftWeek, weekLabel: weekLabel,
     weekParam: weekParam, parseWeekParam: parseWeekParam,
-    comToTag: comToTag, starCount: starCount, getSignal: getSignal,
+    comToTag: comToTag, starCount: starCount, getSignal: getSignal, getMonthSignal: getMonthSignal,
     liveAssets: liveAssets, asset: asset, assetHref: assetHref, assetsByGroup: assetsByGroup, tally: tally,
     groupShort: groupShort, displayName: displayName, subLabel: subLabel,
     convPips: convPips, convDots: convDots, pill: pill,

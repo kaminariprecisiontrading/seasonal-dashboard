@@ -776,6 +776,11 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   (`js/dashboard.js` wraps each card in a `.kpt-card-cell` so the button sits beside — not inside
   — the card link; `:has()` hides the cell when the card is filtered out). The dashboard filter bar
   gained ★ Watchlist (`data-filter="watch"`).
+- **Heatmap (v1.24).** `heatmap.html` + `js/heatmap.js`: rows from `KptSignals.assetsByGroup()`
+  (13 dashboard sections, group chips), Months view from `data/month_signals.js`
+  (`KptSignals.getMonthSignal`, see DATA_DICTIONARY), Weeks view from `KptSignals.getSignal` over a
+  rolling 12 weeks. Grid built as one HTML string with one delegated click listener; cells are
+  `<button>`s with aria-labels; the grid scrolls inside `.hm-scroll` with a sticky name column.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

@@ -2,6 +2,40 @@
 
 ---
 
+## v1.24 — October 2026
+**Seasonal Heatmap (`/heatmap`)**
+
+Built from `NEW_PAGES_BUILD_NOTES.md` Phase 4.
+
+### Changes
+
+- **`/heatmap`:** all 98 live assets in the 13 dashboard groups (chips: All + each group). **Months**
+  view = each month's MONTHS[] `combined` + `stars` (new `data/month_signals.js`, generator
+  `scripts/gen_month_signals.js`; rule documented in DATA_DICTIONARY). **Weeks** view = a rolling
+  12 weeks (4 before the current month, the current month, 4 after) using the dashboard's weekly
+  signal, so its current-week column matches the dashboard exactly. Cells: ▲ ▼ – ↻ buttons,
+  BULL/BEAR opacity scaled by conviction, aria-label "EURUSD, OCT: BEAR, conviction 5 of 5",
+  current period highlighted, side panel with "Open asset →". Sticky name column; the grid
+  scrolls in its own box, the page never scrolls sideways.
+- `js/signals.js`: `getMonthSignal()`.
+
+### Notes
+
+- AVOID weeks are drawn like CHOP ("–", legend says "CHOP (incl. AVOID)"); the aria-label still says
+  AVOID.
+- Acceptance "current-month column matches the dashboard's current signals": the dashboard shows the
+  current *week*, so the match is checked in the Weeks view (current-week column = dashboard for all
+  98 assets). The Months view intentionally shows the month-level verdict instead (per the brief's
+  "use the month-level combined signal").
+
+### Tests
+
+1,176 month cells = the data files' MONTHS[] combined/stars (read independently); current-week
+column = dashboard for all 98; group filter, selection panel, aria-labels; 1440 / 768 / 390px with
+the grid scrolling inside its box and names staying visible.
+
+---
+
 ## v1.23 — October 2026
 **This Week digest (`/this-week`) + ★ watchlist**
 

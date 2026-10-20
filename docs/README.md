@@ -45,6 +45,7 @@ Every page is a root-level `.html` file served at a clean route by a 200 rewrite
 | `/dashboard` | `dashboard.html` | The dashboard index: search, signal filter, asset-class nav, This Week accordion, all asset cards |
 | `/assets/<id>.html` | `assets/*.html` | The 98 asset dashboards (unchanged URLs) |
 | `/this-week` | `this-week.html` | Weekly digest: tallies vs last week, signals that flipped, new max conviction, your ★ watchlist, high-conviction windows in the next 4 weeks; ‹ › browse weeks (`?w=YYYY-M-W`) |
+| `/heatmap` | `heatmap.html` | Every live market × 12 months (month-level verdicts) or a rolling 12 weeks (the dashboard's weekly signals), coloured by conviction, filterable by asset group |
 | `/methodology` | `methodology.html` | How a signal is built (chart → MONTHS[] → combined reading → today's week → label), real timeframe examples, FX synthesis, data sources, limits |
 | any unknown path | `404.html` | Styled "page not found" with links home and to the dashboard |
 

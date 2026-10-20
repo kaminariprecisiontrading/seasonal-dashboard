@@ -32,6 +32,7 @@ The top menu on the landing page, dashboard and content pages links to: **Dashbo
 
 - **This Week** (`/this-week`) — the weekly digest: BULL / BEAR / OTHER counts and how they changed since last week, every signal that flipped (top 6, then **See all**), new five-dot signals, your watchlist, and the strongest BULL/BEAR windows in each of the next four weeks. Use **‹ ›** to look at other weeks; the address bar keeps the week so you can bookmark it.
 - **Watchlist** — click the **☆** on any dashboard card or next to an asset's name at the top of its page to star it (★). Starred assets appear on This Week, and the dashboard's **★ Watchlist** filter shows only them. The list is saved in this browser only (`kpt-watchlist`); with site storage blocked it can't be saved.
+- **Heatmap** (`/heatmap`) — every market on one grid. **Months** shows each month's overall verdict from the seasonal data; **Weeks** shows a rolling 12 weeks (four before this month, this month, four after) using the same weekly signal as the dashboard. ▲ BULL, ▼ BEAR, – CHOP (and AVOID), ↻ FLIP; stronger colour = more conviction; the current month/week is highlighted. Filter rows by asset group, click a cell for details and **Open asset →**. On a phone the grid scrolls sideways inside its box with the names frozen.
 - **Methodology** (`/methodology`) — how a signal is built, what CHOP / FLIP / AVOID mean, how conviction is set, how forex pairs are synthesised, and what a seasonal signal is *not*.
 
 ## Seasonals Tab

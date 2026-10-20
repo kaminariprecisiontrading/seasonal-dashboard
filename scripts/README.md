@@ -108,6 +108,13 @@ Regenerates `data/asset_index.js` — the shared asset registry (`window.KPT_ASS
 - **Added in:** v1.18
 - **Run:** `node scripts/gen_asset_index.js` after adding, renaming or regrouping a dashboard card.
 
+### `gen_month_signals.js`
+
+Regenerates `data/month_signals.js` (each asset's 12 month-level `combined` signals + `stars` from its data file) for the Heatmap's Months view. Fails loudly on a missing month or an unexpected `combined` value.
+
+- **Added in:** v1.24
+- **Run:** `node scripts/gen_month_signals.js` after changing any `data/<asset>.js`.
+
 ### `serve_local.js`
 
 Local preview server that behaves like Netlify: applies `netlify.toml`'s `[[redirects]]` (200 rewrites, 301s, forced 404s, splats) and `[[headers]]`, Netlify's pretty URLs (`/foo` → `foo.html`), trailing-slash matching and the `404.html` fallback. Needed because the site's clean routes (`/dashboard`, …) don't resolve on plain static servers.
