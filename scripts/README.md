@@ -131,7 +131,7 @@ Regenerates `data/month_signals.js` (each asset's 12 month-level `combined` sign
 Archives the current week's signals (all 98 assets' `com` strings for this week slot) to `data/signal_history/YYYY-MM-Wn.json` — the *live-recorded* history the Track Record grades. Never overwrites an existing snapshot (`--force` only to repair a bad file); `--date YYYY-MM-DD` for a specific week.
 
 - **Added in:** v1.25 — first snapshot `2026-10-W3`.
-- **Run:** `node scripts/snapshot_signals.js` **every week, ideally Monday** (commit the new file). A missed week can't be recreated later — it would fall back to backfill.
+- **Run:** automatically every Monday by the **Weekly signal snapshot** GitHub Action (`.github/workflows/weekly-signal-snapshot.yml`, v1.28). It first runs `gen_signals_manifest.js --check` and stops if the manifest has drifted, then writes the snapshot and commits it to `main` as `Signal snapshot YYYY-MM-Wn [skip netlify]` (no site deploy — only the grader reads these files). A missed week can't be recreated faithfully later (it would fall back to backfill), so if a run fails, fix the cause and use **Actions → Weekly signal snapshot → Run workflow** (optional date) the same week. Running the script by hand still works: `node scripts/snapshot_signals.js`, then commit the new file.
 
 ### `sync_track_record.js`
 

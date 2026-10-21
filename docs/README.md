@@ -73,6 +73,9 @@ repo: `frontend/` (the published site), `backend/` (the Python pipeline, formerl
   (ChatGPT, `gpt-6-astra` by default, editable), Google AI Studio (Gemini Flash), or a local Ollama
   model (start it with `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat`
   automates this).
+- **Automation:** one GitHub Action, `.github/workflows/weekly-signal-snapshot.yml`, snapshots the
+  week's signals every Monday for the Track Record and commits to `main` without a Netlify deploy
+  (details: `CONTRIBUTING.md` → Weekly Signal Snapshot).
 - **Building:** Claude (claude.ai / Claude Code) for design, analysis and code; VS Code; Git + GitHub.
 
 | Context | Tool | Best used for |

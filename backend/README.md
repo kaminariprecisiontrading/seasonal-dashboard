@@ -121,7 +121,8 @@ python pipeline/grade_signals.py            # → output/track_record.json (sinc
 cd .. && node scripts/sync_track_record.js
 ```
 
-Weeks with a snapshot in `../frontend/data/signal_history/` are graded as *live-recorded*
+Run `git pull` first: the weekly snapshots are committed to `main` by a GitHub Action
+(`../.github/workflows/weekly-signal-snapshot.yml`, every Monday). Weeks with a snapshot in `../frontend/data/signal_history/` are graded as *live-recorded*
 (the signals shown at the time); all others as *backfilled* (today's data, in-sample).
 
 ### Range Outlook (TimesFM) environment

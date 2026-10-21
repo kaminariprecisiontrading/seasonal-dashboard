@@ -1,0 +1,69 @@
+# Weekly signal snapshot — archives this week's signals exactly as the site shows them, for the
+# Track Record's live-recorded history (scripts/snapshot_signals.js; see scripts/README.md).
+#
+# Runs every Monday early UTC. Every dashboard week slot (days 1-7, 8-14, 15-21, 22+) contains at
+# least one Monday, so no slot is missed; a second Monday in the same slot finds the file already
+# there and changes nothing. Commits straight to main with [skip netlify]: the snapshot files are
+# read only by backend/pipeline/grade_signals.py, so no site deploy is needed.
+#
+# Run it by hand from the Actions tab ("Run workflow") if a week was missed — optionally with a
+# date. A snapshot taken late records the signals as they are *now*, so only backfill a missed
+# week if signals_manifest.js hasn't changed since.
+
+name: Weekly signal snapshot
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"   # Mondays 03:17 UTC (off the hour: GitHub delays top-of-hour schedules most)
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Week to snapshot, as YYYY-MM-DD (blank = today, UTC)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-signal-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Fail loudly — and record nothing — if the manifest has drifted from the data files,
+      # so a snapshot never archives signals that disagree with the asset pages.
+      - name: Check signals manifest is up to date
+        run: node scripts/gen_signals_manifest.js --check
+
+      - name: Write this week's snapshot
+        env:
+          SNAP_DATE: ${{ github.event.inputs.date }}
+        run: |
+          if [ -n "$SNAP_DATE" ]; then
+            node scripts/snapshot_signals.js --date "$SNAP_DATE"
+          else
+            node scripts/snapshot_signals.js
+          fi
+
+      - name: Commit and push (skipping Netlify)
+        run: |
+          if [ -z "$(git status --porcelain -- frontend/data/signal_history)" ]; then
+            echo "No new snapshot — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/data/signal_history
+          WEEK=$(git diff --cached --name-only | sed -n 's#.*/\(.*\)\.json#\1#p' | head -1)
+          git commit -m "Signal snapshot $WEEK [skip netlify]"
+          git pull --rebase origin main
+          git push origin HEAD:main

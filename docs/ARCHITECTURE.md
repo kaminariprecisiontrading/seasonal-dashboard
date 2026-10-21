@@ -10,6 +10,7 @@ Complete technical documentation for the seasonal trading dashboard system.
 seasonal-dashboard/              ← root of the GitHub repo
 ├── README.md                    ← short project overview (GitHub front page)
 ├── netlify.toml                 ← publish = "frontend"; clean-route 200 rewrites; security headers + CSP
+├── .github/workflows/           ← weekly-signal-snapshot.yml: Monday signal snapshot → main (v1.28)
 ├── frontend/                    ← THE PUBLISHED SITE (the only folder Netlify serves)
 │   ├── index.html               ← landing page (/)
 │   ├── dashboard.html           ← dashboard index (/dashboard): nav, filters, asset card grid
@@ -813,7 +814,10 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   `output/track_record.json`; `scripts/sync_track_record.js` copies it to `data/track_record.js`
   (`window.KPT_TRACK_RECORD`, compact rows). `scripts/snapshot_signals.js` writes
   `data/signal_history/YYYY-MM-Wn.json` — the signals as shown that week — which the grader uses
-  instead of today's data (`source` = live); never overwritten. `track-record.html` +
+  instead of today's data (`source` = live); never overwritten. A GitHub Action
+  (`.github/workflows/weekly-signal-snapshot.yml`, v1.28) takes the snapshot every Monday 03:17 UTC: it
+  checks the manifest (`gen_signals_manifest.js --check`), runs the script, and commits any new file
+  straight to `main` with `[skip netlify]` so no deploy is triggered. `track-record.html` +
   `js/track-record.js` render KPIs (headline uses live rows once 12+ live weeks exist), hit rate by
   conviction (n < 20 faded), last 12 weeks, and a 25-row paginated log.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow

@@ -2,6 +2,33 @@
 
 ---
 
+## v1.28 — October 2026
+**Weekly signal snapshot automated (GitHub Actions)**
+
+### Changes
+
+- New workflow `.github/workflows/weekly-signal-snapshot.yml`: every Monday at 03:17 UTC (and on demand via
+  **Run workflow**, with an optional date) it runs `gen_signals_manifest.js --check`, then
+  `snapshot_signals.js`, and commits any new `frontend/data/signal_history/YYYY-MM-Wn.json` to `main`
+  as `Signal snapshot YYYY-MM-Wn [skip netlify]`. The snapshots are read only by the grader, so no
+  site deploy is triggered. Every week slot contains a Monday; a second Monday in the same slot is a
+  no-op because snapshots are never overwritten.
+- The manifest check makes a stale `signals_manifest.js` fail the run instead of archiving signals
+  that disagree with the asset pages.
+- Grading stays manual, since it needs fresh MT5 exports.
+- Docs: `scripts/README.md`, `ARCHITECTURE.md`, `DATA_DICTIONARY.md`, `CONTRIBUTING.md` (new
+  "Weekly Signal Snapshot" section: pull before pushing, re-running a failed week, inactivity pause),
+  `backend/README.md`, `docs/README.md`.
+
+### Tests
+
+Workflow YAML parses. The run steps were dry-run in a scratch clone: an existing week is skipped with
+nothing committed, a new week (`--date 2026-10-26`) is written and committed with the expected
+message, a second date in the same slot is a no-op, and an edited data file makes the manifest
+check exit 1. The first real run will be on GitHub (Monday, or via Run workflow).
+
+---
+
 ## v1.27 — October 2026
 **Monorepo: `frontend/` · `backend/` · `scripts/` · `docs/`; lean README**
 

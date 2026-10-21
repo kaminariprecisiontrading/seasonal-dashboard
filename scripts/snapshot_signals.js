@@ -8,8 +8,9 @@
  * current data — once price data for that week exists. Existing snapshots are never
  * overwritten (history must not be rewritten); pass --force only to repair a bad file.
  *
- * Run once a week, ideally on Monday (same week slot rule as the dashboard: days 1-7 =
- * W1, 8-14 = W2, 15-21 = W3, 22+ = W4), from the repo root:
+ * Runs every Monday via .github/workflows/weekly-signal-snapshot.yml (v1.28), which commits the
+ * new file to main. Same week slot rule as the dashboard: days 1-7 = W1, 8-14 = W2,
+ * 15-21 = W3, 22+ = W4. To run by hand, from the repo root:
  *   node scripts/snapshot_signals.js [--date YYYY-MM-DD] [--force]
  */
 const fs = require('fs');

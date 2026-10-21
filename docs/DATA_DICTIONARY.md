@@ -224,7 +224,8 @@ key, dashboard page id, display label). Each row:
 | 6 | source | `b` backfill (today's data, in-sample) · `l` live (graded from a weekly snapshot) |
 | 7 | flipDir | FLIP only: post-turn direction graded (`BULL` / `BEAR`), else empty |
 
-**`data/signal_history/YYYY-MM-Wn.json`** — one per week, written by `scripts/snapshot_signals.js`:
+**`data/signal_history/YYYY-MM-Wn.json`** — one per week, written by `scripts/snapshot_signals.js`
+(run every Monday by the `.github/workflows/weekly-signal-snapshot.yml` GitHub Action):
 `{ week, takenAt, manifestGenerated, signals: { <assetId>: "<com string>" } }` for all 98 assets.
 Never overwritten; these are the "as shown at the time" record the live Track Record grades.
 

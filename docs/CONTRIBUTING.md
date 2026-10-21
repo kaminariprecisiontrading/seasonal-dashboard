@@ -118,9 +118,27 @@ When Moore Research Center publishes updated seasonal charts:
 
 1. Edit the relevant `data/{asset}.js` file — update `MONTHS[]` fields to reflect new analysis
 2. Do NOT edit `SEASONAL_DATA` — it is a legacy fallback and no longer maintained
-3. Rebuild the signals manifest: `node scripts/gen_signals_manifest.js`
+3. Rebuild the signals manifest: `node scripts/gen_signals_manifest.js` — and commit it with the data change. The weekly snapshot Action refuses to run while the manifest is out of date, so a forgotten rebuild shows up as a failed Monday run
 4. Test in browser: open the asset page, check the Trend tab (curve should update) and Analysis tab (AI context shows updated seasonal data)
 5. **Important:** The AI cache is weekly (`kpt-ai-{id}-{provider}-{year}-w{week}`). If you update data mid-week and want the AI to use the new data immediately, use the ✕ button on any cached Analysis result to clear and re-run
+
+---
+
+## Weekly Signal Snapshot (automated)
+
+The Track Record's live history needs one snapshot of the signals per week. Since v1.28 the
+**Weekly signal snapshot** GitHub Action (`.github/workflows/weekly-signal-snapshot.yml`) does this every Monday at
+03:17 UTC and commits `frontend/data/signal_history/YYYY-MM-Wn.json` straight to `main` with
+`[skip netlify]` in the message, so Netlify doesn't build.
+
+- **Pull before you push.** The Action commits to `main`, so run `git pull` before pushing local work.
+- **If a run fails** (GitHub emails the repo owner): the usual cause is a stale manifest; run
+  `node scripts/gen_signals_manifest.js`, commit, then re-run it from **Actions → Weekly signal
+  snapshot → Run workflow**. Do it the same week. A late snapshot records the signals as they are
+  when it runs, which is only faithful if the manifest hasn't changed since that week.
+- **Inactivity:** GitHub pauses scheduled workflows on public repos after 60 days without activity.
+  If the Action shows as disabled, re-enable it in the Actions tab.
+- Grading stays manual: it needs fresh MT5 data (see `backend/README.md` → Track Record grading).
 
 ---
 
