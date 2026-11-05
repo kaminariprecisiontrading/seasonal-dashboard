@@ -59,6 +59,13 @@ backend/
 
 ## Pipeline
 
+### Weekly automated refresh
+
+Every Sunday, Task Scheduler runs `automation/weekly_run.py`: MT5 download → merge → refresh → sync →
+grade → commit + push. It only runs on `main` with no uncommitted changes outside its own paths.
+Setup and troubleshooting: [docs/AUTOMATION.md](../docs/AUTOMATION.md). The manual steps below still
+work for one asset or for debugging.
+
 ### Refreshing an asset (normal case)
 
 One command runs the full 6-stage chain (clean → stats → taxonomy → dashboard bundle → profile
@@ -91,6 +98,11 @@ are always dropped in favor of the existing file; only an append's own trailing 
 automatically (a fresh "up to today" export risks ending mid-day) — a prepend's boundary day is
 reported, not auto-dropped, since there's no live edge on that side. Then re-run
 `refresh_asset.py` to regenerate everything from the merged file.
+
+`--keep-trailing` keeps the new file's last date instead of dropping it. Use it only for exports
+already trimmed to complete days: `automation/mt5_download.py` does this, so the weekly run passes
+the flag. Without it, a Sunday run would drop Friday for 5-day markets every week. Manual "up to
+today" exports should leave it off, and behave exactly as before.
 
 ### Individual stages (for debugging one stage in isolation)
 

@@ -476,6 +476,14 @@ feature's usefulness is capped by data freshness — see the status note below.
 
 ---
 
+## Tier 8 — Alerts and weekly data automation — ✅ Complete (v1.29)
+
+A weekly refresh on the owner's laptop (MT5 download → pipeline → push) and a private Telegram digest
+after each Monday snapshot, off the site and one-way. Runbook: `AUTOMATION.md`. Brief:
+`specs/2026-10-alerts-automation/`.
+
+---
+
 ## Summary — execution order
 
 1. **Tier 1** — ✅ done (v1.8).
@@ -498,6 +506,7 @@ feature's usefulness is capped by data freshness — see the status note below.
 6. **Tier 6** — parked, no action until explicitly raised again.
 7. **Tier 7** — ✅ done (v1.17, 2026-10-06). Range Outlook (TimesFM) on all 14 Profiling assets. The Analysis tab's "near-term"
    one-shot item under Tier 6 is ✅ done (v1.13–v1.14); the chat interface itself is not started.
+8. **Tier 8** — ✅ done (v1.29). Telegram alerts and the weekly data refresh.
 
 **Status as of 2026-10-06:** v1.17 (Tier 7, Range Outlook) built on a branch; before it, no work since v1.16 (2026-09-06). All Profiling data is as of
 2026-09-03 (the last MT5 M1 export); a refresh needs new exports first (see `README.md` →

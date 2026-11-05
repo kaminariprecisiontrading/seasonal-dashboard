@@ -31,7 +31,11 @@ after-segment) so the final output can be written in old-header, prepend,
 old-body, append order without holding anything large in memory.
 
 Usage:
-    python3 concat_raw_csv.py <old_csv> <new_csv> <output_csv>
+    python3 concat_raw_csv.py <old_csv> <new_csv> <output_csv> [--keep-trailing]
+
+    --keep-trailing  keep the new file's last date instead of dropping it. Only for exports
+                     that are already trimmed to complete days — backend/automation/
+                     mt5_download.py does this (v1.29), so the weekly run passes it.
 
 Does not modify or delete either input file.
 """
@@ -83,10 +87,12 @@ def row_date(line):
 
 
 def main():
-    if len(sys.argv) != 4:
-        print("Usage: python3 concat_raw_csv.py <old_csv> <new_csv> <output_csv>")
+    keep_trailing = "--keep-trailing" in sys.argv[1:]
+    argv = [a for a in sys.argv[1:] if a != "--keep-trailing"]
+    if len(argv) != 3:
+        print("Usage: python3 concat_raw_csv.py <old_csv> <new_csv> <output_csv> [--keep-trailing]")
         sys.exit(1)
-    old_path, new_path, out_path = sys.argv[1], sys.argv[2], sys.argv[3]
+    old_path, new_path, out_path = argv
 
     old_header = read_header(old_path)
     new_header = read_header(new_path)
@@ -129,7 +135,7 @@ def main():
                     before_kept += 1
                     before_date_counts[row_date(line)] += 1
                 elif key > old_last_key:
-                    if row_date(line) == new_max_date:
+                    if not keep_trailing and row_date(line) == new_max_date:
                         dropped_trailing += 1
                         continue
                     after_f.write(line_out)

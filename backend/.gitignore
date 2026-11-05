@@ -19,3 +19,11 @@ Thumbs.db
 # TimesFM benchmark (research/timesfm_benchmark) — separate heavy venv + regenerable model cache
 .venv-forecast/
 research/timesfm_benchmark/cache/
+
+# Weekly automation (v1.29) — local-only state
+data/raw/incoming/
+automation/logs/
+automation/state.json
+automation/.lock
+automation/.env
+*.csv.new

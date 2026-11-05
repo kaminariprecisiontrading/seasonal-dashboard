@@ -19,6 +19,7 @@ market profiling, macro context and AI synthesis layered on top.
 - **Site-wide views**: [This Week](https://kpt-seasonals.netlify.app/this-week) digest with a
   watchlist, a 12-month [Heatmap](https://kpt-seasonals.netlify.app/heatmap), and a
   [Track Record](https://kpt-seasonals.netlify.app/track-record) that grades past signals against price.
+- **Weekly automated data refresh** from MT5.
 - **Market Profiling** for 14 instruments, built from full MT5 M1 history: profile shapes, range
   distributions, timing of highs and lows, and a TimesFM range forecast.
 

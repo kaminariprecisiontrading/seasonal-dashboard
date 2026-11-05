@@ -1,0 +1,68 @@
+# Weekly Telegram alert — posts the week's signal digest to the private Telegram channel
+# (scripts/telegram_digest.js; see docs/AUTOMATION.md).
+#
+# Runs right after the "Weekly signal snapshot" workflow finishes successfully, so the alert
+# shows exactly the signals that were just recorded for the Track Record. If the snapshot
+# failed (e.g. the manifest check), no alert is sent — fix the snapshot first, re-run it, and
+# this workflow follows automatically.
+#
+# Manual run: Actions → Weekly Telegram alert → Run workflow. Leave "send" unticked to see the
+# message in the job log without posting it.
+#
+# Secrets (Settings → Secrets and variables → Actions):
+#   TELEGRAM_BOT_TOKEN  the bot's token from @BotFather
+#   TELEGRAM_CHAT_ID    the private channel's id (starts with -100…)
+
+name: Weekly Telegram alert
+
+on:
+  workflow_run:
+    workflows: ["Weekly signal snapshot"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Week to send, as YYYY-MM-DD (blank = today, UTC)"
+        required: false
+        default: ""
+      send:
+        description: "Post to Telegram (untick for a dry run in the log)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-telegram-alert
+  cancel-in-progress: false
+
+jobs:
+  alert:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      # Check out main (not the triggering commit) so the snapshot the previous workflow just
+      # pushed is present.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build digest (dry run, always shown in the log)
+        env:
+          ALERT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          if [ -n "$ALERT_DATE" ]; then node scripts/telegram_digest.js --date "$ALERT_DATE"; else node scripts/telegram_digest.js; fi
+
+      - name: Post to Telegram
+        if: ${{ github.event_name == 'workflow_run' || github.event.inputs.send == 'true' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ALERT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          if [ -n "$ALERT_DATE" ]; then node scripts/telegram_digest.js --send --date "$ALERT_DATE"; else node scripts/telegram_digest.js --send; fi

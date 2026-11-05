@@ -138,7 +138,22 @@ The Track Record's live history needs one snapshot of the signals per week. Sinc
   when it runs, which is only faithful if the manifest hasn't changed since that week.
 - **Inactivity:** GitHub pauses scheduled workflows on public repos after 60 days without activity.
   If the Action shows as disabled, re-enable it in the Actions tab.
-- Grading stays manual: it needs fresh MT5 data (see `backend/README.md` → Track Record grading).
+- Grading runs in the Sunday data refresh (`docs/AUTOMATION.md`), which needs the laptop and MT5, so
+  it isn't part of this Action.
+
+---
+
+## Adding an Asset to the Weekly Download
+
+The Sunday refresh (`docs/AUTOMATION.md`) only appends to files that already exist:
+
+1. Do a first full M1 export by hand to `backend/data/raw/<KEY>_M1_full.csv`.
+2. Add the asset to `backend/automation/config.json → assets`: `key`, the broker's `symbol`,
+   `terminal` and `week` (`7d` for crypto and synthetics, otherwise `5d`). A second broker for an
+   instrument you already have uses `<ASSET>_<BROKER>`, e.g. `XAUUSD_DERIV`.
+3. Follow "Adding a New Profiling Asset" below (pip registry, sync list, page wiring).
+4. If its seasonal is price-derived, also add it to `derived_seasonal` in `config.json` and to
+   `scripts/sync_derived_seasonal.js`.
 
 ---
 

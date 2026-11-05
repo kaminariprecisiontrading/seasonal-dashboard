@@ -3,7 +3,7 @@
 Project documentation for **KPT Seasonals** (Kaminari Precision Trading's Seasonal Confluence
 Engine). For a short overview of the project, see the [root README](../README.md).
 
-**Current version:** v1.27 (October 2026). 98 asset pages with 7 tabs each, Market Profiling for 14
+**Current version:** v1.29 (November 2026). 98 asset pages with 7 tabs each, Market Profiling for 14
 assets, and site-wide This Week, Heatmap and Track Record pages. Since v1.27 the project is a single
 repo: `frontend/` (the published site), `backend/` (the Python pipeline, formerly the separate
 `KPT-Market-Profiling` repo), `scripts/` and `docs/`.
@@ -29,6 +29,7 @@ repo: `frontend/` (the published site), `backend/` (the Python pipeline, formerl
 | [MARKET_PROFILING_INTEGRATION.md](MARKET_PROFILING_INTEGRATION.md) | Design and build record for the Profiling tab (v1.7). |
 | [SKILL.md](SKILL.md) | How to recreate an asset dashboard from scratch with Claude. |
 | [PROMPTS.md](PROMPTS.md) | Copy-paste prompt library for the key Claude interactions. |
+| [AUTOMATION.md](AUTOMATION.md) | Runbook for the weekly data refresh and Telegram alerts: setup, branch guard, troubleshooting, adding assets. |
 | [../scripts/README.md](../scripts/README.md) | Every Node script: purpose, run command, status. |
 | [../backend/README.md](../backend/README.md) | The data pipeline: setup, refreshing an asset, outputs. |
 | [../backend/HANDOVER.md](../backend/HANDOVER.md) | Pipeline handover notes and design decisions. |
@@ -73,9 +74,10 @@ repo: `frontend/` (the published site), `backend/` (the Python pipeline, formerl
   (ChatGPT, `gpt-6-astra` by default, editable), Google AI Studio (Gemini Flash), or a local Ollama
   model (start it with `set OLLAMA_ORIGINS=* && ollama serve` for browser CORS; `start_kpt.bat`
   automates this).
-- **Automation:** one GitHub Action, `.github/workflows/weekly-signal-snapshot.yml`, snapshots the
-  week's signals every Monday for the Track Record and commits to `main` without a Netlify deploy
-  (details: `CONTRIBUTING.md` → Weekly Signal Snapshot).
+- **Automation** ([AUTOMATION.md](AUTOMATION.md)): every Sunday, Windows Task Scheduler on the laptop
+  refreshes the MT5 data and pushes it, which deploys the site. Every Monday, a GitHub Action snapshots
+  the week's signals for the Track Record and commits to `main` without a Netlify deploy
+  (`CONTRIBUTING.md` → Weekly Signal Snapshot), and a second Action then posts the Telegram digest.
 - **Building:** Claude (claude.ai / Claude Code) for design, analysis and code; VS Code; Git + GitHub.
 
 | Context | Tool | Best used for |
