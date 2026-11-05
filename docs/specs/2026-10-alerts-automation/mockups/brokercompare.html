@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<title>Broker comparison — KPT Seasonals</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+body{margin:0;background:#0a0c0f}
+a{color:#e8eaed}a:hover{color:#ffffff}
+.seg{min-height:44px;padding:0 16px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px;cursor:pointer;background:#11141a;border:1px solid #2a313b;color:#a9b1bd}
+.seg-on{background:#0d2416;border-color:#22c55e;color:#4ade80}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;color:#8b93a1}
+.h2{margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:30px;letter-spacing:1px}
+.card{background:#11141a;border:1px solid #1f252e;border-radius:8px;padding:22px}
+.cell{border-radius:4px;padding:6px 8px;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid #1f252e;background:#0f1217}
+.cell-diff{border-color:#b45309;background:#1f1608}
+.cell-conflict{border-color:#dc2626;background:#220d0f}
+.cell-dim{opacity:0.25}
+.up{color:#4ade80}.dn{color:#f87171}.ch{color:#fbbf24}
+.navl{padding:12px;text-decoration:none;color:#a9b1bd}
+.footl{padding:10px 8px;text-decoration:none;color:#a9b1bd}
+.bA{color:#7dd3fc}.bB{color:#f0abfc}
+</style></head>
+<body>
+
+
+<div style="background: #0a0c0f; color: #e8eaed; font-family: 'Barlow', system-ui, sans-serif; min-height: 100vh">
+
+<header style="border-bottom: 1px solid #1c2129">
+<nav aria-label="Primary" style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="https://kpt-seasonals.netlify.app/" style="display: flex; align-items: center; gap: 10px; text-decoration: none"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px">KPT Seasonals</span></a>
+<div style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px">
+<a class="navl" href="https://kpt-seasonals.netlify.app/dashboard">DASHBOARD</a><a class="navl" href="https://kpt-seasonals.netlify.app/this-week">THIS WEEK</a><a class="navl" href="https://kpt-seasonals.netlify.app/heatmap">HEATMAP</a><a class="navl" href="trackrecord-b.html">TRACK RECORD</a><a class="navl" href="brokercompare.html" aria-current="page" style="color: #22c55e; border-bottom: 2px solid #22c55e">BROKERS</a><a class="navl" href="https://kpt-seasonals.netlify.app/methodology">METHODOLOGY</a>
+</div>
+</nav>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 72px; display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 780px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #22c55e">BROKER COMPARISON</span>
+<h1 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(48px, 6vw, 76px); line-height: 0.95; letter-spacing: 1px">Same market, different broker</h1>
+<span style="font-size: 17px; line-height: 1.55; color: #b7bec9">Every price-derived result depends on whose price feed it came from. Here you can see how much the seasonal signals and profiling stats change between two MT5 brokers.</span>
+</div>
+
+<div role="note" style="padding: 10px 14px; border: 1px dashed #6b4a12; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #fbbf24">ROADMAP CANDIDATE · SAMPLE DATA FOR LAYOUT. NEEDS ASSET+BROKER KEYS (E.G. XAUUSD_TRADERSWAY, XAUUSD_DERIV).</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div role="group" aria-label="Asset" style="display: flex; flex-wrap: wrap; gap: 6px">
+<button type="button" class="seg seg-on" aria-pressed="true">XAUUSD</button><button type="button" class="seg" aria-pressed="false">BTCUSD</button><button type="button" class="seg" aria-pressed="false">US500</button>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px"><span class="bA">● TRADERSWAY</span><span style="color: #8b93a1">vs</span><span class="bB">● DERIV</span></div>
+</div>
+
+<!-- KPIs -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+<div class="card" style="border-color: #22c55e; display: flex; flex-direction: column; gap: 6px"><span class="lbl">WEEKS IN AGREEMENT</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: #22c55e">36<span style="font-size: 28px; color: #8b93a1"> / 48</span></span><span style="font-size: 14px; color: #a9b1bd">same signal from both feeds</span></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">DIRECTION CONFLICTS</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: #f87171">2</span><span style="font-size: 14px; color: #a9b1bd">one says BULL, the other BEAR</span></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">ADR20 DIFFERENCE</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1">+3.1%</span><span style="font-size: 14px; color: #a9b1bd">Deriv vs TradersWay</span></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">OVERLAPPING HISTORY</span><span style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1">7</span><span style="font-size: 14px; color: #a9b1bd">years both feeds cover</span></div>
+</div>
+
+<!-- Coverage -->
+<section class="card" aria-labelledby="cov" style="display: flex; flex-direction: column; gap: 14px">
+<h2 id="cov" class="h2">Data coverage</h2>
+<div style="overflow-x: auto; border: 1px solid #1f252e; border-radius: 6px">
+
+
+
+
+
+
+<table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 15px">
+<thead><tr style="background: #0f1217; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1; text-align: left"><th scope="col" style="padding: 12px 16px; font-weight: 500"> </th><th scope="col" style="padding: 12px 16px; font-weight: 500" class="bA">TRADERSWAY</th><th scope="col" style="padding: 12px 16px; font-weight: 500" class="bB">DERIV</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #1f252e"><th scope="row" style="padding: 11px 16px; text-align: left; font-weight: 500; color: #b7bec9"></th><td style="padding: 11px 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px"></td><td style="padding: 11px 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px"></td></tr>
+
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- Signal grid -->
+<section class="card" aria-labelledby="grid" style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 id="grid" class="h2">Seasonal signal, week by week</h2><span style="font-size: 14px; color: #a9b1bd">Each cell: <span class="bA">TradersWay</span> on top, <span class="bB">Deriv</span> below. Amber = different signal; red = opposite direction.</span></div>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px; color: #b7bec9; cursor: pointer"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #22c55e">Highlight disagreements only</label>
+</div>
+<div style="overflow-x: auto">
+<div style="min-width: 640px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b93a1; text-align: center"><span></span><span>WK1</span><span>WK2</span><span>WK3</span><span>WK4</span></div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">JAN</span>
+<div class="cell" aria-label="JAN week 1: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="JAN week 2: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell cell-diff" aria-label="JAN week 3: TradersWay BULL, Deriv CHOP"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell cell-conflict" aria-label="JAN week 4: TradersWay BULL, Deriv BEAR"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">FEB</span>
+<div class="cell" aria-label="FEB week 1: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="FEB week 2: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="FEB week 3: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell cell-diff" aria-label="FEB week 4: TradersWay BEAR, Deriv CHOP"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">MAR</span>
+<div class="cell" aria-label="MAR week 1: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="MAR week 2: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="MAR week 3: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="MAR week 4: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">APR</span>
+<div class="cell cell-diff" aria-label="APR week 1: TradersWay BEAR, Deriv CHOP"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell" aria-label="APR week 2: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="APR week 3: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="APR week 4: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">MAY</span>
+<div class="cell" aria-label="MAY week 1: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell cell-diff" aria-label="MAY week 2: TradersWay BULL, Deriv CHOP"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell" aria-label="MAY week 3: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell" aria-label="MAY week 4: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">JUN</span>
+<div class="cell" aria-label="JUN week 1: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="JUN week 2: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell cell-diff" aria-label="JUN week 3: TradersWay BEAR, Deriv CHOP"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell cell-conflict" aria-label="JUN week 4: TradersWay BEAR, Deriv BULL"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">JUL</span>
+<div class="cell" aria-label="JUL week 1: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell" aria-label="JUL week 2: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="JUL week 3: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell cell-diff" aria-label="JUL week 4: TradersWay BULL, Deriv CHOP"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">AUG</span>
+<div class="cell" aria-label="AUG week 1: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="AUG week 2: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="AUG week 3: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell" aria-label="AUG week 4: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">SEP</span>
+<div class="cell cell-diff" aria-label="SEP week 1: TradersWay BEAR, Deriv CHOP"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell" aria-label="SEP week 2: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="SEP week 3: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="SEP week 4: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #22c55e; align-self: center">OCT</span>
+<div class="cell" aria-label="OCT week 1: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell cell-diff" aria-label="OCT week 2: TradersWay CHOP, Deriv BULL"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="OCT week 3: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="OCT week 4: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">NOV</span>
+<div class="cell" aria-label="NOV week 1: TradersWay BULL, Deriv BULL"><span class="bA"><span class="up">TW ▲ BULL</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="NOV week 2: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div><div class="cell cell-diff" aria-label="NOV week 3: TradersWay CHOP, Deriv BULL"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div><div class="cell" aria-label="NOV week 4: TradersWay CHOP, Deriv CHOP"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="ch">DV – CHOP</span></span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b93a1; align-self: center">DEC</span>
+<div class="cell" aria-label="DEC week 1: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="DEC week 2: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell" aria-label="DEC week 3: TradersWay BEAR, Deriv BEAR"><span class="bA"><span class="dn">TW ▼ BEAR</span></span><span class="bB"><span class="dn">DV ▼ BEAR</span></span></div><div class="cell cell-diff" aria-label="DEC week 4: TradersWay CHOP, Deriv BULL"><span class="bA"><span class="ch">TW – CHOP</span></span><span class="bB"><span class="up">DV ▲ BULL</span></span></div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Profiling diff -->
+<section class="card" aria-labelledby="prof" style="display: flex; flex-direction: column; gap: 14px">
+<h2 id="prof" class="h2">Profiling differences</h2>
+<div style="overflow-x: auto; border: 1px solid #1f252e; border-radius: 6px">
+
+
+
+
+
+<table style="width: 100%; min-width: 660px; border-collapse: collapse; font-size: 15px">
+<thead><tr style="background: #0f1217; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #8b93a1; text-align: left"><th scope="col" style="padding: 12px 16px; font-weight: 500">STATISTIC</th><th scope="col" style="padding: 12px 16px; font-weight: 500" class="bA">TRADERSWAY</th><th scope="col" style="padding: 12px 16px; font-weight: 500" class="bB">DERIV</th><th scope="col" style="padding: 12px 16px; font-weight: 500">DIFFERENCE</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #1f252e"><th scope="row" style="padding: 11px 16px; text-align: left; font-weight: 500; color: #b7bec9"></th><td style="padding: 11px 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px"></td><td style="padding: 11px 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px"></td><td style="padding: 11px 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: "></td></tr>
+
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px">
+<div class="card" style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px">Server time zone</span><span style="font-size: 15px; line-height: 1.55; color: #a9b1bd">Brokers cut daily candles at different times, which moves highs and lows between days. All feeds are aligned to the 5pm New York close before comparing.</span></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px">Price source &amp; spread</span><span style="font-size: 15px; line-height: 1.55; color: #a9b1bd">Different liquidity providers and markups shift prices slightly. This matters most for small weekly moves near zero.</span></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px">History length</span><span style="font-size: 15px; line-height: 1.55; color: #a9b1bd">A shorter history means fewer years per week slot, so signals are noisier and conviction is capped. Compare like with like using the overlap period.</span></div>
+</section>
+</main>
+
+<footer style="border-top: 1px solid #1c2129">
+<div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 44px; display: flex; flex-direction: column; gap: 12px">
+<nav aria-label="Legal" style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1.5px"><a class="footl" href="https://kpt-seasonals.netlify.app/risk">RISK DISCLOSURE</a><a class="footl" href="https://kpt-seasonals.netlify.app/terms">TERMS</a><a class="footl" href="https://kpt-seasonals.netlify.app/privacy">PRIVACY</a><a class="footl" href="https://kpt-seasonals.netlify.app/sources">DATA SOURCES</a><a class="footl" href="https://kpt-seasonals.netlify.app/about">ABOUT &amp; CONTACT</a></nav>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #8b93a1">Historical patterns only · Not financial advice. Kaminari Seasonals Dashboard is a personal project by G T, published as Kaminari Precision Trading. Price-derived statistics from the operator's own MT5 broker exports.</p>
+</div>
+</footer>
+</div>
+
+
+
+
+</body></html>

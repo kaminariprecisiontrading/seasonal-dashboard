@@ -1,0 +1,36 @@
+<b>KPT Seasonals · OCT WK3 · 2026</b>
+<i>Signals as recorded in this week's snapshot.</i>
+
+BULL <b>51</b> ▲5  ·  BEAR <b>20</b> ▼9  ·  OTHER <b>27</b> ▲4
+Changed vs last week: <b>22</b> of 98
+
+<b>Flipped</b> (top 8 of 21)
+• Robusta Coffee  CHOP → <b>BULL</b> ●●●●●  <code>[MRCI]</code>
+• NY Harbor ULSD  FLIP → <b>BEAR</b> ●●●●○  <code>[MRCI]</code>
+• Gas Oil  FLIP → <b>BEAR</b> ●●●●○  <code>[MRCI]</code>
+• EURCAD  FLIP → <b>CHOP</b> ●●●○○  <code>[MRCI-d]</code>
+• EURJPY  FLIP → <b>CHOP</b> ●●●○○  <code>[MRCI-d]</code>
+• EURNZD  FLIP → <b>CHOP</b> ●●●○○  <code>[MRCI-d]</code>
+• US Dollar Index  CHOP → <b>BULL</b> ●●●○○  <code>[MRCI]</code>
+• Swiss Franc  BEAR → <b>CHOP</b> ●●●○○  <code>[MRCI]</code>
+
+<b>New five-dot signals</b>
+• EURUSD  <b>BEAR</b> ●●●●●  <code>[MRCI-d]</code>
+• Robusta Coffee  <b>BULL</b> ●●●●●  <code>[MRCI]</code>
+
+<b>Coming up</b> (conviction ≥ 4)
+OCT WK4: EURUSD BEAR <code>[MRCI-d]</code>, AUDCHF BULL <code>[MRCI-d]</code>, Natural Gas BULL <code>[MRCI]</code>
+NOV WK1: EURUSD BEAR <code>[MRCI-d]</code>, USDCAD BULL <code>[MRCI-d]</code>, USDCHF BULL <code>[MRCI-d]</code>
+NOV WK2: EURUSD BEAR <code>[MRCI-d]</code>, USDCAD BULL <code>[MRCI-d]</code>, EURAUD BEAR <code>[MRCI-d]</code>
+NOV WK3: EURUSD BEAR <code>[MRCI-d]</code>, EURAUD BEAR <code>[MRCI-d]</code>, EURCHF BEAR <code>[MRCI-d]</code>
+
+<b>Crypto</b>
+• Bitcoin  CHOP → <b>BULL</b> ●●●○○  <code>[MT5·TW]</code>
+
+<b>Sources</b>
+<code>MRCI</code> Moore Research Center seasonal tendency charts
+<code>MRCI-d</code> KPT synthesis of two MRCI currency futures
+<code>MT5·TW</code> KPT, computed from TradersWay MT5 price history
+
+<i>Historical patterns only. Not financial advice.</i>
+https://kpt-seasonals.netlify.app/this-week  ·  https://kpt-seasonals.netlify.app/risk
