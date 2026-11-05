@@ -59,10 +59,16 @@ const EDITS = {
     ['<tr><td>marked</td><td>Formatting AI output</td><td>MIT</td></tr>', '<tr><td>marked 9.1.6</td><td>Formatting AI output</td><td>MIT</td></tr>'],
     ['<tr><td>Bebas Neue, JetBrains Mono, Barlow, IBM Plex Mono</td><td>Typefaces</td><td>SIL Open Font License 1.1</td></tr>',
      '<tr><td>Bebas Neue, IBM Plex Mono, Barlow</td><td>Typefaces (served from this site)</td><td>SIL Open Font License 1.1</td></tr>'],
+    ['are used only to identify the contracts the data refers to.</p>',
+     'are used only to identify the contracts the data refers to.</p>\n\n<h3>Sources by asset</h3>\n<p>Every asset on the site shows which of these sources its signal comes from. The counts below are live assets.</p>\n<div id="kpt-source-table"></div>'],
     ['Claude, Anthropic, Gemini, Google, Ollama and the exchange names above',
      'Claude, Anthropic, ChatGPT, OpenAI, Gemini, Google, Ollama and the exchange names above'],
   ]
 };
+
+// Pages changed since their mockup was approved, and the scripts a page needs beyond site.js.
+const UPDATED = { sources: 'Last updated: 5 November 2026' };
+const PAGE_SCRIPTS = { sources: ['/data/asset_index.js', '/data/asset_sources.js', '/js/sources-table.js'] };
 
 // Inline styles → classes (every style attribute in the extracted HTML must be covered).
 const STYLE_MAP = [
@@ -105,7 +111,7 @@ function page(name) {
   const title = between(src, '<title>', '</title>');
   const head = between(src, '<section style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 40px;', '</section>');
   const h1 = between(head, '">', '</h1>', head.indexOf('<h1'));
-  const updated = head.slice(head.indexOf('Last updated'), head.indexOf('</span>', head.indexOf('Last updated')));
+  const updated = UPDATED[name] || head.slice(head.indexOf('Last updated'), head.indexOf('</span>', head.indexOf('Last updated')));
   const lead = between(head, '">', '</p>', head.indexOf('<p'));
   const tocRaw = between(src, '<nav aria-label="On this page" class="toc"', '</nav>');
   const toc = tocRaw.slice(tocRaw.indexOf('</span>') + 7).trim();
@@ -149,7 +155,7 @@ ${body}
 </div>
 </main>
 <footer data-kpt-footer></footer>
-<script src="/js/site.js" defer></script>
+${(PAGE_SCRIPTS[name] || []).map(src => '<script src="' + src + '" defer></script>\n').join('')}<script src="/js/site.js" defer></script>
 </body>
 </html>
 `;

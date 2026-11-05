@@ -70,9 +70,10 @@
     <section aria-labelledby="rules" class="tr-rules prose">
       <h2 id="rules" class="display tw-h3">Grading rules</h2>
       <ul>
-        <li><strong>Hit:</strong> the week's close-to-close move went the way of the signal (Monday open to Friday close; in holiday weeks, the first to the last trading day). Trading days end at the 5pm New York close, as in the Profiling data. A flat week counts as a miss.</li>
+        <li><strong>Hit:</strong> the week's close-to-close move went the way of the signal (Monday open to Friday close, or to Sunday close for markets that trade seven days a week, such as BTCUSD; in holiday weeks, the first to the last trading day. BTCUSD has no weekend data before December 2020, so its earlier weeks run to Friday). Trading days end at the 5pm New York close, as in the Profiling data. A flat week counts as a miss.</li>
         <li><strong>Which signal:</strong> the one the dashboard shows for the week slot the Monday falls in (days 1–7 = Week 1, 8–14 = Week 2, 15–21 = Week 3, 22 onwards = Week 4).</li>
-        <li><strong>CHOP</strong> (and AVOID) isn't graded. <strong>FLIP</strong> is graded on the second half of the week (Wednesday open to Friday close), after the turn, in the post-turn direction: the following week's BULL/BEAR signal, or else the opposite of the previous week's.</li>
+        <li><strong>CHOP</strong> (and AVOID) isn't graded. <strong>FLIP</strong> is graded on the second half of the week (Wednesday open to Friday close; Thursday open to Sunday close for seven-day markets), after the turn, in the post-turn direction: the following week's BULL/BEAR signal, or else the opposite of the previous week's.</li>
+        <li>A seven-day market's latest week shows as <strong>PENDING</strong> until its Sunday is in the data. Pending rows aren't counted in any figure.</li>
         <li>Moves are shown as multiples of ADR20 (the average daily range of the 20 trading days before the week), so gold and EURUSD can be compared fairly.</li>
         <li>The signal that was live <em>at the time</em> is the one graded. Weeks marked <strong>LIVE</strong> use the weekly snapshot of what the site showed; <strong>BACKFILL</strong> weeks are graded with today's seasonal data, which already includes those years. Later data edits never rewrite live history.</li>
       </ul>
@@ -84,6 +85,7 @@
 <script src="/data/track_record.js" defer></script>
 <script src="/data/signals_manifest.js" defer></script>
 <script src="/data/asset_index.js" defer></script>
+<script src="/data/asset_sources.js" defer></script>
 <script src="/js/signals.js" defer></script>
 <script src="/js/site.js" defer></script>
 <script src="/js/track-record.js" defer></script>

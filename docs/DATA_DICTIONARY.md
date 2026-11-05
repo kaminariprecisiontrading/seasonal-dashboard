@@ -209,25 +209,46 @@ signals. Re-run the generator after changing any `data/<asset>.js`.
 
 ## Track Record data (v1.25)
 
-**`data/track_record.js`** — `window.KPT_TRACK_RECORD = { generatedAt, asOf, since, assets[], columns[], rows[] }`,
-synced from `backend/output/track_record.json`. `assets[i] = {key, id, label}` (pipeline
-key, dashboard page id, display label). Each row:
+**`data/track_record.js`** — `window.KPT_TRACK_RECORD = { generatedAt, asOf, since, assets[], columns[], rows[], pendingColumns[], pending[] }`,
+synced from `backend/output/track_record.json`. `assets[i] = {key, id, label, week}` (pipeline
+key, dashboard page id, display label, `5d`/`7d`). Each row:
 
 | # | Field | Values |
 |---|-------|--------|
-| 0 | week | Monday of the graded Mon–Fri week (`YYYY-MM-DD`) |
+| 0 | week | Monday of the graded week (`YYYY-MM-DD`): Mon–Fri for `5d` assets, Mon–Sun for `7d` |
 | 1 | asset | index into `assets` |
 | 2 | signal | `BULL` / `BEAR` / `CHOP` / `FLIP` / `AVOID` (dashboard mapping of that week slot's `com`) |
 | 3 | conviction | 0–5 |
-| 4 | moveAdr | move of the graded part of the week ÷ ADR20 (+ = up); for FLIP, Wednesday open → Friday close |
+| 4 | moveAdr | move of the graded part of the week ÷ ADR20 (+ = up); for FLIP, Wednesday open → Friday close (`5d`) or Thursday open → Sunday close (`7d`) |
 | 5 | result | `H` hit · `M` miss · `-` not graded |
 | 6 | source | `b` backfill (today's data, in-sample) · `l` live (graded from a weekly snapshot) |
 | 7 | flipDir | FLIP only: post-turn direction graded (`BULL` / `BEAR`), else empty |
+
+`pending[]` rows are `[week, asset, signal, conviction, source]`: a `7d` asset's final data week, while
+it has no Sunday bar and its signal is BULL, BEAR or FLIP. They appear in the page's log only and are
+never counted in a figure. `5d` assets have no pending rows; an unfinished final week is just left out.
 
 **`data/signal_history/YYYY-MM-Wn.json`** — one per week, written by `scripts/snapshot_signals.js`
 (run every Monday by the `.github/workflows/weekly-signal-snapshot.yml` GitHub Action):
 `{ week, takenAt, manifestGenerated, signals: { <assetId>: "<com string>" } }` for all 98 assets.
 Never overwritten; these are the "as shown at the time" record the live Track Record grades.
+
+---
+
+## Data sources — `data/asset_sources.js` (v1.29)
+
+Hand-maintained. Says where each asset's signal comes from; read by the Telegram digest and the site.
+
+| Global | Shape |
+|---|---|
+| `KPT_SOURCES` | `{ <key>: { short, label, kind, owner, desc } }`. `short` is for chips and alert lines, `label` for full text, `desc` explains it. `kind`: `licensed`, `derived` or `price-derived`. |
+| `KPT_SOURCE_DEFAULTS` | `{ <block>: <key> }`: the default per dashboard block (`futures`, `forex`, `crypto`, `synthetics`) |
+| `KPT_SOURCE_OVERRIDES` | `{ <asset id>: <key> }`: per-asset exceptions |
+| `kptSourceOf(asset)` | The override, else the block default: `{ key, short, label, kind, owner, desc }`, or `null` |
+| `KPT_SYNTHETIC_NOTE`, `KPT_SYNTHETIC_CAPTION` | The educational text on synthetic asset pages and their Profiling charts |
+
+Pages use `KptSignals.sourceOf(a)` and `KptSignals.sourceChip(a)`. If the file fails to load, labels are
+simply absent and nothing else changes.
 
 ---
 

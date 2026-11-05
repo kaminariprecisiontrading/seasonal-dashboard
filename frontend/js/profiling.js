@@ -50,6 +50,11 @@
   var assetKey = ASSET_MAP[ASSET_CONFIG.id];
   if (!assetKey) return; // no Profiling data for this asset — render nothing
 
+  // Session and timing charts on a synthetic index: one line saying what to expect.
+  var synAsset = window.KptSignals && KptSignals.asset(ASSET_CONFIG.id);
+  var SYN_CAPTION = (synAsset && synAsset.block === 'synthetics' && window.KPT_SYNTHETIC_CAPTION)
+    ? '<div class="kptp-section-note kptp-syn-caption">' + window.KPT_SYNTHETIC_CAPTION + '</div>' : '';
+
   var bundle = window.KPT_PROFILING && window.KPT_PROFILING[assetKey];
   if (!bundle) {
     console.error('profiling.js: window.KPT_PROFILING.' + assetKey + ' not found — check data/profiling/' + assetKey + '.js is loaded before this script.');
@@ -268,6 +273,7 @@
 
       '<div class="kptp-section-label">Time of Extreme</div>' +
       '<div class="kptp-section-note">When the daily high/low tends to form, UTC. Bar height = share of days in that half-hour bucket; the mode bucket is outlined white, the dashed amber line marks the circular mean' + kptpGlossaryIcon('circular_mean') + '. Bars are coloured by FX session' + kptpGlossaryIcon('session') + '. The badge shows how tightly clustered (concentrated' + kptpGlossaryIcon('concentration') + ') the timing actually is &mdash; hover any bar for its exact time window.</div>' +
+      SYN_CAPTION +
       '<div class="kptp-panel-card">' +
         '<div class="kptp-panel-title">Daily High</div>' +
         '<div id="kptp-heatmap-high"></div>' +
@@ -295,6 +301,7 @@
 
       '<div class="kptp-section-label" id="kptp-hourly-activity-label" hidden>Hourly Activity</div>' +
       '<div class="kptp-section-note" id="kptp-hourly-activity-note" hidden></div>' +
+      SYN_CAPTION +
       '<div class="kptp-panel-card" id="kptp-hourly-activity-card" hidden>' +
         '<div class="kptp-panel-title">Mean Range by Hour of Day (UTC)</div>' +
         '<div id="kptp-hourly-activity-chart"></div>' +
@@ -333,6 +340,7 @@
       '</div>' +
 
       '<div class="kptp-section-label">Extreme Timing &mdash; Day of Week</div>' +
+      SYN_CAPTION +
       '<div class="kptp-section-note">Which weekday the week&rsquo;s high/low falls on. Full history &mdash; not affected by the lookback window above. Hover any bar for the exact count.</div>' +
       '<div class="kptp-two-col">' +
         '<div class="kptp-panel-card"><div class="kptp-panel-title">Week High &mdash; Day of Week</div><div id="kptp-weekday-high-chart"></div></div>' +

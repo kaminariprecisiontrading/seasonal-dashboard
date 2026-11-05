@@ -90,6 +90,7 @@
     if (!s) { state.sel = null; return renderSelected(cols); }
     box.innerHTML = '<span class="mini-lbl">SELECTED</span>' +
       '<span class="hm-sel-name">' + esc(S.displayName(a)) + '</span>' +
+      '<span class="hm-sel-source">' + S.sourceChip(a) + '</span>' +
       '<span class="hm-sel-when">' + c.aria + ' · ' + (state.view === 'months' ? 'monthly bias' : 'weekly signal') + '</span>' +
       '<span class="hm-sel-sig">' + S.pill(s) + S.convDots(s.conviction) + '</span>' +
       '<a class="btn hm-open" href="' + S.assetHref(a.id, '/') + '">Open asset →</a>';

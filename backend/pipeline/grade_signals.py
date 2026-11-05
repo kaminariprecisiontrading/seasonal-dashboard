@@ -12,15 +12,22 @@ For every Mon–Fri week since --since:
   - Signal: the dashboard's signal for the week slot the week's Monday falls in
     (month + week-of-month: days 1-7 = Wk1, 8-14 = Wk2, 15-21 = Wk3, 22+ = Wk4), using
     exactly the dashboard's com → signal mapping (js/signals.js comToTag, mirrored below).
-  - Move: first trading day's open → last trading day's close of that Mon–Fri week
-    (trading days as cleaned by the pipeline, ending at the 5pm New York close),
-    expressed as a multiple of ADR20 (mean daily high−low of the 20 trading days
-    before the week).
+  - Move: first trading day's open → last trading day's close of that week (trading
+    days as cleaned by the pipeline, ending at the 5pm New York close), expressed as a
+    multiple of ADR20 (mean daily high−low of the 20 trading days before the week).
+  - Week type (automation/config.json → assets[].week): "5d" weeks run Mon–Fri; "7d" weeks
+    (crypto, synthetics) run Mon–Sun. ADR20 uses every day the asset trades. A week with
+    no bar on its last day (holiday, or BTCUSD before it had weekend data in Dec 2020) is
+    graded to its last trading day.
   - HIT = BULL and the move is up, or BEAR and the move is down. A flat week is a miss.
   - CHOP (and AVOID) are not graded.
-  - FLIP is graded on the second half of the week (first trading day from Wednesday →
-    Friday close), in the post-turn direction: the next week's signal if it is BULL or
-    BEAR, otherwise the opposite of the previous week's BULL/BEAR; ungraded if neither.
+  - FLIP is graded on the second half of the week (5d: first trading day from Wednesday →
+    Friday close; 7d: from Thursday → Sunday close), in the post-turn direction: the next
+    week's signal if it is BULL or BEAR, otherwise the opposite of the previous week's
+    BULL/BEAR; ungraded if neither.
+  - The data's final week counts only once it has its last day (5d Friday, 7d Sunday).
+    Until then a 7d asset's BULL/BEAR/FLIP is listed under `pending`, which is shown in the
+    page's log only and never counted in any figure.
 
 Two kinds of history, kept separate (`source`):
   - backfill — graded with today's signals_manifest.js. In-sample: the seasonal charts
@@ -57,6 +64,21 @@ ASSETS = [
     ("wti", "cl", "WTI"), ("us500", "sp500", "US500"), ("ustech", "nq", "USTECH"),
     ("us30", "ym", "US30"), ("btcusd", "btc", "BTCUSD"),
 ]
+
+# Week type by pipeline key: one list, the weekly automation's config.
+CONFIG = os.path.join(ROOT, "automation", "config.json")
+LAST_DAY = {"5d": 4, "7d": 6}          # dayofweek of the week's last day (Fri / Sun)
+FLIP_FROM = {"5d": 2, "7d": 3}         # dayofweek the FLIP's second half starts (Wed / Thu)
+
+
+def week_types(path=CONFIG):
+    with open(path, encoding="utf-8") as f:
+        types = {a["key"].lower(): a["week"] for a in json.load(f)["assets"]}
+    missing = [key for key, _, _ in ASSETS if types.get(key) not in LAST_DAY]
+    if missing:
+        raise SystemExit(f"no 5d/7d week type in {path} for: {', '.join(missing)}")
+    return types
+
 
 # Mirror of the site's comToTag() (frontend/js/signals.js) — keep in sync.
 _PREFIX = [("LONG", "BULL"), ("SHORT", "BEAR"), ("FLIP", "FLIP"), ("AVOID", "AVOID"),
@@ -113,12 +135,13 @@ def load_snapshots(dashboard):
     return snaps
 
 
-def weekly_frames(clean_csv):
+def weekly_frames(clean_csv, week_type):
     d = pd.read_csv(clean_csv, usecols=["date", "open", "high", "low", "close", "is_data_gap"], parse_dates=["date"])
     d = d[d.open.notna() & d.close.notna() & d.high.notna() & d.low.notna()].copy()
     d["rng"] = d.high - d.low
     d["adr20_prior"] = d.rng.rolling(20).mean().shift(1)
-    d = d[d.date.dt.dayofweek < 5]                       # Mon–Fri weeks for every asset
+    if week_type == "5d":
+        d = d[d.date.dt.dayofweek < 5]                   # 7d assets keep their weekends
     d["monday"] = d.date - pd.to_timedelta(d.date.dt.dayofweek, unit="D")
     return d
 
@@ -134,19 +157,30 @@ def main():
     manifest = load_manifest(args.site)
     snaps = load_snapshots(args.site)
     since = pd.Timestamp(args.since)
-    rows, as_of = [], None
+    types = week_types()
+    rows, pending, as_of = [], [], None
 
     for ai, (key, page_id, label) in enumerate(ASSETS):
-        d = weekly_frames(os.path.join(ROOT, "data", "clean", f"{key}_daily_clean.csv"))
+        week_type = types[key]
+        d = weekly_frames(os.path.join(ROOT, "data", "clean", f"{key}_daily_clean.csv"), week_type)
         as_of = max(as_of, d.date.max()) if as_of is not None else d.date.max()
         weeks = sorted(m for m in d.monday.unique() if pd.Timestamp(m) >= since)
         last_monday = pd.Timestamp(weeks[-1]) if weeks else None
         for mon in weeks:
             mon = pd.Timestamp(mon)
             wk = d[d.monday == mon]
-            # The data's final week may still be in progress — grade it only once it has its Friday.
-            # (Earlier weeks without a Friday bar are holiday weeks: graded to their last trading day.)
-            if wk.empty or (mon == last_monday and wk.date.max().dayofweek < 4):
+            if wk.empty:
+                continue
+            # The data's final week may still be in progress — grade it only once it has its last day.
+            # (Earlier weeks without one are holiday or data-gap weeks: graded to their last trading day.)
+            if mon == last_monday and wk.date.max().dayofweek < LAST_DAY[week_type]:
+                if week_type == "7d":
+                    m0, w0 = slot(mon)
+                    snap = snaps.get((mon.year, m0, w0))
+                    live = snap is not None and page_id in snap
+                    com = snap[page_id] if live else manifest[page_id][m0 * 4 + w0]
+                    if com_to_signal(com) in ("BULL", "BEAR", "FLIP"):
+                        pending.append([mon.strftime("%Y-%m-%d"), ai, com_to_signal(com), conviction(com), "l" if live else "b"])
                 continue
             first, last = wk.iloc[0], wk.iloc[-1]
             adr = first.adr20_prior
@@ -172,7 +206,7 @@ def main():
                 ns = com_to_signal(manifest[page_id][nm * 4 + nw])
                 ps = com_to_signal(manifest[page_id][pm * 4 + pw])
                 direction = ns if ns in ("BULL", "BEAR") else ({"BULL": "BEAR", "BEAR": "BULL"}.get(ps))
-                half = wk[wk.date.dt.dayofweek >= 2]
+                half = wk[wk.date.dt.dayofweek >= FLIP_FROM[week_type]]
                 if direction and not half.empty:
                     graded_move = (last.close - half.iloc[0].open) / adr
                 else:
@@ -187,9 +221,11 @@ def main():
         "generatedAt": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "asOf": as_of.strftime("%Y-%m-%d") if as_of is not None else None,
         "since": args.since,
-        "assets": [{"key": k, "id": i, "label": l} for k, i, l in ASSETS],
+        "assets": [{"key": k, "id": i, "label": l, "week": types[k]} for k, i, l in ASSETS],
         "columns": ["week", "asset", "signal", "conviction", "moveAdr", "result", "source", "flipDir"],
         "rows": rows,
+        "pendingColumns": ["week", "asset", "signal", "conviction", "source"],
+        "pending": pending,
     }
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
@@ -199,7 +235,7 @@ def main():
     hits = sum(r[5] == "H" for r in graded)
     live = sum(r[6] == "l" for r in rows)
     print(f"weeks graded: {len(graded)} of {len(rows)} rows · hit rate {hits / max(1, len(graded)):.1%} · "
-          f"live rows {live} · data as of {out['asOf']} · wrote {args.out}", file=sys.stderr)
+          f"live rows {live} · pending {len(pending)} · data as of {out['asOf']} · wrote {args.out}", file=sys.stderr)
 
 
 if __name__ == "__main__":

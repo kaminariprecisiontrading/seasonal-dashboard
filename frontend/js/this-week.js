@@ -32,7 +32,7 @@
   function title(w) { return MON[w.month] + ' Wk' + (w.week + 1) + ' · ' + w.year; }
   function shortLabel(w) { return MON[w.month].toUpperCase() + ' WK' + (w.week + 1); }
   function nameCell(a) {
-    return '<span class="row-name"><span class="row-title">' + esc(S.displayName(a)) + '</span><span class="row-sub">' + esc(S.subLabel(a)) + '</span></span>';
+    return '<span class="row-name"><span class="row-title">' + esc(S.displayName(a)) + '</span><span class="row-sub">' + esc(S.subLabel(a)) + ' ' + S.sourceChip(a) + '</span></span>';
   }
   function href(a) { return S.assetHref(a.id, '/'); }
 
@@ -83,7 +83,7 @@
     var maxNew = rows.filter(function (r) { return r.now.conviction === 5 && r.before.conviction < 5; });
     $('tw-maxconv').innerHTML = maxNew.length
       ? maxNew.map(function (r) {
-          return '<a class="mc-row" href="' + href(r.a) + '"><span class="row-title">' + esc(S.displayName(r.a)) + '</span><span class="mc-sig">' + S.convDots(5) + S.pill(r.now) + '</span></a>';
+          return '<a class="mc-row" href="' + href(r.a) + '"><span class="row-title">' + esc(S.displayName(r.a)) + '</span><span class="mc-sig">' + S.sourceChip(r.a) + S.convDots(5) + S.pill(r.now) + '</span></a>';
         }).join('')
       : '<p class="note empty">No new five-dot signals this week.</p>';
 
@@ -97,7 +97,7 @@
         .slice(0, 3);
       up += '<div class="up-col"><span class="mini-lbl">' + shortLabel(w) + '</span>' +
         (top.length ? top.map(function (x) {
-          return '<a class="up-row" href="' + href(x.a) + '"><span class="row-title">' + esc(S.displayName(x.a)) + '</span><span class="mc-sig">' + S.convDots(x.s.conviction) + S.pill(x.s) + '</span></a>';
+          return '<a class="up-row" href="' + href(x.a) + '"><span class="row-name"><span class="row-title">' + esc(S.displayName(x.a)) + '</span><span class="row-sub">' + S.sourceChip(x.a) + '</span></span><span class="mc-sig">' + S.convDots(x.s.conviction) + S.pill(x.s) + '</span></a>';
         }).join('') : '<p class="note empty">Nothing above 3 dots</p>') + '</div>';
     }
     $('tw-upcoming').innerHTML = up;

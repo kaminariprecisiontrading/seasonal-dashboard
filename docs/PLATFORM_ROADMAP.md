@@ -405,9 +405,9 @@ No design work yet — recorded so they aren't lost, revisited only when explici
 
 ### Synthetics (Deriv) and Crypto
 
-Add index-page sections for Deriv synthetics and crypto (e.g. BTCUSD via an MT5-available
-forex/CFD equivalent), once MT5 data upload is a consistent, ongoing habit rather than a
-one-time backfill. Revisit after Tier 1–5 groundwork is in place.
+Crypto shipped with BTCUSD (v1.11). The groundwork for Deriv synthetics shipped in v1.29: a dashboard
+block with planned cards, the source label, 7-day grading and the educational note. Going live needs
+the Deriv MT5 app installed, then `CONTRIBUTING.md` → "Adding a Synthetic Index". See Tier 8.
 
 ### Multi-broker data labeling
 
@@ -480,7 +480,25 @@ feature's usefulness is capped by data freshness — see the status note below.
 
 A weekly refresh on the owner's laptop (MT5 download → pipeline → push) and a private Telegram digest
 after each Monday snapshot, off the site and one-way. Runbook: `AUTOMATION.md`. Brief:
-`specs/2026-10-alerts-automation/`.
+`specs/2026-10-alerts-automation/`. Also shipped: a data-source label on every asset, 7-day Track Record
+weeks for crypto and synthetics, and the synthetics groundwork.
+
+**Still open from that brief:**
+
+- **Track Record view (owner to choose, brief §6).** A combined headline, a separate synthetics category,
+  or three views (Real markets · Synthetics · Combined). Mockups are in the spec folder. Nothing is built
+  until one is picked, and there are no synthetics to show until one goes live.
+- **Broker comparison (roadmap candidate, brief §7).** A `/brokers` page comparing two cleaned feeds for one
+  instrument (`xauusd` + `xauusd_deriv`), aligned to the 5pm New York close, with signals generated over the
+  overlap period only. Needs a second feed first. Mockup in the spec folder.
+- **Deriv synthetics.** Install the Deriv MT5 app, set its path in `config.json` and enable it, then follow
+  `CONTRIBUTING.md` → "Adding a Synthetic Index". The five planned cards are a starting list, not a commitment.
+- **MRCI phase-out.** Moore Research Center redistribution permission is an open item, and alerts carry
+  MRCI-derived signals to a private audience. The way out is gradual: re-derive assets from MT5 price history
+  with `gen_seasonal_signal.py`, then move each with a one-line `KPT_SOURCE_OVERRIDES` entry so its label
+  changes everywhere.
+- **Free long-term sources to evaluate:** Stooq, FRED and CFTC. Check each one's licence for redistribution
+  before using it; none has been reviewed yet.
 
 ---
 
@@ -506,7 +524,8 @@ after each Monday snapshot, off the site and one-way. Runbook: `AUTOMATION.md`. 
 6. **Tier 6** — parked, no action until explicitly raised again.
 7. **Tier 7** — ✅ done (v1.17, 2026-10-06). Range Outlook (TimesFM) on all 14 Profiling assets. The Analysis tab's "near-term"
    one-shot item under Tier 6 is ✅ done (v1.13–v1.14); the chat interface itself is not started.
-8. **Tier 8** — ✅ done (v1.29). Telegram alerts and the weekly data refresh.
+8. **Tier 8** — ✅ done (v1.29). Telegram alerts, the weekly data refresh, source labels and 7-day grading.
+   Open items are listed in the tier.
 
 **Status as of 2026-10-06:** v1.17 (Tier 7, Range Outlook) built on a branch; before it, no work since v1.16 (2026-09-06). All Profiling data is as of
 2026-09-03 (the last MT5 M1 export); a refresh needs new exports first (see `README.md` →

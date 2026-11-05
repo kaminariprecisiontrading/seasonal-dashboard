@@ -212,6 +212,44 @@ Once a new asset's MT5 CSV has been cleaned and run through the pipeline in `bac
 
 ---
 
+## Changing an Asset's Data Source
+
+Add one line to `KPT_SOURCE_OVERRIDES` in `frontend/data/asset_sources.js`:
+
+```js
+window.KPT_SOURCE_OVERRIDES = {
+  'xau': 'mt5-tradersway',
+};
+```
+
+Every label follows: dashboard card, asset page header, This Week, Heatmap, Track Record, the `/sources`
+counts and the Telegram alert. A new source family also needs a `KPT_SOURCES` entry. No card edit is
+needed, because the source list is kept separate from `gen_asset_index.js`'s registry on purpose. Update
+the Source column in `docs/ASSETS.md`, and check the source's licence before showing its data.
+
+---
+
+## Adding a Synthetic Index
+
+A Deriv synthetic is treated like any other asset. It follows "Adding a Statistically-Derived Asset"
+below, plus:
+
+1. In `backend/automation/config.json → assets`, add it with `"terminal": "deriv"` and `"week": "7d"`,
+   and add it to `derived_seasonal`. Enable the Deriv terminal and set its path once the app is installed.
+2. Add it to `ASSETS` in `backend/pipeline/grade_signals.py` to include it in the Track Record. Its week
+   type comes from `config.json`.
+3. On `dashboard.html`, turn its `PLANNED` card in the `synthetics` block into a live card (or add one)
+   and keep the `SYN` badge. Re-run `node scripts/gen_asset_index.js`. `SYN` doesn't change any logic: the
+   block is what makes it a synthetic.
+4. The source is automatic (`mt5-deriv-syn`, the block's default). So are the RNG note under the
+   derived-seasonal note and the Profiling caption ("Expected to be flat for a random-generated index"),
+   both from `asset_sources.js`. Don't copy either into the page.
+
+**Second broker for an instrument you already have:** pipeline keys stay `<asset>` for the primary feed
+and use `<asset>_<broker>` for another (`xauusd_deriv`; `XAUUSD_DERIV` in `config.json`).
+
+---
+
 ## Adding a Statistically-Derived Asset (no Moore Research data)
 
 For an asset MRCI doesn't cover (crypto, and eventually Deriv synthetics — `docs/PLATFORM_ROADMAP.md`
@@ -229,9 +267,7 @@ the standard futures/forex recipes above.
 3. Add the asset to `scripts/sync_derived_seasonal.js`'s `ASSETS` array (key, page id, display
    name, accent color, `tvSymbol`) and run `node scripts/sync_derived_seasonal.js` from
    the repo root — writes `frontend/data/{id}.js` in the exact bare `ASSET_CONFIG`/`MONTHS[]` format
-   the other 96 files use, and patches `data/signals_manifest.js` directly (the "rebuild signals
-   manifest" step below doesn't apply — `scripts/gen_signals_manifest.js` isn't present in this
-   repo; see `scripts/README.md`).
+   the other 96 files use, and patches `data/signals_manifest.js` directly.
 4. Copy `assets/fx-audusd.html` (not a futures template) as the HTML shell — it already has no
    static `.table-wrap` TF tables (so `buildTFTables()` self-generates from `MONTHS[]`) and the
    `.derived-note` CSS pattern for the above-the-fold methodology disclosure this asset class

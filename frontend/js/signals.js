@@ -123,7 +123,7 @@ var KptSignals = (function () {
     'fx-majors': 'FX major', 'fx-minors': 'FX minor', 'fx-crosses': 'FX cross',
     'fut-currencies': 'Currencies', 'fut-metals': 'Metals', 'fut-energy': 'Energy', 'fut-rates': 'Rates',
     'fut-indices': 'Indices', 'fut-softs': 'Softs', 'fut-grains': 'Grains', 'fut-fiber': 'Fiber',
-    'fut-meats': 'Meats & Dairy', 'crypto-major': 'Crypto'
+    'fut-meats': 'Meats & Dairy', 'crypto-major': 'Crypto', 'syn-volatility': 'Synthetic'
   };
   function groupShort(groupId) { return GROUP_SHORT[groupId] || groupId; }
   // FX pairs read best by ticker (EURUSD); futures by name without the exchange suffix (Gold).
@@ -136,7 +136,7 @@ var KptSignals = (function () {
   function subLabel(a) {
     if (!a) return '';
     var m = /\(([^)]*)\)\s*$/.exec(a.name || '');
-    var extra = a.block === 'crypto' ? 'price-derived' : (a.block === 'forex' ? '' : (m ? m[1] : ''));
+    var extra = (a.block === 'crypto' || a.block === 'synthetics') ? 'price-derived' : (a.block === 'forex' ? '' : (m ? m[1] : ''));
     return groupShort(a.group) + (extra ? ' · ' + extra : '');
   }
 
@@ -171,6 +171,15 @@ var KptSignals = (function () {
     return '<span class="pill ' + cls + '">' + sig.signal + '</span>';
   }
 
+  /* ── Data sources (data/asset_sources.js) ──────────────────────────────── */
+  function sourceOf(a) { return a && window.kptSourceOf ? window.kptSourceOf(a) : null; }
+  // Small chip with the short form; the full label is in the tooltip and for screen readers.
+  function sourceChip(a) {
+    var s = sourceOf(a);
+    if (!s) return '';
+    return '<span class="kpt-source-chip" title="Source: ' + s.label + '" aria-label="Source: ' + s.label + '">' + s.short + '</span>';
+  }
+
   return {
     MONTH_ABBR: MONTH_ABBR,
     weekOf: weekOf, currentWeek: currentWeek, shiftWeek: shiftWeek, weekLabel: weekLabel,
@@ -178,7 +187,7 @@ var KptSignals = (function () {
     comToTag: comToTag, comDirection: comDirection, starCount: starCount, getSignal: getSignal, getMonthSignal: getMonthSignal,
     liveAssets: liveAssets, asset: asset, assetHref: assetHref, assetsByGroup: assetsByGroup, tally: tally,
     groupShort: groupShort, displayName: displayName, subLabel: subLabel,
-    convPips: convPips, convDots: convDots, pill: pill,
+    convPips: convPips, convDots: convDots, pill: pill, sourceOf: sourceOf, sourceChip: sourceChip,
     hasManifest: function () { return !!manifest(); }
   };
 })();

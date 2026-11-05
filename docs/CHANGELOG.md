@@ -23,6 +23,19 @@
   comes from. The alert uses it now.
 - **`concat_raw_csv.py --keep-trailing`** for exports already trimmed to complete days. Without the
   flag, behaviour is unchanged.
+- **Track Record: 7-day weeks.** Each asset now has a week type from `backend/automation/config.json`.
+  Crypto and synthetics are `7d`: Monday open → Sunday close, FLIP on Thursday → Sunday. **BTCUSD's history
+  was re-graded:** 213 → 212 graded weeks, hit rate 61.5% → 61.3%. From December 2020, when its weekend data
+  starts, 294 weeks' moves changed and 11 results flipped (6 hits became misses, 5 misses became hits). Earlier
+  weeks have no weekend bars, so they're unchanged. The newest week (2026-08-31) has no Sunday bar yet, so it
+  moved from a graded miss to **PENDING**, shown in the log only and never counted. All 13 `5d` assets' rows
+  are identical. Overall: 5,367 → 5,366 graded, 53.07% → 53.06%.
+- **Source labels across the site:** a chip on dashboard cards, This Week, the Heatmap panel and the Track
+  Record log; the full label on asset pages; and a table on `/sources` of every source with its live asset
+  count. To move an asset to a new source, add one override line in `asset_sources.js`.
+- **Synthetics groundwork:** a "Synthetic Indices" dashboard block with five planned `SYN` cards (Volatility 10,
+  25, 50, 75, 100), and an RNG note and Profiling caption that appear on any synthetic asset page. No synthetic is
+  live yet, so live counts stay 70 / 27 / 1. The Track Record view and broker comparison are held (brief §6–7).
 
 ### Tests
 
@@ -35,6 +48,13 @@ rename or lookalike path outside `add_paths` all stop it; `main` clean or dirty 
 continues. A pull conflict returns to `main` with nothing pushed. `setup_task.ps1` parses in Windows
 PowerShell 5.1. The MT5 download and Telegram send run only on the owner's laptop and channel, so they
 were not exercised here.
+
+**Grader and labels:** all 7,226 `5d` rows are identical to before. All 454 BTCUSD rows match a separate
+recalculation from the daily bars. `7d` FLIPs were checked on forced test data, since BTCUSD has none in
+real data: Thursday → Sunday, and both ways of picking the direction. A browser smoke test passes on every
+changed page, at desktop and phone width where relevant: chips and counts (70 / 27 / 1), card signals still
+matching `KptSignals`, no page errors or CSP violations. The synthetic note and caption were tested by serving
+BTC as a synthetic. Pages still render without labels if `asset_sources.js` fails to load.
 
 ---
 

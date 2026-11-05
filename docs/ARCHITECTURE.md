@@ -38,11 +38,12 @@ seasonal-dashboard/              ← root of the GitHub repo
 │   │   ├── ui.js                ← tabs, sub-tabs, topbar, legend toggle
 │   │   ├── site.js              ← nav/footer, KPT_SITE, KptStore, KptEmbeds, KptWatchlist
 │   │   ├── signals.js           ← KptSignals: the one com → signal mapping, week maths, groups
-│   │   └── dashboard.js, landing.js, this-week.js, heatmap.js, track-record.js  ← page scripts
+│   │   └── dashboard.js, landing.js, this-week.js, heatmap.js, track-record.js, sources-table.js  ← page scripts
 │   ├── data/
 │   │   ├── <id>.js              ← per asset: ASSET_CONFIG + MONTHS[] + SEASONAL_DATA
 │   │   ├── signals_manifest.js  ← 48 weekly com strings per asset (scripts/gen_signals_manifest.js)
 │   │   ├── asset_index.js, month_signals.js  ← generated registry / month verdicts
+│   │   ├── asset_sources.js     ← where each asset's signal comes from (hand-maintained, v1.29)
 │   │   ├── track_record.js      ← graded signals (scripts/sync_track_record.js)
 │   │   ├── signal_history/      ← weekly snapshots of the live signals (scripts/snapshot_signals.js)
 │   │   └── profiling/           ← Profiling data synced from backend/ (scripts/sync_profiling_data.js)
@@ -821,6 +822,18 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   (`js/dashboard.js` wraps each card in a `.kpt-card-cell` so the button sits beside — not inside
   — the card link; `:has()` hides the cell when the card is filtered out). The dashboard filter bar
   gained ★ Watchlist (`data-filter="watch"`).
+- **Source labels (v1.29, `data/asset_sources.js`).** Sources are kept apart from the card registry, so
+  moving an asset to a new source is one override line. `KptSignals.sourceChip(a)` draws the short chip
+  (`.kpt-source-chip` in `chrome.css`) on dashboard cards, This Week rows, the Heatmap side panel and the
+  Track Record log; `js/site.js` adds the full label under each asset page's header, and
+  `js/sources-table.js` builds the `/sources` table at runtime. Asset pages load `asset_index.js` and
+  `asset_sources.js` right after `signals.js` (`scripts/patch_add_sources.js`). The landing page's featured
+  cards don't show a chip.
+- **Synthetics (v1.29).** The `synthetics` dashboard block holds planned cards with a `SYN` badge; no
+  synthetic is live yet. Being in that block is what makes an asset a synthetic: `js/site.js` then adds the
+  RNG note under the derived-seasonal note, and `js/profiling.js` adds a caption to the Time of Extreme,
+  Hourly Activity and Day of Week sections. Both texts live in `asset_sources.js`. The Track Record's
+  synthetics view is held (brief §6).
 - **Heatmap (v1.24).** `heatmap.html` + `js/heatmap.js`: rows from `KptSignals.assetsByGroup()`
   (13 dashboard sections, group chips), Months view from `data/month_signals.js`
   (`KptSignals.getMonthSignal`, see DATA_DICTIONARY), Weeks view from `KptSignals.getSignal` over a
@@ -836,7 +849,10 @@ Key: `kpt-ai-{id}-{provider}-{year}-w{week}`. Cache is per-week and per-provider
   checks the manifest (`gen_signals_manifest.js --check`), runs the script, and commits any new file
   straight to `main` with `[skip netlify]` so no deploy is triggered. `track-record.html` +
   `js/track-record.js` render KPIs (headline uses live rows once 12+ live weeks exist), hit rate by
-  conviction (n < 20 faded), last 12 weeks, and a 25-row paginated log.
+  conviction (n < 20 faded), last 12 weeks, and a 25-row paginated log. Since v1.29 each asset has a
+  week type from `backend/automation/config.json`: `5d` (Mon–Fri) or `7d` (Mon–Sun, for crypto and
+  synthetics; FLIP's second half is Thursday → Sunday). A `7d` asset's unfinished final week goes in a separate
+  `pending` list that only the log reads, so it can't reach a KPI or chart.
 - **Fonts (`css/fonts.css`).** Bebas Neue (display), IBM Plex Mono (labels/UI/data) and Barlow
   (body prose), self-hosted woff2 in `assets/fonts/` with their OFL licences; imported by both
   `dashboard.css` and `site.css`. No page requests Google Fonts.

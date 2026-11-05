@@ -163,5 +163,4 @@ otherwise the default for its dashboard block.
 | `mt5-deriv-syn` | MT5 · Deriv · price-derived · synthetic | Deriv synthetic indices |
 
 To move an asset to a new source (free, paid with a sharing licence, or MT5), add its
-`KPT_SOURCE_OVERRIDES` line. Labels on the alert, and on the site once wired in, follow
-automatically. A new source family gets a new `KPT_SOURCES` entry.
+`KPT_SOURCE_OVERRIDES` line. Labels on the alert and across the site follow automatically. A new source family gets a new `KPT_SOURCES` entry.
