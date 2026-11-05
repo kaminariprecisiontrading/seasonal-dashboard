@@ -50,6 +50,8 @@ LOGS = os.path.join(HERE, "logs")
 STATE = os.path.join(HERE, "state.json")
 LOCK = os.path.join(HERE, ".lock")
 PY = sys.executable  # backend/.venv's interpreter when launched as documented
+# Under pythonw.exe (the hidden task) there's no console, so each git/node call would open its own.
+NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0) if sys.stdout is None else 0
 
 sys.path.insert(0, HERE)
 import mt5_download  # noqa: E402
@@ -58,6 +60,8 @@ RUN_STARTED = dt.datetime.now()
 os.makedirs(LOGS, exist_ok=True)
 LOG_PATH = os.path.join(LOGS, f"run_{RUN_STARTED:%Y-%m-%d_%H%M}.log")
 _log_f = open(LOG_PATH, "a", encoding="utf-8")
+if sys.stdout:                          # piped output is cp1252 on Windows, which can't encode "→"
+    sys.stdout.reconfigure(errors="replace")
 
 
 def log(msg=""):
@@ -74,7 +78,7 @@ def run(cmd, cwd=ROOT, dry=False, check=True):
         log(f"  (dry run) {shown}")
         return 0, ""
     log(f"  $ {shown}")
-    p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", creationflags=NO_WINDOW)
     out = (p.stdout or "") + (p.stderr or "")
     for ln in out.strip().splitlines()[-25:]:      # keep the log readable; tails are enough
         _log_f.write("    " + ln + "\n")
@@ -144,7 +148,7 @@ def git(args, dry, check=True):
 
 def git_read(args):
     """Read-only git query. Runs even in a dry run, and keeps stderr out of the result."""
-    p = subprocess.run(["git"] + args, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    p = subprocess.run(["git"] + args, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", creationflags=NO_WINDOW)
     return p.returncode, p.stdout
 
 
@@ -213,7 +217,15 @@ def main():
         log("RESULT: stopped by the branch guard")
         sys.exit(1)
 
-    acquire_lock()
+    try:
+        acquire_lock()
+    except SystemExit as e:             # stderr goes nowhere under the hidden task
+        log(f"WARNING: {e}")
+        if not dry:
+            notify(cfg, False, f"{e}\nlog: {os.path.relpath(LOG_PATH, ROOT)}")
+        log("RESULT: stopped, another run holds the lock")
+        sys.exit(1)
+
     try:
         # 0 — pull
         log("[0] git pull")
@@ -276,7 +288,7 @@ def main():
             except Exception as e:
                 failed.append(key)
                 problems.append(f"refresh {key}: {str(e).splitlines()[0]}")
-        state["needs_refresh"] = failed
+        state["needs_refresh"] = failed + [k for k in state.get("needs_refresh", []) if k not in keys]
         report.append("refreshed: " + (", ".join(refreshed) or "none"))
 
         # 4 — derived seasonals (monthly)
@@ -353,8 +365,8 @@ def main():
             state["last_success"] = RUN_STARTED.isoformat(timespec="minutes")
         if not dry:
             save_state(state)
-    except SystemExit:
-        raise
+    except SystemExit as e:             # e.g. MetaTrader5 not installed
+        problems.append(str(e))
     except Exception:
         problems.append("unexpected error:\n" + traceback.format_exc()[-1500:])
     finally:
