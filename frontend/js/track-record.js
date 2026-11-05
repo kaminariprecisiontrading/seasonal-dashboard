@@ -3,6 +3,8 @@
  *
  * Data: window.KPT_TRACK_RECORD (data/track_record.js), rows of
  *   [week (Monday ISO), assetIndex, signal, conviction, moveAdr, result H|M|-, source b|l, flipDir]
+ * and TR.pending, [week, assetIndex, signal, conviction, source b|l]: a 7-day market's unfinished
+ * final week, shown in the log only, so it can't reach any KPI or chart.
  * moveAdr is the raw move of the graded part of the week in ADR20 multiples (+ = up).
  *
  * Headline KPIs use live-recorded rows once 12+ live weeks are graded, otherwise all rows
@@ -20,6 +22,9 @@
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var rows = TR.rows.map(function (r) {
     return { week: r[0], asset: TR.assets[r[1]], signal: r[2], conv: r[3], move: r[4], result: r[5], live: r[6] === 'l', flipDir: r[7] };
+  });
+  var pending = (TR.pending || []).map(function (p) {
+    return { week: p[0], asset: TR.assets[p[1]], signal: p[2], conv: p[3], move: null, result: 'P', live: p[4] === 'l', flipDir: '' };
   });
   var weeksAll = Array.from(new Set(rows.map(function (r) { return r.week; }))).sort();
   var liveWeeks = Array.from(new Set(rows.filter(function (r) { return r.live && r.result !== '-'; }).map(function (r) { return r.week; })));
@@ -87,15 +92,15 @@
   }
 
   function log() {
-    var list = rows.filter(function (r) { return inPeriod(r) && (state.asset === 'all' || r.asset.id === state.asset); })
+    var list = rows.concat(pending).filter(function (r) { return inPeriod(r) && (state.asset === 'all' || r.asset.id === state.asset); })
       .sort(function (a, b) { return a.week < b.week ? 1 : a.week > b.week ? -1 : a.asset.label.localeCompare(b.asset.label); });
     var pages = Math.max(1, Math.ceil(list.length / PAGE));
     state.page = Math.min(state.page, pages - 1);
     var slice = list.slice(state.page * PAGE, state.page * PAGE + PAGE);
     $('tr-log').innerHTML = slice.map(function (r) {
-      var res = r.result === 'H' ? '<span class="up">✓ HIT</span>' : r.result === 'M' ? '<span class="down">✗ MISS</span>' : '<span class="flat">— NOT GRADED</span>';
-      var mv = (r.move >= 0 ? '+' : '−') + Math.abs(r.move).toFixed(2) + '×' + (r.signal === 'FLIP' && r.flipDir ? ' <span class="tr-n">2nd half · ' + r.flipDir + '</span>' : '');
-      return '<tr><td class="mono">' + r.week + '</td><td><a href="/assets/' + r.asset.id + '.html">' + esc(r.asset.label) + '</a></td><td>' +
+      var res = r.result === 'H' ? '<span class="up">✓ HIT</span>' : r.result === 'M' ? '<span class="down">✗ MISS</span>' : r.result === 'P' ? '<span class="flat" title="Graded once this week\'s Sunday is in the data">… PENDING</span>' : '<span class="flat">— NOT GRADED</span>';
+      var mv = r.move == null ? '—' : (r.move >= 0 ? '+' : '−') + Math.abs(r.move).toFixed(2) + '×' + (r.signal === 'FLIP' && r.flipDir ? ' <span class="tr-n">2nd half · ' + r.flipDir + '</span>' : '');
+      return '<tr><td class="mono">' + r.week + '</td><td><a href="/assets/' + r.asset.id + '.html">' + esc(r.asset.label) + '</a> ' + (S ? S.sourceChip(S.asset(r.asset.id)) : '') + '</td><td>' +
         (S ? S.pill(sigObj(r)) : r.signal) + '</td><td>' + (S ? S.convDots(r.conv) : r.conv) + '</td><td class="mono">' + mv + '</td><td class="mono">' + res + '</td><td>' +
         '<span class="src ' + (r.live ? 'src-live">LIVE' : 'src-back">BACKFILL') + '</span></td></tr>';
     }).join('') || '<tr><td colspan="7" class="note">No signals in this period.</td></tr>';

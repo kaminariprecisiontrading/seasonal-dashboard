@@ -22,4 +22,4 @@ fs.writeFileSync(path.join(ROOT, 'data', 'track_record.js'), [
   ''
 ].join('\n'), 'utf8');
 const graded = data.rows.filter(r => r[5] !== '-').length;
-console.log('synced ' + data.rows.length + ' rows (' + graded + ' graded), data as of ' + data.asOf);
+console.log('synced ' + data.rows.length + ' rows (' + graded + ' graded, ' + (data.pending || []).length + ' pending), data as of ' + data.asOf);

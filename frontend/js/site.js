@@ -156,6 +156,28 @@
     title.parentNode.insertBefore(KptWatchlist.button(ASSET_CONFIG.id, label, 'kpt-star-topbar'), title.nextSibling);
   }
 
+  // Asset pages: full source label under the header, and the educational note on synthetics
+  // (under the page's derived-seasonal note). Needs data/asset_index.js + asset_sources.js.
+  function renderAssetSource() {
+    if (typeof ASSET_CONFIG === 'undefined' || !window.KptSignals) return;
+    var a = KptSignals.asset(ASSET_CONFIG.id), s = KptSignals.sourceOf(a), header = document.querySelector('.header');
+    if (!s || !header) return;
+    if (!header.querySelector('.kpt-asset-source')) {
+      var line = document.createElement('div');
+      line.className = 'kpt-asset-source';
+      line.textContent = 'Source: ' + s.label;
+      header.appendChild(line);
+    }
+    if (a.block === 'synthetics' && window.KPT_SYNTHETIC_NOTE && !document.querySelector('.kpt-synthetic-note')) {
+      var note = document.createElement('div');
+      note.className = 'kpt-synthetic-note';
+      note.innerHTML = '<strong>Synthetic index:</strong> ';
+      note.appendChild(document.createTextNode(window.KPT_SYNTHETIC_NOTE));
+      var after = document.querySelector('.derived-note') || header;
+      after.parentNode.insertBefore(note, after.nextSibling);
+    }
+  }
+
   // Embed modules (tradingview.js, macro.js) load before this file on asset pages,
   // so they wait for this event before calling KptEmbeds.gate().
   window.dispatchEvent(new CustomEvent('kpt-site-ready'));
@@ -264,6 +286,7 @@
   function init() {
     fillOperator();
     renderAssetStar();
+    renderAssetSource();
     renderNav();
     renderFooter();
     fullBleed(document.querySelector('[data-kpt-nav]'), 'top');

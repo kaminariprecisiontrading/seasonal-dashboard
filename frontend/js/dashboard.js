@@ -289,6 +289,13 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addStars);
   else addStars();
 
+  /* ── Source chips on live cards (v1.29) ── */
+  document.querySelectorAll('.asset-card.status-complete').forEach(function (card) {
+    var meta = card.querySelector('.card-meta'), id = cardAssetId(card);
+    var chip = id && window.KptSignals ? KptSignals.sourceChip(KptSignals.asset(id)) : '';
+    if (meta && chip) meta.insertAdjacentHTML('beforeend', chip);
+  });
+
   /* ── Accordion toggle ── */
   var toggle   = document.getElementById('tw-toggle');
   var body     = document.getElementById('tw-body');

@@ -133,6 +133,10 @@ python pipeline/grade_signals.py            # → output/track_record.json (sinc
 cd .. && node scripts/sync_track_record.js
 ```
 
+Each asset's week type comes from `automation/config.json`: `5d` weeks run Monday open → Friday close
+(FLIP: Wednesday → Friday), and `7d` weeks, for crypto and synthetics, run Monday open → Sunday close (FLIP:
+Thursday → Sunday). A `7d` asset's final week stays `pending` until its Sunday bar is in the data.
+
 Run `git pull` first: the weekly snapshots are committed to `main` by a GitHub Action
 (`../.github/workflows/weekly-signal-snapshot.yml`, every Monday). Weeks with a snapshot in `../frontend/data/signal_history/` are graded as *live-recorded*
 (the signals shown at the time); all others as *backfilled* (today's data, in-sample).

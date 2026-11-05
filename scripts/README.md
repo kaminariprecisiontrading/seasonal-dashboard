@@ -112,6 +112,12 @@ Regenerates `data/signals_manifest.js` (48 week `com` strings per asset + `SIGNA
 
 One-shot codemod: loads `js/signals.js` on every asset page (after its data file) so the Trend curve, Upload backtest and AI prompt use the shared signal mapping. Idempotent; already applied to all 98 pages.
 
+### `patch_add_sources.js`
+
+One-shot codemod: loads `data/asset_index.js` and `data/asset_sources.js` on every asset page (after `js/signals.js`) so the page can show its data source and tell whether it's a synthetic. Idempotent; already applied to all 98 pages.
+
+- **Added in:** v1.29
+
 ### `gen_asset_index.js`
 
 Regenerates `data/asset_index.js` — the shared asset registry (`window.KPT_ASSETS`, `window.KPT_ASSET_GROUPS`: id, ticker, name, badges, accent colour, dashboard section, live/planned) — from `dashboard.html`'s asset cards. Used by `js/signals.js` and every page outside the dashboard.

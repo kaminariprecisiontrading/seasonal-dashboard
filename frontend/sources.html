@@ -15,7 +15,7 @@
 <section class="wrap legal-head">
   <span class="eyebrow">Legal</span>
   <h1 class="display legal-h1">Data Sources &amp; Attribution</h1>
-  <span class="legal-updated">Last updated: 20 October 2026</span>
+  <span class="legal-updated">Last updated: 5 November 2026</span>
   <p class="legal-lead">Where the dashboard's data comes from, and who owns what.</p>
 </section>
 <div class="wrap legal-layout">
@@ -37,6 +37,10 @@
 </table>
 </div>
 <p>Exchange and contract names (CME, CBOT, COMEX, NYMEX, ICE, EUREX, LIFFE, SFE, HKFE, SGX and others) are used only to identify the contracts the data refers to.</p>
+
+<h3>Sources by asset</h3>
+<p>Every asset on the site shows which of these sources its signal comes from. The counts below are live assets.</p>
+<div id="kpt-source-table"></div>
 
 <h2 id="s2">2. Embedded services</h2>
 <div class="legal-table-wrap">
@@ -74,6 +78,9 @@
 </div>
 </main>
 <footer data-kpt-footer></footer>
+<script src="/data/asset_index.js" defer></script>
+<script src="/data/asset_sources.js" defer></script>
+<script src="/js/sources-table.js" defer></script>
 <script src="/js/site.js" defer></script>
 </body>
 </html>
