@@ -11,6 +11,7 @@ seasonal-dashboard/              ← root of the GitHub repo
 ├── README.md                    ← short project overview (GitHub front page)
 ├── netlify.toml                 ← publish = "frontend"; clean-route 200 rewrites; security headers + CSP
 ├── .github/workflows/           ← weekly-signal-snapshot.yml: Monday signal snapshot → main (v1.28)
+│                                   weekly-telegram-alert.yml: posts the digest after it (v1.29)
 ├── frontend/                    ← THE PUBLISHED SITE (the only folder Netlify serves)
 │   ├── index.html               ← landing page (/)
 │   ├── dashboard.html           ← dashboard index (/dashboard): nav, filters, asset card grid
@@ -53,6 +54,7 @@ seasonal-dashboard/              ← root of the GitHub repo
 │   ├── data/clean/, data/forecast/  ← cleaned daily OHLC; TimesFM forecast caches
 │   ├── output/                  ← JSON outputs read by the sync scripts
 │   ├── dashboard/               ← the pipeline's own prototype viewer; its data/ is the sync source
+│   ├── automation/              ← weekly refresh: config.json, mt5_download, weekly_run, setup_task (v1.29)
 │   ├── research/timesfm_benchmark/  ← TimesFM vs ADR20 benchmark
 │   ├── .venv/, .venv-forecast/  ← local venvs (gitignored)
 │   └── README.md, HANDOVER.md, market-profiling-system-spec.md
@@ -67,6 +69,21 @@ Paths elsewhere in this document (`js/…`, `css/…`, `data/…`, `assets/…`)
 **Data flow:** MT5 exports → `backend/pipeline/*` → `backend/output/` and `backend/dashboard/data/`
 → `scripts/sync_*.js` → `frontend/data/` → pages. Moore Research seasonal data is hand-built into
 `frontend/data/<id>.js` (see `SKILL.md`), then `scripts/gen_signals_manifest.js` rebuilds the manifest.
+
+**Weekly automation (v1.29, runbook in `AUTOMATION.md`):**
+
+```
+Sun 12:00 UTC  Windows Task Scheduler (laptop) → backend/automation/weekly_run.py
+                 branch guard → pull → MT5 download → merge → refresh → sync → grade
+                 → commit + push to main → Netlify deploys
+
+Mon 03:17 UTC  GitHub Action: Weekly signal snapshot → commits to main [skip netlify]
+                 └─ on success → GitHub Action: Weekly Telegram alert
+                                 scripts/telegram_digest.js → private Telegram channel
+```
+
+The digest loads the site's own `js/signals.js`, `data/asset_index.js` and `data/asset_sources.js`
+in a sandbox, so it can't disagree with the site.
 
 **Deployment:** Netlify, connected to the public GitHub repo
 (`kaminariprecisiontrading/seasonal-dashboard`), auto-deploys every push to `main`. There is no build

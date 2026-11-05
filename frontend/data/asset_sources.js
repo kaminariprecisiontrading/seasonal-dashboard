@@ -1,0 +1,39 @@
+// data/asset_sources.js — where each asset's seasonal signal comes from (v1.29).
+// Hand-maintained. One place to change when an asset moves to a new data source
+// (e.g. MRCI → MT5-derived, or a future free or paid source that allows sharing).
+//
+// Read by scripts/telegram_digest.js (weekly alert labels) and, once wired in, by the site
+// (source labels on cards, This Week, Heatmap, Track Record — see
+// docs/specs/2026-10-alerts-automation/ALERTS_AUTOMATION_BUILD_NOTES.md §5).
+//
+// Resolution order for an asset id: KPT_SOURCE_OVERRIDES[id] → KPT_SOURCE_DEFAULTS[block].
+// `short` is used where space is tight (Telegram lines); `label` everywhere else.
+// `kind`: "licensed" = third-party data shown under attribution; "derived" = computed by
+// KPT from a third-party source; "price-derived" = computed by KPT from broker price history.
+
+window.KPT_SOURCES = {
+  'mrci':           { short: 'MRCI',        label: 'MRCI',                          kind: 'licensed',      owner: 'Moore Research Center, Inc.', desc: 'Moore Research Center seasonal tendency charts' },
+  'mrci-derived':   { short: 'MRCI-d',      label: 'MRCI-derived',                  kind: 'derived',       owner: 'Moore Research Center, Inc. (components)', desc: 'KPT synthesis of two MRCI currency futures' },
+  'mt5-tradersway': { short: 'MT5·TW',      label: 'MT5 · TradersWay · price-derived', kind: 'price-derived', owner: 'Operator\'s TradersWay MT5 export', desc: 'KPT, computed from TradersWay MT5 price history' },
+  'mt5-deriv':      { short: 'MT5·Deriv',   label: 'MT5 · Deriv · price-derived',   kind: 'price-derived', owner: 'Operator\'s Deriv MT5 export', desc: 'KPT, computed from Deriv MT5 price history' },
+  'mt5-deriv-syn':  { short: 'MT5·Deriv·SYN', label: 'MT5 · Deriv · price-derived · synthetic', kind: 'price-derived', owner: 'Operator\'s Deriv MT5 export (synthetic index)', desc: 'KPT, computed from Deriv synthetic index price history' }
+};
+
+// By dashboard block (data/asset_index.js → KPT_ASSETS[].block).
+window.KPT_SOURCE_DEFAULTS = {
+  futures: 'mrci',
+  forex: 'mrci-derived',
+  crypto: 'mt5-tradersway',
+  synthetics: 'mt5-deriv-syn'
+};
+
+// Per-asset exceptions, by asset page id. Add a line when an asset changes source.
+window.KPT_SOURCE_OVERRIDES = {
+  // 'xau': 'mt5-tradersway',   // example: once Gold's seasonal moves off MRCI
+};
+
+window.kptSourceOf = function (asset) {
+  if (!asset) return null;
+  var key = (asset.id && window.KPT_SOURCE_OVERRIDES[asset.id]) || window.KPT_SOURCE_DEFAULTS[asset.block];
+  return key ? Object.assign({ key: key }, window.KPT_SOURCES[key]) : null;
+};

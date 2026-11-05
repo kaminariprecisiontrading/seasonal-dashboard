@@ -231,6 +231,29 @@ Never overwritten; these are the "as shown at the time" record the live Track Re
 
 ---
 
+## Weekly automation files (v1.29)
+
+**`backend/automation/config.json`** (committed; no secrets):
+
+| Key | Meaning |
+|---|---|
+| `terminals.<id>` | `path` to `terminal64.exe`, `broker`, `enabled`. A disabled terminal's assets are skipped. |
+| `assets[]` | `key` (upper case; `<ASSET>` for the primary feed, `<ASSET>_<BROKER>` for a second broker), `symbol` (the broker's name for it), `terminal` (a `terminals` id), `week` (`5d` or `7d`: crypto and synthetics are `7d`) |
+| `derived_seasonal[]` | `key`, `cadence` (`monthly`: regenerated on the first run of each month) |
+| `download` | `overlap_days`, `chunk_days`, `min_overlap_match` (below this share of matching bars, the asset isn't merged), `complete_day_after` (a last day ending before this server time counts as partial, unless no bar has arrived for 12h+) |
+| `git` | `push`, `remote`, `branch` (the branch guard's required branch), `add_paths` (the only paths step 7 commits, and the only ones allowed to be dirty when a run starts) |
+| `notify.mode` | Telegram DM after a run: `always`, `failures` or `never` |
+
+**`backend/data/raw/incoming/<KEY>_M1_<first>_<last>.csv`** (gitignored): downloaded bars waiting
+to be merged, in MT5 Export Bars format, with `<first>`/`<last>` as `YYYYMMDDHHMM` server time. Once
+merged, they move to `incoming/merged/` for 8 weeks.
+
+**`backend/automation/state.json`** (gitignored): `last_run` (`at`, `problems`, `log`),
+`last_success`, `needs_refresh` (keys retried next run), `pending_push`, `derived_seasonal_month`
+(`{key: "YYYY-MM"}`).
+
+---
+
 ## localStorage Keys
 
 These keys are written by the shared JS modules. Per-asset keys use `ASSET_CONFIG.id`; the rest are site-wide. Every read/write is wrapped so the site still works when storage is blocked. **Keep this table and the Privacy Policy's storage table (`privacy.html` §3) in sync** with the keys actually used in the code.

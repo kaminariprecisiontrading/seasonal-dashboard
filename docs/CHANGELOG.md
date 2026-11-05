@@ -2,6 +2,42 @@
 
 ---
 
+## v1.29 — November 2026
+**Alerts and weekly data automation**
+
+### Changes
+
+- **Weekly data refresh** (`backend/automation/`, runbook in `docs/AUTOMATION.md`): Windows Task
+  Scheduler runs `weekly_run.py` every Sunday at 14:00 Botswana time: MT5 download → merge → refresh →
+  monthly derived seasonals → sync → grade → commit + push. New M1 bars are checked against the existing
+  file, and an asset is skipped rather than merged if they don't match. Assets and terminals live in
+  `config.json`.
+- **Branch guard:** the run stops, without pulling, committing or pushing, unless it's on `main` with no
+  uncommitted changes outside its own paths, so a topic branch can't land on `main` by accident. A
+  failed `git pull` now aborts its rebase, and the branch is checked again before the push.
+- **Telegram alert** (`.github/workflows/weekly-telegram-alert.yml`, `scripts/telegram_digest.js`): after
+  each successful Monday snapshot, a digest goes to a private channel: tally, flips, new five-dot signals,
+  the next four weeks and crypto, with a data-source tag on every line. It's computed through the site's
+  own `js/signals.js`.
+- **Source registry** (`frontend/data/asset_sources.js`): one place that says where each asset's signal
+  comes from. The alert uses it now.
+- **`concat_raw_csv.py --keep-trailing`** for exports already trimmed to complete days. Without the
+  flag, behaviour is unchanged.
+
+### Tests
+
+`py_compile` and `node --check` pass, and the workflow YAML parses. The digest for 2026-10-19 is
+byte-identical to `sample_digest.txt`. `kptSourceOf` gives 70 MRCI, 27 MRCI-derived, 1 MT5 · TradersWay.
+`concat_raw_csv.py` without the flag is byte-identical to the previous version on real EURUSD samples,
+appending and prepending; with the flag, the last date is kept. The branch guard was tested in a scratch
+clone with a local remote: non-main branch (dry and real runs), detached HEAD, and an edit, untracked file,
+rename or lookalike path outside `add_paths` all stop it; `main` clean or dirty only inside `add_paths`
+continues. A pull conflict returns to `main` with nothing pushed. `setup_task.ps1` parses in Windows
+PowerShell 5.1. The MT5 download and Telegram send run only on the owner's laptop and channel, so they
+were not exercised here.
+
+---
+
 ## v1.28 — October 2026
 **Weekly signal snapshot automated (GitHub Actions)**
 

@@ -164,6 +164,7 @@ Mockup: `mockups/brokercompare.html`. If the owner approves it later:
 ## 9. Checks before merging
 
 - [ ] `python -m py_compile backend/automation/*.py`, then `node --check scripts/telegram_digest.js`.
+- [ ] Branch guard (`REVIEW_2026-11-04.md`): `weekly_run.py --dry-run` from a non-main branch stops.
 - [ ] `node scripts/telegram_digest.js --date 2026-10-19` matches `sample_digest.txt`, apart from
       differences caused by data changes since.
 - [ ] Every live asset resolves to a source (`kptSourceOf`): 70 MRCI, 27 MRCI-derived, 1 MT5 · TW.

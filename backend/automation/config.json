@@ -1,0 +1,63 @@
+{
+  "_doc": "Weekly automation settings (docs/AUTOMATION.md). No secrets here — those go in backend/automation/.env. Paths may use / or \\\\.",
+
+  "terminals": {
+    "tradersway": {
+      "path": "C:/Program Files/MetaTrader 5/terminal64.exe",
+      "broker": "TradersWay",
+      "enabled": true
+    },
+    "deriv": {
+      "path": "C:/Program Files/Deriv MT5/terminal64.exe",
+      "broker": "Deriv",
+      "enabled": false,
+      "_note": "Placeholder path — set it once the dedicated Deriv MT5 app is installed, then enable."
+    }
+  },
+
+  "assets": [
+    { "key": "GBPUSD", "symbol": "GBPUSD",      "terminal": "tradersway", "week": "5d" },
+    { "key": "EURUSD", "symbol": "EURUSD",      "terminal": "tradersway", "week": "5d" },
+    { "key": "AUDUSD", "symbol": "AUDUSD",      "terminal": "tradersway", "week": "5d" },
+    { "key": "NZDUSD", "symbol": "NZDUSD",      "terminal": "tradersway", "week": "5d" },
+    { "key": "USDCAD", "symbol": "USDCAD",      "terminal": "tradersway", "week": "5d" },
+    { "key": "USDCHF", "symbol": "USDCHF",      "terminal": "tradersway", "week": "5d" },
+    { "key": "USDJPY", "symbol": "USDJPY",      "terminal": "tradersway", "week": "5d" },
+    { "key": "XAUUSD", "symbol": "XAUUSD",      "terminal": "tradersway", "week": "5d" },
+    { "key": "BRENT",  "symbol": ".BrentCrude", "terminal": "tradersway", "week": "5d" },
+    { "key": "WTI",    "symbol": ".WTICrude",   "terminal": "tradersway", "week": "5d" },
+    { "key": "US500",  "symbol": ".US500Cash",  "terminal": "tradersway", "week": "5d" },
+    { "key": "USTECH", "symbol": ".USTECHCash", "terminal": "tradersway", "week": "5d" },
+    { "key": "US30",   "symbol": ".US30Cash",   "terminal": "tradersway", "week": "5d" },
+    { "key": "BTCUSD", "symbol": "BTCUSD",      "terminal": "tradersway", "week": "7d" }
+  ],
+
+  "derived_seasonal": [
+    { "key": "BTCUSD", "cadence": "monthly" }
+  ],
+
+  "download": {
+    "overlap_days": 1,
+    "chunk_days": 20,
+    "min_overlap_match": 0.98,
+    "complete_day_after": "23:50"
+  },
+
+  "git": {
+    "push": true,
+    "remote": "origin",
+    "branch": "main",
+    "add_paths": [
+      "backend/data/clean",
+      "backend/data/forecast",
+      "backend/output",
+      "backend/dashboard/data",
+      "frontend/data"
+    ]
+  },
+
+  "notify": {
+    "_doc": "Optional Telegram DM to you after each run: 'always', 'failures' or 'never'. Needs TELEGRAM_BOT_TOKEN and TELEGRAM_OWNER_CHAT_ID in .env.",
+    "mode": "failures"
+  }
+}

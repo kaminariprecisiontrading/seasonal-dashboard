@@ -249,6 +249,11 @@ API and a database (if/when migrating off static files) are evaluated later — 
   eyeballed for completeness. Overlap is always resolved in favor of the existing file on either
   side. Regression-tested against the already-verified GBPUSD append merge (byte-identical
   output) plus synthetic prepend/both-sides cases before rolling out to all 7 assets.
+- **Weekly automated refresh added (v1.29, 2026-11):** `automation/weekly_run.py` runs the whole
+  chain on Sundays via Task Scheduler (runbook: `../docs/AUTOMATION.md`), with a branch guard so it
+  only ever runs and pushes from `main`. It merges with `concat_raw_csv.py --keep-trailing`, because
+  `automation/mt5_download.py` has already trimmed partial days; without the flag, Friday would be
+  dropped for 5-day markets every week. Manual steps are unchanged.
 - **`refresh_asset.py` orchestrator added (2026-09-04):** one command
   (`python pipeline/refresh_asset.py <ASSET>`) replaces manually invoking all 6 pipeline scripts
   in dependency order. Holds a per-asset pip-size registry (fails loudly, not silently, for an

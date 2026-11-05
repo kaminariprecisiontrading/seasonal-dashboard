@@ -140,6 +140,13 @@ Copies `backend/output/track_record.json` (from `pipeline/grade_signals.py`) int
 - **Added in:** v1.25
 - **Run:** `node scripts/sync_track_record.js` after re-running the grader.
 
+### `telegram_digest.js`
+
+Builds the weekly signal digest and optionally posts it to the private Telegram channel. It loads the site's own `js/signals.js`, `data/asset_index.js` and `data/asset_sources.js`, so it can't disagree with the site. This week's signals come from this week's snapshot when it exists, otherwise from the manifest. Every asset line carries its source tag. Run by `.github/workflows/weekly-telegram-alert.yml` straight after each successful snapshot; manual runs from the Actions tab are dry runs unless "send" is ticked.
+
+- **Added in:** v1.29
+- **Run:** `node scripts/telegram_digest.js [--date YYYY-MM-DD]` prints the message. `--send` posts it (needs `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). Options: `--top N`, `--site PATH`, `--url BASE`. See `docs/AUTOMATION.md`.
+
 ### `serve_local.js`
 
 Local preview server that behaves like Netlify: applies `netlify.toml`'s `[[redirects]]` (200 rewrites, 301s, forced 404s, splats) and `[[headers]]`, Netlify's pretty URLs (`/foo` → `foo.html`), trailing-slash matching and the `404.html` fallback. Needed because the site's clean routes (`/dashboard`, …) don't resolve on plain static servers.
