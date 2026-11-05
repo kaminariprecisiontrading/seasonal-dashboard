@@ -261,7 +261,7 @@ simply absent and nothing else changes.
 | `terminals.<id>` | `path` to `terminal64.exe`, `broker`, `enabled`. A disabled terminal's assets are skipped. |
 | `assets[]` | `key` (upper case; `<ASSET>` for the primary feed, `<ASSET>_<BROKER>` for a second broker), `symbol` (the broker's name for it), `terminal` (a `terminals` id), `week` (`5d` or `7d`: crypto and synthetics are `7d`) |
 | `derived_seasonal[]` | `key`, `cadence` (`monthly`: regenerated on the first run of each month) |
-| `download` | `overlap_days`, `chunk_days`, `min_overlap_match` (below this share of matching bars, the asset isn't merged), `complete_day_after` (a last day ending before this server time counts as partial, unless no bar has arrived for 12h+) |
+| `download` | `overlap_days`, `chunk_days`, `min_overlap_match` (below this share of matching bars, the asset isn't merged), `complete_day_after` (a last day ending before this server time counts as partial, unless no bar has arrived for 12h+), `connect_timeout_seconds`, `sync_timeout_seconds` and `sync_poll_seconds` (waiting for the broker connection and for history to load), `sync_stable_reads` (reads in a row that must return the same bar count), `end_tolerance_minutes` (how far the last bar may be behind the latest tick), `max_gap_days` (`{"5d": 2, "7d": 2.5}`: the longest gap allowed without `--accept-gap`; `5d` counts Monday to Friday only) |
 | `git` | `push`, `remote`, `branch` (the branch guard's required branch), `add_paths` (the only paths step 7 commits, and the only ones allowed to be dirty when a run starts) |
 | `notify.mode` | Telegram DM after a run: `always`, `failures` or `never` |
 
