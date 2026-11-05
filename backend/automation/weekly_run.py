@@ -26,6 +26,7 @@ Usage (from the repo root, with backend/.venv's Python):
       --assets K [K …]   limit to these asset keys
       --no-push          commit locally but don't push
       --force-derived    regenerate derived seasonals even if done this month
+      --accept-gap K [K …]  merge these assets despite a long gap or no overlap, after checking by hand
 
 Logs: backend/automation/logs/run_<date>_<time>.log · state: backend/automation/state.json
 """
@@ -195,12 +196,13 @@ def main():
     ap.add_argument("--assets", nargs="*")
     ap.add_argument("--no-push", action="store_true")
     ap.add_argument("--force-derived", action="store_true")
+    ap.add_argument("--accept-gap", nargs="*", default=[], metavar="KEY")
     a = ap.parse_args()
     dry = a.dry_run
 
     cfg = mt5_download.load_config()
     state = load_json(STATE, {})
-    report, problems = [], []
+    report, problems, would_merge = [], [], []
     keys = [x["key"] for x in cfg["assets"] if not a.assets or x["key"] in a.assets]
     log(f"KPT weekly run · {RUN_STARTED:%Y-%m-%d %H:%M} · assets: {', '.join(keys)}" + (" · DRY RUN" if dry else ""))
 
@@ -237,18 +239,20 @@ def main():
         # 1 — download
         if not a.skip_download:
             log("[1] MT5 download")
-            results = mt5_download.download_all(cfg, only=keys, dry_run=dry, log=log)
+            results = mt5_download.download_all(cfg, only=keys, dry_run=dry, log=log, accept_gap=a.accept_gap)
             for r in results:
                 if r["status"] == "error":
                     problems.append(f"download {r['key']}: {r.get('msg')}")
             got = ", ".join(f"{r['key']} {r.get('bars', 0)}" for r in results if r["status"] == "ok")
-            report.append("download (bars): " + (got or "nothing new"))
+            report.append(("would download (bars): " if dry else "download (bars): ") + (got or "nothing new"))
+            if dry:    # nothing was written to incoming/, so step 2 has no files to find
+                would_merge = [r["key"] for r in results if r["status"] == "ok"]
         else:
             log("[1] download skipped")
 
         # 2 — merge (oldest file first, per asset)
         log("[2] merge into full raw files")
-        updated = []
+        updated = list(would_merge)
         for key in keys:
             files = sorted(glob.glob(os.path.join(INCOMING, f"{key}_M1_*.csv")))
             for f in files:
@@ -289,7 +293,7 @@ def main():
                 failed.append(key)
                 problems.append(f"refresh {key}: {str(e).splitlines()[0]}")
         state["needs_refresh"] = failed + [k for k in state.get("needs_refresh", []) if k not in keys]
-        report.append("refreshed: " + (", ".join(refreshed) or "none"))
+        report.append(("would refresh: " if dry else "refreshed: ") + (", ".join(refreshed) or "none"))
 
         # 4 — derived seasonals (monthly)
         month = f"{RUN_STARTED:%Y-%m}"
@@ -314,7 +318,7 @@ def main():
                 run(["node", "scripts/gen_month_signals.js"], dry=dry)
                 run(["node", "scripts/gen_signals_manifest.js", "--check"], dry=dry)
                 state["derived_seasonal_month"] = derived_done
-                report.append("derived seasonals regenerated: " + ", ".join(k for k, m in derived_done.items() if m == month))
+                report.append(("would regenerate derived seasonals: " if dry else "derived seasonals regenerated: ") + ", ".join(k for k, m in derived_done.items() if m == month))
             except Exception as e:
                 problems.append(f"derived seasonal sync: {str(e).splitlines()[0]}")
         else:

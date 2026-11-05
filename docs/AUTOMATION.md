@@ -27,6 +27,24 @@ Mon ~03:20 UTC                   GitHub Action: Weekly Telegram alert
 Sunday is used so 7-day markets (crypto; later Deriv synthetics) are captured through
 Saturday. Sunday's partial day is dropped and picked up the next week, so nothing is lost.
 
+## How the download protects the data
+
+MT5 answers from its local cache and loads the rest in the background, so right after a cold start a
+read can be months short while still looking fine. It can also lose its broker connection for a moment,
+or close and restart itself to install an update. So for each asset, `mt5_download.py`:
+
+1. Waits for the terminal to connect to the broker (`connect_timeout_seconds`).
+2. Re-reads the bars until the count stops changing and the last bar has caught up with the latest tick
+   (`sync_timeout_seconds`, `end_tolerance_minutes`). Otherwise it writes nothing and tries next run.
+3. Checks the new bars against the existing file: they must overlap it and match it (`min_overlap_match`).
+4. Refuses a gap longer than `max_gap_days` (5 days for `5d` assets, 3 for `7d`), anywhere from the file's
+   last bar to now. Later runs start from the new last bar, so a hole merged now would never be filled.
+5. If the terminal goes away mid-run, reconnects and retries that asset once.
+
+Waiting adds a few seconds per asset, and more on a cold start. Each result line in the log shows the bar
+count, first and last bar, overlap match and largest gap, so check those in a dry run. MT5 stays open
+after a run if the run started it.
+
 ## Branch guard
 
 Step 7 pushes to `main`, and Netlify deploys what lands there. So before doing anything,
@@ -128,8 +146,13 @@ both values. `config.json → notify.mode` is `failures` (default), `always` or 
 | `branch guard: on '<branch>', not 'main'` | The repo was on another branch. Nothing was pulled, committed or pushed. Switch to `main` and run again. |
 | `branch guard: N uncommitted change(s) outside the automation's paths` | The log lists the files. Commit or stash them, then run again. |
 | Task shows "last result 0x1" | Open the newest `backend/automation/logs/run_*.log`; the RESULT block lists the problems |
+| `history still loading` | MT5 hadn't finished loading within `sync_timeout_seconds`. Nothing was written, and the next run tries again. To retry now, run it again; the terminal keeps what it has loaded. If it keeps happening, raise the timeout. |
+| `no connection to the broker`, or `started, but not connected` | The terminal isn't connected or logged in. Open it and check. Nothing was written. |
+| `gap in the new bars`, or `history ending N days ago`, over the limit | Nothing was merged. Open the symbol's M1 chart in MT5 and check. If the market really was closed, re-run with `--accept-gap <KEY>`. If bars are simply missing, don't accept it: a hole merged now is never filled by later runs. |
+| `no bars overlap the existing file` | The terminal has no history where your file ends, so the feed can't be verified. Compare a few rows by hand, then use `--accept-gap <KEY>` if it's right. |
+| `lost the terminal`, `IPC send failed` | MT5 closed or restarted, often to install an update. The run reconnects and retries that asset once. If it still fails, the next run picks it up. |
 | `overlap mismatch` for an asset | The bars MT5 returns don't match the file you have. Usual causes: a different broker/account, or a changed server time zone. Nothing was merged. Compare a few rows by hand and re-export the asset in full if the feed really changed. |
-| `could not start/connect to … terminal` | Check the path in `config.json`, and that the terminal opens by itself and is logged in. Close any other script that's connected to MT5. |
+| `could not start or attach` | Check the path in `config.json`, and that the terminal opens by itself and is logged in. Close any other script that's connected to MT5. |
 | `git push failed` | The commit stays local and is pushed on the next run. To push now: `git pull --rebase` then `git push`. |
 | `refresh <KEY>` failed | It's retried automatically next run (`state.json → needs_refresh`). Re-run now with `weekly_run.py --skip-download --assets <KEY>`. |
 | Run stopped half-way | Re-run it. Downloads wait in `incoming/` until merged, and every stage is safe to repeat. |

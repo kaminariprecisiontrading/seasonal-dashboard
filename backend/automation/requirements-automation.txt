@@ -2,5 +2,4 @@
 # backend/.venv as requirements.txt. Windows only — the MetaTrader5 package talks to a
 # locally installed MT5 terminal.
 #   backend\.venv\Scripts\python.exe -m pip install -r backend\automation\requirements-automation.txt
-# After the first successful install, pin the installed version here (pip freeze | findstr MetaTrader5).
-MetaTrader5
+MetaTrader5==5.0.6231

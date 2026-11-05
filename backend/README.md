@@ -63,8 +63,9 @@ backend/
 
 Every Sunday, Task Scheduler runs `automation/weekly_run.py`: MT5 download → merge → refresh → sync →
 grade → commit + push. It only runs on `main` with no uncommitted changes outside its own paths.
-Setup and troubleshooting: [docs/AUTOMATION.md](../docs/AUTOMATION.md). The manual steps below still
-work for one asset or for debugging.
+It waits for MT5 to finish loading history, and refuses to merge a download that doesn't overlap the existing
+file or has a long gap. Setup and troubleshooting: [docs/AUTOMATION.md](../docs/AUTOMATION.md). The manual steps
+below still work for one asset or for debugging.
 
 ### Refreshing an asset (normal case)
 
