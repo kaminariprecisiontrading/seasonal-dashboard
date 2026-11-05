@@ -44,8 +44,9 @@
     "connect_timeout_seconds": 90,
     "sync_timeout_seconds": 180,
     "sync_poll_seconds": 5,
+    "sync_stable_reads": 3,
     "end_tolerance_minutes": 5,
-    "max_gap_days": { "5d": 5, "7d": 3 }
+    "max_gap_days": { "5d": 2, "7d": 2.5 }
   },
 
   "git": {

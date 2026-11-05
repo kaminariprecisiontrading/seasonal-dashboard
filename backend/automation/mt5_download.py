@@ -9,15 +9,17 @@ the MetaTrader5 package can only talk to one terminal per process session):
   1. Read the last timestamp of data/raw/<KEY>_M1_full.csv (tail read, no full load).
   2. Fetch M1 bars from (last timestamp − overlap_days) to now, in chunks, and keep re-reading
      until the history has settled. MT5 answers from its local cache and loads the rest in the
-     background, so a first read after a cold start can be months short: re-read until the bar
-     count is stable and the last bar has caught up with the symbol's latest tick. If it never
-     does, the asset is an error and nothing is written; the next run tries again.
+     background, so a first read after a cold start can be months short: re-read until
+     sync_stable_reads reads in a row return the same bar count and the last bar has caught up
+     with the symbol's latest tick. If that never happens, the asset is an error and nothing is
+     written; the next run tries again.
   3. Verify the overlap: the bars that are already in the full file must match it
      (OHLC identical). A low match rate means a different feed or a shifted server time
      zone, and the asset is skipped rather than merged — see "Overlap check" in AUTOMATION.md.
      Refuse to merge if there's no overlap at all, or a gap longer than max_gap_days anywhere
      from the file's last bar to now: later runs start from the new last bar, so a hole would
-     never be filled. For a real long closure, --accept-gap KEY merges it anyway.
+     never be filled. A 5-day market's gaps count Monday to Friday only, because its weekend
+     isn't missing data. For a real long closure, --accept-gap KEY merges it anyway.
   4. Drop a trailing partial day: the last date is kept only if its final bar is at or
      after `complete_day_after` (e.g. 23:50 server time). A Friday close is kept for 5-day
      markets; a 7-day market's in-progress Sunday is dropped and picked up next week.
@@ -132,33 +134,51 @@ def minutes_behind(mt5, symbol, bars):
     if info is None or newest is None:
         check_ipc(mt5)
     latest = max(int(info.time) if info is not None else 0, int(newest[0]["time"]) if newest is not None and len(newest) else 0)
+    if not latest:                      # unknown must never count as caught up
+        return float("inf")
     return (latest - int(bars[-1]["time"])) / 60
 
 
 def fetch_settled(mt5, symbol, start, end, dcfg):
     """Re-read until the bar count is stable and has reached the latest tick. Returns (bars, problem)."""
     deadline = time.monotonic() + dcfg["sync_timeout_seconds"]
-    bars, previous, behind, online = [], None, float("inf"), False
+    bars, previous, matching, behind, online = [], None, 0, float("inf"), False
     while True:
         online = is_connected(mt5)
         if online:
             bars = fetch(mt5, symbol, start, end, dcfg["chunk_days"])
             behind = minutes_behind(mt5, symbol, bars)
-            if previous == len(bars) and behind <= dcfg["end_tolerance_minutes"]:
-                return bars, None
+            matching = matching + 1 if len(bars) == previous else 1
             previous = len(bars)
+            if matching >= dcfg["sync_stable_reads"] and behind <= dcfg["end_tolerance_minutes"]:
+                return bars, None
         else:
-            previous = None             # the connection dropped: whatever was read may be short
+            previous, matching = None, 0    # the connection dropped: whatever was read may be short
         if time.monotonic() >= deadline:
             if not online:
                 return bars, "no connection to the broker"
-            return bars, f"history still loading: {len(bars)} bars, {behind:.0f} min behind the latest tick"
+            where = "latest tick unknown" if behind == float("inf") else f"{behind:.0f} min behind the latest tick"
+            return bars, f"history still loading: {len(bars)} bars, {where}"
         time.sleep(dcfg["sync_poll_seconds"])
 
 
-def largest_gap_days(last_ts, new):
+def gap_days(a, b, week):
+    """Days between two bar times (epoch seconds). Only Monday to Friday counts for a 5-day market."""
+    if week != "5d":
+        return (b - a) / 86400
+    total, cur = 0, a
+    while cur < b:
+        midnight = cur - cur % 86400
+        nxt = min(b, midnight + 86400)
+        if (midnight // 86400 + 3) % 7 < 5:     # 1970-01-01 was a Thursday
+            total += nxt - cur
+        cur = nxt
+    return total / 86400
+
+
+def largest_gap_days(last_ts, new, week):
     times = [int(last_ts.timestamp())] + [int(b["time"]) for b in new]
-    return max((y - x for x, y in zip(times, times[1:])), default=0) / 86400
+    return max((gap_days(x, y, week) for x, y in zip(times, times[1:])), default=0)
 
 
 def download_asset(mt5, asset, cfg, dry_run=False, log=print, accept_gap=()):
@@ -221,13 +241,17 @@ def download_asset(mt5, asset, cfg, dry_run=False, log=print, accept_gap=()):
     new = [b for b in bars if dt.datetime.fromtimestamp(int(b["time"]), tz=UTC) > last_ts]
 
     # Later runs start from the new last bar, so a hole merged now would never be filled.
-    max_gap = dcfg["max_gap_days"][asset.get("week", "5d")]
-    gap = largest_gap_days(last_ts, new)
+    week = asset.get("week", "5d")
+    weekday = "weekday " if week == "5d" else ""
+    max_gap = dcfg["max_gap_days"][week]
+    gap = largest_gap_days(last_ts, new, week)
     last_bar_t = dt.datetime.fromtimestamp(int(bars[-1]["time"]), tz=UTC)
-    age = (dt.datetime.now(UTC) - last_bar_t).total_seconds() / 86400
+    now = dt.datetime.now(UTC)
+    age = gap_days(int(last_bar_t.timestamp()), int(now.timestamp()), week)
     res["largest_gap_days"] = round(gap, 1)
     if not accepted and (gap > max_gap or age > max_gap):
-        what = f"a {gap:.1f}-day gap in the new bars" if gap > max_gap else f"history ending {age:.1f} days ago ({last_bar_t:%Y-%m-%d %H:%M})"
+        days_ago = (now - last_bar_t).total_seconds() / 86400
+        what = f"a {gap:.1f}-day {weekday}gap in the new bars" if gap > max_gap else f"history ending {days_ago:.1f} days ago ({last_bar_t:%Y-%m-%d %H:%M}, {age:.1f} {weekday}days)"
         res["msg"] = (f"{what}, over the {max_gap}-day limit. Not merged, because it would never be filled. "
                       f"If it's a real market closure, re-run with --accept-gap {key}.")
         return res
@@ -255,7 +279,7 @@ def download_asset(mt5, asset, cfg, dry_run=False, log=print, accept_gap=()):
     out = os.path.join(INCOMING, name)
     res.update(bars=len(new), first=first_t.strftime("%Y-%m-%d %H:%M"), last=last_t.strftime("%Y-%m-%d %H:%M"))
     dropped = res.get("dropped_partial_day")
-    detail = (f"{len(new)} bars, {res['first']} to {res['last']}, overlap {matched}/{checked}, largest gap {gap:.1f}d"
+    detail = (f"{len(new)} bars, {res['first']} to {res['last']}, overlap {matched}/{checked}, largest {weekday}gap {gap:.1f}d"
               + (f", dropped partial {dropped['date']}" if dropped else ""))
     if dry_run:
         res.update(status="ok", msg=detail + " (dry run, not written)")

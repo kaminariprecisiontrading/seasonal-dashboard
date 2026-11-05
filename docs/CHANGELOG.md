@@ -10,21 +10,23 @@
 - **Incomplete first reads.** The first laptop dry run reported 1,111 EURUSD bars for two months of data; minutes
   later the same request returned about 64,000. MT5 answers from its local cache while it loads the rest, and the
   downloader took the first answer as complete. Nothing had been merged. A merge from reads like that could have
-  left a hole in the raw file that later runs would never fill. It now re-reads until the count is stable and the
-  last bar has caught up with the latest tick; otherwise it writes nothing and tries next run.
+  left a hole in the raw file that later runs would never fill. It now re-reads until three reads in a row return
+  the same count and the last bar has caught up with the latest tick; otherwise it writes nothing and tries next run.
 - **Broker connection.** It now waits for a live connection, and rechecks it while loading. MT5's log showed the
   connection dropping during that dry run, and nothing noticed.
 - **MT5 restarting itself.** MT5 closed and came back on a new build during testing, which broke the link
   (`IPC send failed`). The run now reconnects and retries that asset once.
-- **Holes and unverifiable feeds.** A gap over `max_gap_days` (5 days for `5d` assets, 3 for `7d`), or no overlap
-  with the existing file, is now refused rather than merged. `--accept-gap KEY` overrides it after a manual check.
+- **Holes and unverifiable feeds.** A gap over `max_gap_days`, or no overlap with the existing file, is now refused
+  rather than merged. The limit is 2 days for `5d` assets, counting Monday to Friday only, and 2.5 days for `7d`,
+  set from the longest real gaps since 2021 (1.71 and 1.95). `--accept-gap KEY` overrides it after a manual check.
 - **Clearer logs.** Each result line shows its bars, date range, overlap match and largest gap, and a dry run's
   summary says what *would* happen. `MetaTrader5` is pinned to 5.0.6231.
 
 ### Tests
 
-A fake MT5 module covers partial reads, stuck loads, the real dry-run case, holes, normal holidays, no overlap, overlap
-mismatch, dropped connections, IPC failures, partial-day handling and empty ranges (26 checks). On the real terminal,
+`backend/automation/test_mt5_download.py` uses a fake MT5 module to cover partial reads, stuck loads, the real dry-run
+case, holes, normal holidays, no overlap, overlap mismatch, dropped connections, IPC failures, partial-day handling and
+empty ranges. On the real terminal,
 all 14 assets were downloaded and merged on scratch copies of each raw file's last 200,000 lines: bars in order, every
 original bar kept, every new bar added, full overlap match, largest gaps 2.2 days (5d) and 0.1 days (BTCUSD), and
 `clean_mt5_csv.py` runs on a merged copy. The real raw files weren't touched. A dry run with MT5 closed beforehand also
