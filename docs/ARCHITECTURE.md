@@ -74,7 +74,7 @@ Paths elsewhere in this document (`js/…`, `css/…`, `data/…`, `assets/…`)
 **Weekly automation (v1.29, runbook in `AUTOMATION.md`):**
 
 ```
-Sun 12:00 UTC  Windows Task Scheduler (laptop) → backend/automation/weekly_run.py
+Sun 17:00 UTC  Windows Task Scheduler (laptop) → backend/automation/weekly_run.py
                  branch guard → pull → MT5 download → merge → refresh → sync → grade
                  → commit + push to main → Netlify deploys
 

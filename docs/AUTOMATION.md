@@ -6,7 +6,7 @@ Telegram channel. Added in v1.29.
 ## Weekly timeline
 
 ```
-Sun 14:00 Botswana (12:00 UTC)   Windows Task Scheduler on the MSI laptop
+Sun 19:00 Botswana (17:00 UTC)   Windows Task Scheduler on the MSI laptop
                                  backend/automation/weekly_run.py
                                    - branch guard (must be on main, see below)
                                    0 git pull
@@ -17,7 +17,7 @@ Sun 14:00 Botswana (12:00 UTC)   Windows Task Scheduler on the MSI laptop
                                    5 sync_profiling_data.js
                                    6 grade_signals.py → sync_track_record.js
                                    7 commit + push → Netlify deploys
-                                 Laptop off at 14:00? Runs at the next login.
+                                 Laptop off at 19:00? Runs at the next login.
 
 Mon 03:17 UTC                    GitHub Action: Weekly signal snapshot (existing, v1.28)
 Mon ~03:20 UTC                   GitHub Action: Weekly Telegram alert
