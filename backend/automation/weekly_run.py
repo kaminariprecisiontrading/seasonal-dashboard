@@ -33,6 +33,7 @@ Logs: backend/automation/logs/run_<date>_<time>.log · state: backend/automation
 import argparse
 import datetime as dt
 import glob
+import io
 import json
 import os
 import shutil
@@ -61,7 +62,7 @@ RUN_STARTED = dt.datetime.now()
 os.makedirs(LOGS, exist_ok=True)
 LOG_PATH = os.path.join(LOGS, f"run_{RUN_STARTED:%Y-%m-%d_%H%M}.log")
 _log_f = open(LOG_PATH, "a", encoding="utf-8")
-if sys.stdout:                          # piped output is cp1252 on Windows, which can't encode "→"
+if isinstance(sys.stdout, io.TextIOWrapper):    # piped output is cp1252 on Windows, which can't encode "→"
     sys.stdout.reconfigure(errors="replace")
 
 
