@@ -4,25 +4,25 @@ const GBPUSD_DATA = {
   "stats": {
     "asset": "GBPUSD",
     "unit": "pips",
-    "as_of": "2026-09-03",
-    "n_days": 8647,
-    "n_weeks": 1735,
-    "n_months": 401,
+    "as_of": "2026-11-05",
+    "n_days": 8692,
+    "n_weeks": 1744,
+    "n_months": 403,
     "n_years": 34,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 8647,
-          "mean": 129.3,
+          "n": 8692,
+          "mean": 128.9,
           "median": 114.0,
           "std": 70.9,
           "min": 8.0,
           "max": 1788.1,
           "mode_binned": {
-            "bin_low": 74.6,
-            "bin_high": 84.4,
-            "count": 700,
-            "pct_of_n": 8.1
+            "bin_low": 93.9,
+            "bin_high": 103.6,
+            "count": 722,
+            "pct_of_n": 8.3
           },
           "mode_raw": {
             "value": 110.0,
@@ -30,119 +30,119 @@ const GBPUSD_DATA = {
             "pct_of_n": 0.7,
             "n_values_tied": 1
           },
-          "p05": 55.0,
-          "p10": 64.5,
+          "p05": 54.8,
+          "p10": 64.0,
           "p20": 78.0,
-          "p25": 84.0,
+          "p25": 83.7,
           "p50": 114.0,
           "p75": 156.0,
           "p80": 169.0,
           "p90": 210.0,
-          "p95": 250.9,
+          "p95": 250.3,
           "compression_threshold_pips": 78.0,
           "expansion_threshold_pips": 169.0
         },
         "5y": {
           "n": 1298,
-          "mean": 98.4,
-          "median": 86.3,
-          "std": 49.6,
+          "mean": 97.7,
+          "median": 85.6,
+          "std": 49.7,
           "min": 23.7,
           "max": 571.2,
           "mode_binned": {
-            "bin_low": 66.6,
-            "bin_high": 73.9,
-            "count": 141,
-            "pct_of_n": 10.9
+            "bin_low": 65.2,
+            "bin_high": 72.4,
+            "count": 140,
+            "pct_of_n": 10.8
           },
           "mode_raw": {
             "value": 46.6,
-            "count": 6,
+            "count": 7,
             "pct_of_n": 0.5,
-            "n_values_tied": 2
+            "n_values_tied": 1
           },
-          "p05": 44.8,
-          "p10": 51.9,
-          "p20": 62.9,
-          "p25": 67.3,
-          "p50": 86.3,
-          "p75": 116.0,
-          "p80": 126.7,
-          "p90": 156.3,
-          "p95": 190.1,
-          "compression_threshold_pips": 62.9,
-          "expansion_threshold_pips": 126.7
+          "p05": 43.5,
+          "p10": 51.0,
+          "p20": 62.0,
+          "p25": 66.7,
+          "p50": 85.6,
+          "p75": 115.6,
+          "p80": 125.2,
+          "p90": 156.0,
+          "p95": 188.3,
+          "compression_threshold_pips": 62.0,
+          "expansion_threshold_pips": 125.2
         },
         "1y": {
           "n": 260,
-          "mean": 83.7,
-          "median": 77.2,
-          "std": 35.6,
+          "mean": 80.8,
+          "median": 70.8,
+          "std": 35.5,
           "min": 23.7,
           "max": 222.4,
           "mode_binned": {
-            "bin_low": 65.7,
-            "bin_high": 71.2,
-            "count": 33,
-            "pct_of_n": 12.7
+            "bin_low": 65.1,
+            "bin_high": 70.6,
+            "count": 30,
+            "pct_of_n": 11.5
           },
           "mode_raw": {
-            "value": 67.9,
+            "value": 46.6,
             "count": 4,
             "pct_of_n": 1.5,
             "n_values_tied": 1
           },
-          "p05": 38.5,
-          "p10": 43.5,
-          "p20": 53.6,
-          "p25": 58.0,
-          "p50": 77.2,
-          "p75": 101.4,
-          "p80": 108.4,
-          "p90": 134.2,
+          "p05": 37.6,
+          "p10": 42.5,
+          "p20": 52.9,
+          "p25": 57.3,
+          "p50": 70.8,
+          "p75": 96.2,
+          "p80": 105.5,
+          "p90": 129.2,
           "p95": 147.5,
-          "compression_threshold_pips": 53.6,
-          "expansion_threshold_pips": 108.4
+          "compression_threshold_pips": 52.9,
+          "expansion_threshold_pips": 105.5
         },
         "3mo": {
           "n": 67,
-          "mean": 71.4,
-          "median": 67.0,
-          "std": 33.2,
+          "mean": 63.4,
+          "median": 59.9,
+          "std": 24.8,
           "min": 23.7,
-          "max": 188.6,
+          "max": 138.3,
           "mode_binned": {
-            "bin_low": 49.3,
-            "bin_high": 54.7,
-            "count": 9,
-            "pct_of_n": 13.4
+            "bin_low": 57.1,
+            "bin_high": 61.1,
+            "count": 7,
+            "pct_of_n": 10.4
           },
           "mode_raw": {
-            "value": 53.0,
-            "count": 2,
-            "pct_of_n": 3.0,
-            "n_values_tied": 1
+            "value": 23.7,
+            "count": 1,
+            "pct_of_n": 1.5,
+            "n_values_tied": 67
           },
           "p05": 33.3,
-          "p10": 37.7,
-          "p20": 44.5,
-          "p25": 51.4,
-          "p50": 67.0,
-          "p75": 85.7,
-          "p80": 90.5,
-          "p90": 108.7,
-          "p95": 140.2,
-          "compression_threshold_pips": 44.5,
-          "expansion_threshold_pips": 90.5
+          "p10": 36.6,
+          "p20": 40.9,
+          "p25": 43.7,
+          "p50": 59.9,
+          "p75": 71.2,
+          "p80": 80.4,
+          "p90": 99.1,
+          "p95": 112.7,
+          "compression_threshold_pips": 40.9,
+          "expansion_threshold_pips": 80.4
         }
       },
       "latest_adr": {
-        "ADR_5": 55.7,
-        "ADR_14": 54.2,
-        "ADR_20": 54.6,
+        "ADR_5": 64.5,
+        "ADR_14": 63.6,
+        "ADR_20": 70.0,
         "fixed_multiple_thresholds": {
-          "compression_pips": 38.2,
-          "expansion_pips": 71.0,
+          "compression_pips": 49.0,
+          "expansion_pips": 91.0,
           "based_on": "ADR_20"
         }
       }
@@ -150,16 +150,16 @@ const GBPUSD_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 1735,
-          "mean": 287.4,
-          "median": 256.0,
-          "std": 151.1,
+          "n": 1744,
+          "mean": 286.7,
+          "median": 254.8,
+          "std": 151.0,
           "min": 76.6,
           "max": 2248.0,
           "mode_binned": {
-            "bin_low": 211.9,
-            "bin_high": 231.0,
-            "count": 154,
+            "bin_low": 191.5,
+            "bin_high": 210.7,
+            "count": 156,
             "pct_of_n": 8.9
           },
           "mode_raw": {
@@ -168,28 +168,28 @@ const GBPUSD_DATA = {
             "pct_of_n": 0.6,
             "n_values_tied": 2
           },
-          "p05": 135.4,
-          "p10": 156.2,
-          "p20": 183.7,
-          "p25": 195.7,
-          "p50": 256.0,
-          "p75": 344.7,
-          "p80": 367.0,
-          "p90": 433.0,
+          "p05": 133.9,
+          "p10": 155.4,
+          "p20": 183.3,
+          "p25": 194.3,
+          "p50": 254.8,
+          "p75": 344.1,
+          "p80": 366.2,
+          "p90": 432.9,
           "p95": 518.0,
-          "compression_threshold_pips": 183.7,
-          "expansion_threshold_pips": 367.0
+          "compression_threshold_pips": 183.3,
+          "expansion_threshold_pips": 366.2
         },
         "5y": {
           "n": 261,
-          "mean": 217.9,
-          "median": 199.7,
-          "std": 96.5,
+          "mean": 216.7,
+          "median": 197.5,
+          "std": 96.8,
           "min": 82.1,
           "max": 875.6,
           "mode_binned": {
-            "bin_low": 142.5,
-            "bin_high": 156.1,
+            "bin_low": 195.0,
+            "bin_high": 208.7,
             "count": 22,
             "pct_of_n": 8.4
           },
@@ -197,32 +197,32 @@ const GBPUSD_DATA = {
             "value": 119.9,
             "count": 2,
             "pct_of_n": 0.8,
-            "n_values_tied": 8
+            "n_values_tied": 7
           },
-          "p05": 115.3,
-          "p10": 126.3,
-          "p20": 144.2,
-          "p25": 153.3,
-          "p50": 199.7,
-          "p75": 252.7,
-          "p80": 274.3,
+          "p05": 112.4,
+          "p10": 124.5,
+          "p20": 143.3,
+          "p25": 152.8,
+          "p50": 197.5,
+          "p75": 251.2,
+          "p80": 272.3,
           "p90": 350.7,
           "p95": 387.6,
-          "compression_threshold_pips": 144.2,
-          "expansion_threshold_pips": 274.3
+          "compression_threshold_pips": 143.3,
+          "expansion_threshold_pips": 272.3
         },
         "1y": {
           "n": 53,
-          "mean": 184.4,
-          "median": 175.1,
-          "std": 60.5,
+          "mean": 175.4,
+          "median": 161.4,
+          "std": 60.0,
           "min": 87.4,
           "max": 338.0,
           "mode_binned": {
-            "bin_low": 125.7,
-            "bin_high": 136.0,
-            "count": 10,
-            "pct_of_n": 18.9
+            "bin_low": 123.0,
+            "bin_high": 133.5,
+            "count": 12,
+            "pct_of_n": 22.6
           },
           "mode_raw": {
             "value": 87.4,
@@ -230,30 +230,30 @@ const GBPUSD_DATA = {
             "pct_of_n": 1.9,
             "n_values_tied": 53
           },
-          "p05": 94.6,
-          "p10": 126.3,
-          "p20": 131.3,
-          "p25": 132.9,
-          "p50": 175.1,
-          "p75": 222.7,
-          "p80": 227.5,
-          "p90": 265.4,
+          "p05": 91.5,
+          "p10": 105.6,
+          "p20": 129.0,
+          "p25": 130.0,
+          "p50": 161.4,
+          "p75": 217.9,
+          "p80": 223.3,
+          "p90": 242.1,
           "p95": 301.5,
-          "compression_threshold_pips": 131.3,
-          "expansion_threshold_pips": 227.5
+          "compression_threshold_pips": 129.0,
+          "expansion_threshold_pips": 223.3
         },
         "3mo": {
           "n": 14,
-          "mean": 158.3,
-          "median": 142.9,
-          "std": 59.9,
+          "mean": 136.5,
+          "median": 126.5,
+          "std": 46.1,
           "min": 87.4,
-          "max": 298.1,
+          "max": 234.8,
           "mode_binned": {
             "bin_low": 89.5,
-            "bin_high": 97.5,
-            "count": 2,
-            "pct_of_n": 14.3
+            "bin_high": 95.5,
+            "count": 3,
+            "pct_of_n": 21.4
           },
           "mode_raw": {
             "value": 87.4,
@@ -263,32 +263,32 @@ const GBPUSD_DATA = {
           },
           "p05": 89.5,
           "p10": 90.9,
-          "p20": 112.9,
-          "p25": 127.7,
-          "p50": 142.9,
-          "p75": 194.0,
-          "p80": 205.5,
-          "p90": 220.1,
-          "p95": 248.0,
-          "compression_threshold_pips": 112.9,
-          "expansion_threshold_pips": 205.5
+          "p20": 91.5,
+          "p25": 94.0,
+          "p50": 126.5,
+          "p75": 160.1,
+          "p80": 174.1,
+          "p90": 195.2,
+          "p95": 209.6,
+          "compression_threshold_pips": 91.5,
+          "expansion_threshold_pips": 174.1
         }
       }
     },
     "monthly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 401,
-          "mean": 591.9,
-          "median": 545.0,
-          "std": 273.8,
-          "min": 85.0,
+          "n": 403,
+          "mean": 590.7,
+          "median": 544.0,
+          "std": 273.6,
+          "min": 124.1,
           "max": 2604.0,
           "mode_binned": {
-            "bin_low": 477.1,
-            "bin_high": 512.6,
-            "count": 33,
-            "pct_of_n": 8.2
+            "bin_low": 476.7,
+            "bin_high": 512.2,
+            "count": 32,
+            "pct_of_n": 7.9
           },
           "mode_raw": {
             "value": 380.0,
@@ -296,120 +296,120 @@ const GBPUSD_DATA = {
             "pct_of_n": 0.7,
             "n_values_tied": 2
           },
-          "p05": 299.8,
-          "p10": 336.0,
-          "p20": 391.1,
-          "p25": 414.8,
-          "p50": 545.0,
-          "p75": 693.0,
-          "p80": 749.0,
-          "p90": 886.3,
-          "p95": 1009.0,
-          "compression_threshold_pips": 391.1,
-          "expansion_threshold_pips": 749.0
+          "p05": 299.4,
+          "p10": 334.1,
+          "p20": 388.5,
+          "p25": 413.6,
+          "p50": 544.0,
+          "p75": 692.0,
+          "p80": 748.2,
+          "p90": 882.0,
+          "p95": 1008.8,
+          "compression_threshold_pips": 388.5,
+          "expansion_threshold_pips": 748.2
         },
         "5y": {
-          "n": 61,
-          "mean": 464.4,
-          "median": 435.9,
-          "std": 196.2,
-          "min": 85.0,
+          "n": 60,
+          "mean": 460.4,
+          "median": 431.3,
+          "std": 198.0,
+          "min": 124.1,
           "max": 1379.1,
           "mode_binned": {
-            "bin_low": 422.5,
-            "bin_high": 446.6,
+            "bin_low": 350.2,
+            "bin_high": 374.4,
             "count": 6,
-            "pct_of_n": 9.8
+            "pct_of_n": 10.0
           },
           "mode_raw": {
-            "value": 85.0,
+            "value": 124.1,
             "count": 1,
-            "pct_of_n": 1.6,
-            "n_values_tied": 61
+            "pct_of_n": 1.7,
+            "n_values_tied": 60
           },
-          "p05": 253.9,
-          "p10": 293.2,
-          "p20": 327.5,
-          "p25": 343.1,
-          "p50": 435.9,
-          "p75": 530.6,
-          "p80": 601.1,
-          "p90": 682.6,
-          "p95": 735.7,
-          "compression_threshold_pips": 327.5,
-          "expansion_threshold_pips": 601.1
+          "p05": 253.6,
+          "p10": 289.7,
+          "p20": 323.0,
+          "p25": 338.4,
+          "p50": 431.3,
+          "p75": 534.4,
+          "p80": 601.4,
+          "p90": 683.8,
+          "p95": 736.7,
+          "compression_threshold_pips": 323.0,
+          "expansion_threshold_pips": 601.4
         },
         "1y": {
           "n": 13,
-          "mean": 339.8,
-          "median": 343.1,
-          "std": 107.4,
-          "min": 85.0,
+          "mean": 329.7,
+          "median": 339.2,
+          "std": 95.3,
+          "min": 124.1,
           "max": 530.6,
           "mode_binned": {
-            "bin_low": 245.9,
-            "bin_high": 260.2,
-            "count": 2,
-            "pct_of_n": 15.4
+            "bin_low": 352.7,
+            "bin_high": 366.1,
+            "count": 3,
+            "pct_of_n": 23.1
           },
           "mode_raw": {
-            "value": 85.0,
+            "value": 124.1,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 189.0,
+          "p05": 204.6,
           "p10": 258.3,
-          "p20": 274.8,
-          "p25": 299.3,
-          "p50": 343.1,
-          "p75": 402.6,
-          "p80": 419.3,
-          "p90": 434.8,
+          "p20": 273.8,
+          "p25": 297.0,
+          "p50": 339.2,
+          "p75": 355.8,
+          "p80": 361.8,
+          "p90": 421.9,
           "p95": 473.8,
-          "compression_threshold_pips": 274.8,
-          "expansion_threshold_pips": 419.3
+          "compression_threshold_pips": 273.8,
+          "expansion_threshold_pips": 361.8
         },
         "3mo": {
           "n": 4,
-          "mean": 256.4,
-          "median": 298.8,
-          "std": 120.8,
-          "min": 85.0,
-          "max": 343.1,
+          "mean": 261.3,
+          "median": 277.6,
+          "std": 101.7,
+          "min": 124.1,
+          "max": 365.8,
           "mode_binned": {
             "bin_low": 249.9,
-            "bin_high": 261.5,
+            "bin_high": 260.4,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 85.0,
+            "value": 124.1,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 111.0,
-          "p10": 137.0,
-          "p20": 189.0,
-          "p25": 215.0,
-          "p50": 298.8,
-          "p75": 340.2,
-          "p80": 340.8,
-          "p90": 341.9,
-          "p95": 342.5,
-          "compression_threshold_pips": 189.0,
-          "expansion_threshold_pips": 340.8
+          "p05": 144.2,
+          "p10": 164.4,
+          "p20": 204.6,
+          "p25": 224.8,
+          "p50": 277.6,
+          "p75": 314.2,
+          "p80": 324.5,
+          "p90": 345.2,
+          "p95": 355.5,
+          "compression_threshold_pips": 204.6,
+          "expansion_threshold_pips": 324.5
         }
       }
     },
     "yearly_range": {
       "distribution": {
         "n": 34,
-        "mean": 2000.8,
+        "mean": 2000.9,
         "median": 1734.5,
-        "std": 994.9,
-        "min": 729.4,
+        "std": 994.7,
+        "min": 732.7,
         "max": 6037.0,
         "mode_binned": {
           "bin_low": 1451.0,
@@ -418,7 +418,7 @@ const GBPUSD_DATA = {
           "pct_of_n": 11.8
         },
         "mode_raw": {
-          "value": 729.4,
+          "value": 732.7,
           "count": 1,
           "pct_of_n": 2.9,
           "n_values_tied": 34
@@ -437,7 +437,7 @@ const GBPUSD_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7178,
+          "n": 7223,
           "mode_bucket_start_utc": "07:00",
           "mode_bucket_end_utc": "07:30",
           "mode_bucket_pct_of_days": 3.4,
@@ -447,33 +447,33 @@ const GBPUSD_DATA = {
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 123,
-              "pct": 1.71
+              "count": 125,
+              "pct": 1.73
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 94,
-              "pct": 1.31
+              "count": 95,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 105,
-              "pct": 1.46
+              "count": 107,
+              "pct": 1.48
             },
             {
               "bucket_start_utc": "01:30",
               "count": 87,
-              "pct": 1.21
+              "pct": 1.2
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 74,
-              "pct": 1.03
+              "count": 75,
+              "pct": 1.04
             },
             {
               "bucket_start_utc": "02:30",
               "count": 68,
-              "pct": 0.95
+              "pct": 0.94
             },
             {
               "bucket_start_utc": "03:00",
@@ -483,7 +483,7 @@ const GBPUSD_DATA = {
             {
               "bucket_start_utc": "03:30",
               "count": 60,
-              "pct": 0.84
+              "pct": 0.83
             },
             {
               "bucket_start_utc": "04:00",
@@ -492,198 +492,198 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 60,
-              "pct": 0.84
+              "count": 62,
+              "pct": 0.86
             },
             {
               "bucket_start_utc": "05:00",
               "count": 121,
-              "pct": 1.69
+              "pct": 1.68
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 145,
-              "pct": 2.02
+              "count": 147,
+              "pct": 2.04
             },
             {
               "bucket_start_utc": "06:00",
               "count": 209,
-              "pct": 2.91
+              "pct": 2.89
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 211,
+              "count": 212,
               "pct": 2.94
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 245,
-              "pct": 3.41
+              "count": 247,
+              "pct": 3.42
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 204,
-              "pct": 2.84
+              "count": 206,
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 190,
-              "pct": 2.65
+              "count": 191,
+              "pct": 2.64
             },
             {
               "bucket_start_utc": "08:30",
               "count": 167,
-              "pct": 2.33
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 141,
-              "pct": 1.96
+              "count": 142,
+              "pct": 1.97
             },
             {
               "bucket_start_utc": "09:30",
               "count": 132,
-              "pct": 1.84
+              "pct": 1.83
             },
             {
               "bucket_start_utc": "10:00",
               "count": 124,
-              "pct": 1.73
+              "pct": 1.72
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 144,
+              "count": 145,
               "pct": 2.01
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 131,
-              "pct": 1.83
+              "count": 133,
+              "pct": 1.84
             },
             {
               "bucket_start_utc": "11:30",
               "count": 168,
-              "pct": 2.34
+              "pct": 2.33
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 157,
-              "pct": 2.19
+              "count": 159,
+              "pct": 2.2
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 229,
-              "pct": 3.19
-            },
-            {
-              "bucket_start_utc": "13:00",
-              "count": 228,
+              "count": 230,
               "pct": 3.18
             },
             {
+              "bucket_start_utc": "13:00",
+              "count": 231,
+              "pct": 3.2
+            },
+            {
               "bucket_start_utc": "13:30",
-              "count": 215,
-              "pct": 3.0
+              "count": 216,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:00",
               "count": 242,
-              "pct": 3.37
+              "pct": 3.35
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 238,
-              "pct": 3.32
+              "count": 243,
+              "pct": 3.36
             },
             {
               "bucket_start_utc": "15:00",
               "count": 208,
-              "pct": 2.9
+              "pct": 2.88
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 195,
-              "pct": 2.72
+              "count": 196,
+              "pct": 2.71
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 142,
+              "count": 143,
               "pct": 1.98
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 149,
+              "count": 150,
               "pct": 2.08
             },
             {
               "bucket_start_utc": "17:00",
               "count": 146,
-              "pct": 2.03
+              "pct": 2.02
             },
             {
               "bucket_start_utc": "17:30",
               "count": 135,
-              "pct": 1.88
+              "pct": 1.87
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 141,
-              "pct": 1.96
+              "count": 142,
+              "pct": 1.97
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 128,
-              "pct": 1.78
+              "count": 130,
+              "pct": 1.8
             },
             {
               "bucket_start_utc": "19:00",
               "count": 122,
-              "pct": 1.7
+              "pct": 1.69
             },
             {
               "bucket_start_utc": "19:30",
               "count": 160,
-              "pct": 2.23
+              "pct": 2.22
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 144,
+              "count": 145,
               "pct": 2.01
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 158,
+              "count": 159,
               "pct": 2.2
             },
             {
               "bucket_start_utc": "21:00",
               "count": 218,
-              "pct": 3.04
+              "pct": 3.02
             },
             {
               "bucket_start_utc": "21:30",
               "count": 131,
-              "pct": 1.83
+              "pct": 1.81
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 208,
-              "pct": 2.9
+              "count": 211,
+              "pct": 2.92
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 127,
-              "pct": 1.77
+              "count": 129,
+              "pct": 1.79
             },
             {
               "bucket_start_utc": "23:00",
               "count": 132,
-              "pct": 1.84
+              "pct": 1.83
             },
             {
               "bucket_start_utc": "23:30",
               "count": 104,
-              "pct": 1.45
+              "pct": 1.44
             }
           ]
         },
@@ -691,35 +691,35 @@ const GBPUSD_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "14:30",
           "mode_bucket_end_utc": "15:00",
-          "mode_bucket_pct_of_days": 4.4,
-          "circular_mean_utc": "15:19",
-          "circular_median_utc": "15:00",
-          "concentration_R": 0.187,
+          "mode_bucket_pct_of_days": 4.6,
+          "circular_mean_utc": "15:17",
+          "circular_median_utc": "14:55",
+          "concentration_R": 0.183,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 33,
-              "pct": 2.54
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 24,
-              "pct": 1.85
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 29,
-              "pct": 2.23
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 27,
-              "pct": 2.08
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 13,
-              "pct": 1.0
+              "count": 14,
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "02:30",
@@ -728,8 +728,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 14,
-              "pct": 1.08
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "03:30",
@@ -743,8 +743,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 7,
-              "pct": 0.54
+              "count": 9,
+              "pct": 0.69
             },
             {
               "bucket_start_utc": "05:00",
@@ -753,28 +753,28 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 11,
-              "pct": 0.85
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 26,
-              "pct": 2.0
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 31,
-              "pct": 2.39
+              "count": 30,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 42,
-              "pct": 3.24
+              "count": 43,
+              "pct": 3.31
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 28,
-              "pct": 2.16
+              "count": 30,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "08:00",
@@ -783,8 +783,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 27,
-              "pct": 2.08
+              "count": 26,
+              "pct": 2.0
             },
             {
               "bucket_start_utc": "09:00",
@@ -798,23 +798,23 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 23,
-              "pct": 1.77
+              "count": 21,
+              "pct": 1.62
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 29,
-              "pct": 2.23
+              "count": 30,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 17,
-              "pct": 1.31
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 18,
-              "pct": 1.39
+              "count": 17,
+              "pct": 1.31
             },
             {
               "bucket_start_utc": "12:00",
@@ -828,38 +828,38 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 37,
-              "pct": 2.85
+              "count": 38,
+              "pct": 2.93
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 48,
-              "pct": 3.7
-            },
-            {
-              "bucket_start_utc": "14:00",
-              "count": 54,
-              "pct": 4.16
-            },
-            {
-              "bucket_start_utc": "14:30",
-              "count": 57,
-              "pct": 4.39
-            },
-            {
-              "bucket_start_utc": "15:00",
-              "count": 45,
-              "pct": 3.47
-            },
-            {
-              "bucket_start_utc": "15:30",
               "count": 49,
               "pct": 3.78
             },
             {
+              "bucket_start_utc": "14:00",
+              "count": 51,
+              "pct": 3.93
+            },
+            {
+              "bucket_start_utc": "14:30",
+              "count": 60,
+              "pct": 4.62
+            },
+            {
+              "bucket_start_utc": "15:00",
+              "count": 43,
+              "pct": 3.31
+            },
+            {
+              "bucket_start_utc": "15:30",
+              "count": 47,
+              "pct": 3.62
+            },
+            {
               "bucket_start_utc": "16:00",
-              "count": 21,
-              "pct": 1.62
+              "count": 22,
+              "pct": 1.69
             },
             {
               "bucket_start_utc": "16:30",
@@ -868,8 +868,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 26,
-              "pct": 2.0
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "17:30",
@@ -878,8 +878,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 29,
-              "pct": 2.23
+              "count": 28,
+              "pct": 2.16
             },
             {
               "bucket_start_utc": "18:30",
@@ -893,18 +893,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 30,
-              "pct": 2.31
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 36,
-              "pct": 2.77
+              "count": 37,
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 37,
-              "pct": 2.85
+              "count": 38,
+              "pct": 2.93
             },
             {
               "bucket_start_utc": "21:00",
@@ -913,28 +913,28 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 21,
-              "pct": 1.62
+              "count": 19,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 36,
-              "pct": 2.77
+              "count": 38,
+              "pct": 2.93
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 16,
-              "pct": 1.23
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 20,
-              "pct": 1.54
+              "count": 19,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 18,
-              "pct": 1.39
+              "count": 16,
+              "pct": 1.23
             }
           ]
         },
@@ -942,15 +942,15 @@ const GBPUSD_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "14:30",
           "mode_bucket_end_utc": "15:00",
-          "mode_bucket_pct_of_days": 5.8,
-          "circular_mean_utc": "15:47",
+          "mode_bucket_pct_of_days": 6.9,
+          "circular_mean_utc": "15:49",
           "circular_median_utc": "14:50",
-          "concentration_R": 0.182,
+          "concentration_R": 0.174,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 9,
-              "pct": 3.46
+              "count": 10,
+              "pct": 3.85
             },
             {
               "bucket_start_utc": "00:30",
@@ -969,13 +969,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "03:00",
@@ -989,28 +989,28 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 3,
-              "pct": 1.15
-            },
-            {
-              "bucket_start_utc": "04:30",
               "count": 2,
               "pct": 0.77
             },
             {
-              "bucket_start_utc": "05:00",
+              "bucket_start_utc": "04:30",
               "count": 3,
               "pct": 1.15
+            },
+            {
+              "bucket_start_utc": "05:00",
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 8,
-              "pct": 3.08
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "06:30",
@@ -1019,23 +1019,23 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "09:00",
@@ -1044,8 +1044,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "10:00",
@@ -1054,58 +1054,58 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 2,
-              "pct": 0.77
-            },
-            {
-              "bucket_start_utc": "11:30",
-              "count": 2,
-              "pct": 0.77
-            },
-            {
-              "bucket_start_utc": "12:00",
               "count": 3,
               "pct": 1.15
             },
             {
+              "bucket_start_utc": "11:30",
+              "count": 1,
+              "pct": 0.38
+            },
+            {
+              "bucket_start_utc": "12:00",
+              "count": 4,
+              "pct": 1.54
+            },
+            {
               "bucket_start_utc": "12:30",
-              "count": 9,
-              "pct": 3.46
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 8,
-              "pct": 3.08
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 12,
-              "pct": 4.62
+              "count": 11,
+              "pct": 4.23
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 12,
-              "pct": 4.62
+              "count": 10,
+              "pct": 3.85
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 15,
-              "pct": 5.77
+              "count": 18,
+              "pct": 6.92
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 8,
-              "pct": 3.08
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 9,
-              "pct": 3.46
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "16:00",
@@ -1114,13 +1114,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "17:30",
@@ -1134,8 +1134,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 1,
-              "pct": 0.38
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "19:00",
@@ -1144,8 +1144,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "20:00",
@@ -1154,8 +1154,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "21:00",
@@ -1174,29 +1174,29 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             }
           ]
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "14:00",
-          "mode_bucket_end_utc": "14:30",
-          "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "14:16",
-          "circular_median_utc": "14:20",
-          "concentration_R": 0.197,
+          "mode_bucket_start_utc": "14:30",
+          "mode_bucket_end_utc": "15:00",
+          "mode_bucket_pct_of_days": 11.9,
+          "circular_mean_utc": "13:55",
+          "circular_median_utc": "14:30",
+          "concentration_R": 0.194,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1205,18 +1205,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "01:00",
               "count": 1,
               "pct": 1.49
             },
             {
+              "bucket_start_utc": "01:00",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
               "bucket_start_utc": "01:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "02:00",
@@ -1225,8 +1225,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:00",
@@ -1240,33 +1240,33 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "05:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "05:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "06:00",
               "count": 2,
               "pct": 2.99
             },
             {
+              "bucket_start_utc": "05:00",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "05:30",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "06:00",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
               "bucket_start_utc": "06:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "07:00",
@@ -1290,13 +1290,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "10:00",
@@ -1310,48 +1310,48 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "11:30",
               "count": 0,
               "pct": 0.0
             },
             {
-              "bucket_start_utc": "11:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
               "bucket_start_utc": "12:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "12:30",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "13:00",
               "count": 2,
               "pct": 2.99
             },
             {
-              "bucket_start_utc": "13:30",
-              "count": 4,
-              "pct": 5.97
+              "bucket_start_utc": "12:30",
+              "count": 2,
+              "pct": 2.99
             },
             {
-              "bucket_start_utc": "14:00",
+              "bucket_start_utc": "13:00",
               "count": 5,
               "pct": 7.46
             },
             {
+              "bucket_start_utc": "13:30",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
+              "bucket_start_utc": "14:00",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
               "bucket_start_utc": "14:30",
-              "count": 4,
-              "pct": 5.97
+              "count": 8,
+              "pct": 11.94
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "15:30",
@@ -1360,18 +1360,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "17:30",
@@ -1385,23 +1385,23 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "19:00",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "19:30",
               "count": 2,
               "pct": 2.99
             },
             {
+              "bucket_start_utc": "19:00",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "19:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
               "bucket_start_utc": "20:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "20:30",
@@ -1415,23 +1415,23 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "23:30",
@@ -1443,27 +1443,27 @@ const GBPUSD_DATA = {
       },
       "session_distribution": {
         "London_NY_Overlap": {
-          "n": 1712,
+          "n": 1725,
           "pct": 23.9
         },
         "Asian": {
-          "n": 1711,
+          "n": 1722,
           "pct": 23.8
         },
         "New_York": {
-          "n": 1425,
-          "pct": 19.9
+          "n": 1432,
+          "pct": 19.8
         },
         "London": {
-          "n": 1197,
-          "pct": 16.7
+          "n": 1202,
+          "pct": 16.6
         },
         "Other": {
-          "n": 684,
+          "n": 689,
           "pct": 9.5
         },
         "Asian_London_Overlap": {
-          "n": 449,
+          "n": 453,
           "pct": 6.3
         }
       }
@@ -1471,48 +1471,48 @@ const GBPUSD_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7178,
+          "n": 7223,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 5.1,
-          "circular_mean_utc": "14:03",
+          "mode_bucket_pct_of_days": 5.2,
+          "circular_mean_utc": "14:04",
           "circular_median_utc": "14:15",
           "concentration_R": 0.183,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
               "count": 124,
-              "pct": 1.73
+              "pct": 1.72
             },
             {
               "bucket_start_utc": "00:30",
               "count": 104,
-              "pct": 1.45
+              "pct": 1.44
             },
             {
               "bucket_start_utc": "01:00",
               "count": 84,
-              "pct": 1.17
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 71,
-              "pct": 0.99
+              "count": 72,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 47,
-              "pct": 0.65
+              "count": 48,
+              "pct": 0.66
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 38,
-              "pct": 0.53
+              "count": 40,
+              "pct": 0.55
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 26,
-              "pct": 0.36
+              "count": 27,
+              "pct": 0.37
             },
             {
               "bucket_start_utc": "03:30",
@@ -1522,7 +1522,7 @@ const GBPUSD_DATA = {
             {
               "bucket_start_utc": "04:00",
               "count": 45,
-              "pct": 0.63
+              "pct": 0.62
             },
             {
               "bucket_start_utc": "04:30",
@@ -1532,192 +1532,192 @@ const GBPUSD_DATA = {
             {
               "bucket_start_utc": "05:00",
               "count": 86,
-              "pct": 1.2
+              "pct": 1.19
             },
             {
               "bucket_start_utc": "05:30",
               "count": 121,
-              "pct": 1.69
+              "pct": 1.68
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 199,
-              "pct": 2.77
+              "count": 201,
+              "pct": 2.78
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 197,
+              "count": 198,
               "pct": 2.74
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 239,
-              "pct": 3.33
+              "count": 240,
+              "pct": 3.32
             },
             {
               "bucket_start_utc": "07:30",
               "count": 196,
-              "pct": 2.73
+              "pct": 2.71
             },
             {
               "bucket_start_utc": "08:00",
               "count": 171,
-              "pct": 2.38
+              "pct": 2.37
             },
             {
               "bucket_start_utc": "08:30",
               "count": 206,
-              "pct": 2.87
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 168,
+              "count": 169,
               "pct": 2.34
             },
             {
               "bucket_start_utc": "09:30",
               "count": 134,
-              "pct": 1.87
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 155,
+              "count": 156,
               "pct": 2.16
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 129,
+              "count": 130,
               "pct": 1.8
             },
             {
               "bucket_start_utc": "11:00",
               "count": 148,
-              "pct": 2.06
+              "pct": 2.05
             },
             {
               "bucket_start_utc": "11:30",
               "count": 165,
-              "pct": 2.3
+              "pct": 2.28
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 194,
+              "count": 195,
               "pct": 2.7
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 244,
-              "pct": 3.4
+              "count": 249,
+              "pct": 3.45
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 226,
-              "pct": 3.15
+              "count": 227,
+              "pct": 3.14
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 232,
+              "count": 233,
               "pct": 3.23
             },
             {
               "bucket_start_utc": "14:00",
               "count": 254,
-              "pct": 3.54
+              "pct": 3.52
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 234,
-              "pct": 3.26
+              "count": 235,
+              "pct": 3.25
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 215,
+              "count": 217,
               "pct": 3.0
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 209,
-              "pct": 2.91
+              "count": 211,
+              "pct": 2.92
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 181,
+              "count": 182,
               "pct": 2.52
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 155,
+              "count": 156,
               "pct": 2.16
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 130,
-              "pct": 1.81
+              "count": 132,
+              "pct": 1.83
             },
             {
               "bucket_start_utc": "17:30",
               "count": 129,
-              "pct": 1.8
+              "pct": 1.79
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 111,
-              "pct": 1.55
+              "count": 113,
+              "pct": 1.56
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 112,
+              "count": 113,
               "pct": 1.56
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 104,
+              "count": 105,
               "pct": 1.45
             },
             {
               "bucket_start_utc": "19:30",
               "count": 117,
-              "pct": 1.63
+              "pct": 1.62
             },
             {
               "bucket_start_utc": "20:00",
               "count": 106,
-              "pct": 1.48
+              "pct": 1.47
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 154,
+              "count": 155,
               "pct": 2.15
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 369,
-              "pct": 5.14
+              "count": 373,
+              "pct": 5.16
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 152,
-              "pct": 2.12
+              "count": 158,
+              "pct": 2.19
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 257,
-              "pct": 3.58
+              "count": 258,
+              "pct": 3.57
             },
             {
               "bucket_start_utc": "22:30",
               "count": 126,
-              "pct": 1.76
+              "pct": 1.74
             },
             {
               "bucket_start_utc": "23:00",
               "count": 125,
-              "pct": 1.74
+              "pct": 1.73
             },
             {
               "bucket_start_utc": "23:30",
               "count": 109,
-              "pct": 1.52
+              "pct": 1.51
             }
           ]
         },
@@ -1725,10 +1725,10 @@ const GBPUSD_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 10.3,
-          "circular_mean_utc": "16:21",
+          "mode_bucket_pct_of_days": 10.2,
+          "circular_mean_utc": "16:22",
           "circular_median_utc": "15:40",
-          "concentration_R": 0.248,
+          "concentration_R": 0.25,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1737,18 +1737,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 14,
-              "pct": 1.08
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 19,
-              "pct": 1.46
+              "count": 17,
+              "pct": 1.31
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 13,
-              "pct": 1.0
+              "count": 14,
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "02:00",
@@ -1757,13 +1757,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 9,
-              "pct": 0.69
+              "count": 11,
+              "pct": 0.85
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 3,
-              "pct": 0.23
+              "count": 4,
+              "pct": 0.31
             },
             {
               "bucket_start_utc": "03:30",
@@ -1777,8 +1777,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 7,
-              "pct": 0.54
+              "count": 6,
+              "pct": 0.46
             },
             {
               "bucket_start_utc": "05:00",
@@ -1792,28 +1792,28 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
+              "count": 27,
+              "pct": 2.08
+            },
+            {
+              "bucket_start_utc": "06:30",
               "count": 25,
               "pct": 1.93
             },
             {
-              "bucket_start_utc": "06:30",
-              "count": 24,
-              "pct": 1.85
-            },
-            {
               "bucket_start_utc": "07:00",
-              "count": 42,
-              "pct": 3.24
+              "count": 39,
+              "pct": 3.0
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 20,
-              "pct": 1.54
+              "count": 19,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 33,
-              "pct": 2.54
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "08:30",
@@ -1822,8 +1822,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 29,
-              "pct": 2.23
+              "count": 30,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "09:30",
@@ -1837,8 +1837,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 25,
-              "pct": 1.93
+              "count": 24,
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "11:00",
@@ -1847,18 +1847,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 21,
-              "pct": 1.62
+              "count": 19,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 28,
-              "pct": 2.16
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 48,
-              "pct": 3.7
+              "count": 53,
+              "pct": 4.08
             },
             {
               "bucket_start_utc": "13:00",
@@ -1867,8 +1867,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 58,
-              "pct": 4.47
+              "count": 59,
+              "pct": 4.55
             },
             {
               "bucket_start_utc": "14:00",
@@ -1877,18 +1877,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 48,
-              "pct": 3.7
+              "count": 44,
+              "pct": 3.39
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 45,
-              "pct": 3.47
+              "count": 46,
+              "pct": 3.54
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 45,
-              "pct": 3.47
+              "count": 46,
+              "pct": 3.54
             },
             {
               "bucket_start_utc": "16:00",
@@ -1897,13 +1897,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 31,
-              "pct": 2.39
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 26,
-              "pct": 2.0
+              "count": 27,
+              "pct": 2.08
             },
             {
               "bucket_start_utc": "17:30",
@@ -1917,43 +1917,43 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 27,
-              "pct": 2.08
-            },
-            {
-              "bucket_start_utc": "19:00",
-              "count": 23,
-              "pct": 1.77
-            },
-            {
-              "bucket_start_utc": "19:30",
-              "count": 31,
-              "pct": 2.39
-            },
-            {
-              "bucket_start_utc": "20:00",
-              "count": 24,
-              "pct": 1.85
-            },
-            {
-              "bucket_start_utc": "20:30",
-              "count": 35,
-              "pct": 2.7
-            },
-            {
-              "bucket_start_utc": "21:00",
-              "count": 134,
-              "pct": 10.32
-            },
-            {
-              "bucket_start_utc": "21:30",
               "count": 28,
               "pct": 2.16
             },
             {
+              "bucket_start_utc": "19:00",
+              "count": 24,
+              "pct": 1.85
+            },
+            {
+              "bucket_start_utc": "19:30",
+              "count": 30,
+              "pct": 2.31
+            },
+            {
+              "bucket_start_utc": "20:00",
+              "count": 23,
+              "pct": 1.77
+            },
+            {
+              "bucket_start_utc": "20:30",
+              "count": 34,
+              "pct": 2.62
+            },
+            {
+              "bucket_start_utc": "21:00",
+              "count": 132,
+              "pct": 10.17
+            },
+            {
+              "bucket_start_utc": "21:30",
+              "count": 33,
+              "pct": 2.54
+            },
+            {
               "bucket_start_utc": "22:00",
-              "count": 66,
-              "pct": 5.08
+              "count": 67,
+              "pct": 5.16
             },
             {
               "bucket_start_utc": "22:30",
@@ -1967,8 +1967,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 7,
-              "pct": 0.54
+              "count": 5,
+              "pct": 0.39
             }
           ]
         },
@@ -1976,15 +1976,15 @@ const GBPUSD_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 13.1,
-          "circular_mean_utc": "17:15",
-          "circular_median_utc": "16:05",
-          "concentration_R": 0.249,
+          "mode_bucket_pct_of_days": 11.9,
+          "circular_mean_utc": "17:42",
+          "circular_median_utc": "16:30",
+          "concentration_R": 0.242,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "00:30",
@@ -1993,28 +1993,28 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
+              "count": 2,
+              "pct": 0.77
+            },
+            {
+              "bucket_start_utc": "01:30",
               "count": 3,
               "pct": 1.15
             },
             {
-              "bucket_start_utc": "01:30",
-              "count": 2,
-              "pct": 0.77
-            },
-            {
               "bucket_start_utc": "02:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "03:30",
@@ -2043,18 +2043,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 10,
-              "pct": 3.85
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "07:30",
@@ -2068,13 +2068,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 9,
-              "pct": 3.46
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "09:30",
@@ -2083,43 +2083,43 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 6,
-              "pct": 2.31
-            },
-            {
-              "bucket_start_utc": "11:00",
               "count": 5,
               "pct": 1.92
             },
             {
-              "bucket_start_utc": "11:30",
+              "bucket_start_utc": "11:00",
               "count": 4,
               "pct": 1.54
             },
             {
-              "bucket_start_utc": "12:00",
-              "count": 7,
-              "pct": 2.69
+              "bucket_start_utc": "11:30",
+              "count": 2,
+              "pct": 0.77
             },
             {
-              "bucket_start_utc": "12:30",
+              "bucket_start_utc": "12:00",
               "count": 8,
               "pct": 3.08
             },
             {
+              "bucket_start_utc": "12:30",
+              "count": 9,
+              "pct": 3.46
+            },
+            {
               "bucket_start_utc": "13:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 12,
-              "pct": 4.62
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "14:00",
@@ -2133,18 +2133,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 13,
-              "pct": 5.0
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 10,
-              "pct": 3.85
+              "count": 11,
+              "pct": 4.23
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "16:30",
@@ -2153,8 +2153,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "17:30",
@@ -2168,13 +2168,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "19:30",
@@ -2183,33 +2183,33 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 34,
-              "pct": 13.08
+              "count": 31,
+              "pct": 11.92
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 11,
-              "pct": 4.23
+              "count": 16,
+              "pct": 6.15
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 13,
-              "pct": 5.0
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "23:00",
@@ -2227,15 +2227,15 @@ const GBPUSD_DATA = {
           "n": 67,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 26.9,
-          "circular_mean_utc": "18:59",
-          "circular_median_utc": "21:00",
-          "concentration_R": 0.374,
+          "mode_bucket_pct_of_days": 19.4,
+          "circular_mean_utc": "18:28",
+          "circular_median_utc": "20:50",
+          "concentration_R": 0.323,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "00:30",
@@ -2249,23 +2249,23 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "02:00",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "02:30",
               "count": 1,
               "pct": 1.49
             },
             {
+              "bucket_start_utc": "02:00",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "02:30",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
               "bucket_start_utc": "03:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "03:30",
@@ -2284,8 +2284,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "05:30",
@@ -2294,8 +2294,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "06:30",
@@ -2309,8 +2309,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "08:00",
@@ -2329,8 +2329,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "10:00",
@@ -2359,8 +2359,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 6,
+              "pct": 8.96
             },
             {
               "bucket_start_utc": "13:00",
@@ -2369,8 +2369,8 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "14:00",
@@ -2384,18 +2384,18 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "16:30",
@@ -2404,13 +2404,13 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "18:00",
@@ -2424,38 +2424,38 @@ const GBPUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "19:30",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "20:00",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "20:30",
+              "bucket_start_utc": "19:30",
               "count": 0,
               "pct": 0.0
             },
             {
+              "bucket_start_utc": "20:00",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "20:30",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
               "bucket_start_utc": "21:00",
-              "count": 18,
-              "pct": 26.87
+              "count": 13,
+              "pct": 19.4
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 5,
-              "pct": 7.46
+              "count": 7,
+              "pct": 10.45
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "22:30",
@@ -2477,35 +2477,35 @@ const GBPUSD_DATA = {
       },
       "session_distribution": {
         "London_NY_Overlap": {
-          "n": 1808,
+          "n": 1821,
           "pct": 25.2
         },
         "Asian": {
-          "n": 1456,
+          "n": 1464,
           "pct": 20.3
         },
         "New_York": {
-          "n": 1299,
+          "n": 1308,
           "pct": 18.1
         },
         "London": {
-          "n": 1276,
-          "pct": 17.8
+          "n": 1279,
+          "pct": 17.7
         },
         "Other": {
-          "n": 904,
-          "pct": 12.6
+          "n": 915,
+          "pct": 12.7
         },
         "Asian_London_Overlap": {
-          "n": 435,
-          "pct": 6.1
+          "n": 436,
+          "pct": 6.0
         }
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 7178,
-      "same_session_n": 343,
-      "same_session_pct": 4.78,
+      "n_days": 7223,
+      "same_session_n": 344,
+      "same_session_pct": 4.76,
       "pairs": {
         "Asian": {
           "Asian": {
@@ -2517,20 +2517,20 @@ const GBPUSD_DATA = {
             "pct": 0.53
           },
           "London": {
-            "n": 276,
-            "pct": 3.85
+            "n": 277,
+            "pct": 3.83
           },
           "London_NY_Overlap": {
-            "n": 591,
-            "pct": 8.23
+            "n": 595,
+            "pct": 8.24
           },
           "New_York": {
-            "n": 439,
-            "pct": 6.12
+            "n": 440,
+            "pct": 6.09
           },
           "Other": {
-            "n": 65,
-            "pct": 0.91
+            "n": 67,
+            "pct": 0.93
           }
         },
         "Asian_London_Overlap": {
@@ -2544,15 +2544,15 @@ const GBPUSD_DATA = {
           },
           "London": {
             "n": 48,
-            "pct": 0.67
+            "pct": 0.66
           },
           "London_NY_Overlap": {
             "n": 186,
-            "pct": 2.59
+            "pct": 2.58
           },
           "New_York": {
-            "n": 128,
-            "pct": 1.78
+            "n": 129,
+            "pct": 1.79
           },
           "Other": {
             "n": 29,
@@ -2562,7 +2562,7 @@ const GBPUSD_DATA = {
         "London": {
           "Asian": {
             "n": 330,
-            "pct": 4.6
+            "pct": 4.57
           },
           "Asian_London_Overlap": {
             "n": 56,
@@ -2570,62 +2570,62 @@ const GBPUSD_DATA = {
           },
           "London": {
             "n": 66,
-            "pct": 0.92
+            "pct": 0.91
           },
           "London_NY_Overlap": {
-            "n": 310,
+            "n": 312,
             "pct": 4.32
           },
           "New_York": {
-            "n": 361,
-            "pct": 5.03
+            "n": 362,
+            "pct": 5.01
           },
           "Other": {
             "n": 153,
-            "pct": 2.13
+            "pct": 2.12
           }
         },
         "London_NY_Overlap": {
           "Asian": {
-            "n": 686,
-            "pct": 9.56
+            "n": 692,
+            "pct": 9.58
           },
           "Asian_London_Overlap": {
-            "n": 186,
+            "n": 187,
             "pct": 2.59
           },
           "London": {
-            "n": 331,
+            "n": 333,
             "pct": 4.61
           },
           "London_NY_Overlap": {
-            "n": 151,
+            "n": 152,
             "pct": 2.1
           },
           "New_York": {
-            "n": 195,
-            "pct": 2.72
+            "n": 196,
+            "pct": 2.71
           },
           "Other": {
-            "n": 259,
+            "n": 261,
             "pct": 3.61
           }
         },
         "New_York": {
           "Asian": {
-            "n": 532,
-            "pct": 7.41
+            "n": 537,
+            "pct": 7.43
           },
           "Asian_London_Overlap": {
-            "n": 131,
+            "n": 132,
             "pct": 1.83
           },
           "London": {
-            "n": 299,
-            "pct": 4.17
+            "n": 300,
+            "pct": 4.15
           },
           "London_NY_Overlap": {
-            "n": 163,
+            "n": 164,
             "pct": 2.27
           },
           "New_York": {
@@ -2633,7 +2633,7 @@ const GBPUSD_DATA = {
             "pct": 0.5
           },
           "Other": {
-            "n": 138,
+            "n": 139,
             "pct": 1.92
           }
         },
@@ -2643,32 +2643,32 @@ const GBPUSD_DATA = {
             "pct": 1.04
           },
           "Asian_London_Overlap": {
-            "n": 35,
-            "pct": 0.49
+            "n": 37,
+            "pct": 0.51
           },
           "London": {
-            "n": 177,
-            "pct": 2.47
+            "n": 178,
+            "pct": 2.46
           },
           "London_NY_Overlap": {
-            "n": 311,
-            "pct": 4.33
+            "n": 316,
+            "pct": 4.37
           },
           "New_York": {
-            "n": 266,
-            "pct": 3.71
+            "n": 269,
+            "pct": 3.72
           },
           "Other": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           }
         }
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 7178,
+      "n_days": 7223,
       "same_hour_n": 35,
-      "same_hour_pct": 0.49,
+      "same_hour_pct": 0.48,
       "pairs": {
         "0": {
           "0": {
@@ -2701,7 +2701,7 @@ const GBPUSD_DATA = {
           },
           "7": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "8": {
             "n": 12,
@@ -2709,11 +2709,11 @@ const GBPUSD_DATA = {
           },
           "9": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "10": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "11": {
             "n": 21,
@@ -2725,7 +2725,7 @@ const GBPUSD_DATA = {
           },
           "13": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "14": {
             "n": 30,
@@ -2749,7 +2749,7 @@ const GBPUSD_DATA = {
           },
           "19": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "20": {
             "n": 19,
@@ -2803,7 +2803,7 @@ const GBPUSD_DATA = {
           },
           "8": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "9": {
             "n": 4,
@@ -2826,8 +2826,8 @@ const GBPUSD_DATA = {
             "pct": 0.24
           },
           "14": {
-            "n": 14,
-            "pct": 0.2
+            "n": 15,
+            "pct": 0.21
           },
           "15": {
             "n": 17,
@@ -2839,7 +2839,7 @@ const GBPUSD_DATA = {
           },
           "17": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "18": {
             "n": 10,
@@ -2847,11 +2847,11 @@ const GBPUSD_DATA = {
           },
           "19": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "20": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "21": {
             "n": 5,
@@ -2904,8 +2904,8 @@ const GBPUSD_DATA = {
             "pct": 0.01
           },
           "9": {
-            "n": 5,
-            "pct": 0.07
+            "n": 6,
+            "pct": 0.08
           },
           "10": {
             "n": 2,
@@ -2924,16 +2924,16 @@ const GBPUSD_DATA = {
             "pct": 0.08
           },
           "14": {
-            "n": 13,
-            "pct": 0.18
+            "n": 14,
+            "pct": 0.19
           },
           "15": {
             "n": 7,
             "pct": 0.1
           },
           "16": {
-            "n": 7,
-            "pct": 0.1
+            "n": 8,
+            "pct": 0.11
           },
           "17": {
             "n": 6,
@@ -3054,8 +3054,8 @@ const GBPUSD_DATA = {
             "pct": 0.04
           },
           "22": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.01
           },
           "23": {
             "n": 0,
@@ -3125,7 +3125,7 @@ const GBPUSD_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "16": {
             "n": 3,
@@ -3199,7 +3199,7 @@ const GBPUSD_DATA = {
           },
           "9": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "10": {
             "n": 6,
@@ -3211,7 +3211,7 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "13": {
             "n": 23,
@@ -3308,8 +3308,8 @@ const GBPUSD_DATA = {
             "pct": 0.36
           },
           "12": {
-            "n": 40,
-            "pct": 0.56
+            "n": 41,
+            "pct": 0.57
           },
           "13": {
             "n": 57,
@@ -3317,11 +3317,11 @@ const GBPUSD_DATA = {
           },
           "14": {
             "n": 37,
-            "pct": 0.52
+            "pct": 0.51
           },
           "15": {
-            "n": 40,
-            "pct": 0.56
+            "n": 41,
+            "pct": 0.57
           },
           "16": {
             "n": 31,
@@ -3348,8 +3348,8 @@ const GBPUSD_DATA = {
             "pct": 0.26
           },
           "22": {
-            "n": 3,
-            "pct": 0.04
+            "n": 4,
+            "pct": 0.06
           },
           "23": {
             "n": 2,
@@ -3359,7 +3359,7 @@ const GBPUSD_DATA = {
         "7": {
           "0": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "1": {
             "n": 11,
@@ -3423,15 +3423,15 @@ const GBPUSD_DATA = {
           },
           "16": {
             "n": 32,
-            "pct": 0.45
+            "pct": 0.44
           },
           "17": {
             "n": 23,
             "pct": 0.32
           },
           "18": {
-            "n": 23,
-            "pct": 0.32
+            "n": 24,
+            "pct": 0.33
           },
           "19": {
             "n": 24,
@@ -3505,7 +3505,7 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "13": {
             "n": 29,
@@ -3513,15 +3513,15 @@ const GBPUSD_DATA = {
           },
           "14": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "15": {
             "n": 35,
-            "pct": 0.49
+            "pct": 0.48
           },
           "16": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "17": {
             "n": 28,
@@ -3545,11 +3545,11 @@ const GBPUSD_DATA = {
           },
           "22": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "23": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           }
         },
         "9": {
@@ -3575,7 +3575,7 @@ const GBPUSD_DATA = {
           },
           "5": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "6": {
             "n": 16,
@@ -3599,7 +3599,7 @@ const GBPUSD_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "12": {
             "n": 15,
@@ -3607,7 +3607,7 @@ const GBPUSD_DATA = {
           },
           "13": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "14": {
             "n": 17,
@@ -3634,8 +3634,8 @@ const GBPUSD_DATA = {
             "pct": 0.24
           },
           "20": {
-            "n": 18,
-            "pct": 0.25
+            "n": 19,
+            "pct": 0.26
           },
           "21": {
             "n": 11,
@@ -3704,12 +3704,12 @@ const GBPUSD_DATA = {
             "pct": 0.08
           },
           "13": {
-            "n": 12,
-            "pct": 0.17
+            "n": 13,
+            "pct": 0.18
           },
           "14": {
-            "n": 11,
-            "pct": 0.15
+            "n": 12,
+            "pct": 0.17
           },
           "15": {
             "n": 19,
@@ -3729,7 +3729,7 @@ const GBPUSD_DATA = {
           },
           "19": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "20": {
             "n": 20,
@@ -3763,7 +3763,7 @@ const GBPUSD_DATA = {
           },
           "3": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "4": {
             "n": 5,
@@ -3771,7 +3771,7 @@ const GBPUSD_DATA = {
           },
           "5": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "6": {
             "n": 24,
@@ -3783,7 +3783,7 @@ const GBPUSD_DATA = {
           },
           "8": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "9": {
             "n": 0,
@@ -3799,7 +3799,7 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "13": {
             "n": 15,
@@ -3849,15 +3849,15 @@ const GBPUSD_DATA = {
         "12": {
           "0": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "1": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "2": {
-            "n": 17,
-            "pct": 0.24
+            "n": 18,
+            "pct": 0.25
           },
           "3": {
             "n": 10,
@@ -3868,16 +3868,16 @@ const GBPUSD_DATA = {
             "pct": 0.11
           },
           "5": {
-            "n": 17,
-            "pct": 0.24
+            "n": 18,
+            "pct": 0.25
           },
           "6": {
             "n": 39,
             "pct": 0.54
           },
           "7": {
-            "n": 42,
-            "pct": 0.59
+            "n": 43,
+            "pct": 0.6
           },
           "8": {
             "n": 29,
@@ -3900,8 +3900,8 @@ const GBPUSD_DATA = {
             "pct": 0.06
           },
           "13": {
-            "n": 8,
-            "pct": 0.11
+            "n": 9,
+            "pct": 0.12
           },
           "14": {
             "n": 24,
@@ -3925,19 +3925,19 @@ const GBPUSD_DATA = {
           },
           "19": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "20": {
-            "n": 14,
-            "pct": 0.2
+            "n": 15,
+            "pct": 0.21
           },
           "21": {
             "n": 31,
             "pct": 0.43
           },
           "22": {
-            "n": 29,
-            "pct": 0.4
+            "n": 30,
+            "pct": 0.42
           },
           "23": {
             "n": 23,
@@ -3946,12 +3946,12 @@ const GBPUSD_DATA = {
         },
         "13": {
           "0": {
-            "n": 22,
-            "pct": 0.31
+            "n": 23,
+            "pct": 0.32
           },
           "1": {
-            "n": 16,
-            "pct": 0.22
+            "n": 17,
+            "pct": 0.24
           },
           "2": {
             "n": 16,
@@ -3975,7 +3975,7 @@ const GBPUSD_DATA = {
           },
           "7": {
             "n": 48,
-            "pct": 0.67
+            "pct": 0.66
           },
           "8": {
             "n": 25,
@@ -4011,7 +4011,7 @@ const GBPUSD_DATA = {
           },
           "16": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "17": {
             "n": 17,
@@ -4031,7 +4031,7 @@ const GBPUSD_DATA = {
           },
           "21": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "22": {
             "n": 30,
@@ -4039,7 +4039,7 @@ const GBPUSD_DATA = {
           },
           "23": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           }
         },
         "14": {
@@ -4076,8 +4076,8 @@ const GBPUSD_DATA = {
             "pct": 0.79
           },
           "8": {
-            "n": 41,
-            "pct": 0.57
+            "n": 42,
+            "pct": 0.58
           },
           "9": {
             "n": 29,
@@ -4137,7 +4137,7 @@ const GBPUSD_DATA = {
           },
           "23": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           }
         },
         "15": {
@@ -4155,19 +4155,19 @@ const GBPUSD_DATA = {
           },
           "3": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "4": {
-            "n": 13,
-            "pct": 0.18
+            "n": 14,
+            "pct": 0.19
           },
           "5": {
             "n": 20,
             "pct": 0.28
           },
           "6": {
-            "n": 46,
-            "pct": 0.64
+            "n": 47,
+            "pct": 0.65
           },
           "7": {
             "n": 39,
@@ -4182,8 +4182,8 @@ const GBPUSD_DATA = {
             "pct": 0.39
           },
           "10": {
-            "n": 22,
-            "pct": 0.31
+            "n": 23,
+            "pct": 0.32
           },
           "11": {
             "n": 17,
@@ -4195,7 +4195,7 @@ const GBPUSD_DATA = {
           },
           "13": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "14": {
             "n": 4,
@@ -4230,8 +4230,8 @@ const GBPUSD_DATA = {
             "pct": 0.26
           },
           "22": {
-            "n": 40,
-            "pct": 0.56
+            "n": 41,
+            "pct": 0.57
           },
           "23": {
             "n": 31,
@@ -4245,7 +4245,7 @@ const GBPUSD_DATA = {
           },
           "1": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "2": {
             "n": 12,
@@ -4256,20 +4256,20 @@ const GBPUSD_DATA = {
             "pct": 0.17
           },
           "4": {
-            "n": 8,
-            "pct": 0.11
+            "n": 9,
+            "pct": 0.12
           },
           "5": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "6": {
             "n": 37,
-            "pct": 0.52
+            "pct": 0.51
           },
           "7": {
             "n": 32,
-            "pct": 0.45
+            "pct": 0.44
           },
           "8": {
             "n": 38,
@@ -4284,8 +4284,8 @@ const GBPUSD_DATA = {
             "pct": 0.35
           },
           "11": {
-            "n": 13,
-            "pct": 0.18
+            "n": 14,
+            "pct": 0.19
           },
           "12": {
             "n": 19,
@@ -4338,8 +4338,8 @@ const GBPUSD_DATA = {
         },
         "17": {
           "0": {
-            "n": 14,
-            "pct": 0.2
+            "n": 15,
+            "pct": 0.21
           },
           "1": {
             "n": 13,
@@ -4355,7 +4355,7 @@ const GBPUSD_DATA = {
           },
           "4": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "5": {
             "n": 18,
@@ -4383,7 +4383,7 @@ const GBPUSD_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "12": {
             "n": 8,
@@ -4395,7 +4395,7 @@ const GBPUSD_DATA = {
           },
           "14": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "15": {
             "n": 2,
@@ -4426,8 +4426,8 @@ const GBPUSD_DATA = {
             "pct": 0.15
           },
           "22": {
-            "n": 15,
-            "pct": 0.21
+            "n": 16,
+            "pct": 0.22
           },
           "23": {
             "n": 15,
@@ -4440,8 +4440,8 @@ const GBPUSD_DATA = {
             "pct": 0.22
           },
           "1": {
-            "n": 14,
-            "pct": 0.2
+            "n": 15,
+            "pct": 0.21
           },
           "2": {
             "n": 5,
@@ -4464,8 +4464,8 @@ const GBPUSD_DATA = {
             "pct": 0.32
           },
           "7": {
-            "n": 24,
-            "pct": 0.33
+            "n": 25,
+            "pct": 0.35
           },
           "8": {
             "n": 12,
@@ -4484,8 +4484,8 @@ const GBPUSD_DATA = {
             "pct": 0.04
           },
           "12": {
-            "n": 14,
-            "pct": 0.2
+            "n": 15,
+            "pct": 0.21
           },
           "13": {
             "n": 6,
@@ -4554,8 +4554,8 @@ const GBPUSD_DATA = {
             "pct": 0.08
           },
           "5": {
-            "n": 13,
-            "pct": 0.18
+            "n": 14,
+            "pct": 0.19
           },
           "6": {
             "n": 20,
@@ -4567,7 +4567,7 @@ const GBPUSD_DATA = {
           },
           "8": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "9": {
             "n": 8,
@@ -4579,11 +4579,11 @@ const GBPUSD_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "12": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "13": {
             "n": 11,
@@ -4619,7 +4619,7 @@ const GBPUSD_DATA = {
           },
           "21": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "22": {
             "n": 13,
@@ -4632,8 +4632,8 @@ const GBPUSD_DATA = {
         },
         "20": {
           "0": {
-            "n": 11,
-            "pct": 0.15
+            "n": 12,
+            "pct": 0.17
           },
           "1": {
             "n": 12,
@@ -4669,7 +4669,7 @@ const GBPUSD_DATA = {
           },
           "9": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "10": {
             "n": 13,
@@ -4758,8 +4758,8 @@ const GBPUSD_DATA = {
             "pct": 0.32
           },
           "7": {
-            "n": 22,
-            "pct": 0.31
+            "n": 24,
+            "pct": 0.33
           },
           "8": {
             "n": 21,
@@ -4771,39 +4771,39 @@ const GBPUSD_DATA = {
           },
           "10": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "11": {
-            "n": 29,
-            "pct": 0.4
+            "n": 30,
+            "pct": 0.42
           },
           "12": {
-            "n": 45,
-            "pct": 0.63
+            "n": 46,
+            "pct": 0.64
           },
           "13": {
-            "n": 50,
-            "pct": 0.7
+            "n": 51,
+            "pct": 0.71
           },
           "14": {
-            "n": 55,
-            "pct": 0.77
+            "n": 57,
+            "pct": 0.79
           },
           "15": {
             "n": 34,
             "pct": 0.47
           },
           "16": {
-            "n": 23,
-            "pct": 0.32
+            "n": 24,
+            "pct": 0.33
           },
           "17": {
             "n": 25,
             "pct": 0.35
           },
           "18": {
-            "n": 38,
-            "pct": 0.53
+            "n": 40,
+            "pct": 0.55
           },
           "19": {
             "n": 24,
@@ -4819,7 +4819,7 @@ const GBPUSD_DATA = {
           },
           "22": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "23": {
             "n": 5,
@@ -4880,8 +4880,8 @@ const GBPUSD_DATA = {
             "pct": 0.33
           },
           "13": {
-            "n": 27,
-            "pct": 0.38
+            "n": 28,
+            "pct": 0.39
           },
           "14": {
             "n": 38,
@@ -4897,7 +4897,7 @@ const GBPUSD_DATA = {
           },
           "17": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "18": {
             "n": 26,
@@ -4955,7 +4955,7 @@ const GBPUSD_DATA = {
           },
           "7": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "8": {
             "n": 5,
@@ -4963,7 +4963,7 @@ const GBPUSD_DATA = {
           },
           "9": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "10": {
             "n": 10,
@@ -4983,7 +4983,7 @@ const GBPUSD_DATA = {
           },
           "14": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "15": {
             "n": 17,
@@ -5026,49 +5026,49 @@ const GBPUSD_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 327,
-        "mean_range_pips": 140.1,
-        "median_range_pips": 125.2,
-        "extreme_in_release_window_pct": 30.0
+        "n": 329,
+        "mean_range_pips": 139.7,
+        "median_range_pips": 125.0,
+        "extreme_in_release_window_pct": 30.1
       },
       "other_fridays": {
-        "n": 1106,
-        "mean_range_pips": 127.8,
-        "median_range_pips": 110.2,
-        "extreme_in_release_window_pct": 25.2
+        "n": 1113,
+        "mean_range_pips": 127.4,
+        "median_range_pips": 110.0,
+        "extreme_in_release_window_pct": 25.4
       },
-      "all_days_mean_range_pips": 127.0,
+      "all_days_mean_range_pips": 126.6,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Friday": 492,
-      "Monday": 458,
-      "Thursday": 293,
-      "Tuesday": 246,
-      "Wednesday": 244,
+      "Friday": 494,
+      "Monday": 460,
+      "Thursday": 294,
+      "Wednesday": 247,
+      "Tuesday": 247,
       "Sunday": 2
     },
     "weekly_low_day": {
-      "Friday": 506,
-      "Monday": 497,
-      "Tuesday": 284,
-      "Thursday": 226,
-      "Wednesday": 222
+      "Friday": 508,
+      "Monday": 498,
+      "Tuesday": 285,
+      "Thursday": 229,
+      "Wednesday": 224
     },
     "monthly_high_week_of_month": {
       "1": 140,
-      "2": 58,
+      "2": 59,
       "3": 62,
       "4": 81,
-      "5": 60
+      "5": 61
     },
     "monthly_low_week_of_month": {
       "1": 125,
-      "2": 90,
+      "2": 91,
       "3": 57,
       "4": 76,
-      "5": 53
+      "5": 54
     },
     "yearly_high_month": {
       "1": 5,
@@ -5089,11 +5089,11 @@ const GBPUSD_DATA = {
       "3": 3,
       "4": 3,
       "5": 3,
-      "6": 2,
+      "6": 1,
       "7": 2,
       "8": 3,
       "9": 3,
-      "10": 2,
+      "10": 3,
       "11": 1,
       "12": 5
     },
@@ -5140,7 +5140,6 @@ const GBPUSD_DATA = {
       "18": 1,
       "20": 2,
       "24": 1,
-      "26": 1,
       "27": 1,
       "28": 1,
       "32": 2,
@@ -5149,6 +5148,7 @@ const GBPUSD_DATA = {
       "37": 1,
       "39": 1,
       "40": 2,
+      "42": 1,
       "48": 1,
       "49": 2,
       "50": 1,
@@ -5156,37 +5156,37 @@ const GBPUSD_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 8588,
+    "n_labeled_days": 8633,
     "n_data_gap_days": 6,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 4970,
-        "pct": 57.87
+        "n": 4998,
+        "pct": 57.89
       },
       "Compression Day": {
-        "n": 1628,
+        "n": 1637,
         "pct": 18.96
       },
       "Volatile Day": {
-        "n": 796,
-        "pct": 9.27
+        "n": 798,
+        "pct": 9.24
       },
       "Trend Day (Up)": {
         "n": 373,
-        "pct": 4.34
+        "pct": 4.32
       },
       "Trend Day (Down)": {
-        "n": 320,
-        "pct": 3.73
+        "n": 321,
+        "pct": 3.72
       },
       "Volatile Reversal Day": {
-        "n": 212,
-        "pct": 2.47
+        "n": 214,
+        "pct": 2.48
       },
       "Quiet Drift Day (Down)": {
-        "n": 153,
-        "pct": 1.78
+        "n": 156,
+        "pct": 1.81
       },
       "Quiet Drift Day (Up)": {
         "n": 136,
@@ -5195,21 +5195,21 @@ const GBPUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 2552,
+        "Late_Push": 2568,
         "Insufficient_History": 818,
-        "Late_Resolution": 799,
-        "Fade_Risk": 529,
-        "Early_Resolution": 272
+        "Late_Resolution": 804,
+        "Fade_Risk": 534,
+        "Early_Resolution": 274
       },
       "Compression Day": {
-        "Late_Push": 610,
-        "Fade_Risk": 303,
+        "Late_Push": 614,
+        "Fade_Risk": 305,
         "Insufficient_History": 273,
-        "Late_Resolution": 247,
-        "Early_Resolution": 195
+        "Late_Resolution": 248,
+        "Early_Resolution": 197
       },
       "Volatile Day": {
-        "Late_Push": 517,
+        "Late_Push": 519,
         "Insufficient_History": 119,
         "Late_Resolution": 103,
         "Fade_Risk": 30,
@@ -5223,22 +5223,22 @@ const GBPUSD_DATA = {
         "Fade_Risk": 2
       },
       "Trend Day (Down)": {
-        "Late_Push": 235,
+        "Late_Push": 236,
         "Late_Resolution": 46,
         "Insufficient_History": 36,
         "Early_Resolution": 2,
         "Fade_Risk": 1
       },
       "Volatile Reversal Day": {
-        "Late_Push": 98,
+        "Late_Push": 100,
         "Fade_Risk": 38,
         "Insufficient_History": 37,
         "Early_Resolution": 23,
         "Late_Resolution": 16
       },
       "Quiet Drift Day (Down)": {
-        "Late_Push": 90,
-        "Late_Resolution": 33,
+        "Late_Push": 91,
+        "Late_Resolution": 35,
         "Insufficient_History": 13,
         "Early_Resolution": 10,
         "Fade_Risk": 7
@@ -5253,81 +5253,81 @@ const GBPUSD_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Day": {
-        "mean": 72.3,
-        "median": 69.0
+        "mean": 72.1,
+        "median": 68.9
       },
       "Normal Day": {
-        "mean": 120.7,
+        "mean": 120.4,
         "median": 114.0
       },
       "Quiet Drift Day (Down)": {
-        "mean": 70.1,
-        "median": 65.0
+        "mean": 69.6,
+        "median": 64.4
       },
       "Quiet Drift Day (Up)": {
         "mean": 72.6,
         "median": 70.0
       },
       "Trend Day (Down)": {
-        "mean": 224.7,
-        "median": 206.4
+        "mean": 224.4,
+        "median": 206.0
       },
       "Trend Day (Up)": {
         "mean": 215.4,
         "median": 205.0
       },
       "Volatile Day": {
-        "mean": 216.7,
-        "median": 195.2
+        "mean": 216.4,
+        "median": 195.0
       },
       "Volatile Reversal Day": {
-        "mean": 208.0,
-        "median": 187.3
+        "mean": 207.2,
+        "median": 186.1
       }
     },
     "nfp": {
-      "n_nfp_days": 388,
-      "n_other_fridays": 1322,
+      "n_nfp_days": 390,
+      "n_other_fridays": 1329,
       "nfp_profile_distribution": {
         "Normal Day": {
-          "n": 233,
-          "pct": 60.05,
-          "mean_range_pips": 126.1,
-          "median_range_pips": 119.1
+          "n": 235,
+          "pct": 60.26,
+          "mean_range_pips": 125.6,
+          "median_range_pips": 119.0
         },
         "Volatile Day": {
           "n": 48,
-          "pct": 12.37,
+          "pct": 12.31,
           "mean_range_pips": 217.7,
           "median_range_pips": 193.5
         },
         "Compression Day": {
           "n": 41,
-          "pct": 10.57,
+          "pct": 10.51,
           "mean_range_pips": 73.6,
           "median_range_pips": 71.4
         },
         "Trend Day (Down)": {
           "n": 22,
-          "pct": 5.67,
+          "pct": 5.64,
           "mean_range_pips": 214.2,
           "median_range_pips": 216.9
         },
         "Trend Day (Up)": {
           "n": 18,
-          "pct": 4.64,
+          "pct": 4.62,
           "mean_range_pips": 229.3,
           "median_range_pips": 206.2
         },
         "Volatile Reversal Day": {
           "n": 17,
-          "pct": 4.38,
+          "pct": 4.36,
           "mean_range_pips": 183.5,
           "median_range_pips": 176.0
         },
         "Quiet Drift Day (Down)": {
           "n": 5,
-          "pct": 1.29,
+          "pct": 1.28,
           "mean_range_pips": 57.1,
           "median_range_pips": 59.7
         },
@@ -5340,44 +5340,44 @@ const GBPUSD_DATA = {
       },
       "other_friday_profile_distribution": {
         "Normal Day": {
-          "n": 781,
-          "pct": 59.08,
-          "mean_range_pips": 120.1,
+          "n": 785,
+          "pct": 59.07,
+          "mean_range_pips": 119.8,
           "median_range_pips": 113.0
         },
         "Compression Day": {
-          "n": 234,
-          "pct": 17.7,
-          "mean_range_pips": 70.3,
+          "n": 236,
+          "pct": 17.76,
+          "mean_range_pips": 70.1,
           "median_range_pips": 68.0
         },
         "Volatile Day": {
           "n": 115,
-          "pct": 8.7,
+          "pct": 8.65,
           "mean_range_pips": 227.8,
           "median_range_pips": 193.0
         },
         "Trend Day (Up)": {
           "n": 56,
-          "pct": 4.24,
+          "pct": 4.21,
           "mean_range_pips": 216.9,
           "median_range_pips": 207.8
         },
         "Trend Day (Down)": {
           "n": 49,
-          "pct": 3.71,
+          "pct": 3.69,
           "mean_range_pips": 221.6,
           "median_range_pips": 212.5
         },
         "Volatile Reversal Day": {
-          "n": 35,
-          "pct": 2.65,
-          "mean_range_pips": 238.8,
-          "median_range_pips": 190.2
+          "n": 36,
+          "pct": 2.71,
+          "mean_range_pips": 235.2,
+          "median_range_pips": 187.1
         },
         "Quiet Drift Day (Down)": {
           "n": 30,
-          "pct": 2.27,
+          "pct": 2.26,
           "mean_range_pips": 71.7,
           "median_range_pips": 66.1
         },
@@ -5392,60 +5392,60 @@ const GBPUSD_DATA = {
     "asset": "GBPUSD"
   },
   "weekly": {
-    "n_labeled_weeks": 1721,
+    "n_labeled_weeks": 1730,
     "n_short_weeks": 0,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 976,
-        "pct": 56.71
+        "n": 980,
+        "pct": 56.65
       },
       "Compression Week": {
-        "n": 315,
-        "pct": 18.3
+        "n": 319,
+        "pct": 18.44
       },
       "Volatile Week": {
-        "n": 168,
-        "pct": 9.76
+        "n": 169,
+        "pct": 9.77
       },
       "Trend Week (Down)": {
         "n": 71,
-        "pct": 4.13
+        "pct": 4.1
       },
       "Trend Week (Up)": {
         "n": 69,
-        "pct": 4.01
+        "pct": 3.99
       },
       "Volatile Reversal Week": {
         "n": 55,
-        "pct": 3.2
+        "pct": 3.18
       },
       "Quiet Drift Week (Up)": {
         "n": 36,
-        "pct": 2.09
+        "pct": 2.08
       },
       "Quiet Drift Week (Down)": {
         "n": 31,
-        "pct": 1.8
+        "pct": 1.79
       }
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 618,
-        "Late_Resolution": 180,
+        "Late_Push": 620,
+        "Late_Resolution": 182,
         "Fade_Risk": 127,
         "Early_Resolution": 50,
         "Insufficient_History": 1
       },
       "Compression Week": {
-        "Late_Push": 126,
-        "Late_Resolution": 85,
+        "Late_Push": 129,
+        "Late_Resolution": 86,
         "Fade_Risk": 78,
         "Early_Resolution": 26
       },
       "Volatile Week": {
         "Late_Push": 129,
-        "Late_Resolution": 23,
+        "Late_Resolution": 24,
         "Fade_Risk": 10,
         "Early_Resolution": 5,
         "Insufficient_History": 1
@@ -5480,18 +5480,18 @@ const GBPUSD_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Week": {
-        "Spread": 814,
-        "Adjacent": 140,
+        "Spread": 817,
+        "Adjacent": 141,
         "Same_Day": 21,
         "Insufficient_History": 1
       },
       "Compression Week": {
-        "Spread": 216,
+        "Spread": 220,
         "Adjacent": 78,
         "Same_Day": 21
       },
       "Volatile Week": {
-        "Spread": 152,
+        "Spread": 153,
         "Adjacent": 11,
         "Same_Day": 4,
         "Insufficient_History": 1
@@ -5521,12 +5521,12 @@ const GBPUSD_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Week": {
-        "mean": 174.0,
+        "mean": 173.2,
         "median": 166.0
       },
       "Normal Week": {
-        "mean": 267.3,
-        "median": 253.0
+        "mean": 266.9,
+        "median": 252.8
       },
       "Quiet Drift Week (Down)": {
         "mean": 182.0,
@@ -5549,14 +5549,14 @@ const GBPUSD_DATA = {
         "median": 433.0
       },
       "Volatile Week": {
-        "mean": 458.0,
-        "median": 401.7
+        "mean": 456.7,
+        "median": 400.4
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 1733,
+      "n_weeks": 1742,
       "same_day_n": 49,
-      "same_day_pct": 2.83,
+      "same_day_pct": 2.81,
       "pairs": {
         "Monday": {
           "Monday": {
@@ -5565,25 +5565,25 @@ const GBPUSD_DATA = {
           },
           "Tuesday": {
             "n": 38,
-            "pct": 2.19
+            "pct": 2.18
           },
           "Wednesday": {
-            "n": 87,
-            "pct": 5.02
+            "n": 88,
+            "pct": 5.05
           },
           "Thursday": {
             "n": 125,
-            "pct": 7.21
+            "pct": 7.18
           },
           "Friday": {
             "n": 237,
-            "pct": 13.68
+            "pct": 13.61
           }
         },
         "Tuesday": {
           "Monday": {
             "n": 33,
-            "pct": 1.9
+            "pct": 1.89
           },
           "Tuesday": {
             "n": 7,
@@ -5591,51 +5591,51 @@ const GBPUSD_DATA = {
           },
           "Wednesday": {
             "n": 33,
-            "pct": 1.9
+            "pct": 1.89
           },
           "Thursday": {
-            "n": 75,
-            "pct": 4.33
+            "n": 76,
+            "pct": 4.36
           },
           "Friday": {
             "n": 136,
-            "pct": 7.85
+            "pct": 7.81
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 71,
-            "pct": 4.1
+            "pct": 4.08
           },
           "Tuesday": {
             "n": 27,
-            "pct": 1.56
+            "pct": 1.55
           },
           "Wednesday": {
             "n": 10,
-            "pct": 0.58
+            "pct": 0.57
           },
           "Thursday": {
             "n": 36,
-            "pct": 2.08
+            "pct": 2.07
           },
           "Friday": {
-            "n": 78,
-            "pct": 4.5
+            "n": 80,
+            "pct": 4.59
           }
         },
         "Thursday": {
           "Monday": {
-            "n": 114,
-            "pct": 6.58
+            "n": 115,
+            "pct": 6.6
           },
           "Tuesday": {
-            "n": 56,
-            "pct": 3.23
+            "n": 57,
+            "pct": 3.27
           },
           "Wednesday": {
-            "n": 17,
-            "pct": 0.98
+            "n": 18,
+            "pct": 1.03
           },
           "Thursday": {
             "n": 11,
@@ -5643,25 +5643,25 @@ const GBPUSD_DATA = {
           },
           "Friday": {
             "n": 28,
-            "pct": 1.62
+            "pct": 1.61
           }
         },
         "Friday": {
           "Monday": {
-            "n": 232,
-            "pct": 13.39
+            "n": 233,
+            "pct": 13.38
           },
           "Tuesday": {
             "n": 118,
-            "pct": 6.81
+            "pct": 6.77
           },
           "Wednesday": {
-            "n": 97,
-            "pct": 5.6
+            "n": 98,
+            "pct": 5.63
           },
           "Thursday": {
             "n": 46,
-            "pct": 2.65
+            "pct": 2.64
           },
           "Friday": {
             "n": 13,
@@ -5675,37 +5675,37 @@ const GBPUSD_DATA = {
     "asset": "GBPUSD"
   },
   "monthly": {
-    "n_labeled_months": 390,
+    "n_labeled_months": 392,
     "n_short_months": 2,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 236,
-        "pct": 60.51
+        "n": 237,
+        "pct": 60.46
       },
       "Compression Month": {
-        "n": 56,
-        "pct": 14.36
+        "n": 57,
+        "pct": 14.54
       },
       "Volatile Month": {
         "n": 29,
-        "pct": 7.44
+        "pct": 7.4
       },
       "Trend Month (Up)": {
         "n": 21,
-        "pct": 5.38
+        "pct": 5.36
       },
       "Volatile Reversal Month": {
         "n": 20,
-        "pct": 5.13
+        "pct": 5.1
       },
       "Trend Month (Down)": {
         "n": 13,
-        "pct": 3.33
+        "pct": 3.32
       },
       "Quiet Drift Month (Up)": {
         "n": 8,
-        "pct": 2.05
+        "pct": 2.04
       },
       "Quiet Drift Month (Down)": {
         "n": 7,
@@ -5714,13 +5714,13 @@ const GBPUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Month": {
-        "Late_Push": 169,
+        "Late_Push": 170,
         "Early_Resolution": 26,
         "Late_Resolution": 25,
         "Fade_Risk": 16
       },
       "Compression Month": {
-        "Late_Push": 25,
+        "Late_Push": 26,
         "Early_Resolution": 13,
         "Fade_Risk": 10,
         "Late_Resolution": 8
@@ -5757,12 +5757,12 @@ const GBPUSD_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Month": {
-        "Spread": 187,
+        "Spread": 188,
         "Adjacent": 42,
         "Same_Week": 7
       },
       "Compression Month": {
-        "Spread": 31,
+        "Spread": 32,
         "Adjacent": 21,
         "Same_Week": 4
       },
@@ -5796,12 +5796,12 @@ const GBPUSD_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Month": {
-        "mean": 344.5,
-        "median": 325.8
+        "mean": 343.7,
+        "median": 324.2
       },
       "Normal Month": {
-        "mean": 548.4,
-        "median": 536.0
+        "mean": 547.6,
+        "median": 534.1
       },
       "Quiet Drift Month (Down)": {
         "mean": 378.0,
@@ -5829,9 +5829,9 @@ const GBPUSD_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 399,
+      "n_months": 401,
       "same_week_n": 17,
-      "same_week_pct": 4.26,
+      "same_week_pct": 4.24,
       "pairs": {
         "1": {
           "1": {
@@ -5840,25 +5840,25 @@ const GBPUSD_DATA = {
           },
           "2": {
             "n": 19,
-            "pct": 4.76
+            "pct": 4.74
           },
           "3": {
             "n": 34,
-            "pct": 8.52
+            "pct": 8.48
           },
           "4": {
             "n": 35,
-            "pct": 8.77
+            "pct": 8.73
           },
           "5": {
             "n": 30,
-            "pct": 7.52
+            "pct": 7.48
           }
         },
         "2": {
           "1": {
             "n": 26,
-            "pct": 6.52
+            "pct": 6.48
           },
           "2": {
             "n": 3,
@@ -5866,21 +5866,21 @@ const GBPUSD_DATA = {
           },
           "3": {
             "n": 12,
-            "pct": 3.01
+            "pct": 2.99
           },
           "4": {
             "n": 28,
-            "pct": 7.02
+            "pct": 6.98
           },
           "5": {
-            "n": 21,
-            "pct": 5.26
+            "n": 22,
+            "pct": 5.49
           }
         },
         "3": {
           "1": {
             "n": 34,
-            "pct": 8.52
+            "pct": 8.48
           },
           "2": {
             "n": 6,
@@ -5896,17 +5896,17 @@ const GBPUSD_DATA = {
           },
           "5": {
             "n": 8,
-            "pct": 2.01
+            "pct": 2.0
           }
         },
         "4": {
           "1": {
             "n": 44,
-            "pct": 11.03
+            "pct": 10.97
           },
           "2": {
             "n": 20,
-            "pct": 5.01
+            "pct": 4.99
           },
           "3": {
             "n": 5,
@@ -5924,15 +5924,15 @@ const GBPUSD_DATA = {
         "5": {
           "1": {
             "n": 29,
-            "pct": 7.27
+            "pct": 7.23
           },
           "2": {
-            "n": 10,
-            "pct": 2.51
+            "n": 11,
+            "pct": 2.74
           },
           "3": {
             "n": 9,
-            "pct": 2.26
+            "pct": 2.24
           },
           "4": {
             "n": 4,
@@ -5950,37 +5950,37 @@ const GBPUSD_DATA = {
     "asset": "GBPUSD"
   },
   "yearly": {
-    "n_labeled_years": 25,
-    "n_short_years": 2,
+    "n_labeled_years": 26,
+    "n_short_years": 1,
     "n_insufficient_history_years": 7,
     "profile_distribution": {
       "Normal Year": {
         "n": 14,
-        "pct": 56.0
+        "pct": 53.85
       },
       "Compression Year": {
-        "n": 4,
-        "pct": 16.0
+        "n": 5,
+        "pct": 19.23
       },
       "Volatile Year": {
         "n": 3,
-        "pct": 12.0
+        "pct": 11.54
       },
       "Trend Year (Up)": {
         "n": 1,
-        "pct": 4.0
+        "pct": 3.85
       },
       "Trend Year (Down)": {
         "n": 1,
-        "pct": 4.0
+        "pct": 3.85
       },
       "Quiet Drift Year (Up)": {
         "n": 1,
-        "pct": 4.0
+        "pct": 3.85
       },
       "Volatile Reversal Year": {
         "n": 1,
-        "pct": 4.0
+        "pct": 3.85
       }
     },
     "extreme_timing_by_profile": {
@@ -5991,7 +5991,7 @@ const GBPUSD_DATA = {
         "Fade_Risk": 1
       },
       "Compression Year": {
-        "Late_Push": 2,
+        "Late_Push": 3,
         "Early_Resolution": 1,
         "Fade_Risk": 1
       },
@@ -6016,7 +6016,7 @@ const GBPUSD_DATA = {
         "Spread": 14
       },
       "Compression Year": {
-        "Spread": 4
+        "Spread": 5
       },
       "Volatile Year": {
         "Spread": 3
@@ -6036,8 +6036,8 @@ const GBPUSD_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Year": {
-        "mean": 1231.5,
-        "median": 1237.2
+        "mean": 1131.7,
+        "median": 1134.7
       },
       "Normal Year": {
         "mean": 1864.4,
@@ -6065,7 +6065,7 @@ const GBPUSD_DATA = {
       }
     },
     "month_pair_distribution": {
-      "n_years": 32,
+      "n_years": 33,
       "same_month_n": 0,
       "same_month_pct": 0.0,
       "pairs": {
@@ -6096,15 +6096,15 @@ const GBPUSD_DATA = {
           },
           "7": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "8": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "9": {
             "n": 2,
-            "pct": 6.25
+            "pct": 6.06
           },
           "10": {
             "n": 0,
@@ -6116,7 +6116,7 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 2,
-            "pct": 6.25
+            "pct": 6.06
           }
         },
         "2": {
@@ -6162,7 +6162,7 @@ const GBPUSD_DATA = {
           },
           "11": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "12": {
             "n": 0,
@@ -6196,7 +6196,7 @@ const GBPUSD_DATA = {
           },
           "7": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "8": {
             "n": 0,
@@ -6212,11 +6212,11 @@ const GBPUSD_DATA = {
           },
           "11": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "12": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           }
         },
         "4": {
@@ -6242,7 +6242,7 @@ const GBPUSD_DATA = {
           },
           "6": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "7": {
             "n": 0,
@@ -6254,7 +6254,7 @@ const GBPUSD_DATA = {
           },
           "9": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "10": {
             "n": 0,
@@ -6266,13 +6266,13 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           }
         },
         "5": {
           "1": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "2": {
             "n": 0,
@@ -6316,13 +6316,13 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 2,
-            "pct": 6.25
+            "pct": 6.06
           }
         },
         "6": {
           "1": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "2": {
             "n": 0,
@@ -6408,7 +6408,7 @@ const GBPUSD_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "11": {
             "n": 0,
@@ -6416,7 +6416,7 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           }
         },
         "8": {
@@ -6458,11 +6458,11 @@ const GBPUSD_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "11": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "12": {
             "n": 0,
@@ -6472,7 +6472,7 @@ const GBPUSD_DATA = {
         "9": {
           "1": {
             "n": 2,
-            "pct": 6.25
+            "pct": 6.06
           },
           "2": {
             "n": 0,
@@ -6516,13 +6516,13 @@ const GBPUSD_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           }
         },
         "10": {
           "1": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 3.03
           },
           "2": {
             "n": 0,
@@ -6534,7 +6534,7 @@ const GBPUSD_DATA = {
           },
           "4": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "5": {
             "n": 0,
@@ -6542,7 +6542,7 @@ const GBPUSD_DATA = {
           },
           "6": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "7": {
             "n": 0,
@@ -6580,7 +6580,7 @@ const GBPUSD_DATA = {
           },
           "3": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "4": {
             "n": 0,
@@ -6630,11 +6630,11 @@ const GBPUSD_DATA = {
           },
           "3": {
             "n": 2,
-            "pct": 6.25
+            "pct": 6.06
           },
           "4": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "5": {
             "n": 0,
@@ -6642,11 +6642,11 @@ const GBPUSD_DATA = {
           },
           "6": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "7": {
             "n": 1,
-            "pct": 3.12
+            "pct": 3.03
           },
           "8": {
             "n": 0,
@@ -6678,124 +6678,124 @@ const GBPUSD_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 18.34,
-        "mean_activity_pips": 69.44,
-        "n_days": 6567
+        "mean_range_pips": 18.29,
+        "mean_activity_pips": 69.22,
+        "n_days": 6612
       },
       "1": {
-        "mean_range_pips": 17.07,
-        "mean_activity_pips": 66.13,
-        "n_days": 6486
+        "mean_range_pips": 17.02,
+        "mean_activity_pips": 65.95,
+        "n_days": 6531
       },
       "2": {
-        "mean_range_pips": 15.05,
-        "mean_activity_pips": 59.26,
-        "n_days": 6309
+        "mean_range_pips": 15.01,
+        "mean_activity_pips": 59.08,
+        "n_days": 6354
       },
       "3": {
-        "mean_range_pips": 14.46,
-        "mean_activity_pips": 57.33,
-        "n_days": 6400
+        "mean_range_pips": 14.42,
+        "mean_activity_pips": 57.15,
+        "n_days": 6445
       },
       "4": {
-        "mean_range_pips": 16.32,
-        "mean_activity_pips": 62.7,
-        "n_days": 6771
+        "mean_range_pips": 16.26,
+        "mean_activity_pips": 62.47,
+        "n_days": 6816
       },
       "5": {
-        "mean_range_pips": 22.62,
-        "mean_activity_pips": 85.47,
-        "n_days": 7063
+        "mean_range_pips": 22.53,
+        "mean_activity_pips": 85.14,
+        "n_days": 7108
       },
       "6": {
-        "mean_range_pips": 29.83,
-        "mean_activity_pips": 111.91,
-        "n_days": 7121
+        "mean_range_pips": 29.74,
+        "mean_activity_pips": 111.54,
+        "n_days": 7166
       },
       "7": {
-        "mean_range_pips": 34.52,
-        "mean_activity_pips": 126.8,
-        "n_days": 7124
+        "mean_range_pips": 34.41,
+        "mean_activity_pips": 126.4,
+        "n_days": 7169
       },
       "8": {
-        "mean_range_pips": 33.65,
-        "mean_activity_pips": 124.69,
-        "n_days": 7128
+        "mean_range_pips": 33.54,
+        "mean_activity_pips": 124.31,
+        "n_days": 7173
       },
       "9": {
-        "mean_range_pips": 30.45,
-        "mean_activity_pips": 116.39,
-        "n_days": 7128
+        "mean_range_pips": 30.35,
+        "mean_activity_pips": 116.02,
+        "n_days": 7173
       },
       "10": {
-        "mean_range_pips": 29.05,
-        "mean_activity_pips": 112.68,
-        "n_days": 7132
+        "mean_range_pips": 28.95,
+        "mean_activity_pips": 112.31,
+        "n_days": 7177
       },
       "11": {
-        "mean_range_pips": 32.76,
-        "mean_activity_pips": 122.11,
-        "n_days": 7139
+        "mean_range_pips": 32.65,
+        "mean_activity_pips": 121.7,
+        "n_days": 7184
       },
       "12": {
-        "mean_range_pips": 35.3,
-        "mean_activity_pips": 132.45,
-        "n_days": 7136
+        "mean_range_pips": 35.22,
+        "mean_activity_pips": 132.09,
+        "n_days": 7181
       },
       "13": {
-        "mean_range_pips": 36.66,
-        "mean_activity_pips": 137.62,
-        "n_days": 7133
+        "mean_range_pips": 36.56,
+        "mean_activity_pips": 137.24,
+        "n_days": 7178
       },
       "14": {
-        "mean_range_pips": 36.09,
-        "mean_activity_pips": 136.3,
-        "n_days": 7131
+        "mean_range_pips": 35.99,
+        "mean_activity_pips": 135.93,
+        "n_days": 7176
       },
       "15": {
-        "mean_range_pips": 31.28,
-        "mean_activity_pips": 119.79,
-        "n_days": 7090
+        "mean_range_pips": 31.2,
+        "mean_activity_pips": 119.47,
+        "n_days": 7135
       },
       "16": {
-        "mean_range_pips": 25.47,
-        "mean_activity_pips": 97.99,
-        "n_days": 6957
+        "mean_range_pips": 25.4,
+        "mean_activity_pips": 97.7,
+        "n_days": 7002
       },
       "17": {
-        "mean_range_pips": 22.86,
-        "mean_activity_pips": 86.96,
-        "n_days": 6847
+        "mean_range_pips": 22.78,
+        "mean_activity_pips": 86.68,
+        "n_days": 6892
       },
       "18": {
-        "mean_range_pips": 20.99,
-        "mean_activity_pips": 79.68,
-        "n_days": 6660
+        "mean_range_pips": 20.94,
+        "mean_activity_pips": 79.46,
+        "n_days": 6705
       },
       "19": {
-        "mean_range_pips": 17.98,
-        "mean_activity_pips": 69.86,
-        "n_days": 6554
+        "mean_range_pips": 17.92,
+        "mean_activity_pips": 69.63,
+        "n_days": 6599
       },
       "20": {
-        "mean_range_pips": 15.85,
-        "mean_activity_pips": 61.1,
-        "n_days": 5591
+        "mean_range_pips": 15.78,
+        "mean_activity_pips": 60.84,
+        "n_days": 5636
       },
       "21": {
-        "mean_range_pips": 15.36,
-        "mean_activity_pips": 55.93,
-        "n_days": 5425
+        "mean_range_pips": 15.32,
+        "mean_activity_pips": 55.82,
+        "n_days": 5469
       },
       "22": {
-        "mean_range_pips": 15.75,
-        "mean_activity_pips": 55.67,
-        "n_days": 6048
+        "mean_range_pips": 15.72,
+        "mean_activity_pips": 55.44,
+        "n_days": 6093
       },
       "23": {
-        "mean_range_pips": 17.81,
-        "mean_activity_pips": 64.71,
-        "n_days": 6597
+        "mean_range_pips": 17.74,
+        "mean_activity_pips": 64.43,
+        "n_days": 6642
       }
     },
     "session_windows": {
@@ -6810,15 +6810,15 @@ const GBPUSD_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 18.94,
-        "mean_activity_pips": 72.12
+        "mean_range_pips": 18.88,
+        "mean_activity_pips": 71.87
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 34.52,
-        "mean_activity_pips": 126.8
+        "mean_range_pips": 34.41,
+        "mean_activity_pips": 126.4
       },
       "london_only": {
         "hours": [
@@ -6827,8 +6827,8 @@ const GBPUSD_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 31.48,
-        "mean_activity_pips": 118.97
+        "mean_range_pips": 31.37,
+        "mean_activity_pips": 118.58
       },
       "london_ny_overlap": {
         "hours": [
@@ -6837,8 +6837,8 @@ const GBPUSD_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 34.83,
-        "mean_activity_pips": 131.54
+        "mean_range_pips": 34.74,
+        "mean_activity_pips": 131.18
       },
       "ny_only": {
         "hours": [
@@ -6848,54 +6848,54 @@ const GBPUSD_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 20.63,
-        "mean_activity_pips": 79.12
+        "mean_range_pips": 20.56,
+        "mean_activity_pips": 78.86
       }
     },
     "asset": "GBPUSD"
   },
   "range_forecast": {
     "asset": "GBPUSD",
-    "as_of": "2026-09-03",
+    "as_of": "2026-11-05",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 54.6,
+    "adr20": 70.0,
     "forecast": {
       "h1": {
-        "target_date": "2026-09-04",
-        "mean": 64.3,
-        "q10": 33.1,
-        "q90": 105.5,
-        "q10_raw": 32.3,
-        "q90_raw": 97.0
+        "target_date": "2026-11-06",
+        "mean": 66.9,
+        "q10": 37.3,
+        "q90": 107.8,
+        "q10_raw": 36.1,
+        "q90_raw": 99.8
       },
       "h5": {
-        "mean": 63.6
+        "mean": 67.8
       },
       "h20": {
-        "mean": 64.4
+        "mean": 68.8
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.953,
-        "h5": 0.886,
-        "h20": 0.887
+        "h1": 0.961,
+        "h5": 0.904,
+        "h20": 0.858
       },
       "mae": {
         "h1": {
-          "timesfm": 27.6,
-          "adr20": 29.0
+          "timesfm": 27.0,
+          "adr20": 28.1
         },
         "h5": {
-          "timesfm": 15.3,
-          "adr20": 17.3
+          "timesfm": 14.7,
+          "adr20": 16.3
         },
         "h20": {
-          "timesfm": 11.4,
-          "adr20": 12.9
+          "timesfm": 10.7,
+          "adr20": 12.5
         }
       },
       "n": {
@@ -6903,329 +6903,14 @@ const GBPUSD_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-09-27",
-      "to": "2026-09-02",
+      "from": "2024-11-29",
+      "to": "2026-11-04",
       "band_n": 500,
-      "band_coverage": 0.8,
-      "above_q90": 0.11,
-      "below_q10": 0.09
+      "band_coverage": 0.806,
+      "above_q90": 0.108,
+      "below_q10": 0.086
     },
     "recent": [
-      {
-        "date": "2026-06-12",
-        "actual": 42.9,
-        "mean": 83.0,
-        "q10": 47.9,
-        "q90": 135.6
-      },
-      {
-        "date": "2026-06-15",
-        "actual": 63.8,
-        "mean": 79.5,
-        "q10": 44.9,
-        "q90": 131.0
-      },
-      {
-        "date": "2026-06-16",
-        "actual": 52.5,
-        "mean": 78.6,
-        "q10": 44.4,
-        "q90": 129.4
-      },
-      {
-        "date": "2026-06-17",
-        "actual": 171.8,
-        "mean": 77.9,
-        "q10": 43.6,
-        "q90": 129.1
-      },
-      {
-        "date": "2026-06-18",
-        "actual": 132.0,
-        "mean": 87.0,
-        "q10": 49.3,
-        "q90": 143.9
-      },
-      {
-        "date": "2026-06-19",
-        "actual": 77.6,
-        "mean": 89.5,
-        "q10": 50.2,
-        "q90": 149.1
-      },
-      {
-        "date": "2026-06-22",
-        "actual": 91.1,
-        "mean": 84.2,
-        "q10": 47.4,
-        "q90": 140.4
-      },
-      {
-        "date": "2026-06-23",
-        "actual": 70.5,
-        "mean": 85.6,
-        "q10": 48.9,
-        "q90": 142.3
-      },
-      {
-        "date": "2026-06-24",
-        "actual": 68.8,
-        "mean": 83.2,
-        "q10": 47.0,
-        "q90": 138.0
-      },
-      {
-        "date": "2026-06-25",
-        "actual": 68.5,
-        "mean": 82.2,
-        "q10": 46.5,
-        "q90": 136.9
-      },
-      {
-        "date": "2026-06-26",
-        "actual": 51.6,
-        "mean": 82.0,
-        "q10": 46.2,
-        "q90": 136.3
-      },
-      {
-        "date": "2026-06-29",
-        "actual": 74.6,
-        "mean": 82.4,
-        "q10": 47.3,
-        "q90": 136.3
-      },
-      {
-        "date": "2026-06-30",
-        "actual": 64.5,
-        "mean": 80.5,
-        "q10": 45.4,
-        "q90": 133.5
-      },
-      {
-        "date": "2026-07-01",
-        "actual": 73.1,
-        "mean": 79.4,
-        "q10": 45.4,
-        "q90": 131.2
-      },
-      {
-        "date": "2026-07-02",
-        "actual": 120.6,
-        "mean": 78.7,
-        "q10": 44.8,
-        "q90": 129.7
-      },
-      {
-        "date": "2026-07-03",
-        "actual": 46.6,
-        "mean": 82.6,
-        "q10": 48.1,
-        "q90": 135.6
-      },
-      {
-        "date": "2026-07-06",
-        "actual": 68.3,
-        "mean": 78.2,
-        "q10": 44.3,
-        "q90": 129.5
-      },
-      {
-        "date": "2026-07-07",
-        "actual": 53.0,
-        "mean": 78.2,
-        "q10": 44.5,
-        "q90": 130.0
-      },
-      {
-        "date": "2026-07-08",
-        "actual": 88.0,
-        "mean": 77.8,
-        "q10": 44.3,
-        "q90": 128.4
-      },
-      {
-        "date": "2026-07-09",
-        "actual": 51.1,
-        "mean": 78.8,
-        "q10": 44.4,
-        "q90": 129.8
-      },
-      {
-        "date": "2026-07-10",
-        "actual": 61.0,
-        "mean": 77.1,
-        "q10": 43.8,
-        "q90": 126.7
-      },
-      {
-        "date": "2026-07-13",
-        "actual": 69.3,
-        "mean": 76.3,
-        "q10": 44.5,
-        "q90": 124.7
-      },
-      {
-        "date": "2026-07-14",
-        "actual": 102.7,
-        "mean": 75.5,
-        "q10": 44.0,
-        "q90": 122.9
-      },
-      {
-        "date": "2026-07-15",
-        "actual": 188.6,
-        "mean": 76.3,
-        "q10": 43.9,
-        "q90": 124.7
-      },
-      {
-        "date": "2026-07-16",
-        "actual": 84.5,
-        "mean": 87.3,
-        "q10": 50.3,
-        "q90": 142.5
-      },
-      {
-        "date": "2026-07-17",
-        "actual": 54.6,
-        "mean": 83.9,
-        "q10": 48.2,
-        "q90": 137.5
-      },
-      {
-        "date": "2026-07-20",
-        "actual": 68.6,
-        "mean": 80.1,
-        "q10": 46.7,
-        "q90": 131.9
-      },
-      {
-        "date": "2026-07-21",
-        "actual": 95.8,
-        "mean": 79.2,
-        "q10": 45.3,
-        "q90": 130.1
-      },
-      {
-        "date": "2026-07-22",
-        "actual": 40.4,
-        "mean": 80.2,
-        "q10": 46.5,
-        "q90": 130.6
-      },
-      {
-        "date": "2026-07-23",
-        "actual": 94.6,
-        "mean": 76.7,
-        "q10": 43.5,
-        "q90": 125.8
-      },
-      {
-        "date": "2026-07-24",
-        "actual": 52.2,
-        "mean": 79.9,
-        "q10": 46.5,
-        "q90": 130.1
-      },
-      {
-        "date": "2026-07-27",
-        "actual": 79.3,
-        "mean": 77.1,
-        "q10": 43.8,
-        "q90": 127.1
-      },
-      {
-        "date": "2026-07-28",
-        "actual": 37.6,
-        "mean": 77.8,
-        "q10": 45.0,
-        "q90": 127.1
-      },
-      {
-        "date": "2026-07-29",
-        "actual": 108.7,
-        "mean": 74.2,
-        "q10": 42.2,
-        "q90": 122.0
-      },
-      {
-        "date": "2026-07-30",
-        "actual": 143.7,
-        "mean": 77.7,
-        "q10": 44.4,
-        "q90": 127.4
-      },
-      {
-        "date": "2026-07-31",
-        "actual": 94.4,
-        "mean": 81.1,
-        "q10": 46.5,
-        "q90": 133.0
-      },
-      {
-        "date": "2026-08-03",
-        "actual": 87.9,
-        "mean": 82.0,
-        "q10": 46.8,
-        "q90": 134.9
-      },
-      {
-        "date": "2026-08-04",
-        "actual": 37.8,
-        "mean": 81.0,
-        "q10": 46.5,
-        "q90": 133.1
-      },
-      {
-        "date": "2026-08-05",
-        "actual": 48.0,
-        "mean": 76.8,
-        "q10": 42.5,
-        "q90": 127.4
-      },
-      {
-        "date": "2026-08-06",
-        "actual": 31.0,
-        "mean": 77.4,
-        "q10": 43.3,
-        "q90": 126.9
-      },
-      {
-        "date": "2026-08-07",
-        "actual": 74.4,
-        "mean": 72.1,
-        "q10": 36.9,
-        "q90": 121.9
-      },
-      {
-        "date": "2026-08-10",
-        "actual": 53.2,
-        "mean": 75.1,
-        "q10": 41.8,
-        "q90": 123.6
-      },
-      {
-        "date": "2026-08-11",
-        "actual": 23.7,
-        "mean": 74.0,
-        "q10": 41.0,
-        "q90": 121.9
-      },
-      {
-        "date": "2026-08-12",
-        "actual": 57.5,
-        "mean": 62.9,
-        "q10": 29.7,
-        "q90": 108.8
-      },
-      {
-        "date": "2026-08-13",
-        "actual": 38.5,
-        "mean": 67.8,
-        "q10": 35.0,
-        "q90": 114.7
-      },
       {
         "date": "2026-08-14",
         "actual": 86.9,
@@ -7333,10 +7018,325 @@ const GBPUSD_DATA = {
       },
       {
         "date": "2026-09-04",
-        "actual": null,
+        "actual": 66.9,
         "mean": 64.3,
         "q10": 33.1,
         "q90": 105.5
+      },
+      {
+        "date": "2026-09-07",
+        "actual": 42.3,
+        "mean": 65.2,
+        "q10": 34.3,
+        "q90": 106.6
+      },
+      {
+        "date": "2026-09-08",
+        "actual": 40.5,
+        "mean": 62.9,
+        "q10": 33.1,
+        "q90": 102.3
+      },
+      {
+        "date": "2026-09-09",
+        "actual": 39.0,
+        "mean": 61.1,
+        "q10": 32.5,
+        "q90": 98.4
+      },
+      {
+        "date": "2026-09-10",
+        "actual": 69.1,
+        "mean": 59.1,
+        "q10": 31.5,
+        "q90": 93.9
+      },
+      {
+        "date": "2026-09-11",
+        "actual": 58.4,
+        "mean": 60.1,
+        "q10": 31.6,
+        "q90": 95.9
+      },
+      {
+        "date": "2026-09-14",
+        "actual": 64.6,
+        "mean": 60.1,
+        "q10": 31.6,
+        "q90": 97.1
+      },
+      {
+        "date": "2026-09-15",
+        "actual": 40.4,
+        "mean": 61.5,
+        "q10": 32.6,
+        "q90": 98.0
+      },
+      {
+        "date": "2026-09-16",
+        "actual": 122.6,
+        "mean": 59.9,
+        "q10": 32.2,
+        "q90": 95.0
+      },
+      {
+        "date": "2026-09-17",
+        "actual": 69.9,
+        "mean": 64.4,
+        "q10": 32.9,
+        "q90": 103.9
+      },
+      {
+        "date": "2026-09-18",
+        "actual": 62.7,
+        "mean": 63.7,
+        "q10": 33.4,
+        "q90": 102.6
+      },
+      {
+        "date": "2026-09-21",
+        "actual": 35.4,
+        "mean": 63.0,
+        "q10": 33.9,
+        "q90": 101.3
+      },
+      {
+        "date": "2026-09-22",
+        "actual": 65.7,
+        "mean": 61.0,
+        "q10": 32.1,
+        "q90": 99.7
+      },
+      {
+        "date": "2026-09-23",
+        "actual": 122.1,
+        "mean": 63.1,
+        "q10": 33.9,
+        "q90": 101.3
+      },
+      {
+        "date": "2026-09-24",
+        "actual": 51.6,
+        "mean": 68.1,
+        "q10": 36.9,
+        "q90": 110.3
+      },
+      {
+        "date": "2026-09-25",
+        "actual": 56.7,
+        "mean": 66.5,
+        "q10": 36.2,
+        "q90": 107.8
+      },
+      {
+        "date": "2026-09-28",
+        "actual": 63.0,
+        "mean": 64.0,
+        "q10": 34.5,
+        "q90": 104.1
+      },
+      {
+        "date": "2026-09-29",
+        "actual": 55.6,
+        "mean": 64.6,
+        "q10": 35.1,
+        "q90": 105.0
+      },
+      {
+        "date": "2026-09-30",
+        "actual": 90.9,
+        "mean": 63.4,
+        "q10": 35.5,
+        "q90": 101.8
+      },
+      {
+        "date": "2026-10-01",
+        "actual": 91.9,
+        "mean": 65.0,
+        "q10": 35.4,
+        "q90": 104.8
+      },
+      {
+        "date": "2026-10-02",
+        "actual": 74.6,
+        "mean": 67.0,
+        "q10": 36.3,
+        "q90": 108.9
+      },
+      {
+        "date": "2026-10-05",
+        "actual": 59.3,
+        "mean": 70.9,
+        "q10": 39.8,
+        "q90": 113.0
+      },
+      {
+        "date": "2026-10-06",
+        "actual": 84.4,
+        "mean": 69.2,
+        "q10": 39.4,
+        "q90": 111.0
+      },
+      {
+        "date": "2026-10-07",
+        "actual": 81.9,
+        "mean": 72.4,
+        "q10": 41.0,
+        "q90": 115.8
+      },
+      {
+        "date": "2026-10-08",
+        "actual": 64.0,
+        "mean": 70.2,
+        "q10": 39.6,
+        "q90": 112.7
+      },
+      {
+        "date": "2026-10-09",
+        "actual": 44.2,
+        "mean": 68.9,
+        "q10": 39.9,
+        "q90": 109.8
+      },
+      {
+        "date": "2026-10-12",
+        "actual": 59.9,
+        "mean": 65.6,
+        "q10": 37.3,
+        "q90": 105.1
+      },
+      {
+        "date": "2026-10-13",
+        "actual": 57.3,
+        "mean": 65.5,
+        "q10": 37.7,
+        "q90": 105.1
+      },
+      {
+        "date": "2026-10-14",
+        "actual": 138.3,
+        "mean": 66.1,
+        "q10": 38.3,
+        "q90": 105.1
+      },
+      {
+        "date": "2026-10-15",
+        "actual": 100.4,
+        "mean": 73.4,
+        "q10": 41.1,
+        "q90": 116.9
+      },
+      {
+        "date": "2026-10-16",
+        "actual": 110.2,
+        "mean": 73.1,
+        "q10": 41.8,
+        "q90": 117.9
+      },
+      {
+        "date": "2026-10-19",
+        "actual": 43.3,
+        "mean": 75.1,
+        "q10": 42.6,
+        "q90": 120.8
+      },
+      {
+        "date": "2026-10-20",
+        "actual": 113.8,
+        "mean": 69.3,
+        "q10": 39.2,
+        "q90": 110.9
+      },
+      {
+        "date": "2026-10-21",
+        "actual": 39.1,
+        "mean": 74.3,
+        "q10": 43.1,
+        "q90": 118.7
+      },
+      {
+        "date": "2026-10-22",
+        "actual": 64.1,
+        "mean": 69.1,
+        "q10": 38.7,
+        "q90": 112.9
+      },
+      {
+        "date": "2026-10-23",
+        "actual": 46.6,
+        "mean": 71.6,
+        "q10": 40.6,
+        "q90": 115.0
+      },
+      {
+        "date": "2026-10-26",
+        "actual": 60.0,
+        "mean": 69.1,
+        "q10": 38.5,
+        "q90": 112.3
+      },
+      {
+        "date": "2026-10-27",
+        "actual": 46.2,
+        "mean": 68.5,
+        "q10": 38.0,
+        "q90": 111.1
+      },
+      {
+        "date": "2026-10-28",
+        "actual": 66.0,
+        "mean": 66.3,
+        "q10": 36.7,
+        "q90": 108.0
+      },
+      {
+        "date": "2026-10-29",
+        "actual": 88.3,
+        "mean": 66.7,
+        "q10": 36.8,
+        "q90": 108.5
+      },
+      {
+        "date": "2026-10-30",
+        "actual": 63.9,
+        "mean": 67.5,
+        "q10": 37.9,
+        "q90": 109.2
+      },
+      {
+        "date": "2026-11-02",
+        "actual": 68.9,
+        "mean": 65.4,
+        "q10": 36.4,
+        "q90": 106.7
+      },
+      {
+        "date": "2026-11-03",
+        "actual": 36.4,
+        "mean": 69.4,
+        "q10": 39.8,
+        "q90": 111.2
+      },
+      {
+        "date": "2026-11-04",
+        "actual": 98.2,
+        "mean": 67.0,
+        "q10": 36.7,
+        "q90": 108.1
+      },
+      {
+        "date": "2026-11-05",
+        "actual": 55.1,
+        "mean": 69.1,
+        "q10": 38.1,
+        "q90": 112.1
+      },
+      {
+        "date": "2026-11-06",
+        "actual": null,
+        "mean": 66.9,
+        "q10": 37.3,
+        "q90": 107.8
       }
     ]
   }

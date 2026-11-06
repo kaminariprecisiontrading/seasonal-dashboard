@@ -1,35 +1,35 @@
 {
-  "n_labeled_years": 25,
-  "n_short_years": 2,
+  "n_labeled_years": 26,
+  "n_short_years": 1,
   "n_insufficient_history_years": 7,
   "profile_distribution": {
     "Normal Year": {
       "n": 15,
-      "pct": 60.0
+      "pct": 57.69
     },
     "Trend Year (Up)": {
       "n": 3,
-      "pct": 12.0
+      "pct": 11.54
+    },
+    "Compression Year": {
+      "n": 3,
+      "pct": 11.54
     },
     "Volatile Year": {
       "n": 2,
-      "pct": 8.0
-    },
-    "Compression Year": {
-      "n": 2,
-      "pct": 8.0
+      "pct": 7.69
     },
     "Volatile Reversal Year": {
       "n": 1,
-      "pct": 4.0
+      "pct": 3.85
     },
     "Trend Year (Down)": {
       "n": 1,
-      "pct": 4.0
+      "pct": 3.85
     },
     "Quiet Drift Year (Down)": {
       "n": 1,
-      "pct": 4.0
+      "pct": 3.85
     }
   },
   "extreme_timing_by_profile": {
@@ -41,12 +41,13 @@
     "Trend Year (Up)": {
       "Late_Push": 3
     },
+    "Compression Year": {
+      "Fade_Risk": 2,
+      "Early_Resolution": 1
+    },
     "Volatile Year": {
       "Late_Resolution": 1,
       "Late_Push": 1
-    },
-    "Compression Year": {
-      "Fade_Risk": 2
     },
     "Volatile Reversal Year": {
       "Late_Resolution": 1
@@ -65,10 +66,10 @@
     "Trend Year (Up)": {
       "Spread": 3
     },
-    "Volatile Year": {
-      "Spread": 2
-    },
     "Compression Year": {
+      "Spread": 3
+    },
+    "Volatile Year": {
       "Spread": 2
     },
     "Volatile Reversal Year": {
@@ -83,8 +84,8 @@
   },
   "avg_range_pips_by_profile": {
     "Compression Year": {
-      "mean": 755.8,
-      "median": 755.8
+      "mean": 708.7,
+      "median": 624.0
     },
     "Normal Year": {
       "mean": 1118.5,
@@ -112,7 +113,7 @@
     }
   },
   "month_pair_distribution": {
-    "n_years": 32,
+    "n_years": 33,
     "same_month_n": 0,
     "same_month_pct": 0.0,
     "pairs": {
@@ -131,15 +132,15 @@
         },
         "4": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "5": {
-          "n": 1,
-          "pct": 3.12
+          "n": 2,
+          "pct": 6.06
         },
         "6": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "7": {
           "n": 0,
@@ -151,7 +152,7 @@
         },
         "9": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "10": {
           "n": 0,
@@ -163,7 +164,7 @@
         },
         "12": {
           "n": 3,
-          "pct": 9.38
+          "pct": 9.09
         }
       },
       "2": {
@@ -209,7 +210,7 @@
         },
         "11": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "12": {
           "n": 0,
@@ -263,13 +264,13 @@
         },
         "12": {
           "n": 2,
-          "pct": 6.25
+          "pct": 6.06
         }
       },
       "4": {
         "1": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "2": {
           "n": 0,
@@ -313,7 +314,7 @@
         },
         "12": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         }
       },
       "5": {
@@ -363,7 +364,7 @@
         },
         "12": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         }
       },
       "6": {
@@ -373,7 +374,7 @@
         },
         "2": {
           "n": 2,
-          "pct": 6.25
+          "pct": 6.06
         },
         "3": {
           "n": 0,
@@ -419,7 +420,7 @@
       "7": {
         "1": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "2": {
           "n": 0,
@@ -469,7 +470,7 @@
       "8": {
         "1": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "2": {
           "n": 0,
@@ -509,7 +510,7 @@
         },
         "11": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "12": {
           "n": 0,
@@ -519,7 +520,7 @@
       "9": {
         "1": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "2": {
           "n": 0,
@@ -569,11 +570,11 @@
       "10": {
         "1": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "2": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "3": {
           "n": 0,
@@ -581,7 +582,7 @@
         },
         "4": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "5": {
           "n": 0,
@@ -593,7 +594,7 @@
         },
         "7": {
           "n": 2,
-          "pct": 6.25
+          "pct": 6.06
         },
         "8": {
           "n": 0,
@@ -619,7 +620,7 @@
       "11": {
         "1": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "2": {
           "n": 0,
@@ -669,15 +670,15 @@
       "12": {
         "1": {
           "n": 2,
-          "pct": 6.25
+          "pct": 6.06
         },
         "2": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "3": {
           "n": 2,
-          "pct": 6.25
+          "pct": 6.06
         },
         "4": {
           "n": 0,
@@ -693,7 +694,7 @@
         },
         "7": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "8": {
           "n": 0,
@@ -701,7 +702,7 @@
         },
         "9": {
           "n": 1,
-          "pct": 3.12
+          "pct": 3.03
         },
         "10": {
           "n": 0,

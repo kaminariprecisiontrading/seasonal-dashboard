@@ -4,25 +4,25 @@ const USDJPY_DATA = {
   "stats": {
     "asset": "USDJPY",
     "unit": "pips",
-    "as_of": "2026-09-03",
-    "n_days": 8740,
-    "n_weeks": 1754,
-    "n_months": 405,
+    "as_of": "2026-11-05",
+    "n_days": 8785,
+    "n_weeks": 1763,
+    "n_months": 407,
     "n_years": 34,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 8740,
+          "n": 8785,
           "mean": 107.9,
           "median": 93.0,
-          "std": 68.5,
+          "std": 68.4,
           "min": 6.0,
           "max": 1195.0,
           "mode_binned": {
-            "bin_low": 65.6,
-            "bin_high": 75.1,
+            "bin_low": 65.7,
+            "bin_high": 75.2,
             "count": 775,
-            "pct_of_n": 8.9
+            "pct_of_n": 8.8
           },
           "mode_raw": {
             "value": 80.0,
@@ -30,119 +30,119 @@ const USDJPY_DATA = {
             "pct_of_n": 0.9,
             "n_values_tied": 1
           },
-          "p05": 37.1,
-          "p10": 46.4,
-          "p20": 59.3,
+          "p05": 37.2,
+          "p10": 46.5,
+          "p20": 59.4,
           "p25": 65.0,
           "p50": 93.0,
           "p75": 132.0,
           "p80": 143.0,
           "p90": 183.0,
           "p95": 227.0,
-          "compression_threshold_pips": 59.3,
+          "compression_threshold_pips": 59.4,
           "expansion_threshold_pips": 143.0
         },
         "5y": {
           "n": 1298,
-          "mean": 126.7,
-          "median": 109.5,
-          "std": 78.1,
+          "mean": 128.3,
+          "median": 111.5,
+          "std": 77.6,
           "min": 19.3,
           "max": 691.1,
           "mode_binned": {
-            "bin_low": 89.9,
-            "bin_high": 101.5,
-            "count": 116,
-            "pct_of_n": 8.9
+            "bin_low": 92.0,
+            "bin_high": 103.5,
+            "count": 127,
+            "pct_of_n": 9.8
           },
           "mode_raw": {
-            "value": 122.3,
+            "value": 101.6,
             "count": 5,
             "pct_of_n": 0.4,
-            "n_values_tied": 1
+            "n_values_tied": 2
           },
-          "p05": 43.4,
-          "p10": 53.6,
-          "p20": 68.0,
-          "p25": 74.9,
-          "p50": 109.5,
-          "p75": 156.2,
-          "p80": 170.2,
-          "p90": 214.5,
+          "p05": 46.1,
+          "p10": 55.0,
+          "p20": 70.5,
+          "p25": 77.8,
+          "p50": 111.5,
+          "p75": 157.0,
+          "p80": 171.1,
+          "p90": 215.0,
           "p95": 275.7,
-          "compression_threshold_pips": 68.0,
-          "expansion_threshold_pips": 170.2
+          "compression_threshold_pips": 70.5,
+          "expansion_threshold_pips": 171.1
         },
         "1y": {
           "n": 260,
-          "mean": 105.2,
-          "median": 89.0,
+          "mean": 104.2,
+          "median": 86.1,
           "std": 68.4,
           "min": 27.9,
           "max": 576.6,
           "mode_binned": {
-            "bin_low": 48.2,
-            "bin_high": 56.9,
-            "count": 30,
-            "pct_of_n": 11.5
+            "bin_low": 48.4,
+            "bin_high": 57.4,
+            "count": 29,
+            "pct_of_n": 11.2
           },
           "mode_raw": {
-            "value": 56.6,
-            "count": 3,
-            "pct_of_n": 1.2,
-            "n_values_tied": 3
+            "value": 101.6,
+            "count": 4,
+            "pct_of_n": 1.5,
+            "n_values_tied": 1
           },
           "p05": 39.5,
-          "p10": 47.1,
-          "p20": 56.2,
-          "p25": 61.2,
-          "p50": 89.0,
-          "p75": 122.6,
-          "p80": 134.5,
-          "p90": 180.4,
-          "p95": 213.8,
-          "compression_threshold_pips": 56.2,
-          "expansion_threshold_pips": 134.5
+          "p10": 47.5,
+          "p20": 56.6,
+          "p25": 61.8,
+          "p50": 86.1,
+          "p75": 121.9,
+          "p80": 133.8,
+          "p90": 183.7,
+          "p95": 218.3,
+          "compression_threshold_pips": 56.6,
+          "expansion_threshold_pips": 133.8
         },
         "3mo": {
           "n": 67,
-          "mean": 94.2,
-          "median": 67.7,
-          "std": 89.3,
-          "min": 29.3,
-          "max": 576.6,
+          "mean": 106.8,
+          "median": 94.9,
+          "std": 55.3,
+          "min": 40.9,
+          "max": 366.5,
           "mode_binned": {
-            "bin_low": 45.1,
-            "bin_high": 56.0,
-            "count": 13,
-            "pct_of_n": 19.4
+            "bin_low": 49.8,
+            "bin_high": 57.9,
+            "count": 7,
+            "pct_of_n": 10.4
           },
           "mode_raw": {
-            "value": 39.2,
+            "value": 84.9,
             "count": 2,
             "pct_of_n": 3.0,
-            "n_values_tied": 3
+            "n_values_tied": 2
           },
-          "p05": 34.2,
-          "p10": 39.2,
-          "p20": 46.6,
-          "p25": 48.5,
-          "p50": 67.7,
-          "p75": 97.9,
-          "p80": 104.9,
-          "p90": 183.5,
-          "p95": 251.8,
-          "compression_threshold_pips": 46.6,
-          "expansion_threshold_pips": 104.9
+          "p05": 49.8,
+          "p10": 54.7,
+          "p20": 64.7,
+          "p25": 68.3,
+          "p50": 94.9,
+          "p75": 130.4,
+          "p80": 138.4,
+          "p90": 171.1,
+          "p95": 211.5,
+          "compression_threshold_pips": 64.7,
+          "expansion_threshold_pips": 138.4
         }
       },
       "latest_adr": {
-        "ADR_5": 162.9,
-        "ADR_14": 108.9,
-        "ADR_20": 109.1,
+        "ADR_5": 97.2,
+        "ADR_14": 89.0,
+        "ADR_20": 84.6,
         "fixed_multiple_thresholds": {
-          "compression_pips": 76.4,
-          "expansion_pips": 141.8,
+          "compression_pips": 59.2,
+          "expansion_pips": 110.0,
           "based_on": "ADR_20"
         }
       }
@@ -150,16 +150,16 @@ const USDJPY_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 1754,
-          "mean": 244.8,
+          "n": 1763,
+          "mean": 244.7,
           "median": 213.0,
-          "std": 141.8,
+          "std": 141.7,
           "min": 9.0,
           "max": 2440.0,
           "mode_binned": {
-            "bin_low": 175.8,
-            "bin_high": 195.8,
-            "count": 163,
+            "bin_low": 175.9,
+            "bin_high": 195.9,
+            "count": 164,
             "pct_of_n": 9.3
           },
           "mode_raw": {
@@ -168,61 +168,61 @@ const USDJPY_DATA = {
             "pct_of_n": 0.6,
             "n_values_tied": 1
           },
-          "p05": 95.5,
-          "p10": 114.2,
-          "p20": 142.0,
+          "p05": 95.9,
+          "p10": 114.1,
+          "p20": 141.7,
           "p25": 153.0,
           "p50": 213.0,
           "p75": 300.0,
           "p80": 325.0,
-          "p90": 411.1,
-          "p95": 496.8,
-          "compression_threshold_pips": 142.0,
+          "p90": 411.2,
+          "p95": 496.0,
+          "compression_threshold_pips": 141.7,
           "expansion_threshold_pips": 325.0
         },
         "5y": {
           "n": 261,
-          "mean": 294.8,
-          "median": 268.0,
-          "std": 145.2,
-          "min": 82.5,
+          "mean": 298.0,
+          "median": 269.1,
+          "std": 143.9,
+          "min": 86.6,
           "max": 910.0,
           "mode_binned": {
-            "bin_low": 249.1,
-            "bin_high": 271.8,
-            "count": 21,
-            "pct_of_n": 8.0
+            "bin_low": 204.8,
+            "bin_high": 227.4,
+            "count": 22,
+            "pct_of_n": 8.4
           },
           "mode_raw": {
             "value": 114.1,
             "count": 2,
             "pct_of_n": 0.8,
-            "n_values_tied": 10
+            "n_values_tied": 9
           },
-          "p05": 112.7,
-          "p10": 138.3,
-          "p20": 172.5,
-          "p25": 190.8,
-          "p50": 268.0,
-          "p75": 362.6,
-          "p80": 400.5,
+          "p05": 114.1,
+          "p10": 142.5,
+          "p20": 178.6,
+          "p25": 195.9,
+          "p50": 269.1,
+          "p75": 366.3,
+          "p80": 401.6,
           "p90": 495.5,
           "p95": 567.4,
-          "compression_threshold_pips": 172.5,
-          "expansion_threshold_pips": 400.5
+          "compression_threshold_pips": 178.6,
+          "expansion_threshold_pips": 401.6
         },
         "1y": {
           "n": 53,
-          "mean": 248.2,
-          "median": 226.9,
-          "std": 117.6,
+          "mean": 238.2,
+          "median": 214.4,
+          "std": 122.5,
           "min": 86.6,
           "max": 644.8,
           "mode_binned": {
-            "bin_low": 219.4,
-            "bin_high": 240.5,
-            "count": 8,
-            "pct_of_n": 15.1
+            "bin_low": 198.3,
+            "bin_high": 219.5,
+            "count": 9,
+            "pct_of_n": 17.0
           },
           "mode_raw": {
             "value": 214.4,
@@ -231,64 +231,64 @@ const USDJPY_DATA = {
             "n_values_tied": 1
           },
           "p05": 92.7,
-          "p10": 109.3,
-          "p20": 165.6,
-          "p25": 176.5,
-          "p50": 226.9,
-          "p75": 290.3,
-          "p80": 318.1,
+          "p10": 105.6,
+          "p20": 142.3,
+          "p25": 165.0,
+          "p50": 214.4,
+          "p75": 282.5,
+          "p80": 319.1,
           "p90": 358.1,
-          "p95": 514.9,
-          "compression_threshold_pips": 165.6,
-          "expansion_threshold_pips": 318.1
+          "p95": 515.2,
+          "compression_threshold_pips": 142.3,
+          "expansion_threshold_pips": 319.1
         },
         "3mo": {
           "n": 14,
-          "mean": 228.5,
-          "median": 177.4,
-          "std": 163.7,
-          "min": 87.1,
-          "max": 644.8,
+          "mean": 247.4,
+          "median": 203.3,
+          "std": 123.5,
+          "min": 107.0,
+          "max": 509.8,
           "mode_binned": {
-            "bin_low": 91.5,
-            "bin_high": 114.7,
+            "bin_low": 162.7,
+            "bin_high": 180.6,
             "count": 3,
             "pct_of_n": 21.4
           },
           "mode_raw": {
-            "value": 87.1,
+            "value": 107.0,
             "count": 1,
             "pct_of_n": 7.1,
             "n_values_tied": 14
           },
-          "p05": 91.5,
-          "p10": 97.0,
-          "p20": 104.9,
-          "p25": 115.4,
-          "p50": 177.4,
-          "p75": 229.2,
-          "p80": 275.5,
-          "p90": 457.0,
-          "p95": 556.7,
-          "compression_threshold_pips": 104.9,
-          "expansion_threshold_pips": 275.5
+          "p05": 127.0,
+          "p10": 138.4,
+          "p20": 157.7,
+          "p25": 170.9,
+          "p50": 203.3,
+          "p75": 314.1,
+          "p80": 336.0,
+          "p90": 431.2,
+          "p95": 484.7,
+          "compression_threshold_pips": 157.7,
+          "expansion_threshold_pips": 336.0
         }
       }
     },
     "monthly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 405,
-          "mean": 518.6,
+          "n": 407,
+          "mean": 517.7,
           "median": 470.0,
-          "std": 259.2,
+          "std": 259.7,
           "min": 129.7,
           "max": 2528.0,
           "mode_binned": {
-            "bin_low": 439.3,
-            "bin_high": 477.4,
-            "count": 35,
-            "pct_of_n": 8.6
+            "bin_low": 437.6,
+            "bin_high": 475.7,
+            "count": 33,
+            "pct_of_n": 8.1
           },
           "mode_raw": {
             "value": 321.0,
@@ -296,110 +296,110 @@ const USDJPY_DATA = {
             "pct_of_n": 1.0,
             "n_values_tied": 1
           },
-          "p05": 210.6,
-          "p10": 252.0,
-          "p20": 320.4,
-          "p25": 342.7,
+          "p05": 208.7,
+          "p10": 250.0,
+          "p20": 317.1,
+          "p25": 339.8,
           "p50": 470.0,
-          "p75": 644.4,
-          "p80": 700.0,
-          "p90": 839.9,
-          "p95": 972.8,
-          "compression_threshold_pips": 320.4,
-          "expansion_threshold_pips": 700.0
+          "p75": 646.5,
+          "p80": 703.0,
+          "p90": 839.8,
+          "p95": 971.7,
+          "compression_threshold_pips": 317.1,
+          "expansion_threshold_pips": 703.0
         },
         "5y": {
-          "n": 61,
-          "mean": 656.5,
-          "median": 653.7,
-          "std": 232.1,
-          "min": 218.4,
+          "n": 60,
+          "mean": 662.1,
+          "median": 669.1,
+          "std": 236.2,
+          "min": 137.7,
           "max": 1234.3,
           "mode_binned": {
-            "bin_low": 487.4,
-            "bin_high": 525.6,
-            "count": 8,
-            "pct_of_n": 13.1
+            "bin_low": 441.1,
+            "bin_high": 479.9,
+            "count": 5,
+            "pct_of_n": 8.3
           },
           "mode_raw": {
-            "value": 218.4,
+            "value": 137.7,
             "count": 1,
-            "pct_of_n": 1.6,
-            "n_values_tied": 61
+            "pct_of_n": 1.7,
+            "n_values_tied": 60
           },
-          "p05": 296.4,
-          "p10": 341.6,
-          "p20": 470.1,
-          "p25": 498.7,
-          "p50": 653.7,
-          "p75": 809.7,
-          "p80": 839.7,
-          "p90": 943.9,
-          "p95": 1060.4,
-          "compression_threshold_pips": 470.1,
-          "expansion_threshold_pips": 839.7
+          "p05": 285.9,
+          "p10": 341.2,
+          "p20": 475.1,
+          "p25": 498.9,
+          "p50": 669.1,
+          "p75": 811.2,
+          "p80": 840.1,
+          "p90": 945.9,
+          "p95": 1061.9,
+          "compression_threshold_pips": 475.1,
+          "expansion_threshold_pips": 840.1
         },
         "1y": {
           "n": 13,
-          "mean": 522.0,
-          "median": 507.6,
-          "std": 133.2,
-          "min": 337.1,
-          "max": 785.4,
+          "mean": 478.3,
+          "median": 497.6,
+          "std": 175.1,
+          "min": 137.7,
+          "max": 750.4,
           "mode_binned": {
-            "bin_low": 443.8,
-            "bin_high": 464.6,
-            "count": 3,
-            "pct_of_n": 23.1
+            "bin_low": 330.2,
+            "bin_high": 355.9,
+            "count": 2,
+            "pct_of_n": 15.4
           },
           "mode_raw": {
-            "value": 337.1,
+            "value": 137.7,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 339.8,
-          "p10": 362.8,
-          "p20": 450.5,
-          "p25": 455.1,
-          "p50": 507.6,
+          "p05": 227.3,
+          "p10": 297.0,
+          "p20": 338.9,
+          "p25": 341.6,
+          "p50": 497.6,
           "p75": 538.8,
           "p80": 604.6,
           "p90": 718.5,
-          "p95": 755.8,
-          "compression_threshold_pips": 450.5,
+          "p95": 741.8,
+          "compression_threshold_pips": 338.9,
           "expansion_threshold_pips": 604.6
         },
         "3mo": {
           "n": 4,
-          "mean": 498.1,
-          "median": 503.5,
-          "std": 127.4,
-          "min": 337.1,
-          "max": 648.5,
+          "mean": 418.2,
+          "median": 392.3,
+          "std": 266.2,
+          "min": 137.7,
+          "max": 750.4,
           "mode_binned": {
-            "bin_low": 494.4,
-            "bin_high": 507.7,
+            "bin_low": 270.6,
+            "bin_high": 298.2,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 337.1,
+            "value": 137.7,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 361.2,
-          "p10": 385.2,
-          "p20": 433.4,
-          "p25": 457.5,
-          "p50": 503.5,
-          "p75": 544.1,
-          "p80": 565.0,
-          "p90": 606.7,
-          "p95": 627.6,
-          "compression_threshold_pips": 433.4,
-          "expansion_threshold_pips": 565.0
+          "p05": 160.1,
+          "p10": 182.5,
+          "p20": 227.3,
+          "p25": 249.7,
+          "p50": 392.3,
+          "p75": 560.8,
+          "p80": 598.7,
+          "p90": 674.6,
+          "p95": 712.5,
+          "compression_threshold_pips": 227.3,
+          "expansion_threshold_pips": 598.7
         }
       }
     },
@@ -437,33 +437,33 @@ const USDJPY_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7178,
+          "n": 7223,
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 5.1,
-          "circular_mean_utc": "19:28",
+          "circular_mean_utc": "19:27",
           "circular_median_utc": "20:55",
           "concentration_R": 0.184,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 276,
+              "count": 278,
               "pct": 3.85
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 210,
-              "pct": 2.93
+              "count": 211,
+              "pct": 2.92
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 166,
-              "pct": 2.31
+              "count": 170,
+              "pct": 2.35
             },
             {
               "bucket_start_utc": "01:30",
               "count": 104,
-              "pct": 1.45
+              "pct": 1.44
             },
             {
               "bucket_start_utc": "02:00",
@@ -473,12 +473,12 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "02:30",
               "count": 66,
-              "pct": 0.92
+              "pct": 0.91
             },
             {
               "bucket_start_utc": "03:00",
               "count": 63,
-              "pct": 0.88
+              "pct": 0.87
             },
             {
               "bucket_start_utc": "03:30",
@@ -488,17 +488,17 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "04:00",
               "count": 63,
-              "pct": 0.88
+              "pct": 0.87
             },
             {
               "bucket_start_utc": "04:30",
               "count": 50,
-              "pct": 0.7
+              "pct": 0.69
             },
             {
               "bucket_start_utc": "05:00",
               "count": 84,
-              "pct": 1.17
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "05:30",
@@ -508,32 +508,32 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "06:00",
               "count": 106,
-              "pct": 1.48
+              "pct": 1.47
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 104,
+              "count": 105,
               "pct": 1.45
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 133,
-              "pct": 1.85
+              "count": 134,
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "07:30",
               "count": 92,
-              "pct": 1.28
+              "pct": 1.27
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 110,
-              "pct": 1.53
+              "count": 112,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "08:30",
               "count": 92,
-              "pct": 1.28
+              "pct": 1.27
             },
             {
               "bucket_start_utc": "09:00",
@@ -542,148 +542,148 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 80,
-              "pct": 1.11
+              "count": 82,
+              "pct": 1.14
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 101,
+              "count": 102,
               "pct": 1.41
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 78,
+              "count": 79,
               "pct": 1.09
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 132,
+              "count": 133,
               "pct": 1.84
             },
             {
               "bucket_start_utc": "11:30",
               "count": 191,
-              "pct": 2.66
+              "pct": 2.64
             },
             {
               "bucket_start_utc": "12:00",
               "count": 155,
-              "pct": 2.16
+              "pct": 2.15
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 194,
-              "pct": 2.7
+              "count": 196,
+              "pct": 2.71
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 198,
-              "pct": 2.76
+              "count": 202,
+              "pct": 2.8
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 212,
+              "count": 213,
               "pct": 2.95
             },
             {
               "bucket_start_utc": "14:00",
               "count": 218,
-              "pct": 3.04
+              "pct": 3.02
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 186,
+              "count": 187,
               "pct": 2.59
             },
             {
               "bucket_start_utc": "15:00",
               "count": 209,
-              "pct": 2.91
+              "pct": 2.89
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 172,
-              "pct": 2.4
+              "count": 177,
+              "pct": 2.45
             },
             {
               "bucket_start_utc": "16:00",
               "count": 149,
-              "pct": 2.08
+              "pct": 2.06
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 123,
-              "pct": 1.71
+              "count": 124,
+              "pct": 1.72
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 146,
-              "pct": 2.03
+              "count": 147,
+              "pct": 2.04
             },
             {
               "bucket_start_utc": "17:30",
               "count": 123,
-              "pct": 1.71
+              "pct": 1.7
             },
             {
               "bucket_start_utc": "18:00",
               "count": 138,
-              "pct": 1.92
+              "pct": 1.91
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 136,
-              "pct": 1.89
+              "count": 137,
+              "pct": 1.9
             },
             {
               "bucket_start_utc": "19:00",
               "count": 146,
-              "pct": 2.03
+              "pct": 2.02
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 151,
+              "count": 152,
               "pct": 2.1
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 117,
-              "pct": 1.63
+              "count": 120,
+              "pct": 1.66
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 153,
+              "count": 154,
               "pct": 2.13
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 273,
-              "pct": 3.8
+              "count": 274,
+              "pct": 3.79
             },
             {
               "bucket_start_utc": "21:30",
               "count": 184,
-              "pct": 2.56
+              "pct": 2.55
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 368,
-              "pct": 5.13
+              "count": 371,
+              "pct": 5.14
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 266,
-              "pct": 3.71
+              "count": 267,
+              "pct": 3.7
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 289,
+              "count": 291,
               "pct": 4.03
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 260,
-              "pct": 3.62
+              "count": 261,
+              "pct": 3.61
             }
           ]
         },
@@ -691,25 +691,25 @@ const USDJPY_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "00:00",
           "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 5.2,
-          "circular_mean_utc": "18:48",
-          "circular_median_utc": "18:40",
-          "concentration_R": 0.215,
+          "mode_bucket_pct_of_days": 5.0,
+          "circular_mean_utc": "18:50",
+          "circular_median_utc": "18:55",
+          "concentration_R": 0.22,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 67,
-              "pct": 5.16
+              "count": 65,
+              "pct": 5.01
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 58,
-              "pct": 4.47
+              "count": 57,
+              "pct": 4.39
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 37,
-              "pct": 2.85
+              "count": 40,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "01:30",
@@ -728,8 +728,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 8,
-              "pct": 0.62
+              "count": 7,
+              "pct": 0.54
             },
             {
               "bucket_start_utc": "03:30",
@@ -758,8 +758,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 20,
-              "pct": 1.54
+              "count": 19,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "06:30",
@@ -768,8 +768,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 30,
-              "pct": 2.31
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "07:30",
@@ -778,8 +778,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 20,
-              "pct": 1.54
+              "count": 21,
+              "pct": 1.62
             },
             {
               "bucket_start_utc": "08:30",
@@ -793,13 +793,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 14,
-              "pct": 1.08
+              "count": 16,
+              "pct": 1.23
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 10,
-              "pct": 0.77
+              "count": 11,
+              "pct": 0.85
             },
             {
               "bucket_start_utc": "10:30",
@@ -808,13 +808,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 17,
-              "pct": 1.31
+              "count": 16,
+              "pct": 1.23
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 19,
-              "pct": 1.46
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "12:00",
@@ -823,13 +823,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 54,
-              "pct": 4.16
+              "count": 51,
+              "pct": 3.93
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 26,
-              "pct": 2.0
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "13:30",
@@ -838,13 +838,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 52,
-              "pct": 4.01
+              "count": 51,
+              "pct": 3.93
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 39,
-              "pct": 3.0
+              "count": 38,
+              "pct": 2.93
             },
             {
               "bucket_start_utc": "15:00",
@@ -853,13 +853,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 35,
-              "pct": 2.7
+              "count": 40,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 38,
-              "pct": 2.93
+              "count": 37,
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "16:30",
@@ -873,8 +873,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 31,
-              "pct": 2.39
+              "count": 30,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "18:00",
@@ -883,13 +883,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 34,
-              "pct": 2.62
+              "count": 33,
+              "pct": 2.54
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 35,
-              "pct": 2.7
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "19:30",
@@ -898,28 +898,28 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 30,
-              "pct": 2.31
+              "count": 33,
+              "pct": 2.54
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 48,
-              "pct": 3.7
+              "count": 46,
+              "pct": 3.54
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 28,
-              "pct": 2.16
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 16,
-              "pct": 1.23
+              "count": 15,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 60,
-              "pct": 4.62
+              "count": 63,
+              "pct": 4.85
             },
             {
               "bucket_start_utc": "22:30",
@@ -928,8 +928,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 34,
-              "pct": 2.62
+              "count": 36,
+              "pct": 2.77
             },
             {
               "bucket_start_utc": "23:30",
@@ -942,25 +942,25 @@ const USDJPY_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "00:00",
           "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 6.2,
-          "circular_mean_utc": "19:22",
-          "circular_median_utc": "19:35",
-          "concentration_R": 0.227,
+          "mode_bucket_pct_of_days": 6.5,
+          "circular_mean_utc": "19:14",
+          "circular_median_utc": "19:10",
+          "concentration_R": 0.241,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 16,
-              "pct": 6.15
+              "count": 17,
+              "pct": 6.54
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 13,
-              "pct": 5.0
+              "count": 11,
+              "pct": 4.23
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 8,
-              "pct": 3.08
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "01:30",
@@ -979,8 +979,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "03:30",
@@ -999,23 +999,23 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 1,
-              "pct": 0.38
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "07:00",
@@ -1029,18 +1029,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 3,
-              "pct": 1.15
-            },
-            {
-              "bucket_start_utc": "08:30",
               "count": 4,
               "pct": 1.54
             },
             {
+              "bucket_start_utc": "08:30",
+              "count": 3,
+              "pct": 1.15
+            },
+            {
               "bucket_start_utc": "09:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "09:30",
@@ -1049,18 +1049,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "11:30",
@@ -1074,18 +1074,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 11,
-              "pct": 4.23
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "14:00",
@@ -1099,18 +1099,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 11,
-              "pct": 4.23
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 10,
-              "pct": 3.85
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "16:30",
@@ -1119,8 +1119,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "17:30",
@@ -1129,13 +1129,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "19:00",
@@ -1149,18 +1149,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
+              "count": 12,
+              "pct": 4.62
+            },
+            {
+              "bucket_start_utc": "20:30",
               "count": 10,
               "pct": 3.85
             },
             {
-              "bucket_start_utc": "20:30",
-              "count": 11,
-              "pct": 4.23
-            },
-            {
               "bucket_start_utc": "21:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "21:30",
@@ -1179,8 +1179,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "23:30",
@@ -1191,32 +1191,32 @@ const USDJPY_DATA = {
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "00:00",
-          "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 9.0,
-          "circular_mean_utc": "20:05",
-          "circular_median_utc": "19:00",
-          "concentration_R": 0.257,
+          "mode_bucket_start_utc": "01:00",
+          "mode_bucket_end_utc": "01:30",
+          "mode_bucket_pct_of_days": 7.5,
+          "circular_mean_utc": "18:47",
+          "circular_median_utc": "17:45",
+          "concentration_R": 0.207,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 6,
-              "pct": 8.96
-            },
-            {
-              "bucket_start_utc": "00:30",
               "count": 3,
               "pct": 4.48
             },
             {
+              "bucket_start_utc": "00:30",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
               "bucket_start_utc": "01:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "02:00",
@@ -1230,13 +1230,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "04:00",
@@ -1250,8 +1250,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "05:30",
@@ -1260,28 +1260,28 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "06:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "07:00",
               "count": 0,
               "pct": 0.0
             },
             {
-              "bucket_start_utc": "07:30",
+              "bucket_start_utc": "06:30",
               "count": 2,
               "pct": 2.99
             },
             {
-              "bucket_start_utc": "08:00",
+              "bucket_start_utc": "07:00",
               "count": 1,
               "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "07:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "08:00",
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "08:30",
@@ -1295,8 +1295,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "10:00",
@@ -1310,13 +1310,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "12:00",
@@ -1330,18 +1330,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "14:30",
@@ -1355,23 +1355,23 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "16:00",
               "count": 5,
               "pct": 7.46
             },
             {
+              "bucket_start_utc": "16:00",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
               "bucket_start_utc": "16:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "17:30",
@@ -1385,13 +1385,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 4,
-              "pct": 5.97
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "19:30",
@@ -1405,13 +1405,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "21:30",
@@ -1420,50 +1420,50 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 4,
-              "pct": 5.97
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             }
           ]
         }
       },
       "session_distribution": {
         "Asian": {
-          "n": 2057,
-          "pct": 28.7
+          "n": 2068,
+          "pct": 28.6
         },
         "London_NY_Overlap": {
-          "n": 1544,
-          "pct": 21.5
+          "n": 1557,
+          "pct": 21.6
         },
         "New_York": {
-          "n": 1382,
-          "pct": 19.3
+          "n": 1390,
+          "pct": 19.2
         },
         "Other": {
-          "n": 1091,
+          "n": 1096,
           "pct": 15.2
         },
         "London": {
-          "n": 879,
-          "pct": 12.2
+          "n": 886,
+          "pct": 12.3
         },
         "Asian_London_Overlap": {
-          "n": 225,
+          "n": 226,
           "pct": 3.1
         }
       }
@@ -1471,43 +1471,43 @@ const USDJPY_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7178,
+          "n": 7223,
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 5.5,
-          "circular_mean_utc": "19:05",
+          "circular_mean_utc": "19:06",
           "circular_median_utc": "21:00",
-          "concentration_R": 0.127,
+          "concentration_R": 0.126,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 221,
-              "pct": 3.08
+              "count": 223,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 175,
+              "count": 176,
               "pct": 2.44
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 158,
-              "pct": 2.2
+              "count": 161,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 119,
+              "count": 120,
               "pct": 1.66
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 81,
-              "pct": 1.13
+              "count": 85,
+              "pct": 1.18
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 83,
-              "pct": 1.16
+              "count": 85,
+              "pct": 1.18
             },
             {
               "bucket_start_utc": "03:00",
@@ -1517,16 +1517,16 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "03:30",
               "count": 70,
-              "pct": 0.98
+              "pct": 0.97
             },
             {
               "bucket_start_utc": "04:00",
               "count": 65,
-              "pct": 0.91
+              "pct": 0.9
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 86,
+              "count": 87,
               "pct": 1.2
             },
             {
@@ -1537,187 +1537,187 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "05:30",
               "count": 134,
-              "pct": 1.87
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 140,
+              "count": 141,
               "pct": 1.95
             },
             {
               "bucket_start_utc": "06:30",
               "count": 128,
-              "pct": 1.78
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "07:00",
               "count": 172,
-              "pct": 2.4
+              "pct": 2.38
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 145,
+              "count": 146,
               "pct": 2.02
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 138,
-              "pct": 1.92
+              "count": 141,
+              "pct": 1.95
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 106,
-              "pct": 1.48
+              "count": 108,
+              "pct": 1.5
             },
             {
               "bucket_start_utc": "09:00",
               "count": 119,
-              "pct": 1.66
+              "pct": 1.65
             },
             {
               "bucket_start_utc": "09:30",
               "count": 89,
-              "pct": 1.24
+              "pct": 1.23
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 81,
-              "pct": 1.13
+              "count": 82,
+              "pct": 1.14
             },
             {
               "bucket_start_utc": "10:30",
               "count": 70,
-              "pct": 0.98
+              "pct": 0.97
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 93,
+              "count": 94,
               "pct": 1.3
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 164,
+              "count": 165,
               "pct": 2.28
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 134,
-              "pct": 1.87
+              "count": 136,
+              "pct": 1.88
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 234,
-              "pct": 3.26
+              "count": 236,
+              "pct": 3.27
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 224,
+              "count": 225,
               "pct": 3.12
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 234,
-              "pct": 3.26
+              "count": 236,
+              "pct": 3.27
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 232,
+              "count": 233,
               "pct": 3.23
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 184,
-              "pct": 2.56
+              "count": 186,
+              "pct": 2.58
             },
             {
               "bucket_start_utc": "15:00",
               "count": 211,
-              "pct": 2.94
+              "pct": 2.92
             },
             {
               "bucket_start_utc": "15:30",
               "count": 152,
-              "pct": 2.12
+              "pct": 2.1
             },
             {
               "bucket_start_utc": "16:00",
               "count": 143,
-              "pct": 1.99
+              "pct": 1.98
             },
             {
               "bucket_start_utc": "16:30",
               "count": 106,
-              "pct": 1.48
+              "pct": 1.47
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 121,
+              "count": 122,
               "pct": 1.69
             },
             {
               "bucket_start_utc": "17:30",
               "count": 136,
-              "pct": 1.89
+              "pct": 1.88
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 125,
-              "pct": 1.74
+              "count": 127,
+              "pct": 1.76
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 129,
+              "count": 130,
               "pct": 1.8
             },
             {
               "bucket_start_utc": "19:00",
               "count": 111,
-              "pct": 1.55
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "19:30",
               "count": 131,
-              "pct": 1.83
+              "pct": 1.81
             },
             {
               "bucket_start_utc": "20:00",
               "count": 106,
-              "pct": 1.48
+              "pct": 1.47
             },
             {
               "bucket_start_utc": "20:30",
               "count": 110,
-              "pct": 1.53
+              "pct": 1.52
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 390,
-              "pct": 5.43
+              "count": 393,
+              "pct": 5.44
             },
             {
               "bucket_start_utc": "21:30",
               "count": 154,
-              "pct": 2.15
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 392,
-              "pct": 5.46
+              "count": 394,
+              "pct": 5.45
             },
             {
               "bucket_start_utc": "22:30",
               "count": 237,
-              "pct": 3.3
+              "pct": 3.28
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 229,
-              "pct": 3.19
+              "count": 231,
+              "pct": 3.2
             },
             {
               "bucket_start_utc": "23:30",
               "count": 177,
-              "pct": 2.47
+              "pct": 2.45
             }
           ]
         },
@@ -1725,40 +1725,40 @@ const USDJPY_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 6.7,
-          "circular_mean_utc": "20:09",
-          "circular_median_utc": "21:05",
-          "concentration_R": 0.161,
+          "mode_bucket_pct_of_days": 6.4,
+          "circular_mean_utc": "20:16",
+          "circular_median_utc": "21:15",
+          "concentration_R": 0.152,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 54,
-              "pct": 4.16
-            },
-            {
-              "bucket_start_utc": "00:30",
               "count": 53,
               "pct": 4.08
             },
             {
+              "bucket_start_utc": "00:30",
+              "count": 54,
+              "pct": 4.16
+            },
+            {
               "bucket_start_utc": "01:00",
-              "count": 48,
-              "pct": 3.7
+              "count": 50,
+              "pct": 3.85
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 35,
-              "pct": 2.7
+              "count": 36,
+              "pct": 2.77
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 22,
-              "pct": 1.69
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 17,
-              "pct": 1.31
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "03:00",
@@ -1767,8 +1767,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 11,
-              "pct": 0.85
+              "count": 10,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "04:00",
@@ -1777,8 +1777,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 9,
-              "pct": 0.69
+              "count": 10,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "05:00",
@@ -1787,43 +1787,43 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 16,
-              "pct": 1.23
+              "count": 15,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 20,
-              "pct": 1.54
+              "count": 21,
+              "pct": 1.62
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 24,
-              "pct": 1.85
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 35,
-              "pct": 2.7
+              "count": 33,
+              "pct": 2.54
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 24,
-              "pct": 1.85
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 30,
-              "pct": 2.31
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 13,
-              "pct": 1.0
+              "count": 15,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 19,
-              "pct": 1.46
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "09:30",
@@ -1832,8 +1832,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 12,
-              "pct": 0.92
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "10:30",
@@ -1842,13 +1842,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 12,
-              "pct": 0.92
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 12,
-              "pct": 0.92
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "12:00",
@@ -1857,28 +1857,28 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 40,
-              "pct": 3.08
+              "count": 41,
+              "pct": 3.16
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 33,
-              "pct": 2.54
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 54,
-              "pct": 4.16
+              "count": 53,
+              "pct": 4.08
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 47,
-              "pct": 3.62
+              "count": 48,
+              "pct": 3.7
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 40,
-              "pct": 3.08
+              "count": 37,
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "15:00",
@@ -1887,8 +1887,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 35,
-              "pct": 2.7
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "16:00",
@@ -1902,8 +1902,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 25,
-              "pct": 1.93
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "17:30",
@@ -1912,13 +1912,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 20,
-              "pct": 1.54
+              "count": 21,
+              "pct": 1.62
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 26,
-              "pct": 2.0
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "19:00",
@@ -1927,8 +1927,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 28,
-              "pct": 2.16
+              "count": 27,
+              "pct": 2.08
             },
             {
               "bucket_start_utc": "20:00",
@@ -1937,18 +1937,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 17,
-              "pct": 1.31
+              "count": 16,
+              "pct": 1.23
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 87,
-              "pct": 6.7
+              "count": 83,
+              "pct": 6.39
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 30,
-              "pct": 2.31
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "22:00",
@@ -1957,13 +1957,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 14,
-              "pct": 1.08
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 28,
-              "pct": 2.16
+              "count": 30,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "23:30",
@@ -1976,10 +1976,10 @@ const USDJPY_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 8.5,
-          "circular_mean_utc": "21:15",
-          "circular_median_utc": "21:50",
-          "concentration_R": 0.131,
+          "mode_bucket_pct_of_days": 8.8,
+          "circular_mean_utc": "22:14",
+          "circular_median_utc": "22:00",
+          "concentration_R": 0.117,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1993,28 +1993,28 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 11,
-              "pct": 4.23
+              "count": 12,
+              "pct": 4.62
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "03:30",
@@ -2023,18 +2023,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "05:30",
@@ -2043,8 +2043,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "06:30",
@@ -2053,33 +2053,33 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 8,
-              "pct": 3.08
-            },
-            {
-              "bucket_start_utc": "07:30",
-              "count": 5,
-              "pct": 1.92
-            },
-            {
-              "bucket_start_utc": "08:00",
-              "count": 8,
-              "pct": 3.08
-            },
-            {
-              "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 0.77
-            },
-            {
-              "bucket_start_utc": "09:00",
               "count": 7,
               "pct": 2.69
             },
             {
+              "bucket_start_utc": "07:30",
+              "count": 6,
+              "pct": 2.31
+            },
+            {
+              "bucket_start_utc": "08:00",
+              "count": 10,
+              "pct": 3.85
+            },
+            {
+              "bucket_start_utc": "08:30",
+              "count": 4,
+              "pct": 1.54
+            },
+            {
+              "bucket_start_utc": "09:00",
+              "count": 6,
+              "pct": 2.31
+            },
+            {
               "bucket_start_utc": "09:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "10:00",
@@ -2093,13 +2093,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "12:00",
@@ -2113,13 +2113,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 10,
-              "pct": 3.85
+              "count": 12,
+              "pct": 4.62
             },
             {
               "bucket_start_utc": "14:00",
@@ -2128,23 +2128,23 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "16:30",
@@ -2153,13 +2153,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "18:00",
@@ -2178,8 +2178,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "20:00",
@@ -2193,8 +2193,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 22,
-              "pct": 8.46
+              "count": 23,
+              "pct": 8.85
             },
             {
               "bucket_start_utc": "21:30",
@@ -2203,8 +2203,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 13,
-              "pct": 5.0
+              "count": 12,
+              "pct": 4.62
             },
             {
               "bucket_start_utc": "22:30",
@@ -2213,8 +2213,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "23:30",
@@ -2227,15 +2227,15 @@ const USDJPY_DATA = {
           "n": 67,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 16.4,
-          "circular_mean_utc": "22:47",
-          "circular_median_utc": "21:55",
-          "concentration_R": 0.104,
+          "mode_bucket_pct_of_days": 10.4,
+          "circular_mean_utc": "00:03",
+          "circular_median_utc": "23:05",
+          "concentration_R": 0.079,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "00:30",
@@ -2254,18 +2254,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:30",
@@ -2294,18 +2294,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "07:30",
@@ -2314,8 +2314,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "08:30",
@@ -2329,13 +2329,13 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "10:30",
@@ -2344,8 +2344,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "11:30",
@@ -2354,8 +2354,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "12:30",
@@ -2369,8 +2369,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:00",
@@ -2379,18 +2379,18 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "16:00",
@@ -2404,8 +2404,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "17:30",
@@ -2414,23 +2414,23 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "18:30",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "18:30",
+              "bucket_start_utc": "19:00",
               "count": 0,
               "pct": 0.0
             },
             {
-              "bucket_start_utc": "19:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
               "bucket_start_utc": "19:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "20:00",
@@ -2439,23 +2439,23 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "21:00",
+              "count": 7,
+              "pct": 10.45
+            },
+            {
+              "bucket_start_utc": "21:30",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "21:00",
-              "count": 11,
-              "pct": 16.42
-            },
-            {
-              "bucket_start_utc": "21:30",
-              "count": 5,
-              "pct": 7.46
-            },
-            {
               "bucket_start_utc": "22:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "22:30",
@@ -2464,8 +2464,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "23:30",
@@ -2477,66 +2477,66 @@ const USDJPY_DATA = {
       },
       "session_distribution": {
         "Asian": {
-          "n": 2005,
-          "pct": 27.9
+          "n": 2022,
+          "pct": 28.0
         },
         "London_NY_Overlap": {
-          "n": 1605,
+          "n": 1615,
           "pct": 22.4
         },
         "New_York": {
-          "n": 1218,
-          "pct": 17.0
+          "n": 1222,
+          "pct": 16.9
         },
         "Other": {
-          "n": 1173,
+          "n": 1178,
           "pct": 16.3
         },
         "London": {
-          "n": 860,
+          "n": 868,
           "pct": 12.0
         },
         "Asian_London_Overlap": {
-          "n": 317,
+          "n": 318,
           "pct": 4.4
         }
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 7178,
-      "same_session_n": 508,
-      "same_session_pct": 7.08,
+      "n_days": 7223,
+      "same_session_n": 512,
+      "same_session_pct": 7.09,
       "pairs": {
         "Asian": {
           "Asian": {
-            "n": 241,
+            "n": 243,
             "pct": 3.36
           },
           "Asian_London_Overlap": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "London": {
-            "n": 265,
-            "pct": 3.69
+            "n": 269,
+            "pct": 3.72
           },
           "London_NY_Overlap": {
-            "n": 647,
-            "pct": 9.01
+            "n": 655,
+            "pct": 9.07
           },
           "New_York": {
-            "n": 638,
-            "pct": 8.89
+            "n": 640,
+            "pct": 8.86
           },
           "Other": {
-            "n": 174,
+            "n": 175,
             "pct": 2.42
           }
         },
         "Asian_London_Overlap": {
           "Asian": {
             "n": 73,
-            "pct": 1.02
+            "pct": 1.01
           },
           "Asian_London_Overlap": {
             "n": 0,
@@ -2548,125 +2548,125 @@ const USDJPY_DATA = {
           },
           "London_NY_Overlap": {
             "n": 89,
-            "pct": 1.24
+            "pct": 1.23
           },
           "New_York": {
-            "n": 90,
-            "pct": 1.25
+            "n": 91,
+            "pct": 1.26
           },
           "Other": {
             "n": 53,
-            "pct": 0.74
+            "pct": 0.73
           }
         },
         "London": {
           "Asian": {
-            "n": 312,
-            "pct": 4.35
+            "n": 317,
+            "pct": 4.39
           },
           "Asian_London_Overlap": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "London": {
-            "n": 27,
-            "pct": 0.38
+            "n": 28,
+            "pct": 0.39
           },
           "London_NY_Overlap": {
             "n": 175,
-            "pct": 2.44
+            "pct": 2.42
           },
           "New_York": {
-            "n": 157,
+            "n": 158,
             "pct": 2.19
           },
           "Other": {
-            "n": 175,
+            "n": 176,
             "pct": 2.44
           }
         },
         "London_NY_Overlap": {
           "Asian": {
-            "n": 716,
+            "n": 720,
             "pct": 9.97
           },
           "Asian_London_Overlap": {
-            "n": 55,
-            "pct": 0.77
+            "n": 56,
+            "pct": 0.78
           },
           "London": {
-            "n": 189,
+            "n": 190,
             "pct": 2.63
           },
           "London_NY_Overlap": {
             "n": 136,
-            "pct": 1.89
+            "pct": 1.88
           },
           "New_York": {
-            "n": 130,
+            "n": 131,
             "pct": 1.81
           },
           "Other": {
-            "n": 379,
-            "pct": 5.28
+            "n": 382,
+            "pct": 5.29
           }
         },
         "New_York": {
           "Asian": {
             "n": 555,
-            "pct": 7.73
+            "pct": 7.68
           },
           "Asian_London_Overlap": {
             "n": 63,
-            "pct": 0.88
+            "pct": 0.87
           },
           "London": {
             "n": 183,
-            "pct": 2.55
+            "pct": 2.53
           },
           "London_NY_Overlap": {
-            "n": 139,
-            "pct": 1.94
+            "n": 142,
+            "pct": 1.97
           },
           "New_York": {
-            "n": 36,
-            "pct": 0.5
+            "n": 37,
+            "pct": 0.51
           },
           "Other": {
             "n": 242,
-            "pct": 3.37
+            "pct": 3.35
           }
         },
         "Other": {
           "Asian": {
             "n": 160,
-            "pct": 2.23
+            "pct": 2.22
           },
           "Asian_London_Overlap": {
             "n": 53,
-            "pct": 0.74
+            "pct": 0.73
           },
           "London": {
-            "n": 203,
-            "pct": 2.83
+            "n": 204,
+            "pct": 2.82
           },
           "London_NY_Overlap": {
-            "n": 358,
-            "pct": 4.99
+            "n": 360,
+            "pct": 4.98
           },
           "New_York": {
-            "n": 331,
+            "n": 333,
             "pct": 4.61
           },
           "Other": {
             "n": 68,
-            "pct": 0.95
+            "pct": 0.94
           }
         }
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 7178,
+      "n_days": 7223,
       "same_hour_n": 49,
       "same_hour_pct": 0.68,
       "pairs": {
@@ -2696,8 +2696,8 @@ const USDJPY_DATA = {
             "pct": 0.01
           },
           "6": {
-            "n": 14,
-            "pct": 0.2
+            "n": 15,
+            "pct": 0.21
           },
           "7": {
             "n": 15,
@@ -2705,7 +2705,7 @@ const USDJPY_DATA = {
           },
           "8": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "9": {
             "n": 11,
@@ -2713,15 +2713,15 @@ const USDJPY_DATA = {
           },
           "10": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "11": {
             "n": 21,
             "pct": 0.29
           },
           "12": {
-            "n": 28,
-            "pct": 0.39
+            "n": 29,
+            "pct": 0.4
           },
           "13": {
             "n": 44,
@@ -2745,15 +2745,15 @@ const USDJPY_DATA = {
           },
           "18": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "19": {
             "n": 28,
             "pct": 0.39
           },
           "20": {
-            "n": 19,
-            "pct": 0.26
+            "n": 20,
+            "pct": 0.28
           },
           "21": {
             "n": 8,
@@ -2806,12 +2806,12 @@ const USDJPY_DATA = {
             "pct": 0.11
           },
           "9": {
-            "n": 9,
-            "pct": 0.13
+            "n": 10,
+            "pct": 0.14
           },
           "10": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "11": {
             "n": 12,
@@ -2822,16 +2822,16 @@ const USDJPY_DATA = {
             "pct": 0.29
           },
           "13": {
-            "n": 33,
-            "pct": 0.46
+            "n": 34,
+            "pct": 0.47
           },
           "14": {
             "n": 18,
             "pct": 0.25
           },
           "15": {
-            "n": 22,
-            "pct": 0.31
+            "n": 24,
+            "pct": 0.33
           },
           "16": {
             "n": 20,
@@ -2912,24 +2912,24 @@ const USDJPY_DATA = {
             "pct": 0.06
           },
           "11": {
-            "n": 7,
-            "pct": 0.1
+            "n": 8,
+            "pct": 0.11
           },
           "12": {
-            "n": 7,
-            "pct": 0.1
+            "n": 8,
+            "pct": 0.11
           },
           "13": {
-            "n": 10,
-            "pct": 0.14
+            "n": 11,
+            "pct": 0.15
           },
           "14": {
             "n": 12,
             "pct": 0.17
           },
           "15": {
-            "n": 21,
-            "pct": 0.29
+            "n": 23,
+            "pct": 0.32
           },
           "16": {
             "n": 15,
@@ -2948,12 +2948,12 @@ const USDJPY_DATA = {
             "pct": 0.17
           },
           "20": {
-            "n": 7,
-            "pct": 0.1
+            "n": 8,
+            "pct": 0.11
           },
           "21": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "22": {
             "n": 5,
@@ -3015,7 +3015,7 @@ const USDJPY_DATA = {
           },
           "12": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "13": {
             "n": 8,
@@ -3027,7 +3027,7 @@ const USDJPY_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "16": {
             "n": 6,
@@ -3043,7 +3043,7 @@ const USDJPY_DATA = {
           },
           "19": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "20": {
             "n": 6,
@@ -3117,7 +3117,7 @@ const USDJPY_DATA = {
           },
           "13": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "14": {
             "n": 12,
@@ -3129,7 +3129,7 @@ const USDJPY_DATA = {
           },
           "16": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "17": {
             "n": 6,
@@ -3149,21 +3149,21 @@ const USDJPY_DATA = {
           },
           "21": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "22": {
             "n": 11,
             "pct": 0.15
           },
           "23": {
-            "n": 12,
-            "pct": 0.17
+            "n": 13,
+            "pct": 0.18
           }
         },
         "5": {
           "0": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "1": {
             "n": 2,
@@ -3219,7 +3219,7 @@ const USDJPY_DATA = {
           },
           "14": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "15": {
             "n": 13,
@@ -3227,7 +3227,7 @@ const USDJPY_DATA = {
           },
           "16": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "17": {
             "n": 17,
@@ -3239,7 +3239,7 @@ const USDJPY_DATA = {
           },
           "19": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "20": {
             "n": 11,
@@ -3321,7 +3321,7 @@ const USDJPY_DATA = {
           },
           "15": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "16": {
             "n": 18,
@@ -3348,8 +3348,8 @@ const USDJPY_DATA = {
             "pct": 0.33
           },
           "22": {
-            "n": 16,
-            "pct": 0.22
+            "n": 17,
+            "pct": 0.24
           },
           "23": {
             "n": 20,
@@ -3359,7 +3359,7 @@ const USDJPY_DATA = {
         "7": {
           "0": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           },
           "1": {
             "n": 7,
@@ -3403,7 +3403,7 @@ const USDJPY_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "12": {
             "n": 13,
@@ -3419,7 +3419,7 @@ const USDJPY_DATA = {
           },
           "15": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "16": {
             "n": 13,
@@ -3434,8 +3434,8 @@ const USDJPY_DATA = {
             "pct": 0.24
           },
           "19": {
-            "n": 17,
-            "pct": 0.24
+            "n": 18,
+            "pct": 0.25
           },
           "20": {
             "n": 19,
@@ -3457,11 +3457,11 @@ const USDJPY_DATA = {
         "8": {
           "0": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "1": {
-            "n": 11,
-            "pct": 0.15
+            "n": 13,
+            "pct": 0.18
           },
           "2": {
             "n": 2,
@@ -3525,11 +3525,11 @@ const USDJPY_DATA = {
           },
           "17": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "18": {
-            "n": 10,
-            "pct": 0.14
+            "n": 11,
+            "pct": 0.15
           },
           "19": {
             "n": 16,
@@ -3544,12 +3544,12 @@ const USDJPY_DATA = {
             "pct": 0.28
           },
           "22": {
-            "n": 28,
-            "pct": 0.39
+            "n": 29,
+            "pct": 0.4
           },
           "23": {
-            "n": 23,
-            "pct": 0.32
+            "n": 24,
+            "pct": 0.33
           }
         },
         "9": {
@@ -3647,7 +3647,7 @@ const USDJPY_DATA = {
           },
           "23": {
             "n": 27,
-            "pct": 0.38
+            "pct": 0.37
           }
         },
         "10": {
@@ -3684,8 +3684,8 @@ const USDJPY_DATA = {
             "pct": 0.06
           },
           "8": {
-            "n": 1,
-            "pct": 0.01
+            "n": 2,
+            "pct": 0.03
           },
           "9": {
             "n": 0,
@@ -3750,8 +3750,8 @@ const USDJPY_DATA = {
         },
         "11": {
           "0": {
-            "n": 27,
-            "pct": 0.38
+            "n": 29,
+            "pct": 0.4
           },
           "1": {
             "n": 17,
@@ -3775,7 +3775,7 @@ const USDJPY_DATA = {
           },
           "6": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "7": {
             "n": 5,
@@ -3815,7 +3815,7 @@ const USDJPY_DATA = {
           },
           "16": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "17": {
             "n": 7,
@@ -3835,7 +3835,7 @@ const USDJPY_DATA = {
           },
           "21": {
             "n": 32,
-            "pct": 0.45
+            "pct": 0.44
           },
           "22": {
             "n": 30,
@@ -3848,12 +3848,12 @@ const USDJPY_DATA = {
         },
         "12": {
           "0": {
-            "n": 35,
-            "pct": 0.49
+            "n": 36,
+            "pct": 0.5
           },
           "1": {
-            "n": 19,
-            "pct": 0.26
+            "n": 20,
+            "pct": 0.28
           },
           "2": {
             "n": 12,
@@ -3869,7 +3869,7 @@ const USDJPY_DATA = {
           },
           "5": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "6": {
             "n": 13,
@@ -3881,15 +3881,15 @@ const USDJPY_DATA = {
           },
           "8": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "9": {
             "n": 11,
             "pct": 0.15
           },
           "10": {
-            "n": 4,
-            "pct": 0.06
+            "n": 5,
+            "pct": 0.07
           },
           "11": {
             "n": 8,
@@ -3913,7 +3913,7 @@ const USDJPY_DATA = {
           },
           "16": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "17": {
             "n": 11,
@@ -3936,8 +3936,8 @@ const USDJPY_DATA = {
             "pct": 0.53
           },
           "22": {
-            "n": 38,
-            "pct": 0.53
+            "n": 39,
+            "pct": 0.54
           },
           "23": {
             "n": 39,
@@ -3947,7 +3947,7 @@ const USDJPY_DATA = {
         "13": {
           "0": {
             "n": 50,
-            "pct": 0.7
+            "pct": 0.69
           },
           "1": {
             "n": 24,
@@ -3995,7 +3995,7 @@ const USDJPY_DATA = {
           },
           "12": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "13": {
             "n": 5,
@@ -4007,7 +4007,7 @@ const USDJPY_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "16": {
             "n": 8,
@@ -4019,7 +4019,7 @@ const USDJPY_DATA = {
           },
           "18": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "19": {
             "n": 8,
@@ -4027,29 +4027,29 @@ const USDJPY_DATA = {
           },
           "20": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "21": {
-            "n": 41,
-            "pct": 0.57
+            "n": 42,
+            "pct": 0.58
           },
           "22": {
-            "n": 86,
+            "n": 87,
             "pct": 1.2
           },
           "23": {
-            "n": 54,
-            "pct": 0.75
+            "n": 55,
+            "pct": 0.76
           }
         },
         "14": {
           "0": {
             "n": 53,
-            "pct": 0.74
+            "pct": 0.73
           },
           "1": {
-            "n": 27,
-            "pct": 0.38
+            "n": 28,
+            "pct": 0.39
           },
           "2": {
             "n": 10,
@@ -4072,12 +4072,12 @@ const USDJPY_DATA = {
             "pct": 0.21
           },
           "7": {
-            "n": 19,
-            "pct": 0.26
+            "n": 20,
+            "pct": 0.28
           },
           "8": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "9": {
             "n": 12,
@@ -4108,8 +4108,8 @@ const USDJPY_DATA = {
             "pct": 0.06
           },
           "16": {
-            "n": 2,
-            "pct": 0.03
+            "n": 3,
+            "pct": 0.04
           },
           "17": {
             "n": 3,
@@ -4117,7 +4117,7 @@ const USDJPY_DATA = {
           },
           "18": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "19": {
             "n": 8,
@@ -4129,7 +4129,7 @@ const USDJPY_DATA = {
           },
           "21": {
             "n": 32,
-            "pct": 0.45
+            "pct": 0.44
           },
           "22": {
             "n": 59,
@@ -4137,13 +4137,13 @@ const USDJPY_DATA = {
           },
           "23": {
             "n": 45,
-            "pct": 0.63
+            "pct": 0.62
           }
         },
         "15": {
           "0": {
             "n": 45,
-            "pct": 0.63
+            "pct": 0.62
           },
           "1": {
             "n": 23,
@@ -4163,7 +4163,7 @@ const USDJPY_DATA = {
           },
           "5": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           },
           "6": {
             "n": 12,
@@ -4187,7 +4187,7 @@ const USDJPY_DATA = {
           },
           "11": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "12": {
             "n": 16,
@@ -4235,7 +4235,7 @@ const USDJPY_DATA = {
           },
           "23": {
             "n": 53,
-            "pct": 0.74
+            "pct": 0.73
           }
         },
         "16": {
@@ -4285,7 +4285,7 @@ const USDJPY_DATA = {
           },
           "11": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "12": {
             "n": 11,
@@ -4329,7 +4329,7 @@ const USDJPY_DATA = {
           },
           "22": {
             "n": 35,
-            "pct": 0.49
+            "pct": 0.48
           },
           "23": {
             "n": 31,
@@ -4371,7 +4371,7 @@ const USDJPY_DATA = {
           },
           "8": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "9": {
             "n": 6,
@@ -4379,7 +4379,7 @@ const USDJPY_DATA = {
           },
           "10": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "11": {
             "n": 8,
@@ -4398,8 +4398,8 @@ const USDJPY_DATA = {
             "pct": 0.08
           },
           "15": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.01
           },
           "16": {
             "n": 1,
@@ -4427,7 +4427,7 @@ const USDJPY_DATA = {
           },
           "22": {
             "n": 42,
-            "pct": 0.59
+            "pct": 0.58
           },
           "23": {
             "n": 41,
@@ -4445,7 +4445,7 @@ const USDJPY_DATA = {
           },
           "2": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "3": {
             "n": 8,
@@ -4481,15 +4481,15 @@ const USDJPY_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "12": {
             "n": 10,
             "pct": 0.14
           },
           "13": {
-            "n": 8,
-            "pct": 0.11
+            "n": 10,
+            "pct": 0.14
           },
           "14": {
             "n": 5,
@@ -4516,8 +4516,8 @@ const USDJPY_DATA = {
             "pct": 0.07
           },
           "20": {
-            "n": 1,
-            "pct": 0.01
+            "n": 2,
+            "pct": 0.03
           },
           "21": {
             "n": 15,
@@ -4543,7 +4543,7 @@ const USDJPY_DATA = {
           },
           "2": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "3": {
             "n": 7,
@@ -4559,7 +4559,7 @@ const USDJPY_DATA = {
           },
           "6": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "7": {
             "n": 15,
@@ -4579,7 +4579,7 @@ const USDJPY_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "12": {
             "n": 12,
@@ -4619,7 +4619,7 @@ const USDJPY_DATA = {
           },
           "21": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "22": {
             "n": 23,
@@ -4627,7 +4627,7 @@ const USDJPY_DATA = {
           },
           "23": {
             "n": 22,
-            "pct": 0.31
+            "pct": 0.3
           }
         },
         "20": {
@@ -4677,7 +4677,7 @@ const USDJPY_DATA = {
           },
           "11": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "12": {
             "n": 10,
@@ -4755,7 +4755,7 @@ const USDJPY_DATA = {
           },
           "6": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "7": {
             "n": 30,
@@ -4771,35 +4771,35 @@ const USDJPY_DATA = {
           },
           "10": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           },
           "11": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "12": {
             "n": 50,
-            "pct": 0.7
+            "pct": 0.69
           },
           "13": {
-            "n": 43,
-            "pct": 0.6
+            "n": 44,
+            "pct": 0.61
           },
           "14": {
             "n": 37,
-            "pct": 0.52
+            "pct": 0.51
           },
           "15": {
             "n": 37,
-            "pct": 0.52
+            "pct": 0.51
           },
           "16": {
             "n": 16,
             "pct": 0.22
           },
           "17": {
-            "n": 26,
-            "pct": 0.36
+            "n": 27,
+            "pct": 0.37
           },
           "18": {
             "n": 25,
@@ -4807,11 +4807,11 @@ const USDJPY_DATA = {
           },
           "19": {
             "n": 35,
-            "pct": 0.49
+            "pct": 0.48
           },
           "20": {
-            "n": 41,
-            "pct": 0.57
+            "n": 42,
+            "pct": 0.58
           },
           "21": {
             "n": 11,
@@ -4823,7 +4823,7 @@ const USDJPY_DATA = {
           },
           "23": {
             "n": 14,
-            "pct": 0.2
+            "pct": 0.19
           }
         },
         "22": {
@@ -4868,12 +4868,12 @@ const USDJPY_DATA = {
             "pct": 0.4
           },
           "10": {
-            "n": 20,
-            "pct": 0.28
+            "n": 21,
+            "pct": 0.29
           },
           "11": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "12": {
             "n": 36,
@@ -4881,11 +4881,11 @@ const USDJPY_DATA = {
           },
           "13": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "14": {
-            "n": 58,
-            "pct": 0.81
+            "n": 59,
+            "pct": 0.82
           },
           "15": {
             "n": 57,
@@ -4897,7 +4897,7 @@ const USDJPY_DATA = {
           },
           "17": {
             "n": 32,
-            "pct": 0.45
+            "pct": 0.44
           },
           "18": {
             "n": 31,
@@ -4909,11 +4909,11 @@ const USDJPY_DATA = {
           },
           "20": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "21": {
             "n": 40,
-            "pct": 0.56
+            "pct": 0.55
           },
           "22": {
             "n": 1,
@@ -4947,7 +4947,7 @@ const USDJPY_DATA = {
           },
           "5": {
             "n": 9,
-            "pct": 0.13
+            "pct": 0.12
           },
           "6": {
             "n": 17,
@@ -4958,12 +4958,12 @@ const USDJPY_DATA = {
             "pct": 0.18
           },
           "8": {
-            "n": 13,
-            "pct": 0.18
+            "n": 14,
+            "pct": 0.19
           },
           "9": {
-            "n": 13,
-            "pct": 0.18
+            "n": 14,
+            "pct": 0.19
           },
           "10": {
             "n": 11,
@@ -5026,49 +5026,49 @@ const USDJPY_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 327,
-        "mean_range_pips": 116.4,
+        "n": 329,
+        "mean_range_pips": 116.5,
         "median_range_pips": 104.0,
-        "extreme_in_release_window_pct": 34.9
+        "extreme_in_release_window_pct": 35.3
       },
       "other_fridays": {
-        "n": 1106,
-        "mean_range_pips": 104.1,
+        "n": 1113,
+        "mean_range_pips": 104.2,
         "median_range_pips": 89.0,
-        "extreme_in_release_window_pct": 22.2
+        "extreme_in_release_window_pct": 22.3
       },
       "all_days_mean_range_pips": 102.2,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Friday": 537,
-      "Monday": 475,
-      "Wednesday": 254,
-      "Thursday": 254,
-      "Tuesday": 231,
+      "Friday": 538,
+      "Monday": 476,
+      "Wednesday": 257,
+      "Thursday": 256,
+      "Tuesday": 233,
       "Sunday": 3
     },
     "weekly_low_day": {
-      "Monday": 550,
-      "Friday": 425,
-      "Tuesday": 274,
+      "Monday": 554,
+      "Friday": 427,
+      "Tuesday": 275,
       "Thursday": 260,
-      "Wednesday": 243,
+      "Wednesday": 245,
       "Sunday": 2
     },
     "monthly_high_week_of_month": {
-      "1": 133,
-      "2": 73,
+      "1": 134,
+      "2": 74,
       "3": 50,
       "4": 70,
       "5": 79
     },
     "monthly_low_week_of_month": {
       "1": 160,
-      "2": 50,
+      "2": 51,
       "3": 63,
-      "4": 65,
+      "4": 66,
       "5": 67
     },
     "yearly_high_month": {
@@ -5155,60 +5155,60 @@ const USDJPY_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 8681,
+    "n_labeled_days": 8726,
     "n_data_gap_days": 7,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 4946,
-        "pct": 56.98
+        "n": 4978,
+        "pct": 57.05
       },
       "Compression Day": {
-        "n": 1614,
-        "pct": 18.59
+        "n": 1616,
+        "pct": 18.52
       },
       "Volatile Day": {
-        "n": 878,
+        "n": 882,
         "pct": 10.11
       },
       "Trend Day (Up)": {
-        "n": 370,
-        "pct": 4.26
+        "n": 371,
+        "pct": 4.25
       },
       "Trend Day (Down)": {
-        "n": 294,
+        "n": 296,
         "pct": 3.39
       },
       "Volatile Reversal Day": {
-        "n": 280,
-        "pct": 3.23
+        "n": 283,
+        "pct": 3.24
       },
       "Quiet Drift Day (Up)": {
         "n": 179,
-        "pct": 2.06
+        "pct": 2.05
       },
       "Quiet Drift Day (Down)": {
-        "n": 120,
-        "pct": 1.38
+        "n": 121,
+        "pct": 1.39
       }
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 2590,
+        "Late_Push": 2603,
         "Insufficient_History": 878,
-        "Late_Resolution": 531,
-        "Early_Resolution": 497,
-        "Fade_Risk": 450
+        "Late_Resolution": 536,
+        "Early_Resolution": 504,
+        "Fade_Risk": 457
       },
       "Compression Day": {
-        "Late_Push": 594,
+        "Late_Push": 596,
         "Early_Resolution": 350,
         "Fade_Risk": 272,
         "Insufficient_History": 206,
         "Late_Resolution": 192
       },
       "Volatile Day": {
-        "Late_Push": 518,
+        "Late_Push": 522,
         "Insufficient_History": 196,
         "Late_Resolution": 69,
         "Early_Resolution": 67,
@@ -5217,21 +5217,21 @@ const USDJPY_DATA = {
       "Trend Day (Up)": {
         "Late_Push": 273,
         "Insufficient_History": 64,
-        "Late_Resolution": 28,
+        "Late_Resolution": 29,
         "Early_Resolution": 3,
         "Fade_Risk": 2
       },
       "Trend Day (Down)": {
-        "Late_Push": 214,
+        "Late_Push": 215,
         "Insufficient_History": 48,
         "Late_Resolution": 24,
-        "Early_Resolution": 8
+        "Early_Resolution": 9
       },
       "Volatile Reversal Day": {
-        "Late_Push": 107,
+        "Late_Push": 109,
         "Insufficient_History": 65,
         "Early_Resolution": 54,
-        "Fade_Risk": 39,
+        "Fade_Risk": 40,
         "Late_Resolution": 15
       },
       "Quiet Drift Day (Up)": {
@@ -5246,7 +5246,7 @@ const USDJPY_DATA = {
         "Late_Resolution": 22,
         "Insufficient_History": 14,
         "Early_Resolution": 12,
-        "Fade_Risk": 6
+        "Fade_Risk": 7
       }
     },
     "avg_range_pips_by_profile": {
@@ -5255,11 +5255,11 @@ const USDJPY_DATA = {
         "median": 54.0
       },
       "Normal Day": {
-        "mean": 98.2,
+        "mean": 98.1,
         "median": 95.0
       },
       "Quiet Drift Day (Down)": {
-        "mean": 56.9,
+        "mean": 56.8,
         "median": 57.0
       },
       "Quiet Drift Day (Up)": {
@@ -5271,117 +5271,117 @@ const USDJPY_DATA = {
         "median": 167.5
       },
       "Trend Day (Up)": {
-        "mean": 181.8,
-        "median": 163.2
+        "mean": 181.7,
+        "median": 163.0
       },
       "Volatile Day": {
-        "mean": 193.7,
+        "mean": 193.5,
         "median": 174.0
       },
       "Volatile Reversal Day": {
-        "mean": 193.9,
-        "median": 170.6
+        "mean": 193.8,
+        "median": 170.0
       }
     },
     "nfp": {
-      "n_nfp_days": 391,
-      "n_other_fridays": 1337,
+      "n_nfp_days": 393,
+      "n_other_fridays": 1344,
       "nfp_profile_distribution": {
         "Normal Day": {
-          "n": 207,
-          "pct": 52.94,
-          "mean_range_pips": 101.5,
-          "median_range_pips": 98.6
+          "n": 208,
+          "pct": 52.93,
+          "mean_range_pips": 101.6,
+          "median_range_pips": 99.2
         },
         "Volatile Day": {
           "n": 60,
-          "pct": 15.35,
+          "pct": 15.27,
           "mean_range_pips": 163.5,
           "median_range_pips": 154.4
         },
         "Compression Day": {
           "n": 42,
-          "pct": 10.74,
+          "pct": 10.69,
           "mean_range_pips": 58.0,
           "median_range_pips": 59.2
         },
         "Trend Day (Up)": {
           "n": 28,
-          "pct": 7.16,
+          "pct": 7.12,
           "mean_range_pips": 194.2,
           "median_range_pips": 180.8
         },
         "Volatile Reversal Day": {
-          "n": 20,
-          "pct": 5.12,
-          "mean_range_pips": 184.4,
-          "median_range_pips": 171.5
+          "n": 21,
+          "pct": 5.34,
+          "mean_range_pips": 182.6,
+          "median_range_pips": 169.0
         },
         "Trend Day (Down)": {
           "n": 20,
-          "pct": 5.12,
+          "pct": 5.09,
           "mean_range_pips": 194.5,
           "median_range_pips": 187.4
         },
         "Quiet Drift Day (Up)": {
           "n": 11,
-          "pct": 2.81,
+          "pct": 2.8,
           "mean_range_pips": 63.0,
           "median_range_pips": 63.0
         },
         "Quiet Drift Day (Down)": {
           "n": 3,
-          "pct": 0.77,
+          "pct": 0.76,
           "mean_range_pips": 48.3,
           "median_range_pips": 41.3
         }
       },
       "other_friday_profile_distribution": {
         "Normal Day": {
-          "n": 739,
-          "pct": 55.27,
-          "mean_range_pips": 99.5,
+          "n": 743,
+          "pct": 55.28,
+          "mean_range_pips": 99.4,
           "median_range_pips": 96.9
         },
         "Compression Day": {
           "n": 248,
-          "pct": 18.55,
+          "pct": 18.45,
           "mean_range_pips": 52.2,
           "median_range_pips": 51.1
         },
         "Volatile Day": {
-          "n": 126,
-          "pct": 9.42,
-          "mean_range_pips": 196.4,
+          "n": 128,
+          "pct": 9.52,
+          "mean_range_pips": 195.9,
           "median_range_pips": 177.6
         },
         "Trend Day (Up)": {
           "n": 64,
-          "pct": 4.79,
+          "pct": 4.76,
           "mean_range_pips": 198.3,
           "median_range_pips": 183.4
         },
         "Trend Day (Down)": {
           "n": 60,
-          "pct": 4.49,
+          "pct": 4.46,
           "mean_range_pips": 186.6,
           "median_range_pips": 168.4
         },
         "Volatile Reversal Day": {
-          "n": 49,
-          "pct": 3.66,
-          "mean_range_pips": 198.6,
-          "median_range_pips": 159.5
+          "n": 50,
+          "pct": 3.72,
+          "mean_range_pips": 199.0,
+          "median_range_pips": 161.7
         },
         "Quiet Drift Day (Up)": {
           "n": 27,
-          "pct": 2.02,
+          "pct": 2.01,
           "mean_range_pips": 58.0,
           "median_range_pips": 57.0
         },
         "Quiet Drift Day (Down)": {
           "n": 24,
-          "pct": 1.8,
+          "pct": 1.79,
           "mean_range_pips": 51.9,
           "median_range_pips": 55.0
         }
@@ -5390,61 +5390,61 @@ const USDJPY_DATA = {
     "asset": "USDJPY"
   },
   "weekly": {
-    "n_labeled_weeks": 1739,
+    "n_labeled_weeks": 1748,
     "n_short_weeks": 1,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 995,
-        "pct": 57.22
+        "n": 999,
+        "pct": 57.15
       },
       "Compression Week": {
-        "n": 326,
-        "pct": 18.75
+        "n": 329,
+        "pct": 18.82
       },
       "Volatile Week": {
-        "n": 160,
-        "pct": 9.2
+        "n": 163,
+        "pct": 9.32
       },
       "Trend Week (Up)": {
         "n": 86,
-        "pct": 4.95
+        "pct": 4.92
       },
       "Volatile Reversal Week": {
         "n": 61,
-        "pct": 3.51
+        "pct": 3.49
       },
       "Trend Week (Down)": {
-        "n": 60,
-        "pct": 3.45
+        "n": 59,
+        "pct": 3.38
       },
       "Quiet Drift Week (Up)": {
         "n": 33,
-        "pct": 1.9
+        "pct": 1.89
       },
       "Quiet Drift Week (Down)": {
         "n": 18,
-        "pct": 1.04
+        "pct": 1.03
       }
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 609,
-        "Late_Resolution": 183,
-        "Fade_Risk": 142,
+        "Late_Push": 610,
+        "Late_Resolution": 184,
+        "Fade_Risk": 144,
         "Early_Resolution": 57,
         "Insufficient_History": 4
       },
       "Compression Week": {
-        "Late_Push": 146,
+        "Late_Push": 148,
         "Fade_Risk": 79,
-        "Late_Resolution": 70,
+        "Late_Resolution": 71,
         "Early_Resolution": 31
       },
       "Volatile Week": {
-        "Late_Push": 129,
-        "Late_Resolution": 19,
-        "Early_Resolution": 7,
+        "Late_Push": 130,
+        "Late_Resolution": 20,
+        "Early_Resolution": 8,
         "Fade_Risk": 5
       },
       "Trend Week (Up)": {
@@ -5461,7 +5461,7 @@ const USDJPY_DATA = {
       },
       "Trend Week (Down)": {
         "Late_Push": 45,
-        "Late_Resolution": 14,
+        "Late_Resolution": 13,
         "Early_Resolution": 1
       },
       "Quiet Drift Week (Up)": {
@@ -5479,19 +5479,19 @@ const USDJPY_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Week": {
-        "Spread": 816,
-        "Adjacent": 141,
+        "Spread": 819,
+        "Adjacent": 142,
         "Same_Day": 34,
         "Insufficient_History": 4
       },
       "Compression Week": {
-        "Spread": 236,
-        "Adjacent": 69,
+        "Spread": 237,
+        "Adjacent": 71,
         "Same_Day": 21
       },
       "Volatile Week": {
-        "Spread": 143,
-        "Adjacent": 13,
+        "Spread": 145,
+        "Adjacent": 14,
         "Same_Day": 4
       },
       "Trend Week (Up)": {
@@ -5507,7 +5507,7 @@ const USDJPY_DATA = {
       },
       "Trend Week (Down)": {
         "Spread": 53,
-        "Adjacent": 6,
+        "Adjacent": 5,
         "Same_Day": 1
       },
       "Quiet Drift Week (Up)": {
@@ -5527,7 +5527,7 @@ const USDJPY_DATA = {
         "median": 133.0
       },
       "Normal Week": {
-        "mean": 226.4,
+        "mean": 226.3,
         "median": 215.3
       },
       "Quiet Drift Week (Down)": {
@@ -5539,8 +5539,8 @@ const USDJPY_DATA = {
         "median": 140.9
       },
       "Trend Week (Down)": {
-        "mean": 446.0,
-        "median": 425.5
+        "mean": 445.0,
+        "median": 420.0
       },
       "Trend Week (Up)": {
         "mean": 366.1,
@@ -5551,41 +5551,41 @@ const USDJPY_DATA = {
         "median": 396.0
       },
       "Volatile Week": {
-        "mean": 410.0,
-        "median": 348.4
+        "mean": 410.6,
+        "median": 349.0
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 1748,
+      "n_weeks": 1757,
       "same_day_n": 72,
-      "same_day_pct": 4.12,
+      "same_day_pct": 4.1,
       "pairs": {
         "Monday": {
           "Monday": {
             "n": 23,
-            "pct": 1.32
+            "pct": 1.31
           },
           "Tuesday": {
             "n": 40,
-            "pct": 2.29
+            "pct": 2.28
           },
           "Wednesday": {
-            "n": 90,
-            "pct": 5.15
+            "n": 92,
+            "pct": 5.24
           },
           "Thursday": {
-            "n": 124,
-            "pct": 7.09
+            "n": 125,
+            "pct": 7.11
           },
           "Friday": {
-            "n": 271,
-            "pct": 15.5
+            "n": 272,
+            "pct": 15.48
           }
         },
         "Tuesday": {
           "Monday": {
-            "n": 32,
-            "pct": 1.83
+            "n": 33,
+            "pct": 1.88
           },
           "Tuesday": {
             "n": 10,
@@ -5593,51 +5593,51 @@ const USDJPY_DATA = {
           },
           "Wednesday": {
             "n": 28,
-            "pct": 1.6
+            "pct": 1.59
           },
           "Thursday": {
             "n": 63,
-            "pct": 3.6
+            "pct": 3.59
           },
           "Friday": {
             "n": 141,
-            "pct": 8.07
+            "pct": 8.03
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 89,
-            "pct": 5.09
+            "pct": 5.07
           },
           "Tuesday": {
-            "n": 31,
-            "pct": 1.77
+            "n": 32,
+            "pct": 1.82
           },
           "Wednesday": {
             "n": 11,
             "pct": 0.63
           },
           "Thursday": {
-            "n": 28,
-            "pct": 1.6
+            "n": 29,
+            "pct": 1.65
           },
           "Friday": {
             "n": 84,
-            "pct": 4.81
+            "pct": 4.78
           }
         },
         "Thursday": {
           "Monday": {
             "n": 140,
-            "pct": 8.01
+            "pct": 7.97
           },
           "Tuesday": {
             "n": 55,
-            "pct": 3.15
+            "pct": 3.13
           },
           "Wednesday": {
             "n": 37,
-            "pct": 2.12
+            "pct": 2.11
           },
           "Thursday": {
             "n": 8,
@@ -5651,19 +5651,19 @@ const USDJPY_DATA = {
         "Friday": {
           "Monday": {
             "n": 190,
-            "pct": 10.87
+            "pct": 10.81
           },
           "Tuesday": {
-            "n": 95,
-            "pct": 5.43
+            "n": 96,
+            "pct": 5.46
           },
           "Wednesday": {
-            "n": 88,
-            "pct": 5.03
+            "n": 89,
+            "pct": 5.07
           },
           "Thursday": {
             "n": 30,
-            "pct": 1.72
+            "pct": 1.71
           },
           "Friday": {
             "n": 20,
@@ -5677,52 +5677,52 @@ const USDJPY_DATA = {
     "asset": "USDJPY"
   },
   "monthly": {
-    "n_labeled_months": 394,
+    "n_labeled_months": 396,
     "n_short_months": 2,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 230,
-        "pct": 58.38
+        "n": 231,
+        "pct": 58.33
       },
       "Compression Month": {
-        "n": 68,
-        "pct": 17.26
+        "n": 69,
+        "pct": 17.42
       },
       "Volatile Month": {
         "n": 29,
-        "pct": 7.36
+        "pct": 7.32
       },
       "Trend Month (Up)": {
         "n": 22,
-        "pct": 5.58
+        "pct": 5.56
       },
       "Volatile Reversal Month": {
         "n": 20,
-        "pct": 5.08
+        "pct": 5.05
       },
       "Trend Month (Down)": {
         "n": 12,
-        "pct": 3.05
+        "pct": 3.03
       },
       "Quiet Drift Month (Up)": {
         "n": 8,
-        "pct": 2.03
+        "pct": 2.02
       },
       "Quiet Drift Month (Down)": {
         "n": 5,
-        "pct": 1.27
+        "pct": 1.26
       }
     },
     "extreme_timing_by_profile": {
       "Normal Month": {
         "Late_Push": 159,
+        "Early_Resolution": 26,
         "Fade_Risk": 25,
-        "Early_Resolution": 25,
         "Late_Resolution": 21
       },
       "Compression Month": {
-        "Late_Push": 30,
+        "Late_Push": 31,
         "Fade_Risk": 21,
         "Early_Resolution": 10,
         "Late_Resolution": 7
@@ -5761,11 +5761,11 @@ const USDJPY_DATA = {
     "extreme_spread_by_profile": {
       "Normal Month": {
         "Spread": 187,
-        "Adjacent": 32,
+        "Adjacent": 33,
         "Same_Week": 11
       },
       "Compression Month": {
-        "Spread": 51,
+        "Spread": 52,
         "Adjacent": 13,
         "Same_Week": 4
       },
@@ -5797,12 +5797,12 @@ const USDJPY_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Month": {
-        "mean": 325.4,
+        "mean": 324.9,
         "median": 321.0
       },
       "Normal Month": {
-        "mean": 472.0,
-        "median": 455.0
+        "mean": 473.2,
+        "median": 458.0
       },
       "Quiet Drift Month (Down)": {
         "mean": 253.1,
@@ -5830,66 +5830,66 @@ const USDJPY_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 403,
+      "n_months": 405,
       "same_week_n": 20,
-      "same_week_pct": 4.96,
+      "same_week_pct": 4.94,
       "pairs": {
         "1": {
           "1": {
             "n": 9,
-            "pct": 2.23
+            "pct": 2.22
           },
           "2": {
             "n": 15,
-            "pct": 3.72
+            "pct": 3.7
           },
           "3": {
             "n": 31,
-            "pct": 7.69
+            "pct": 7.65
           },
           "4": {
             "n": 46,
-            "pct": 11.41
+            "pct": 11.36
           },
           "5": {
             "n": 58,
-            "pct": 14.39
+            "pct": 14.32
           }
         },
         "2": {
           "1": {
-            "n": 19,
-            "pct": 4.71
+            "n": 20,
+            "pct": 4.94
           },
           "2": {
             "n": 2,
-            "pct": 0.5
+            "pct": 0.49
           },
           "3": {
             "n": 5,
-            "pct": 1.24
+            "pct": 1.23
           },
           "4": {
             "n": 14,
-            "pct": 3.47
+            "pct": 3.46
           },
           "5": {
             "n": 10,
-            "pct": 2.48
+            "pct": 2.47
           }
         },
         "3": {
           "1": {
             "n": 35,
-            "pct": 8.68
+            "pct": 8.64
           },
           "2": {
             "n": 8,
-            "pct": 1.99
+            "pct": 1.98
           },
           "3": {
             "n": 7,
-            "pct": 1.74
+            "pct": 1.73
           },
           "4": {
             "n": 4,
@@ -5897,21 +5897,21 @@ const USDJPY_DATA = {
           },
           "5": {
             "n": 9,
-            "pct": 2.23
+            "pct": 2.22
           }
         },
         "4": {
           "1": {
             "n": 35,
-            "pct": 8.68
+            "pct": 8.64
           },
           "2": {
-            "n": 27,
-            "pct": 6.7
+            "n": 28,
+            "pct": 6.91
           },
           "3": {
             "n": 2,
-            "pct": 0.5
+            "pct": 0.49
           },
           "4": {
             "n": 0,
@@ -5925,23 +5925,23 @@ const USDJPY_DATA = {
         "5": {
           "1": {
             "n": 34,
-            "pct": 8.44
+            "pct": 8.4
           },
           "2": {
             "n": 21,
-            "pct": 5.21
+            "pct": 5.19
           },
           "3": {
             "n": 5,
-            "pct": 1.24
+            "pct": 1.23
           },
           "4": {
             "n": 5,
-            "pct": 1.24
+            "pct": 1.23
           },
           "5": {
             "n": 2,
-            "pct": 0.5
+            "pct": 0.49
           }
         }
       }
@@ -5951,36 +5951,36 @@ const USDJPY_DATA = {
     "asset": "USDJPY"
   },
   "yearly": {
-    "n_labeled_years": 26,
-    "n_short_years": 1,
+    "n_labeled_years": 27,
+    "n_short_years": 0,
     "n_insufficient_history_years": 7,
     "profile_distribution": {
       "Normal Year": {
-        "n": 15,
-        "pct": 57.69
+        "n": 16,
+        "pct": 59.26
       },
       "Compression Year": {
         "n": 7,
-        "pct": 26.92
+        "pct": 25.93
       },
       "Volatile Reversal Year": {
         "n": 2,
-        "pct": 7.69
+        "pct": 7.41
       },
       "Volatile Year": {
         "n": 1,
-        "pct": 3.85
+        "pct": 3.7
       },
       "Quiet Drift Year (Up)": {
         "n": 1,
-        "pct": 3.85
+        "pct": 3.7
       }
     },
     "extreme_timing_by_profile": {
       "Normal Year": {
         "Late_Push": 10,
         "Early_Resolution": 3,
-        "Fade_Risk": 1,
+        "Fade_Risk": 2,
         "Late_Resolution": 1
       },
       "Compression Year": {
@@ -6001,7 +6001,7 @@ const USDJPY_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Year": {
-        "Spread": 14,
+        "Spread": 15,
         "Adjacent": 1
       },
       "Compression Year": {
@@ -6023,8 +6023,8 @@ const USDJPY_DATA = {
         "median": 1000.3
       },
       "Normal Year": {
-        "mean": 1754.1,
-        "median": 1854.0
+        "mean": 1718.8,
+        "median": 1773.0
       },
       "Quiet Drift Year (Up)": {
         "mean": 1066.2,
@@ -6040,7 +6040,7 @@ const USDJPY_DATA = {
       }
     },
     "month_pair_distribution": {
-      "n_years": 33,
+      "n_years": 34,
       "same_month_n": 0,
       "same_month_pct": 0.0,
       "pairs": {
@@ -6067,11 +6067,11 @@ const USDJPY_DATA = {
           },
           "6": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "7": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 2.94
           },
           "8": {
             "n": 0,
@@ -6083,15 +6083,15 @@ const USDJPY_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "11": {
             "n": 2,
-            "pct": 6.06
+            "pct": 5.88
           },
           "12": {
             "n": 5,
-            "pct": 15.15
+            "pct": 14.71
           }
         },
         "2": {
@@ -6141,7 +6141,7 @@ const USDJPY_DATA = {
           },
           "12": {
             "n": 2,
-            "pct": 6.06
+            "pct": 5.88
           }
         },
         "3": {
@@ -6151,7 +6151,7 @@ const USDJPY_DATA = {
           },
           "2": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "3": {
             "n": 0,
@@ -6183,7 +6183,7 @@ const USDJPY_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "11": {
             "n": 0,
@@ -6197,7 +6197,7 @@ const USDJPY_DATA = {
         "4": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6229,7 +6229,7 @@ const USDJPY_DATA = {
           },
           "9": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "10": {
             "n": 0,
@@ -6283,7 +6283,7 @@ const USDJPY_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "11": {
             "n": 0,
@@ -6297,7 +6297,7 @@ const USDJPY_DATA = {
         "6": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6341,13 +6341,13 @@ const USDJPY_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           }
         },
         "7": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6397,7 +6397,7 @@ const USDJPY_DATA = {
         "8": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6409,7 +6409,7 @@ const USDJPY_DATA = {
           },
           "4": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "5": {
             "n": 0,
@@ -6447,7 +6447,7 @@ const USDJPY_DATA = {
         "9": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6471,7 +6471,7 @@ const USDJPY_DATA = {
           },
           "7": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "8": {
             "n": 0,
@@ -6509,7 +6509,7 @@ const USDJPY_DATA = {
           },
           "4": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "5": {
             "n": 0,
@@ -6525,7 +6525,7 @@ const USDJPY_DATA = {
           },
           "8": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "9": {
             "n": 0,
@@ -6547,7 +6547,7 @@ const USDJPY_DATA = {
         "11": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6559,15 +6559,15 @@ const USDJPY_DATA = {
           },
           "4": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "5": {
             "n": 2,
-            "pct": 6.06
+            "pct": 5.88
           },
           "6": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "7": {
             "n": 0,
@@ -6597,7 +6597,7 @@ const USDJPY_DATA = {
         "12": {
           "1": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "2": {
             "n": 0,
@@ -6605,7 +6605,7 @@ const USDJPY_DATA = {
           },
           "3": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "4": {
             "n": 0,
@@ -6613,7 +6613,7 @@ const USDJPY_DATA = {
           },
           "5": {
             "n": 1,
-            "pct": 3.03
+            "pct": 2.94
           },
           "6": {
             "n": 0,
@@ -6653,124 +6653,124 @@ const USDJPY_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 22.63,
-        "mean_activity_pips": 81.95,
-        "n_days": 7031
+        "mean_range_pips": 22.67,
+        "mean_activity_pips": 82.1,
+        "n_days": 7076
       },
       "1": {
-        "mean_range_pips": 19.41,
-        "mean_activity_pips": 73.15,
-        "n_days": 6935
+        "mean_range_pips": 19.45,
+        "mean_activity_pips": 73.3,
+        "n_days": 6980
       },
       "2": {
-        "mean_range_pips": 16.41,
-        "mean_activity_pips": 63.03,
-        "n_days": 6711
+        "mean_range_pips": 16.46,
+        "mean_activity_pips": 63.16,
+        "n_days": 6756
       },
       "3": {
-        "mean_range_pips": 16.12,
-        "mean_activity_pips": 61.56,
-        "n_days": 6920
+        "mean_range_pips": 16.13,
+        "mean_activity_pips": 61.61,
+        "n_days": 6965
       },
       "4": {
-        "mean_range_pips": 16.58,
-        "mean_activity_pips": 64.02,
-        "n_days": 7041
+        "mean_range_pips": 16.59,
+        "mean_activity_pips": 64.04,
+        "n_days": 7086
       },
       "5": {
-        "mean_range_pips": 19.07,
-        "mean_activity_pips": 74.09,
-        "n_days": 7111
+        "mean_range_pips": 19.08,
+        "mean_activity_pips": 74.07,
+        "n_days": 7156
       },
       "6": {
-        "mean_range_pips": 22.14,
-        "mean_activity_pips": 85.0,
-        "n_days": 7130
+        "mean_range_pips": 22.16,
+        "mean_activity_pips": 85.08,
+        "n_days": 7175
       },
       "7": {
-        "mean_range_pips": 23.24,
-        "mean_activity_pips": 89.03,
-        "n_days": 7132
+        "mean_range_pips": 23.25,
+        "mean_activity_pips": 89.07,
+        "n_days": 7177
       },
       "8": {
-        "mean_range_pips": 22.06,
-        "mean_activity_pips": 85.34,
-        "n_days": 7127
+        "mean_range_pips": 22.1,
+        "mean_activity_pips": 85.44,
+        "n_days": 7172
       },
       "9": {
-        "mean_range_pips": 20.0,
+        "mean_range_pips": 20.01,
         "mean_activity_pips": 79.31,
-        "n_days": 7128
+        "n_days": 7173
       },
       "10": {
-        "mean_range_pips": 19.09,
-        "mean_activity_pips": 76.44,
-        "n_days": 7130
+        "mean_range_pips": 19.08,
+        "mean_activity_pips": 76.4,
+        "n_days": 7175
       },
       "11": {
-        "mean_range_pips": 22.69,
-        "mean_activity_pips": 85.44,
-        "n_days": 7131
+        "mean_range_pips": 22.68,
+        "mean_activity_pips": 85.38,
+        "n_days": 7176
       },
       "12": {
-        "mean_range_pips": 26.91,
-        "mean_activity_pips": 98.47,
-        "n_days": 7135
+        "mean_range_pips": 26.94,
+        "mean_activity_pips": 98.5,
+        "n_days": 7180
       },
       "13": {
-        "mean_range_pips": 28.21,
-        "mean_activity_pips": 105.1,
-        "n_days": 7134
+        "mean_range_pips": 28.19,
+        "mean_activity_pips": 105.08,
+        "n_days": 7179
       },
       "14": {
-        "mean_range_pips": 27.11,
+        "mean_range_pips": 27.12,
         "mean_activity_pips": 102.75,
-        "n_days": 7136
+        "n_days": 7181
       },
       "15": {
-        "mean_range_pips": 23.07,
-        "mean_activity_pips": 88.6,
-        "n_days": 7078
+        "mean_range_pips": 23.08,
+        "mean_activity_pips": 88.62,
+        "n_days": 7123
       },
       "16": {
         "mean_range_pips": 19.02,
-        "mean_activity_pips": 73.8,
-        "n_days": 6944
+        "mean_activity_pips": 73.78,
+        "n_days": 6989
       },
       "17": {
-        "mean_range_pips": 17.98,
-        "mean_activity_pips": 68.62,
-        "n_days": 6819
+        "mean_range_pips": 17.96,
+        "mean_activity_pips": 68.57,
+        "n_days": 6864
       },
       "18": {
-        "mean_range_pips": 16.79,
-        "mean_activity_pips": 64.41,
-        "n_days": 6614
+        "mean_range_pips": 16.81,
+        "mean_activity_pips": 64.43,
+        "n_days": 6659
       },
       "19": {
         "mean_range_pips": 14.95,
-        "mean_activity_pips": 58.1,
-        "n_days": 6549
+        "mean_activity_pips": 58.07,
+        "n_days": 6594
       },
       "20": {
-        "mean_range_pips": 13.58,
-        "mean_activity_pips": 51.94,
-        "n_days": 5739
+        "mean_range_pips": 13.57,
+        "mean_activity_pips": 51.86,
+        "n_days": 5784
       },
       "21": {
-        "mean_range_pips": 13.5,
-        "mean_activity_pips": 48.2,
-        "n_days": 5811
+        "mean_range_pips": 13.47,
+        "mean_activity_pips": 48.07,
+        "n_days": 5855
       },
       "22": {
         "mean_range_pips": 16.27,
-        "mean_activity_pips": 57.17,
-        "n_days": 6760
+        "mean_activity_pips": 57.09,
+        "n_days": 6805
       },
       "23": {
-        "mean_range_pips": 20.5,
-        "mean_activity_pips": 72.78,
-        "n_days": 7069
+        "mean_range_pips": 20.49,
+        "mean_activity_pips": 72.73,
+        "n_days": 7114
       }
     },
     "session_windows": {
@@ -6785,15 +6785,15 @@ const USDJPY_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 19.11,
-        "mean_activity_pips": 71.95
+        "mean_range_pips": 19.13,
+        "mean_activity_pips": 72.01
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 23.24,
-        "mean_activity_pips": 89.03
+        "mean_range_pips": 23.25,
+        "mean_activity_pips": 89.07
       },
       "london_only": {
         "hours": [
@@ -6802,7 +6802,7 @@ const USDJPY_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 20.96,
+        "mean_range_pips": 20.97,
         "mean_activity_pips": 81.63
       },
       "london_ny_overlap": {
@@ -6813,7 +6813,7 @@ const USDJPY_DATA = {
           15
         ],
         "mean_range_pips": 26.33,
-        "mean_activity_pips": 98.73
+        "mean_activity_pips": 98.74
       },
       "ny_only": {
         "hours": [
@@ -6824,52 +6824,52 @@ const USDJPY_DATA = {
           20
         ],
         "mean_range_pips": 16.46,
-        "mean_activity_pips": 63.37
+        "mean_activity_pips": 63.34
       }
     },
     "asset": "USDJPY"
   },
   "range_forecast": {
     "asset": "USDJPY",
-    "as_of": "2026-09-03",
+    "as_of": "2026-11-05",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 109.1,
+    "adr20": 84.6,
     "forecast": {
       "h1": {
-        "target_date": "2026-09-04",
-        "mean": 175.3,
-        "q10": 87.1,
-        "q90": 280.0,
-        "q10_raw": 85.0,
-        "q90_raw": 265.3
+        "target_date": "2026-11-06",
+        "mean": 97.3,
+        "q10": 51.5,
+        "q90": 155.8,
+        "q10_raw": 50.2,
+        "q90_raw": 148.5
       },
       "h5": {
-        "mean": 135.7
+        "mean": 98.0
       },
       "h20": {
-        "mean": 110.5
+        "mean": 98.5
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.935,
-        "h5": 0.905,
-        "h20": 0.885
+        "h1": 0.936,
+        "h5": 0.921,
+        "h20": 0.91
       },
       "mae": {
         "h1": {
-          "timesfm": 42.7,
-          "adr20": 45.7
+          "timesfm": 41.1,
+          "adr20": 43.9
         },
         "h5": {
-          "timesfm": 27.3,
-          "adr20": 30.2
+          "timesfm": 27.0,
+          "adr20": 29.3
         },
         "h20": {
-          "timesfm": 20.0,
+          "timesfm": 20.5,
           "adr20": 22.6
         }
       },
@@ -6878,329 +6878,14 @@ const USDJPY_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-09-27",
-      "to": "2026-09-02",
+      "from": "2024-11-29",
+      "to": "2026-11-04",
       "band_n": 500,
-      "band_coverage": 0.804,
-      "above_q90": 0.098,
-      "below_q10": 0.098
+      "band_coverage": 0.81,
+      "above_q90": 0.094,
+      "below_q10": 0.096
     },
     "recent": [
-      {
-        "date": "2026-06-12",
-        "actual": 52.9,
-        "mean": 75.7,
-        "q10": 34.8,
-        "q90": 126.3
-      },
-      {
-        "date": "2026-06-15",
-        "actual": 67.4,
-        "mean": 67.8,
-        "q10": 33.1,
-        "q90": 112.6
-      },
-      {
-        "date": "2026-06-16",
-        "actual": 43.3,
-        "mean": 72.0,
-        "q10": 34.6,
-        "q90": 118.2
-      },
-      {
-        "date": "2026-06-17",
-        "actual": 67.9,
-        "mean": 64.6,
-        "q10": 30.8,
-        "q90": 106.4
-      },
-      {
-        "date": "2026-06-18",
-        "actual": 135.5,
-        "mean": 66.3,
-        "q10": 31.3,
-        "q90": 109.9
-      },
-      {
-        "date": "2026-06-19",
-        "actual": 47.1,
-        "mean": 80.7,
-        "q10": 37.6,
-        "q90": 132.7
-      },
-      {
-        "date": "2026-06-22",
-        "actual": 84.8,
-        "mean": 68.3,
-        "q10": 33.9,
-        "q90": 111.5
-      },
-      {
-        "date": "2026-06-23",
-        "actual": 47.5,
-        "mean": 78.6,
-        "q10": 40.0,
-        "q90": 126.3
-      },
-      {
-        "date": "2026-06-24",
-        "actual": 39.5,
-        "mean": 69.5,
-        "q10": 31.8,
-        "q90": 115.5
-      },
-      {
-        "date": "2026-06-25",
-        "actual": 39.4,
-        "mean": 67.9,
-        "q10": 31.7,
-        "q90": 111.4
-      },
-      {
-        "date": "2026-06-26",
-        "actual": 31.6,
-        "mean": 64.6,
-        "q10": 30.6,
-        "q90": 105.5
-      },
-      {
-        "date": "2026-06-29",
-        "actual": 29.3,
-        "mean": 56.7,
-        "q10": 25.6,
-        "q90": 96.0
-      },
-      {
-        "date": "2026-06-30",
-        "actual": 82.2,
-        "mean": 50.5,
-        "q10": 21.3,
-        "q90": 86.2
-      },
-      {
-        "date": "2026-07-01",
-        "actual": 54.6,
-        "mean": 62.2,
-        "q10": 29.7,
-        "q90": 100.5
-      },
-      {
-        "date": "2026-07-02",
-        "actual": 196.4,
-        "mean": 63.6,
-        "q10": 29.3,
-        "q90": 103.8
-      },
-      {
-        "date": "2026-07-03",
-        "actual": 103.8,
-        "mean": 85.1,
-        "q10": 35.0,
-        "q90": 140.6
-      },
-      {
-        "date": "2026-07-06",
-        "actual": 117.8,
-        "mean": 85.7,
-        "q10": 37.0,
-        "q90": 142.2
-      },
-      {
-        "date": "2026-07-07",
-        "actual": 51.5,
-        "mean": 94.9,
-        "q10": 42.8,
-        "q90": 156.2
-      },
-      {
-        "date": "2026-07-08",
-        "actual": 73.8,
-        "mean": 71.5,
-        "q10": 32.1,
-        "q90": 121.0
-      },
-      {
-        "date": "2026-07-09",
-        "actual": 36.3,
-        "mean": 73.8,
-        "q10": 34.6,
-        "q90": 123.6
-      },
-      {
-        "date": "2026-07-10",
-        "actual": 114.3,
-        "mean": 63.9,
-        "q10": 28.6,
-        "q90": 108.9
-      },
-      {
-        "date": "2026-07-13",
-        "actual": 85.7,
-        "mean": 80.2,
-        "q10": 37.8,
-        "q90": 132.1
-      },
-      {
-        "date": "2026-07-14",
-        "actual": 86.0,
-        "mean": 79.8,
-        "q10": 35.8,
-        "q90": 134.1
-      },
-      {
-        "date": "2026-07-15",
-        "actual": 52.5,
-        "mean": 83.2,
-        "q10": 39.7,
-        "q90": 137.9
-      },
-      {
-        "date": "2026-07-16",
-        "actual": 56.4,
-        "mean": 73.8,
-        "q10": 34.0,
-        "q90": 124.4
-      },
-      {
-        "date": "2026-07-17",
-        "actual": 39.2,
-        "mean": 67.6,
-        "q10": 31.7,
-        "q90": 114.2
-      },
-      {
-        "date": "2026-07-20",
-        "actual": 39.4,
-        "mean": 63.6,
-        "q10": 29.2,
-        "q90": 108.9
-      },
-      {
-        "date": "2026-07-21",
-        "actual": 82.3,
-        "mean": 63.4,
-        "q10": 29.2,
-        "q90": 106.7
-      },
-      {
-        "date": "2026-07-22",
-        "actual": 56.6,
-        "mean": 73.2,
-        "q10": 35.1,
-        "q90": 119.7
-      },
-      {
-        "date": "2026-07-23",
-        "actual": 99.3,
-        "mean": 68.5,
-        "q10": 32.7,
-        "q90": 113.2
-      },
-      {
-        "date": "2026-07-24",
-        "actual": 29.4,
-        "mean": 80.5,
-        "q10": 37.9,
-        "q90": 131.7
-      },
-      {
-        "date": "2026-07-27",
-        "actual": 46.8,
-        "mean": 60.8,
-        "q10": 25.7,
-        "q90": 104.3
-      },
-      {
-        "date": "2026-07-28",
-        "actual": 36.0,
-        "mean": 60.2,
-        "q10": 26.2,
-        "q90": 102.1
-      },
-      {
-        "date": "2026-07-29",
-        "actual": 67.7,
-        "mean": 57.4,
-        "q10": 24.8,
-        "q90": 98.2
-      },
-      {
-        "date": "2026-07-30",
-        "actual": 576.6,
-        "mean": 65.4,
-        "q10": 30.2,
-        "q90": 107.4
-      },
-      {
-        "date": "2026-07-31",
-        "actual": 337.5,
-        "mean": 128.2,
-        "q10": 57.8,
-        "q90": 202.4
-      },
-      {
-        "date": "2026-08-03",
-        "actual": 265.7,
-        "mean": 175.3,
-        "q10": 84.9,
-        "q90": 274.2
-      },
-      {
-        "date": "2026-08-04",
-        "actual": 83.7,
-        "mean": 199.7,
-        "q10": 103.7,
-        "q90": 308.4
-      },
-      {
-        "date": "2026-08-05",
-        "actual": 56.8,
-        "mean": 94.8,
-        "q10": 41.7,
-        "q90": 160.4
-      },
-      {
-        "date": "2026-08-06",
-        "actual": 99.8,
-        "mean": 73.0,
-        "q10": 33.0,
-        "q90": 126.8
-      },
-      {
-        "date": "2026-08-07",
-        "actual": 190.2,
-        "mean": 88.5,
-        "q10": 37.9,
-        "q90": 151.4
-      },
-      {
-        "date": "2026-08-10",
-        "actual": 179.0,
-        "mean": 132.7,
-        "q10": 58.7,
-        "q90": 217.1
-      },
-      {
-        "date": "2026-08-11",
-        "actual": 46.6,
-        "mean": 138.0,
-        "q10": 64.0,
-        "q90": 225.3
-      },
-      {
-        "date": "2026-08-12",
-        "actual": 96.6,
-        "mean": 81.6,
-        "q10": 34.3,
-        "q90": 144.5
-      },
-      {
-        "date": "2026-08-13",
-        "actual": 54.0,
-        "mean": 91.3,
-        "q10": 40.1,
-        "q90": 157.6
-      },
       {
         "date": "2026-08-14",
         "actual": 91.4,
@@ -7308,10 +6993,325 @@ const USDJPY_DATA = {
       },
       {
         "date": "2026-09-04",
-        "actual": null,
+        "actual": 146.2,
         "mean": 175.3,
         "q10": 87.1,
         "q90": 280.0
+      },
+      {
+        "date": "2026-09-07",
+        "actual": 220.8,
+        "mean": 123.9,
+        "q10": 58.2,
+        "q90": 203.8
+      },
+      {
+        "date": "2026-09-08",
+        "actual": 153.0,
+        "mean": 169.9,
+        "q10": 90.0,
+        "q90": 271.2
+      },
+      {
+        "date": "2026-09-09",
+        "actual": 101.6,
+        "mean": 150.9,
+        "q10": 82.4,
+        "q90": 239.9
+      },
+      {
+        "date": "2026-09-10",
+        "actual": 138.6,
+        "mean": 113.4,
+        "q10": 57.7,
+        "q90": 187.7
+      },
+      {
+        "date": "2026-09-11",
+        "actual": 137.7,
+        "mean": 130.1,
+        "q10": 68.1,
+        "q90": 211.2
+      },
+      {
+        "date": "2026-09-14",
+        "actual": 165.9,
+        "mean": 124.3,
+        "q10": 67.5,
+        "q90": 202.7
+      },
+      {
+        "date": "2026-09-15",
+        "actual": 103.0,
+        "mean": 131.9,
+        "q10": 71.9,
+        "q90": 212.7
+      },
+      {
+        "date": "2026-09-16",
+        "actual": 159.4,
+        "mean": 112.9,
+        "q10": 59.9,
+        "q90": 185.2
+      },
+      {
+        "date": "2026-09-17",
+        "actual": 98.7,
+        "mean": 134.9,
+        "q10": 76.2,
+        "q90": 213.0
+      },
+      {
+        "date": "2026-09-18",
+        "actual": 218.2,
+        "mean": 113.4,
+        "q10": 60.3,
+        "q90": 186.5
+      },
+      {
+        "date": "2026-09-21",
+        "actual": 95.1,
+        "mean": 150.5,
+        "q10": 81.3,
+        "q90": 239.9
+      },
+      {
+        "date": "2026-09-22",
+        "actual": 94.9,
+        "mean": 123.3,
+        "q10": 66.7,
+        "q90": 198.6
+      },
+      {
+        "date": "2026-09-23",
+        "actual": 111.9,
+        "mean": 113.1,
+        "q10": 62.6,
+        "q90": 182.0
+      },
+      {
+        "date": "2026-09-24",
+        "actual": 123.9,
+        "mean": 112.7,
+        "q10": 62.1,
+        "q90": 181.4
+      },
+      {
+        "date": "2026-09-25",
+        "actual": 195.9,
+        "mean": 121.0,
+        "q10": 67.7,
+        "q90": 191.7
+      },
+      {
+        "date": "2026-09-28",
+        "actual": 134.3,
+        "mean": 145.4,
+        "q10": 82.2,
+        "q90": 228.8
+      },
+      {
+        "date": "2026-09-29",
+        "actual": 73.1,
+        "mean": 136.8,
+        "q10": 78.0,
+        "q90": 215.8
+      },
+      {
+        "date": "2026-09-30",
+        "actual": 116.4,
+        "mean": 107.9,
+        "q10": 53.0,
+        "q90": 179.5
+      },
+      {
+        "date": "2026-10-01",
+        "actual": 122.6,
+        "mean": 121.5,
+        "q10": 63.8,
+        "q90": 197.5
+      },
+      {
+        "date": "2026-10-02",
+        "actual": 127.1,
+        "mean": 123.3,
+        "q10": 67.2,
+        "q90": 198.6
+      },
+      {
+        "date": "2026-10-05",
+        "actual": 85.7,
+        "mean": 123.9,
+        "q10": 67.9,
+        "q90": 199.6
+      },
+      {
+        "date": "2026-10-06",
+        "actual": 47.5,
+        "mean": 114.7,
+        "q10": 61.5,
+        "q90": 186.1
+      },
+      {
+        "date": "2026-10-07",
+        "actual": 65.7,
+        "mean": 98.3,
+        "q10": 45.7,
+        "q90": 166.8
+      },
+      {
+        "date": "2026-10-08",
+        "actual": 84.9,
+        "mean": 95.8,
+        "q10": 46.5,
+        "q90": 162.2
+      },
+      {
+        "date": "2026-10-09",
+        "actual": 67.2,
+        "mean": 95.9,
+        "q10": 47.9,
+        "q90": 162.4
+      },
+      {
+        "date": "2026-10-12",
+        "actual": 67.4,
+        "mean": 95.3,
+        "q10": 49.0,
+        "q90": 158.8
+      },
+      {
+        "date": "2026-10-13",
+        "actual": 80.8,
+        "mean": 90.5,
+        "q10": 47.5,
+        "q90": 150.2
+      },
+      {
+        "date": "2026-10-14",
+        "actual": 90.2,
+        "mean": 89.6,
+        "q10": 45.8,
+        "q90": 149.4
+      },
+      {
+        "date": "2026-10-15",
+        "actual": 76.3,
+        "mean": 95.7,
+        "q10": 50.1,
+        "q90": 157.6
+      },
+      {
+        "date": "2026-10-16",
+        "actual": 64.4,
+        "mean": 94.0,
+        "q10": 50.9,
+        "q90": 154.0
+      },
+      {
+        "date": "2026-10-19",
+        "actual": 84.9,
+        "mean": 88.0,
+        "q10": 46.6,
+        "q90": 145.7
+      },
+      {
+        "date": "2026-10-20",
+        "actual": 77.4,
+        "mean": 87.0,
+        "q10": 47.0,
+        "q90": 143.2
+      },
+      {
+        "date": "2026-10-21",
+        "actual": 55.1,
+        "mean": 92.2,
+        "q10": 52.6,
+        "q90": 147.2
+      },
+      {
+        "date": "2026-10-22",
+        "actual": 156.4,
+        "mean": 79.6,
+        "q10": 41.9,
+        "q90": 132.7
+      },
+      {
+        "date": "2026-10-23",
+        "actual": 108.1,
+        "mean": 106.9,
+        "q10": 57.6,
+        "q90": 171.2
+      },
+      {
+        "date": "2026-10-26",
+        "actual": 99.3,
+        "mean": 99.5,
+        "q10": 54.7,
+        "q90": 160.9
+      },
+      {
+        "date": "2026-10-27",
+        "actual": 57.3,
+        "mean": 103.9,
+        "q10": 57.7,
+        "q90": 166.0
+      },
+      {
+        "date": "2026-10-28",
+        "actual": 69.2,
+        "mean": 87.8,
+        "q10": 46.0,
+        "q90": 144.1
+      },
+      {
+        "date": "2026-10-29",
+        "actual": 52.1,
+        "mean": 86.7,
+        "q10": 46.2,
+        "q90": 141.0
+      },
+      {
+        "date": "2026-10-30",
+        "actual": 93.3,
+        "mean": 79.6,
+        "q10": 40.4,
+        "q90": 131.4
+      },
+      {
+        "date": "2026-11-02",
+        "actual": 60.8,
+        "mean": 90.2,
+        "q10": 50.2,
+        "q90": 143.3
+      },
+      {
+        "date": "2026-11-03",
+        "actual": 101.6,
+        "mean": 82.3,
+        "q10": 43.8,
+        "q90": 134.9
+      },
+      {
+        "date": "2026-11-04",
+        "actual": 133.7,
+        "mean": 90.4,
+        "q10": 48.8,
+        "q90": 144.3
+      },
+      {
+        "date": "2026-11-05",
+        "actual": 96.5,
+        "mean": 104.6,
+        "q10": 57.1,
+        "q90": 165.0
+      },
+      {
+        "date": "2026-11-06",
+        "actual": null,
+        "mean": 97.3,
+        "q10": 51.5,
+        "q90": 155.8
       }
     ]
   }
