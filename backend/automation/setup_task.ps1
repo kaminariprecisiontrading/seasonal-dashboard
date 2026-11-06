@@ -5,7 +5,7 @@
   Run from any PowerShell window (no admin needed — the task runs as you):
       powershell -ExecutionPolicy Bypass -File backend\automation\setup_task.ps1
   Options:
-      -Day Sunday -Time 14:00     when to run (local time; 14:00 Botswana = 12:00 UTC)
+      -Day Sunday -Time 19:00     when to run (local time; 19:00 Botswana = 17:00 UTC)
       -ShowWindow                 run with a visible console (python.exe) instead of hidden (pythonw.exe)
       -RunNow                     start the task once right after registering it
       -Remove                     unregister the task
@@ -18,7 +18,7 @@
 #>
 param(
   [string]$Day = "Sunday",
-  [string]$Time = "14:00",
+  [string]$Time = "19:00",
   [switch]$ShowWindow,
   [switch]$RunNow,
   [switch]$Remove

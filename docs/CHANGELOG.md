@@ -2,6 +2,17 @@
 
 ---
 
+## v1.29.3 — November 2026
+**The Sunday run moves to 19:00**
+
+### Changed
+
+- **Schedule.** `setup_task.ps1` now registers the weekly task for Sunday 19:00 Botswana (17:00 UTC) instead of
+  14:00 (12:00 UTC). The Monday 03:17 UTC snapshot and alert are unaffected. If the task is already registered, run
+  `setup_task.ps1` again to replace it, or `-Time HH:MM` for a one-off different time.
+
+---
+
 ## v1.29.2 — November 2026
 **The merge keeps each raw file's line endings**
 
