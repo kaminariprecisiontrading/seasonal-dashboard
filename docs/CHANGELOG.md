@@ -2,6 +2,26 @@
 
 ---
 
+## v1.29.2 — November 2026
+**The merge keeps each raw file's line endings**
+
+### Fixed
+
+- **Forex merges refused.** The first real run merged the 7 LF-ended files (XAUUSD, BRENT, WTI, US500, USTECH, US30,
+  BTCUSD) but refused the 7 forex pairs with `merged file is smaller than the original`. Those raw files were exported
+  on Windows and end every line with CRLF; `concat_raw_csv.py` read them as text and rewrote every line as LF, which
+  removed about 11 MB from a 600 MB file and added only about 4 MB of new bars. The size check stopped it, and no data
+  was lost. The script now copies the old file's rows byte for byte and gives the new rows the old file's line ending.
+  The check stays as a guard.
+
+### Tests
+
+`backend/pipeline/test_concat_raw_csv.py` covers CRLF and LF old files, a CRLF new file, and an old file with no final
+line ending: 14 checks, 3 of which fail on the old script. On the real EURUSD file (written to a scratch folder) the
+merged output was larger than the original, still CRLF, and began with the original's exact bytes.
+
+---
+
 ## v1.29.1 — November 2026
 **The MT5 download now waits for complete history**
 

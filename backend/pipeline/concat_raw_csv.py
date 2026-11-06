@@ -46,7 +46,7 @@ from collections import defaultdict
 
 
 def read_header(path):
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8", newline="") as f:     # newline="": keep the file's own line ending
         return f.readline()
 
 
@@ -96,11 +96,13 @@ def main():
 
     old_header = read_header(old_path)
     new_header = read_header(new_path)
-    if old_header != new_header:
+    if old_header.rstrip("\r\n") != new_header.rstrip("\r\n"):
         print("ERROR: header mismatch between old and new files -- refusing to concatenate.")
         print("  old:", repr(old_header))
         print("  new:", repr(new_header))
         sys.exit(1)
+    # The old file's line ending wins, so a CRLF file stays CRLF and its rows are copied byte for byte.
+    eol = "\r\n" if old_header.endswith("\r\n") else "\n"
 
     old_first_key = row_key(first_data_line(old_path))
     old_last_key = row_key(last_data_line(old_path))
@@ -128,7 +130,7 @@ def main():
                     continue
                 new_total += 1
                 key = row_key(line)
-                line_out = line if line.endswith("\n") else line + "\n"
+                line_out = line.rstrip("\r\n") + eol
 
                 if key < old_first_key:
                     before_f.write(line_out)
@@ -146,15 +148,15 @@ def main():
         old_count = 0
         with open(out_path, "w", encoding="utf-8", newline="") as out:
             out.write(old_header)
-            with open(before_path, "r", encoding="utf-8") as bf:
+            with open(before_path, "r", encoding="utf-8", newline="") as bf:
                 for line in bf:
                     out.write(line)
-            with open(old_path, "r", encoding="utf-8") as f:
+            with open(old_path, "r", encoding="utf-8", newline="") as f:
                 next(f)
                 for line in f:
-                    out.write(line if line.endswith("\n") else line + "\n")
+                    out.write(line if line.endswith("\n") else line + eol)
                     old_count += 1
-            with open(after_path, "r", encoding="utf-8") as af:
+            with open(after_path, "r", encoding="utf-8", newline="") as af:
                 for line in af:
                     out.write(line)
     finally:
