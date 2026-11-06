@@ -10,4 +10,4 @@ year_start,is_short_year,year_end,open,high,low,close,range_pips,high_month,low_
 2023-01-03,False,2023-12-29,85.33,96.6,70.15,76.84,2645.0,9.0,3.0,0.25293005671077506,0.49413988657844987,Down,37.5,37.5,Normal,Mixed,3.0,9.0,Fade_Risk,Spread,257.0,Normal Year
 2024-01-02,False,2024-12-31,77.47,92.39,69.05,74.99,2334.0,4.0,9.0,0.25449871465295615,0.4910025706940877,Down,33.33333333333333,33.33333333333333,Normal,Mixed,9.0,4.0,Late_Push,Spread,259.0,Normal Year
 2025-01-02,False,2025-12-31,75.3,82.76,58.66,61.16,2410.0,1.0,4.0,0.10373443983402486,0.7925311203319503,Down,40.0,80.0,Normal,Directional,4.0,1.0,Early_Resolution,Spread,258.0,Normal Year
-2026-01-02,True,,,,,,,,,,,,,,,,,,,,,Short_Year
+2026-01-02,False,2026-11-05,61.18,120.33,60.04,102.65,6029.0,4.0,1.0,0.7067507049261902,0.4135014098523804,Up,100.0,27.27272727272727,Expansion,Mixed,4.0,1.0,Early_Resolution,Spread,219.0,Volatile Year

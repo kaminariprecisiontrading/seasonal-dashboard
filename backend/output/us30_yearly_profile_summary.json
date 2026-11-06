@@ -1,15 +1,19 @@
 {
-  "n_labeled_years": 3,
-  "n_short_years": 2,
+  "n_labeled_years": 4,
+  "n_short_years": 1,
   "n_insufficient_history_years": 7,
   "profile_distribution": {
     "Normal Year": {
       "n": 2,
-      "pct": 66.67
+      "pct": 50.0
     },
     "Volatile Year": {
       "n": 1,
-      "pct": 33.33
+      "pct": 25.0
+    },
+    "Volatile Reversal Year": {
+      "n": 1,
+      "pct": 25.0
     }
   },
   "extreme_timing_by_profile": {
@@ -17,6 +21,9 @@
       "Late_Push": 2
     },
     "Volatile Year": {
+      "Late_Push": 1
+    },
+    "Volatile Reversal Year": {
       "Late_Push": 1
     }
   },
@@ -26,6 +33,9 @@
     },
     "Volatile Year": {
       "Spread": 1
+    },
+    "Volatile Reversal Year": {
+      "Spread": 1
     }
   },
   "avg_range_pips_by_profile": {
@@ -33,13 +43,17 @@
       "mean": 7159.0,
       "median": 7159.0
     },
+    "Volatile Reversal Year": {
+      "mean": 9930.0,
+      "median": 9930.0
+    },
     "Volatile Year": {
       "mean": 12380.0,
       "median": 12380.0
     }
   },
   "month_pair_distribution": {
-    "n_years": 10,
+    "n_years": 11,
     "same_month_n": 0,
     "same_month_pct": 0.0,
     "pairs": {
@@ -86,11 +100,11 @@
         },
         "11": {
           "n": 1,
-          "pct": 10.0
+          "pct": 9.09
         },
         "12": {
           "n": 3,
-          "pct": 30.0
+          "pct": 27.27
         }
       },
       "2": {
@@ -140,7 +154,7 @@
         },
         "12": {
           "n": 1,
-          "pct": 10.0
+          "pct": 9.09
         }
       },
       "3": {
@@ -173,8 +187,8 @@
           "pct": 0.0
         },
         "8": {
-          "n": 0,
-          "pct": 0.0
+          "n": 1,
+          "pct": 9.09
         },
         "9": {
           "n": 0,
@@ -190,7 +204,7 @@
         },
         "12": {
           "n": 2,
-          "pct": 20.0
+          "pct": 18.18
         }
       },
       "4": {
@@ -240,7 +254,7 @@
         },
         "12": {
           "n": 1,
-          "pct": 10.0
+          "pct": 9.09
         }
       },
       "5": {
@@ -496,7 +510,7 @@
       "10": {
         "1": {
           "n": 1,
-          "pct": 10.0
+          "pct": 9.09
         },
         "2": {
           "n": 0,
@@ -632,7 +646,7 @@
         },
         "10": {
           "n": 1,
-          "pct": 10.0
+          "pct": 9.09
         },
         "11": {
           "n": 0,

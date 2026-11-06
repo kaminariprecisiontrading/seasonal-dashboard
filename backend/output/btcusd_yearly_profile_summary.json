@@ -17,7 +17,7 @@
       "Fade_Risk": 1
     },
     "Normal Year": {
-      "Fade_Risk": 1
+      "Late_Push": 1
     }
   },
   "extreme_spread_by_profile": {

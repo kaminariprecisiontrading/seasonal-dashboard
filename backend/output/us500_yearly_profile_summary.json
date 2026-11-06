@@ -1,19 +1,23 @@
 {
-  "n_labeled_years": 8,
-  "n_short_years": 2,
+  "n_labeled_years": 9,
+  "n_short_years": 1,
   "n_insufficient_history_years": 7,
   "profile_distribution": {
     "Volatile Year": {
       "n": 5,
-      "pct": 62.5
+      "pct": 55.56
     },
     "Trend Year (Up)": {
       "n": 2,
-      "pct": 25.0
+      "pct": 22.22
     },
     "Normal Year": {
       "n": 1,
-      "pct": 12.5
+      "pct": 11.11
+    },
+    "Volatile Reversal Year": {
+      "n": 1,
+      "pct": 11.11
     }
   },
   "extreme_timing_by_profile": {
@@ -26,6 +30,9 @@
     },
     "Normal Year": {
       "Late_Push": 1
+    },
+    "Volatile Reversal Year": {
+      "Late_Push": 1
     }
   },
   "extreme_spread_by_profile": {
@@ -36,6 +43,9 @@
       "Spread": 2
     },
     "Normal Year": {
+      "Spread": 1
+    },
+    "Volatile Reversal Year": {
       "Spread": 1
     }
   },
@@ -48,13 +58,17 @@
       "mean": 11990.0,
       "median": 11990.0
     },
+    "Volatile Reversal Year": {
+      "mean": 15323.0,
+      "median": 15323.0
+    },
     "Volatile Year": {
       "mean": 13301.8,
       "median": 13275.0
     }
   },
   "month_pair_distribution": {
-    "n_years": 15,
+    "n_years": 16,
     "same_month_n": 0,
     "same_month_pct": 0.0,
     "pairs": {
@@ -93,7 +107,7 @@
         },
         "9": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         },
         "10": {
           "n": 0,
@@ -105,7 +119,7 @@
         },
         "12": {
           "n": 6,
-          "pct": 40.0
+          "pct": 37.5
         }
       },
       "2": {
@@ -155,7 +169,7 @@
         },
         "12": {
           "n": 2,
-          "pct": 13.33
+          "pct": 12.5
         }
       },
       "3": {
@@ -196,8 +210,8 @@
           "pct": 0.0
         },
         "10": {
-          "n": 0,
-          "pct": 0.0
+          "n": 1,
+          "pct": 6.25
         },
         "11": {
           "n": 0,
@@ -205,7 +219,7 @@
         },
         "12": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         }
       },
       "4": {
@@ -255,7 +269,7 @@
         },
         "12": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         }
       },
       "5": {
@@ -427,7 +441,7 @@
         },
         "5": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         },
         "6": {
           "n": 0,
@@ -511,7 +525,7 @@
       "10": {
         "1": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         },
         "2": {
           "n": 0,
@@ -527,7 +541,7 @@
         },
         "5": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         },
         "6": {
           "n": 0,
@@ -643,7 +657,7 @@
         },
         "9": {
           "n": 1,
-          "pct": 6.67
+          "pct": 6.25
         },
         "10": {
           "n": 0,

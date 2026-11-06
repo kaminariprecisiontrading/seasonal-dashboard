@@ -1,124 +1,124 @@
 {
   "hourly": {
     "0": {
-      "mean_range_pips": 96.11,
-      "mean_activity_pips": 341.96,
-      "n_days": 1064
+      "mean_range_pips": 97.12,
+      "mean_activity_pips": 346.65,
+      "n_days": 1109
     },
     "1": {
-      "mean_range_pips": 86.55,
-      "mean_activity_pips": 316.31,
-      "n_days": 1066
+      "mean_range_pips": 87.84,
+      "mean_activity_pips": 322.07,
+      "n_days": 1111
     },
     "2": {
-      "mean_range_pips": 68.61,
-      "mean_activity_pips": 250.48,
-      "n_days": 1066
+      "mean_range_pips": 69.49,
+      "mean_activity_pips": 254.32,
+      "n_days": 1111
     },
     "3": {
-      "mean_range_pips": 61.64,
-      "mean_activity_pips": 218.57,
-      "n_days": 1060
+      "mean_range_pips": 62.48,
+      "mean_activity_pips": 222.09,
+      "n_days": 1105
     },
     "4": {
-      "mean_range_pips": 55.42,
-      "mean_activity_pips": 194.93,
-      "n_days": 1053
+      "mean_range_pips": 56.56,
+      "mean_activity_pips": 199.17,
+      "n_days": 1098
     },
     "5": {
-      "mean_range_pips": 70.32,
-      "mean_activity_pips": 247.68,
-      "n_days": 1064
+      "mean_range_pips": 71.72,
+      "mean_activity_pips": 252.8,
+      "n_days": 1109
     },
     "6": {
-      "mean_range_pips": 82.42,
-      "mean_activity_pips": 298.56,
-      "n_days": 1065
+      "mean_range_pips": 84.01,
+      "mean_activity_pips": 303.17,
+      "n_days": 1110
     },
     "7": {
-      "mean_range_pips": 109.27,
-      "mean_activity_pips": 407.27,
-      "n_days": 1065
+      "mean_range_pips": 110.07,
+      "mean_activity_pips": 410.71,
+      "n_days": 1110
     },
     "8": {
-      "mean_range_pips": 114.71,
-      "mean_activity_pips": 437.2,
-      "n_days": 1063
+      "mean_range_pips": 115.53,
+      "mean_activity_pips": 440.35,
+      "n_days": 1108
     },
     "9": {
-      "mean_range_pips": 99.38,
-      "mean_activity_pips": 369.18,
-      "n_days": 1064
+      "mean_range_pips": 100.56,
+      "mean_activity_pips": 371.96,
+      "n_days": 1109
     },
     "10": {
-      "mean_range_pips": 96.16,
-      "mean_activity_pips": 356.96,
-      "n_days": 1065
+      "mean_range_pips": 97.61,
+      "mean_activity_pips": 360.16,
+      "n_days": 1110
     },
     "11": {
-      "mean_range_pips": 106.71,
-      "mean_activity_pips": 390.19,
-      "n_days": 1065
+      "mean_range_pips": 107.57,
+      "mean_activity_pips": 393.98,
+      "n_days": 1110
     },
     "12": {
-      "mean_range_pips": 148.1,
-      "mean_activity_pips": 501.56,
-      "n_days": 1065
+      "mean_range_pips": 149.95,
+      "mean_activity_pips": 507.4,
+      "n_days": 1110
     },
     "13": {
-      "mean_range_pips": 211.76,
-      "mean_activity_pips": 744.3,
-      "n_days": 1063
+      "mean_range_pips": 212.7,
+      "mean_activity_pips": 750.51,
+      "n_days": 1108
     },
     "14": {
-      "mean_range_pips": 254.54,
-      "mean_activity_pips": 933.28,
-      "n_days": 1064
+      "mean_range_pips": 256.46,
+      "mean_activity_pips": 937.53,
+      "n_days": 1109
     },
     "15": {
-      "mean_range_pips": 223.09,
-      "mean_activity_pips": 850.53,
-      "n_days": 1064
+      "mean_range_pips": 224.38,
+      "mean_activity_pips": 852.68,
+      "n_days": 1109
     },
     "16": {
-      "mean_range_pips": 186.9,
-      "mean_activity_pips": 714.03,
-      "n_days": 1063
+      "mean_range_pips": 188.12,
+      "mean_activity_pips": 717.08,
+      "n_days": 1108
     },
     "17": {
-      "mean_range_pips": 183.28,
-      "mean_activity_pips": 686.2,
-      "n_days": 1044
+      "mean_range_pips": 183.34,
+      "mean_activity_pips": 686.23,
+      "n_days": 1088
     },
     "18": {
-      "mean_range_pips": 184.81,
-      "mean_activity_pips": 697.9,
-      "n_days": 1026
+      "mean_range_pips": 184.89,
+      "mean_activity_pips": 698.93,
+      "n_days": 1070
     },
     "19": {
-      "mean_range_pips": 203.5,
-      "mean_activity_pips": 761.73,
-      "n_days": 1027
+      "mean_range_pips": 204.1,
+      "mean_activity_pips": 761.62,
+      "n_days": 1071
     },
     "20": {
-      "mean_range_pips": 147.04,
-      "mean_activity_pips": 508.55,
-      "n_days": 950
+      "mean_range_pips": 146.92,
+      "mean_activity_pips": 506.03,
+      "n_days": 994
     },
     "21": {
-      "mean_range_pips": 97.12,
-      "mean_activity_pips": 319.27,
-      "n_days": 313
+      "mean_range_pips": 98.55,
+      "mean_activity_pips": 325.81,
+      "n_days": 317
     },
     "22": {
-      "mean_range_pips": 105.94,
-      "mean_activity_pips": 352.56,
-      "n_days": 700
+      "mean_range_pips": 106.2,
+      "mean_activity_pips": 351.34,
+      "n_days": 736
     },
     "23": {
-      "mean_range_pips": 82.36,
-      "mean_activity_pips": 289.62,
-      "n_days": 1063
+      "mean_range_pips": 83.29,
+      "mean_activity_pips": 291.77,
+      "n_days": 1108
     }
   },
   "session_windows": {
@@ -133,15 +133,15 @@
         5,
         6
       ],
-      "mean_range_pips": 75.43,
-      "mean_activity_pips": 269.76
+      "mean_range_pips": 76.56,
+      "mean_activity_pips": 274.0
     },
     "asian_london_overlap": {
       "hours": [
         7
       ],
-      "mean_range_pips": 109.27,
-      "mean_activity_pips": 407.27
+      "mean_range_pips": 110.07,
+      "mean_activity_pips": 410.71
     },
     "london_only": {
       "hours": [
@@ -150,8 +150,8 @@
         10,
         11
       ],
-      "mean_range_pips": 104.24,
-      "mean_activity_pips": 388.38
+      "mean_range_pips": 105.32,
+      "mean_activity_pips": 391.61
     },
     "london_ny_overlap": {
       "hours": [
@@ -160,8 +160,8 @@
         14,
         15
       ],
-      "mean_range_pips": 209.37,
-      "mean_activity_pips": 757.42
+      "mean_range_pips": 210.87,
+      "mean_activity_pips": 762.03
     },
     "ny_only": {
       "hours": [
@@ -171,8 +171,8 @@
         19,
         20
       ],
-      "mean_range_pips": 181.11,
-      "mean_activity_pips": 673.68
+      "mean_range_pips": 181.47,
+      "mean_activity_pips": 673.98
     }
   },
   "asset": "US500"

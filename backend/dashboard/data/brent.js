@@ -4,25 +4,25 @@ const BRENT_DATA = {
   "stats": {
     "asset": "BRENT",
     "unit": "points",
-    "as_of": "2026-09-03",
-    "n_days": 2784,
-    "n_weeks": 564,
-    "n_months": 132,
+    "as_of": "2026-11-05",
+    "n_days": 2829,
+    "n_weeks": 573,
+    "n_months": 134,
     "n_years": 12,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 2784,
-          "mean": 219.1,
-          "median": 174.0,
-          "std": 170.4,
+          "n": 2829,
+          "mean": 222.8,
+          "median": 176.0,
+          "std": 173.1,
           "min": 44.0,
           "max": 3562.0,
           "mode_binned": {
-            "bin_low": 123.7,
-            "bin_high": 144.5,
-            "count": 333,
-            "pct_of_n": 12.0
+            "bin_low": 103.6,
+            "bin_high": 125.2,
+            "count": 346,
+            "pct_of_n": 12.2
           },
           "mode_raw": {
             "value": 128.0,
@@ -31,118 +31,118 @@ const BRENT_DATA = {
             "n_values_tied": 1
           },
           "p05": 82.0,
-          "p10": 98.0,
+          "p10": 99.0,
           "p20": 117.0,
-          "p25": 126.0,
-          "p50": 174.0,
-          "p75": 253.0,
-          "p80": 282.0,
-          "p90": 384.0,
-          "p95": 498.8,
+          "p25": 127.0,
+          "p50": 176.0,
+          "p75": 257.0,
+          "p80": 290.0,
+          "p90": 395.2,
+          "p95": 513.6,
           "compression_threshold_pips": 117.0,
-          "expansion_threshold_pips": 282.0
+          "expansion_threshold_pips": 290.0
         },
         "5y": {
           "n": 1290,
-          "mean": 279.4,
-          "median": 219.0,
-          "std": 217.0,
+          "mean": 288.4,
+          "median": 226.0,
+          "std": 220.8,
           "min": 57.0,
           "max": 3562.0,
           "mode_binned": {
-            "bin_low": 134.0,
-            "bin_high": 161.9,
+            "bin_low": 134.4,
+            "bin_high": 162.8,
             "count": 160,
             "pct_of_n": 12.4
           },
           "mode_raw": {
-            "value": 191.0,
-            "count": 12,
+            "value": 159.0,
+            "count": 11,
             "pct_of_n": 0.9,
-            "n_values_tied": 1
+            "n_values_tied": 2
           },
           "p05": 106.0,
-          "p10": 120.9,
-          "p20": 145.0,
-          "p25": 156.0,
-          "p50": 219.0,
-          "p75": 333.8,
-          "p80": 373.0,
-          "p90": 492.3,
-          "p95": 665.5,
-          "compression_threshold_pips": 145.0,
-          "expansion_threshold_pips": 373.0
+          "p10": 122.0,
+          "p20": 146.0,
+          "p25": 157.2,
+          "p50": 226.0,
+          "p75": 349.0,
+          "p80": 387.2,
+          "p90": 513.1,
+          "p95": 673.6,
+          "compression_threshold_pips": 146.0,
+          "expansion_threshold_pips": 387.2
         },
         "1y": {
           "n": 259,
-          "mean": 341.5,
-          "median": 246.0,
-          "std": 330.4,
+          "mean": 393.6,
+          "median": 326.0,
+          "std": 327.8,
           "min": 66.0,
           "max": 3562.0,
           "mode_binned": {
-            "bin_low": 99.0,
-            "bin_high": 132.8,
-            "count": 43,
-            "pct_of_n": 16.6
+            "bin_low": 108.8,
+            "bin_high": 144.7,
+            "count": 27,
+            "pct_of_n": 10.4
           },
           "mode_raw": {
-            "value": 99.0,
+            "value": 104.0,
             "count": 3,
             "pct_of_n": 1.2,
-            "n_values_tied": 8
+            "n_values_tied": 4
           },
-          "p05": 99.0,
-          "p10": 110.8,
-          "p20": 131.6,
-          "p25": 143.5,
-          "p50": 246.0,
-          "p75": 436.0,
-          "p80": 484.0,
-          "p90": 680.2,
-          "p95": 774.4,
-          "compression_threshold_pips": 131.6,
-          "expansion_threshold_pips": 484.0
+          "p05": 108.8,
+          "p10": 122.8,
+          "p20": 165.6,
+          "p25": 185.5,
+          "p50": 326.0,
+          "p75": 493.0,
+          "p80": 524.0,
+          "p90": 693.0,
+          "p95": 826.2,
+          "compression_threshold_pips": 165.6,
+          "expansion_threshold_pips": 524.0
         },
         "3mo": {
           "n": 67,
-          "mean": 353.7,
-          "median": 349.0,
-          "std": 142.2,
-          "min": 117.0,
-          "max": 764.0,
+          "mean": 404.7,
+          "median": 363.0,
+          "std": 178.4,
+          "min": 135.0,
+          "max": 1151.0,
           "mode_binned": {
-            "bin_low": 317.0,
-            "bin_high": 339.3,
+            "bin_low": 276.4,
+            "bin_high": 299.6,
             "count": 7,
             "pct_of_n": 10.4
           },
           "mode_raw": {
-            "value": 180.0,
+            "value": 267.0,
             "count": 2,
             "pct_of_n": 3.0,
-            "n_values_tied": 7
+            "n_values_tied": 3
           },
-          "p05": 161.1,
-          "p10": 178.8,
-          "p20": 216.8,
-          "p25": 240.5,
-          "p50": 349.0,
-          "p75": 446.5,
-          "p80": 461.4,
-          "p90": 514.8,
-          "p95": 606.6,
-          "compression_threshold_pips": 216.8,
-          "expansion_threshold_pips": 461.4
+          "p05": 183.7,
+          "p10": 218.8,
+          "p20": 279.2,
+          "p25": 290.0,
+          "p50": 363.0,
+          "p75": 488.0,
+          "p80": 501.6,
+          "p90": 612.6,
+          "p95": 647.1,
+          "compression_threshold_pips": 279.2,
+          "expansion_threshold_pips": 501.6
         }
       },
       "latest_adr": {
-        "ADR_5": 314.8,
-        "ADR_14": 309.1,
-        "ADR_20": 307.1,
+        "ADR_5": 704.6,
+        "ADR_14": 493.9,
+        "ADR_20": 445.8,
         "fixed_multiple_thresholds": {
-          "compression_pips": 215.0,
-          "expansion_pips": 399.2,
+          "compression_pips": 312.1,
+          "expansion_pips": 579.5,
           "based_on": "ADR_20"
         }
       }
@@ -150,16 +150,16 @@ const BRENT_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 564,
-          "mean": 501.7,
-          "median": 403.0,
-          "std": 352.5,
+          "n": 573,
+          "mean": 509.5,
+          "median": 407.0,
+          "std": 358.3,
           "min": 120.0,
           "max": 3829.0,
           "mode_binned": {
-            "bin_low": 301.2,
-            "bin_high": 349.8,
-            "count": 66,
+            "bin_low": 302.9,
+            "bin_high": 352.3,
+            "count": 67,
             "pct_of_n": 11.7
           },
           "mode_raw": {
@@ -170,28 +170,28 @@ const BRENT_DATA = {
           },
           "p05": 204.0,
           "p10": 235.0,
-          "p20": 273.2,
-          "p25": 296.5,
-          "p50": 403.0,
-          "p75": 576.2,
-          "p80": 629.8,
-          "p90": 881.8,
-          "p95": 1175.7,
-          "compression_threshold_pips": 273.2,
-          "expansion_threshold_pips": 629.8
+          "p20": 276.4,
+          "p25": 298.0,
+          "p50": 407.0,
+          "p75": 583.0,
+          "p80": 660.4,
+          "p90": 909.4,
+          "p95": 1192.6,
+          "compression_threshold_pips": 276.4,
+          "expansion_threshold_pips": 660.4
         },
         "5y": {
           "n": 261,
-          "mean": 641.1,
-          "median": 500.0,
-          "std": 446.8,
+          "mean": 662.7,
+          "median": 517.0,
+          "std": 453.4,
           "min": 168.0,
           "max": 3829.0,
           "mode_binned": {
-            "bin_low": 419.7,
-            "bin_high": 478.6,
-            "count": 30,
-            "pct_of_n": 11.5
+            "bin_low": 363.9,
+            "bin_high": 422.9,
+            "count": 28,
+            "pct_of_n": 10.7
           },
           "mode_raw": {
             "value": 330.0,
@@ -199,96 +199,96 @@ const BRENT_DATA = {
             "pct_of_n": 1.1,
             "n_values_tied": 4
           },
-          "p05": 243.0,
-          "p10": 276.0,
-          "p20": 330.0,
-          "p25": 360.0,
-          "p50": 500.0,
-          "p75": 779.0,
-          "p80": 886.0,
-          "p90": 1191.0,
-          "p95": 1421.0,
-          "compression_threshold_pips": 330.0,
-          "expansion_threshold_pips": 886.0
+          "p05": 246.0,
+          "p10": 278.0,
+          "p20": 336.0,
+          "p25": 376.0,
+          "p50": 517.0,
+          "p75": 813.0,
+          "p80": 932.0,
+          "p90": 1219.0,
+          "p95": 1425.0,
+          "compression_threshold_pips": 336.0,
+          "expansion_threshold_pips": 932.0
         },
         "1y": {
           "n": 53,
-          "mean": 822.7,
-          "median": 632.0,
-          "std": 681.1,
+          "mean": 924.2,
+          "median": 788.0,
+          "std": 670.1,
           "min": 186.0,
           "max": 3829.0,
           "mode_binned": {
-            "bin_low": 222.0,
-            "bin_high": 309.1,
-            "count": 8,
-            "pct_of_n": 15.1
+            "bin_low": 225.0,
+            "bin_high": 311.9,
+            "count": 5,
+            "pct_of_n": 9.4
           },
           "mode_raw": {
-            "value": 663.0,
-            "count": 2,
-            "pct_of_n": 3.8,
-            "n_values_tied": 1
+            "value": 186.0,
+            "count": 1,
+            "pct_of_n": 1.9,
+            "n_values_tied": 53
           },
-          "p05": 222.0,
-          "p10": 247.2,
-          "p20": 311.0,
-          "p25": 386.0,
-          "p50": 632.0,
-          "p75": 1110.0,
-          "p80": 1201.8,
-          "p90": 1809.0,
+          "p05": 225.0,
+          "p10": 273.8,
+          "p20": 392.8,
+          "p25": 435.0,
+          "p50": 788.0,
+          "p75": 1176.0,
+          "p80": 1287.8,
+          "p90": 1848.4,
           "p95": 1963.0,
-          "compression_threshold_pips": 311.0,
-          "expansion_threshold_pips": 1201.8
+          "compression_threshold_pips": 392.8,
+          "expansion_threshold_pips": 1287.8
         },
         "3mo": {
           "n": 14,
-          "mean": 865.2,
-          "median": 836.5,
-          "std": 227.4,
-          "min": 467.0,
-          "max": 1265.0,
+          "mean": 906.8,
+          "median": 833.5,
+          "std": 341.5,
+          "min": 509.0,
+          "max": 1857.0,
           "mode_binned": {
-            "bin_low": 646.3,
-            "bin_high": 677.5,
-            "count": 3,
-            "pct_of_n": 21.4
+            "bin_low": 823.2,
+            "bin_high": 868.2,
+            "count": 4,
+            "pct_of_n": 28.6
           },
           "mode_raw": {
-            "value": 467.0,
+            "value": 509.0,
             "count": 1,
             "pct_of_n": 7.1,
             "n_values_tied": 14
           },
-          "p05": 584.0,
-          "p10": 647.9,
-          "p20": 657.8,
-          "p25": 684.8,
-          "p50": 836.5,
-          "p75": 1015.0,
-          "p80": 1064.4,
-          "p90": 1156.2,
-          "p95": 1207.1,
-          "compression_threshold_pips": 657.8,
-          "expansion_threshold_pips": 1064.4
+          "p05": 598.7,
+          "p10": 651.8,
+          "p20": 675.6,
+          "p25": 700.5,
+          "p50": 833.5,
+          "p75": 1017.0,
+          "p80": 1078.6,
+          "p90": 1237.3,
+          "p95": 1496.9,
+          "compression_threshold_pips": 675.6,
+          "expansion_threshold_pips": 1078.6
         }
       }
     },
     "monthly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 132,
-          "mean": 1041.6,
-          "median": 819.5,
-          "std": 677.3,
+          "n": 134,
+          "mean": 1061.5,
+          "median": 824.5,
+          "std": 681.0,
           "min": 243.0,
           "max": 4363.0,
           "mode_binned": {
-            "bin_low": 615.9,
-            "bin_high": 717.3,
-            "count": 23,
-            "pct_of_n": 17.4
+            "bin_low": 611.4,
+            "bin_high": 709.8,
+            "count": 19,
+            "pct_of_n": 14.2
           },
           "mode_raw": {
             "value": 772.0,
@@ -296,30 +296,30 @@ const BRENT_DATA = {
             "pct_of_n": 1.5,
             "n_values_tied": 2
           },
-          "p05": 413.2,
-          "p10": 506.0,
-          "p20": 612.0,
-          "p25": 653.2,
-          "p50": 819.5,
-          "p75": 1165.2,
-          "p80": 1367.6,
-          "p90": 1716.6,
-          "p95": 2440.5,
-          "compression_threshold_pips": 612.0,
-          "expansion_threshold_pips": 1367.6
+          "p05": 414.4,
+          "p10": 512.0,
+          "p20": 614.0,
+          "p25": 659.0,
+          "p50": 824.5,
+          "p75": 1256.8,
+          "p80": 1432.2,
+          "p90": 1806.0,
+          "p95": 2383.5,
+          "compression_threshold_pips": 614.0,
+          "expansion_threshold_pips": 1432.2
         },
         "5y": {
-          "n": 61,
-          "mean": 1278.0,
-          "median": 991.0,
-          "std": 823.5,
+          "n": 60,
+          "mean": 1319.3,
+          "median": 1056.5,
+          "std": 829.1,
           "min": 406.0,
           "max": 4363.0,
           "mode_binned": {
-            "bin_low": 558.0,
-            "bin_high": 677.4,
-            "count": 10,
-            "pct_of_n": 16.4
+            "bin_low": 555.1,
+            "bin_high": 675.5,
+            "count": 9,
+            "pct_of_n": 15.0
           },
           "mode_raw": {
             "value": 772.0,
@@ -327,28 +327,28 @@ const BRENT_DATA = {
             "pct_of_n": 3.3,
             "n_values_tied": 1
           },
-          "p05": 558.0,
-          "p10": 587.0,
-          "p20": 676.0,
-          "p25": 710.0,
-          "p50": 991.0,
-          "p75": 1546.0,
-          "p80": 1670.0,
-          "p90": 2184.0,
-          "p95": 2945.0,
-          "compression_threshold_pips": 676.0,
-          "expansion_threshold_pips": 1670.0
+          "p05": 555.1,
+          "p10": 584.8,
+          "p20": 679.4,
+          "p25": 712.2,
+          "p50": 1056.5,
+          "p75": 1658.8,
+          "p80": 1755.6,
+          "p90": 2241.0,
+          "p95": 2962.9,
+          "compression_threshold_pips": 679.4,
+          "expansion_threshold_pips": 1755.6
         },
         "1y": {
           "n": 13,
-          "mean": 1728.3,
-          "median": 1100.0,
-          "std": 1326.3,
+          "mean": 2002.5,
+          "median": 1830.0,
+          "std": 1170.9,
           "min": 419.0,
           "max": 4363.0,
           "mode_binned": {
-            "bin_low": 467.6,
-            "bin_high": 630.6,
+            "bin_low": 1793.9,
+            "bin_high": 1955.1,
             "count": 2,
             "pct_of_n": 15.4
           },
@@ -358,48 +358,48 @@ const BRENT_DATA = {
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 467.6,
-          "p10": 512.4,
-          "p20": 607.6,
-          "p25": 676.0,
-          "p50": 1100.0,
+          "p05": 504.8,
+          "p10": 614.6,
+          "p20": 935.0,
+          "p25": 1100.0,
+          "p50": 1830.0,
           "p75": 2790.0,
           "p80": 2883.0,
           "p90": 3232.2,
           "p95": 3727.6,
-          "compression_threshold_pips": 607.6,
+          "compression_threshold_pips": 935.0,
           "expansion_threshold_pips": 2883.0
         },
         "3mo": {
           "n": 4,
-          "mean": 1989.2,
-          "median": 2168.0,
-          "std": 1076.4,
-          "min": 676.0,
-          "max": 2945.0,
+          "mean": 1742.5,
+          "median": 1783.5,
+          "std": 140.7,
+          "min": 1546.0,
+          "max": 1857.0,
           "mode_binned": {
-            "bin_low": 1441.1,
-            "bin_high": 1546.8,
+            "bin_low": 1727.7,
+            "bin_high": 1741.6,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 676.0,
+            "value": 1546.0,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 806.5,
-          "p10": 937.0,
-          "p20": 1198.0,
-          "p25": 1328.5,
-          "p50": 2168.0,
-          "p75": 2828.8,
-          "p80": 2852.0,
-          "p90": 2898.5,
-          "p95": 2921.8,
-          "compression_threshold_pips": 1198.0,
-          "expansion_threshold_pips": 2852.0
+          "p05": 1574.7,
+          "p10": 1603.3,
+          "p20": 1660.6,
+          "p25": 1689.2,
+          "p50": 1783.5,
+          "p75": 1836.8,
+          "p80": 1840.8,
+          "p90": 1848.9,
+          "p95": 1853.0,
+          "compression_threshold_pips": 1660.6,
+          "expansion_threshold_pips": 1840.8
         }
       }
     },
@@ -437,53 +437,53 @@ const BRENT_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2656,
+          "n": 2701,
           "mode_bucket_start_utc": "18:00",
           "mode_bucket_end_utc": "18:30",
           "mode_bucket_pct_of_days": 5.5,
-          "circular_mean_utc": "15:40",
+          "circular_mean_utc": "15:43",
           "circular_median_utc": "15:55",
           "concentration_R": 0.256,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 112,
+              "count": 114,
               "pct": 4.22
             },
             {
               "bucket_start_utc": "00:30",
               "count": 25,
-              "pct": 0.94
+              "pct": 0.93
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 143,
-              "pct": 5.38
+              "count": 146,
+              "pct": 5.41
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 46,
-              "pct": 1.73
+              "count": 48,
+              "pct": 1.78
             },
             {
               "bucket_start_utc": "02:00",
               "count": 34,
-              "pct": 1.28
+              "pct": 1.26
             },
             {
               "bucket_start_utc": "02:30",
               "count": 36,
-              "pct": 1.36
+              "pct": 1.33
             },
             {
               "bucket_start_utc": "03:00",
               "count": 25,
-              "pct": 0.94
+              "pct": 0.93
             },
             {
               "bucket_start_utc": "03:30",
               "count": 16,
-              "pct": 0.6
+              "pct": 0.59
             },
             {
               "bucket_start_utc": "04:00",
@@ -493,167 +493,167 @@ const BRENT_DATA = {
             {
               "bucket_start_utc": "04:30",
               "count": 10,
-              "pct": 0.38
+              "pct": 0.37
             },
             {
               "bucket_start_utc": "05:00",
               "count": 6,
-              "pct": 0.23
+              "pct": 0.22
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 17,
-              "pct": 0.64
+              "count": 18,
+              "pct": 0.67
             },
             {
               "bucket_start_utc": "06:00",
               "count": 40,
-              "pct": 1.51
+              "pct": 1.48
             },
             {
               "bucket_start_utc": "06:30",
               "count": 33,
-              "pct": 1.24
+              "pct": 1.22
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 60,
-              "pct": 2.26
+              "count": 63,
+              "pct": 2.33
             },
             {
               "bucket_start_utc": "07:30",
               "count": 44,
-              "pct": 1.66
+              "pct": 1.63
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 76,
-              "pct": 2.86
+              "count": 77,
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 70,
-              "pct": 2.64
+              "count": 71,
+              "pct": 2.63
             },
             {
               "bucket_start_utc": "09:00",
               "count": 69,
-              "pct": 2.6
+              "pct": 2.55
             },
             {
               "bucket_start_utc": "09:30",
               "count": 40,
-              "pct": 1.51
+              "pct": 1.48
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 54,
-              "pct": 2.03
+              "count": 55,
+              "pct": 2.04
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 40,
-              "pct": 1.51
+              "count": 41,
+              "pct": 1.52
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 44,
-              "pct": 1.66
+              "count": 45,
+              "pct": 1.67
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 38,
-              "pct": 1.43
+              "count": 39,
+              "pct": 1.44
             },
             {
               "bucket_start_utc": "12:00",
               "count": 52,
-              "pct": 1.96
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 34,
-              "pct": 1.28
+              "count": 35,
+              "pct": 1.3
             },
             {
               "bucket_start_utc": "13:00",
               "count": 91,
-              "pct": 3.43
+              "pct": 3.37
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 87,
-              "pct": 3.28
+              "count": 88,
+              "pct": 3.26
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 103,
-              "pct": 3.88
+              "count": 104,
+              "pct": 3.85
             },
             {
               "bucket_start_utc": "14:30",
               "count": 103,
-              "pct": 3.88
+              "pct": 3.81
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 134,
-              "pct": 5.05
+              "count": 138,
+              "pct": 5.11
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 73,
-              "pct": 2.75
+              "count": 75,
+              "pct": 2.78
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 95,
-              "pct": 3.58
+              "count": 97,
+              "pct": 3.59
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 71,
-              "pct": 2.67
+              "count": 73,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "17:00",
               "count": 82,
-              "pct": 3.09
+              "pct": 3.04
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 73,
-              "pct": 2.75
+              "count": 76,
+              "pct": 2.81
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 147,
-              "pct": 5.53
+              "count": 149,
+              "pct": 5.52
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 65,
-              "pct": 2.45
+              "count": 67,
+              "pct": 2.48
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 84,
-              "pct": 3.16
+              "count": 85,
+              "pct": 3.15
             },
             {
               "bucket_start_utc": "19:30",
               "count": 50,
-              "pct": 1.88
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 60,
-              "pct": 2.26
+              "count": 63,
+              "pct": 2.33
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 94,
-              "pct": 3.54
+              "count": 97,
+              "pct": 3.59
             },
             {
               "bucket_start_utc": "21:00",
@@ -662,13 +662,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 32,
-              "pct": 1.2
+              "count": 33,
+              "pct": 1.22
             },
             {
               "bucket_start_utc": "22:00",
               "count": 9,
-              "pct": 0.34
+              "pct": 0.33
             },
             {
               "bucket_start_utc": "22:30",
@@ -683,7 +683,7 @@ const BRENT_DATA = {
             {
               "bucket_start_utc": "23:30",
               "count": 2,
-              "pct": 0.08
+              "pct": 0.07
             }
           ]
         },
@@ -692,14 +692,14 @@ const BRENT_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 6.0,
-          "circular_mean_utc": "15:57",
-          "circular_median_utc": "16:20",
-          "concentration_R": 0.254,
+          "circular_mean_utc": "16:05",
+          "circular_median_utc": "16:25",
+          "concentration_R": 0.252,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 54,
-              "pct": 4.19
+              "count": 55,
+              "pct": 4.26
             },
             {
               "bucket_start_utc": "00:30",
@@ -708,13 +708,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 77,
-              "pct": 5.97
+              "count": 78,
+              "pct": 6.05
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 27,
-              "pct": 2.09
+              "count": 28,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "02:00",
@@ -728,8 +728,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 15,
-              "pct": 1.16
+              "count": 13,
+              "pct": 1.01
             },
             {
               "bucket_start_utc": "03:30",
@@ -758,33 +758,33 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 18,
-              "pct": 1.4
+              "count": 17,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 18,
-              "pct": 1.4
+              "count": 17,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 19,
-              "pct": 1.47
+              "count": 21,
+              "pct": 1.63
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 22,
-              "pct": 1.71
+              "count": 21,
+              "pct": 1.63
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 28,
-              "pct": 2.17
+              "count": 29,
+              "pct": 2.25
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 44,
-              "pct": 3.41
+              "count": 43,
+              "pct": 3.33
             },
             {
               "bucket_start_utc": "09:00",
@@ -798,13 +798,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 23,
-              "pct": 1.78
+              "count": 24,
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 24,
-              "pct": 1.86
+              "count": 25,
+              "pct": 1.94
             },
             {
               "bucket_start_utc": "11:00",
@@ -828,53 +828,53 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 38,
-              "pct": 2.95
+              "count": 33,
+              "pct": 2.56
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 57,
-              "pct": 4.42
+              "count": 54,
+              "pct": 4.19
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 39,
-              "pct": 3.02
+              "count": 36,
+              "pct": 2.79
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 45,
-              "pct": 3.49
-            },
-            {
-              "bucket_start_utc": "15:00",
-              "count": 61,
-              "pct": 4.73
-            },
-            {
-              "bucket_start_utc": "15:30",
-              "count": 30,
-              "pct": 2.33
-            },
-            {
-              "bucket_start_utc": "16:00",
               "count": 43,
               "pct": 3.33
             },
             {
+              "bucket_start_utc": "15:00",
+              "count": 64,
+              "pct": 4.96
+            },
+            {
+              "bucket_start_utc": "15:30",
+              "count": 32,
+              "pct": 2.48
+            },
+            {
+              "bucket_start_utc": "16:00",
+              "count": 44,
+              "pct": 3.41
+            },
+            {
               "bucket_start_utc": "16:30",
-              "count": 53,
-              "pct": 4.11
+              "count": 54,
+              "pct": 4.19
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 45,
-              "pct": 3.49
+              "count": 41,
+              "pct": 3.18
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 42,
-              "pct": 3.26
+              "count": 45,
+              "pct": 3.49
             },
             {
               "bucket_start_utc": "18:00",
@@ -883,8 +883,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 43,
-              "pct": 3.33
+              "count": 45,
+              "pct": 3.49
             },
             {
               "bucket_start_utc": "19:00",
@@ -893,28 +893,28 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
+              "count": 23,
+              "pct": 1.78
+            },
+            {
+              "bucket_start_utc": "20:00",
               "count": 25,
               "pct": 1.94
             },
             {
-              "bucket_start_utc": "20:00",
-              "count": 22,
-              "pct": 1.71
-            },
-            {
               "bucket_start_utc": "20:30",
-              "count": 49,
-              "pct": 3.8
+              "count": 51,
+              "pct": 3.95
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 11,
-              "pct": 0.85
+              "count": 10,
+              "pct": 0.78
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 15,
-              "pct": 1.16
+              "count": 16,
+              "pct": 1.24
             },
             {
               "bucket_start_utc": "22:00",
@@ -940,17 +940,17 @@ const BRENT_DATA = {
         },
         "1y": {
           "n": 259,
-          "mode_bucket_start_utc": "00:00",
-          "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 6.6,
-          "circular_mean_utc": "16:32",
-          "circular_median_utc": "16:40",
-          "concentration_R": 0.131,
+          "mode_bucket_start_utc": "20:30",
+          "mode_bucket_end_utc": "21:00",
+          "mode_bucket_pct_of_days": 5.8,
+          "circular_mean_utc": "17:15",
+          "circular_median_utc": "17:10",
+          "concentration_R": 0.174,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 17,
-              "pct": 6.56
+              "count": 14,
+              "pct": 5.41
             },
             {
               "bucket_start_utc": "00:30",
@@ -969,8 +969,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 3,
-              "pct": 1.16
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "02:30",
@@ -1004,28 +1004,28 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 9,
-              "pct": 3.47
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 6,
-              "pct": 2.32
-            },
-            {
-              "bucket_start_utc": "07:00",
               "count": 2,
               "pct": 0.77
             },
             {
-              "bucket_start_utc": "07:30",
+              "bucket_start_utc": "07:00",
               "count": 5,
               "pct": 1.93
+            },
+            {
+              "bucket_start_utc": "07:30",
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "08:00",
@@ -1034,18 +1034,18 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 8,
-              "pct": 3.09
+              "count": 9,
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 5,
-              "pct": 1.93
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 5,
-              "pct": 1.93
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "10:00",
@@ -1054,13 +1054,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 7,
-              "pct": 2.7
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "11:30",
@@ -1069,8 +1069,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 6,
-              "pct": 2.32
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "12:30",
@@ -1079,13 +1079,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 6,
-              "pct": 2.32
+              "count": 5,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 8,
-              "pct": 3.09
+              "count": 9,
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "14:00",
@@ -1094,28 +1094,28 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 8,
-              "pct": 3.09
-            },
-            {
-              "bucket_start_utc": "15:00",
-              "count": 8,
-              "pct": 3.09
-            },
-            {
-              "bucket_start_utc": "15:30",
               "count": 7,
               "pct": 2.7
             },
             {
-              "bucket_start_utc": "16:00",
+              "bucket_start_utc": "15:00",
               "count": 9,
               "pct": 3.47
             },
             {
-              "bucket_start_utc": "16:30",
+              "bucket_start_utc": "15:30",
               "count": 8,
               "pct": 3.09
+            },
+            {
+              "bucket_start_utc": "16:00",
+              "count": 8,
+              "pct": 3.09
+            },
+            {
+              "bucket_start_utc": "16:30",
+              "count": 9,
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "17:00",
@@ -1124,38 +1124,38 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "17:30",
+              "count": 10,
+              "pct": 3.86
+            },
+            {
+              "bucket_start_utc": "18:00",
+              "count": 12,
+              "pct": 4.63
+            },
+            {
+              "bucket_start_utc": "18:30",
               "count": 9,
               "pct": 3.47
             },
             {
-              "bucket_start_utc": "18:00",
-              "count": 11,
-              "pct": 4.25
-            },
-            {
-              "bucket_start_utc": "18:30",
-              "count": 8,
-              "pct": 3.09
-            },
-            {
               "bucket_start_utc": "19:00",
-              "count": 4,
-              "pct": 1.54
-            },
-            {
-              "bucket_start_utc": "19:30",
               "count": 5,
               "pct": 1.93
             },
             {
+              "bucket_start_utc": "19:30",
+              "count": 3,
+              "pct": 1.16
+            },
+            {
               "bucket_start_utc": "20:00",
-              "count": 7,
-              "pct": 2.7
+              "count": 10,
+              "pct": 3.86
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 12,
-              "pct": 4.63
+              "count": 15,
+              "pct": 5.79
             },
             {
               "bucket_start_utc": "21:00",
@@ -1164,8 +1164,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 3,
-              "pct": 1.16
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "22:00",
@@ -1191,22 +1191,22 @@ const BRENT_DATA = {
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "00:00",
-          "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 9.0,
-          "circular_mean_utc": "17:30",
-          "circular_median_utc": "17:55",
-          "concentration_R": 0.109,
+          "mode_bucket_start_utc": "17:30",
+          "mode_bucket_end_utc": "18:00",
+          "mode_bucket_pct_of_days": 7.5,
+          "circular_mean_utc": "16:52",
+          "circular_median_utc": "17:10",
+          "concentration_R": 0.287,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 6,
-              "pct": 8.96
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "01:00",
@@ -1215,8 +1215,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "02:00",
@@ -1225,8 +1225,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:00",
@@ -1255,13 +1255,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "06:30",
@@ -1270,23 +1270,23 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "07:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "08:00",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "08:00",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
               "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "09:00",
@@ -1295,28 +1295,28 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "10:00",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
+              "bucket_start_utc": "10:30",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
+              "bucket_start_utc": "11:00",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "10:00",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "10:30",
-              "count": 4,
-              "pct": 5.97
-            },
-            {
-              "bucket_start_utc": "11:00",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
               "bucket_start_utc": "11:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "12:00",
@@ -1325,18 +1325,18 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "13:00",
               "count": 0,
               "pct": 0.0
             },
             {
-              "bucket_start_utc": "13:00",
+              "bucket_start_utc": "13:30",
               "count": 2,
               "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "13:30",
-              "count": 1,
-              "pct": 1.49
             },
             {
               "bucket_start_utc": "14:00",
@@ -1345,68 +1345,68 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 4,
-              "pct": 5.97
-            },
-            {
-              "bucket_start_utc": "15:00",
               "count": 0,
               "pct": 0.0
             },
             {
+              "bucket_start_utc": "15:00",
+              "count": 4,
+              "pct": 5.97
+            },
+            {
               "bucket_start_utc": "15:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 6,
-              "pct": 8.96
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "19:30",
               "count": 1,
               "pct": 1.49
             },
             {
+              "bucket_start_utc": "19:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
               "bucket_start_utc": "20:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "21:00",
@@ -1415,8 +1415,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "22:00",
@@ -1443,27 +1443,27 @@ const BRENT_DATA = {
       },
       "session_distribution": {
         "New_York": {
-          "n": 821,
-          "pct": 30.9
+          "n": 839,
+          "pct": 31.1
         },
         "London_NY_Overlap": {
-          "n": 677,
-          "pct": 25.5
+          "n": 686,
+          "pct": 25.4
         },
         "Asian": {
-          "n": 567,
+          "n": 575,
           "pct": 21.3
         },
         "London": {
-          "n": 431,
+          "n": 437,
           "pct": 16.2
         },
         "Asian_London_Overlap": {
-          "n": 104,
-          "pct": 3.9
+          "n": 107,
+          "pct": 4.0
         },
         "Other": {
-          "n": 56,
+          "n": 57,
           "pct": 2.1
         }
       }
@@ -1471,53 +1471,53 @@ const BRENT_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2656,
+          "n": 2701,
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
-          "mode_bucket_pct_of_days": 5.6,
-          "circular_mean_utc": "15:01",
+          "mode_bucket_pct_of_days": 5.7,
+          "circular_mean_utc": "15:00",
           "circular_median_utc": "15:30",
-          "concentration_R": 0.233,
+          "concentration_R": 0.231,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 112,
-              "pct": 4.22
+              "count": 113,
+              "pct": 4.18
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 33,
-              "pct": 1.24
+              "count": 35,
+              "pct": 1.3
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 149,
-              "pct": 5.61
+              "count": 153,
+              "pct": 5.66
             },
             {
               "bucket_start_utc": "01:30",
               "count": 56,
-              "pct": 2.11
+              "pct": 2.07
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 37,
-              "pct": 1.39
+              "count": 38,
+              "pct": 1.41
             },
             {
               "bucket_start_utc": "02:30",
               "count": 32,
-              "pct": 1.2
+              "pct": 1.18
             },
             {
               "bucket_start_utc": "03:00",
               "count": 28,
-              "pct": 1.05
+              "pct": 1.04
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 19,
-              "pct": 0.72
+              "count": 20,
+              "pct": 0.74
             },
             {
               "bucket_start_utc": "04:00",
@@ -1526,193 +1526,193 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 11,
-              "pct": 0.41
+              "count": 12,
+              "pct": 0.44
             },
             {
               "bucket_start_utc": "05:00",
               "count": 20,
-              "pct": 0.75
+              "pct": 0.74
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 29,
-              "pct": 1.09
+              "count": 31,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 32,
-              "pct": 1.2
+              "count": 34,
+              "pct": 1.26
             },
             {
               "bucket_start_utc": "06:30",
               "count": 20,
-              "pct": 0.75
+              "pct": 0.74
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 54,
-              "pct": 2.03
+              "count": 55,
+              "pct": 2.04
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 57,
-              "pct": 2.15
+              "count": 59,
+              "pct": 2.18
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 105,
-              "pct": 3.95
+              "count": 107,
+              "pct": 3.96
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 63,
+              "count": 64,
               "pct": 2.37
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 79,
-              "pct": 2.97
+              "count": 80,
+              "pct": 2.96
             },
             {
               "bucket_start_utc": "09:30",
               "count": 49,
-              "pct": 1.84
+              "pct": 1.81
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 45,
-              "pct": 1.69
+              "count": 46,
+              "pct": 1.7
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 42,
-              "pct": 1.58
+              "count": 43,
+              "pct": 1.59
             },
             {
               "bucket_start_utc": "11:00",
               "count": 39,
-              "pct": 1.47
+              "pct": 1.44
             },
             {
               "bucket_start_utc": "11:30",
               "count": 34,
-              "pct": 1.28
+              "pct": 1.26
             },
             {
               "bucket_start_utc": "12:00",
               "count": 60,
-              "pct": 2.26
+              "pct": 2.22
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 46,
-              "pct": 1.73
+              "count": 49,
+              "pct": 1.81
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 99,
-              "pct": 3.73
+              "count": 100,
+              "pct": 3.7
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 71,
-              "pct": 2.67
+              "count": 74,
+              "pct": 2.74
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 126,
-              "pct": 4.74
+              "count": 127,
+              "pct": 4.7
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 95,
-              "pct": 3.58
+              "count": 96,
+              "pct": 3.55
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 117,
-              "pct": 4.41
+              "count": 118,
+              "pct": 4.37
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 93,
-              "pct": 3.5
+              "count": 94,
+              "pct": 3.48
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 101,
-              "pct": 3.8
+              "count": 103,
+              "pct": 3.81
             },
             {
               "bucket_start_utc": "16:30",
               "count": 74,
-              "pct": 2.79
+              "pct": 2.74
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 77,
-              "pct": 2.9
+              "count": 78,
+              "pct": 2.89
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 58,
-              "pct": 2.18
+              "count": 60,
+              "pct": 2.22
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 133,
-              "pct": 5.01
+              "count": 134,
+              "pct": 4.96
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 57,
+              "count": 58,
               "pct": 2.15
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 76,
-              "pct": 2.86
+              "count": 77,
+              "pct": 2.85
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 41,
-              "pct": 1.54
+              "count": 42,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 36,
-              "pct": 1.36
+              "count": 37,
+              "pct": 1.37
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 63,
+              "count": 64,
               "pct": 2.37
             },
             {
               "bucket_start_utc": "21:00",
               "count": 23,
-              "pct": 0.87
+              "pct": 0.85
             },
             {
               "bucket_start_utc": "21:30",
               "count": 30,
-              "pct": 1.13
+              "pct": 1.11
             },
             {
               "bucket_start_utc": "22:00",
               "count": 10,
-              "pct": 0.38
+              "pct": 0.37
             },
             {
               "bucket_start_utc": "22:30",
               "count": 2,
-              "pct": 0.08
+              "pct": 0.07
             },
             {
               "bucket_start_utc": "23:00",
               "count": 14,
-              "pct": 0.53
+              "pct": 0.52
             },
             {
               "bucket_start_utc": "23:30",
@@ -1725,40 +1725,40 @@ const BRENT_DATA = {
           "n": 1290,
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
-          "mode_bucket_pct_of_days": 6.0,
-          "circular_mean_utc": "14:41",
+          "mode_bucket_pct_of_days": 6.2,
+          "circular_mean_utc": "14:39",
           "circular_median_utc": "15:20",
           "concentration_R": 0.241,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 51,
-              "pct": 3.95
+              "count": 49,
+              "pct": 3.8
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 15,
-              "pct": 1.16
+              "count": 17,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 78,
-              "pct": 6.05
+              "count": 80,
+              "pct": 6.2
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 27,
-              "pct": 2.09
+              "count": 26,
+              "pct": 2.02
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 18,
-              "pct": 1.4
+              "count": 17,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 18,
-              "pct": 1.4
+              "count": 17,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "03:00",
@@ -1777,33 +1777,33 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 6,
-              "pct": 0.47
-            },
-            {
-              "bucket_start_utc": "05:00",
               "count": 7,
               "pct": 0.54
             },
             {
+              "bucket_start_utc": "05:00",
+              "count": 6,
+              "pct": 0.47
+            },
+            {
               "bucket_start_utc": "05:30",
-              "count": 22,
-              "pct": 1.71
+              "count": 23,
+              "pct": 1.78
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 11,
-              "pct": 0.85
+              "count": 12,
+              "pct": 0.93
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 15,
-              "pct": 1.16
+              "count": 14,
+              "pct": 1.09
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 26,
-              "pct": 2.02
+              "count": 27,
+              "pct": 2.09
             },
             {
               "bucket_start_utc": "07:30",
@@ -1812,38 +1812,38 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 43,
-              "pct": 3.33
+              "count": 42,
+              "pct": 3.26
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 40,
-              "pct": 3.1
-            },
-            {
-              "bucket_start_utc": "09:00",
               "count": 41,
               "pct": 3.18
             },
             {
+              "bucket_start_utc": "09:00",
+              "count": 42,
+              "pct": 3.26
+            },
+            {
               "bucket_start_utc": "09:30",
-              "count": 27,
-              "pct": 2.09
+              "count": 26,
+              "pct": 2.02
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 18,
-              "pct": 1.4
-            },
-            {
-              "bucket_start_utc": "10:30",
               "count": 19,
               "pct": 1.47
             },
             {
+              "bucket_start_utc": "10:30",
+              "count": 20,
+              "pct": 1.55
+            },
+            {
               "bucket_start_utc": "11:00",
-              "count": 21,
-              "pct": 1.63
+              "count": 20,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "11:30",
@@ -1852,28 +1852,28 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 28,
-              "pct": 2.17
+              "count": 27,
+              "pct": 2.09
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 24,
-              "pct": 1.86
+              "count": 27,
+              "pct": 2.09
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 47,
-              "pct": 3.64
+              "count": 43,
+              "pct": 3.33
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 41,
-              "pct": 3.18
+              "count": 42,
+              "pct": 3.26
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 58,
-              "pct": 4.5
+              "count": 56,
+              "pct": 4.34
             },
             {
               "bucket_start_utc": "14:30",
@@ -1882,8 +1882,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 46,
-              "pct": 3.57
+              "count": 47,
+              "pct": 3.64
             },
             {
               "bucket_start_utc": "15:30",
@@ -1892,8 +1892,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 43,
-              "pct": 3.33
+              "count": 45,
+              "pct": 3.49
             },
             {
               "bucket_start_utc": "16:30",
@@ -1912,8 +1912,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 67,
-              "pct": 5.19
+              "count": 65,
+              "pct": 5.04
             },
             {
               "bucket_start_utc": "18:30",
@@ -1922,23 +1922,23 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 31,
-              "pct": 2.4
+              "count": 32,
+              "pct": 2.48
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 29,
-              "pct": 2.25
+              "count": 28,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 15,
-              "pct": 1.16
+              "count": 16,
+              "pct": 1.24
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 23,
-              "pct": 1.78
+              "count": 22,
+              "pct": 1.71
             },
             {
               "bucket_start_utc": "21:00",
@@ -1976,30 +1976,30 @@ const BRENT_DATA = {
           "n": 259,
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
-          "mode_bucket_pct_of_days": 8.1,
-          "circular_mean_utc": "13:50",
-          "circular_median_utc": "15:20",
-          "concentration_R": 0.188,
+          "mode_bucket_pct_of_days": 8.9,
+          "circular_mean_utc": "13:43",
+          "circular_median_utc": "15:15",
+          "concentration_R": 0.147,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 12,
-              "pct": 4.63
+              "count": 10,
+              "pct": 3.86
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 21,
-              "pct": 8.11
+              "count": 23,
+              "pct": 8.88
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 5,
-              "pct": 1.93
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "02:00",
@@ -2018,8 +2018,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 1,
-              "pct": 0.39
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "04:00",
@@ -2028,8 +2028,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 1,
-              "pct": 0.39
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "05:00",
@@ -2038,13 +2038,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 7,
-              "pct": 2.7
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "06:30",
@@ -2058,18 +2058,18 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 11,
-              "pct": 4.25
+              "count": 9,
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "09:00",
@@ -2078,13 +2078,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 9,
-              "pct": 3.47
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "10:30",
@@ -2098,38 +2098,38 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 9,
-              "pct": 3.47
-            },
-            {
-              "bucket_start_utc": "12:00",
-              "count": 5,
-              "pct": 1.93
-            },
-            {
-              "bucket_start_utc": "12:30",
-              "count": 7,
-              "pct": 2.7
-            },
-            {
-              "bucket_start_utc": "13:00",
-              "count": 13,
-              "pct": 5.02
-            },
-            {
-              "bucket_start_utc": "13:30",
               "count": 8,
               "pct": 3.09
             },
             {
+              "bucket_start_utc": "12:00",
+              "count": 4,
+              "pct": 1.54
+            },
+            {
+              "bucket_start_utc": "12:30",
+              "count": 10,
+              "pct": 3.86
+            },
+            {
+              "bucket_start_utc": "13:00",
+              "count": 8,
+              "pct": 3.09
+            },
+            {
+              "bucket_start_utc": "13:30",
+              "count": 9,
+              "pct": 3.47
+            },
+            {
               "bucket_start_utc": "14:00",
-              "count": 7,
-              "pct": 2.7
+              "count": 5,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 7,
-              "pct": 2.7
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "15:00",
@@ -2138,8 +2138,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 14,
-              "pct": 5.41
+              "count": 12,
+              "pct": 4.63
             },
             {
               "bucket_start_utc": "16:00",
@@ -2148,13 +2148,13 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 8,
-              "pct": 3.09
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "17:30",
@@ -2163,8 +2163,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 8,
-              "pct": 3.09
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "18:30",
@@ -2173,18 +2173,18 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 5,
-              "pct": 1.93
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 5,
-              "pct": 1.93
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 6,
-              "pct": 2.32
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "20:30",
@@ -2225,27 +2225,27 @@ const BRENT_DATA = {
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "00:00",
-          "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 6.0,
-          "circular_mean_utc": "11:47",
-          "circular_median_utc": "10:40",
-          "concentration_R": 0.219,
+          "mode_bucket_start_utc": "01:00",
+          "mode_bucket_end_utc": "01:30",
+          "mode_bucket_pct_of_days": 7.5,
+          "circular_mean_utc": "10:19",
+          "circular_median_utc": "09:50",
+          "concentration_R": 0.162,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 4,
-              "pct": 5.97
-            },
-            {
-              "bucket_start_utc": "00:30",
               "count": 2,
               "pct": 2.99
             },
             {
+              "bucket_start_utc": "00:30",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
               "bucket_start_utc": "01:00",
-              "count": 4,
-              "pct": 5.97
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "01:30",
@@ -2254,8 +2254,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "02:30",
@@ -2269,8 +2269,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "04:00",
@@ -2279,8 +2279,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "05:00",
@@ -2289,58 +2289,58 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 4,
-              "pct": 5.97
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "07:00",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "07:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "08:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "09:00",
-              "count": 4,
-              "pct": 5.97
-            },
-            {
-              "bucket_start_utc": "09:30",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "10:00",
               "count": 0,
               "pct": 0.0
             },
             {
-              "bucket_start_utc": "10:30",
+              "bucket_start_utc": "07:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "07:30",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "08:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "08:30",
               "count": 1,
               "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "09:00",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
+              "bucket_start_utc": "09:30",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "10:00",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "10:30",
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "11:00",
@@ -2349,33 +2349,33 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "12:30",
+              "count": 5,
+              "pct": 7.46
+            },
+            {
+              "bucket_start_utc": "13:00",
               "count": 3,
               "pct": 4.48
             },
             {
-              "bucket_start_utc": "13:00",
-              "count": 4,
-              "pct": 5.97
-            },
-            {
               "bucket_start_utc": "13:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:30",
@@ -2384,43 +2384,43 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "15:30",
-              "count": 4,
-              "pct": 5.97
-            },
-            {
-              "bucket_start_utc": "16:00",
               "count": 1,
               "pct": 1.49
             },
             {
+              "bucket_start_utc": "15:30",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "16:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
               "bucket_start_utc": "16:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "19:00",
@@ -2477,23 +2477,23 @@ const BRENT_DATA = {
       },
       "session_distribution": {
         "New_York": {
-          "n": 716,
-          "pct": 27.0
+          "n": 727,
+          "pct": 26.9
         },
         "London_NY_Overlap": {
-          "n": 707,
+          "n": 718,
           "pct": 26.6
         },
         "Asian": {
-          "n": 601,
-          "pct": 22.6
+          "n": 615,
+          "pct": 22.8
         },
         "London": {
-          "n": 456,
-          "pct": 17.2
+          "n": 462,
+          "pct": 17.1
         },
         "Asian_London_Overlap": {
-          "n": 111,
+          "n": 114,
           "pct": 4.2
         },
         "Other": {
@@ -2503,34 +2503,34 @@ const BRENT_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 2656,
-      "same_session_n": 149,
-      "same_session_pct": 5.61,
+      "n_days": 2701,
+      "same_session_n": 150,
+      "same_session_pct": 5.55,
       "pairs": {
         "Asian": {
           "Asian": {
             "n": 19,
-            "pct": 0.72
+            "pct": 0.7
           },
           "Asian_London_Overlap": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "London": {
-            "n": 57,
+            "n": 58,
             "pct": 2.15
           },
           "London_NY_Overlap": {
-            "n": 206,
-            "pct": 7.76
+            "n": 208,
+            "pct": 7.7
           },
           "New_York": {
-            "n": 296,
-            "pct": 11.14
+            "n": 306,
+            "pct": 11.33
           },
           "Other": {
-            "n": 21,
-            "pct": 0.79
+            "n": 22,
+            "pct": 0.81
           }
         },
         "Asian_London_Overlap": {
@@ -2544,14 +2544,14 @@ const BRENT_DATA = {
           },
           "London": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "London_NY_Overlap": {
-            "n": 37,
-            "pct": 1.39
+            "n": 39,
+            "pct": 1.44
           },
           "New_York": {
-            "n": 60,
+            "n": 61,
             "pct": 2.26
           },
           "Other": {
@@ -2561,8 +2561,8 @@ const BRENT_DATA = {
         },
         "London": {
           "Asian": {
-            "n": 62,
-            "pct": 2.33
+            "n": 64,
+            "pct": 2.37
           },
           "Asian_London_Overlap": {
             "n": 8,
@@ -2570,41 +2570,41 @@ const BRENT_DATA = {
           },
           "London": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "London_NY_Overlap": {
-            "n": 110,
-            "pct": 4.14
+            "n": 113,
+            "pct": 4.18
           },
           "New_York": {
-            "n": 242,
-            "pct": 9.11
+            "n": 243,
+            "pct": 9.0
           },
           "Other": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           }
         },
         "London_NY_Overlap": {
           "Asian": {
-            "n": 226,
-            "pct": 8.51
+            "n": 228,
+            "pct": 8.44
           },
           "Asian_London_Overlap": {
-            "n": 44,
-            "pct": 1.66
+            "n": 45,
+            "pct": 1.67
           },
           "London": {
-            "n": 149,
-            "pct": 5.61
+            "n": 152,
+            "pct": 5.63
           },
           "London_NY_Overlap": {
             "n": 92,
-            "pct": 3.46
+            "pct": 3.41
           },
           "New_York": {
-            "n": 188,
-            "pct": 7.08
+            "n": 193,
+            "pct": 7.15
           },
           "Other": {
             "n": 8,
@@ -2613,24 +2613,24 @@ const BRENT_DATA = {
         },
         "New_York": {
           "Asian": {
-            "n": 242,
+            "n": 246,
             "pct": 9.11
           },
           "Asian_London_Overlap": {
-            "n": 48,
-            "pct": 1.81
+            "n": 50,
+            "pct": 1.85
           },
           "London": {
-            "n": 187,
-            "pct": 7.04
+            "n": 189,
+            "pct": 7.0
           },
           "London_NY_Overlap": {
-            "n": 211,
-            "pct": 7.94
+            "n": 213,
+            "pct": 7.89
           },
           "New_York": {
-            "n": 20,
-            "pct": 0.75
+            "n": 21,
+            "pct": 0.78
           },
           "Other": {
             "n": 8,
@@ -2644,7 +2644,7 @@ const BRENT_DATA = {
           },
           "Asian_London_Overlap": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "London": {
             "n": 11,
@@ -2652,7 +2652,7 @@ const BRENT_DATA = {
           },
           "London_NY_Overlap": {
             "n": 21,
-            "pct": 0.79
+            "pct": 0.78
           },
           "New_York": {
             "n": 15,
@@ -2666,7 +2666,7 @@ const BRENT_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 2656,
+      "n_days": 2701,
       "same_hour_n": 15,
       "same_hour_pct": 0.56,
       "pairs": {
@@ -2704,8 +2704,8 @@ const BRENT_DATA = {
             "pct": 0.04
           },
           "8": {
-            "n": 3,
-            "pct": 0.11
+            "n": 4,
+            "pct": 0.15
           },
           "9": {
             "n": 1,
@@ -2717,7 +2717,7 @@ const BRENT_DATA = {
           },
           "11": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "12": {
             "n": 5,
@@ -2725,35 +2725,35 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 16,
-            "pct": 0.6
+            "pct": 0.59
           },
           "14": {
             "n": 20,
-            "pct": 0.75
+            "pct": 0.74
           },
           "15": {
-            "n": 12,
-            "pct": 0.45
+            "n": 13,
+            "pct": 0.48
           },
           "16": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "17": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "18": {
             "n": 26,
-            "pct": 0.98
+            "pct": 0.96
           },
           "19": {
-            "n": 14,
-            "pct": 0.53
+            "n": 15,
+            "pct": 0.56
           },
           "20": {
             "n": 18,
-            "pct": 0.68
+            "pct": 0.67
           },
           "21": {
             "n": 0,
@@ -2823,39 +2823,39 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "14": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "15": {
-            "n": 30,
-            "pct": 1.13
+            "n": 31,
+            "pct": 1.15
           },
           "16": {
-            "n": 20,
-            "pct": 0.75
+            "n": 22,
+            "pct": 0.81
           },
           "17": {
             "n": 22,
-            "pct": 0.83
+            "pct": 0.81
           },
           "18": {
-            "n": 22,
-            "pct": 0.83
+            "n": 23,
+            "pct": 0.85
           },
           "19": {
             "n": 18,
-            "pct": 0.68
+            "pct": 0.67
           },
           "20": {
             "n": 21,
-            "pct": 0.79
+            "pct": 0.78
           },
           "21": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "22": {
             "n": 0,
@@ -2917,11 +2917,11 @@ const BRENT_DATA = {
           },
           "12": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "14": {
             "n": 5,
@@ -2945,15 +2945,15 @@ const BRENT_DATA = {
           },
           "19": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "20": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "21": {
-            "n": 1,
-            "pct": 0.04
+            "n": 2,
+            "pct": 0.07
           },
           "22": {
             "n": 0,
@@ -2967,7 +2967,7 @@ const BRENT_DATA = {
         "3": {
           "0": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "1": {
             "n": 0,
@@ -2999,7 +2999,7 @@ const BRENT_DATA = {
           },
           "8": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "9": {
             "n": 0,
@@ -3023,15 +3023,15 @@ const BRENT_DATA = {
           },
           "14": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "15": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
-            "n": 8,
-            "pct": 0.3
+            "n": 9,
+            "pct": 0.33
           },
           "17": {
             "n": 4,
@@ -3039,11 +3039,11 @@ const BRENT_DATA = {
           },
           "18": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "19": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "20": {
             "n": 4,
@@ -3137,15 +3137,15 @@ const BRENT_DATA = {
           },
           "18": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "19": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "20": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.04
           },
           "21": {
             "n": 0,
@@ -3167,7 +3167,7 @@ const BRENT_DATA = {
           },
           "1": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "2": {
             "n": 1,
@@ -3219,7 +3219,7 @@ const BRENT_DATA = {
           },
           "14": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "15": {
             "n": 3,
@@ -3230,8 +3230,8 @@ const BRENT_DATA = {
             "pct": 0.19
           },
           "17": {
-            "n": 4,
-            "pct": 0.15
+            "n": 5,
+            "pct": 0.19
           },
           "18": {
             "n": 8,
@@ -3242,12 +3242,12 @@ const BRENT_DATA = {
             "pct": 0.11
           },
           "20": {
-            "n": 6,
-            "pct": 0.23
+            "n": 7,
+            "pct": 0.26
           },
           "21": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 0,
@@ -3321,27 +3321,27 @@ const BRENT_DATA = {
           },
           "15": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 5,
             "pct": 0.19
           },
           "18": {
-            "n": 10,
-            "pct": 0.38
+            "n": 11,
+            "pct": 0.41
           },
           "19": {
             "n": 3,
             "pct": 0.11
           },
           "20": {
-            "n": 5,
-            "pct": 0.19
+            "n": 6,
+            "pct": 0.22
           },
           "21": {
             "n": 1,
@@ -3414,24 +3414,24 @@ const BRENT_DATA = {
             "pct": 0.3
           },
           "14": {
-            "n": 13,
-            "pct": 0.49
+            "n": 14,
+            "pct": 0.52
           },
           "15": {
-            "n": 12,
-            "pct": 0.45
+            "n": 13,
+            "pct": 0.48
           },
           "16": {
             "n": 19,
-            "pct": 0.72
+            "pct": 0.7
           },
           "17": {
-            "n": 12,
-            "pct": 0.45
+            "n": 13,
+            "pct": 0.48
           },
           "18": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "19": {
             "n": 7,
@@ -3439,7 +3439,7 @@ const BRENT_DATA = {
           },
           "20": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "21": {
             "n": 1,
@@ -3497,11 +3497,11 @@ const BRENT_DATA = {
           },
           "10": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "12": {
             "n": 4,
@@ -3509,27 +3509,27 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 14,
-            "pct": 0.53
+            "pct": 0.52
           },
           "14": {
             "n": 23,
-            "pct": 0.87
+            "pct": 0.85
           },
           "15": {
-            "n": 15,
-            "pct": 0.56
+            "n": 18,
+            "pct": 0.67
           },
           "16": {
             "n": 23,
-            "pct": 0.87
+            "pct": 0.85
           },
           "17": {
             "n": 18,
-            "pct": 0.68
+            "pct": 0.67
           },
           "18": {
             "n": 24,
-            "pct": 0.9
+            "pct": 0.89
           },
           "19": {
             "n": 11,
@@ -3537,7 +3537,7 @@ const BRENT_DATA = {
           },
           "20": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "21": {
             "n": 5,
@@ -3558,8 +3558,8 @@ const BRENT_DATA = {
             "pct": 0.26
           },
           "1": {
-            "n": 6,
-            "pct": 0.23
+            "n": 7,
+            "pct": 0.26
           },
           "2": {
             "n": 1,
@@ -3571,7 +3571,7 @@ const BRENT_DATA = {
           },
           "4": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 1,
@@ -3583,7 +3583,7 @@ const BRENT_DATA = {
           },
           "7": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "8": {
             "n": 0,
@@ -3615,7 +3615,7 @@ const BRENT_DATA = {
           },
           "15": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "16": {
             "n": 15,
@@ -3627,11 +3627,11 @@ const BRENT_DATA = {
           },
           "18": {
             "n": 20,
-            "pct": 0.75
+            "pct": 0.74
           },
           "19": {
             "n": 16,
-            "pct": 0.6
+            "pct": 0.59
           },
           "20": {
             "n": 15,
@@ -3652,8 +3652,8 @@ const BRENT_DATA = {
         },
         "10": {
           "0": {
-            "n": 2,
-            "pct": 0.08
+            "n": 3,
+            "pct": 0.11
           },
           "1": {
             "n": 8,
@@ -3673,11 +3673,11 @@ const BRENT_DATA = {
           },
           "5": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "6": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "7": {
             "n": 4,
@@ -3685,7 +3685,7 @@ const BRENT_DATA = {
           },
           "8": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "9": {
             "n": 1,
@@ -3705,7 +3705,7 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "14": {
             "n": 4,
@@ -3713,7 +3713,7 @@ const BRENT_DATA = {
           },
           "15": {
             "n": 19,
-            "pct": 0.72
+            "pct": 0.7
           },
           "16": {
             "n": 11,
@@ -3725,15 +3725,15 @@ const BRENT_DATA = {
           },
           "18": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "19": {
             "n": 3,
             "pct": 0.11
           },
           "20": {
-            "n": 2,
-            "pct": 0.08
+            "n": 3,
+            "pct": 0.11
           },
           "21": {
             "n": 3,
@@ -3745,7 +3745,7 @@ const BRENT_DATA = {
           },
           "23": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "11": {
@@ -3779,7 +3779,7 @@ const BRENT_DATA = {
           },
           "7": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "8": {
             "n": 5,
@@ -3791,7 +3791,7 @@ const BRENT_DATA = {
           },
           "10": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 1,
@@ -3819,11 +3819,11 @@ const BRENT_DATA = {
           },
           "17": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "18": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "19": {
             "n": 3,
@@ -3831,7 +3831,7 @@ const BRENT_DATA = {
           },
           "20": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "21": {
             "n": 3,
@@ -3849,11 +3849,11 @@ const BRENT_DATA = {
         "12": {
           "0": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "1": {
-            "n": 8,
-            "pct": 0.3
+            "n": 9,
+            "pct": 0.33
           },
           "2": {
             "n": 1,
@@ -3861,15 +3861,15 @@ const BRENT_DATA = {
           },
           "3": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "4": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "6": {
             "n": 5,
@@ -3893,7 +3893,7 @@ const BRENT_DATA = {
           },
           "11": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "12": {
             "n": 0,
@@ -3901,11 +3901,11 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "14": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "15": {
             "n": 5,
@@ -3913,23 +3913,23 @@ const BRENT_DATA = {
           },
           "16": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "17": {
-            "n": 7,
-            "pct": 0.26
+            "n": 8,
+            "pct": 0.3
           },
           "18": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "19": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "20": {
-            "n": 8,
-            "pct": 0.3
+            "n": 9,
+            "pct": 0.33
           },
           "21": {
             "n": 1,
@@ -3947,7 +3947,7 @@ const BRENT_DATA = {
         "13": {
           "0": {
             "n": 19,
-            "pct": 0.72
+            "pct": 0.7
           },
           "1": {
             "n": 11,
@@ -3955,15 +3955,15 @@ const BRENT_DATA = {
           },
           "2": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "3": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "4": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 3,
@@ -3971,11 +3971,11 @@ const BRENT_DATA = {
           },
           "6": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "7": {
-            "n": 12,
-            "pct": 0.45
+            "n": 13,
+            "pct": 0.48
           },
           "8": {
             "n": 15,
@@ -3986,8 +3986,8 @@ const BRENT_DATA = {
             "pct": 0.26
           },
           "10": {
-            "n": 5,
-            "pct": 0.19
+            "n": 6,
+            "pct": 0.22
           },
           "11": {
             "n": 0,
@@ -3999,7 +3999,7 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "14": {
             "n": 3,
@@ -4007,7 +4007,7 @@ const BRENT_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "16": {
             "n": 11,
@@ -4015,19 +4015,19 @@ const BRENT_DATA = {
           },
           "17": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "18": {
-            "n": 14,
-            "pct": 0.53
+            "n": 15,
+            "pct": 0.56
           },
           "19": {
             "n": 14,
-            "pct": 0.53
+            "pct": 0.52
           },
           "20": {
-            "n": 7,
-            "pct": 0.26
+            "n": 8,
+            "pct": 0.3
           },
           "21": {
             "n": 1,
@@ -4045,23 +4045,23 @@ const BRENT_DATA = {
         "14": {
           "0": {
             "n": 16,
-            "pct": 0.6
+            "pct": 0.59
           },
           "1": {
             "n": 22,
-            "pct": 0.83
+            "pct": 0.81
           },
           "2": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "3": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "4": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "5": {
             "n": 3,
@@ -4077,19 +4077,19 @@ const BRENT_DATA = {
           },
           "8": {
             "n": 23,
-            "pct": 0.87
+            "pct": 0.85
           },
           "9": {
             "n": 20,
-            "pct": 0.75
+            "pct": 0.74
           },
           "10": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "11": {
-            "n": 7,
-            "pct": 0.26
+            "n": 8,
+            "pct": 0.3
           },
           "12": {
             "n": 7,
@@ -4101,11 +4101,11 @@ const BRENT_DATA = {
           },
           "14": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "15": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "16": {
             "n": 8,
@@ -4113,19 +4113,19 @@ const BRENT_DATA = {
           },
           "17": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "18": {
-            "n": 17,
-            "pct": 0.64
+            "n": 18,
+            "pct": 0.67
           },
           "19": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "20": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "21": {
             "n": 3,
@@ -4143,19 +4143,19 @@ const BRENT_DATA = {
         "15": {
           "0": {
             "n": 16,
-            "pct": 0.6
+            "pct": 0.59
           },
           "1": {
-            "n": 24,
-            "pct": 0.9
+            "n": 25,
+            "pct": 0.93
           },
           "2": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "3": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "4": {
             "n": 1,
@@ -4167,23 +4167,23 @@ const BRENT_DATA = {
           },
           "6": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "7": {
             "n": 20,
-            "pct": 0.75
+            "pct": 0.74
           },
           "8": {
-            "n": 19,
-            "pct": 0.72
+            "n": 20,
+            "pct": 0.74
           },
           "9": {
             "n": 18,
-            "pct": 0.68
+            "pct": 0.67
           },
           "10": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "11": {
             "n": 8,
@@ -4191,15 +4191,15 @@ const BRENT_DATA = {
           },
           "12": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "13": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "14": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "15": {
             "n": 5,
@@ -4207,15 +4207,15 @@ const BRENT_DATA = {
           },
           "16": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "19": {
             "n": 7,
@@ -4240,16 +4240,16 @@ const BRENT_DATA = {
         },
         "16": {
           "0": {
-            "n": 13,
-            "pct": 0.49
+            "n": 14,
+            "pct": 0.52
           },
           "1": {
             "n": 25,
-            "pct": 0.94
+            "pct": 0.93
           },
           "2": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "3": {
             "n": 4,
@@ -4257,31 +4257,31 @@ const BRENT_DATA = {
           },
           "4": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "6": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "7": {
-            "n": 15,
-            "pct": 0.56
+            "n": 16,
+            "pct": 0.59
           },
           "8": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "9": {
             "n": 14,
-            "pct": 0.53
+            "pct": 0.52
           },
           "10": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "11": {
             "n": 7,
@@ -4289,15 +4289,15 @@ const BRENT_DATA = {
           },
           "12": {
             "n": 16,
-            "pct": 0.6
+            "pct": 0.59
           },
           "13": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "14": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "15": {
             "n": 4,
@@ -4339,11 +4339,11 @@ const BRENT_DATA = {
         "17": {
           "0": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "1": {
-            "n": 14,
-            "pct": 0.53
+            "n": 15,
+            "pct": 0.56
           },
           "2": {
             "n": 5,
@@ -4355,7 +4355,7 @@ const BRENT_DATA = {
           },
           "4": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 1,
@@ -4363,11 +4363,11 @@ const BRENT_DATA = {
           },
           "6": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "7": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "8": {
             "n": 15,
@@ -4375,27 +4375,27 @@ const BRENT_DATA = {
           },
           "9": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "10": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "11": {
-            "n": 6,
-            "pct": 0.23
+            "n": 7,
+            "pct": 0.26
           },
           "12": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "13": {
-            "n": 14,
-            "pct": 0.53
+            "n": 15,
+            "pct": 0.56
           },
           "14": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "15": {
             "n": 11,
@@ -4437,11 +4437,11 @@ const BRENT_DATA = {
         "18": {
           "0": {
             "n": 20,
-            "pct": 0.75
+            "pct": 0.74
           },
           "1": {
-            "n": 22,
-            "pct": 0.83
+            "n": 23,
+            "pct": 0.85
           },
           "2": {
             "n": 7,
@@ -4449,7 +4449,7 @@ const BRENT_DATA = {
           },
           "3": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "4": {
             "n": 1,
@@ -4461,19 +4461,19 @@ const BRENT_DATA = {
           },
           "6": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "7": {
             "n": 14,
-            "pct": 0.53
+            "pct": 0.52
           },
           "8": {
             "n": 14,
-            "pct": 0.53
+            "pct": 0.52
           },
           "9": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "10": {
             "n": 11,
@@ -4481,19 +4481,19 @@ const BRENT_DATA = {
           },
           "11": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "12": {
-            "n": 11,
-            "pct": 0.41
+            "n": 12,
+            "pct": 0.44
           },
           "13": {
             "n": 25,
-            "pct": 0.94
+            "pct": 0.93
           },
           "14": {
             "n": 16,
-            "pct": 0.6
+            "pct": 0.59
           },
           "15": {
             "n": 8,
@@ -4529,7 +4529,7 @@ const BRENT_DATA = {
           },
           "23": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "19": {
@@ -4539,11 +4539,11 @@ const BRENT_DATA = {
           },
           "1": {
             "n": 19,
-            "pct": 0.72
+            "pct": 0.7
           },
           "2": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "3": {
             "n": 3,
@@ -4555,31 +4555,31 @@ const BRENT_DATA = {
           },
           "5": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "6": {
             "n": 4,
             "pct": 0.15
           },
           "7": {
-            "n": 2,
-            "pct": 0.08
+            "n": 3,
+            "pct": 0.11
           },
           "8": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "9": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "10": {
-            "n": 10,
-            "pct": 0.38
+            "n": 11,
+            "pct": 0.41
           },
           "11": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "12": {
             "n": 5,
@@ -4587,7 +4587,7 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 12,
-            "pct": 0.45
+            "pct": 0.44
           },
           "14": {
             "n": 8,
@@ -4595,7 +4595,7 @@ const BRENT_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "16": {
             "n": 1,
@@ -4623,11 +4623,11 @@ const BRENT_DATA = {
           },
           "22": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "20": {
@@ -4641,7 +4641,7 @@ const BRENT_DATA = {
           },
           "2": {
             "n": 6,
-            "pct": 0.23
+            "pct": 0.22
           },
           "3": {
             "n": 3,
@@ -4652,8 +4652,8 @@ const BRENT_DATA = {
             "pct": 0.0
           },
           "5": {
-            "n": 1,
-            "pct": 0.04
+            "n": 2,
+            "pct": 0.07
           },
           "6": {
             "n": 7,
@@ -4665,7 +4665,7 @@ const BRENT_DATA = {
           },
           "8": {
             "n": 13,
-            "pct": 0.49
+            "pct": 0.48
           },
           "9": {
             "n": 5,
@@ -4685,19 +4685,19 @@ const BRENT_DATA = {
           },
           "13": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "14": {
             "n": 10,
-            "pct": 0.38
+            "pct": 0.37
           },
           "15": {
             "n": 5,
             "pct": 0.19
           },
           "16": {
-            "n": 3,
-            "pct": 0.11
+            "n": 4,
+            "pct": 0.15
           },
           "17": {
             "n": 1,
@@ -4713,7 +4713,7 @@ const BRENT_DATA = {
           },
           "20": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "21": {
             "n": 0,
@@ -4735,7 +4735,7 @@ const BRENT_DATA = {
           },
           "1": {
             "n": 9,
-            "pct": 0.34
+            "pct": 0.33
           },
           "2": {
             "n": 3,
@@ -4759,7 +4759,7 @@ const BRENT_DATA = {
           },
           "7": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "8": {
             "n": 4,
@@ -4767,19 +4767,19 @@ const BRENT_DATA = {
           },
           "9": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "10": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "12": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 3,
@@ -4795,11 +4795,11 @@ const BRENT_DATA = {
           },
           "16": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 4,
@@ -4935,7 +4935,7 @@ const BRENT_DATA = {
           },
           "2": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "3": {
             "n": 0,
@@ -4983,7 +4983,7 @@ const BRENT_DATA = {
           },
           "14": {
             "n": 2,
-            "pct": 0.08
+            "pct": 0.07
           },
           "15": {
             "n": 3,
@@ -5026,44 +5026,44 @@ const BRENT_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 119,
-        "mean_range_pips": 230.6,
-        "median_range_pips": 184.0,
-        "extreme_in_release_window_pct": 27.7
+        "n": 121,
+        "mean_range_pips": 233.4,
+        "median_range_pips": 191.0,
+        "extreme_in_release_window_pct": 28.1
       },
       "other_fridays": {
-        "n": 404,
-        "mean_range_pips": 204.0,
-        "median_range_pips": 166.5,
-        "extreme_in_release_window_pct": 24.5
+        "n": 411,
+        "mean_range_pips": 207.3,
+        "median_range_pips": 169.0,
+        "extreme_in_release_window_pct": 24.1
       },
-      "all_days_mean_range_pips": 221.2,
+      "all_days_mean_range_pips": 225.0,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Monday": 161,
-      "Friday": 160,
-      "Thursday": 94,
+      "Friday": 164,
+      "Monday": 163,
+      "Thursday": 97,
       "Tuesday": 82,
       "Wednesday": 67
     },
     "weekly_low_day": {
-      "Monday": 178,
+      "Monday": 180,
       "Friday": 118,
-      "Thursday": 96,
-      "Wednesday": 89,
-      "Tuesday": 83
+      "Thursday": 99,
+      "Wednesday": 90,
+      "Tuesday": 86
     },
     "monthly_high_week_of_month": {
       "1": 43,
-      "2": 22,
+      "2": 23,
       "3": 15,
       "4": 29,
-      "5": 23
+      "5": 24
     },
     "monthly_low_week_of_month": {
-      "1": 61,
+      "1": 63,
       "2": 22,
       "3": 18,
       "4": 20,
@@ -5114,49 +5114,49 @@ const BRENT_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 2725,
-    "n_data_gap_days": 0,
+    "n_labeled_days": 2770,
+    "n_data_gap_days": 1,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 1542,
-        "pct": 56.59
+        "n": 1576,
+        "pct": 56.9
       },
       "Compression Day": {
         "n": 473,
-        "pct": 17.36
+        "pct": 17.08
       },
       "Volatile Day": {
-        "n": 298,
+        "n": 303,
         "pct": 10.94
       },
       "Volatile Reversal Day": {
-        "n": 111,
-        "pct": 4.07
+        "n": 113,
+        "pct": 4.08
       },
       "Trend Day (Up)": {
-        "n": 107,
-        "pct": 3.93
+        "n": 110,
+        "pct": 3.97
       },
       "Trend Day (Down)": {
-        "n": 96,
-        "pct": 3.52
+        "n": 97,
+        "pct": 3.5
       },
       "Quiet Drift Day (Up)": {
         "n": 66,
-        "pct": 2.42
+        "pct": 2.38
       },
       "Quiet Drift Day (Down)": {
         "n": 32,
-        "pct": 1.17
+        "pct": 1.16
       }
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 825,
-        "Late_Resolution": 399,
-        "Fade_Risk": 222,
-        "Early_Resolution": 50,
+        "Late_Push": 841,
+        "Late_Resolution": 409,
+        "Fade_Risk": 228,
+        "Early_Resolution": 52,
         "Insufficient_History": 46
       },
       "Compression Day": {
@@ -5167,7 +5167,7 @@ const BRENT_DATA = {
         "Insufficient_History": 4
       },
       "Volatile Day": {
-        "Late_Push": 211,
+        "Late_Push": 216,
         "Late_Resolution": 55,
         "Fade_Risk": 20,
         "Insufficient_History": 6,
@@ -5175,19 +5175,19 @@ const BRENT_DATA = {
       },
       "Volatile Reversal Day": {
         "Late_Push": 58,
-        "Fade_Risk": 22,
-        "Late_Resolution": 19,
+        "Fade_Risk": 23,
+        "Late_Resolution": 20,
         "Early_Resolution": 10,
         "Insufficient_History": 2
       },
       "Trend Day (Up)": {
-        "Late_Push": 84,
+        "Late_Push": 87,
         "Late_Resolution": 16,
         "Insufficient_History": 6,
         "Fade_Risk": 1
       },
       "Trend Day (Down)": {
-        "Late_Push": 77,
+        "Late_Push": 78,
         "Late_Resolution": 17,
         "Insufficient_History": 2
       },
@@ -5211,8 +5211,8 @@ const BRENT_DATA = {
         "median": 104.0
       },
       "Normal Day": {
-        "mean": 191.2,
-        "median": 169.0
+        "mean": 195.0,
+        "median": 170.0
       },
       "Quiet Drift Day (Down)": {
         "mean": 105.7,
@@ -5223,115 +5223,115 @@ const BRENT_DATA = {
         "median": 105.0
       },
       "Trend Day (Down)": {
-        "mean": 376.1,
-        "median": 291.5
+        "mean": 384.1,
+        "median": 292.0
       },
       "Trend Day (Up)": {
-        "mean": 398.5,
-        "median": 316.0
+        "mean": 406.3,
+        "median": 318.5
       },
       "Volatile Day": {
-        "mean": 397.5,
-        "median": 299.5
+        "mean": 401.5,
+        "median": 302.0
       },
       "Volatile Reversal Day": {
-        "mean": 395.6,
-        "median": 314.0
+        "mean": 399.7,
+        "median": 316.0
       }
     },
     "nfp": {
-      "n_nfp_days": 122,
-      "n_other_fridays": 414,
+      "n_nfp_days": 124,
+      "n_other_fridays": 421,
       "nfp_profile_distribution": {
         "Normal Day": {
-          "n": 72,
-          "pct": 59.02,
-          "mean_range_pips": 202.7,
-          "median_range_pips": 184.0
+          "n": 74,
+          "pct": 59.68,
+          "mean_range_pips": 208.1,
+          "median_range_pips": 186.0
         },
         "Compression Day": {
           "n": 20,
-          "pct": 16.39,
+          "pct": 16.13,
           "mean_range_pips": 110.4,
           "median_range_pips": 102.0
         },
         "Volatile Day": {
           "n": 12,
-          "pct": 9.84,
+          "pct": 9.68,
           "mean_range_pips": 353.2,
           "median_range_pips": 295.5
         },
         "Trend Day (Up)": {
           "n": 8,
-          "pct": 6.56,
+          "pct": 6.45,
           "mean_range_pips": 412.2,
           "median_range_pips": 284.0
         },
         "Volatile Reversal Day": {
           "n": 7,
-          "pct": 5.74,
+          "pct": 5.65,
           "mean_range_pips": 391.9,
           "median_range_pips": 381.0
         },
         "Trend Day (Down)": {
           "n": 2,
-          "pct": 1.64,
+          "pct": 1.61,
           "mean_range_pips": 392.0,
           "median_range_pips": 392.0
         },
         "Quiet Drift Day (Down)": {
           "n": 1,
-          "pct": 0.82,
+          "pct": 0.81,
           "mean_range_pips": 104.0,
           "median_range_pips": 104.0
         }
       },
       "other_friday_profile_distribution": {
         "Normal Day": {
-          "n": 240,
-          "pct": 57.97,
-          "mean_range_pips": 195.3,
-          "median_range_pips": 171.0
+          "n": 246,
+          "pct": 58.43,
+          "mean_range_pips": 199.6,
+          "median_range_pips": 171.5
         },
         "Compression Day": {
           "n": 88,
-          "pct": 21.26,
+          "pct": 20.9,
           "mean_range_pips": 106.1,
           "median_range_pips": 95.5
         },
         "Volatile Day": {
-          "n": 32,
-          "pct": 7.73,
-          "mean_range_pips": 352.6,
+          "n": 33,
+          "pct": 7.84,
+          "mean_range_pips": 359.2,
           "median_range_pips": 287.0
         },
         "Trend Day (Up)": {
           "n": 15,
-          "pct": 3.62,
+          "pct": 3.56,
           "mean_range_pips": 387.2,
           "median_range_pips": 317.0
         },
         "Volatile Reversal Day": {
           "n": 14,
-          "pct": 3.38,
+          "pct": 3.33,
           "mean_range_pips": 421.7,
           "median_range_pips": 312.5
         },
         "Quiet Drift Day (Up)": {
           "n": 11,
-          "pct": 2.66,
+          "pct": 2.61,
           "mean_range_pips": 132.0,
           "median_range_pips": 104.0
         },
         "Trend Day (Down)": {
           "n": 11,
-          "pct": 2.66,
+          "pct": 2.61,
           "mean_range_pips": 313.5,
           "median_range_pips": 284.0
         },
         "Quiet Drift Day (Down)": {
           "n": 3,
-          "pct": 0.72,
+          "pct": 0.71,
           "mean_range_pips": 95.7,
           "median_range_pips": 112.0
         }
@@ -5340,47 +5340,47 @@ const BRENT_DATA = {
     "asset": "BRENT"
   },
   "weekly": {
-    "n_labeled_weeks": 550,
+    "n_labeled_weeks": 559,
     "n_short_weeks": 0,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 322,
-        "pct": 58.55
+        "n": 329,
+        "pct": 58.86
       },
       "Compression Week": {
         "n": 87,
-        "pct": 15.82
+        "pct": 15.56
       },
       "Volatile Week": {
-        "n": 59,
+        "n": 60,
         "pct": 10.73
+      },
+      "Volatile Reversal Week": {
+        "n": 23,
+        "pct": 4.11
       },
       "Trend Week (Down)": {
         "n": 22,
-        "pct": 4.0
-      },
-      "Volatile Reversal Week": {
-        "n": 22,
-        "pct": 4.0
+        "pct": 3.94
       },
       "Trend Week (Up)": {
         "n": 19,
-        "pct": 3.45
+        "pct": 3.4
       },
       "Quiet Drift Week (Up)": {
         "n": 15,
-        "pct": 2.73
+        "pct": 2.68
       },
       "Quiet Drift Week (Down)": {
         "n": 4,
-        "pct": 0.73
+        "pct": 0.72
       }
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 207,
-        "Late_Resolution": 54,
+        "Late_Push": 212,
+        "Late_Resolution": 56,
         "Fade_Risk": 40,
         "Early_Resolution": 21
       },
@@ -5391,20 +5391,20 @@ const BRENT_DATA = {
         "Early_Resolution": 9
       },
       "Volatile Week": {
-        "Late_Push": 47,
+        "Late_Push": 48,
         "Late_Resolution": 5,
         "Fade_Risk": 5,
         "Early_Resolution": 2
       },
+      "Volatile Reversal Week": {
+        "Late_Push": 11,
+        "Fade_Risk": 9,
+        "Late_Resolution": 2,
+        "Early_Resolution": 1
+      },
       "Trend Week (Down)": {
         "Late_Push": 20,
         "Late_Resolution": 1,
-        "Early_Resolution": 1
-      },
-      "Volatile Reversal Week": {
-        "Late_Push": 10,
-        "Fade_Risk": 9,
-        "Late_Resolution": 2,
         "Early_Resolution": 1
       },
       "Trend Week (Up)": {
@@ -5424,8 +5424,8 @@ const BRENT_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Week": {
-        "Spread": 262,
-        "Adjacent": 53,
+        "Spread": 267,
+        "Adjacent": 55,
         "Same_Day": 7
       },
       "Compression Week": {
@@ -5434,18 +5434,18 @@ const BRENT_DATA = {
         "Same_Day": 9
       },
       "Volatile Week": {
-        "Spread": 55,
+        "Spread": 56,
         "Adjacent": 3,
+        "Same_Day": 1
+      },
+      "Volatile Reversal Week": {
+        "Spread": 20,
+        "Adjacent": 2,
         "Same_Day": 1
       },
       "Trend Week (Down)": {
         "Spread": 20,
         "Adjacent": 2
-      },
-      "Volatile Reversal Week": {
-        "Spread": 19,
-        "Adjacent": 2,
-        "Same_Day": 1
       },
       "Trend Week (Up)": {
         "Spread": 18,
@@ -5465,8 +5465,8 @@ const BRENT_DATA = {
         "median": 238.0
       },
       "Normal Week": {
-        "mean": 446.9,
-        "median": 391.5
+        "mean": 455.0,
+        "median": 396.0
       },
       "Quiet Drift Week (Down)": {
         "mean": 221.8,
@@ -5485,127 +5485,127 @@ const BRENT_DATA = {
         "median": 714.0
       },
       "Volatile Reversal Week": {
-        "mean": 884.7,
-        "median": 589.0
+        "mean": 902.9,
+        "median": 602.0
       },
       "Volatile Week": {
-        "mean": 915.8,
-        "median": 703.0
+        "mean": 931.5,
+        "median": 707.0
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 564,
+      "n_weeks": 573,
       "same_day_n": 19,
-      "same_day_pct": 3.37,
+      "same_day_pct": 3.32,
       "pairs": {
         "Monday": {
           "Monday": {
             "n": 7,
-            "pct": 1.24
+            "pct": 1.22
           },
           "Tuesday": {
             "n": 10,
-            "pct": 1.77
+            "pct": 1.75
           },
           "Wednesday": {
             "n": 27,
-            "pct": 4.79
+            "pct": 4.71
           },
           "Thursday": {
             "n": 50,
-            "pct": 8.87
+            "pct": 8.73
           },
           "Friday": {
-            "n": 84,
-            "pct": 14.89
+            "n": 86,
+            "pct": 15.01
           }
         },
         "Tuesday": {
           "Monday": {
             "n": 13,
-            "pct": 2.3
+            "pct": 2.27
           },
           "Tuesday": {
             "n": 4,
-            "pct": 0.71
+            "pct": 0.7
           },
           "Wednesday": {
             "n": 5,
-            "pct": 0.89
+            "pct": 0.87
           },
           "Thursday": {
-            "n": 22,
-            "pct": 3.9
+            "n": 24,
+            "pct": 4.19
           },
           "Friday": {
-            "n": 39,
-            "pct": 6.91
+            "n": 40,
+            "pct": 6.98
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 43,
-            "pct": 7.62
+            "pct": 7.5
           },
           "Tuesday": {
             "n": 12,
-            "pct": 2.13
+            "pct": 2.09
           },
           "Wednesday": {
             "n": 4,
-            "pct": 0.71
+            "pct": 0.7
           },
           "Thursday": {
-            "n": 7,
-            "pct": 1.24
+            "n": 8,
+            "pct": 1.4
           },
           "Friday": {
             "n": 23,
-            "pct": 4.08
+            "pct": 4.01
           }
         },
         "Thursday": {
           "Monday": {
-            "n": 41,
-            "pct": 7.27
+            "n": 43,
+            "pct": 7.5
           },
           "Tuesday": {
             "n": 33,
-            "pct": 5.85
+            "pct": 5.76
           },
           "Wednesday": {
             "n": 10,
-            "pct": 1.77
+            "pct": 1.75
           },
           "Thursday": {
             "n": 1,
-            "pct": 0.18
+            "pct": 0.17
           },
           "Friday": {
-            "n": 11,
-            "pct": 1.95
+            "n": 12,
+            "pct": 2.09
           }
         },
         "Friday": {
           "Monday": {
             "n": 57,
-            "pct": 10.11
+            "pct": 9.95
           },
           "Tuesday": {
             "n": 23,
-            "pct": 4.08
+            "pct": 4.01
           },
           "Wednesday": {
             "n": 21,
-            "pct": 3.72
+            "pct": 3.66
           },
           "Thursday": {
             "n": 14,
-            "pct": 2.48
+            "pct": 2.44
           },
           "Friday": {
             "n": 3,
-            "pct": 0.53
+            "pct": 0.52
           }
         }
       }
@@ -5615,47 +5615,47 @@ const BRENT_DATA = {
     "asset": "BRENT"
   },
   "monthly": {
-    "n_labeled_months": 120,
+    "n_labeled_months": 122,
     "n_short_months": 3,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 66,
-        "pct": 55.0
+        "n": 68,
+        "pct": 55.74
       },
       "Compression Month": {
         "n": 14,
-        "pct": 11.67
+        "pct": 11.48
       },
       "Volatile Month": {
         "n": 12,
-        "pct": 10.0
+        "pct": 9.84
       },
       "Trend Month (Down)": {
         "n": 8,
-        "pct": 6.67
+        "pct": 6.56
       },
       "Trend Month (Up)": {
         "n": 6,
-        "pct": 5.0
+        "pct": 4.92
       },
       "Volatile Reversal Month": {
         "n": 5,
-        "pct": 4.17
+        "pct": 4.1
       },
       "Quiet Drift Month (Up)": {
         "n": 5,
-        "pct": 4.17
+        "pct": 4.1
       },
       "Quiet Drift Month (Down)": {
         "n": 4,
-        "pct": 3.33
+        "pct": 3.28
       }
     },
     "extreme_timing_by_profile": {
       "Normal Month": {
-        "Late_Push": 41,
-        "Early_Resolution": 13,
+        "Late_Push": 42,
+        "Early_Resolution": 14,
         "Fade_Risk": 7,
         "Late_Resolution": 5
       },
@@ -5693,8 +5693,8 @@ const BRENT_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Month": {
-        "Spread": 49,
-        "Adjacent": 12,
+        "Spread": 50,
+        "Adjacent": 13,
         "Same_Week": 5
       },
       "Compression Month": {
@@ -5730,8 +5730,8 @@ const BRENT_DATA = {
         "median": 462.0
       },
       "Normal Month": {
-        "mean": 873.3,
-        "median": 778.0
+        "mean": 900.1,
+        "median": 794.0
       },
       "Quiet Drift Month (Down)": {
         "mean": 658.8,
@@ -5759,36 +5759,36 @@ const BRENT_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 129,
+      "n_months": 131,
       "same_week_n": 6,
-      "same_week_pct": 4.65,
+      "same_week_pct": 4.58,
       "pairs": {
         "1": {
           "1": {
             "n": 5,
-            "pct": 3.88
+            "pct": 3.82
           },
           "2": {
-            "n": 7,
-            "pct": 5.43
+            "n": 8,
+            "pct": 6.11
           },
           "3": {
             "n": 8,
-            "pct": 6.2
+            "pct": 6.11
           },
           "4": {
             "n": 25,
-            "pct": 19.38
+            "pct": 19.08
           },
           "5": {
-            "n": 15,
-            "pct": 11.63
+            "n": 16,
+            "pct": 12.21
           }
         },
         "2": {
           "1": {
             "n": 12,
-            "pct": 9.3
+            "pct": 9.16
           },
           "2": {
             "n": 0,
@@ -5796,29 +5796,29 @@ const BRENT_DATA = {
           },
           "3": {
             "n": 3,
-            "pct": 2.33
+            "pct": 2.29
           },
           "4": {
             "n": 3,
-            "pct": 2.33
+            "pct": 2.29
           },
           "5": {
             "n": 4,
-            "pct": 3.1
+            "pct": 3.05
           }
         },
         "3": {
           "1": {
             "n": 10,
-            "pct": 7.75
+            "pct": 7.63
           },
           "2": {
             "n": 4,
-            "pct": 3.1
+            "pct": 3.05
           },
           "3": {
             "n": 1,
-            "pct": 0.78
+            "pct": 0.76
           },
           "4": {
             "n": 0,
@@ -5826,21 +5826,21 @@ const BRENT_DATA = {
           },
           "5": {
             "n": 3,
-            "pct": 2.33
+            "pct": 2.29
           }
         },
         "4": {
           "1": {
             "n": 9,
-            "pct": 6.98
+            "pct": 6.87
           },
           "2": {
             "n": 8,
-            "pct": 6.2
+            "pct": 6.11
           },
           "3": {
             "n": 1,
-            "pct": 0.78
+            "pct": 0.76
           },
           "4": {
             "n": 0,
@@ -5854,15 +5854,15 @@ const BRENT_DATA = {
         "5": {
           "1": {
             "n": 6,
-            "pct": 4.65
+            "pct": 4.58
           },
           "2": {
             "n": 3,
-            "pct": 2.33
+            "pct": 2.29
           },
           "3": {
             "n": 2,
-            "pct": 1.55
+            "pct": 1.53
           },
           "4": {
             "n": 0,
@@ -5880,13 +5880,17 @@ const BRENT_DATA = {
     "asset": "BRENT"
   },
   "yearly": {
-    "n_labeled_years": 3,
-    "n_short_years": 2,
+    "n_labeled_years": 4,
+    "n_short_years": 1,
     "n_insufficient_history_years": 7,
     "profile_distribution": {
       "Normal Year": {
         "n": 3,
-        "pct": 100.0
+        "pct": 75.0
+      },
+      "Volatile Year": {
+        "n": 1,
+        "pct": 25.0
       }
     },
     "extreme_timing_by_profile": {
@@ -5894,21 +5898,31 @@ const BRENT_DATA = {
         "Fade_Risk": 1,
         "Late_Push": 1,
         "Early_Resolution": 1
+      },
+      "Volatile Year": {
+        "Early_Resolution": 1
       }
     },
     "extreme_spread_by_profile": {
       "Normal Year": {
         "Spread": 3
+      },
+      "Volatile Year": {
+        "Spread": 1
       }
     },
     "avg_range_pips_by_profile": {
       "Normal Year": {
         "mean": 2463.0,
         "median": 2410.0
+      },
+      "Volatile Year": {
+        "mean": 6029.0,
+        "median": 6029.0
       }
     },
     "month_pair_distribution": {
-      "n_years": 10,
+      "n_years": 11,
       "same_month_n": 0,
       "same_month_pct": 0.0,
       "pairs": {
@@ -5926,8 +5940,8 @@ const BRENT_DATA = {
             "pct": 0.0
           },
           "4": {
-            "n": 1,
-            "pct": 10.0
+            "n": 2,
+            "pct": 18.18
           },
           "5": {
             "n": 0,
@@ -5951,7 +5965,7 @@ const BRENT_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           },
           "11": {
             "n": 0,
@@ -5959,7 +5973,7 @@ const BRENT_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           }
         },
         "2": {
@@ -6047,7 +6061,7 @@ const BRENT_DATA = {
           },
           "9": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           },
           "10": {
             "n": 0,
@@ -6065,7 +6079,7 @@ const BRENT_DATA = {
         "4": {
           "1": {
             "n": 2,
-            "pct": 20.0
+            "pct": 18.18
           },
           "2": {
             "n": 0,
@@ -6209,7 +6223,7 @@ const BRENT_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           }
         },
         "7": {
@@ -6327,7 +6341,7 @@ const BRENT_DATA = {
           },
           "4": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           },
           "5": {
             "n": 0,
@@ -6473,7 +6487,7 @@ const BRENT_DATA = {
           },
           "3": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           },
           "4": {
             "n": 0,
@@ -6501,7 +6515,7 @@ const BRENT_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 10.0
+            "pct": 9.09
           },
           "11": {
             "n": 0,
@@ -6521,114 +6535,114 @@ const BRENT_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 36.96,
-        "mean_activity_pips": 122.36,
-        "n_days": 1481
+        "mean_range_pips": 37.59,
+        "mean_activity_pips": 124.7,
+        "n_days": 1517
       },
       "1": {
-        "mean_range_pips": 43.6,
-        "mean_activity_pips": 150.81,
-        "n_days": 2253
+        "mean_range_pips": 44.42,
+        "mean_activity_pips": 153.62,
+        "n_days": 2298
       },
       "2": {
-        "mean_range_pips": 32.01,
-        "mean_activity_pips": 111.18,
-        "n_days": 2196
+        "mean_range_pips": 32.49,
+        "mean_activity_pips": 113.31,
+        "n_days": 2241
       },
       "3": {
-        "mean_range_pips": 24.92,
-        "mean_activity_pips": 87.25,
-        "n_days": 2153
+        "mean_range_pips": 25.33,
+        "mean_activity_pips": 89.05,
+        "n_days": 2198
       },
       "4": {
-        "mean_range_pips": 19.95,
-        "mean_activity_pips": 66.42,
-        "n_days": 2055
+        "mean_range_pips": 20.45,
+        "mean_activity_pips": 68.26,
+        "n_days": 2100
       },
       "5": {
-        "mean_range_pips": 29.91,
-        "mean_activity_pips": 99.75,
-        "n_days": 2173
+        "mean_range_pips": 30.69,
+        "mean_activity_pips": 102.48,
+        "n_days": 2218
       },
       "6": {
-        "mean_range_pips": 35.07,
-        "mean_activity_pips": 128.0,
-        "n_days": 2302
+        "mean_range_pips": 35.9,
+        "mean_activity_pips": 131.06,
+        "n_days": 2347
       },
       "7": {
-        "mean_range_pips": 45.1,
-        "mean_activity_pips": 164.53,
-        "n_days": 2362
+        "mean_range_pips": 46.04,
+        "mean_activity_pips": 167.84,
+        "n_days": 2407
       },
       "8": {
-        "mean_range_pips": 55.1,
-        "mean_activity_pips": 206.55,
-        "n_days": 2371
+        "mean_range_pips": 56.17,
+        "mean_activity_pips": 210.41,
+        "n_days": 2416
       },
       "9": {
-        "mean_range_pips": 52.06,
-        "mean_activity_pips": 184.69,
-        "n_days": 2369
+        "mean_range_pips": 52.84,
+        "mean_activity_pips": 187.82,
+        "n_days": 2414
       },
       "10": {
-        "mean_range_pips": 46.51,
-        "mean_activity_pips": 167.15,
-        "n_days": 2373
+        "mean_range_pips": 47.26,
+        "mean_activity_pips": 170.15,
+        "n_days": 2418
       },
       "11": {
-        "mean_range_pips": 45.55,
-        "mean_activity_pips": 162.64,
-        "n_days": 2373
+        "mean_range_pips": 46.25,
+        "mean_activity_pips": 165.36,
+        "n_days": 2418
       },
       "12": {
-        "mean_range_pips": 50.54,
-        "mean_activity_pips": 184.68,
-        "n_days": 2375
+        "mean_range_pips": 51.37,
+        "mean_activity_pips": 187.85,
+        "n_days": 2420
       },
       "13": {
-        "mean_range_pips": 69.89,
-        "mean_activity_pips": 254.86,
-        "n_days": 2374
+        "mean_range_pips": 70.9,
+        "mean_activity_pips": 258.32,
+        "n_days": 2419
       },
       "14": {
-        "mean_range_pips": 75.79,
-        "mean_activity_pips": 276.38,
-        "n_days": 2374
+        "mean_range_pips": 76.61,
+        "mean_activity_pips": 279.16,
+        "n_days": 2419
       },
       "15": {
-        "mean_range_pips": 72.09,
-        "mean_activity_pips": 264.64,
-        "n_days": 2373
+        "mean_range_pips": 72.89,
+        "mean_activity_pips": 267.54,
+        "n_days": 2418
       },
       "16": {
-        "mean_range_pips": 58.79,
-        "mean_activity_pips": 218.03,
-        "n_days": 2360
+        "mean_range_pips": 60.12,
+        "mean_activity_pips": 221.82,
+        "n_days": 2405
       },
       "17": {
-        "mean_range_pips": 52.5,
-        "mean_activity_pips": 190.43,
-        "n_days": 2327
+        "mean_range_pips": 53.25,
+        "mean_activity_pips": 193.16,
+        "n_days": 2371
       },
       "18": {
-        "mean_range_pips": 52.99,
-        "mean_activity_pips": 190.47,
-        "n_days": 2309
+        "mean_range_pips": 53.74,
+        "mean_activity_pips": 193.14,
+        "n_days": 2353
       },
       "19": {
-        "mean_range_pips": 37.35,
-        "mean_activity_pips": 132.21,
-        "n_days": 2283
+        "mean_range_pips": 38.0,
+        "mean_activity_pips": 134.17,
+        "n_days": 2327
       },
       "20": {
-        "mean_range_pips": 29.73,
-        "mean_activity_pips": 99.36,
-        "n_days": 1962
+        "mean_range_pips": 30.18,
+        "mean_activity_pips": 101.51,
+        "n_days": 2006
       },
       "21": {
-        "mean_range_pips": 24.14,
-        "mean_activity_pips": 78.46,
-        "n_days": 594
+        "mean_range_pips": 24.43,
+        "mean_activity_pips": 79.38,
+        "n_days": 599
       },
       "22": {
         "mean_range_pips": 46.27,
@@ -6653,15 +6667,15 @@ const BRENT_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 32.25,
-        "mean_activity_pips": 110.07
+        "mean_range_pips": 32.8,
+        "mean_activity_pips": 112.16
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 45.1,
-        "mean_activity_pips": 164.53
+        "mean_range_pips": 46.04,
+        "mean_activity_pips": 167.84
       },
       "london_only": {
         "hours": [
@@ -6670,8 +6684,8 @@ const BRENT_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 49.8,
-        "mean_activity_pips": 180.26
+        "mean_range_pips": 50.63,
+        "mean_activity_pips": 183.44
       },
       "london_ny_overlap": {
         "hours": [
@@ -6680,8 +6694,8 @@ const BRENT_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 67.08,
-        "mean_activity_pips": 245.14
+        "mean_range_pips": 67.94,
+        "mean_activity_pips": 248.22
       },
       "ny_only": {
         "hours": [
@@ -6691,54 +6705,54 @@ const BRENT_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 46.27,
-        "mean_activity_pips": 166.1
+        "mean_range_pips": 47.06,
+        "mean_activity_pips": 168.76
       }
     },
     "asset": "BRENT"
   },
   "range_forecast": {
     "asset": "BRENT",
-    "as_of": "2026-09-03",
+    "as_of": "2026-11-05",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 307.1,
+    "adr20": 445.8,
     "forecast": {
       "h1": {
-        "target_date": "2026-09-04",
-        "mean": 346.5,
-        "q10": 208.0,
-        "q90": 570.5,
-        "q10_raw": 198.0,
-        "q90_raw": 514.2
+        "target_date": "2026-11-06",
+        "mean": 544.4,
+        "q10": 339.1,
+        "q90": 889.3,
+        "q10_raw": 321.5,
+        "q90_raw": 793.3
       },
       "h5": {
-        "mean": 343.6
+        "mean": 514.8
       },
       "h20": {
-        "mean": 331.0
+        "mean": 457.4
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.874,
-        "h5": 0.872,
-        "h20": 0.857
+        "h1": 0.879,
+        "h5": 0.883,
+        "h20": 0.868
       },
       "mae": {
         "h1": {
-          "timesfm": 90.6,
-          "adr20": 103.6
+          "timesfm": 96.6,
+          "adr20": 110.0
         },
         "h5": {
-          "timesfm": 70.4,
-          "adr20": 80.7
+          "timesfm": 74.8,
+          "adr20": 84.7
         },
         "h20": {
-          "timesfm": 69.4,
-          "adr20": 81.1
+          "timesfm": 73.5,
+          "adr20": 84.7
         }
       },
       "n": {
@@ -6746,329 +6760,14 @@ const BRENT_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-09-25",
-      "to": "2026-09-02",
+      "from": "2024-11-27",
+      "to": "2026-11-04",
       "band_n": 500,
-      "band_coverage": 0.774,
+      "band_coverage": 0.778,
       "above_q90": 0.124,
-      "below_q10": 0.102
+      "below_q10": 0.098
     },
     "recent": [
-      {
-        "date": "2026-06-12",
-        "actual": 404.0,
-        "mean": 445.2,
-        "q10": 288.8,
-        "q90": 714.8
-      },
-      {
-        "date": "2026-06-15",
-        "actual": 176.0,
-        "mean": 411.5,
-        "q10": 264.2,
-        "q90": 664.9
-      },
-      {
-        "date": "2026-06-16",
-        "actual": 530.0,
-        "mean": 342.8,
-        "q10": 200.0,
-        "q90": 568.0
-      },
-      {
-        "date": "2026-06-17",
-        "actual": 516.0,
-        "mean": 411.3,
-        "q10": 257.2,
-        "q90": 664.8
-      },
-      {
-        "date": "2026-06-18",
-        "actual": 347.0,
-        "mean": 412.9,
-        "q10": 253.3,
-        "q90": 679.3
-      },
-      {
-        "date": "2026-06-19",
-        "actual": 201.0,
-        "mean": 396.3,
-        "q10": 252.7,
-        "q90": 644.1
-      },
-      {
-        "date": "2026-06-22",
-        "actual": 446.0,
-        "mean": 332.5,
-        "q10": 195.3,
-        "q90": 553.0
-      },
-      {
-        "date": "2026-06-23",
-        "actual": 180.0,
-        "mean": 356.7,
-        "q10": 219.5,
-        "q90": 587.9
-      },
-      {
-        "date": "2026-06-24",
-        "actual": 392.0,
-        "mean": 320.8,
-        "q10": 184.1,
-        "q90": 538.6
-      },
-      {
-        "date": "2026-06-25",
-        "actual": 367.0,
-        "mean": 354.7,
-        "q10": 222.6,
-        "q90": 576.5
-      },
-      {
-        "date": "2026-06-26",
-        "actual": 352.0,
-        "mean": 353.2,
-        "q10": 222.6,
-        "q90": 574.4
-      },
-      {
-        "date": "2026-06-29",
-        "actual": 166.0,
-        "mean": 353.3,
-        "q10": 225.3,
-        "q90": 573.8
-      },
-      {
-        "date": "2026-06-30",
-        "actual": 216.0,
-        "mean": 301.1,
-        "q10": 181.0,
-        "q90": 496.9
-      },
-      {
-        "date": "2026-07-01",
-        "actual": 250.0,
-        "mean": 287.8,
-        "q10": 171.6,
-        "q90": 475.3
-      },
-      {
-        "date": "2026-07-02",
-        "actual": 177.0,
-        "mean": 269.6,
-        "q10": 162.2,
-        "q90": 446.5
-      },
-      {
-        "date": "2026-07-03",
-        "actual": 117.0,
-        "mean": 245.2,
-        "q10": 146.0,
-        "q90": 409.0
-      },
-      {
-        "date": "2026-07-06",
-        "actual": 159.0,
-        "mean": 218.6,
-        "q10": 119.0,
-        "q90": 369.7
-      },
-      {
-        "date": "2026-07-07",
-        "actual": 430.0,
-        "mean": 203.9,
-        "q10": 113.4,
-        "q90": 344.3
-      },
-      {
-        "date": "2026-07-08",
-        "actual": 514.0,
-        "mean": 266.7,
-        "q10": 154.5,
-        "q90": 444.9
-      },
-      {
-        "date": "2026-07-09",
-        "actual": 367.0,
-        "mean": 331.0,
-        "q10": 200.0,
-        "q90": 545.5
-      },
-      {
-        "date": "2026-07-10",
-        "actual": 220.0,
-        "mean": 316.0,
-        "q10": 196.8,
-        "q90": 516.0
-      },
-      {
-        "date": "2026-07-13",
-        "actual": 660.0,
-        "mean": 270.7,
-        "q10": 156.4,
-        "q90": 454.9
-      },
-      {
-        "date": "2026-07-14",
-        "actual": 414.0,
-        "mean": 362.0,
-        "q10": 211.9,
-        "q90": 597.0
-      },
-      {
-        "date": "2026-07-15",
-        "actual": 320.0,
-        "mean": 358.8,
-        "q10": 215.2,
-        "q90": 591.9
-      },
-      {
-        "date": "2026-07-16",
-        "actual": 242.0,
-        "mean": 347.7,
-        "q10": 213.2,
-        "q90": 570.0
-      },
-      {
-        "date": "2026-07-17",
-        "actual": 462.0,
-        "mean": 296.1,
-        "q10": 177.9,
-        "q90": 494.3
-      },
-      {
-        "date": "2026-07-20",
-        "actual": 495.0,
-        "mean": 351.8,
-        "q10": 219.6,
-        "q90": 570.7
-      },
-      {
-        "date": "2026-07-21",
-        "actual": 412.0,
-        "mean": 378.1,
-        "q10": 237.6,
-        "q90": 612.4
-      },
-      {
-        "date": "2026-07-22",
-        "actual": 254.0,
-        "mean": 371.2,
-        "q10": 233.7,
-        "q90": 600.0
-      },
-      {
-        "date": "2026-07-23",
-        "actual": 457.0,
-        "mean": 331.8,
-        "q10": 199.0,
-        "q90": 545.0
-      },
-      {
-        "date": "2026-07-24",
-        "actual": 418.0,
-        "mean": 372.2,
-        "q10": 240.4,
-        "q90": 593.7
-      },
-      {
-        "date": "2026-07-27",
-        "actual": 395.0,
-        "mean": 382.4,
-        "q10": 249.5,
-        "q90": 610.3
-      },
-      {
-        "date": "2026-07-28",
-        "actual": 492.0,
-        "mean": 384.2,
-        "q10": 253.6,
-        "q90": 610.3
-      },
-      {
-        "date": "2026-07-29",
-        "actual": 447.0,
-        "mean": 399.8,
-        "q10": 264.9,
-        "q90": 632.1
-      },
-      {
-        "date": "2026-07-30",
-        "actual": 321.0,
-        "mean": 391.4,
-        "q10": 266.4,
-        "q90": 617.8
-      },
-      {
-        "date": "2026-07-31",
-        "actual": 559.0,
-        "mean": 360.6,
-        "q10": 233.3,
-        "q90": 575.9
-      },
-      {
-        "date": "2026-08-03",
-        "actual": 204.0,
-        "mean": 398.5,
-        "q10": 260.9,
-        "q90": 637.5
-      },
-      {
-        "date": "2026-08-04",
-        "actual": 764.0,
-        "mean": 340.2,
-        "q10": 211.2,
-        "q90": 556.1
-      },
-      {
-        "date": "2026-08-05",
-        "actual": 284.0,
-        "mean": 444.4,
-        "q10": 279.5,
-        "q90": 725.8
-      },
-      {
-        "date": "2026-08-06",
-        "actual": 484.0,
-        "mean": 371.7,
-        "q10": 220.5,
-        "q90": 625.4
-      },
-      {
-        "date": "2026-08-07",
-        "actual": 288.0,
-        "mean": 402.1,
-        "q10": 253.6,
-        "q90": 660.5
-      },
-      {
-        "date": "2026-08-10",
-        "actual": 459.0,
-        "mean": 361.0,
-        "q10": 223.7,
-        "q90": 596.9
-      },
-      {
-        "date": "2026-08-11",
-        "actual": 328.0,
-        "mean": 381.9,
-        "q10": 243.5,
-        "q90": 623.3
-      },
-      {
-        "date": "2026-08-12",
-        "actual": 193.0,
-        "mean": 356.6,
-        "q10": 228.0,
-        "q90": 585.6
-      },
-      {
-        "date": "2026-08-13",
-        "actual": 320.0,
-        "mean": 337.9,
-        "q10": 208.4,
-        "q90": 554.8
-      },
       {
         "date": "2026-08-14",
         "actual": 226.0,
@@ -7176,10 +6875,325 @@ const BRENT_DATA = {
       },
       {
         "date": "2026-09-04",
-        "actual": null,
+        "actual": 340.0,
         "mean": 346.5,
         "q10": 208.0,
         "q90": 570.5
+      },
+      {
+        "date": "2026-09-07",
+        "actual": 208.0,
+        "mean": 341.9,
+        "q10": 209.6,
+        "q90": 557.3
+      },
+      {
+        "date": "2026-09-08",
+        "actual": 267.0,
+        "mean": 311.1,
+        "q10": 186.2,
+        "q90": 506.6
+      },
+      {
+        "date": "2026-09-09",
+        "actual": 292.0,
+        "mean": 286.8,
+        "q10": 169.7,
+        "q90": 472.5
+      },
+      {
+        "date": "2026-09-10",
+        "actual": 883.0,
+        "mean": 291.1,
+        "q10": 170.4,
+        "q90": 478.6
+      },
+      {
+        "date": "2026-09-11",
+        "actual": 571.0,
+        "mean": 404.4,
+        "q10": 217.5,
+        "q90": 669.3
+      },
+      {
+        "date": "2026-09-14",
+        "actual": 494.0,
+        "mean": 419.5,
+        "q10": 243.0,
+        "q90": 688.2
+      },
+      {
+        "date": "2026-09-15",
+        "actual": 431.0,
+        "mean": 442.9,
+        "q10": 256.5,
+        "q90": 722.0
+      },
+      {
+        "date": "2026-09-16",
+        "actual": 454.0,
+        "mean": 396.0,
+        "q10": 238.9,
+        "q90": 645.9
+      },
+      {
+        "date": "2026-09-17",
+        "actual": 447.0,
+        "mean": 408.2,
+        "q10": 251.2,
+        "q90": 657.1
+      },
+      {
+        "date": "2026-09-18",
+        "actual": 308.0,
+        "mean": 397.7,
+        "q10": 247.0,
+        "q90": 641.5
+      },
+      {
+        "date": "2026-09-21",
+        "actual": 461.0,
+        "mean": 353.1,
+        "q10": 205.0,
+        "q90": 585.5
+      },
+      {
+        "date": "2026-09-22",
+        "actual": 492.0,
+        "mean": 405.7,
+        "q10": 256.1,
+        "q90": 648.9
+      },
+      {
+        "date": "2026-09-23",
+        "actual": 594.0,
+        "mean": 416.5,
+        "q10": 262.7,
+        "q90": 672.9
+      },
+      {
+        "date": "2026-09-24",
+        "actual": 639.0,
+        "mean": 443.6,
+        "q10": 275.9,
+        "q90": 719.7
+      },
+      {
+        "date": "2026-09-25",
+        "actual": 344.0,
+        "mean": 486.2,
+        "q10": 316.7,
+        "q90": 779.6
+      },
+      {
+        "date": "2026-09-28",
+        "actual": 503.0,
+        "mean": 406.4,
+        "q10": 257.3,
+        "q90": 661.0
+      },
+      {
+        "date": "2026-09-29",
+        "actual": 474.0,
+        "mean": 422.2,
+        "q10": 269.2,
+        "q90": 682.7
+      },
+      {
+        "date": "2026-09-30",
+        "actual": 417.0,
+        "mean": 445.9,
+        "q10": 294.0,
+        "q90": 714.2
+      },
+      {
+        "date": "2026-10-01",
+        "actual": 648.0,
+        "mean": 445.0,
+        "q10": 305.0,
+        "q90": 704.2
+      },
+      {
+        "date": "2026-10-02",
+        "actual": 461.0,
+        "mean": 502.0,
+        "q10": 335.9,
+        "q90": 798.9
+      },
+      {
+        "date": "2026-10-05",
+        "actual": 330.0,
+        "mean": 474.7,
+        "q10": 312.6,
+        "q90": 759.9
+      },
+      {
+        "date": "2026-10-06",
+        "actual": 421.0,
+        "mean": 416.0,
+        "q10": 258.1,
+        "q90": 677.8
+      },
+      {
+        "date": "2026-10-07",
+        "actual": 295.0,
+        "mean": 400.2,
+        "q10": 260.8,
+        "q90": 647.8
+      },
+      {
+        "date": "2026-10-08",
+        "actual": 514.0,
+        "mean": 371.7,
+        "q10": 227.4,
+        "q90": 606.5
+      },
+      {
+        "date": "2026-10-09",
+        "actual": 267.0,
+        "mean": 418.1,
+        "q10": 270.3,
+        "q90": 674.3
+      },
+      {
+        "date": "2026-10-12",
+        "actual": 496.0,
+        "mean": 400.4,
+        "q10": 245.9,
+        "q90": 650.1
+      },
+      {
+        "date": "2026-10-13",
+        "actual": 238.0,
+        "mean": 424.5,
+        "q10": 271.4,
+        "q90": 682.0
+      },
+      {
+        "date": "2026-10-14",
+        "actual": 190.0,
+        "mean": 374.1,
+        "q10": 219.5,
+        "q90": 611.4
+      },
+      {
+        "date": "2026-10-15",
+        "actual": 301.0,
+        "mean": 312.6,
+        "q10": 163.7,
+        "q90": 526.3
+      },
+      {
+        "date": "2026-10-16",
+        "actual": 509.0,
+        "mean": 295.1,
+        "q10": 166.7,
+        "q90": 493.9
+      },
+      {
+        "date": "2026-10-19",
+        "actual": 386.0,
+        "mean": 348.2,
+        "q10": 201.5,
+        "q90": 579.3
+      },
+      {
+        "date": "2026-10-20",
+        "actual": 603.0,
+        "mean": 360.3,
+        "q10": 214.0,
+        "q90": 596.1
+      },
+      {
+        "date": "2026-10-21",
+        "actual": 363.0,
+        "mean": 432.8,
+        "q10": 270.3,
+        "q90": 694.4
+      },
+      {
+        "date": "2026-10-22",
+        "actual": 370.0,
+        "mean": 386.9,
+        "q10": 241.5,
+        "q90": 624.1
+      },
+      {
+        "date": "2026-10-23",
+        "actual": 468.0,
+        "mean": 375.7,
+        "q10": 236.5,
+        "q90": 603.3
+      },
+      {
+        "date": "2026-10-26",
+        "actual": 342.0,
+        "mean": 384.1,
+        "q10": 241.1,
+        "q90": 626.5
+      },
+      {
+        "date": "2026-10-27",
+        "actual": 284.0,
+        "mean": 368.1,
+        "q10": 231.5,
+        "q90": 595.9
+      },
+      {
+        "date": "2026-10-28",
+        "actual": 298.0,
+        "mean": 348.7,
+        "q10": 222.6,
+        "q90": 564.2
+      },
+      {
+        "date": "2026-10-29",
+        "actual": 278.0,
+        "mean": 343.2,
+        "q10": 216.5,
+        "q90": 555.7
+      },
+      {
+        "date": "2026-10-30",
+        "actual": 325.0,
+        "mean": 347.2,
+        "q10": 221.0,
+        "q90": 562.3
+      },
+      {
+        "date": "2026-11-02",
+        "actual": 822.0,
+        "mean": 339.9,
+        "q10": 220.4,
+        "q90": 542.0
+      },
+      {
+        "date": "2026-11-03",
+        "actual": 645.0,
+        "mean": 436.5,
+        "q10": 264.9,
+        "q90": 713.8
+      },
+      {
+        "date": "2026-11-04",
+        "actual": 1151.0,
+        "mean": 467.9,
+        "q10": 292.7,
+        "q90": 757.1
+      },
+      {
+        "date": "2026-11-05",
+        "actual": 580.0,
+        "mean": 693.5,
+        "q10": 419.6,
+        "q90": 1126.5
+      },
+      {
+        "date": "2026-11-06",
+        "actual": null,
+        "mean": 544.4,
+        "q10": 339.1,
+        "q90": 889.3
       }
     ]
   }

@@ -7,7 +7,7 @@ const ASSET_CONFIG = {
   id:       "btc",
   name:     "Bitcoin / USD",
   sub:      "Seasonal Tendency Analysis · 5-YR · 15-YR · 9-YR (statistically derived) · Not Moore Research Center data",
-  footnote: "Statistically derived from 8.9 years of real BTCUSD price history (2017-10-17 → 2026-09-03), sourced via TradersWay MT5 export and cleaned by the KPT-Market-Profiling pipeline. Moore Research Center does not cover crypto — this signal uses the site's own Raw Price Tendency methodology (js/upload.js) instead of hand-authored chart analysis. The 15-YR column shows the same full-history computation as the 9-YR column, since that much price history does not exist yet. Star conviction is capped below the site's usual maximum for this reason — see the page's derived-note box.",
+  footnote: "Statistically derived from 9.1 years of real BTCUSD price history (2017-10-17 → 2026-11-05), sourced via TradersWay MT5 export and cleaned by the KPT-Market-Profiling pipeline. Moore Research Center does not cover crypto — this signal uses the site's own Raw Price Tendency methodology (js/upload.js) instead of hand-authored chart analysis. The 15-YR column shows the same full-history computation as the 9-YR column, since that much price history does not exist yet. Star conviction is capped below the site's usual maximum for this reason — see the page's derived-note box.",
   ltLabel:  "9-YR",
   ltSigKey: "sig9",
   ltKey:    "s9",
@@ -105,14 +105,14 @@ const MONTHS = [
     ]
   },
   {
-    month: "September", sig5: "chop", sig15: "chop", sig9: "chop",
+    month: "September", sig5: "bull", sig15: "chop", sig9: "chop",
     combined: "chop", combinedLabel: "MIXED", stars: 2,
-    note: "Statistically derived from real price history — mixed lean, 2/4 weeks agree.",
+    note: "Statistically derived from real price history — mixed lean, 3/4 weeks agree.",
     weeks: [
       { wk: "Wk 1", s5: "chop", s15: "bear", s9: "bear", com: "CHOP ★☆☆☆☆", note: "40% of last 5 years positive (5-YR); 33% of 9 years positive (full history)." },
-      { wk: "Wk 2", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★★★☆", note: "100% of last 4 years positive (5-YR); 88% of 8 years positive (full history)." },
-      { wk: "Wk 3", s5: "chop", s15: "bear", s9: "bear", com: "CHOP ★☆☆☆☆", note: "50% of last 4 years positive (5-YR); 38% of 8 years positive (full history)." },
-      { wk: "Wk 4", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★☆☆☆☆", note: "75% of last 4 years positive (5-YR); 62% of 8 years positive (full history)." },
+      { wk: "Wk 2", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★★☆☆", note: "80% of last 5 years positive (5-YR); 78% of 9 years positive (full history)." },
+      { wk: "Wk 3", s5: "bull", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "60% of last 5 years positive (5-YR); 44% of 9 years positive (full history)." },
+      { wk: "Wk 4", s5: "bull", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "60% of last 5 years positive (5-YR); 56% of 9 years positive (full history)." },
     ]
   },
   {
@@ -120,10 +120,10 @@ const MONTHS = [
     combined: "chop", combinedLabel: "MIXED", stars: 2,
     note: "Statistically derived from real price history — mixed lean, 2/4 weeks agree.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "75% of last 4 years positive (5-YR); 50% of 8 years positive (full history)." },
-      { wk: "Wk 2", s5: "bear", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "25% of last 4 years positive (5-YR); 50% of 8 years positive (full history)." },
-      { wk: "Wk 3", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★★☆☆", note: "75% of last 4 years positive (5-YR); 75% of 8 years positive (full history)." },
-      { wk: "Wk 4", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★☆☆☆", note: "75% of last 4 years positive (5-YR); 67% of 9 years positive (full history)." },
+      { wk: "Wk 1", s5: "bull", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "60% of last 5 years positive (5-YR); 44% of 9 years positive (full history)." },
+      { wk: "Wk 2", s5: "bear", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "20% of last 5 years positive (5-YR); 44% of 9 years positive (full history)." },
+      { wk: "Wk 3", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★★☆☆", note: "80% of last 5 years positive (5-YR); 78% of 9 years positive (full history)." },
+      { wk: "Wk 4", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★☆☆☆☆", note: "60% of last 5 years positive (5-YR); 60% of 10 years positive (full history)." },
     ]
   },
   {
@@ -131,7 +131,7 @@ const MONTHS = [
     combined: "chop", combinedLabel: "MIXED", stars: 2,
     note: "Statistically derived from real price history — mixed lean, 2/4 weeks agree.",
     weeks: [
-      { wk: "Wk 1", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★★★☆", note: "75% of last 4 years positive (5-YR); 89% of 9 years positive (full history)." },
+      { wk: "Wk 1", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★★☆☆", note: "60% of last 5 years positive (5-YR); 80% of 10 years positive (full history)." },
       { wk: "Wk 2", s5: "chop", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "50% of last 4 years positive (5-YR); 44% of 9 years positive (full history)." },
       { wk: "Wk 3", s5: "chop", s15: "chop", s9: "chop", com: "CHOP ★☆☆☆☆", note: "50% of last 4 years positive (5-YR); 44% of 9 years positive (full history)." },
       { wk: "Wk 4", s5: "bull", s15: "bull", s9: "bull", com: "LONG ★★☆☆☆", note: "75% of last 4 years positive (5-YR); 67% of 9 years positive (full history)." },

@@ -1,19 +1,23 @@
 {
-  "n_labeled_years": 7,
-  "n_short_years": 2,
+  "n_labeled_years": 8,
+  "n_short_years": 1,
   "n_insufficient_history_years": 7,
   "profile_distribution": {
     "Trend Year (Up)": {
       "n": 3,
-      "pct": 42.86
+      "pct": 37.5
     },
     "Volatile Year": {
       "n": 3,
-      "pct": 42.86
+      "pct": 37.5
     },
     "Normal Year": {
       "n": 1,
-      "pct": 14.29
+      "pct": 12.5
+    },
+    "Volatile Reversal Year": {
+      "n": 1,
+      "pct": 12.5
     }
   },
   "extreme_timing_by_profile": {
@@ -25,6 +29,9 @@
     },
     "Normal Year": {
       "Late_Push": 1
+    },
+    "Volatile Reversal Year": {
+      "Fade_Risk": 1
     }
   },
   "extreme_spread_by_profile": {
@@ -35,6 +42,9 @@
       "Spread": 3
     },
     "Normal Year": {
+      "Spread": 1
+    },
+    "Volatile Reversal Year": {
       "Spread": 1
     }
   },
@@ -47,13 +57,17 @@
       "mean": 51032.7,
       "median": 63003.0
     },
+    "Volatile Reversal Year": {
+      "mean": 85825.0,
+      "median": 85825.0
+    },
     "Volatile Year": {
       "mean": 68765.0,
       "median": 61379.0
     }
   },
   "month_pair_distribution": {
-    "n_years": 14,
+    "n_years": 15,
     "same_month_n": 0,
     "same_month_pct": 0.0,
     "pairs": {
@@ -92,7 +106,7 @@
         },
         "9": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "10": {
           "n": 0,
@@ -104,7 +118,7 @@
         },
         "12": {
           "n": 4,
-          "pct": 28.57
+          "pct": 26.67
         }
       },
       "2": {
@@ -154,7 +168,7 @@
         },
         "12": {
           "n": 2,
-          "pct": 14.29
+          "pct": 13.33
         }
       },
       "3": {
@@ -195,16 +209,16 @@
           "pct": 0.0
         },
         "10": {
-          "n": 0,
-          "pct": 0.0
+          "n": 1,
+          "pct": 6.67
         },
         "11": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "12": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         }
       },
       "4": {
@@ -246,11 +260,11 @@
         },
         "10": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "11": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "12": {
           "n": 0,
@@ -450,7 +464,7 @@
         },
         "11": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "12": {
           "n": 0,
@@ -510,7 +524,7 @@
       "10": {
         "1": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "2": {
           "n": 0,
@@ -646,7 +660,7 @@
         },
         "10": {
           "n": 1,
-          "pct": 7.14
+          "pct": 6.67
         },
         "11": {
           "n": 0,

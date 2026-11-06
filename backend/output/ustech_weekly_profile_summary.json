@@ -1,58 +1,58 @@
 {
-  "n_labeled_weeks": 775,
+  "n_labeled_weeks": 784,
   "n_short_weeks": 0,
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
-      "n": 437,
-      "pct": 56.39
+      "n": 444,
+      "pct": 56.63
     },
     "Compression Week": {
-      "n": 116,
-      "pct": 14.97
+      "n": 115,
+      "pct": 14.67
     },
     "Volatile Week": {
-      "n": 95,
-      "pct": 12.26
+      "n": 96,
+      "pct": 12.24
     },
     "Trend Week (Up)": {
       "n": 46,
-      "pct": 5.94
+      "pct": 5.87
     },
     "Volatile Reversal Week": {
       "n": 38,
-      "pct": 4.9
+      "pct": 4.85
     },
     "Trend Week (Down)": {
-      "n": 23,
-      "pct": 2.97
+      "n": 25,
+      "pct": 3.19
     },
     "Quiet Drift Week (Up)": {
       "n": 15,
-      "pct": 1.94
+      "pct": 1.91
     },
     "Quiet Drift Week (Down)": {
       "n": 5,
-      "pct": 0.65
+      "pct": 0.64
     }
   },
   "extreme_timing_by_profile": {
     "Normal Week": {
-      "Late_Push": 253,
-      "Late_Resolution": 93,
+      "Late_Push": 257,
+      "Late_Resolution": 96,
       "Fade_Risk": 60,
       "Early_Resolution": 28,
       "Insufficient_History": 3
     },
     "Compression Week": {
       "Late_Push": 54,
-      "Late_Resolution": 32,
+      "Late_Resolution": 31,
       "Fade_Risk": 20,
       "Early_Resolution": 10
     },
     "Volatile Week": {
       "Late_Push": 63,
-      "Late_Resolution": 20,
+      "Late_Resolution": 21,
       "Early_Resolution": 7,
       "Fade_Risk": 4,
       "Insufficient_History": 1
@@ -70,8 +70,8 @@
       "Early_Resolution": 3
     },
     "Trend Week (Down)": {
-      "Late_Push": 16,
-      "Late_Resolution": 7
+      "Late_Push": 17,
+      "Late_Resolution": 8
     },
     "Quiet Drift Week (Up)": {
       "Late_Push": 9,
@@ -85,18 +85,18 @@
   },
   "extreme_spread_by_profile": {
     "Normal Week": {
-      "Spread": 350,
+      "Spread": 357,
       "Adjacent": 73,
       "Same_Day": 11,
       "Insufficient_History": 3
     },
     "Compression Week": {
       "Spread": 77,
-      "Adjacent": 31,
+      "Adjacent": 30,
       "Same_Day": 8
     },
     "Volatile Week": {
-      "Spread": 81,
+      "Spread": 82,
       "Adjacent": 10,
       "Same_Day": 3,
       "Insufficient_History": 1
@@ -111,8 +111,8 @@
       "Adjacent": 6
     },
     "Trend Week (Down)": {
-      "Spread": 20,
-      "Adjacent": 3
+      "Spread": 21,
+      "Adjacent": 4
     },
     "Quiet Drift Week (Up)": {
       "Spread": 12,
@@ -125,12 +125,12 @@
   },
   "avg_range_pips_by_profile": {
     "Compression Week": {
-      "mean": 2060.4,
-      "median": 1148.0
+      "mean": 2021.1,
+      "median": 1147.0
     },
     "Normal Week": {
-      "mean": 3608.7,
-      "median": 2149.0
+      "mean": 3698.1,
+      "median": 2202.0
     },
     "Quiet Drift Week (Down)": {
       "mean": 2996.8,
@@ -141,8 +141,8 @@
       "median": 728.0
     },
     "Trend Week (Down)": {
-      "mean": 8781.1,
-      "median": 8856.0
+      "mean": 9831.0,
+      "median": 9540.0
     },
     "Trend Week (Up)": {
       "mean": 6561.5,
@@ -153,14 +153,14 @@
       "median": 7104.0
     },
     "Volatile Week": {
-      "mean": 6471.2,
-      "median": 5149.0
+      "mean": 6605.1,
+      "median": 5172.5
     }
   },
   "weekday_pair_distribution": {
-    "n_weeks": 777,
+    "n_weeks": 786,
     "same_day_n": 23,
-    "same_day_pct": 2.96,
+    "same_day_pct": 2.93,
     "pairs": {
       "Monday": {
         "Monday": {
@@ -169,77 +169,77 @@
         },
         "Tuesday": {
           "n": 16,
-          "pct": 2.06
+          "pct": 2.04
         },
         "Wednesday": {
-          "n": 31,
-          "pct": 3.99
+          "n": 32,
+          "pct": 4.07
         },
         "Thursday": {
           "n": 67,
-          "pct": 8.62
+          "pct": 8.52
         },
         "Friday": {
-          "n": 152,
-          "pct": 19.56
+          "n": 153,
+          "pct": 19.47
         }
       },
       "Tuesday": {
         "Monday": {
           "n": 22,
-          "pct": 2.83
+          "pct": 2.8
         },
         "Tuesday": {
           "n": 6,
-          "pct": 0.77
+          "pct": 0.76
         },
         "Wednesday": {
           "n": 7,
-          "pct": 0.9
+          "pct": 0.89
         },
         "Thursday": {
           "n": 31,
-          "pct": 3.99
+          "pct": 3.94
         },
         "Friday": {
           "n": 60,
-          "pct": 7.72
+          "pct": 7.63
         }
       },
       "Wednesday": {
         "Monday": {
           "n": 21,
-          "pct": 2.7
+          "pct": 2.67
         },
         "Tuesday": {
           "n": 15,
-          "pct": 1.93
+          "pct": 1.91
         },
         "Wednesday": {
           "n": 2,
-          "pct": 0.26
+          "pct": 0.25
         },
         "Thursday": {
-          "n": 9,
-          "pct": 1.16
+          "n": 8,
+          "pct": 1.02
         },
         "Friday": {
-          "n": 48,
-          "pct": 6.18
+          "n": 50,
+          "pct": 6.36
         }
       },
       "Thursday": {
         "Monday": {
           "n": 38,
-          "pct": 4.89
+          "pct": 4.83
         },
         "Tuesday": {
-          "n": 28,
-          "pct": 3.6
+          "n": 29,
+          "pct": 3.69
         },
         "Wednesday": {
-          "n": 16,
-          "pct": 2.06
+          "n": 17,
+          "pct": 2.16
         },
         "Thursday": {
           "n": 4,
@@ -247,29 +247,29 @@
         },
         "Friday": {
           "n": 25,
-          "pct": 3.22
+          "pct": 3.18
         }
       },
       "Friday": {
         "Monday": {
-          "n": 57,
-          "pct": 7.34
+          "n": 58,
+          "pct": 7.38
         },
         "Tuesday": {
-          "n": 51,
-          "pct": 6.56
+          "n": 52,
+          "pct": 6.62
         },
         "Wednesday": {
-          "n": 41,
-          "pct": 5.28
+          "n": 43,
+          "pct": 5.47
         },
         "Thursday": {
           "n": 19,
-          "pct": 2.45
+          "pct": 2.42
         },
         "Friday": {
           "n": 7,
-          "pct": 0.9
+          "pct": 0.89
         }
       }
     }

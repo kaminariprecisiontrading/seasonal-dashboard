@@ -4,25 +4,25 @@ const USTECH_DATA = {
   "stats": {
     "asset": "USTECH",
     "unit": "points",
-    "as_of": "2026-09-03",
-    "n_days": 3948,
-    "n_weeks": 789,
-    "n_months": 183,
+    "as_of": "2026-11-05",
+    "n_days": 3993,
+    "n_weeks": 798,
+    "n_months": 185,
     "n_years": 16,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 3948,
-          "mean": 1798.6,
-          "median": 1081.0,
-          "std": 1881.5,
+          "n": 3993,
+          "mean": 1840.8,
+          "median": 1110.0,
+          "std": 1943.2,
           "min": 0.0,
           "max": 26296.0,
           "mode_binned": {
-            "bin_low": 220.0,
-            "bin_high": 476.8,
-            "count": 810,
-            "pct_of_n": 20.5
+            "bin_low": 220.6,
+            "bin_high": 482.1,
+            "count": 826,
+            "pct_of_n": 20.7
           },
           "mode_raw": {
             "value": 510.0,
@@ -30,119 +30,119 @@ const USTECH_DATA = {
             "pct_of_n": 0.3,
             "n_values_tied": 1
           },
-          "p05": 220.0,
-          "p10": 287.0,
-          "p20": 405.0,
-          "p25": 471.0,
-          "p50": 1081.0,
-          "p75": 2589.0,
-          "p80": 2982.0,
-          "p90": 4168.8,
-          "p95": 5355.2,
-          "compression_threshold_pips": 405.0,
-          "expansion_threshold_pips": 2982.0
+          "p05": 220.6,
+          "p10": 288.0,
+          "p20": 407.0,
+          "p25": 474.0,
+          "p50": 1110.0,
+          "p75": 2654.0,
+          "p80": 3047.0,
+          "p90": 4260.8,
+          "p95": 5449.8,
+          "compression_threshold_pips": 407.0,
+          "expansion_threshold_pips": 3047.0
         },
         "5y": {
           "n": 1292,
-          "mean": 3506.4,
-          "median": 3005.5,
-          "std": 2080.8,
+          "mean": 3621.9,
+          "median": 3112.0,
+          "std": 2178.1,
           "min": 315.0,
           "max": 26296.0,
           "mode_binned": {
-            "bin_low": 2190.3,
-            "bin_high": 2482.1,
-            "count": 119,
-            "pct_of_n": 9.2
+            "bin_low": 2265.2,
+            "bin_high": 2564.5,
+            "count": 122,
+            "pct_of_n": 9.4
           },
           "mode_raw": {
             "value": 1832.0,
             "count": 3,
             "pct_of_n": 0.2,
-            "n_values_tied": 11
+            "n_values_tied": 10
           },
-          "p05": 1315.0,
-          "p10": 1632.4,
-          "p20": 2006.6,
-          "p25": 2176.8,
-          "p50": 3005.5,
-          "p75": 4263.0,
-          "p80": 4682.4,
-          "p90": 5972.9,
-          "p95": 7150.9,
-          "compression_threshold_pips": 2006.6,
-          "expansion_threshold_pips": 4682.4
+          "p05": 1367.4,
+          "p10": 1654.5,
+          "p20": 2081.2,
+          "p25": 2259.5,
+          "p50": 3112.0,
+          "p75": 4398.2,
+          "p80": 4889.4,
+          "p90": 6067.0,
+          "p95": 7352.9,
+          "compression_threshold_pips": 2081.2,
+          "expansion_threshold_pips": 4889.4
         },
         "1y": {
           "n": 260,
-          "mean": 4816.9,
-          "median": 4329.5,
-          "std": 2438.0,
+          "mean": 5197.9,
+          "median": 4671.5,
+          "std": 2630.7,
           "min": 534.0,
-          "max": 16326.0,
+          "max": 20862.0,
           "mode_binned": {
-            "bin_low": 2691.3,
-            "bin_high": 3078.2,
-            "count": 26,
-            "pct_of_n": 10.0
+            "bin_low": 2783.5,
+            "bin_high": 3155.7,
+            "count": 24,
+            "pct_of_n": 9.2
           },
           "mode_raw": {
             "value": 2420.0,
             "count": 2,
             "pct_of_n": 0.8,
-            "n_values_tied": 5
+            "n_values_tied": 6
           },
-          "p05": 1917.7,
-          "p10": 2419.2,
-          "p20": 2858.8,
-          "p25": 3043.8,
-          "p50": 4329.5,
-          "p75": 6174.5,
-          "p80": 6453.0,
-          "p90": 7627.1,
-          "p95": 9654.4,
-          "compression_threshold_pips": 2858.8,
-          "expansion_threshold_pips": 6453.0
+          "p05": 2411.3,
+          "p10": 2692.1,
+          "p20": 3146.6,
+          "p25": 3404.2,
+          "p50": 4671.5,
+          "p75": 6434.5,
+          "p80": 6640.0,
+          "p90": 8134.2,
+          "p95": 9854.9,
+          "compression_threshold_pips": 3146.6,
+          "expansion_threshold_pips": 6640.0
         },
         "3mo": {
           "n": 67,
-          "mean": 6321.9,
-          "median": 6061.0,
-          "std": 2958.9,
-          "min": 2499.0,
-          "max": 16326.0,
+          "mean": 5032.8,
+          "median": 4479.0,
+          "std": 2854.0,
+          "min": 1498.0,
+          "max": 20862.0,
           "mode_binned": {
-            "bin_low": 6277.5,
-            "bin_high": 6710.7,
-            "count": 10,
-            "pct_of_n": 14.9
+            "bin_low": 3678.8,
+            "bin_high": 4020.4,
+            "count": 8,
+            "pct_of_n": 11.9
           },
           "mode_raw": {
-            "value": 2499.0,
+            "value": 1498.0,
             "count": 1,
             "pct_of_n": 1.5,
             "n_values_tied": 67
           },
-          "p05": 2812.5,
-          "p10": 3268.6,
-          "p20": 3801.8,
-          "p25": 4034.0,
-          "p50": 6061.0,
-          "p75": 7460.0,
-          "p80": 8200.4,
-          "p90": 9746.4,
-          "p95": 11475.1,
-          "compression_threshold_pips": 3801.8,
-          "expansion_threshold_pips": 8200.4
+          "p05": 2654.0,
+          "p10": 2826.0,
+          "p20": 3152.8,
+          "p25": 3376.5,
+          "p50": 4479.0,
+          "p75": 5571.5,
+          "p80": 5890.0,
+          "p90": 7996.4,
+          "p95": 9486.0,
+          "compression_threshold_pips": 3152.8,
+          "expansion_threshold_pips": 5890.0
         }
       },
       "latest_adr": {
-        "ADR_5": 4004.2,
-        "ADR_14": 4028.4,
-        "ADR_20": 3889.5,
+        "ADR_5": 11054.6,
+        "ADR_14": 7622.8,
+        "ADR_20": 7041.4,
         "fixed_multiple_thresholds": {
-          "compression_pips": 2722.6,
-          "expansion_pips": 5056.4,
+          "compression_pips": 4929.0,
+          "expansion_pips": 9153.8,
           "based_on": "ADR_20"
         }
       }
@@ -150,17 +150,17 @@ const USTECH_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 789,
-          "mean": 4144.8,
-          "median": 2657.0,
-          "std": 3896.4,
+          "n": 798,
+          "mean": 4250.3,
+          "median": 2716.5,
+          "std": 4041.8,
           "min": 275.0,
           "max": 29128.0,
           "mode_binned": {
-            "bin_low": 574.2,
-            "bin_high": 1135.4,
-            "count": 153,
-            "pct_of_n": 19.4
+            "bin_low": 575.5,
+            "bin_high": 1144.8,
+            "count": 154,
+            "pct_of_n": 19.3
           },
           "mode_raw": {
             "value": 867.0,
@@ -168,30 +168,30 @@ const USTECH_DATA = {
             "pct_of_n": 0.4,
             "n_values_tied": 3
           },
-          "p05": 574.2,
-          "p10": 742.0,
-          "p20": 1013.4,
-          "p25": 1159.0,
-          "p50": 2657.0,
-          "p75": 6153.0,
-          "p80": 6918.8,
-          "p90": 9338.4,
-          "p95": 11798.2,
-          "compression_threshold_pips": 1013.4,
-          "expansion_threshold_pips": 6918.8
+          "p05": 575.5,
+          "p10": 750.7,
+          "p20": 1015.0,
+          "p25": 1167.5,
+          "p50": 2716.5,
+          "p75": 6300.0,
+          "p80": 7106.0,
+          "p90": 9543.9,
+          "p95": 11960.9,
+          "compression_threshold_pips": 1015.0,
+          "expansion_threshold_pips": 7106.0
         },
         "5y": {
           "n": 261,
-          "mean": 8017.9,
-          "median": 7049.0,
-          "std": 3817.6,
+          "mean": 8299.5,
+          "median": 7409.0,
+          "std": 4030.6,
           "min": 2211.0,
           "max": 29128.0,
           "mode_binned": {
-            "bin_low": 5227.5,
-            "bin_high": 5805.0,
-            "count": 29,
-            "pct_of_n": 11.1
+            "bin_low": 4767.5,
+            "bin_high": 5401.8,
+            "count": 26,
+            "pct_of_n": 10.0
           },
           "mode_raw": {
             "value": 5807.0,
@@ -199,30 +199,30 @@ const USTECH_DATA = {
             "pct_of_n": 0.8,
             "n_values_tied": 1
           },
-          "p05": 3495.0,
-          "p10": 4204.0,
-          "p20": 5236.0,
-          "p25": 5449.0,
-          "p50": 7049.0,
-          "p75": 9749.0,
-          "p80": 10610.0,
-          "p90": 12216.0,
-          "p95": 15045.0,
-          "compression_threshold_pips": 5236.0,
-          "expansion_threshold_pips": 10610.0
+          "p05": 3499.0,
+          "p10": 4231.0,
+          "p20": 5249.0,
+          "p25": 5645.0,
+          "p50": 7409.0,
+          "p75": 10024.0,
+          "p80": 11071.0,
+          "p90": 13120.0,
+          "p95": 16184.0,
+          "compression_threshold_pips": 5249.0,
+          "expansion_threshold_pips": 11071.0
         },
         "1y": {
           "n": 53,
-          "mean": 10714.3,
-          "median": 9462.0,
-          "std": 4188.8,
+          "mean": 11784.7,
+          "median": 11098.0,
+          "std": 4533.7,
           "min": 3379.0,
-          "max": 20341.0,
+          "max": 23875.0,
           "mode_binned": {
-            "bin_low": 5837.8,
-            "bin_high": 6435.7,
-            "count": 4,
-            "pct_of_n": 7.5
+            "bin_low": 6803.0,
+            "bin_high": 7484.7,
+            "count": 5,
+            "pct_of_n": 9.4
           },
           "mode_raw": {
             "value": 3379.0,
@@ -230,65 +230,65 @@ const USTECH_DATA = {
             "pct_of_n": 1.9,
             "n_values_tied": 53
           },
-          "p05": 5837.8,
-          "p10": 6067.8,
-          "p20": 7002.8,
-          "p25": 7409.0,
-          "p50": 9462.0,
-          "p75": 13832.0,
-          "p80": 14849.8,
-          "p90": 17361.4,
-          "p95": 17795.6,
-          "compression_threshold_pips": 7002.8,
-          "expansion_threshold_pips": 14849.8
+          "p05": 6121.4,
+          "p10": 7018.8,
+          "p20": 7825.8,
+          "p25": 8288.0,
+          "p50": 11098.0,
+          "p75": 15045.0,
+          "p80": 15888.8,
+          "p90": 17881.2,
+          "p95": 19754.4,
+          "compression_threshold_pips": 7825.8,
+          "expansion_threshold_pips": 15888.8
         },
         "3mo": {
           "n": 14,
-          "mean": 13247.1,
-          "median": 12605.0,
-          "std": 4180.8,
-          "min": 6575.0,
-          "max": 20341.0,
+          "mean": 12383.4,
+          "median": 10325.5,
+          "std": 5455.5,
+          "min": 7206.0,
+          "max": 23875.0,
           "mode_binned": {
-            "bin_low": 11270.0,
-            "bin_high": 11846.9,
+            "bin_low": 7452.4,
+            "bin_high": 8145.4,
             "count": 3,
             "pct_of_n": 21.4
           },
           "mode_raw": {
-            "value": 6575.0,
+            "value": 7206.0,
             "count": 1,
             "pct_of_n": 7.1,
             "n_values_tied": 14
           },
-          "p05": 7231.5,
-          "p10": 7954.6,
-          "p20": 9892.8,
-          "p25": 10788.8,
-          "p50": 12605.0,
-          "p75": 16405.2,
-          "p80": 16920.2,
-          "p90": 17821.4,
-          "p95": 18770.0,
-          "compression_threshold_pips": 9892.8,
-          "expansion_threshold_pips": 16920.2
+          "p05": 7452.4,
+          "p10": 7618.6,
+          "p20": 7952.0,
+          "p25": 8295.8,
+          "p50": 10325.5,
+          "p75": 16145.2,
+          "p80": 18280.0,
+          "p90": 19752.6,
+          "p95": 21314.0,
+          "compression_threshold_pips": 7952.0,
+          "expansion_threshold_pips": 18280.0
         }
       }
     },
     "monthly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 183,
-          "mean": 8991.0,
-          "median": 6568.0,
-          "std": 7870.1,
+          "n": 185,
+          "mean": 9275.3,
+          "median": 6582.0,
+          "std": 8133.3,
           "min": 553.0,
           "max": 40026.0,
           "mode_binned": {
-            "bin_low": 1382.2,
-            "bin_high": 2497.1,
+            "bin_low": 1385.4,
+            "bin_high": 2510.2,
             "count": 34,
-            "pct_of_n": 18.6
+            "pct_of_n": 18.4
           },
           "mode_raw": {
             "value": 2878.0,
@@ -296,124 +296,124 @@ const USTECH_DATA = {
             "pct_of_n": 1.1,
             "n_values_tied": 5
           },
-          "p05": 1382.2,
-          "p10": 1737.4,
-          "p20": 2234.8,
-          "p25": 2546.0,
-          "p50": 6568.0,
-          "p75": 13392.0,
-          "p80": 15003.4,
-          "p90": 20314.0,
-          "p95": 23680.8,
-          "compression_threshold_pips": 2234.8,
-          "expansion_threshold_pips": 15003.4
+          "p05": 1385.4,
+          "p10": 1751.8,
+          "p20": 2257.6,
+          "p25": 2555.0,
+          "p50": 6582.0,
+          "p75": 14166.0,
+          "p80": 15800.2,
+          "p90": 20648.0,
+          "p95": 23880.6,
+          "compression_threshold_pips": 2257.6,
+          "expansion_threshold_pips": 15800.2
         },
         "5y": {
-          "n": 61,
-          "mean": 17270.5,
-          "median": 15769.0,
-          "std": 6922.7,
+          "n": 60,
+          "mean": 18153.2,
+          "median": 16488.0,
+          "std": 7008.8,
           "min": 5375.0,
           "max": 40026.0,
           "mode_binned": {
-            "bin_low": 12530.2,
-            "bin_high": 13589.0,
-            "count": 7,
-            "pct_of_n": 11.5
+            "bin_low": 13314.8,
+            "bin_high": 14427.6,
+            "count": 6,
+            "pct_of_n": 10.0
           },
           "mode_raw": {
             "value": 5375.0,
             "count": 1,
-            "pct_of_n": 1.6,
-            "n_values_tied": 61
+            "pct_of_n": 1.7,
+            "n_values_tied": 60
           },
-          "p05": 9354.0,
-          "p10": 10129.0,
-          "p20": 11978.0,
-          "p25": 12827.0,
-          "p50": 15769.0,
-          "p75": 20670.0,
-          "p80": 22438.0,
-          "p90": 25702.0,
-          "p95": 30529.0,
-          "compression_threshold_pips": 11978.0,
-          "expansion_threshold_pips": 22438.0
+          "p05": 9976.2,
+          "p10": 10715.5,
+          "p20": 12771.2,
+          "p25": 13287.0,
+          "p50": 16488.0,
+          "p75": 22197.2,
+          "p80": 23056.6,
+          "p90": 27136.7,
+          "p95": 32233.2,
+          "compression_threshold_pips": 12771.2,
+          "expansion_threshold_pips": 23056.6
         },
         "1y": {
           "n": 13,
-          "mean": 21873.5,
-          "median": 20615.0,
-          "std": 9015.4,
-          "min": 6575.0,
+          "mean": 24329.3,
+          "median": 23875.0,
+          "std": 8016.6,
+          "min": 11830.0,
           "max": 40026.0,
           "mode_binned": {
-            "bin_low": 17409.6,
-            "bin_high": 18689.9,
+            "bin_low": 19634.1,
+            "bin_high": 20779.7,
             "count": 2,
             "pct_of_n": 15.4
           },
           "mode_raw": {
-            "value": 6575.0,
+            "value": 11830.0,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 9728.0,
-          "p10": 12140.2,
-          "p20": 15112.6,
-          "p25": 17710.0,
-          "p50": 20615.0,
-          "p75": 25702.0,
-          "p80": 28598.2,
-          "p90": 31869.8,
-          "p95": 35333.4,
-          "compression_threshold_pips": 15112.6,
-          "expansion_threshold_pips": 28598.2
+          "p05": 12760.6,
+          "p10": 14246.8,
+          "p20": 18823.2,
+          "p25": 20493.0,
+          "p50": 23875.0,
+          "p75": 30529.0,
+          "p80": 31534.6,
+          "p90": 32657.0,
+          "p95": 35672.4,
+          "compression_threshold_pips": 18823.2,
+          "expansion_threshold_pips": 31534.6
         },
         "3mo": {
           "n": 4,
-          "mean": 21243.8,
-          "median": 23097.5,
-          "std": 10889.8,
-          "min": 6575.0,
-          "max": 32205.0,
+          "mean": 24411.0,
+          "median": 22190.5,
+          "std": 5795.4,
+          "min": 20493.0,
+          "max": 32770.0,
           "mode_binned": {
-            "bin_low": 19946.1,
-            "bin_high": 21074.5,
+            "bin_low": 20495.0,
+            "bin_high": 21042.0,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 6575.0,
+            "value": 20493.0,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 8662.7,
-          "p10": 10750.4,
-          "p20": 14925.8,
-          "p25": 17013.5,
-          "p50": 23097.5,
-          "p75": 27327.8,
-          "p80": 28303.2,
-          "p90": 30254.1,
-          "p95": 31229.5,
-          "compression_threshold_pips": 14925.8,
-          "expansion_threshold_pips": 28303.2
+          "p05": 20495.0,
+          "p10": 20496.9,
+          "p20": 20500.8,
+          "p25": 20502.8,
+          "p50": 22190.5,
+          "p75": 26098.8,
+          "p80": 27433.0,
+          "p90": 30101.5,
+          "p95": 31435.7,
+          "compression_threshold_pips": 20500.8,
+          "expansion_threshold_pips": 27433.0
         }
       }
     },
     "yearly_range": {
       "distribution": {
         "n": 16,
-        "mean": 36370.8,
+        "mean": 36749.9,
         "median": 22692.0,
-        "std": 30731.4,
+        "std": 31333.8,
         "min": 4374.0,
         "max": 99362.0,
         "mode_binned": {
           "bin_low": 5560.5,
-          "bin_high": 9515.5,
+          "bin_high": 9742.9,
           "count": 4,
           "pct_of_n": 25.0
         },
@@ -430,281 +430,281 @@ const USTECH_DATA = {
         "p50": 22692.0,
         "p75": 61785.0,
         "p80": 63003.0,
-        "p90": 71415.5,
-        "p95": 84659.8
+        "p90": 74448.5,
+        "p95": 89209.2
       }
     },
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 1316,
-          "mode_bucket_start_utc": "20:00",
-          "mode_bucket_end_utc": "20:30",
-          "mode_bucket_pct_of_days": 6.8,
-          "circular_mean_utc": "17:46",
+          "n": 1361,
+          "mode_bucket_start_utc": "19:30",
+          "mode_bucket_end_utc": "20:00",
+          "mode_bucket_pct_of_days": 6.7,
+          "circular_mean_utc": "17:47",
           "circular_median_utc": "18:00",
-          "concentration_R": 0.429,
+          "concentration_R": 0.422,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
               "count": 29,
-              "pct": 2.2
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 9,
-              "pct": 0.68
+              "count": 10,
+              "pct": 0.73
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 13,
-              "pct": 0.99
+              "count": 14,
+              "pct": 1.03
             },
             {
               "bucket_start_utc": "01:30",
               "count": 15,
-              "pct": 1.14
+              "pct": 1.1
             },
             {
               "bucket_start_utc": "02:00",
               "count": 7,
-              "pct": 0.53
+              "pct": 0.51
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 9,
-              "pct": 0.68
+              "count": 10,
+              "pct": 0.73
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 6,
-              "pct": 0.46
+              "count": 7,
+              "pct": 0.51
             },
             {
               "bucket_start_utc": "03:30",
               "count": 5,
-              "pct": 0.38
+              "pct": 0.37
             },
             {
               "bucket_start_utc": "04:00",
               "count": 1,
-              "pct": 0.08
+              "pct": 0.07
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 2,
-              "pct": 0.15
+              "count": 3,
+              "pct": 0.22
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 8,
-              "pct": 0.61
+              "count": 9,
+              "pct": 0.66
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 8,
-              "pct": 0.61
+              "count": 9,
+              "pct": 0.66
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 10,
-              "pct": 0.76
+              "count": 12,
+              "pct": 0.88
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 9,
-              "pct": 0.68
+              "count": 10,
+              "pct": 0.73
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 23,
-              "pct": 1.75
+              "count": 24,
+              "pct": 1.76
             },
             {
               "bucket_start_utc": "07:30",
               "count": 12,
-              "pct": 0.91
+              "pct": 0.88
             },
             {
               "bucket_start_utc": "08:00",
               "count": 26,
-              "pct": 1.98
+              "pct": 1.91
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 13,
-              "pct": 0.99
+              "count": 14,
+              "pct": 1.03
             },
             {
               "bucket_start_utc": "09:00",
               "count": 16,
-              "pct": 1.22
+              "pct": 1.18
             },
             {
               "bucket_start_utc": "09:30",
               "count": 3,
-              "pct": 0.23
+              "pct": 0.22
             },
             {
               "bucket_start_utc": "10:00",
               "count": 8,
-              "pct": 0.61
+              "pct": 0.59
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 5,
-              "pct": 0.38
+              "count": 6,
+              "pct": 0.44
             },
             {
               "bucket_start_utc": "11:00",
               "count": 21,
-              "pct": 1.6
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 2,
-              "pct": 0.15
+              "count": 3,
+              "pct": 0.22
             },
             {
               "bucket_start_utc": "12:00",
               "count": 23,
-              "pct": 1.75
+              "pct": 1.69
             },
             {
               "bucket_start_utc": "12:30",
               "count": 31,
-              "pct": 2.36
+              "pct": 2.28
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 41,
-              "pct": 3.12
+              "count": 42,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 71,
-              "pct": 5.4
+              "count": 72,
+              "pct": 5.29
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 67,
-              "pct": 5.09
+              "count": 68,
+              "pct": 5.0
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 60,
+              "count": 62,
               "pct": 4.56
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 51,
-              "pct": 3.88
+              "count": 55,
+              "pct": 4.04
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 25,
-              "pct": 1.9
+              "count": 28,
+              "pct": 2.06
             },
             {
               "bucket_start_utc": "16:00",
               "count": 40,
-              "pct": 3.04
+              "pct": 2.94
             },
             {
               "bucket_start_utc": "16:30",
               "count": 29,
-              "pct": 2.2
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 32,
-              "pct": 2.43
+              "count": 34,
+              "pct": 2.5
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 32,
-              "pct": 2.43
+              "count": 33,
+              "pct": 2.42
             },
             {
               "bucket_start_utc": "18:00",
               "count": 32,
-              "pct": 2.43
+              "pct": 2.35
             },
             {
               "bucket_start_utc": "18:30",
               "count": 38,
-              "pct": 2.89
+              "pct": 2.79
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 77,
-              "pct": 5.85
+              "count": 78,
+              "pct": 5.73
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 86,
-              "pct": 6.53
+              "count": 91,
+              "pct": 6.69
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 89,
-              "pct": 6.76
+              "count": 91,
+              "pct": 6.69
             },
             {
               "bucket_start_utc": "20:30",
               "count": 66,
-              "pct": 5.02
+              "pct": 4.85
             },
             {
               "bucket_start_utc": "21:00",
               "count": 26,
-              "pct": 1.98
+              "pct": 1.91
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 17,
-              "pct": 1.29
+              "count": 18,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 52,
-              "pct": 3.95
+              "count": 56,
+              "pct": 4.11
             },
             {
               "bucket_start_utc": "22:30",
               "count": 8,
-              "pct": 0.61
+              "pct": 0.59
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 52,
-              "pct": 3.95
+              "count": 53,
+              "pct": 3.89
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 11,
-              "pct": 0.84
+              "count": 13,
+              "pct": 0.96
             }
           ]
         },
         "5y": {
           "n": 1292,
-          "mode_bucket_start_utc": "20:00",
-          "mode_bucket_end_utc": "20:30",
-          "mode_bucket_pct_of_days": 6.8,
-          "circular_mean_utc": "17:47",
-          "circular_median_utc": "18:00",
-          "concentration_R": 0.429,
+          "mode_bucket_start_utc": "19:30",
+          "mode_bucket_end_utc": "20:00",
+          "mode_bucket_pct_of_days": 7.0,
+          "circular_mean_utc": "17:50",
+          "circular_median_utc": "18:05",
+          "concentration_R": 0.423,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 29,
-              "pct": 2.24
+              "count": 28,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 9,
-              "pct": 0.7
+              "count": 10,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "01:00",
@@ -718,18 +718,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 7,
-              "pct": 0.54
+              "count": 6,
+              "pct": 0.46
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 9,
-              "pct": 0.7
+              "count": 10,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 5,
-              "pct": 0.39
+              "count": 6,
+              "pct": 0.46
             },
             {
               "bucket_start_utc": "03:30",
@@ -743,8 +743,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 2,
-              "pct": 0.15
+              "count": 3,
+              "pct": 0.23
             },
             {
               "bucket_start_utc": "05:00",
@@ -753,23 +753,23 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 8,
-              "pct": 0.62
+              "count": 9,
+              "pct": 0.7
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 9,
-              "pct": 0.7
+              "count": 10,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 9,
-              "pct": 0.7
+              "count": 10,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 21,
-              "pct": 1.63
+              "count": 19,
+              "pct": 1.47
             },
             {
               "bucket_start_utc": "07:30",
@@ -778,13 +778,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 26,
-              "pct": 2.01
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 13,
-              "pct": 1.01
+              "count": 14,
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "09:00",
@@ -803,23 +803,23 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 5,
-              "pct": 0.39
+              "count": 6,
+              "pct": 0.46
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 21,
-              "pct": 1.63
+              "count": 20,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 2,
-              "pct": 0.15
+              "count": 3,
+              "pct": 0.23
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 23,
-              "pct": 1.78
+              "count": 20,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "12:30",
@@ -828,38 +828,38 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 37,
-              "pct": 2.86
+              "count": 34,
+              "pct": 2.63
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 71,
-              "pct": 5.5
+              "count": 72,
+              "pct": 5.57
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 64,
-              "pct": 4.95
+              "count": 61,
+              "pct": 4.72
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 60,
-              "pct": 4.64
+              "count": 62,
+              "pct": 4.8
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 51,
-              "pct": 3.95
+              "count": 54,
+              "pct": 4.18
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 25,
-              "pct": 1.93
+              "count": 28,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 39,
-              "pct": 3.02
+              "count": 37,
+              "pct": 2.86
             },
             {
               "bucket_start_utc": "16:30",
@@ -873,13 +873,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 32,
-              "pct": 2.48
+              "count": 33,
+              "pct": 2.55
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 28,
-              "pct": 2.17
+              "count": 24,
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "18:30",
@@ -888,18 +888,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 72,
-              "pct": 5.57
+              "count": 65,
+              "pct": 5.03
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 86,
-              "pct": 6.66
+              "count": 91,
+              "pct": 7.04
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 88,
-              "pct": 6.81
+              "count": 84,
+              "pct": 6.5
             },
             {
               "bucket_start_utc": "20:30",
@@ -913,13 +913,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 17,
-              "pct": 1.32
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 51,
-              "pct": 3.95
+              "count": 55,
+              "pct": 4.26
             },
             {
               "bucket_start_utc": "22:30",
@@ -933,8 +933,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 11,
-              "pct": 0.85
+              "count": 13,
+              "pct": 1.01
             }
           ]
         },
@@ -942,10 +942,10 @@ const USTECH_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "20:00",
           "mode_bucket_end_utc": "20:30",
-          "mode_bucket_pct_of_days": 7.3,
-          "circular_mean_utc": "17:52",
-          "circular_median_utc": "18:00",
-          "concentration_R": 0.391,
+          "mode_bucket_pct_of_days": 6.9,
+          "circular_mean_utc": "18:08",
+          "circular_median_utc": "18:45",
+          "concentration_R": 0.367,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -959,13 +959,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "02:00",
@@ -979,13 +979,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "04:00",
@@ -994,23 +994,23 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "06:30",
@@ -1019,18 +1019,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "08:30",
@@ -1049,43 +1049,43 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 3,
-              "pct": 1.15
-            },
-            {
-              "bucket_start_utc": "10:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "11:00",
-              "count": 5,
-              "pct": 1.92
-            },
-            {
-              "bucket_start_utc": "11:30",
               "count": 2,
               "pct": 0.77
             },
             {
-              "bucket_start_utc": "12:00",
+              "bucket_start_utc": "10:30",
+              "count": 1,
+              "pct": 0.38
+            },
+            {
+              "bucket_start_utc": "11:00",
               "count": 4,
               "pct": 1.54
             },
             {
-              "bucket_start_utc": "12:30",
-              "count": 9,
-              "pct": 3.46
-            },
-            {
-              "bucket_start_utc": "13:00",
+              "bucket_start_utc": "11:30",
               "count": 3,
               "pct": 1.15
             },
             {
+              "bucket_start_utc": "12:00",
+              "count": 3,
+              "pct": 1.15
+            },
+            {
+              "bucket_start_utc": "12:30",
+              "count": 7,
+              "pct": 2.69
+            },
+            {
+              "bucket_start_utc": "13:00",
+              "count": 2,
+              "pct": 0.77
+            },
+            {
               "bucket_start_utc": "13:30",
-              "count": 16,
-              "pct": 6.15
+              "count": 15,
+              "pct": 5.77
             },
             {
               "bucket_start_utc": "14:00",
@@ -1094,18 +1094,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 17,
-              "pct": 6.54
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 12,
-              "pct": 4.62
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "16:00",
@@ -1119,13 +1119,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 12,
-              "pct": 4.62
+              "count": 11,
+              "pct": 4.23
             },
             {
               "bucket_start_utc": "18:00",
@@ -1134,28 +1134,28 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
+              "count": 4,
+              "pct": 1.54
+            },
+            {
+              "bucket_start_utc": "19:00",
               "count": 7,
               "pct": 2.69
             },
             {
-              "bucket_start_utc": "19:00",
-              "count": 9,
-              "pct": 3.46
-            },
-            {
               "bucket_start_utc": "19:30",
-              "count": 16,
-              "pct": 6.15
+              "count": 17,
+              "pct": 6.54
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 19,
-              "pct": 7.31
+              "count": 18,
+              "pct": 6.92
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 14,
-              "pct": 5.38
+              "count": 11,
+              "pct": 4.23
             },
             {
               "bucket_start_utc": "21:00",
@@ -1164,13 +1164,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 8,
-              "pct": 3.08
+              "count": 12,
+              "pct": 4.62
             },
             {
               "bucket_start_utc": "22:30",
@@ -1184,24 +1184,24 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             }
           ]
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "13:30",
-          "mode_bucket_end_utc": "14:00",
-          "mode_bucket_pct_of_days": 10.4,
-          "circular_mean_utc": "17:28",
-          "circular_median_utc": "18:10",
-          "concentration_R": 0.348,
+          "mode_bucket_start_utc": "15:00",
+          "mode_bucket_end_utc": "15:30",
+          "mode_bucket_pct_of_days": 9.0,
+          "circular_mean_utc": "17:33",
+          "circular_median_utc": "15:45",
+          "concentration_R": 0.242,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "00:30",
@@ -1225,13 +1225,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "03:30",
@@ -1245,13 +1245,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "05:30",
@@ -1260,13 +1260,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "07:00",
@@ -1280,13 +1280,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "09:00",
@@ -1295,8 +1295,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "10:00",
@@ -1305,18 +1305,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "12:00",
@@ -1325,18 +1325,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 5,
-              "pct": 7.46
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 7,
-              "pct": 10.45
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "14:00",
@@ -1345,68 +1345,68 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "15:00",
+              "count": 6,
+              "pct": 8.96
+            },
+            {
+              "bucket_start_utc": "15:30",
+              "count": 3,
+              "pct": 4.48
+            },
+            {
+              "bucket_start_utc": "16:00",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "16:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "17:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "17:30",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "15:00",
+              "bucket_start_utc": "18:00",
+              "count": 1,
+              "pct": 1.49
+            },
+            {
+              "bucket_start_utc": "18:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "19:00",
+              "count": 2,
+              "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "19:30",
               "count": 5,
               "pct": 7.46
             },
             {
-              "bucket_start_utc": "15:30",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "16:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "16:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "17:00",
-              "count": 0,
-              "pct": 0.0
-            },
-            {
-              "bucket_start_utc": "17:30",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "18:00",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
-              "bucket_start_utc": "18:30",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
-              "bucket_start_utc": "19:00",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "19:30",
+              "bucket_start_utc": "20:00",
               "count": 4,
               "pct": 5.97
             },
             {
-              "bucket_start_utc": "20:00",
-              "count": 2,
-              "pct": 2.99
-            },
-            {
               "bucket_start_utc": "20:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "21:00",
@@ -1415,13 +1415,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 7,
-              "pct": 10.45
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "22:30",
@@ -1430,99 +1430,99 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 3,
+              "pct": 4.48
             }
           ]
         }
       },
       "session_distribution": {
         "New_York": {
-          "n": 521,
-          "pct": 39.6
+          "n": 532,
+          "pct": 39.1
         },
         "London_NY_Overlap": {
-          "n": 369,
+          "n": 381,
           "pct": 28.0
         },
         "Asian": {
-          "n": 194,
-          "pct": 14.7
+          "n": 207,
+          "pct": 15.2
         },
         "Other": {
-          "n": 103,
-          "pct": 7.8
+          "n": 108,
+          "pct": 7.9
         },
         "London": {
-          "n": 94,
+          "n": 97,
           "pct": 7.1
         },
         "Asian_London_Overlap": {
-          "n": 35,
-          "pct": 2.7
+          "n": 36,
+          "pct": 2.6
         }
       }
     },
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 1316,
-          "mode_bucket_start_utc": "14:00",
-          "mode_bucket_end_utc": "14:30",
-          "mode_bucket_pct_of_days": 5.6,
+          "n": 1361,
+          "mode_bucket_start_utc": "22:00",
+          "mode_bucket_end_utc": "22:30",
+          "mode_bucket_pct_of_days": 5.8,
           "circular_mean_utc": "17:43",
           "circular_median_utc": "17:25",
-          "concentration_R": 0.377,
+          "concentration_R": 0.37,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 36,
-              "pct": 2.74
+              "count": 37,
+              "pct": 2.72
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 20,
-              "pct": 1.52
+              "count": 21,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 22,
-              "pct": 1.67
+              "count": 24,
+              "pct": 1.76
             },
             {
               "bucket_start_utc": "01:30",
               "count": 16,
-              "pct": 1.22
+              "pct": 1.18
             },
             {
               "bucket_start_utc": "02:00",
               "count": 6,
-              "pct": 0.46
+              "pct": 0.44
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 7,
-              "pct": 0.53
+              "count": 8,
+              "pct": 0.59
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 8,
-              "pct": 0.61
+              "count": 9,
+              "pct": 0.66
             },
             {
               "bucket_start_utc": "03:30",
               "count": 4,
-              "pct": 0.3
+              "pct": 0.29
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 7,
-              "pct": 0.53
+              "count": 8,
+              "pct": 0.59
             },
             {
               "bucket_start_utc": "04:30",
@@ -1532,213 +1532,213 @@ const USTECH_DATA = {
             {
               "bucket_start_utc": "05:00",
               "count": 6,
-              "pct": 0.46
+              "pct": 0.44
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 10,
-              "pct": 0.76
+              "count": 11,
+              "pct": 0.81
             },
             {
               "bucket_start_utc": "06:00",
               "count": 15,
-              "pct": 1.14
+              "pct": 1.1
             },
             {
               "bucket_start_utc": "06:30",
               "count": 7,
-              "pct": 0.53
+              "pct": 0.51
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 27,
-              "pct": 2.05
+              "count": 29,
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "07:30",
               "count": 13,
-              "pct": 0.99
+              "pct": 0.96
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 30,
+              "count": 31,
               "pct": 2.28
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 7,
-              "pct": 0.53
+              "count": 8,
+              "pct": 0.59
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 16,
-              "pct": 1.22
+              "count": 17,
+              "pct": 1.25
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 9,
-              "pct": 0.68
+              "count": 11,
+              "pct": 0.81
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 14,
-              "pct": 1.06
+              "count": 15,
+              "pct": 1.1
             },
             {
               "bucket_start_utc": "10:30",
               "count": 7,
-              "pct": 0.53
+              "pct": 0.51
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 6,
-              "pct": 0.46
+              "count": 7,
+              "pct": 0.51
             },
             {
               "bucket_start_utc": "11:30",
               "count": 16,
-              "pct": 1.22
+              "pct": 1.18
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 19,
-              "pct": 1.44
+              "count": 20,
+              "pct": 1.47
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 27,
-              "pct": 2.05
+              "count": 28,
+              "pct": 2.06
             },
             {
               "bucket_start_utc": "13:00",
               "count": 25,
-              "pct": 1.9
+              "pct": 1.84
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 71,
-              "pct": 5.4
+              "count": 76,
+              "pct": 5.58
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 74,
-              "pct": 5.62
+              "count": 76,
+              "pct": 5.58
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 59,
-              "pct": 4.48
+              "count": 60,
+              "pct": 4.41
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 66,
-              "pct": 5.02
+              "count": 67,
+              "pct": 4.92
             },
             {
               "bucket_start_utc": "15:30",
               "count": 36,
-              "pct": 2.74
+              "pct": 2.65
             },
             {
               "bucket_start_utc": "16:00",
               "count": 39,
-              "pct": 2.96
+              "pct": 2.87
             },
             {
               "bucket_start_utc": "16:30",
               "count": 28,
-              "pct": 2.13
+              "pct": 2.06
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 40,
-              "pct": 3.04
+              "count": 41,
+              "pct": 3.01
             },
             {
               "bucket_start_utc": "17:30",
               "count": 29,
-              "pct": 2.2
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "18:00",
               "count": 42,
-              "pct": 3.19
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 32,
-              "pct": 2.43
+              "count": 34,
+              "pct": 2.5
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 55,
-              "pct": 4.18
+              "count": 58,
+              "pct": 4.26
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 55,
-              "pct": 4.18
+              "count": 57,
+              "pct": 4.19
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 65,
-              "pct": 4.94
+              "count": 66,
+              "pct": 4.85
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 46,
-              "pct": 3.5
+              "count": 48,
+              "pct": 3.53
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 30,
+              "count": 31,
               "pct": 2.28
             },
             {
               "bucket_start_utc": "21:30",
               "count": 9,
-              "pct": 0.68
+              "pct": 0.66
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 74,
-              "pct": 5.62
+              "count": 79,
+              "pct": 5.8
             },
             {
               "bucket_start_utc": "22:30",
               "count": 13,
-              "pct": 0.99
+              "pct": 0.96
             },
             {
               "bucket_start_utc": "23:00",
               "count": 56,
-              "pct": 4.26
+              "pct": 4.11
             },
             {
               "bucket_start_utc": "23:30",
               "count": 15,
-              "pct": 1.14
+              "pct": 1.1
             }
           ]
         },
         "5y": {
           "n": 1292,
-          "mode_bucket_start_utc": "22:00",
-          "mode_bucket_end_utc": "22:30",
-          "mode_bucket_pct_of_days": 5.7,
-          "circular_mean_utc": "17:45",
-          "circular_median_utc": "17:30",
-          "concentration_R": 0.378,
+          "mode_bucket_start_utc": "13:30",
+          "mode_bucket_end_utc": "14:00",
+          "mode_bucket_pct_of_days": 5.9,
+          "circular_mean_utc": "17:46",
+          "circular_median_utc": "17:35",
+          "concentration_R": 0.371,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 35,
-              "pct": 2.71
+              "count": 34,
+              "pct": 2.63
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 20,
-              "pct": 1.55
+              "count": 21,
+              "pct": 1.63
             },
             {
               "bucket_start_utc": "01:00",
@@ -1757,8 +1757,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 7,
-              "pct": 0.54
+              "count": 8,
+              "pct": 0.62
             },
             {
               "bucket_start_utc": "03:00",
@@ -1772,8 +1772,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 7,
-              "pct": 0.54
+              "count": 8,
+              "pct": 0.62
             },
             {
               "bucket_start_utc": "04:30",
@@ -1787,8 +1787,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 10,
-              "pct": 0.77
+              "count": 11,
+              "pct": 0.85
             },
             {
               "bucket_start_utc": "06:00",
@@ -1802,8 +1802,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 26,
-              "pct": 2.01
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "07:30",
@@ -1812,13 +1812,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 29,
-              "pct": 2.24
+              "count": 30,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 7,
-              "pct": 0.54
+              "count": 8,
+              "pct": 0.62
             },
             {
               "bucket_start_utc": "09:00",
@@ -1827,13 +1827,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 9,
-              "pct": 0.7
+              "count": 11,
+              "pct": 0.85
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 14,
-              "pct": 1.08
+              "count": 13,
+              "pct": 1.01
             },
             {
               "bucket_start_utc": "10:30",
@@ -1842,8 +1842,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 6,
-              "pct": 0.46
+              "count": 7,
+              "pct": 0.54
             },
             {
               "bucket_start_utc": "11:30",
@@ -1857,33 +1857,33 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 27,
-              "pct": 2.09
+              "count": 28,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 25,
-              "pct": 1.93
+              "count": 22,
+              "pct": 1.7
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 71,
-              "pct": 5.5
+              "count": 76,
+              "pct": 5.88
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 69,
-              "pct": 5.34
+              "count": 66,
+              "pct": 5.11
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 59,
-              "pct": 4.57
+              "count": 60,
+              "pct": 4.64
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 61,
-              "pct": 4.72
+              "count": 60,
+              "pct": 4.64
             },
             {
               "bucket_start_utc": "15:30",
@@ -1892,8 +1892,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 39,
-              "pct": 3.02
+              "count": 37,
+              "pct": 2.86
             },
             {
               "bucket_start_utc": "16:30",
@@ -1902,8 +1902,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 39,
-              "pct": 3.02
+              "count": 36,
+              "pct": 2.79
             },
             {
               "bucket_start_utc": "17:30",
@@ -1912,38 +1912,38 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 41,
-              "pct": 3.17
+              "count": 39,
+              "pct": 3.02
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 32,
-              "pct": 2.48
+              "count": 34,
+              "pct": 2.63
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 54,
-              "pct": 4.18
+              "count": 52,
+              "pct": 4.02
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 55,
-              "pct": 4.26
+              "count": 57,
+              "pct": 4.41
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 64,
-              "pct": 4.95
+              "count": 61,
+              "pct": 4.72
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 46,
-              "pct": 3.56
+              "count": 48,
+              "pct": 3.72
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 30,
-              "pct": 2.32
+              "count": 31,
+              "pct": 2.4
             },
             {
               "bucket_start_utc": "21:30",
@@ -1962,8 +1962,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 55,
-              "pct": 4.26
+              "count": 54,
+              "pct": 4.18
             },
             {
               "bucket_start_utc": "23:30",
@@ -1976,10 +1976,10 @@ const USTECH_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
-          "mode_bucket_pct_of_days": 8.8,
-          "circular_mean_utc": "18:21",
-          "circular_median_utc": "17:55",
-          "concentration_R": 0.343,
+          "mode_bucket_pct_of_days": 8.1,
+          "circular_mean_utc": "18:34",
+          "circular_median_utc": "18:50",
+          "concentration_R": 0.313,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1988,13 +1988,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "01:30",
@@ -2008,23 +2008,23 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
+              "count": 2,
+              "pct": 0.77
+            },
+            {
+              "bucket_start_utc": "03:00",
+              "count": 4,
+              "pct": 1.54
+            },
+            {
+              "bucket_start_utc": "03:30",
               "count": 1,
               "pct": 0.38
             },
             {
-              "bucket_start_utc": "03:00",
+              "bucket_start_utc": "04:00",
               "count": 3,
               "pct": 1.15
-            },
-            {
-              "bucket_start_utc": "03:30",
-              "count": 2,
-              "pct": 0.77
-            },
-            {
-              "bucket_start_utc": "04:00",
-              "count": 2,
-              "pct": 0.77
             },
             {
               "bucket_start_utc": "04:30",
@@ -2038,8 +2038,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "06:00",
@@ -2048,8 +2048,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "07:00",
@@ -2063,28 +2063,28 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "10:30",
@@ -2093,8 +2093,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "11:30",
@@ -2103,13 +2103,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "13:00",
@@ -2118,8 +2118,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 17,
-              "pct": 6.54
+              "count": 19,
+              "pct": 7.31
             },
             {
               "bucket_start_utc": "14:00",
@@ -2128,23 +2128,23 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 15,
-              "pct": 5.77
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 10,
-              "pct": 3.85
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 10,
-              "pct": 3.85
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "16:30",
@@ -2158,8 +2158,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 9,
-              "pct": 3.46
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "18:00",
@@ -2168,18 +2168,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 10,
-              "pct": 3.85
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "20:00",
@@ -2188,23 +2188,23 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 12,
-              "pct": 4.62
+              "count": 14,
+              "pct": 5.38
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 23,
-              "pct": 8.85
+              "count": 21,
+              "pct": 8.08
             },
             {
               "bucket_start_utc": "22:30",
@@ -2227,25 +2227,25 @@ const USTECH_DATA = {
           "n": 67,
           "mode_bucket_start_utc": "13:30",
           "mode_bucket_end_utc": "14:00",
-          "mode_bucket_pct_of_days": 10.4,
-          "circular_mean_utc": "19:05",
-          "circular_median_utc": "19:50",
-          "concentration_R": 0.385,
+          "mode_bucket_pct_of_days": 11.9,
+          "circular_mean_utc": "17:55",
+          "circular_median_utc": "18:50",
+          "concentration_R": 0.215,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "01:30",
@@ -2269,13 +2269,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "04:30",
@@ -2304,8 +2304,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "07:30",
@@ -2314,13 +2314,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "09:00",
@@ -2329,13 +2329,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "10:30",
@@ -2344,8 +2344,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "11:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "11:30",
@@ -2354,8 +2354,8 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "12:30",
@@ -2369,28 +2369,28 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 7,
-              "pct": 10.45
+              "count": 8,
+              "pct": 11.94
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 6,
-              "pct": 8.96
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 3,
-              "pct": 4.48
-            },
-            {
-              "bucket_start_utc": "15:00",
               "count": 1,
               "pct": 1.49
             },
             {
-              "bucket_start_utc": "15:30",
+              "bucket_start_utc": "15:00",
               "count": 2,
               "pct": 2.99
+            },
+            {
+              "bucket_start_utc": "15:30",
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "16:00",
@@ -2399,18 +2399,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
+              "count": 0,
+              "pct": 0.0
+            },
+            {
+              "bucket_start_utc": "17:00",
               "count": 2,
               "pct": 2.99
             },
             {
-              "bucket_start_utc": "17:00",
-              "count": 1,
-              "pct": 1.49
-            },
-            {
               "bucket_start_utc": "17:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "18:00",
@@ -2419,13 +2419,13 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "19:30",
@@ -2434,18 +2434,18 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 4,
-              "pct": 5.97
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 5,
-              "pct": 7.46
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "21:30",
@@ -2459,84 +2459,84 @@ const USTECH_DATA = {
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             }
           ]
         }
       },
       "session_distribution": {
         "New_York": {
-          "n": 431,
-          "pct": 32.8
+          "n": 442,
+          "pct": 32.5
         },
         "London_NY_Overlap": {
-          "n": 377,
-          "pct": 28.6
+          "n": 388,
+          "pct": 28.5
         },
         "Asian": {
-          "n": 237,
+          "n": 245,
           "pct": 18.0
         },
         "Other": {
-          "n": 126,
-          "pct": 9.6
+          "n": 132,
+          "pct": 9.7
         },
         "London": {
-          "n": 105,
-          "pct": 8.0
+          "n": 112,
+          "pct": 8.2
         },
         "Asian_London_Overlap": {
-          "n": 40,
-          "pct": 3.0
+          "n": 42,
+          "pct": 3.1
         }
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 1316,
-      "same_session_n": 129,
-      "same_session_pct": 9.8,
+      "n_days": 1361,
+      "same_session_n": 132,
+      "same_session_pct": 9.7,
       "pairs": {
         "Asian": {
           "Asian": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "Asian_London_Overlap": {
-            "n": 1,
-            "pct": 0.08
+            "n": 2,
+            "pct": 0.15
           },
           "London": {
-            "n": 3,
-            "pct": 0.23
+            "n": 5,
+            "pct": 0.37
           },
           "London_NY_Overlap": {
-            "n": 61,
-            "pct": 4.64
+            "n": 65,
+            "pct": 4.78
           },
           "New_York": {
-            "n": 140,
-            "pct": 10.64
+            "n": 141,
+            "pct": 10.36
           },
           "Other": {
             "n": 23,
-            "pct": 1.75
+            "pct": 1.69
           }
         },
         "Asian_London_Overlap": {
           "Asian": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "Asian_London_Overlap": {
             "n": 0,
@@ -2544,25 +2544,25 @@ const USTECH_DATA = {
           },
           "London": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "London_NY_Overlap": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "New_York": {
-            "n": 27,
-            "pct": 2.05
+            "n": 28,
+            "pct": 2.06
           },
           "Other": {
-            "n": 1,
-            "pct": 0.08
+            "n": 2,
+            "pct": 0.15
           }
         },
         "London": {
           "Asian": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "Asian_London_Overlap": {
             "n": 0,
@@ -2573,90 +2573,90 @@ const USTECH_DATA = {
             "pct": 0.0
           },
           "London_NY_Overlap": {
-            "n": 16,
-            "pct": 1.22
+            "n": 18,
+            "pct": 1.32
           },
           "New_York": {
-            "n": 76,
-            "pct": 5.78
+            "n": 81,
+            "pct": 5.95
           },
           "Other": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           }
         },
         "London_NY_Overlap": {
           "Asian": {
-            "n": 67,
-            "pct": 5.09
+            "n": 72,
+            "pct": 5.29
           },
           "Asian_London_Overlap": {
             "n": 13,
-            "pct": 0.99
+            "pct": 0.96
           },
           "London": {
             "n": 23,
-            "pct": 1.75
+            "pct": 1.69
           },
           "London_NY_Overlap": {
-            "n": 71,
-            "pct": 5.4
+            "n": 73,
+            "pct": 5.36
           },
           "New_York": {
-            "n": 168,
-            "pct": 12.77
+            "n": 169,
+            "pct": 12.42
           },
           "Other": {
-            "n": 35,
-            "pct": 2.66
+            "n": 38,
+            "pct": 2.79
           }
         },
         "New_York": {
           "Asian": {
-            "n": 98,
-            "pct": 7.45
+            "n": 105,
+            "pct": 7.71
           },
           "Asian_London_Overlap": {
             "n": 20,
-            "pct": 1.52
+            "pct": 1.47
           },
           "London": {
             "n": 58,
-            "pct": 4.41
+            "pct": 4.26
           },
           "London_NY_Overlap": {
-            "n": 169,
-            "pct": 12.84
+            "n": 171,
+            "pct": 12.56
           },
           "New_York": {
-            "n": 49,
-            "pct": 3.72
+            "n": 50,
+            "pct": 3.67
           },
           "Other": {
-            "n": 37,
-            "pct": 2.81
+            "n": 38,
+            "pct": 2.79
           }
         },
         "Other": {
           "Asian": {
-            "n": 13,
-            "pct": 0.99
+            "n": 14,
+            "pct": 1.03
           },
           "Asian_London_Overlap": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "London": {
-            "n": 9,
-            "pct": 0.68
+            "n": 10,
+            "pct": 0.73
           },
           "London_NY_Overlap": {
-            "n": 42,
-            "pct": 3.19
+            "n": 44,
+            "pct": 3.23
           },
           "New_York": {
-            "n": 61,
-            "pct": 4.64
+            "n": 63,
+            "pct": 4.63
           },
           "Other": {
             "n": 0,
@@ -2666,9 +2666,9 @@ const USTECH_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 1316,
-      "same_hour_n": 9,
-      "same_hour_pct": 0.68,
+      "n_days": 1361,
+      "same_hour_n": 10,
+      "same_hour_pct": 0.73,
       "pairs": {
         "0": {
           "0": {
@@ -2701,23 +2701,23 @@ const USTECH_DATA = {
           },
           "7": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "8": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "9": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "10": {
             "n": 0,
             "pct": 0.0
           },
           "11": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "12": {
             "n": 0,
@@ -2725,35 +2725,35 @@ const USTECH_DATA = {
           },
           "13": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "14": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "15": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "17": {
             "n": 8,
-            "pct": 0.61
+            "pct": 0.59
           },
           "18": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "19": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "20": {
             "n": 8,
-            "pct": 0.61
+            "pct": 0.59
           },
           "21": {
             "n": 2,
@@ -2761,7 +2761,7 @@ const USTECH_DATA = {
           },
           "22": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 2,
@@ -2798,8 +2798,8 @@ const USTECH_DATA = {
             "pct": 0.0
           },
           "7": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "8": {
             "n": 0,
@@ -2823,15 +2823,15 @@ const USTECH_DATA = {
           },
           "13": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "14": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "15": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "16": {
             "n": 0,
@@ -2843,19 +2843,19 @@ const USTECH_DATA = {
           },
           "18": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "19": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "20": {
-            "n": 10,
-            "pct": 0.76
+            "n": 11,
+            "pct": 0.81
           },
           "21": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "22": {
             "n": 0,
@@ -2863,7 +2863,7 @@ const USTECH_DATA = {
           },
           "23": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           }
         },
         "2": {
@@ -2925,15 +2925,15 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "15": {
-            "n": 2,
-            "pct": 0.15
+            "n": 3,
+            "pct": 0.22
           },
           "16": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 0,
@@ -2941,15 +2941,15 @@ const USTECH_DATA = {
           },
           "18": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "19": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "20": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "21": {
             "n": 2,
@@ -2957,11 +2957,11 @@ const USTECH_DATA = {
           },
           "22": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "3": {
@@ -3015,7 +3015,7 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 0,
@@ -3023,15 +3023,15 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "15": {
-            "n": 2,
-            "pct": 0.15
+            "n": 3,
+            "pct": 0.22
           },
           "16": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 0,
@@ -3039,7 +3039,7 @@ const USTECH_DATA = {
           },
           "18": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "19": {
             "n": 0,
@@ -3051,7 +3051,7 @@ const USTECH_DATA = {
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 0,
@@ -3059,7 +3059,7 @@ const USTECH_DATA = {
           },
           "23": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "4": {
@@ -3113,11 +3113,11 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
-            "n": 1,
-            "pct": 0.08
+            "n": 2,
+            "pct": 0.15
           },
           "14": {
             "n": 0,
@@ -3125,7 +3125,7 @@ const USTECH_DATA = {
           },
           "15": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "16": {
             "n": 0,
@@ -3141,7 +3141,7 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "20": {
             "n": 2,
@@ -3153,7 +3153,7 @@ const USTECH_DATA = {
           },
           "22": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 0,
@@ -3214,8 +3214,8 @@ const USTECH_DATA = {
             "pct": 0.0
           },
           "13": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "14": {
             "n": 0,
@@ -3223,15 +3223,15 @@ const USTECH_DATA = {
           },
           "15": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 2,
@@ -3243,7 +3243,7 @@ const USTECH_DATA = {
           },
           "20": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "21": {
             "n": 0,
@@ -3255,13 +3255,13 @@ const USTECH_DATA = {
           },
           "23": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "6": {
           "0": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "1": {
             "n": 0,
@@ -3317,11 +3317,11 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "15": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 0,
@@ -3329,7 +3329,7 @@ const USTECH_DATA = {
           },
           "17": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 2,
@@ -3337,11 +3337,11 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "20": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "21": {
             "n": 0,
@@ -3371,7 +3371,7 @@ const USTECH_DATA = {
           },
           "3": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "4": {
             "n": 0,
@@ -3403,11 +3403,11 @@ const USTECH_DATA = {
           },
           "11": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "12": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 0,
@@ -3415,11 +3415,11 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "15": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "16": {
             "n": 2,
@@ -3431,19 +3431,19 @@ const USTECH_DATA = {
           },
           "18": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "19": {
-            "n": 12,
-            "pct": 0.91
+            "n": 13,
+            "pct": 0.96
           },
           "20": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "21": {
-            "n": 1,
-            "pct": 0.08
+            "n": 2,
+            "pct": 0.15
           },
           "22": {
             "n": 0,
@@ -3465,7 +3465,7 @@ const USTECH_DATA = {
           },
           "2": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "3": {
             "n": 0,
@@ -3505,7 +3505,7 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 0,
@@ -3516,8 +3516,8 @@ const USTECH_DATA = {
             "pct": 0.15
           },
           "15": {
-            "n": 4,
-            "pct": 0.3
+            "n": 5,
+            "pct": 0.37
           },
           "16": {
             "n": 2,
@@ -3525,27 +3525,27 @@ const USTECH_DATA = {
           },
           "17": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "18": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "19": {
-            "n": 8,
-            "pct": 0.61
+            "n": 9,
+            "pct": 0.66
           },
           "20": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 0,
@@ -3555,7 +3555,7 @@ const USTECH_DATA = {
         "9": {
           "0": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "1": {
             "n": 2,
@@ -3563,7 +3563,7 @@ const USTECH_DATA = {
           },
           "2": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "3": {
             "n": 0,
@@ -3615,31 +3615,31 @@ const USTECH_DATA = {
           },
           "15": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "16": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "17": {
-            "n": 2,
-            "pct": 0.15
+            "n": 4,
+            "pct": 0.29
           },
           "18": {
             "n": 2,
             "pct": 0.15
           },
           "19": {
-            "n": 5,
-            "pct": 0.38
+            "n": 6,
+            "pct": 0.44
           },
           "20": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 0,
@@ -3709,19 +3709,19 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "15": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "16": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
-            "n": 4,
-            "pct": 0.3
+            "n": 5,
+            "pct": 0.37
           },
           "18": {
             "n": 2,
@@ -3729,23 +3729,23 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "20": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           }
         },
         "11": {
@@ -3807,11 +3807,11 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "15": {
-            "n": 1,
-            "pct": 0.08
+            "n": 2,
+            "pct": 0.15
           },
           "16": {
             "n": 2,
@@ -3819,7 +3819,7 @@ const USTECH_DATA = {
           },
           "17": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 2,
@@ -3827,11 +3827,11 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "20": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "21": {
             "n": 2,
@@ -3849,11 +3849,11 @@ const USTECH_DATA = {
         "12": {
           "0": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "1": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "2": {
             "n": 0,
@@ -3868,20 +3868,20 @@ const USTECH_DATA = {
             "pct": 0.0
           },
           "5": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "6": {
-            "n": 2,
-            "pct": 0.15
+            "n": 3,
+            "pct": 0.22
           },
           "7": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "8": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "9": {
             "n": 0,
@@ -3905,19 +3905,19 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "15": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "17": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "18": {
             "n": 2,
@@ -3925,15 +3925,15 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 11,
-            "pct": 0.84
+            "pct": 0.81
           },
           "20": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 0,
@@ -3947,7 +3947,7 @@ const USTECH_DATA = {
         "13": {
           "0": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "1": {
             "n": 2,
@@ -3971,7 +3971,7 @@ const USTECH_DATA = {
           },
           "6": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "7": {
             "n": 0,
@@ -3983,7 +3983,7 @@ const USTECH_DATA = {
           },
           "9": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "10": {
             "n": 0,
@@ -3999,43 +3999,43 @@ const USTECH_DATA = {
           },
           "13": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "14": {
-            "n": 4,
-            "pct": 0.3
+            "n": 6,
+            "pct": 0.44
           },
           "15": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "16": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "17": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "18": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "19": {
-            "n": 14,
-            "pct": 1.06
+            "n": 15,
+            "pct": 1.1
           },
           "20": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "21": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "22": {
-            "n": 5,
-            "pct": 0.38
+            "n": 7,
+            "pct": 0.51
           },
           "23": {
             "n": 2,
@@ -4045,11 +4045,11 @@ const USTECH_DATA = {
         "14": {
           "0": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "1": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "2": {
             "n": 2,
@@ -4057,47 +4057,47 @@ const USTECH_DATA = {
           },
           "3": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "4": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "5": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "6": {
-            "n": 2,
-            "pct": 0.15
+            "n": 3,
+            "pct": 0.22
           },
           "7": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "8": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "9": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "10": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "12": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "13": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "14": {
             "n": 0,
@@ -4105,49 +4105,49 @@ const USTECH_DATA = {
           },
           "15": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "17": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "18": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "19": {
             "n": 22,
-            "pct": 1.67
+            "pct": 1.62
           },
           "20": {
             "n": 17,
-            "pct": 1.29
+            "pct": 1.25
           },
           "21": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "22": {
-            "n": 9,
-            "pct": 0.68
+            "n": 10,
+            "pct": 0.73
           },
           "23": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           }
         },
         "15": {
           "0": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "1": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "2": {
             "n": 2,
@@ -4155,27 +4155,27 @@ const USTECH_DATA = {
           },
           "3": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "4": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "6": {
-            "n": 3,
-            "pct": 0.23
+            "n": 4,
+            "pct": 0.29
           },
           "7": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "8": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "9": {
             "n": 0,
@@ -4183,7 +4183,7 @@ const USTECH_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 2,
@@ -4195,23 +4195,23 @@ const USTECH_DATA = {
           },
           "13": {
             "n": 8,
-            "pct": 0.61
+            "pct": 0.59
           },
           "14": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "15": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "16": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "17": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 2,
@@ -4219,33 +4219,33 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "20": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "21": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "22": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "23": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           }
         },
         "16": {
           "0": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "1": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "2": {
             "n": 0,
@@ -4273,11 +4273,11 @@ const USTECH_DATA = {
           },
           "8": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "9": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "10": {
             "n": 2,
@@ -4289,15 +4289,15 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "13": {
             "n": 11,
-            "pct": 0.84
+            "pct": 0.81
           },
           "14": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "15": {
             "n": 0,
@@ -4317,37 +4317,37 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "20": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "23": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           }
         },
         "17": {
           "0": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "1": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "2": {
-            "n": 2,
-            "pct": 0.15
+            "n": 3,
+            "pct": 0.22
           },
           "3": {
             "n": 0,
@@ -4367,19 +4367,19 @@ const USTECH_DATA = {
           },
           "7": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "8": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "9": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "10": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "11": {
             "n": 0,
@@ -4387,19 +4387,19 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "13": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "14": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "15": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "16": {
             "n": 0,
@@ -4415,23 +4415,23 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "20": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "21": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "22": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "23": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           }
         },
         "18": {
@@ -4453,7 +4453,7 @@ const USTECH_DATA = {
           },
           "4": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
             "n": 2,
@@ -4469,7 +4469,7 @@ const USTECH_DATA = {
           },
           "8": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "9": {
             "n": 2,
@@ -4481,19 +4481,19 @@ const USTECH_DATA = {
           },
           "11": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "12": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "13": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "14": {
             "n": 13,
-            "pct": 0.99
+            "pct": 0.96
           },
           "15": {
             "n": 2,
@@ -4513,11 +4513,11 @@ const USTECH_DATA = {
           },
           "19": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "20": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "21": {
             "n": 0,
@@ -4525,85 +4525,85 @@ const USTECH_DATA = {
           },
           "22": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "23": {
-            "n": 4,
-            "pct": 0.3
+            "n": 6,
+            "pct": 0.44
           }
         },
         "19": {
           "0": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "1": {
-            "n": 3,
-            "pct": 0.23
+            "n": 4,
+            "pct": 0.29
           },
           "2": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "3": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "4": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "5": {
-            "n": 3,
-            "pct": 0.23
+            "n": 4,
+            "pct": 0.29
           },
           "6": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "7": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "8": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "9": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "10": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "12": {
             "n": 12,
-            "pct": 0.91
+            "pct": 0.88
           },
           "13": {
             "n": 17,
-            "pct": 1.29
+            "pct": 1.25
           },
           "14": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "15": {
-            "n": 2,
-            "pct": 0.15
+            "n": 3,
+            "pct": 0.22
           },
           "16": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "17": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 2,
@@ -4622,30 +4622,30 @@ const USTECH_DATA = {
             "pct": 0.15
           },
           "22": {
-            "n": 11,
-            "pct": 0.84
+            "n": 12,
+            "pct": 0.88
           },
           "23": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           }
         },
         "20": {
           "0": {
-            "n": 8,
-            "pct": 0.61
+            "n": 9,
+            "pct": 0.66
           },
           "1": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "2": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "3": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "4": {
             "n": 0,
@@ -4653,7 +4653,7 @@ const USTECH_DATA = {
           },
           "5": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "6": {
             "n": 2,
@@ -4661,11 +4661,11 @@ const USTECH_DATA = {
           },
           "7": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "8": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "9": {
             "n": 2,
@@ -4673,7 +4673,7 @@ const USTECH_DATA = {
           },
           "10": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "11": {
             "n": 2,
@@ -4681,23 +4681,23 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "13": {
             "n": 18,
-            "pct": 1.37
+            "pct": 1.32
           },
           "14": {
             "n": 15,
-            "pct": 1.14
+            "pct": 1.1
           },
           "15": {
-            "n": 7,
-            "pct": 0.53
+            "n": 8,
+            "pct": 0.59
           },
           "16": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "17": {
             "n": 0,
@@ -4705,15 +4705,15 @@ const USTECH_DATA = {
           },
           "18": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "19": {
             "n": 0,
             "pct": 0.0
           },
           "20": {
-            "n": 3,
-            "pct": 0.23
+            "n": 4,
+            "pct": 0.29
           },
           "21": {
             "n": 0,
@@ -4721,21 +4721,21 @@ const USTECH_DATA = {
           },
           "22": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "23": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           }
         },
         "21": {
           "0": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "1": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "2": {
             "n": 0,
@@ -4743,7 +4743,7 @@ const USTECH_DATA = {
           },
           "3": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "4": {
             "n": 0,
@@ -4763,23 +4763,23 @@ const USTECH_DATA = {
           },
           "8": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "9": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "10": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "12": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "13": {
             "n": 2,
@@ -4787,19 +4787,19 @@ const USTECH_DATA = {
           },
           "14": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "15": {
             "n": 5,
-            "pct": 0.38
+            "pct": 0.37
           },
           "16": {
             "n": 4,
-            "pct": 0.3
+            "pct": 0.29
           },
           "17": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "18": {
             "n": 0,
@@ -4822,8 +4822,8 @@ const USTECH_DATA = {
             "pct": 0.0
           },
           "23": {
-            "n": 5,
-            "pct": 0.38
+            "n": 6,
+            "pct": 0.44
           }
         },
         "22": {
@@ -4849,7 +4849,7 @@ const USTECH_DATA = {
           },
           "5": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "6": {
             "n": 0,
@@ -4857,7 +4857,7 @@ const USTECH_DATA = {
           },
           "7": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "8": {
             "n": 0,
@@ -4865,51 +4865,51 @@ const USTECH_DATA = {
           },
           "9": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "10": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.07
           },
           "11": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "12": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 10,
-            "pct": 0.76
+            "pct": 0.73
           },
           "14": {
-            "n": 10,
-            "pct": 0.76
+            "n": 11,
+            "pct": 0.81
           },
           "15": {
-            "n": 8,
-            "pct": 0.61
+            "n": 9,
+            "pct": 0.66
           },
           "16": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "17": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "18": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "19": {
-            "n": 17,
-            "pct": 1.29
+            "n": 19,
+            "pct": 1.4
           },
           "20": {
             "n": 15,
-            "pct": 1.14
+            "pct": 1.1
           },
           "21": {
             "n": 0,
@@ -4959,7 +4959,7 @@ const USTECH_DATA = {
           },
           "8": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "9": {
             "n": 0,
@@ -4967,7 +4967,7 @@ const USTECH_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "11": {
             "n": 0,
@@ -4975,43 +4975,43 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 1,
-            "pct": 0.08
+            "pct": 0.07
           },
           "13": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "14": {
             "n": 7,
-            "pct": 0.53
+            "pct": 0.51
           },
           "15": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "16": {
             "n": 6,
-            "pct": 0.46
+            "pct": 0.44
           },
           "17": {
             "n": 8,
-            "pct": 0.61
+            "pct": 0.59
           },
           "18": {
             "n": 3,
-            "pct": 0.23
+            "pct": 0.22
           },
           "19": {
             "n": 13,
-            "pct": 0.99
+            "pct": 0.96
           },
           "20": {
             "n": 13,
-            "pct": 0.99
+            "pct": 0.96
           },
           "21": {
             "n": 9,
-            "pct": 0.68
+            "pct": 0.66
           },
           "22": {
             "n": 0,
@@ -5026,56 +5026,55 @@ const USTECH_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 60,
-        "mean_range_pips": 3942.1,
+        "n": 62,
+        "mean_range_pips": 3933.1,
         "median_range_pips": 3379.5,
-        "extreme_in_release_window_pct": 43.3
+        "extreme_in_release_window_pct": 41.9
       },
       "other_fridays": {
-        "n": 200,
-        "mean_range_pips": 3318.5,
-        "median_range_pips": 2909.0,
-        "extreme_in_release_window_pct": 37.0
+        "n": 207,
+        "mean_range_pips": 3380.6,
+        "median_range_pips": 2985.0,
+        "extreme_in_release_window_pct": 36.7
       },
-      "all_days_mean_range_pips": 3471.8,
+      "all_days_mean_range_pips": 3540.3,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Friday": 292,
-      "Monday": 143,
-      "Thursday": 130,
-      "Tuesday": 121,
-      "Wednesday": 99,
+      "Friday": 295,
+      "Monday": 144,
+      "Thursday": 129,
+      "Tuesday": 123,
+      "Wednesday": 103,
       "Sunday": 4
     },
     "weekly_low_day": {
-      "Monday": 273,
-      "Friday": 176,
+      "Monday": 275,
+      "Friday": 180,
       "Tuesday": 126,
-      "Thursday": 111,
-      "Wednesday": 95,
+      "Thursday": 113,
+      "Wednesday": 96,
       "Sunday": 8
     },
     "monthly_high_week_of_month": {
-      "1": 45,
+      "1": 46,
       "2": 17,
       "3": 27,
-      "4": 48,
+      "4": 49,
       "5": 46
     },
     "monthly_low_week_of_month": {
       "1": 81,
       "2": 27,
-      "3": 30,
+      "3": 31,
       "4": 28,
-      "5": 17
+      "5": 18
     },
     "yearly_high_month": {
       "1": 1,
-      "6": 1,
       "9": 1,
-      "10": 3,
+      "10": 4,
       "11": 3,
       "12": 7
     },
@@ -5090,9 +5089,9 @@ const USTECH_DATA = {
     },
     "yearly_high_week": {
       "1": 2,
-      "23": 1,
       "38": 1,
       "40": 1,
+      "41": 1,
       "43": 1,
       "44": 1,
       "45": 1,
@@ -5117,68 +5116,68 @@ const USTECH_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 3889,
+    "n_labeled_days": 3934,
     "n_data_gap_days": 0,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 2246,
-        "pct": 57.75
+        "n": 2278,
+        "pct": 57.91
       },
       "Compression Day": {
-        "n": 549,
-        "pct": 14.12
+        "n": 552,
+        "pct": 14.03
       },
       "Volatile Day": {
-        "n": 466,
-        "pct": 11.98
+        "n": 472,
+        "pct": 12.0
       },
       "Trend Day (Up)": {
-        "n": 214,
-        "pct": 5.5
+        "n": 215,
+        "pct": 5.47
       },
       "Volatile Reversal Day": {
         "n": 152,
-        "pct": 3.91
+        "pct": 3.86
       },
       "Trend Day (Down)": {
-        "n": 147,
-        "pct": 3.78
+        "n": 150,
+        "pct": 3.81
       },
       "Quiet Drift Day (Up)": {
         "n": 94,
-        "pct": 2.42
+        "pct": 2.39
       },
       "Quiet Drift Day (Down)": {
         "n": 21,
-        "pct": 0.54
+        "pct": 0.53
       }
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
         "Insufficient_History": 1517,
-        "Late_Resolution": 327,
-        "Late_Push": 324,
-        "Fade_Risk": 70,
-        "Early_Resolution": 8
+        "Late_Push": 344,
+        "Late_Resolution": 336,
+        "Fade_Risk": 72,
+        "Early_Resolution": 9
       },
       "Compression Day": {
         "Insufficient_History": 347,
         "Late_Resolution": 95,
-        "Late_Push": 70,
-        "Fade_Risk": 27,
-        "Early_Resolution": 10
+        "Late_Push": 71,
+        "Fade_Risk": 28,
+        "Early_Resolution": 11
       },
       "Volatile Day": {
         "Insufficient_History": 296,
-        "Late_Push": 97,
-        "Late_Resolution": 62,
+        "Late_Push": 102,
+        "Late_Resolution": 63,
         "Fade_Risk": 8,
         "Early_Resolution": 3
       },
       "Trend Day (Up)": {
         "Insufficient_History": 144,
-        "Late_Push": 42,
+        "Late_Push": 43,
         "Late_Resolution": 28
       },
       "Volatile Reversal Day": {
@@ -5189,7 +5188,7 @@ const USTECH_DATA = {
       },
       "Trend Day (Down)": {
         "Insufficient_History": 90,
-        "Late_Push": 29,
+        "Late_Push": 32,
         "Late_Resolution": 28
       },
       "Quiet Drift Day (Up)": {
@@ -5207,12 +5206,12 @@ const USTECH_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Day": {
-        "mean": 805.0,
-        "median": 510.0
+        "mean": 812.3,
+        "median": 520.0
       },
       "Normal Day": {
-        "mean": 1502.2,
-        "median": 887.5
+        "mean": 1543.4,
+        "median": 920.5
       },
       "Quiet Drift Day (Down)": {
         "mean": 877.0,
@@ -5223,16 +5222,16 @@ const USTECH_DATA = {
         "median": 358.5
       },
       "Trend Day (Down)": {
-        "mean": 3527.4,
-        "median": 2895.0
+        "mean": 3713.0,
+        "median": 3061.5
       },
       "Trend Day (Up)": {
-        "mean": 3029.3,
-        "median": 1876.5
+        "mean": 3059.4,
+        "median": 1878.0
       },
       "Volatile Day": {
-        "mean": 3241.3,
-        "median": 2941.5
+        "mean": 3312.8,
+        "median": 3000.5
       },
       "Volatile Reversal Day": {
         "mean": 3165.3,
@@ -5240,92 +5239,92 @@ const USTECH_DATA = {
       }
     },
     "nfp": {
-      "n_nfp_days": 175,
-      "n_other_fridays": 586,
+      "n_nfp_days": 177,
+      "n_other_fridays": 593,
       "nfp_profile_distribution": {
         "Normal Day": {
-          "n": 99,
-          "pct": 56.57,
-          "mean_range_pips": 1637.3,
-          "median_range_pips": 870.0
+          "n": 100,
+          "pct": 56.5,
+          "mean_range_pips": 1672.6,
+          "median_range_pips": 936.5
         },
         "Volatile Day": {
           "n": 31,
-          "pct": 17.71,
+          "pct": 17.51,
           "mean_range_pips": 3089.2,
           "median_range_pips": 3216.0
         },
         "Compression Day": {
-          "n": 16,
-          "pct": 9.14,
-          "mean_range_pips": 808.4,
-          "median_range_pips": 729.0
+          "n": 17,
+          "pct": 9.6,
+          "mean_range_pips": 887.9,
+          "median_range_pips": 792.0
         },
         "Trend Day (Up)": {
           "n": 10,
-          "pct": 5.71,
+          "pct": 5.65,
           "mean_range_pips": 2333.6,
           "median_range_pips": 1280.0
         },
         "Trend Day (Down)": {
           "n": 8,
-          "pct": 4.57,
+          "pct": 4.52,
           "mean_range_pips": 4856.2,
           "median_range_pips": 1734.0
         },
         "Volatile Reversal Day": {
           "n": 7,
-          "pct": 4.0,
+          "pct": 3.95,
           "mean_range_pips": 3009.4,
           "median_range_pips": 2344.0
         },
         "Quiet Drift Day (Up)": {
           "n": 4,
-          "pct": 2.29,
+          "pct": 2.26,
           "mean_range_pips": 416.0,
           "median_range_pips": 412.0
         }
       },
       "other_friday_profile_distribution": {
         "Normal Day": {
-          "n": 350,
-          "pct": 59.73,
-          "mean_range_pips": 1427.4,
-          "median_range_pips": 827.5
+          "n": 355,
+          "pct": 59.87,
+          "mean_range_pips": 1457.1,
+          "median_range_pips": 845.0
         },
         "Compression Day": {
           "n": 77,
-          "pct": 13.14,
+          "pct": 12.98,
           "mean_range_pips": 898.0,
           "median_range_pips": 587.0
         },
         "Volatile Day": {
-          "n": 56,
-          "pct": 9.56,
-          "mean_range_pips": 3212.7,
-          "median_range_pips": 2928.0
+          "n": 58,
+          "pct": 9.78,
+          "mean_range_pips": 3419.6,
+          "median_range_pips": 3008.5
         },
         "Trend Day (Up)": {
           "n": 32,
-          "pct": 5.46,
+          "pct": 5.4,
           "mean_range_pips": 2916.4,
           "median_range_pips": 1544.0
         },
         "Trend Day (Down)": {
           "n": 28,
-          "pct": 4.78,
+          "pct": 4.72,
           "mean_range_pips": 3566.1,
           "median_range_pips": 3444.0
         },
         "Quiet Drift Day (Up)": {
           "n": 25,
-          "pct": 4.27,
+          "pct": 4.22,
           "mean_range_pips": 867.3,
           "median_range_pips": 611.0
         },
         "Volatile Reversal Day": {
           "n": 18,
-          "pct": 3.07,
+          "pct": 3.04,
           "mean_range_pips": 3113.4,
           "median_range_pips": 2849.5
         }
@@ -5334,60 +5333,60 @@ const USTECH_DATA = {
     "asset": "USTECH"
   },
   "weekly": {
-    "n_labeled_weeks": 775,
+    "n_labeled_weeks": 784,
     "n_short_weeks": 0,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 437,
-        "pct": 56.39
+        "n": 444,
+        "pct": 56.63
       },
       "Compression Week": {
-        "n": 116,
-        "pct": 14.97
+        "n": 115,
+        "pct": 14.67
       },
       "Volatile Week": {
-        "n": 95,
-        "pct": 12.26
+        "n": 96,
+        "pct": 12.24
       },
       "Trend Week (Up)": {
         "n": 46,
-        "pct": 5.94
+        "pct": 5.87
       },
       "Volatile Reversal Week": {
         "n": 38,
-        "pct": 4.9
+        "pct": 4.85
       },
       "Trend Week (Down)": {
-        "n": 23,
-        "pct": 2.97
+        "n": 25,
+        "pct": 3.19
       },
       "Quiet Drift Week (Up)": {
         "n": 15,
-        "pct": 1.94
+        "pct": 1.91
       },
       "Quiet Drift Week (Down)": {
         "n": 5,
-        "pct": 0.65
+        "pct": 0.64
       }
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 253,
-        "Late_Resolution": 93,
+        "Late_Push": 257,
+        "Late_Resolution": 96,
         "Fade_Risk": 60,
         "Early_Resolution": 28,
         "Insufficient_History": 3
       },
       "Compression Week": {
         "Late_Push": 54,
-        "Late_Resolution": 32,
+        "Late_Resolution": 31,
         "Fade_Risk": 20,
         "Early_Resolution": 10
       },
       "Volatile Week": {
         "Late_Push": 63,
-        "Late_Resolution": 20,
+        "Late_Resolution": 21,
         "Early_Resolution": 7,
         "Fade_Risk": 4,
         "Insufficient_History": 1
@@ -5405,8 +5404,8 @@ const USTECH_DATA = {
         "Early_Resolution": 3
       },
       "Trend Week (Down)": {
-        "Late_Push": 16,
-        "Late_Resolution": 7
+        "Late_Push": 17,
+        "Late_Resolution": 8
       },
       "Quiet Drift Week (Up)": {
         "Late_Push": 9,
@@ -5420,18 +5419,18 @@ const USTECH_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Week": {
-        "Spread": 350,
+        "Spread": 357,
         "Adjacent": 73,
         "Same_Day": 11,
         "Insufficient_History": 3
       },
       "Compression Week": {
         "Spread": 77,
-        "Adjacent": 31,
+        "Adjacent": 30,
         "Same_Day": 8
       },
       "Volatile Week": {
-        "Spread": 81,
+        "Spread": 82,
         "Adjacent": 10,
         "Same_Day": 3,
         "Insufficient_History": 1
@@ -5446,8 +5445,8 @@ const USTECH_DATA = {
         "Adjacent": 6
       },
       "Trend Week (Down)": {
-        "Spread": 20,
-        "Adjacent": 3
+        "Spread": 21,
+        "Adjacent": 4
       },
       "Quiet Drift Week (Up)": {
         "Spread": 12,
@@ -5460,12 +5459,12 @@ const USTECH_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Week": {
-        "mean": 2060.4,
-        "median": 1148.0
+        "mean": 2021.1,
+        "median": 1147.0
       },
       "Normal Week": {
-        "mean": 3608.7,
-        "median": 2149.0
+        "mean": 3698.1,
+        "median": 2202.0
       },
       "Quiet Drift Week (Down)": {
         "mean": 2996.8,
@@ -5476,8 +5475,8 @@ const USTECH_DATA = {
         "median": 728.0
       },
       "Trend Week (Down)": {
-        "mean": 8781.1,
-        "median": 8856.0
+        "mean": 9831.0,
+        "median": 9540.0
       },
       "Trend Week (Up)": {
         "mean": 6561.5,
@@ -5488,14 +5487,14 @@ const USTECH_DATA = {
         "median": 7104.0
       },
       "Volatile Week": {
-        "mean": 6471.2,
-        "median": 5149.0
+        "mean": 6605.1,
+        "median": 5172.5
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 777,
+      "n_weeks": 786,
       "same_day_n": 23,
-      "same_day_pct": 2.96,
+      "same_day_pct": 2.93,
       "pairs": {
         "Monday": {
           "Monday": {
@@ -5504,77 +5503,77 @@ const USTECH_DATA = {
           },
           "Tuesday": {
             "n": 16,
-            "pct": 2.06
+            "pct": 2.04
           },
           "Wednesday": {
-            "n": 31,
-            "pct": 3.99
+            "n": 32,
+            "pct": 4.07
           },
           "Thursday": {
             "n": 67,
-            "pct": 8.62
+            "pct": 8.52
           },
           "Friday": {
-            "n": 152,
-            "pct": 19.56
+            "n": 153,
+            "pct": 19.47
           }
         },
         "Tuesday": {
           "Monday": {
             "n": 22,
-            "pct": 2.83
+            "pct": 2.8
           },
           "Tuesday": {
             "n": 6,
-            "pct": 0.77
+            "pct": 0.76
           },
           "Wednesday": {
             "n": 7,
-            "pct": 0.9
+            "pct": 0.89
           },
           "Thursday": {
             "n": 31,
-            "pct": 3.99
+            "pct": 3.94
           },
           "Friday": {
             "n": 60,
-            "pct": 7.72
+            "pct": 7.63
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 21,
-            "pct": 2.7
+            "pct": 2.67
           },
           "Tuesday": {
             "n": 15,
-            "pct": 1.93
+            "pct": 1.91
           },
           "Wednesday": {
             "n": 2,
-            "pct": 0.26
+            "pct": 0.25
           },
           "Thursday": {
-            "n": 9,
-            "pct": 1.16
+            "n": 8,
+            "pct": 1.02
           },
           "Friday": {
-            "n": 48,
-            "pct": 6.18
+            "n": 50,
+            "pct": 6.36
           }
         },
         "Thursday": {
           "Monday": {
             "n": 38,
-            "pct": 4.89
+            "pct": 4.83
           },
           "Tuesday": {
-            "n": 28,
-            "pct": 3.6
+            "n": 29,
+            "pct": 3.69
           },
           "Wednesday": {
-            "n": 16,
-            "pct": 2.06
+            "n": 17,
+            "pct": 2.16
           },
           "Thursday": {
             "n": 4,
@@ -5582,29 +5581,29 @@ const USTECH_DATA = {
           },
           "Friday": {
             "n": 25,
-            "pct": 3.22
+            "pct": 3.18
           }
         },
         "Friday": {
           "Monday": {
-            "n": 57,
-            "pct": 7.34
+            "n": 58,
+            "pct": 7.38
           },
           "Tuesday": {
-            "n": 51,
-            "pct": 6.56
+            "n": 52,
+            "pct": 6.62
           },
           "Wednesday": {
-            "n": 41,
-            "pct": 5.28
+            "n": 43,
+            "pct": 5.47
           },
           "Thursday": {
             "n": 19,
-            "pct": 2.45
+            "pct": 2.42
           },
           "Friday": {
             "n": 7,
-            "pct": 0.9
+            "pct": 0.89
           }
         }
       }
@@ -5614,43 +5613,43 @@ const USTECH_DATA = {
     "asset": "USTECH"
   },
   "monthly": {
-    "n_labeled_months": 172,
+    "n_labeled_months": 174,
     "n_short_months": 2,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 102,
-        "pct": 59.3
+        "n": 103,
+        "pct": 59.2
       },
       "Volatile Month": {
         "n": 23,
-        "pct": 13.37
+        "pct": 13.22
       },
       "Volatile Reversal Month": {
         "n": 17,
-        "pct": 9.88
+        "pct": 9.77
       },
       "Compression Month": {
         "n": 13,
-        "pct": 7.56
+        "pct": 7.47
       },
       "Trend Month (Up)": {
         "n": 13,
-        "pct": 7.56
+        "pct": 7.47
       },
       "Quiet Drift Month (Up)": {
         "n": 3,
-        "pct": 1.74
+        "pct": 1.72
       },
       "Trend Month (Down)": {
-        "n": 1,
-        "pct": 0.58
+        "n": 2,
+        "pct": 1.15
       }
     },
     "extreme_timing_by_profile": {
       "Normal Month": {
         "Late_Push": 63,
-        "Late_Resolution": 18,
+        "Late_Resolution": 19,
         "Fade_Risk": 11,
         "Early_Resolution": 10
       },
@@ -5679,13 +5678,13 @@ const USTECH_DATA = {
         "Early_Resolution": 1
       },
       "Trend Month (Down)": {
-        "Late_Push": 1
+        "Late_Push": 2
       }
     },
     "extreme_spread_by_profile": {
       "Normal Month": {
         "Spread": 80,
-        "Adjacent": 17,
+        "Adjacent": 18,
         "Same_Week": 5
       },
       "Volatile Month": {
@@ -5711,7 +5710,7 @@ const USTECH_DATA = {
         "Same_Week": 1
       },
       "Trend Month (Down)": {
-        "Spread": 1
+        "Spread": 2
       }
     },
     "avg_range_pips_by_profile": {
@@ -5720,16 +5719,16 @@ const USTECH_DATA = {
         "median": 1411.0
       },
       "Normal Month": {
-        "mean": 7872.6,
-        "median": 6666.5
+        "mean": 7995.3,
+        "median": 6765.0
       },
       "Quiet Drift Month (Up)": {
         "mean": 2665.7,
         "median": 1379.0
       },
       "Trend Month (Down)": {
-        "mean": 23882.0,
-        "median": 23882.0
+        "mean": 28326.0,
+        "median": 28326.0
       },
       "Trend Month (Up)": {
         "mean": 13623.5,
@@ -5745,36 +5744,36 @@ const USTECH_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 181,
+      "n_months": 183,
       "same_week_n": 8,
-      "same_week_pct": 4.42,
+      "same_week_pct": 4.37,
       "pairs": {
         "1": {
           "1": {
             "n": 5,
-            "pct": 2.76
+            "pct": 2.73
           },
           "2": {
             "n": 6,
-            "pct": 3.31
+            "pct": 3.28
           },
           "3": {
             "n": 13,
-            "pct": 7.18
+            "pct": 7.1
           },
           "4": {
             "n": 28,
-            "pct": 15.47
+            "pct": 15.3
           },
           "5": {
             "n": 28,
-            "pct": 15.47
+            "pct": 15.3
           }
         },
         "2": {
           "1": {
             "n": 5,
-            "pct": 2.76
+            "pct": 2.73
           },
           "2": {
             "n": 0,
@@ -5782,51 +5781,51 @@ const USTECH_DATA = {
           },
           "3": {
             "n": 2,
-            "pct": 1.1
+            "pct": 1.09
           },
           "4": {
             "n": 11,
-            "pct": 6.08
+            "pct": 6.01
           },
           "5": {
             "n": 9,
-            "pct": 4.97
+            "pct": 4.92
           }
         },
         "3": {
           "1": {
             "n": 13,
-            "pct": 7.18
+            "pct": 7.1
           },
           "2": {
             "n": 2,
-            "pct": 1.1
+            "pct": 1.09
           },
           "3": {
             "n": 2,
-            "pct": 1.1
+            "pct": 1.09
           },
           "4": {
-            "n": 6,
-            "pct": 3.31
+            "n": 7,
+            "pct": 3.83
           },
           "5": {
             "n": 7,
-            "pct": 3.87
+            "pct": 3.83
           }
         },
         "4": {
           "1": {
             "n": 15,
-            "pct": 8.29
+            "pct": 8.2
           },
           "2": {
             "n": 5,
-            "pct": 2.76
+            "pct": 2.73
           },
           "3": {
             "n": 6,
-            "pct": 3.31
+            "pct": 3.28
           },
           "4": {
             "n": 1,
@@ -5839,20 +5838,20 @@ const USTECH_DATA = {
         },
         "5": {
           "1": {
-            "n": 6,
-            "pct": 3.31
+            "n": 7,
+            "pct": 3.83
           },
           "2": {
             "n": 4,
-            "pct": 2.21
+            "pct": 2.19
           },
           "3": {
             "n": 4,
-            "pct": 2.21
+            "pct": 2.19
           },
           "4": {
             "n": 2,
-            "pct": 1.1
+            "pct": 1.09
           },
           "5": {
             "n": 0,
@@ -5866,21 +5865,25 @@ const USTECH_DATA = {
     "asset": "USTECH"
   },
   "yearly": {
-    "n_labeled_years": 7,
-    "n_short_years": 2,
+    "n_labeled_years": 8,
+    "n_short_years": 1,
     "n_insufficient_history_years": 7,
     "profile_distribution": {
       "Trend Year (Up)": {
         "n": 3,
-        "pct": 42.86
+        "pct": 37.5
       },
       "Volatile Year": {
         "n": 3,
-        "pct": 42.86
+        "pct": 37.5
       },
       "Normal Year": {
         "n": 1,
-        "pct": 14.29
+        "pct": 12.5
+      },
+      "Volatile Reversal Year": {
+        "n": 1,
+        "pct": 12.5
       }
     },
     "extreme_timing_by_profile": {
@@ -5892,6 +5895,9 @@ const USTECH_DATA = {
       },
       "Normal Year": {
         "Late_Push": 1
+      },
+      "Volatile Reversal Year": {
+        "Fade_Risk": 1
       }
     },
     "extreme_spread_by_profile": {
@@ -5902,6 +5908,9 @@ const USTECH_DATA = {
         "Spread": 3
       },
       "Normal Year": {
+        "Spread": 1
+      },
+      "Volatile Reversal Year": {
         "Spread": 1
       }
     },
@@ -5914,13 +5923,17 @@ const USTECH_DATA = {
         "mean": 51032.7,
         "median": 63003.0
       },
+      "Volatile Reversal Year": {
+        "mean": 85825.0,
+        "median": 85825.0
+      },
       "Volatile Year": {
         "mean": 68765.0,
         "median": 61379.0
       }
     },
     "month_pair_distribution": {
-      "n_years": 14,
+      "n_years": 15,
       "same_month_n": 0,
       "same_month_pct": 0.0,
       "pairs": {
@@ -5959,7 +5972,7 @@ const USTECH_DATA = {
           },
           "9": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "10": {
             "n": 0,
@@ -5971,7 +5984,7 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 4,
-            "pct": 28.57
+            "pct": 26.67
           }
         },
         "2": {
@@ -6021,7 +6034,7 @@ const USTECH_DATA = {
           },
           "12": {
             "n": 2,
-            "pct": 14.29
+            "pct": 13.33
           }
         },
         "3": {
@@ -6062,16 +6075,16 @@ const USTECH_DATA = {
             "pct": 0.0
           },
           "10": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 6.67
           },
           "11": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "12": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           }
         },
         "4": {
@@ -6113,11 +6126,11 @@ const USTECH_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "11": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "12": {
             "n": 0,
@@ -6317,7 +6330,7 @@ const USTECH_DATA = {
           },
           "11": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "12": {
             "n": 0,
@@ -6377,7 +6390,7 @@ const USTECH_DATA = {
         "10": {
           "1": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "2": {
             "n": 0,
@@ -6513,7 +6526,7 @@ const USTECH_DATA = {
           },
           "10": {
             "n": 1,
-            "pct": 7.14
+            "pct": 6.67
           },
           "11": {
             "n": 0,
@@ -6533,124 +6546,124 @@ const USTECH_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 484.96,
-        "mean_activity_pips": 1739.04,
-        "n_days": 1064
+        "mean_range_pips": 502.91,
+        "mean_activity_pips": 1811.72,
+        "n_days": 1109
       },
       "1": {
-        "mean_range_pips": 438.37,
-        "mean_activity_pips": 1618.1,
-        "n_days": 1065
+        "mean_range_pips": 459.47,
+        "mean_activity_pips": 1697.42,
+        "n_days": 1110
       },
       "2": {
-        "mean_range_pips": 348.42,
-        "mean_activity_pips": 1309.11,
-        "n_days": 1064
+        "mean_range_pips": 362.1,
+        "mean_activity_pips": 1362.62,
+        "n_days": 1109
       },
       "3": {
-        "mean_range_pips": 310.61,
-        "mean_activity_pips": 1154.43,
-        "n_days": 1064
+        "mean_range_pips": 323.58,
+        "mean_activity_pips": 1205.86,
+        "n_days": 1109
       },
       "4": {
-        "mean_range_pips": 285.2,
-        "mean_activity_pips": 1048.08,
-        "n_days": 1063
+        "mean_range_pips": 298.95,
+        "mean_activity_pips": 1100.61,
+        "n_days": 1108
       },
       "5": {
-        "mean_range_pips": 362.66,
-        "mean_activity_pips": 1295.26,
-        "n_days": 1063
+        "mean_range_pips": 380.98,
+        "mean_activity_pips": 1360.84,
+        "n_days": 1108
       },
       "6": {
-        "mean_range_pips": 401.88,
-        "mean_activity_pips": 1492.83,
-        "n_days": 1064
+        "mean_range_pips": 418.35,
+        "mean_activity_pips": 1551.34,
+        "n_days": 1109
       },
       "7": {
-        "mean_range_pips": 512.61,
-        "mean_activity_pips": 1926.01,
-        "n_days": 1064
+        "mean_range_pips": 524.91,
+        "mean_activity_pips": 1979.23,
+        "n_days": 1109
       },
       "8": {
-        "mean_range_pips": 557.11,
-        "mean_activity_pips": 2095.39,
-        "n_days": 1063
+        "mean_range_pips": 571.35,
+        "mean_activity_pips": 2149.44,
+        "n_days": 1108
       },
       "9": {
-        "mean_range_pips": 470.66,
-        "mean_activity_pips": 1774.76,
-        "n_days": 1064
+        "mean_range_pips": 483.21,
+        "mean_activity_pips": 1815.79,
+        "n_days": 1109
       },
       "10": {
-        "mean_range_pips": 441.6,
-        "mean_activity_pips": 1695.48,
-        "n_days": 1065
+        "mean_range_pips": 454.79,
+        "mean_activity_pips": 1736.45,
+        "n_days": 1110
       },
       "11": {
-        "mean_range_pips": 498.18,
-        "mean_activity_pips": 1864.54,
-        "n_days": 1065
+        "mean_range_pips": 509.52,
+        "mean_activity_pips": 1914.12,
+        "n_days": 1110
       },
       "12": {
-        "mean_range_pips": 687.89,
-        "mean_activity_pips": 2354.48,
-        "n_days": 1065
+        "mean_range_pips": 706.44,
+        "mean_activity_pips": 2419.34,
+        "n_days": 1110
       },
       "13": {
-        "mean_range_pips": 1126.24,
-        "mean_activity_pips": 3866.46,
-        "n_days": 1063
+        "mean_range_pips": 1150.06,
+        "mean_activity_pips": 3960.08,
+        "n_days": 1108
       },
       "14": {
-        "mean_range_pips": 1328.3,
-        "mean_activity_pips": 4852.69,
-        "n_days": 1064
+        "mean_range_pips": 1351.24,
+        "mean_activity_pips": 4922.92,
+        "n_days": 1109
       },
       "15": {
-        "mean_range_pips": 1099.07,
-        "mean_activity_pips": 4208.04,
-        "n_days": 1064
+        "mean_range_pips": 1112.57,
+        "mean_activity_pips": 4252.67,
+        "n_days": 1109
       },
       "16": {
-        "mean_range_pips": 888.91,
-        "mean_activity_pips": 3417.5,
-        "n_days": 1063
+        "mean_range_pips": 904.64,
+        "mean_activity_pips": 3459.95,
+        "n_days": 1108
       },
       "17": {
-        "mean_range_pips": 839.0,
-        "mean_activity_pips": 3175.11,
-        "n_days": 1044
+        "mean_range_pips": 846.38,
+        "mean_activity_pips": 3202.17,
+        "n_days": 1088
       },
       "18": {
-        "mean_range_pips": 823.79,
-        "mean_activity_pips": 3156.65,
-        "n_days": 1026
+        "mean_range_pips": 830.12,
+        "mean_activity_pips": 3182.38,
+        "n_days": 1070
       },
       "19": {
-        "mean_range_pips": 884.63,
-        "mean_activity_pips": 3350.26,
-        "n_days": 1027
+        "mean_range_pips": 895.25,
+        "mean_activity_pips": 3383.12,
+        "n_days": 1071
       },
       "20": {
-        "mean_range_pips": 677.54,
-        "mean_activity_pips": 2335.35,
-        "n_days": 953
+        "mean_range_pips": 688.91,
+        "mean_activity_pips": 2358.97,
+        "n_days": 997
       },
       "21": {
-        "mean_range_pips": 487.6,
-        "mean_activity_pips": 1592.47,
-        "n_days": 316
+        "mean_range_pips": 498.42,
+        "mean_activity_pips": 1646.22,
+        "n_days": 320
       },
       "22": {
-        "mean_range_pips": 510.03,
-        "mean_activity_pips": 1723.6,
-        "n_days": 702
+        "mean_range_pips": 522.98,
+        "mean_activity_pips": 1748.09,
+        "n_days": 738
       },
       "23": {
-        "mean_range_pips": 411.37,
-        "mean_activity_pips": 1460.47,
-        "n_days": 1064
+        "mean_range_pips": 424.9,
+        "mean_activity_pips": 1501.11,
+        "n_days": 1109
       }
     },
     "session_windows": {
@@ -6665,15 +6678,15 @@ const USTECH_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 380.43,
-        "mean_activity_pips": 1389.66
+        "mean_range_pips": 396.41,
+        "mean_activity_pips": 1448.94
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 512.61,
-        "mean_activity_pips": 1926.01
+        "mean_range_pips": 524.91,
+        "mean_activity_pips": 1979.23
       },
       "london_only": {
         "hours": [
@@ -6682,8 +6695,8 @@ const USTECH_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 491.89,
-        "mean_activity_pips": 1857.54
+        "mean_range_pips": 504.72,
+        "mean_activity_pips": 1903.95
       },
       "london_ny_overlap": {
         "hours": [
@@ -6692,8 +6705,8 @@ const USTECH_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 1060.38,
-        "mean_activity_pips": 3820.42
+        "mean_range_pips": 1080.08,
+        "mean_activity_pips": 3888.75
       },
       "ny_only": {
         "hours": [
@@ -6703,54 +6716,54 @@ const USTECH_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 822.77,
-        "mean_activity_pips": 3086.97
+        "mean_range_pips": 833.06,
+        "mean_activity_pips": 3117.32
       }
     },
     "asset": "USTECH"
   },
   "range_forecast": {
     "asset": "USTECH",
-    "as_of": "2026-09-03",
+    "as_of": "2026-11-05",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 3889.5,
+    "adr20": 7041.4,
     "forecast": {
       "h1": {
-        "target_date": "2026-09-04",
-        "mean": 4144.1,
-        "q10": 2415.8,
-        "q90": 6699.1,
-        "q10_raw": 2314.0,
-        "q90_raw": 6255.4
+        "target_date": "2026-11-06",
+        "mean": 13547.4,
+        "q10": 8550.2,
+        "q90": 20885.3,
+        "q10_raw": 8252.6,
+        "q90_raw": 19116.7
       },
       "h5": {
-        "mean": 4226.5
+        "mean": 10394.6
       },
       "h20": {
-        "mean": 4223.3
+        "mean": 7569.0
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.895,
-        "h5": 0.853,
-        "h20": 0.879
+        "h1": 0.903,
+        "h5": 0.864,
+        "h20": 0.868
       },
       "mae": {
         "h1": {
-          "timesfm": 1389.9,
-          "adr20": 1552.1
+          "timesfm": 1479.7,
+          "adr20": 1638.9
         },
         "h5": {
-          "timesfm": 1012.3,
-          "adr20": 1186.1
+          "timesfm": 1068.0,
+          "adr20": 1236.4
         },
         "h20": {
-          "timesfm": 929.7,
-          "adr20": 1057.3
+          "timesfm": 985.6,
+          "adr20": 1134.9
         }
       },
       "n": {
@@ -6758,329 +6771,14 @@ const USTECH_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-09-26",
-      "to": "2026-09-02",
+      "from": "2024-11-28",
+      "to": "2026-11-04",
       "band_n": 500,
-      "band_coverage": 0.812,
-      "above_q90": 0.094,
-      "below_q10": 0.094
+      "band_coverage": 0.804,
+      "above_q90": 0.1,
+      "below_q10": 0.096
     },
     "recent": [
-      {
-        "date": "2026-06-12",
-        "actual": 5302.0,
-        "mean": 10019.5,
-        "q10": 6489.7,
-        "q90": 16377.0
-      },
-      {
-        "date": "2026-06-15",
-        "actual": 6448.0,
-        "mean": 7081.5,
-        "q10": 4218.7,
-        "q90": 11929.2
-      },
-      {
-        "date": "2026-06-16",
-        "actual": 7072.0,
-        "mean": 6492.2,
-        "q10": 4114.5,
-        "q90": 10795.8
-      },
-      {
-        "date": "2026-06-17",
-        "actual": 6609.0,
-        "mean": 6470.3,
-        "q10": 4076.9,
-        "q90": 10804.9
-      },
-      {
-        "date": "2026-06-18",
-        "actual": 6986.0,
-        "mean": 6295.0,
-        "q10": 4134.1,
-        "q90": 10345.6
-      },
-      {
-        "date": "2026-06-19",
-        "actual": 3849.0,
-        "mean": 6457.9,
-        "q10": 4253.9,
-        "q90": 10523.6
-      },
-      {
-        "date": "2026-06-22",
-        "actual": 6284.0,
-        "mean": 5209.5,
-        "q10": 3133.4,
-        "q90": 8852.4
-      },
-      {
-        "date": "2026-06-23",
-        "actual": 11214.0,
-        "mean": 5790.3,
-        "q10": 3583.2,
-        "q90": 9654.6
-      },
-      {
-        "date": "2026-06-24",
-        "actual": 8906.0,
-        "mean": 7490.7,
-        "q10": 4713.3,
-        "q90": 12220.2
-      },
-      {
-        "date": "2026-06-25",
-        "actual": 9638.0,
-        "mean": 7021.9,
-        "q10": 4373.3,
-        "q90": 11582.1
-      },
-      {
-        "date": "2026-06-26",
-        "actual": 7292.0,
-        "mean": 7812.1,
-        "q10": 4936.6,
-        "q90": 12848.4
-      },
-      {
-        "date": "2026-06-29",
-        "actual": 7986.0,
-        "mean": 7349.4,
-        "q10": 4792.4,
-        "q90": 11988.5
-      },
-      {
-        "date": "2026-06-30",
-        "actual": 6638.0,
-        "mean": 7465.2,
-        "q10": 4886.7,
-        "q90": 12198.4
-      },
-      {
-        "date": "2026-07-01",
-        "actual": 5352.0,
-        "mean": 6832.5,
-        "q10": 4442.8,
-        "q90": 11275.1
-      },
-      {
-        "date": "2026-07-02",
-        "actual": 9900.0,
-        "mean": 6456.2,
-        "q10": 4156.1,
-        "q90": 10561.7
-      },
-      {
-        "date": "2026-07-03",
-        "actual": 4323.0,
-        "mean": 7721.0,
-        "q10": 5048.2,
-        "q90": 12448.8
-      },
-      {
-        "date": "2026-07-06",
-        "actual": 4103.0,
-        "mean": 5989.6,
-        "q10": 3688.4,
-        "q90": 10015.9
-      },
-      {
-        "date": "2026-07-07",
-        "actual": 7628.0,
-        "mean": 5375.2,
-        "q10": 3157.7,
-        "q90": 9197.8
-      },
-      {
-        "date": "2026-07-08",
-        "actual": 6471.0,
-        "mean": 6262.1,
-        "q10": 3893.1,
-        "q90": 10246.5
-      },
-      {
-        "date": "2026-07-09",
-        "actual": 5973.0,
-        "mean": 6107.1,
-        "q10": 3800.1,
-        "q90": 10027.6
-      },
-      {
-        "date": "2026-07-10",
-        "actual": 3946.0,
-        "mean": 5955.7,
-        "q10": 3617.3,
-        "q90": 9844.3
-      },
-      {
-        "date": "2026-07-13",
-        "actual": 6536.0,
-        "mean": 5736.8,
-        "q10": 3485.6,
-        "q90": 9388.0
-      },
-      {
-        "date": "2026-07-14",
-        "actual": 6166.0,
-        "mean": 5897.1,
-        "q10": 3667.7,
-        "q90": 9488.7
-      },
-      {
-        "date": "2026-07-15",
-        "actual": 6648.0,
-        "mean": 5754.2,
-        "q10": 3432.7,
-        "q90": 9371.3
-      },
-      {
-        "date": "2026-07-16",
-        "actual": 7169.0,
-        "mean": 5960.6,
-        "q10": 3652.1,
-        "q90": 9661.3
-      },
-      {
-        "date": "2026-07-17",
-        "actual": 8098.0,
-        "mean": 6119.3,
-        "q10": 3786.2,
-        "q90": 9861.8
-      },
-      {
-        "date": "2026-07-20",
-        "actual": 4816.0,
-        "mean": 6639.2,
-        "q10": 4292.4,
-        "q90": 10522.5
-      },
-      {
-        "date": "2026-07-21",
-        "actual": 6620.0,
-        "mean": 6075.5,
-        "q10": 3821.8,
-        "q90": 9877.5
-      },
-      {
-        "date": "2026-07-22",
-        "actual": 3775.0,
-        "mean": 6148.8,
-        "q10": 4010.6,
-        "q90": 9768.6
-      },
-      {
-        "date": "2026-07-23",
-        "actual": 8475.0,
-        "mean": 5718.2,
-        "q10": 3478.1,
-        "q90": 9270.8
-      },
-      {
-        "date": "2026-07-24",
-        "actual": 5180.0,
-        "mean": 6270.6,
-        "q10": 4009.9,
-        "q90": 9905.2
-      },
-      {
-        "date": "2026-07-27",
-        "actual": 8226.0,
-        "mean": 5932.6,
-        "q10": 3738.0,
-        "q90": 9471.0
-      },
-      {
-        "date": "2026-07-28",
-        "actual": 6148.0,
-        "mean": 6473.0,
-        "q10": 4270.3,
-        "q90": 10117.0
-      },
-      {
-        "date": "2026-07-29",
-        "actual": 9644.0,
-        "mean": 6240.6,
-        "q10": 4126.8,
-        "q90": 9809.1
-      },
-      {
-        "date": "2026-07-30",
-        "actual": 11578.0,
-        "mean": 7000.2,
-        "q10": 4587.6,
-        "q90": 11009.3
-      },
-      {
-        "date": "2026-07-31",
-        "actual": 6445.0,
-        "mean": 8473.2,
-        "q10": 5472.7,
-        "q90": 13335.6
-      },
-      {
-        "date": "2026-08-03",
-        "actual": 6465.0,
-        "mean": 7249.1,
-        "q10": 4724.8,
-        "q90": 11373.5
-      },
-      {
-        "date": "2026-08-04",
-        "actual": 11235.0,
-        "mean": 6828.0,
-        "q10": 4461.3,
-        "q90": 10766.6
-      },
-      {
-        "date": "2026-08-05",
-        "actual": 5438.0,
-        "mean": 7957.9,
-        "q10": 5163.4,
-        "q90": 12707.9
-      },
-      {
-        "date": "2026-08-06",
-        "actual": 4479.0,
-        "mean": 6731.1,
-        "q10": 4265.9,
-        "q90": 10912.1
-      },
-      {
-        "date": "2026-08-07",
-        "actual": 4082.0,
-        "mean": 6208.4,
-        "q10": 3891.5,
-        "q90": 10053.9
-      },
-      {
-        "date": "2026-08-10",
-        "actual": 2636.0,
-        "mean": 5672.3,
-        "q10": 3454.9,
-        "q90": 9340.5
-      },
-      {
-        "date": "2026-08-11",
-        "actual": 3532.0,
-        "mean": 4920.5,
-        "q10": 2702.2,
-        "q90": 8439.9
-      },
-      {
-        "date": "2026-08-12",
-        "actual": 3730.0,
-        "mean": 4663.4,
-        "q10": 2634.9,
-        "q90": 7891.0
-      },
-      {
-        "date": "2026-08-13",
-        "actual": 4914.0,
-        "mean": 4478.6,
-        "q10": 2579.4,
-        "q90": 7532.7
-      },
       {
         "date": "2026-08-14",
         "actual": 2499.0,
@@ -7188,10 +6886,325 @@ const USTECH_DATA = {
       },
       {
         "date": "2026-09-04",
-        "actual": null,
+        "actual": 2160.0,
         "mean": 4144.1,
         "q10": 2415.8,
         "q90": 6699.1
+      },
+      {
+        "date": "2026-09-07",
+        "actual": 1498.0,
+        "mean": 3779.6,
+        "q10": 2110.3,
+        "q90": 6179.8
+      },
+      {
+        "date": "2026-09-08",
+        "actual": 3393.0,
+        "mean": 3223.7,
+        "q10": 1616.3,
+        "q90": 5489.3
+      },
+      {
+        "date": "2026-09-09",
+        "actual": 3004.0,
+        "mean": 3455.3,
+        "q10": 1801.3,
+        "q90": 5793.9
+      },
+      {
+        "date": "2026-09-10",
+        "actual": 4640.0,
+        "mean": 3451.8,
+        "q10": 1832.5,
+        "q90": 5684.2
+      },
+      {
+        "date": "2026-09-11",
+        "actual": 4581.0,
+        "mean": 3747.8,
+        "q10": 2092.6,
+        "q90": 6108.6
+      },
+      {
+        "date": "2026-09-14",
+        "actual": 4865.0,
+        "mean": 3738.0,
+        "q10": 2093.1,
+        "q90": 6108.7
+      },
+      {
+        "date": "2026-09-15",
+        "actual": 2792.0,
+        "mean": 3914.7,
+        "q10": 2230.4,
+        "q90": 6306.0
+      },
+      {
+        "date": "2026-09-16",
+        "actual": 4979.0,
+        "mean": 3689.1,
+        "q10": 2090.2,
+        "q90": 5977.6
+      },
+      {
+        "date": "2026-09-17",
+        "actual": 5457.0,
+        "mean": 3851.7,
+        "q10": 2193.4,
+        "q90": 6270.1
+      },
+      {
+        "date": "2026-09-18",
+        "actual": 3446.0,
+        "mean": 4272.9,
+        "q10": 2489.2,
+        "q90": 6822.2
+      },
+      {
+        "date": "2026-09-21",
+        "actual": 9498.0,
+        "mean": 4163.5,
+        "q10": 2475.5,
+        "q90": 6583.2
+      },
+      {
+        "date": "2026-09-22",
+        "actual": 3946.0,
+        "mean": 5041.8,
+        "q10": 2838.6,
+        "q90": 8053.8
+      },
+      {
+        "date": "2026-09-23",
+        "actual": 4503.0,
+        "mean": 4339.9,
+        "q10": 2428.7,
+        "q90": 7101.5
+      },
+      {
+        "date": "2026-09-24",
+        "actual": 4607.0,
+        "mean": 4363.3,
+        "q10": 2479.7,
+        "q90": 7055.0
+      },
+      {
+        "date": "2026-09-25",
+        "actual": 3148.0,
+        "mean": 4451.2,
+        "q10": 2650.9,
+        "q90": 7077.3
+      },
+      {
+        "date": "2026-09-28",
+        "actual": 5755.0,
+        "mean": 4073.3,
+        "q10": 2351.4,
+        "q90": 6622.7
+      },
+      {
+        "date": "2026-09-29",
+        "actual": 3513.0,
+        "mean": 4515.0,
+        "q10": 2658.6,
+        "q90": 7219.6
+      },
+      {
+        "date": "2026-09-30",
+        "actual": 3928.0,
+        "mean": 4329.4,
+        "q10": 2556.6,
+        "q90": 6878.6
+      },
+      {
+        "date": "2026-10-01",
+        "actual": 6180.0,
+        "mean": 4104.7,
+        "q10": 2406.6,
+        "q90": 6562.6
+      },
+      {
+        "date": "2026-10-02",
+        "actual": 5164.0,
+        "mean": 4436.5,
+        "q10": 2629.8,
+        "q90": 7072.6
+      },
+      {
+        "date": "2026-10-05",
+        "actual": 4108.0,
+        "mean": 4527.3,
+        "q10": 2691.4,
+        "q90": 7196.7
+      },
+      {
+        "date": "2026-10-06",
+        "actual": 3067.0,
+        "mean": 4430.2,
+        "q10": 2661.6,
+        "q90": 7008.3
+      },
+      {
+        "date": "2026-10-07",
+        "actual": 3746.0,
+        "mean": 4083.8,
+        "q10": 2401.3,
+        "q90": 6577.1
+      },
+      {
+        "date": "2026-10-08",
+        "actual": 6685.0,
+        "mean": 4131.2,
+        "q10": 2472.5,
+        "q90": 6602.3
+      },
+      {
+        "date": "2026-10-09",
+        "actual": 3132.0,
+        "mean": 4958.7,
+        "q10": 3081.2,
+        "q90": 7716.7
+      },
+      {
+        "date": "2026-10-12",
+        "actual": 4464.0,
+        "mean": 4267.0,
+        "q10": 2532.1,
+        "q90": 6819.1
+      },
+      {
+        "date": "2026-10-13",
+        "actual": 3130.0,
+        "mean": 4229.0,
+        "q10": 2530.6,
+        "q90": 6766.3
+      },
+      {
+        "date": "2026-10-14",
+        "actual": 8111.0,
+        "mean": 4028.2,
+        "q10": 2399.9,
+        "q90": 6483.4
+      },
+      {
+        "date": "2026-10-15",
+        "actual": 5766.0,
+        "mean": 4770.1,
+        "q10": 2874.6,
+        "q90": 7539.4
+      },
+      {
+        "date": "2026-10-16",
+        "actual": 9507.0,
+        "mean": 4798.1,
+        "q10": 2876.9,
+        "q90": 7636.0
+      },
+      {
+        "date": "2026-10-19",
+        "actual": 6689.0,
+        "mean": 6107.2,
+        "q10": 3636.3,
+        "q90": 9696.7
+      },
+      {
+        "date": "2026-10-20",
+        "actual": 5099.0,
+        "mean": 6127.1,
+        "q10": 3837.4,
+        "q90": 9576.6
+      },
+      {
+        "date": "2026-10-21",
+        "actual": 3858.0,
+        "mean": 5250.0,
+        "q10": 3208.7,
+        "q90": 8329.9
+      },
+      {
+        "date": "2026-10-22",
+        "actual": 9458.0,
+        "mean": 4666.0,
+        "q10": 2796.3,
+        "q90": 7547.2
+      },
+      {
+        "date": "2026-10-23",
+        "actual": 3360.0,
+        "mean": 5718.8,
+        "q10": 3462.3,
+        "q90": 9182.7
+      },
+      {
+        "date": "2026-10-26",
+        "actual": 5477.0,
+        "mean": 4916.7,
+        "q10": 2886.4,
+        "q90": 7933.9
+      },
+      {
+        "date": "2026-10-27",
+        "actual": 5921.0,
+        "mean": 5097.7,
+        "q10": 3054.0,
+        "q90": 8167.4
+      },
+      {
+        "date": "2026-10-28",
+        "actual": 5025.0,
+        "mean": 5214.2,
+        "q10": 3165.5,
+        "q90": 8322.4
+      },
+      {
+        "date": "2026-10-29",
+        "actual": 6559.0,
+        "mean": 5126.1,
+        "q10": 3136.4,
+        "q90": 8136.1
+      },
+      {
+        "date": "2026-10-30",
+        "actual": 8917.0,
+        "mean": 5366.0,
+        "q10": 3257.4,
+        "q90": 8541.8
+      },
+      {
+        "date": "2026-11-02",
+        "actual": 7920.0,
+        "mean": 6074.6,
+        "q10": 3716.2,
+        "q90": 9646.1
+      },
+      {
+        "date": "2026-11-03",
+        "actual": 4104.0,
+        "mean": 6438.6,
+        "q10": 4108.5,
+        "q90": 10047.6
+      },
+      {
+        "date": "2026-11-04",
+        "actual": 13470.0,
+        "mean": 5452.4,
+        "q10": 3401.2,
+        "q90": 8602.0
+      },
+      {
+        "date": "2026-11-05",
+        "actual": 20862.0,
+        "mean": 7992.7,
+        "q10": 4715.1,
+        "q90": 12753.2
+      },
+      {
+        "date": "2026-11-06",
+        "actual": null,
+        "mean": 13547.4,
+        "q10": 8550.2,
+        "q90": 20885.3
       }
     ]
   }

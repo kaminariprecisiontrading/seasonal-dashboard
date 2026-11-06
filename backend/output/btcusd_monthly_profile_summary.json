@@ -1,46 +1,46 @@
 {
-  "n_labeled_months": 97,
+  "n_labeled_months": 99,
   "n_short_months": 2,
   "n_insufficient_history_months": 9,
   "profile_distribution": {
     "Normal Month": {
-      "n": 46,
-      "pct": 47.42
+      "n": 48,
+      "pct": 48.48
     },
     "Compression Month": {
       "n": 14,
-      "pct": 14.43
+      "pct": 14.14
     },
     "Volatile Month": {
       "n": 14,
-      "pct": 14.43
+      "pct": 14.14
     },
     "Volatile Reversal Month": {
       "n": 9,
-      "pct": 9.28
+      "pct": 9.09
     },
     "Trend Month (Up)": {
       "n": 6,
-      "pct": 6.19
+      "pct": 6.06
     },
     "Quiet Drift Month (Down)": {
       "n": 5,
-      "pct": 5.15
+      "pct": 5.05
     },
     "Quiet Drift Month (Up)": {
       "n": 2,
-      "pct": 2.06
+      "pct": 2.02
     },
     "Trend Month (Down)": {
       "n": 1,
-      "pct": 1.03
+      "pct": 1.01
     }
   },
   "extreme_timing_by_profile": {
     "Normal Month": {
-      "Late_Push": 32,
+      "Late_Push": 33,
       "Early_Resolution": 6,
-      "Late_Resolution": 4,
+      "Late_Resolution": 5,
       "Fade_Risk": 4
     },
     "Compression Month": {
@@ -75,9 +75,9 @@
   },
   "extreme_spread_by_profile": {
     "Normal Month": {
-      "Spread": 35,
+      "Spread": 36,
       "Adjacent": 8,
-      "Same_Week": 3
+      "Same_Week": 4
     },
     "Compression Month": {
       "Spread": 8,
@@ -113,8 +113,8 @@
       "median": 357555.0
     },
     "Normal Month": {
-      "mean": 915657.7,
-      "median": 936408.0
+      "mean": 926325.6,
+      "median": 971645.0
     },
     "Quiet Drift Month (Down)": {
       "mean": 439461.6,
@@ -142,92 +142,92 @@
     }
   },
   "week_of_month_pair_distribution": {
-    "n_months": 106,
-    "same_week_n": 5,
-    "same_week_pct": 4.72,
+    "n_months": 108,
+    "same_week_n": 6,
+    "same_week_pct": 5.56,
     "pairs": {
       "1": {
         "1": {
           "n": 3,
-          "pct": 2.83
+          "pct": 2.78
         },
         "2": {
           "n": 6,
-          "pct": 5.66
+          "pct": 5.56
         },
         "3": {
           "n": 10,
-          "pct": 9.43
+          "pct": 9.26
         },
         "4": {
           "n": 13,
-          "pct": 12.26
+          "pct": 12.04
         },
         "5": {
           "n": 10,
-          "pct": 9.43
+          "pct": 9.26
         }
       },
       "2": {
         "1": {
           "n": 7,
-          "pct": 6.6
+          "pct": 6.48
         },
         "2": {
           "n": 1,
-          "pct": 0.94
+          "pct": 0.93
         },
         "3": {
           "n": 4,
-          "pct": 3.77
+          "pct": 3.7
         },
         "4": {
           "n": 3,
-          "pct": 2.83
+          "pct": 2.78
         },
         "5": {
           "n": 5,
-          "pct": 4.72
+          "pct": 4.63
         }
       },
       "3": {
         "1": {
           "n": 6,
-          "pct": 5.66
+          "pct": 5.56
         },
         "2": {
           "n": 4,
-          "pct": 3.77
+          "pct": 3.7
         },
         "3": {
-          "n": 0,
-          "pct": 0.0
+          "n": 1,
+          "pct": 0.93
         },
         "4": {
           "n": 1,
-          "pct": 0.94
+          "pct": 0.93
         },
         "5": {
           "n": 2,
-          "pct": 1.89
+          "pct": 1.85
         }
       },
       "4": {
         "1": {
           "n": 8,
-          "pct": 7.55
+          "pct": 7.41
         },
         "2": {
           "n": 9,
-          "pct": 8.49
+          "pct": 8.33
         },
         "3": {
           "n": 1,
-          "pct": 0.94
+          "pct": 0.93
         },
         "4": {
           "n": 1,
-          "pct": 0.94
+          "pct": 0.93
         },
         "5": {
           "n": 0,
@@ -236,16 +236,16 @@
       },
       "5": {
         "1": {
-          "n": 7,
-          "pct": 6.6
+          "n": 8,
+          "pct": 7.41
         },
         "2": {
           "n": 3,
-          "pct": 2.83
+          "pct": 2.78
         },
         "3": {
           "n": 2,
-          "pct": 1.89
+          "pct": 1.85
         },
         "4": {
           "n": 0,
