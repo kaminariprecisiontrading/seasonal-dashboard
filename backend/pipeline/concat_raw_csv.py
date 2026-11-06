@@ -37,6 +37,8 @@ Usage:
                      that are already trimmed to complete days — backend/automation/
                      mt5_download.py does this (v1.29), so the weekly run passes it.
 
+The old file's line ending (CRLF or LF) is kept: its rows are copied byte for byte and new rows take its ending.
+
 Does not modify or delete either input file.
 """
 import sys
