@@ -110,12 +110,17 @@ function groupLines(items, flaggedAs) {
 /* ── Sections ─────────────────────────────────────────────────────────────────────────── */
 const out = [];
 out.push(bold('KPT Seasonals · ' + esc(S.weekLabel(week))) + ' ' + ital('(' + weekRange(week) + ')'));
+out.push(esc(SITE_URL + '/this-week'));
 if (!snap) out.push(ital('No snapshot for this week yet: signals from the current data.'));
 
-// Heading, then Forex / Futures / Crypto each on their own, with a blank line between groups.
+// "—— TITLE note ——": the title in bold capitals, the plain-English note in italics.
+const head = (title, note, sep) => '—— ' + bold(title) + (note ? (sep || ' ') + ital(note) : '') + ' ——';
+
+// Heading, a blank line, then Forex / Futures / Crypto each on their own, with a blank line between groups.
 function catSection(heading, bodyFor, emptyText) {
   out.push('');
   out.push(heading);
+  out.push('');
   CATS.forEach(([block, title], i) => {
     if (i) out.push('');
     out.push(bold(title + ':'));
@@ -139,19 +144,19 @@ const flippedIds = new Set(shownFlips.map((r) => r.a.id));
 const maxNew = rows.filter((r) => r.now && r.now.conviction === 5 && r.before && r.before.conviction < 5);
 
 catSection(
-  bold('New 5-dot signals') + ' - ' + ital('Highest conviction (' + maxNew.length + ')'),
+  head('NEW 5-DOT SIGNALS', 'Highest conviction (' + maxNew.length + ')', ' - '),
   (block) => groupLines(maxNew.filter((r) => r.a.block === block).map((r) => ({ a: r.a, s: r.now })), (a) => flippedIds.has(a.id)),
   'None this week');
 
 catSection(
-  bold('Flipped') + (flips.length > TOP ? ' ' + ital('(top ' + TOP + ' of ' + flips.length + ')') : ''),
+  head('FLIPPED', flips.length > TOP ? '(top ' + TOP + ' of ' + flips.length + ')' : ''),
   (block) => shownFlips.filter((r) => r.a.block === block).map((r) => line(use(r.a), r.now, esc(r.before.signal) + ' → ')),
   // "None" must mean nothing flipped, not that the cap hid it
   (block) => { const hidden = flips.filter((r) => r.a.block === block).length; return hidden ? 'No top-' + TOP + ' flips (' + hidden + ' more flipped)' : 'None this week'; });
 
 const nextWeeks = [1, 2, 3, 4].map((n) => S.shiftWeek(week, n));
 catSection(
-  bold('Coming up') + ' ' + ital('(conviction = 4 dots or higher)'),
+  head('COMING UP', '(conviction = 4 dots or higher)'),
   (block) => nextWeeks.map((w) => {
     const top = live.filter((a) => a.block === block)
       .map((a) => ({ a, s: S.getSignal(a.id, w.month, w.week) }))
@@ -173,7 +178,8 @@ catSection(
 const standing = CATS.filter(([block]) => block === 'crypto' || block === 'synthetics');
 if (standing.length) {
   out.push('');
-  out.push(bold('All current signals'));
+  out.push(head('ALL CURRENT SIGNALS'));
+  out.push('');
   standing.forEach(([block, title], i) => {
     if (i) out.push('');
     out.push(bold(title + ':'));
@@ -184,16 +190,22 @@ if (standing.length) {
 }
 
 out.push('');
-out.push(bold('Sources'));
+out.push(head('SOURCES'));
 [...usedSources].sort().forEach((k) => { const s = sb.KPT_SOURCES[k]; out.push('<code>' + esc(s.short) + '</code> ' + esc(s.desc || s.label)); });
 out.push('');
 out.push(ital('Historical patterns only. Not financial advice.'));
-out.push('<a href="' + esc(SITE_URL + '/this-week') + '">This week</a>  ·  <a href="' + esc(SITE_URL + '/risk') + '">Risk disclosure</a>');
+out.push('');
+out.push('This week (' + esc(SITE_URL + '/this-week') + ')  ·  Risk disclosure (' + esc(SITE_URL + '/risk') + ')');
 
 /* ── Split under Telegram's 4096-char limit, on blank lines ───────────────────────────── */
 function chunks(lines, max) {
   const parts = []; let cur = '';
-  lines.join('\n').split('\n\n').forEach((block) => {
+  const blocks = [];
+  lines.join('\n').split('\n\n').forEach((block) => {      // a heading stays with the block under it
+    const last = blocks.length - 1;
+    if (last >= 0 && /^—— .* ——$/.test(blocks[last])) blocks[last] += '\n\n' + block; else blocks.push(block);
+  });
+  blocks.forEach((block) => {
     const next = cur ? cur + '\n\n' + block : block;
     if (next.length > max && cur) { parts.push(cur); cur = block; } else cur = next;
   });

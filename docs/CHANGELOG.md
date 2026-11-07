@@ -2,6 +2,26 @@
 
 ---
 
+## v1.29.5 — November 2026
+**Clearer section dividers in the Telegram digest**
+
+### Changed
+
+- **Dividers.** Each section is now introduced by a divider line with the title in capitals
+  (`—— NEW 5-DOT SIGNALS - Highest conviction (23) ——`, `—— FLIPPED (top 8 of 15) ——`, `—— COMING UP … ——`,
+  `—— ALL CURRENT SIGNALS ——`, `—— SOURCES ——`), followed by a blank line, so the sections stand apart on a phone.
+- **Links.** The week's page is linked right under the title, and the footer shows the full addresses
+  (`This week (https://…)  ·  Risk disclosure (https://…)`) instead of hiding them behind link text.
+- **Splitting.** If a digest ever runs past the message limit, a divider now stays with the block under it instead of
+  ending a message on its own.
+
+### Tests
+
+A dry run of NOV WK1 matches the agreed layout line for line, every line's HTML tags are balanced, and a forced small
+split limit produced five messages with no divider left at the end of one.
+
+---
+
 ## v1.29.4 — November 2026
 **The weekly Telegram digest is shorter and easier to scan**
 
