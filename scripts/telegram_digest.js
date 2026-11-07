@@ -120,7 +120,7 @@ function catSection(heading, bodyFor, emptyText) {
     if (i) out.push('');
     out.push(bold(title + ':'));
     const lines = bodyFor(block);
-    if (lines.length) lines.forEach((l) => out.push(l)); else out.push(ital(emptyText));
+    if (lines.length) lines.forEach((l) => out.push(l)); else out.push(ital(typeof emptyText === 'function' ? emptyText(block) : emptyText));
   });
 }
 
@@ -146,7 +146,8 @@ catSection(
 catSection(
   bold('Flipped') + (flips.length > TOP ? ' ' + ital('(top ' + TOP + ' of ' + flips.length + ')') : ''),
   (block) => shownFlips.filter((r) => r.a.block === block).map((r) => line(use(r.a), r.now, esc(r.before.signal) + ' → ')),
-  'None this week');
+  // "None" must mean nothing flipped, not that the cap hid it
+  (block) => { const hidden = flips.filter((r) => r.a.block === block).length; return hidden ? 'No top-' + TOP + ' flips (' + hidden + ' more flipped)' : 'None this week'; });
 
 const nextWeeks = [1, 2, 3, 4].map((n) => S.shiftWeek(week, n));
 catSection(

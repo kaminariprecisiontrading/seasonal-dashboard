@@ -19,7 +19,8 @@
 - **Header and tally.** The header shows the week's days (`NOV WK1 · 2026 (1–7 Nov)`). Changes are written `(+3)`
   and `(−11)`, because `▲` and `▼` next to BEAR and BULL read as direction. A short key explains the dots.
 - **Flipped** now covers crypto too, so "Changed vs last week" and the Flipped list count the same assets. It still
-  shows the top 8 by conviction.
+  shows the top 8 by conviction. If a category has flips but none made the top 8, it says so (`No top-8 flips (3 more
+  flipped)`) instead of "None this week", which only appears when nothing in that category flipped.
 - **All current signals.** A short block at the bottom keeps every live crypto (later synthetic) asset's current
   signal, with the Deriv "random-generated" note for synthetics.
 - **Footer links** are labelled (This week, Risk disclosure). Bold and italics mark headings, directions and week
