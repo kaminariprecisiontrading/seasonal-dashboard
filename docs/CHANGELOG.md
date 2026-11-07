@@ -2,6 +2,39 @@
 
 ---
 
+## v1.29.4 — November 2026
+**The weekly Telegram digest is shorter and easier to scan**
+
+### Changed
+
+- **Order and subheadings.** The sections now run New 5-dot signals, Flipped, Coming up, and each has the same
+  subheadings: Forex, Futures, Crypto. A subheading with nothing under it says "None this week" (or "None in the next
+  4 weeks"), so a reader who only follows futures can see there was simply nothing for them. Synthetics joins all
+  three sections on its own once Deriv assets are live.
+- **5-dot list grouped.** The first digest listed 23 five-dot signals one per line, each repeating the dots and a
+  source tag. They are now one line per direction and source (`▲ BULL [MRCI]: US Dollar Index, Palladium, …`), under
+  the heading "New 5-dot signals - Highest conviction (23)". An asset that also flipped is marked `(flipped below)`.
+- **Coming up** lists each week as its own line under each category, with the week label in bold and the source tag
+  once, and the heading says "conviction = 4 dots or higher".
+- **Header and tally.** The header shows the week's days (`NOV WK1 · 2026 (1–7 Nov)`). Changes are written `(+3)`
+  and `(−11)`, because `▲` and `▼` next to BEAR and BULL read as direction. A short key explains the dots.
+- **Flipped** now covers crypto too, so "Changed vs last week" and the Flipped list count the same assets. It still
+  shows the top 8 by conviction. If a category has flips but none made the top 8, it says so (`No top-8 flips (3 more
+  flipped)`) instead of "None this week", which only appears when nothing in that category flipped.
+- **All current signals.** A short block at the bottom keeps every live crypto (later synthetic) asset's current
+  signal, with the Deriv "random-generated" note for synthetics.
+- **Footer links** are labelled (This week, Risk disclosure). Bold and italics mark headings, directions and week
+  labels; there is a blank line between sections and between categories.
+
+### Tests
+
+No automated test covers the digest. A dry run of NOV WK1 (`node scripts/telegram_digest.js --date 2026-11-03`)
+carries every signal from the first real digest, in 2,781 characters. Other weeks run clean, with the correct day
+ranges (including 22–29 Feb in a leap year), the no-snapshot fallback, and every line's HTML tags balanced.
+Synthetics was checked on a scratch copy of the data with one asset moved to that block.
+
+---
+
 ## v1.29.3 — November 2026
 **The Sunday run moves to 19:00**
 
