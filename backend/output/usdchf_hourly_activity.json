@@ -3,122 +3,122 @@
     "0": {
       "mean_range_pips": 14.71,
       "mean_activity_pips": 58.3,
-      "n_days": 6419
+      "n_days": 6420
     },
     "1": {
       "mean_range_pips": 13.43,
-      "mean_activity_pips": 54.98,
-      "n_days": 6359
+      "mean_activity_pips": 54.99,
+      "n_days": 6360
     },
     "2": {
       "mean_range_pips": 11.88,
       "mean_activity_pips": 50.51,
-      "n_days": 6295
+      "n_days": 6296
     },
     "3": {
       "mean_range_pips": 11.68,
       "mean_activity_pips": 49.32,
-      "n_days": 6364
+      "n_days": 6365
     },
     "4": {
       "mean_range_pips": 12.8,
       "mean_activity_pips": 52.7,
-      "n_days": 6475
+      "n_days": 6476
     },
     "5": {
-      "mean_range_pips": 17.36,
+      "mean_range_pips": 17.35,
       "mean_activity_pips": 67.31,
-      "n_days": 6612
+      "n_days": 6613
     },
     "6": {
       "mean_range_pips": 22.62,
-      "mean_activity_pips": 85.17,
-      "n_days": 6659
+      "mean_activity_pips": 85.16,
+      "n_days": 6660
     },
     "7": {
       "mean_range_pips": 24.3,
       "mean_activity_pips": 92.43,
-      "n_days": 6658
+      "n_days": 6659
     },
     "8": {
       "mean_range_pips": 22.85,
       "mean_activity_pips": 89.78,
-      "n_days": 6653
+      "n_days": 6654
     },
     "9": {
-      "mean_range_pips": 21.08,
+      "mean_range_pips": 21.07,
       "mean_activity_pips": 83.99,
-      "n_days": 6650
+      "n_days": 6651
     },
     "10": {
       "mean_range_pips": 20.62,
-      "mean_activity_pips": 82.02,
-      "n_days": 6653
+      "mean_activity_pips": 82.01,
+      "n_days": 6654
     },
     "11": {
       "mean_range_pips": 24.6,
-      "mean_activity_pips": 92.28,
-      "n_days": 6666
+      "mean_activity_pips": 92.27,
+      "n_days": 6667
     },
     "12": {
       "mean_range_pips": 28.2,
-      "mean_activity_pips": 104.45,
-      "n_days": 6666
+      "mean_activity_pips": 104.44,
+      "n_days": 6667
     },
     "13": {
       "mean_range_pips": 29.72,
-      "mean_activity_pips": 110.64,
-      "n_days": 6665
+      "mean_activity_pips": 110.63,
+      "n_days": 6666
     },
     "14": {
       "mean_range_pips": 28.8,
       "mean_activity_pips": 109.16,
-      "n_days": 6656
+      "n_days": 6657
     },
     "15": {
-      "mean_range_pips": 24.6,
-      "mean_activity_pips": 94.83,
-      "n_days": 6628
+      "mean_range_pips": 24.59,
+      "mean_activity_pips": 94.82,
+      "n_days": 6629
     },
     "16": {
-      "mean_range_pips": 20.27,
+      "mean_range_pips": 20.26,
       "mean_activity_pips": 79.08,
-      "n_days": 6550
+      "n_days": 6551
     },
     "17": {
       "mean_range_pips": 18.81,
       "mean_activity_pips": 72.51,
-      "n_days": 6506
+      "n_days": 6507
     },
     "18": {
       "mean_range_pips": 16.77,
       "mean_activity_pips": 66.54,
-      "n_days": 6474
+      "n_days": 6475
     },
     "19": {
       "mean_range_pips": 14.34,
-      "mean_activity_pips": 59.55,
-      "n_days": 6370
+      "mean_activity_pips": 59.54,
+      "n_days": 6371
     },
     "20": {
       "mean_range_pips": 12.69,
-      "mean_activity_pips": 53.49,
-      "n_days": 5626
+      "mean_activity_pips": 53.48,
+      "n_days": 5627
     },
     "21": {
       "mean_range_pips": 13.48,
       "mean_activity_pips": 54.47,
-      "n_days": 5690
+      "n_days": 5691
     },
     "22": {
       "mean_range_pips": 13.7,
       "mean_activity_pips": 53.4,
-      "n_days": 6275
+      "n_days": 6276
     },
     "23": {
-      "mean_range_pips": 14.06,
+      "mean_range_pips": 14.07,
       "mean_activity_pips": 55.06,
-      "n_days": 6441
+      "n_days": 6442
     }
   },
   "session_windows": {
@@ -151,7 +151,7 @@
         11
       ],
       "mean_range_pips": 22.29,
-      "mean_activity_pips": 87.02
+      "mean_activity_pips": 87.01
     },
     "london_ny_overlap": {
       "hours": [
@@ -161,7 +161,7 @@
         15
       ],
       "mean_range_pips": 27.83,
-      "mean_activity_pips": 104.77
+      "mean_activity_pips": 104.76
     },
     "ny_only": {
       "hours": [
@@ -171,7 +171,7 @@
         19,
         20
       ],
-      "mean_range_pips": 16.58,
+      "mean_range_pips": 16.57,
       "mean_activity_pips": 66.23
     }
   },

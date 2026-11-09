@@ -1,25 +1,25 @@
 {
  "asset": "NZDUSD",
- "as_of": "2026-11-05",
+ "as_of": "2026-11-06",
  "model": "google/timesfm-2.5-200m-pytorch",
  "context_days": 1024,
  "calibration_window": 500,
  "trades_weekends": false,
- "adr20": 46.6,
+ "adr20": 48.6,
  "forecast": {
   "h1": {
-   "target_date": "2026-11-06",
-   "mean": 47.1,
-   "q10": 27.9,
-   "q90": 70.8,
-   "q10_raw": 26.9,
-   "q90_raw": 68.2
+   "target_date": "2026-11-09",
+   "mean": 49.2,
+   "q10": 29.5,
+   "q90": 74.2,
+   "q10_raw": 28.4,
+   "q90_raw": 71.2
   },
   "h5": {
-   "mean": 46.7
+   "mean": 48.5
   },
   "h20": {
-   "mean": 46.5
+   "mean": 47.7
   }
  },
  "track_record": {
@@ -31,11 +31,11 @@
   "mae": {
    "h1": {
     "timesfm": 15.9,
-    "adr20": 17.0
+    "adr20": 17.1
    },
    "h5": {
     "timesfm": 9.3,
-    "adr20": 10.1
+    "adr20": 10.2
    },
    "h20": {
     "timesfm": 6.2,
@@ -47,21 +47,14 @@
    "h5": 500,
    "h20": 500
   },
-  "from": "2024-11-29",
-  "to": "2026-11-04",
+  "from": "2024-12-02",
+  "to": "2026-11-05",
   "band_n": 500,
-  "band_coverage": 0.78,
-  "above_q90": 0.118,
+  "band_coverage": 0.778,
+  "above_q90": 0.12,
   "below_q10": 0.102
  },
  "recent": [
-  {
-   "date": "2026-08-14",
-   "actual": 56.2,
-   "mean": 43.6,
-   "q10": 26.0,
-   "q90": 67.7
-  },
   {
    "date": "2026-08-17",
    "actual": 48.1,
@@ -477,10 +470,17 @@
   },
   {
    "date": "2026-11-06",
-   "actual": null,
+   "actual": 71.1,
    "mean": 47.1,
    "q10": 27.9,
    "q90": 70.8
+  },
+  {
+   "date": "2026-11-09",
+   "actual": null,
+   "mean": 49.2,
+   "q10": 29.5,
+   "q90": 74.2
   }
  ]
 }

@@ -4,15 +4,15 @@ const USDCHF_DATA = {
   "stats": {
     "asset": "USDCHF",
     "unit": "pips",
-    "as_of": "2026-11-05",
-    "n_days": 6697,
+    "as_of": "2026-11-06",
+    "n_days": 6698,
     "n_weeks": 1345,
     "n_months": 311,
     "n_years": 26,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 6697,
+          "n": 6698,
           "mean": 97.6,
           "median": 82.0,
           "std": 63.3,
@@ -75,8 +75,8 @@ const USDCHF_DATA = {
         },
         "1y": {
           "n": 260,
-          "mean": 57.2,
-          "median": 50.8,
+          "mean": 57.4,
+          "median": 51.2,
           "std": 24.2,
           "min": 23.3,
           "max": 179.6,
@@ -96,19 +96,19 @@ const USDCHF_DATA = {
           "p10": 34.5,
           "p20": 37.8,
           "p25": 39.9,
-          "p50": 50.8,
-          "p75": 67.8,
-          "p80": 72.8,
+          "p50": 51.2,
+          "p75": 67.9,
+          "p80": 73.2,
           "p90": 89.3,
           "p95": 104.0,
           "compression_threshold_pips": 37.8,
-          "expansion_threshold_pips": 72.8
+          "expansion_threshold_pips": 73.2
         },
         "3mo": {
           "n": 67,
-          "mean": 54.2,
-          "median": 47.5,
-          "std": 22.2,
+          "mean": 54.9,
+          "median": 48.9,
+          "std": 22.4,
           "min": 23.3,
           "max": 158.5,
           "mode_binned": {
@@ -125,24 +125,24 @@ const USDCHF_DATA = {
           },
           "p05": 29.3,
           "p10": 32.8,
-          "p20": 37.1,
-          "p25": 39.3,
-          "p50": 47.5,
-          "p75": 66.2,
-          "p80": 71.3,
-          "p90": 78.9,
+          "p20": 37.4,
+          "p25": 39.6,
+          "p50": 48.9,
+          "p75": 67.9,
+          "p80": 72.5,
+          "p90": 79.8,
           "p95": 89.3,
-          "compression_threshold_pips": 37.1,
-          "expansion_threshold_pips": 71.3
+          "compression_threshold_pips": 37.4,
+          "expansion_threshold_pips": 72.5
         }
       },
       "latest_adr": {
-        "ADR_5": 68.4,
-        "ADR_14": 54.1,
-        "ADR_20": 55.4,
+        "ADR_5": 72.2,
+        "ADR_14": 57.1,
+        "ADR_20": 58.2,
         "fixed_multiple_thresholds": {
-          "compression_pips": 38.8,
-          "expansion_pips": 72.0,
+          "compression_pips": 40.7,
+          "expansion_pips": 75.7,
           "based_on": "ADR_20"
         }
       }
@@ -437,7 +437,7 @@ const USDCHF_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 6697,
+          "n": 6698,
           "mode_bucket_start_utc": "12:30",
           "mode_bucket_end_utc": "13:00",
           "mode_bucket_pct_of_days": 4.4,
@@ -528,7 +528,7 @@ const USDCHF_DATA = {
             {
               "bucket_start_utc": "08:00",
               "count": 145,
-              "pct": 2.17
+              "pct": 2.16
             },
             {
               "bucket_start_utc": "08:30",
@@ -592,8 +592,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 253,
-              "pct": 3.78
+              "count": 254,
+              "pct": 3.79
             },
             {
               "bucket_start_utc": "15:00",
@@ -653,7 +653,7 @@ const USDCHF_DATA = {
             {
               "bucket_start_utc": "20:30",
               "count": 145,
-              "pct": 2.17
+              "pct": 2.16
             },
             {
               "bucket_start_utc": "21:00",
@@ -689,12 +689,12 @@ const USDCHF_DATA = {
         },
         "5y": {
           "n": 1298,
-          "mode_bucket_start_utc": "12:30",
-          "mode_bucket_end_utc": "13:00",
+          "mode_bucket_start_utc": "14:30",
+          "mode_bucket_end_utc": "15:00",
           "mode_bucket_pct_of_days": 4.6,
-          "circular_mean_utc": "15:16",
+          "circular_mean_utc": "15:17",
           "circular_median_utc": "15:05",
-          "concentration_R": 0.223,
+          "concentration_R": 0.224,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -823,8 +823,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 60,
-              "pct": 4.62
+              "count": 59,
+              "pct": 4.55
             },
             {
               "bucket_start_utc": "13:00",
@@ -843,8 +843,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 59,
-              "pct": 4.55
+              "count": 60,
+              "pct": 4.62
             },
             {
               "bucket_start_utc": "15:00",
@@ -942,8 +942,8 @@ const USDCHF_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "15:00",
           "mode_bucket_end_utc": "15:30",
-          "mode_bucket_pct_of_days": 5.4,
-          "circular_mean_utc": "16:58",
+          "mode_bucket_pct_of_days": 5.0,
+          "circular_mean_utc": "16:57",
           "circular_median_utc": "16:00",
           "concentration_R": 0.225,
           "histogram": [
@@ -1094,13 +1094,13 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 8,
-              "pct": 3.08
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 14,
-              "pct": 5.38
+              "count": 13,
+              "pct": 5.0
             },
             {
               "bucket_start_utc": "15:30",
@@ -1194,9 +1194,9 @@ const USDCHF_DATA = {
           "mode_bucket_start_utc": "15:00",
           "mode_bucket_end_utc": "15:30",
           "mode_bucket_pct_of_days": 9.0,
-          "circular_mean_utc": "17:23",
+          "circular_mean_utc": "17:24",
           "circular_median_utc": "16:55",
-          "concentration_R": 0.209,
+          "concentration_R": 0.23,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1285,8 +1285,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "09:00",
@@ -1345,8 +1345,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "15:00",
@@ -1443,7 +1443,7 @@ const USDCHF_DATA = {
       },
       "session_distribution": {
         "London_NY_Overlap": {
-          "n": 1867,
+          "n": 1868,
           "pct": 27.9
         },
         "Asian": {
@@ -1471,7 +1471,7 @@ const USDCHF_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 6697,
+          "n": 6698,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 8.1,
@@ -1701,8 +1701,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 340,
-              "pct": 5.08
+              "count": 341,
+              "pct": 5.09
             },
             {
               "bucket_start_utc": "22:30",
@@ -1726,9 +1726,9 @@ const USDCHF_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 16.1,
-          "circular_mean_utc": "18:11",
+          "circular_mean_utc": "18:12",
           "circular_median_utc": "20:45",
-          "concentration_R": 0.31,
+          "concentration_R": 0.309,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1902,8 +1902,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 20,
-              "pct": 1.54
+              "count": 19,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "17:30",
@@ -1952,8 +1952,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 107,
-              "pct": 8.24
+              "count": 108,
+              "pct": 8.32
             },
             {
               "bucket_start_utc": "22:30",
@@ -1977,9 +1977,9 @@ const USDCHF_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 23.1,
-          "circular_mean_utc": "19:26",
+          "circular_mean_utc": "19:25",
           "circular_median_utc": "21:00",
-          "concentration_R": 0.433,
+          "concentration_R": 0.436,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1998,8 +1998,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 1,
-              "pct": 0.38
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "02:00",
@@ -2203,8 +2203,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 26,
-              "pct": 10.0
+              "count": 27,
+              "pct": 10.38
             },
             {
               "bucket_start_utc": "22:30",
@@ -2228,9 +2228,9 @@ const USDCHF_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 34.3,
-          "circular_mean_utc": "19:26",
+          "circular_mean_utc": "19:40",
           "circular_median_utc": "21:05",
-          "concentration_R": 0.401,
+          "concentration_R": 0.409,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2374,8 +2374,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:30",
@@ -2454,8 +2454,8 @@ const USDCHF_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "22:30",
@@ -2485,7 +2485,7 @@ const USDCHF_DATA = {
           "pct": 19.8
         },
         "Other": {
-          "n": 1226,
+          "n": 1227,
           "pct": 18.3
         },
         "Asian": {
@@ -2503,7 +2503,7 @@ const USDCHF_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 6697,
+      "n_days": 6698,
       "same_session_n": 410,
       "same_session_pct": 6.12,
       "pairs": {
@@ -2526,7 +2526,7 @@ const USDCHF_DATA = {
           },
           "New_York": {
             "n": 360,
-            "pct": 5.38
+            "pct": 5.37
           },
           "Other": {
             "n": 48,
@@ -2651,8 +2651,8 @@ const USDCHF_DATA = {
             "pct": 3.17
           },
           "London_NY_Overlap": {
-            "n": 486,
-            "pct": 7.26
+            "n": 487,
+            "pct": 7.27
           },
           "New_York": {
             "n": 368,
@@ -2666,7 +2666,7 @@ const USDCHF_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 6697,
+      "n_days": 6698,
       "same_hour_n": 41,
       "same_hour_pct": 0.61,
       "pairs": {
@@ -4884,8 +4884,8 @@ const USDCHF_DATA = {
             "pct": 0.55
           },
           "14": {
-            "n": 53,
-            "pct": 0.79
+            "n": 54,
+            "pct": 0.81
           },
           "15": {
             "n": 60,
@@ -5026,10 +5026,10 @@ const USDCHF_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 306,
-        "mean_range_pips": 114.2,
-        "median_range_pips": 103.2,
-        "extreme_in_release_window_pct": 39.9
+        "n": 307,
+        "mean_range_pips": 114.1,
+        "median_range_pips": 103.1,
+        "extreme_in_release_window_pct": 40.1
       },
       "other_fridays": {
         "n": 1031,
@@ -5135,21 +5135,21 @@ const USDCHF_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 6638,
+    "n_labeled_days": 6639,
     "n_data_gap_days": 8,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
         "n": 3852,
-        "pct": 58.03
+        "pct": 58.02
       },
       "Compression Day": {
         "n": 1287,
         "pct": 19.39
       },
       "Volatile Day": {
-        "n": 589,
-        "pct": 8.87
+        "n": 590,
+        "pct": 8.89
       },
       "Trend Day (Down)": {
         "n": 274,
@@ -5186,7 +5186,7 @@ const USDCHF_DATA = {
         "Early_Resolution": 167
       },
       "Volatile Day": {
-        "Late_Push": 454,
+        "Late_Push": 455,
         "Late_Resolution": 92,
         "Fade_Risk": 24,
         "Early_Resolution": 19
@@ -5247,8 +5247,8 @@ const USDCHF_DATA = {
         "median": 153.7
       },
       "Volatile Day": {
-        "mean": 163.5,
-        "median": 147.9
+        "mean": 163.3,
+        "median": 147.6
       },
       "Volatile Reversal Day": {
         "mean": 143.3,
@@ -5256,42 +5256,42 @@ const USDCHF_DATA = {
       }
     },
     "nfp": {
-      "n_nfp_days": 303,
+      "n_nfp_days": 304,
       "n_other_fridays": 1023,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 167,
-          "pct": 55.12,
+          "pct": 54.93,
           "mean_range_pips": 94.9,
           "median_range_pips": 83.4
         },
         "Volatile Day": {
-          "n": 42,
-          "pct": 13.86,
-          "mean_range_pips": 158.4,
-          "median_range_pips": 147.4
+          "n": 43,
+          "pct": 14.14,
+          "mean_range_pips": 156.6,
+          "median_range_pips": 144.9
         },
         "Compression Day": {
           "n": 27,
-          "pct": 8.91,
+          "pct": 8.88,
           "mean_range_pips": 59.6,
           "median_range_pips": 49.2
         },
         "Trend Day (Up)": {
           "n": 21,
-          "pct": 6.93,
+          "pct": 6.91,
           "mean_range_pips": 169.9,
           "median_range_pips": 154.6
         },
         "Volatile Reversal Day": {
           "n": 20,
-          "pct": 6.6,
+          "pct": 6.58,
           "mean_range_pips": 135.6,
           "median_range_pips": 124.2
         },
         "Trend Day (Down)": {
           "n": 19,
-          "pct": 6.27,
+          "pct": 6.25,
           "mean_range_pips": 189.6,
           "median_range_pips": 177.3
         },
@@ -5401,9 +5401,9 @@ const USDCHF_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 472,
+        "Late_Push": 471,
         "Late_Resolution": 155,
-        "Fade_Risk": 96,
+        "Fade_Risk": 97,
         "Early_Resolution": 26
       },
       "Compression Week": {
@@ -6610,122 +6610,122 @@ const USDCHF_DATA = {
       "0": {
         "mean_range_pips": 14.71,
         "mean_activity_pips": 58.3,
-        "n_days": 6419
+        "n_days": 6420
       },
       "1": {
         "mean_range_pips": 13.43,
-        "mean_activity_pips": 54.98,
-        "n_days": 6359
+        "mean_activity_pips": 54.99,
+        "n_days": 6360
       },
       "2": {
         "mean_range_pips": 11.88,
         "mean_activity_pips": 50.51,
-        "n_days": 6295
+        "n_days": 6296
       },
       "3": {
         "mean_range_pips": 11.68,
         "mean_activity_pips": 49.32,
-        "n_days": 6364
+        "n_days": 6365
       },
       "4": {
         "mean_range_pips": 12.8,
         "mean_activity_pips": 52.7,
-        "n_days": 6475
+        "n_days": 6476
       },
       "5": {
-        "mean_range_pips": 17.36,
+        "mean_range_pips": 17.35,
         "mean_activity_pips": 67.31,
-        "n_days": 6612
+        "n_days": 6613
       },
       "6": {
         "mean_range_pips": 22.62,
-        "mean_activity_pips": 85.17,
-        "n_days": 6659
+        "mean_activity_pips": 85.16,
+        "n_days": 6660
       },
       "7": {
         "mean_range_pips": 24.3,
         "mean_activity_pips": 92.43,
-        "n_days": 6658
+        "n_days": 6659
       },
       "8": {
         "mean_range_pips": 22.85,
         "mean_activity_pips": 89.78,
-        "n_days": 6653
+        "n_days": 6654
       },
       "9": {
-        "mean_range_pips": 21.08,
+        "mean_range_pips": 21.07,
         "mean_activity_pips": 83.99,
-        "n_days": 6650
+        "n_days": 6651
       },
       "10": {
         "mean_range_pips": 20.62,
-        "mean_activity_pips": 82.02,
-        "n_days": 6653
+        "mean_activity_pips": 82.01,
+        "n_days": 6654
       },
       "11": {
         "mean_range_pips": 24.6,
-        "mean_activity_pips": 92.28,
-        "n_days": 6666
+        "mean_activity_pips": 92.27,
+        "n_days": 6667
       },
       "12": {
         "mean_range_pips": 28.2,
-        "mean_activity_pips": 104.45,
-        "n_days": 6666
+        "mean_activity_pips": 104.44,
+        "n_days": 6667
       },
       "13": {
         "mean_range_pips": 29.72,
-        "mean_activity_pips": 110.64,
-        "n_days": 6665
+        "mean_activity_pips": 110.63,
+        "n_days": 6666
       },
       "14": {
         "mean_range_pips": 28.8,
         "mean_activity_pips": 109.16,
-        "n_days": 6656
+        "n_days": 6657
       },
       "15": {
-        "mean_range_pips": 24.6,
-        "mean_activity_pips": 94.83,
-        "n_days": 6628
+        "mean_range_pips": 24.59,
+        "mean_activity_pips": 94.82,
+        "n_days": 6629
       },
       "16": {
-        "mean_range_pips": 20.27,
+        "mean_range_pips": 20.26,
         "mean_activity_pips": 79.08,
-        "n_days": 6550
+        "n_days": 6551
       },
       "17": {
         "mean_range_pips": 18.81,
         "mean_activity_pips": 72.51,
-        "n_days": 6506
+        "n_days": 6507
       },
       "18": {
         "mean_range_pips": 16.77,
         "mean_activity_pips": 66.54,
-        "n_days": 6474
+        "n_days": 6475
       },
       "19": {
         "mean_range_pips": 14.34,
-        "mean_activity_pips": 59.55,
-        "n_days": 6370
+        "mean_activity_pips": 59.54,
+        "n_days": 6371
       },
       "20": {
         "mean_range_pips": 12.69,
-        "mean_activity_pips": 53.49,
-        "n_days": 5626
+        "mean_activity_pips": 53.48,
+        "n_days": 5627
       },
       "21": {
         "mean_range_pips": 13.48,
         "mean_activity_pips": 54.47,
-        "n_days": 5690
+        "n_days": 5691
       },
       "22": {
         "mean_range_pips": 13.7,
         "mean_activity_pips": 53.4,
-        "n_days": 6275
+        "n_days": 6276
       },
       "23": {
-        "mean_range_pips": 14.06,
+        "mean_range_pips": 14.07,
         "mean_activity_pips": 55.06,
-        "n_days": 6441
+        "n_days": 6442
       }
     },
     "session_windows": {
@@ -6758,7 +6758,7 @@ const USDCHF_DATA = {
           11
         ],
         "mean_range_pips": 22.29,
-        "mean_activity_pips": 87.02
+        "mean_activity_pips": 87.01
       },
       "london_ny_overlap": {
         "hours": [
@@ -6768,7 +6768,7 @@ const USDCHF_DATA = {
           15
         ],
         "mean_range_pips": 27.83,
-        "mean_activity_pips": 104.77
+        "mean_activity_pips": 104.76
       },
       "ny_only": {
         "hours": [
@@ -6778,7 +6778,7 @@ const USDCHF_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 16.58,
+        "mean_range_pips": 16.57,
         "mean_activity_pips": 66.23
       }
     },
@@ -6786,45 +6786,45 @@ const USDCHF_DATA = {
   },
   "range_forecast": {
     "asset": "USDCHF",
-    "as_of": "2026-11-05",
+    "as_of": "2026-11-06",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 55.4,
+    "adr20": 58.2,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-06",
-        "mean": 53.5,
-        "q10": 33.1,
-        "q90": 84.3,
-        "q10_raw": 30.7,
-        "q90_raw": 78.9
+        "target_date": "2026-11-09",
+        "mean": 56.6,
+        "q10": 35.2,
+        "q90": 87.8,
+        "q10_raw": 32.7,
+        "q90_raw": 82.3
       },
       "h5": {
-        "mean": 55.4
+        "mean": 57.6
       },
       "h20": {
-        "mean": 55.8
+        "mean": 57.0
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
         "h1": 0.937,
         "h5": 0.888,
-        "h20": 0.777
+        "h20": 0.778
       },
       "mae": {
         "h1": {
-          "timesfm": 19.4,
-          "adr20": 20.7
+          "timesfm": 19.3,
+          "adr20": 20.6
         },
         "h5": {
           "timesfm": 11.5,
-          "adr20": 12.9
+          "adr20": 13.0
         },
         "h20": {
-          "timesfm": 8.3,
+          "timesfm": 8.2,
           "adr20": 10.6
         }
       },
@@ -6833,21 +6833,14 @@ const USDCHF_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-11-29",
-      "to": "2026-11-04",
+      "from": "2024-12-02",
+      "to": "2026-11-05",
       "band_n": 500,
-      "band_coverage": 0.826,
-      "above_q90": 0.094,
+      "band_coverage": 0.828,
+      "above_q90": 0.092,
       "below_q10": 0.08
     },
     "recent": [
-      {
-        "date": "2026-08-14",
-        "actual": 40.9,
-        "mean": 50.1,
-        "q10": 29.7,
-        "q90": 80.1
-      },
       {
         "date": "2026-08-17",
         "actual": 60.8,
@@ -7263,10 +7256,17 @@ const USDCHF_DATA = {
       },
       {
         "date": "2026-11-06",
-        "actual": null,
+        "actual": 80.9,
         "mean": 53.5,
         "q10": 33.1,
         "q90": 84.3
+      },
+      {
+        "date": "2026-11-09",
+        "actual": null,
+        "mean": 56.6,
+        "q10": 35.2,
+        "q90": 87.8
       }
     ]
   }

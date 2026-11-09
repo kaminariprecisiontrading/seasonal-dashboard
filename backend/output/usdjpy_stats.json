@@ -1,15 +1,15 @@
 {
   "asset": "USDJPY",
   "unit": "pips",
-  "as_of": "2026-11-05",
-  "n_days": 8785,
+  "as_of": "2026-11-06",
+  "n_days": 8786,
   "n_weeks": 1763,
   "n_months": 407,
   "n_years": 34,
   "daily_range": {
     "windowed_distribution": {
       "full": {
-        "n": 8785,
+        "n": 8786,
         "mean": 107.9,
         "median": 93.0,
         "std": 68.4,
@@ -42,7 +42,7 @@
       "5y": {
         "n": 1298,
         "mean": 128.3,
-        "median": 111.5,
+        "median": 111.8,
         "std": 77.6,
         "min": 19.3,
         "max": 691.1,
@@ -61,8 +61,8 @@
         "p05": 46.1,
         "p10": 55.0,
         "p20": 70.5,
-        "p25": 77.8,
-        "p50": 111.5,
+        "p25": 78.0,
+        "p50": 111.8,
         "p75": 157.0,
         "p80": 171.1,
         "p90": 215.0,
@@ -95,22 +95,22 @@
         "p25": 61.8,
         "p50": 86.1,
         "p75": 121.9,
-        "p80": 133.8,
+        "p80": 133.7,
         "p90": 183.7,
         "p95": 218.3,
         "compression_threshold_pips": 56.6,
-        "expansion_threshold_pips": 133.8
+        "expansion_threshold_pips": 133.7
       },
       "3mo": {
         "n": 67,
-        "mean": 106.8,
-        "median": 94.9,
-        "std": 55.3,
+        "mean": 107.9,
+        "median": 95.1,
+        "std": 55.0,
         "min": 40.9,
         "max": 366.5,
         "mode_binned": {
-          "bin_low": 49.8,
-          "bin_high": 57.9,
+          "bin_low": 90.2,
+          "bin_high": 98.3,
           "count": 7,
           "pct_of_n": 10.4
         },
@@ -122,24 +122,24 @@
         },
         "p05": 49.8,
         "p10": 54.7,
-        "p20": 64.7,
-        "p25": 68.3,
-        "p50": 94.9,
-        "p75": 130.4,
+        "p20": 66.0,
+        "p25": 70.8,
+        "p50": 95.1,
+        "p75": 133.8,
         "p80": 138.4,
         "p90": 171.1,
         "p95": 211.5,
-        "compression_threshold_pips": 64.7,
+        "compression_threshold_pips": 66.0,
         "expansion_threshold_pips": 138.4
       }
     },
     "latest_adr": {
-      "ADR_5": 97.2,
-      "ADR_14": 89.0,
-      "ADR_20": 84.6,
+      "ADR_5": 105.3,
+      "ADR_14": 92.5,
+      "ADR_20": 87.9,
       "fixed_multiple_thresholds": {
-        "compression_pips": 59.2,
-        "expansion_pips": 110.0,
+        "compression_pips": 61.5,
+        "expansion_pips": 114.3,
         "based_on": "ADR_20"
       }
     }
@@ -150,7 +150,7 @@
         "n": 1763,
         "mean": 244.7,
         "median": 213.0,
-        "std": 141.7,
+        "std": 141.6,
         "min": 9.0,
         "max": 2440.0,
         "mode_binned": {
@@ -167,14 +167,14 @@
         },
         "p05": 95.9,
         "p10": 114.1,
-        "p20": 141.7,
+        "p20": 142.0,
         "p25": 153.0,
         "p50": 213.0,
         "p75": 300.0,
         "p80": 325.0,
         "p90": 411.2,
         "p95": 496.0,
-        "compression_threshold_pips": 141.7,
+        "compression_threshold_pips": 142.0,
         "expansion_threshold_pips": 325.0
       },
       "5y": {
@@ -210,9 +210,9 @@
       },
       "1y": {
         "n": 53,
-        "mean": 238.2,
+        "mean": 238.5,
         "median": 214.4,
-        "std": 122.5,
+        "std": 122.3,
         "min": 86.6,
         "max": 644.8,
         "mode_binned": {
@@ -229,26 +229,26 @@
         },
         "p05": 92.7,
         "p10": 105.6,
-        "p20": 142.3,
+        "p20": 148.5,
         "p25": 165.0,
         "p50": 214.4,
         "p75": 282.5,
         "p80": 319.1,
         "p90": 358.1,
         "p95": 515.2,
-        "compression_threshold_pips": 142.3,
+        "compression_threshold_pips": 148.5,
         "expansion_threshold_pips": 319.1
       },
       "3mo": {
         "n": 14,
-        "mean": 247.4,
+        "mean": 248.5,
         "median": 203.3,
-        "std": 123.5,
+        "std": 122.6,
         "min": 107.0,
         "max": 509.8,
         "mode_binned": {
-          "bin_low": 162.7,
-          "bin_high": 180.6,
+          "bin_low": 164.0,
+          "bin_high": 181.8,
           "count": 3,
           "pct_of_n": 21.4
         },
@@ -258,16 +258,16 @@
           "pct_of_n": 7.1,
           "n_values_tied": 14
         },
-        "p05": 127.0,
-        "p10": 138.4,
-        "p20": 157.7,
+        "p05": 128.4,
+        "p10": 143.6,
+        "p20": 162.7,
         "p25": 170.9,
         "p50": 203.3,
         "p75": 314.1,
         "p80": 336.0,
         "p90": 431.2,
         "p95": 484.7,
-        "compression_threshold_pips": 157.7,
+        "compression_threshold_pips": 162.7,
         "expansion_threshold_pips": 336.0
       }
     }
@@ -307,10 +307,10 @@
       },
       "5y": {
         "n": 60,
-        "mean": 662.1,
+        "mean": 662.4,
         "median": 669.1,
-        "std": 236.2,
-        "min": 137.7,
+        "std": 235.7,
+        "min": 152.3,
         "max": 1234.3,
         "mode_binned": {
           "bin_low": 441.1,
@@ -319,7 +319,7 @@
           "pct_of_n": 8.3
         },
         "mode_raw": {
-          "value": 137.7,
+          "value": 152.3,
           "count": 1,
           "pct_of_n": 1.7,
           "n_values_tied": 60
@@ -338,24 +338,24 @@
       },
       "1y": {
         "n": 13,
-        "mean": 478.3,
+        "mean": 479.5,
         "median": 497.6,
-        "std": 175.1,
-        "min": 137.7,
+        "std": 172.8,
+        "min": 152.3,
         "max": 750.4,
         "mode_binned": {
-          "bin_low": 330.2,
-          "bin_high": 355.9,
+          "bin_low": 334.8,
+          "bin_high": 360.3,
           "count": 2,
           "pct_of_n": 15.4
         },
         "mode_raw": {
-          "value": 137.7,
+          "value": 152.3,
           "count": 1,
           "pct_of_n": 7.7,
           "n_values_tied": 13
         },
-        "p05": 227.3,
+        "p05": 233.1,
         "p10": 297.0,
         "p20": 338.9,
         "p25": 341.6,
@@ -369,33 +369,33 @@
       },
       "3mo": {
         "n": 4,
-        "mean": 418.2,
+        "mean": 421.8,
         "median": 392.3,
-        "std": 266.2,
-        "min": 137.7,
+        "std": 261.1,
+        "min": 152.3,
         "max": 750.4,
         "mode_binned": {
-          "bin_low": 270.6,
-          "bin_high": 298.2,
+          "bin_low": 280.5,
+          "bin_high": 307.5,
           "count": 1,
           "pct_of_n": 25.0
         },
         "mode_raw": {
-          "value": 137.7,
+          "value": 152.3,
           "count": 1,
           "pct_of_n": 25.0,
           "n_values_tied": 4
         },
-        "p05": 160.1,
-        "p10": 182.5,
-        "p20": 227.3,
-        "p25": 249.7,
+        "p05": 172.5,
+        "p10": 192.7,
+        "p20": 233.1,
+        "p25": 253.3,
         "p50": 392.3,
         "p75": 560.8,
         "p80": 598.7,
         "p90": 674.6,
         "p95": 712.5,
-        "compression_threshold_pips": 227.3,
+        "compression_threshold_pips": 233.1,
         "expansion_threshold_pips": 598.7
       }
     }
@@ -434,7 +434,7 @@
   "daily_high_time": {
     "windowed_circular_stats": {
       "full": {
-        "n": 7223,
+        "n": 7224,
         "mode_bucket_start_utc": "22:00",
         "mode_bucket_end_utc": "22:30",
         "mode_bucket_pct_of_days": 5.1,
@@ -515,7 +515,7 @@
           {
             "bucket_start_utc": "07:00",
             "count": 134,
-            "pct": 1.86
+            "pct": 1.85
           },
           {
             "bucket_start_utc": "07:30",
@@ -579,8 +579,8 @@
           },
           {
             "bucket_start_utc": "13:30",
-            "count": 213,
-            "pct": 2.95
+            "count": 214,
+            "pct": 2.96
           },
           {
             "bucket_start_utc": "14:00",
@@ -615,7 +615,7 @@
           {
             "bucket_start_utc": "17:00",
             "count": 147,
-            "pct": 2.04
+            "pct": 2.03
           },
           {
             "bucket_start_utc": "17:30",
@@ -820,8 +820,8 @@
           },
           {
             "bucket_start_utc": "12:30",
-            "count": 51,
-            "pct": 3.93
+            "count": 50,
+            "pct": 3.85
           },
           {
             "bucket_start_utc": "13:00",
@@ -830,8 +830,8 @@
           },
           {
             "bucket_start_utc": "13:30",
-            "count": 46,
-            "pct": 3.54
+            "count": 47,
+            "pct": 3.62
           },
           {
             "bucket_start_utc": "14:00",
@@ -940,9 +940,9 @@
         "mode_bucket_start_utc": "00:00",
         "mode_bucket_end_utc": "00:30",
         "mode_bucket_pct_of_days": 6.5,
-        "circular_mean_utc": "19:14",
+        "circular_mean_utc": "19:13",
         "circular_median_utc": "19:10",
-        "concentration_R": 0.241,
+        "concentration_R": 0.239,
         "histogram": [
           {
             "bucket_start_utc": "00:00",
@@ -1081,8 +1081,8 @@
           },
           {
             "bucket_start_utc": "13:30",
-            "count": 4,
-            "pct": 1.54
+            "count": 5,
+            "pct": 1.92
           },
           {
             "bucket_start_utc": "14:00",
@@ -1106,8 +1106,8 @@
           },
           {
             "bucket_start_utc": "16:00",
-            "count": 9,
-            "pct": 3.46
+            "count": 8,
+            "pct": 3.08
           },
           {
             "bucket_start_utc": "16:30",
@@ -1191,9 +1191,9 @@
         "mode_bucket_start_utc": "01:00",
         "mode_bucket_end_utc": "01:30",
         "mode_bucket_pct_of_days": 7.5,
-        "circular_mean_utc": "18:47",
+        "circular_mean_utc": "18:39",
         "circular_median_utc": "17:45",
-        "concentration_R": 0.207,
+        "concentration_R": 0.223,
         "histogram": [
           {
             "bucket_start_utc": "00:00",
@@ -1282,8 +1282,8 @@
           },
           {
             "bucket_start_utc": "08:30",
-            "count": 2,
-            "pct": 2.99
+            "count": 1,
+            "pct": 1.49
           },
           {
             "bucket_start_utc": "09:00",
@@ -1332,8 +1332,8 @@
           },
           {
             "bucket_start_utc": "13:30",
-            "count": 1,
-            "pct": 1.49
+            "count": 2,
+            "pct": 2.99
           },
           {
             "bucket_start_utc": "14:00",
@@ -1444,7 +1444,7 @@
         "pct": 28.6
       },
       "London_NY_Overlap": {
-        "n": 1557,
+        "n": 1558,
         "pct": 21.6
       },
       "New_York": {
@@ -1468,7 +1468,7 @@
   "daily_low_time": {
     "windowed_circular_stats": {
       "full": {
-        "n": 7223,
+        "n": 7224,
         "mode_bucket_start_utc": "22:00",
         "mode_bucket_end_utc": "22:30",
         "mode_bucket_pct_of_days": 5.5,
@@ -1534,7 +1534,7 @@
           {
             "bucket_start_utc": "05:30",
             "count": 134,
-            "pct": 1.86
+            "pct": 1.85
           },
           {
             "bucket_start_utc": "06:00",
@@ -1609,7 +1609,7 @@
           {
             "bucket_start_utc": "13:00",
             "count": 225,
-            "pct": 3.12
+            "pct": 3.11
           },
           {
             "bucket_start_utc": "13:30",
@@ -1624,7 +1624,7 @@
           {
             "bucket_start_utc": "14:30",
             "count": 186,
-            "pct": 2.58
+            "pct": 2.57
           },
           {
             "bucket_start_utc": "15:00",
@@ -1708,8 +1708,8 @@
           },
           {
             "bucket_start_utc": "23:00",
-            "count": 231,
-            "pct": 3.2
+            "count": 232,
+            "pct": 3.21
           },
           {
             "bucket_start_utc": "23:30",
@@ -1723,7 +1723,7 @@
         "mode_bucket_start_utc": "21:00",
         "mode_bucket_end_utc": "21:30",
         "mode_bucket_pct_of_days": 6.4,
-        "circular_mean_utc": "20:16",
+        "circular_mean_utc": "20:18",
         "circular_median_utc": "21:15",
         "concentration_R": 0.152,
         "histogram": [
@@ -1899,8 +1899,8 @@
           },
           {
             "bucket_start_utc": "17:00",
-            "count": 23,
-            "pct": 1.77
+            "count": 22,
+            "pct": 1.69
           },
           {
             "bucket_start_utc": "17:30",
@@ -1959,8 +1959,8 @@
           },
           {
             "bucket_start_utc": "23:00",
-            "count": 30,
-            "pct": 2.31
+            "count": 31,
+            "pct": 2.39
           },
           {
             "bucket_start_utc": "23:30",
@@ -1974,9 +1974,9 @@
         "mode_bucket_start_utc": "21:00",
         "mode_bucket_end_utc": "21:30",
         "mode_bucket_pct_of_days": 8.8,
-        "circular_mean_utc": "22:14",
+        "circular_mean_utc": "22:11",
         "circular_median_utc": "22:00",
-        "concentration_R": 0.117,
+        "concentration_R": 0.118,
         "histogram": [
           {
             "bucket_start_utc": "00:00",
@@ -1995,8 +1995,8 @@
           },
           {
             "bucket_start_utc": "01:30",
-            "count": 6,
-            "pct": 2.31
+            "count": 5,
+            "pct": 1.92
           },
           {
             "bucket_start_utc": "02:00",
@@ -2210,8 +2210,8 @@
           },
           {
             "bucket_start_utc": "23:00",
-            "count": 6,
-            "pct": 2.31
+            "count": 7,
+            "pct": 2.69
           },
           {
             "bucket_start_utc": "23:30",
@@ -2225,9 +2225,9 @@
         "mode_bucket_start_utc": "21:00",
         "mode_bucket_end_utc": "21:30",
         "mode_bucket_pct_of_days": 10.4,
-        "circular_mean_utc": "00:03",
+        "circular_mean_utc": "23:29",
         "circular_median_utc": "23:05",
-        "concentration_R": 0.079,
+        "concentration_R": 0.084,
         "histogram": [
           {
             "bucket_start_utc": "00:00",
@@ -2256,8 +2256,8 @@
           },
           {
             "bucket_start_utc": "02:30",
-            "count": 3,
-            "pct": 4.48
+            "count": 2,
+            "pct": 2.99
           },
           {
             "bucket_start_utc": "03:00",
@@ -2461,8 +2461,8 @@
           },
           {
             "bucket_start_utc": "23:00",
-            "count": 2,
-            "pct": 2.99
+            "count": 3,
+            "pct": 4.48
           },
           {
             "bucket_start_utc": "23:30",
@@ -2474,7 +2474,7 @@
     },
     "session_distribution": {
       "Asian": {
-        "n": 2022,
+        "n": 2023,
         "pct": 28.0
       },
       "London_NY_Overlap": {
@@ -2500,7 +2500,7 @@
     }
   },
   "daily_session_pair_distribution": {
-    "n_days": 7223,
+    "n_days": 7224,
     "same_session_n": 512,
     "same_session_pct": 7.09,
     "pairs": {
@@ -2518,8 +2518,8 @@
           "pct": 3.72
         },
         "London_NY_Overlap": {
-          "n": 655,
-          "pct": 9.07
+          "n": 656,
+          "pct": 9.08
         },
         "New_York": {
           "n": 640,
@@ -2637,7 +2637,7 @@
       "Other": {
         "Asian": {
           "n": 160,
-          "pct": 2.22
+          "pct": 2.21
         },
         "Asian_London_Overlap": {
           "n": 53,
@@ -2663,7 +2663,7 @@
     }
   },
   "daily_hour_pair_distribution": {
-    "n_days": 7223,
+    "n_days": 7224,
     "same_hour_n": 49,
     "same_hour_pct": 0.68,
     "pairs": {
@@ -4975,8 +4975,8 @@
           "pct": 0.28
         },
         "13": {
-          "n": 36,
-          "pct": 0.5
+          "n": 37,
+          "pct": 0.51
         },
         "14": {
           "n": 44,
@@ -5023,10 +5023,10 @@
   },
   "nfp_profile": {
     "nfp_fridays": {
-      "n": 329,
+      "n": 330,
       "mean_range_pips": 116.5,
-      "median_range_pips": 104.0,
-      "extreme_in_release_window_pct": 35.3
+      "median_range_pips": 104.5,
+      "extreme_in_release_window_pct": 35.5
     },
     "other_fridays": {
       "n": 1113,
@@ -5048,10 +5048,10 @@
   },
   "weekly_low_day": {
     "Monday": 554,
-    "Friday": 427,
+    "Friday": 428,
     "Tuesday": 275,
     "Thursday": 260,
-    "Wednesday": 245,
+    "Wednesday": 244,
     "Sunday": 2
   },
   "monthly_high_week_of_month": {

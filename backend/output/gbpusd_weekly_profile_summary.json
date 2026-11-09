@@ -4,12 +4,12 @@
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
-      "n": 980,
-      "pct": 56.65
+      "n": 981,
+      "pct": 56.71
     },
     "Compression Week": {
-      "n": 319,
-      "pct": 18.44
+      "n": 318,
+      "pct": 18.38
     },
     "Volatile Week": {
       "n": 169,
@@ -39,13 +39,13 @@
   "extreme_timing_by_profile": {
     "Normal Week": {
       "Late_Push": 620,
-      "Late_Resolution": 182,
+      "Late_Resolution": 183,
       "Fade_Risk": 127,
       "Early_Resolution": 50,
       "Insufficient_History": 1
     },
     "Compression Week": {
-      "Late_Push": 129,
+      "Late_Push": 128,
       "Late_Resolution": 86,
       "Fade_Risk": 78,
       "Early_Resolution": 26
@@ -87,13 +87,13 @@
   },
   "extreme_spread_by_profile": {
     "Normal Week": {
-      "Spread": 817,
+      "Spread": 818,
       "Adjacent": 141,
       "Same_Day": 21,
       "Insufficient_History": 1
     },
     "Compression Week": {
-      "Spread": 220,
+      "Spread": 219,
       "Adjacent": 78,
       "Same_Day": 21
     },
@@ -128,12 +128,12 @@
   },
   "avg_range_pips_by_profile": {
     "Compression Week": {
-      "mean": 173.2,
+      "mean": 173.4,
       "median": 166.0
     },
     "Normal Week": {
-      "mean": 266.9,
-      "median": 252.8
+      "mean": 266.8,
+      "median": 252.7
     },
     "Quiet Drift Week (Down)": {
       "mean": 182.0,
@@ -175,8 +175,8 @@
           "pct": 2.18
         },
         "Wednesday": {
-          "n": 88,
-          "pct": 5.05
+          "n": 87,
+          "pct": 4.99
         },
         "Thursday": {
           "n": 125,
@@ -263,8 +263,8 @@
           "pct": 6.77
         },
         "Wednesday": {
-          "n": 98,
-          "pct": 5.63
+          "n": 99,
+          "pct": 5.68
         },
         "Thursday": {
           "n": 46,

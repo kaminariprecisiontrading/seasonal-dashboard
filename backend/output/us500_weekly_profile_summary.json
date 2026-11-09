@@ -12,8 +12,8 @@
       "pct": 15.78
     },
     "Volatile Week": {
-      "n": 99,
-      "pct": 11.93
+      "n": 100,
+      "pct": 12.05
     },
     "Trend Week (Up)": {
       "n": 47,
@@ -24,8 +24,8 @@
       "pct": 4.34
     },
     "Trend Week (Down)": {
-      "n": 31,
-      "pct": 3.73
+      "n": 30,
+      "pct": 3.61
     },
     "Quiet Drift Week (Up)": {
       "n": 20,
@@ -52,7 +52,7 @@
     },
     "Volatile Week": {
       "Late_Push": 63,
-      "Late_Resolution": 16,
+      "Late_Resolution": 17,
       "Fade_Risk": 14,
       "Early_Resolution": 6
     },
@@ -71,8 +71,8 @@
     },
     "Trend Week (Down)": {
       "Late_Push": 22,
-      "Late_Resolution": 5,
-      "Insufficient_History": 4
+      "Insufficient_History": 4,
+      "Late_Resolution": 4
     },
     "Quiet Drift Week (Up)": {
       "Late_Push": 10,
@@ -98,7 +98,7 @@
       "Same_Day": 10
     },
     "Volatile Week": {
-      "Spread": 82,
+      "Spread": 83,
       "Adjacent": 16,
       "Same_Day": 1
     },
@@ -114,7 +114,7 @@
     "Trend Week (Down)": {
       "Spread": 24,
       "Insufficient_History": 4,
-      "Adjacent": 3
+      "Adjacent": 2
     },
     "Quiet Drift Week (Up)": {
       "Spread": 15,
@@ -142,8 +142,8 @@
       "median": 403.5
     },
     "Trend Week (Down)": {
-      "mean": 1766.9,
-      "median": 1369.0
+      "mean": 1692.7,
+      "median": 1352.0
     },
     "Trend Week (Up)": {
       "mean": 1700.1,
@@ -154,8 +154,8 @@
       "median": 1777.5
     },
     "Volatile Week": {
-      "mean": 1558.1,
-      "median": 1353.0
+      "mean": 1584.9,
+      "median": 1355.5
     }
   },
   "weekday_pair_distribution": {
@@ -239,8 +239,8 @@
           "pct": 4.11
         },
         "Wednesday": {
-          "n": 16,
-          "pct": 1.93
+          "n": 15,
+          "pct": 1.81
         },
         "Thursday": {
           "n": 6,
@@ -261,8 +261,8 @@
           "pct": 6.29
         },
         "Wednesday": {
-          "n": 42,
-          "pct": 5.08
+          "n": 43,
+          "pct": 5.2
         },
         "Thursday": {
           "n": 23,

@@ -4,15 +4,15 @@ const BRENT_DATA = {
   "stats": {
     "asset": "BRENT",
     "unit": "points",
-    "as_of": "2026-11-05",
-    "n_days": 2829,
+    "as_of": "2026-11-06",
+    "n_days": 2830,
     "n_weeks": 573,
     "n_months": 134,
     "n_years": 12,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 2829,
+          "n": 2830,
           "mean": 222.8,
           "median": 176.0,
           "std": 173.1,
@@ -37,14 +37,14 @@ const BRENT_DATA = {
           "p50": 176.0,
           "p75": 257.0,
           "p80": 290.0,
-          "p90": 395.2,
-          "p95": 513.6,
+          "p90": 396.1,
+          "p95": 513.5,
           "compression_threshold_pips": 117.0,
           "expansion_threshold_pips": 290.0
         },
         "5y": {
           "n": 1290,
-          "mean": 288.4,
+          "mean": 288.5,
           "median": 226.0,
           "std": 220.8,
           "min": 57.0,
@@ -66,18 +66,18 @@ const BRENT_DATA = {
           "p20": 146.0,
           "p25": 157.2,
           "p50": 226.0,
-          "p75": 349.0,
-          "p80": 387.2,
+          "p75": 351.2,
+          "p80": 388.0,
           "p90": 513.1,
           "p95": 673.6,
           "compression_threshold_pips": 146.0,
-          "expansion_threshold_pips": 387.2
+          "expansion_threshold_pips": 388.0
         },
         "1y": {
           "n": 259,
-          "mean": 393.6,
-          "median": 326.0,
-          "std": 327.8,
+          "mean": 394.7,
+          "median": 328.0,
+          "std": 327.5,
           "min": 66.0,
           "max": 3562.0,
           "mode_binned": {
@@ -90,44 +90,44 @@ const BRENT_DATA = {
             "value": 104.0,
             "count": 3,
             "pct_of_n": 1.2,
-            "n_values_tied": 4
+            "n_values_tied": 5
           },
           "p05": 108.8,
           "p10": 122.8,
-          "p20": 165.6,
-          "p25": 185.5,
-          "p50": 326.0,
+          "p20": 166.6,
+          "p25": 188.5,
+          "p50": 328.0,
           "p75": 493.0,
           "p80": 524.0,
           "p90": 693.0,
           "p95": 826.2,
-          "compression_threshold_pips": 165.6,
+          "compression_threshold_pips": 166.6,
           "expansion_threshold_pips": 524.0
         },
         "3mo": {
           "n": 67,
-          "mean": 404.7,
-          "median": 363.0,
-          "std": 178.4,
+          "mean": 406.6,
+          "median": 369.0,
+          "std": 177.8,
           "min": 135.0,
           "max": 1151.0,
           "mode_binned": {
             "bin_low": 276.4,
             "bin_high": 299.6,
-            "count": 7,
-            "pct_of_n": 10.4
+            "count": 6,
+            "pct_of_n": 9.0
           },
           "mode_raw": {
             "value": 267.0,
             "count": 2,
             "pct_of_n": 3.0,
-            "n_values_tied": 3
+            "n_values_tied": 2
           },
           "p05": 183.7,
           "p10": 218.8,
           "p20": 279.2,
-          "p25": 290.0,
-          "p50": 363.0,
+          "p25": 293.5,
+          "p50": 369.0,
           "p75": 488.0,
           "p80": 501.6,
           "p90": 612.6,
@@ -137,12 +137,12 @@ const BRENT_DATA = {
         }
       },
       "latest_adr": {
-        "ADR_5": 704.6,
-        "ADR_14": 493.9,
-        "ADR_20": 445.8,
+        "ADR_5": 722.4,
+        "ADR_14": 495.9,
+        "ADR_20": 453.1,
         "fixed_multiple_thresholds": {
-          "compression_pips": 312.1,
-          "expansion_pips": 579.5,
+          "compression_pips": 317.2,
+          "expansion_pips": 589.0,
           "based_on": "ADR_20"
         }
       }
@@ -437,7 +437,7 @@ const BRENT_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2701,
+          "n": 2702,
           "mode_bucket_start_utc": "18:00",
           "mode_bucket_end_utc": "18:30",
           "mode_bucket_pct_of_days": 5.5,
@@ -458,7 +458,7 @@ const BRENT_DATA = {
             {
               "bucket_start_utc": "01:00",
               "count": 146,
-              "pct": 5.41
+              "pct": 5.4
             },
             {
               "bucket_start_utc": "01:30",
@@ -482,8 +482,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 16,
-              "pct": 0.59
+              "count": 17,
+              "pct": 0.63
             },
             {
               "bucket_start_utc": "04:00",
@@ -568,7 +568,7 @@ const BRENT_DATA = {
             {
               "bucket_start_utc": "12:00",
               "count": 52,
-              "pct": 1.93
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "12:30",
@@ -618,7 +618,7 @@ const BRENT_DATA = {
             {
               "bucket_start_utc": "17:00",
               "count": 82,
-              "pct": 3.04
+              "pct": 3.03
             },
             {
               "bucket_start_utc": "17:30",
@@ -628,7 +628,7 @@ const BRENT_DATA = {
             {
               "bucket_start_utc": "18:00",
               "count": 149,
-              "pct": 5.52
+              "pct": 5.51
             },
             {
               "bucket_start_utc": "18:30",
@@ -692,9 +692,9 @@ const BRENT_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 6.0,
-          "circular_mean_utc": "16:05",
+          "circular_mean_utc": "16:04",
           "circular_median_utc": "16:25",
-          "concentration_R": 0.252,
+          "concentration_R": 0.251,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -733,8 +733,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 6,
-              "pct": 0.47
+              "count": 7,
+              "pct": 0.54
             },
             {
               "bucket_start_utc": "04:00",
@@ -878,8 +878,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 64,
-              "pct": 4.96
+              "count": 63,
+              "pct": 4.88
             },
             {
               "bucket_start_utc": "18:30",
@@ -943,9 +943,9 @@ const BRENT_DATA = {
           "mode_bucket_start_utc": "20:30",
           "mode_bucket_end_utc": "21:00",
           "mode_bucket_pct_of_days": 5.8,
-          "circular_mean_utc": "17:15",
-          "circular_median_utc": "17:10",
-          "concentration_R": 0.174,
+          "circular_mean_utc": "17:22",
+          "circular_median_utc": "17:15",
+          "concentration_R": 0.172,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -984,8 +984,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "04:00",
@@ -1054,8 +1054,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 8,
-              "pct": 3.09
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "11:00",
@@ -1194,9 +1194,9 @@ const BRENT_DATA = {
           "mode_bucket_start_utc": "17:30",
           "mode_bucket_end_utc": "18:00",
           "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "16:52",
-          "circular_median_utc": "17:10",
-          "concentration_R": 0.287,
+          "circular_mean_utc": "17:08",
+          "circular_median_utc": "17:50",
+          "concentration_R": 0.275,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1235,8 +1235,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "04:00",
@@ -1300,8 +1300,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "10:30",
@@ -1451,7 +1451,7 @@ const BRENT_DATA = {
           "pct": 25.4
         },
         "Asian": {
-          "n": 575,
+          "n": 576,
           "pct": 21.3
         },
         "London": {
@@ -1471,7 +1471,7 @@ const BRENT_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2701,
+          "n": 2702,
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 5.7,
@@ -1576,8 +1576,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 49,
-              "pct": 1.81
+              "count": 50,
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "10:00",
@@ -1797,8 +1797,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 14,
-              "pct": 1.09
+              "count": 13,
+              "pct": 1.01
             },
             {
               "bucket_start_utc": "07:00",
@@ -1827,8 +1827,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 26,
-              "pct": 2.02
+              "count": 27,
+              "pct": 2.09
             },
             {
               "bucket_start_utc": "10:00",
@@ -1977,9 +1977,9 @@ const BRENT_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 8.9,
-          "circular_mean_utc": "13:43",
+          "circular_mean_utc": "13:32",
           "circular_median_utc": "15:15",
-          "concentration_R": 0.147,
+          "concentration_R": 0.15,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2078,8 +2078,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 8,
-              "pct": 3.09
+              "count": 9,
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "10:00",
@@ -2178,8 +2178,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 6,
-              "pct": 2.32
+              "count": 5,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "20:00",
@@ -2228,9 +2228,9 @@ const BRENT_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "10:19",
+          "circular_mean_utc": "10:33",
           "circular_median_utc": "09:50",
-          "concentration_R": 0.162,
+          "concentration_R": 0.183,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2259,8 +2259,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:00",
@@ -2329,8 +2329,8 @@ const BRENT_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "10:00",
@@ -2489,7 +2489,7 @@ const BRENT_DATA = {
           "pct": 22.8
         },
         "London": {
-          "n": 462,
+          "n": 463,
           "pct": 17.1
         },
         "Asian_London_Overlap": {
@@ -2503,7 +2503,7 @@ const BRENT_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 2701,
+      "n_days": 2702,
       "same_session_n": 150,
       "same_session_pct": 5.55,
       "pairs": {
@@ -2526,7 +2526,7 @@ const BRENT_DATA = {
           },
           "New_York": {
             "n": 306,
-            "pct": 11.33
+            "pct": 11.32
           },
           "Other": {
             "n": 22,
@@ -2561,8 +2561,8 @@ const BRENT_DATA = {
         },
         "London": {
           "Asian": {
-            "n": 64,
-            "pct": 2.37
+            "n": 65,
+            "pct": 2.41
           },
           "Asian_London_Overlap": {
             "n": 8,
@@ -2578,7 +2578,7 @@ const BRENT_DATA = {
           },
           "New_York": {
             "n": 243,
-            "pct": 9.0
+            "pct": 8.99
           },
           "Other": {
             "n": 17,
@@ -2600,11 +2600,11 @@ const BRENT_DATA = {
           },
           "London_NY_Overlap": {
             "n": 92,
-            "pct": 3.41
+            "pct": 3.4
           },
           "New_York": {
             "n": 193,
-            "pct": 7.15
+            "pct": 7.14
           },
           "Other": {
             "n": 8,
@@ -2614,7 +2614,7 @@ const BRENT_DATA = {
         "New_York": {
           "Asian": {
             "n": 246,
-            "pct": 9.11
+            "pct": 9.1
           },
           "Asian_London_Overlap": {
             "n": 50,
@@ -2622,11 +2622,11 @@ const BRENT_DATA = {
           },
           "London": {
             "n": 189,
-            "pct": 7.0
+            "pct": 6.99
           },
           "London_NY_Overlap": {
             "n": 213,
-            "pct": 7.89
+            "pct": 7.88
           },
           "New_York": {
             "n": 21,
@@ -2666,7 +2666,7 @@ const BRENT_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 2701,
+      "n_days": 2702,
       "same_hour_n": 15,
       "same_hour_pct": 0.56,
       "pairs": {
@@ -3566,8 +3566,8 @@ const BRENT_DATA = {
             "pct": 0.04
           },
           "3": {
-            "n": 0,
-            "pct": 0.0
+            "n": 1,
+            "pct": 0.04
           },
           "4": {
             "n": 2,
@@ -5026,10 +5026,10 @@ const BRENT_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 121,
-        "mean_range_pips": 233.4,
+        "n": 122,
+        "mean_range_pips": 234.9,
         "median_range_pips": 191.0,
-        "extreme_in_release_window_pct": 28.1
+        "extreme_in_release_window_pct": 27.9
       },
       "other_fridays": {
         "n": 411,
@@ -5037,7 +5037,7 @@ const BRENT_DATA = {
         "median_range_pips": 169.0,
         "extreme_in_release_window_pct": 24.1
       },
-      "all_days_mean_range_pips": 225.0,
+      "all_days_mean_range_pips": 225.1,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
@@ -5114,21 +5114,21 @@ const BRENT_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 2770,
+    "n_labeled_days": 2771,
     "n_data_gap_days": 1,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 1576,
-        "pct": 56.9
+        "n": 1577,
+        "pct": 56.91
       },
       "Compression Day": {
         "n": 473,
-        "pct": 17.08
+        "pct": 17.07
       },
       "Volatile Day": {
         "n": 303,
-        "pct": 10.94
+        "pct": 10.93
       },
       "Volatile Reversal Day": {
         "n": 113,
@@ -5148,7 +5148,7 @@ const BRENT_DATA = {
       },
       "Quiet Drift Day (Down)": {
         "n": 32,
-        "pct": 1.16
+        "pct": 1.15
       }
     },
     "extreme_timing_by_profile": {
@@ -5156,7 +5156,7 @@ const BRENT_DATA = {
         "Late_Push": 841,
         "Late_Resolution": 409,
         "Fade_Risk": 228,
-        "Early_Resolution": 52,
+        "Early_Resolution": 53,
         "Insufficient_History": 46
       },
       "Compression Day": {
@@ -5211,7 +5211,7 @@ const BRENT_DATA = {
         "median": 104.0
       },
       "Normal Day": {
-        "mean": 195.0,
+        "mean": 195.2,
         "median": 170.0
       },
       "Quiet Drift Day (Down)": {
@@ -5240,48 +5240,48 @@ const BRENT_DATA = {
       }
     },
     "nfp": {
-      "n_nfp_days": 124,
+      "n_nfp_days": 125,
       "n_other_fridays": 421,
       "nfp_profile_distribution": {
         "Normal Day": {
-          "n": 74,
-          "pct": 59.68,
-          "mean_range_pips": 208.1,
-          "median_range_pips": 186.0
+          "n": 75,
+          "pct": 60.0,
+          "mean_range_pips": 210.8,
+          "median_range_pips": 188.0
         },
         "Compression Day": {
           "n": 20,
-          "pct": 16.13,
+          "pct": 16.0,
           "mean_range_pips": 110.4,
           "median_range_pips": 102.0
         },
         "Volatile Day": {
           "n": 12,
-          "pct": 9.68,
+          "pct": 9.6,
           "mean_range_pips": 353.2,
           "median_range_pips": 295.5
         },
         "Trend Day (Up)": {
           "n": 8,
-          "pct": 6.45,
+          "pct": 6.4,
           "mean_range_pips": 412.2,
           "median_range_pips": 284.0
         },
         "Volatile Reversal Day": {
           "n": 7,
-          "pct": 5.65,
+          "pct": 5.6,
           "mean_range_pips": 391.9,
           "median_range_pips": 381.0
         },
         "Trend Day (Down)": {
           "n": 2,
-          "pct": 1.61,
+          "pct": 1.6,
           "mean_range_pips": 392.0,
           "median_range_pips": 392.0
         },
         "Quiet Drift Day (Down)": {
           "n": 1,
-          "pct": 0.81,
+          "pct": 0.8,
           "mean_range_pips": 104.0,
           "median_range_pips": 104.0
         }
@@ -6540,109 +6540,109 @@ const BRENT_DATA = {
         "n_days": 1517
       },
       "1": {
-        "mean_range_pips": 44.42,
-        "mean_activity_pips": 153.62,
-        "n_days": 2298
+        "mean_range_pips": 44.43,
+        "mean_activity_pips": 153.71,
+        "n_days": 2299
       },
       "2": {
-        "mean_range_pips": 32.49,
-        "mean_activity_pips": 113.31,
-        "n_days": 2241
+        "mean_range_pips": 32.51,
+        "mean_activity_pips": 113.37,
+        "n_days": 2242
       },
       "3": {
-        "mean_range_pips": 25.33,
-        "mean_activity_pips": 89.05,
-        "n_days": 2198
+        "mean_range_pips": 25.38,
+        "mean_activity_pips": 89.15,
+        "n_days": 2199
       },
       "4": {
-        "mean_range_pips": 20.45,
-        "mean_activity_pips": 68.26,
-        "n_days": 2100
+        "mean_range_pips": 20.49,
+        "mean_activity_pips": 68.39,
+        "n_days": 2101
       },
       "5": {
-        "mean_range_pips": 30.69,
-        "mean_activity_pips": 102.48,
-        "n_days": 2218
+        "mean_range_pips": 30.71,
+        "mean_activity_pips": 102.56,
+        "n_days": 2219
       },
       "6": {
-        "mean_range_pips": 35.9,
-        "mean_activity_pips": 131.06,
-        "n_days": 2347
+        "mean_range_pips": 35.91,
+        "mean_activity_pips": 131.14,
+        "n_days": 2348
       },
       "7": {
-        "mean_range_pips": 46.04,
-        "mean_activity_pips": 167.84,
-        "n_days": 2407
+        "mean_range_pips": 46.06,
+        "mean_activity_pips": 167.91,
+        "n_days": 2408
       },
       "8": {
-        "mean_range_pips": 56.17,
-        "mean_activity_pips": 210.41,
-        "n_days": 2416
+        "mean_range_pips": 56.22,
+        "mean_activity_pips": 210.57,
+        "n_days": 2417
       },
       "9": {
-        "mean_range_pips": 52.84,
-        "mean_activity_pips": 187.82,
-        "n_days": 2414
+        "mean_range_pips": 52.87,
+        "mean_activity_pips": 187.9,
+        "n_days": 2415
       },
       "10": {
-        "mean_range_pips": 47.26,
-        "mean_activity_pips": 170.15,
-        "n_days": 2418
+        "mean_range_pips": 47.31,
+        "mean_activity_pips": 170.26,
+        "n_days": 2419
       },
       "11": {
-        "mean_range_pips": 46.25,
-        "mean_activity_pips": 165.36,
-        "n_days": 2418
+        "mean_range_pips": 46.26,
+        "mean_activity_pips": 165.41,
+        "n_days": 2419
       },
       "12": {
-        "mean_range_pips": 51.37,
-        "mean_activity_pips": 187.85,
-        "n_days": 2420
+        "mean_range_pips": 51.41,
+        "mean_activity_pips": 187.97,
+        "n_days": 2421
       },
       "13": {
-        "mean_range_pips": 70.9,
-        "mean_activity_pips": 258.32,
-        "n_days": 2419
+        "mean_range_pips": 70.93,
+        "mean_activity_pips": 258.38,
+        "n_days": 2420
       },
       "14": {
-        "mean_range_pips": 76.61,
-        "mean_activity_pips": 279.16,
-        "n_days": 2419
+        "mean_range_pips": 76.64,
+        "mean_activity_pips": 279.3,
+        "n_days": 2420
       },
       "15": {
-        "mean_range_pips": 72.89,
-        "mean_activity_pips": 267.54,
-        "n_days": 2418
+        "mean_range_pips": 72.91,
+        "mean_activity_pips": 267.59,
+        "n_days": 2419
       },
       "16": {
-        "mean_range_pips": 60.12,
-        "mean_activity_pips": 221.82,
-        "n_days": 2405
+        "mean_range_pips": 60.15,
+        "mean_activity_pips": 221.88,
+        "n_days": 2406
       },
       "17": {
         "mean_range_pips": 53.25,
-        "mean_activity_pips": 193.16,
-        "n_days": 2371
+        "mean_activity_pips": 193.2,
+        "n_days": 2372
       },
       "18": {
-        "mean_range_pips": 53.74,
-        "mean_activity_pips": 193.14,
-        "n_days": 2353
+        "mean_range_pips": 53.77,
+        "mean_activity_pips": 193.17,
+        "n_days": 2354
       },
       "19": {
-        "mean_range_pips": 38.0,
-        "mean_activity_pips": 134.17,
-        "n_days": 2327
+        "mean_range_pips": 38.02,
+        "mean_activity_pips": 134.24,
+        "n_days": 2328
       },
       "20": {
-        "mean_range_pips": 30.18,
-        "mean_activity_pips": 101.51,
-        "n_days": 2006
+        "mean_range_pips": 30.2,
+        "mean_activity_pips": 101.57,
+        "n_days": 2007
       },
       "21": {
-        "mean_range_pips": 24.43,
-        "mean_activity_pips": 79.38,
-        "n_days": 599
+        "mean_range_pips": 24.44,
+        "mean_activity_pips": 79.54,
+        "n_days": 600
       },
       "22": {
         "mean_range_pips": 46.27,
@@ -6667,15 +6667,15 @@ const BRENT_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 32.8,
-        "mean_activity_pips": 112.16
+        "mean_range_pips": 32.82,
+        "mean_activity_pips": 112.23
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 46.04,
-        "mean_activity_pips": 167.84
+        "mean_range_pips": 46.06,
+        "mean_activity_pips": 167.91
       },
       "london_only": {
         "hours": [
@@ -6684,8 +6684,8 @@ const BRENT_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 50.63,
-        "mean_activity_pips": 183.44
+        "mean_range_pips": 50.66,
+        "mean_activity_pips": 183.53
       },
       "london_ny_overlap": {
         "hours": [
@@ -6694,8 +6694,8 @@ const BRENT_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 67.94,
-        "mean_activity_pips": 248.22
+        "mean_range_pips": 67.97,
+        "mean_activity_pips": 248.31
       },
       "ny_only": {
         "hours": [
@@ -6705,54 +6705,54 @@ const BRENT_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 47.06,
-        "mean_activity_pips": 168.76
+        "mean_range_pips": 47.08,
+        "mean_activity_pips": 168.81
       }
     },
     "asset": "BRENT"
   },
   "range_forecast": {
     "asset": "BRENT",
-    "as_of": "2026-11-05",
+    "as_of": "2026-11-06",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 445.8,
+    "adr20": 453.1,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-06",
-        "mean": 544.4,
-        "q10": 339.1,
-        "q90": 889.3,
-        "q10_raw": 321.5,
-        "q90_raw": 793.3
+        "target_date": "2026-11-09",
+        "mean": 459.3,
+        "q10": 286.1,
+        "q90": 759.8,
+        "q10_raw": 270.8,
+        "q90_raw": 677.7
       },
       "h5": {
-        "mean": 514.8
+        "mean": 469.2
       },
       "h20": {
-        "mean": 457.4
+        "mean": 434.1
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.879,
-        "h5": 0.883,
-        "h20": 0.868
+        "h1": 0.88,
+        "h5": 0.885,
+        "h20": 0.87
       },
       "mae": {
         "h1": {
-          "timesfm": 96.6,
-          "adr20": 110.0
+          "timesfm": 96.7,
+          "adr20": 109.9
         },
         "h5": {
-          "timesfm": 74.8,
-          "adr20": 84.7
+          "timesfm": 75.5,
+          "adr20": 85.4
         },
         "h20": {
-          "timesfm": 73.5,
-          "adr20": 84.7
+          "timesfm": 73.6,
+          "adr20": 84.6
         }
       },
       "n": {
@@ -6760,21 +6760,14 @@ const BRENT_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-11-27",
-      "to": "2026-11-04",
+      "from": "2024-11-28",
+      "to": "2026-11-05",
       "band_n": 500,
-      "band_coverage": 0.778,
+      "band_coverage": 0.78,
       "above_q90": 0.124,
-      "below_q10": 0.098
+      "below_q10": 0.096
     },
     "recent": [
-      {
-        "date": "2026-08-14",
-        "actual": 226.0,
-        "mean": 337.3,
-        "q10": 209.2,
-        "q90": 549.0
-      },
       {
         "date": "2026-08-17",
         "actual": 318.0,
@@ -7190,10 +7183,17 @@ const BRENT_DATA = {
       },
       {
         "date": "2026-11-06",
-        "actual": null,
+        "actual": 414.0,
         "mean": 544.4,
         "q10": 339.1,
         "q90": 889.3
+      },
+      {
+        "date": "2026-11-09",
+        "actual": null,
+        "mean": 459.3,
+        "q10": 286.1,
+        "q90": 759.8
       }
     ]
   }

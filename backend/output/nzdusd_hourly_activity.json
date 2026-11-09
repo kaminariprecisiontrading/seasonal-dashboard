@@ -3,122 +3,122 @@
     "0": {
       "mean_range_pips": 16.47,
       "mean_activity_pips": 59.72,
-      "n_days": 5768
+      "n_days": 5769
     },
     "1": {
       "mean_range_pips": 15.82,
       "mean_activity_pips": 58.48,
-      "n_days": 5611
+      "n_days": 5612
     },
     "2": {
       "mean_range_pips": 14.04,
       "mean_activity_pips": 52.32,
-      "n_days": 5547
+      "n_days": 5548
     },
     "3": {
       "mean_range_pips": 12.65,
-      "mean_activity_pips": 48.32,
-      "n_days": 5552
+      "mean_activity_pips": 48.31,
+      "n_days": 5553
     },
     "4": {
-      "mean_range_pips": 12.14,
-      "mean_activity_pips": 47.0,
-      "n_days": 5637
+      "mean_range_pips": 12.13,
+      "mean_activity_pips": 46.99,
+      "n_days": 5638
     },
     "5": {
-      "mean_range_pips": 14.53,
+      "mean_range_pips": 14.52,
       "mean_activity_pips": 55.5,
-      "n_days": 6101
+      "n_days": 6102
     },
     "6": {
       "mean_range_pips": 17.14,
       "mean_activity_pips": 65.82,
-      "n_days": 6376
+      "n_days": 6377
     },
     "7": {
       "mean_range_pips": 17.88,
-      "mean_activity_pips": 69.31,
-      "n_days": 6441
+      "mean_activity_pips": 69.3,
+      "n_days": 6442
     },
     "8": {
       "mean_range_pips": 17.18,
       "mean_activity_pips": 66.74,
-      "n_days": 6365
+      "n_days": 6366
     },
     "9": {
       "mean_range_pips": 15.72,
       "mean_activity_pips": 62.3,
-      "n_days": 6300
+      "n_days": 6301
     },
     "10": {
       "mean_range_pips": 15.21,
-      "mean_activity_pips": 60.45,
-      "n_days": 6272
+      "mean_activity_pips": 60.44,
+      "n_days": 6273
     },
     "11": {
       "mean_range_pips": 17.34,
-      "mean_activity_pips": 66.84,
-      "n_days": 6379
+      "mean_activity_pips": 66.83,
+      "n_days": 6380
     },
     "12": {
       "mean_range_pips": 20.22,
-      "mean_activity_pips": 76.7,
-      "n_days": 6454
+      "mean_activity_pips": 76.69,
+      "n_days": 6455
     },
     "13": {
       "mean_range_pips": 21.64,
       "mean_activity_pips": 82.81,
-      "n_days": 6406
+      "n_days": 6407
     },
     "14": {
       "mean_range_pips": 21.14,
       "mean_activity_pips": 81.21,
-      "n_days": 6384
+      "n_days": 6385
     },
     "15": {
       "mean_range_pips": 18.28,
       "mean_activity_pips": 71.21,
-      "n_days": 6087
+      "n_days": 6088
     },
     "16": {
       "mean_range_pips": 14.96,
-      "mean_activity_pips": 58.61,
-      "n_days": 5723
+      "mean_activity_pips": 58.6,
+      "n_days": 5724
     },
     "17": {
       "mean_range_pips": 14.31,
-      "mean_activity_pips": 54.27,
-      "n_days": 5594
+      "mean_activity_pips": 54.26,
+      "n_days": 5595
     },
     "18": {
       "mean_range_pips": 14.65,
       "mean_activity_pips": 53.43,
-      "n_days": 5561
+      "n_days": 5562
     },
     "19": {
       "mean_range_pips": 13.5,
-      "mean_activity_pips": 48.96,
-      "n_days": 5421
+      "mean_activity_pips": 48.95,
+      "n_days": 5422
     },
     "20": {
       "mean_range_pips": 13.06,
       "mean_activity_pips": 45.09,
-      "n_days": 4813
+      "n_days": 4814
     },
     "21": {
       "mean_range_pips": 19.04,
-      "mean_activity_pips": 50.0,
-      "n_days": 4989
+      "mean_activity_pips": 49.99,
+      "n_days": 4990
     },
     "22": {
       "mean_range_pips": 17.78,
       "mean_activity_pips": 48.21,
-      "n_days": 5511
+      "n_days": 5512
     },
     "23": {
       "mean_range_pips": 14.56,
       "mean_activity_pips": 51.89,
-      "n_days": 5789
+      "n_days": 5790
     }
   },
   "session_windows": {
@@ -141,7 +141,7 @@
         7
       ],
       "mean_range_pips": 17.88,
-      "mean_activity_pips": 69.31
+      "mean_activity_pips": 69.3
     },
     "london_only": {
       "hours": [

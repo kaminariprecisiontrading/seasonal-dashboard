@@ -4,15 +4,15 @@ const EURUSD_DATA = {
   "stats": {
     "asset": "EURUSD",
     "unit": "pips",
-    "as_of": "2026-11-05",
-    "n_days": 8784,
+    "as_of": "2026-11-06",
+    "n_days": 8785,
     "n_weeks": 1762,
     "n_months": 407,
     "n_years": 34,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 8784,
+          "n": 8785,
           "mean": 103.6,
           "median": 90.2,
           "std": 57.0,
@@ -38,14 +38,14 @@ const EURUSD_DATA = {
           "p75": 126.6,
           "p80": 138.0,
           "p90": 173.6,
-          "p95": 210.7,
+          "p95": 210.6,
           "compression_threshold_pips": 60.3,
           "expansion_threshold_pips": 138.0
         },
         "5y": {
           "n": 1298,
-          "mean": 77.6,
-          "median": 69.1,
+          "mean": 77.7,
+          "median": 69.2,
           "std": 37.9,
           "min": 18.4,
           "max": 341.0,
@@ -65,17 +65,17 @@ const EURUSD_DATA = {
           "p10": 39.6,
           "p20": 48.1,
           "p25": 51.7,
-          "p50": 69.1,
-          "p75": 94.5,
-          "p80": 102.0,
+          "p50": 69.2,
+          "p75": 94.6,
+          "p80": 102.4,
           "p90": 124.0,
           "p95": 148.3,
           "compression_threshold_pips": 48.1,
-          "expansion_threshold_pips": 102.0
+          "expansion_threshold_pips": 102.4
         },
         "1y": {
           "n": 260,
-          "mean": 62.1,
+          "mean": 62.4,
           "median": 55.5,
           "std": 29.3,
           "min": 18.4,
@@ -93,29 +93,29 @@ const EURUSD_DATA = {
             "n_values_tied": 3
           },
           "p05": 28.7,
-          "p10": 33.7,
-          "p20": 39.4,
-          "p25": 42.1,
+          "p10": 34.0,
+          "p20": 39.6,
+          "p25": 42.2,
           "p50": 55.5,
-          "p75": 74.6,
-          "p80": 79.4,
-          "p90": 98.3,
+          "p75": 75.0,
+          "p80": 79.5,
+          "p90": 98.5,
           "p95": 118.9,
-          "compression_threshold_pips": 39.4,
-          "expansion_threshold_pips": 79.4
+          "compression_threshold_pips": 39.6,
+          "expansion_threshold_pips": 79.5
         },
         "3mo": {
           "n": 67,
-          "mean": 55.0,
-          "median": 53.8,
-          "std": 23.4,
+          "mean": 56.0,
+          "median": 53.9,
+          "std": 24.0,
           "min": 18.4,
           "max": 121.7,
           "mode_binned": {
-            "bin_low": 40.0,
-            "bin_high": 43.6,
-            "count": 7,
-            "pct_of_n": 10.4
+            "bin_low": 40.2,
+            "bin_high": 43.8,
+            "count": 6,
+            "pct_of_n": 9.0
           },
           "mode_raw": {
             "value": 33.7,
@@ -126,23 +126,23 @@ const EURUSD_DATA = {
           "p05": 25.4,
           "p10": 28.3,
           "p20": 34.2,
-          "p25": 37.5,
-          "p50": 53.8,
-          "p75": 64.9,
-          "p80": 73.7,
-          "p90": 92.5,
-          "p95": 98.3,
+          "p25": 38.8,
+          "p50": 53.9,
+          "p75": 66.3,
+          "p80": 77.5,
+          "p90": 94.6,
+          "p95": 99.1,
           "compression_threshold_pips": 34.2,
-          "expansion_threshold_pips": 73.7
+          "expansion_threshold_pips": 77.5
         }
       },
       "latest_adr": {
-        "ADR_5": 70.8,
-        "ADR_14": 60.5,
-        "ADR_20": 63.7,
+        "ADR_5": 75.9,
+        "ADR_14": 64.0,
+        "ADR_20": 66.2,
         "fixed_multiple_thresholds": {
-          "compression_pips": 44.6,
-          "expansion_pips": 82.8,
+          "compression_pips": 46.3,
+          "expansion_pips": 86.1,
           "based_on": "ADR_20"
         }
       }
@@ -188,8 +188,8 @@ const EURUSD_DATA = {
           "min": 61.9,
           "max": 593.7,
           "mode_binned": {
-            "bin_low": 113.4,
-            "bin_high": 124.4,
+            "bin_low": 168.4,
+            "bin_high": 179.4,
             "count": 22,
             "pct_of_n": 8.4
           },
@@ -213,7 +213,7 @@ const EURUSD_DATA = {
         },
         "1y": {
           "n": 53,
-          "mean": 135.2,
+          "mean": 135.6,
           "median": 122.1,
           "std": 51.4,
           "min": 68.6,
@@ -221,8 +221,8 @@ const EURUSD_DATA = {
           "mode_binned": {
             "bin_low": 118.5,
             "bin_high": 127.3,
-            "count": 7,
-            "pct_of_n": 13.2
+            "count": 6,
+            "pct_of_n": 11.3
           },
           "mode_raw": {
             "value": 68.6,
@@ -244,9 +244,9 @@ const EURUSD_DATA = {
         },
         "3mo": {
           "n": 14,
-          "mean": 116.3,
+          "mean": 117.6,
           "median": 118.8,
-          "std": 33.7,
+          "std": 34.4,
           "min": 73.5,
           "max": 176.1,
           "mode_binned": {
@@ -266,7 +266,7 @@ const EURUSD_DATA = {
           "p20": 80.5,
           "p25": 81.6,
           "p50": 118.8,
-          "p75": 141.4,
+          "p75": 142.8,
           "p80": 146.3,
           "p90": 154.9,
           "p95": 163.4,
@@ -279,10 +279,10 @@ const EURUSD_DATA = {
       "windowed_distribution": {
         "full": {
           "n": 407,
-          "mean": 485.5,
+          "mean": 485.6,
           "median": 435.0,
           "std": 233.1,
-          "min": 123.4,
+          "min": 141.9,
           "max": 2167.0,
           "mode_binned": {
             "bin_low": 396.0,
@@ -310,10 +310,10 @@ const EURUSD_DATA = {
         },
         "5y": {
           "n": 60,
-          "mean": 367.9,
+          "mean": 368.2,
           "median": 352.2,
-          "std": 143.0,
-          "min": 123.4,
+          "std": 142.5,
+          "min": 141.9,
           "max": 794.9,
           "mode_binned": {
             "bin_low": 334.4,
@@ -341,24 +341,24 @@ const EURUSD_DATA = {
         },
         "1y": {
           "n": 13,
-          "mean": 268.5,
+          "mean": 270.0,
           "median": 220.3,
-          "std": 106.2,
-          "min": 123.4,
+          "std": 104.2,
+          "min": 141.9,
           "max": 505.3,
           "mode_binned": {
-            "bin_low": 338.0,
-            "bin_high": 351.6,
+            "bin_low": 181.9,
+            "bin_high": 195.2,
             "count": 3,
             "pct_of_n": 23.1
           },
           "mode_raw": {
-            "value": 123.4,
+            "value": 141.9,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 161.3,
+          "p05": 168.7,
           "p10": 186.7,
           "p20": 189.8,
           "p25": 193.8,
@@ -372,33 +372,33 @@ const EURUSD_DATA = {
         },
         "3mo": {
           "n": 4,
-          "mean": 227.3,
+          "mean": 231.9,
           "median": 221.6,
-          "std": 90.1,
-          "min": 123.4,
+          "std": 83.2,
+          "min": 141.9,
           "max": 342.5,
           "mode_binned": {
-            "bin_low": 202.8,
-            "bin_high": 212.3,
+            "bin_low": 204.4,
+            "bin_high": 213.1,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 123.4,
+            "value": 141.9,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 136.6,
-          "p10": 149.7,
-          "p20": 176.0,
-          "p25": 189.2,
+          "p05": 152.3,
+          "p10": 162.7,
+          "p20": 183.4,
+          "p25": 193.8,
           "p50": 221.6,
           "p75": 259.8,
           "p80": 276.3,
           "p90": 309.4,
           "p95": 326.0,
-          "compression_threshold_pips": 176.0,
+          "compression_threshold_pips": 183.4,
           "expansion_threshold_pips": 276.3
         }
       }
@@ -437,7 +437,7 @@ const EURUSD_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7223,
+          "n": 7224,
           "mode_bucket_start_utc": "12:30",
           "mode_bucket_end_utc": "13:00",
           "mode_bucket_pct_of_days": 3.8,
@@ -447,8 +447,8 @@ const EURUSD_DATA = {
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 110,
-              "pct": 1.52
+              "count": 111,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "00:30",
@@ -692,14 +692,14 @@ const EURUSD_DATA = {
           "mode_bucket_start_utc": "14:00",
           "mode_bucket_end_utc": "14:30",
           "mode_bucket_pct_of_days": 4.6,
-          "circular_mean_utc": "14:59",
+          "circular_mean_utc": "14:58",
           "circular_median_utc": "14:55",
           "concentration_R": 0.165,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 38,
-              "pct": 2.93
+              "count": 39,
+              "pct": 3.0
             },
             {
               "bucket_start_utc": "00:30",
@@ -903,8 +903,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 29,
-              "pct": 2.23
+              "count": 28,
+              "pct": 2.16
             },
             {
               "bucket_start_utc": "21:00",
@@ -943,14 +943,14 @@ const EURUSD_DATA = {
           "mode_bucket_start_utc": "13:30",
           "mode_bucket_end_utc": "14:00",
           "mode_bucket_pct_of_days": 4.6,
-          "circular_mean_utc": "15:48",
+          "circular_mean_utc": "15:50",
           "circular_median_utc": "15:20",
-          "concentration_R": 0.153,
+          "concentration_R": 0.154,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "00:30",
@@ -964,8 +964,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "02:00",
@@ -1194,14 +1194,14 @@ const EURUSD_DATA = {
           "mode_bucket_start_utc": "08:00",
           "mode_bucket_end_utc": "08:30",
           "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "08:24",
-          "circular_median_utc": "08:05",
-          "concentration_R": 0.069,
+          "circular_mean_utc": "07:25",
+          "circular_median_utc": "07:35",
+          "concentration_R": 0.076,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "00:30",
@@ -1385,8 +1385,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "19:00",
@@ -1447,7 +1447,7 @@ const EURUSD_DATA = {
           "pct": 25.6
         },
         "Asian": {
-          "n": 1720,
+          "n": 1721,
           "pct": 23.8
         },
         "New_York": {
@@ -1471,7 +1471,7 @@ const EURUSD_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7223,
+          "n": 7224,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 4.2,
@@ -1617,12 +1617,12 @@ const EURUSD_DATA = {
             {
               "bucket_start_utc": "13:30",
               "count": 251,
-              "pct": 3.48
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 288,
-              "pct": 3.99
+              "count": 289,
+              "pct": 4.0
             },
             {
               "bucket_start_utc": "14:30",
@@ -1862,8 +1862,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 46,
-              "pct": 3.54
+              "count": 45,
+              "pct": 3.47
             },
             {
               "bucket_start_utc": "13:30",
@@ -1872,8 +1872,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 47,
-              "pct": 3.62
+              "count": 48,
+              "pct": 3.7
             },
             {
               "bucket_start_utc": "14:30",
@@ -1979,7 +1979,7 @@ const EURUSD_DATA = {
           "mode_bucket_pct_of_days": 6.9,
           "circular_mean_utc": "17:43",
           "circular_median_utc": "17:05",
-          "concentration_R": 0.3,
+          "concentration_R": 0.301,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2227,10 +2227,10 @@ const EURUSD_DATA = {
           "n": 67,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 11.9,
-          "circular_mean_utc": "16:41",
-          "circular_median_utc": "16:20",
-          "concentration_R": 0.287,
+          "mode_bucket_pct_of_days": 10.4,
+          "circular_mean_utc": "16:24",
+          "circular_median_utc": "16:15",
+          "concentration_R": 0.294,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2374,8 +2374,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "14:30",
@@ -2444,8 +2444,8 @@ const EURUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 8,
-              "pct": 11.94
+              "count": 7,
+              "pct": 10.45
             },
             {
               "bucket_start_utc": "21:30",
@@ -2477,7 +2477,7 @@ const EURUSD_DATA = {
       },
       "session_distribution": {
         "London_NY_Overlap": {
-          "n": 2012,
+          "n": 2013,
           "pct": 27.9
         },
         "Asian": {
@@ -2503,7 +2503,7 @@ const EURUSD_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 7223,
+      "n_days": 7224,
       "same_session_n": 436,
       "same_session_pct": 6.04,
       "pairs": {
@@ -2522,7 +2522,7 @@ const EURUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 644,
-            "pct": 8.92
+            "pct": 8.91
           },
           "New_York": {
             "n": 496,
@@ -2548,7 +2548,7 @@ const EURUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 160,
-            "pct": 2.22
+            "pct": 2.21
           },
           "New_York": {
             "n": 113,
@@ -2587,8 +2587,8 @@ const EURUSD_DATA = {
         },
         "London_NY_Overlap": {
           "Asian": {
-            "n": 738,
-            "pct": 10.22
+            "n": 739,
+            "pct": 10.23
           },
           "Asian_London_Overlap": {
             "n": 193,
@@ -2614,11 +2614,11 @@ const EURUSD_DATA = {
         "New_York": {
           "Asian": {
             "n": 566,
-            "pct": 7.84
+            "pct": 7.83
           },
           "Asian_London_Overlap": {
             "n": 121,
-            "pct": 1.68
+            "pct": 1.67
           },
           "London": {
             "n": 286,
@@ -2666,7 +2666,7 @@ const EURUSD_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 7223,
+      "n_days": 7224,
       "same_hour_n": 44,
       "same_hour_pct": 0.61,
       "pairs": {
@@ -4044,8 +4044,8 @@ const EURUSD_DATA = {
         },
         "14": {
           "0": {
-            "n": 24,
-            "pct": 0.33
+            "n": 25,
+            "pct": 0.35
           },
           "1": {
             "n": 23,
@@ -5026,10 +5026,10 @@ const EURUSD_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 329,
-        "mean_range_pips": 114.4,
+        "n": 330,
+        "mean_range_pips": 114.3,
         "median_range_pips": 103.0,
-        "extreme_in_release_window_pct": 42.2
+        "extreme_in_release_window_pct": 42.4
       },
       "other_fridays": {
         "n": 1113,
@@ -5050,8 +5050,8 @@ const EURUSD_DATA = {
       "Sunday": 2
     },
     "weekly_low_day": {
-      "Friday": 538,
-      "Monday": 495,
+      "Friday": 539,
+      "Monday": 494,
       "Thursday": 272,
       "Tuesday": 235,
       "Wednesday": 221,
@@ -5147,13 +5147,13 @@ const EURUSD_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 8725,
+    "n_labeled_days": 8726,
     "n_data_gap_days": 8,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
         "n": 4995,
-        "pct": 57.25
+        "pct": 57.24
       },
       "Compression Day": {
         "n": 1690,
@@ -5168,8 +5168,8 @@ const EURUSD_DATA = {
         "pct": 4.42
       },
       "Trend Day (Down)": {
-        "n": 359,
-        "pct": 4.11
+        "n": 360,
+        "pct": 4.13
       },
       "Volatile Reversal Day": {
         "n": 227,
@@ -5214,7 +5214,7 @@ const EURUSD_DATA = {
         "Fade_Risk": 1
       },
       "Trend Day (Down)": {
-        "Late_Push": 229,
+        "Late_Push": 230,
         "Late_Resolution": 64,
         "Insufficient_History": 62,
         "Fade_Risk": 3,
@@ -5260,7 +5260,7 @@ const EURUSD_DATA = {
         "median": 54.0
       },
       "Trend Day (Down)": {
-        "mean": 178.9,
+        "mean": 178.7,
         "median": 162.0
       },
       "Trend Day (Up)": {
@@ -5277,42 +5277,42 @@ const EURUSD_DATA = {
       }
     },
     "nfp": {
-      "n_nfp_days": 393,
+      "n_nfp_days": 394,
       "n_other_fridays": 1344,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 221,
-          "pct": 56.23,
+          "pct": 56.09,
           "mean_range_pips": 100.3,
           "median_range_pips": 94.9
         },
         "Volatile Day": {
           "n": 45,
-          "pct": 11.45,
+          "pct": 11.42,
           "mean_range_pips": 153.3,
           "median_range_pips": 139.2
         },
         "Compression Day": {
           "n": 42,
-          "pct": 10.69,
+          "pct": 10.66,
           "mean_range_pips": 57.7,
           "median_range_pips": 53.9
         },
         "Trend Day (Up)": {
           "n": 31,
-          "pct": 7.89,
+          "pct": 7.87,
           "mean_range_pips": 194.8,
           "median_range_pips": 190.3
         },
         "Trend Day (Down)": {
-          "n": 28,
-          "pct": 7.12,
-          "mean_range_pips": 195.1,
-          "median_range_pips": 181.7
+          "n": 29,
+          "pct": 7.36,
+          "mean_range_pips": 192.0,
+          "median_range_pips": 180.0
         },
         "Volatile Reversal Day": {
           "n": 19,
-          "pct": 4.83,
+          "pct": 4.82,
           "mean_range_pips": 159.8,
           "median_range_pips": 147.0
         },
@@ -5422,8 +5422,8 @@ const EURUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 596,
-        "Late_Resolution": 203,
+        "Late_Push": 595,
+        "Late_Resolution": 204,
         "Fade_Risk": 135,
         "Early_Resolution": 31,
         "Insufficient_History": 1
@@ -5560,8 +5560,8 @@ const EURUSD_DATA = {
             "pct": 1.82
           },
           "Wednesday": {
-            "n": 78,
-            "pct": 4.43
+            "n": 77,
+            "pct": 4.38
           },
           "Thursday": {
             "n": 145,
@@ -5648,8 +5648,8 @@ const EURUSD_DATA = {
             "pct": 7.11
           },
           "Wednesday": {
-            "n": 92,
-            "pct": 5.23
+            "n": 93,
+            "pct": 5.29
           },
           "Thursday": {
             "n": 48,
@@ -5945,8 +5945,8 @@ const EURUSD_DATA = {
         "pct": 48.15
       },
       "Compression Year": {
-        "n": 7,
-        "pct": 25.93
+        "n": 6,
+        "pct": 22.22
       },
       "Volatile Reversal Year": {
         "n": 3,
@@ -5956,11 +5956,11 @@ const EURUSD_DATA = {
         "n": 2,
         "pct": 7.41
       },
-      "Trend Year (Up)": {
-        "n": 1,
-        "pct": 3.7
-      },
       "Quiet Drift Year (Down)": {
+        "n": 2,
+        "pct": 7.41
+      },
+      "Trend Year (Up)": {
         "n": 1,
         "pct": 3.7
       }
@@ -5972,7 +5972,7 @@ const EURUSD_DATA = {
         "Fade_Risk": 1
       },
       "Compression Year": {
-        "Late_Push": 5,
+        "Late_Push": 4,
         "Fade_Risk": 1,
         "Late_Resolution": 1
       },
@@ -5984,11 +5984,12 @@ const EURUSD_DATA = {
       "Volatile Year": {
         "Late_Push": 2
       },
-      "Trend Year (Up)": {
+      "Quiet Drift Year (Down)": {
+        "Late_Resolution": 1,
         "Late_Push": 1
       },
-      "Quiet Drift Year (Down)": {
-        "Late_Resolution": 1
+      "Trend Year (Up)": {
+        "Late_Push": 1
       }
     },
     "extreme_spread_by_profile": {
@@ -5996,7 +5997,7 @@ const EURUSD_DATA = {
         "Spread": 13
       },
       "Compression Year": {
-        "Spread": 7
+        "Spread": 6
       },
       "Volatile Reversal Year": {
         "Spread": 3
@@ -6004,25 +6005,25 @@ const EURUSD_DATA = {
       "Volatile Year": {
         "Spread": 2
       },
-      "Trend Year (Up)": {
-        "Spread": 1
-      },
       "Quiet Drift Year (Down)": {
+        "Spread": 2
+      },
+      "Trend Year (Up)": {
         "Spread": 1
       }
     },
     "avg_range_pips_by_profile": {
       "Compression Year": {
-        "mean": 1077.3,
-        "median": 1147.6
+        "mean": 1093.9,
+        "median": 1155.4
       },
       "Normal Year": {
         "mean": 1743.2,
         "median": 1752.5
       },
       "Quiet Drift Year (Down)": {
-        "mean": 881.9,
-        "median": 881.9
+        "mean": 929.9,
+        "median": 929.9
       },
       "Trend Year (Up)": {
         "mean": 2314.0,
@@ -6653,122 +6654,122 @@ const EURUSD_DATA = {
       "0": {
         "mean_range_pips": 15.81,
         "mean_activity_pips": 62.0,
-        "n_days": 6919
+        "n_days": 6920
       },
       "1": {
         "mean_range_pips": 14.41,
         "mean_activity_pips": 58.54,
-        "n_days": 6826
+        "n_days": 6827
       },
       "2": {
         "mean_range_pips": 12.63,
         "mean_activity_pips": 52.92,
-        "n_days": 6696
+        "n_days": 6697
       },
       "3": {
         "mean_range_pips": 12.16,
         "mean_activity_pips": 51.01,
-        "n_days": 6856
+        "n_days": 6857
       },
       "4": {
         "mean_range_pips": 13.38,
-        "mean_activity_pips": 54.65,
-        "n_days": 7032
+        "mean_activity_pips": 54.64,
+        "n_days": 7033
       },
       "5": {
         "mean_range_pips": 18.35,
-        "mean_activity_pips": 70.86,
-        "n_days": 7155
+        "mean_activity_pips": 70.85,
+        "n_days": 7156
       },
       "6": {
         "mean_range_pips": 23.37,
         "mean_activity_pips": 88.07,
-        "n_days": 7175
+        "n_days": 7176
       },
       "7": {
         "mean_range_pips": 25.29,
         "mean_activity_pips": 94.92,
-        "n_days": 7177
+        "n_days": 7178
       },
       "8": {
         "mean_range_pips": 23.74,
         "mean_activity_pips": 91.27,
-        "n_days": 7176
+        "n_days": 7177
       },
       "9": {
         "mean_range_pips": 21.71,
-        "mean_activity_pips": 85.37,
-        "n_days": 7172
+        "mean_activity_pips": 85.36,
+        "n_days": 7173
       },
       "10": {
         "mean_range_pips": 21.08,
-        "mean_activity_pips": 83.28,
-        "n_days": 7175
+        "mean_activity_pips": 83.27,
+        "n_days": 7176
       },
       "11": {
         "mean_range_pips": 25.48,
-        "mean_activity_pips": 94.4,
-        "n_days": 7186
+        "mean_activity_pips": 94.39,
+        "n_days": 7187
       },
       "12": {
         "mean_range_pips": 29.42,
-        "mean_activity_pips": 107.44,
-        "n_days": 7186
+        "mean_activity_pips": 107.43,
+        "n_days": 7187
       },
       "13": {
-        "mean_range_pips": 30.71,
+        "mean_range_pips": 30.7,
         "mean_activity_pips": 113.69,
-        "n_days": 7188
+        "n_days": 7189
       },
       "14": {
         "mean_range_pips": 29.49,
         "mean_activity_pips": 111.47,
-        "n_days": 7189
+        "n_days": 7190
       },
       "15": {
         "mean_range_pips": 25.09,
-        "mean_activity_pips": 96.68,
-        "n_days": 7149
+        "mean_activity_pips": 96.67,
+        "n_days": 7150
       },
       "16": {
         "mean_range_pips": 20.74,
         "mean_activity_pips": 80.47,
-        "n_days": 7091
+        "n_days": 7092
       },
       "17": {
         "mean_range_pips": 19.26,
         "mean_activity_pips": 73.62,
-        "n_days": 6970
+        "n_days": 6971
       },
       "18": {
         "mean_range_pips": 17.45,
         "mean_activity_pips": 67.61,
-        "n_days": 6840
+        "n_days": 6841
       },
       "19": {
         "mean_range_pips": 14.54,
-        "mean_activity_pips": 57.44,
-        "n_days": 6780
+        "mean_activity_pips": 57.43,
+        "n_days": 6781
       },
       "20": {
         "mean_range_pips": 12.41,
         "mean_activity_pips": 49.49,
-        "n_days": 5993
+        "n_days": 5994
       },
       "21": {
         "mean_range_pips": 11.57,
-        "mean_activity_pips": 45.2,
-        "n_days": 5998
+        "mean_activity_pips": 45.19,
+        "n_days": 5999
       },
       "22": {
         "mean_range_pips": 12.67,
         "mean_activity_pips": 47.87,
-        "n_days": 6614
+        "n_days": 6615
       },
       "23": {
         "mean_range_pips": 14.95,
         "mean_activity_pips": 56.68,
-        "n_days": 6943
+        "n_days": 6944
       }
     },
     "session_windows": {
@@ -6801,7 +6802,7 @@ const EURUSD_DATA = {
           11
         ],
         "mean_range_pips": 23.0,
-        "mean_activity_pips": 88.58
+        "mean_activity_pips": 88.57
       },
       "london_ny_overlap": {
         "hours": [
@@ -6822,52 +6823,52 @@ const EURUSD_DATA = {
           20
         ],
         "mean_range_pips": 16.88,
-        "mean_activity_pips": 65.73
+        "mean_activity_pips": 65.72
       }
     },
     "asset": "EURUSD"
   },
   "range_forecast": {
     "asset": "EURUSD",
-    "as_of": "2026-11-05",
+    "as_of": "2026-11-06",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 63.7,
+    "adr20": 66.2,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-06",
-        "mean": 60.6,
-        "q10": 35.9,
-        "q90": 96.0,
-        "q10_raw": 34.5,
-        "q90_raw": 89.9
+        "target_date": "2026-11-09",
+        "mean": 67.8,
+        "q10": 40.4,
+        "q90": 106.2,
+        "q10_raw": 38.9,
+        "q90_raw": 99.4
       },
       "h5": {
-        "mean": 61.9
+        "mean": 67.1
       },
       "h20": {
-        "mean": 61.2
+        "mean": 64.6
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.936,
-        "h5": 0.894,
-        "h20": 0.858
+        "h1": 0.935,
+        "h5": 0.895,
+        "h20": 0.859
       },
       "mae": {
         "h1": {
           "timesfm": 23.1,
-          "adr20": 24.6
+          "adr20": 24.7
         },
         "h5": {
           "timesfm": 14.7,
           "adr20": 16.4
         },
         "h20": {
-          "timesfm": 11.8,
+          "timesfm": 11.7,
           "adr20": 13.7
         }
       },
@@ -6876,21 +6877,14 @@ const EURUSD_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-11-29",
-      "to": "2026-11-04",
+      "from": "2024-12-02",
+      "to": "2026-11-05",
       "band_n": 500,
-      "band_coverage": 0.788,
-      "above_q90": 0.114,
+      "band_coverage": 0.786,
+      "above_q90": 0.116,
       "below_q10": 0.098
     },
     "recent": [
-      {
-        "date": "2026-08-14",
-        "actual": 61.3,
-        "mean": 46.6,
-        "q10": 24.9,
-        "q90": 73.9
-      },
       {
         "date": "2026-08-17",
         "actual": 53.9,
@@ -7306,10 +7300,17 @@ const EURUSD_DATA = {
       },
       {
         "date": "2026-11-06",
-        "actual": null,
+        "actual": 103.7,
         "mean": 60.6,
         "q10": 35.9,
         "q90": 96.0
+      },
+      {
+        "date": "2026-11-09",
+        "actual": null,
+        "mean": 67.8,
+        "q10": 40.4,
+        "q90": 106.2
       }
     ]
   }

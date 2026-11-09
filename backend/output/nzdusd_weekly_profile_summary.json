@@ -129,7 +129,7 @@
       "median": 100.4
     },
     "Normal Week": {
-      "mean": 163.6,
+      "mean": 163.7,
       "median": 153.1
     },
     "Quiet Drift Week (Down)": {
@@ -220,8 +220,8 @@
           "pct": 0.37
         },
         "Thursday": {
-          "n": 31,
-          "pct": 2.31
+          "n": 30,
+          "pct": 2.24
         },
         "Friday": {
           "n": 87,
@@ -264,8 +264,8 @@
           "pct": 4.62
         },
         "Thursday": {
-          "n": 30,
-          "pct": 2.24
+          "n": 31,
+          "pct": 2.31
         },
         "Friday": {
           "n": 5,

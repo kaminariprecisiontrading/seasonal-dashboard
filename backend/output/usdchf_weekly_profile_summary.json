@@ -38,9 +38,9 @@
   },
   "extreme_timing_by_profile": {
     "Normal Week": {
-      "Late_Push": 472,
+      "Late_Push": 471,
       "Late_Resolution": 155,
-      "Fade_Risk": 96,
+      "Fade_Risk": 97,
       "Early_Resolution": 26
     },
     "Compression Week": {

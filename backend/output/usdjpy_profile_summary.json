@@ -1,10 +1,10 @@
 {
-  "n_labeled_days": 8726,
+  "n_labeled_days": 8727,
   "n_data_gap_days": 7,
   "n_insufficient_history_days": 59,
   "profile_distribution": {
     "Normal Day": {
-      "n": 4978,
+      "n": 4979,
       "pct": 57.05
     },
     "Compression Day": {
@@ -38,7 +38,7 @@
   },
   "extreme_timing_by_profile": {
     "Normal Day": {
-      "Late_Push": 2603,
+      "Late_Push": 2604,
       "Insufficient_History": 878,
       "Late_Resolution": 536,
       "Early_Resolution": 504,
@@ -128,48 +128,48 @@
     }
   },
   "nfp": {
-    "n_nfp_days": 393,
+    "n_nfp_days": 394,
     "n_other_fridays": 1344,
     "nfp_profile_distribution": {
       "Normal Day": {
-        "n": 208,
-        "pct": 52.93,
-        "mean_range_pips": 101.6,
-        "median_range_pips": 99.2
+        "n": 209,
+        "pct": 53.05,
+        "mean_range_pips": 101.8,
+        "median_range_pips": 99.7
       },
       "Volatile Day": {
         "n": 60,
-        "pct": 15.27,
+        "pct": 15.23,
         "mean_range_pips": 163.5,
         "median_range_pips": 154.4
       },
       "Compression Day": {
         "n": 42,
-        "pct": 10.69,
+        "pct": 10.66,
         "mean_range_pips": 58.0,
         "median_range_pips": 59.2
       },
       "Trend Day (Up)": {
         "n": 28,
-        "pct": 7.12,
+        "pct": 7.11,
         "mean_range_pips": 194.2,
         "median_range_pips": 180.8
       },
       "Volatile Reversal Day": {
         "n": 21,
-        "pct": 5.34,
+        "pct": 5.33,
         "mean_range_pips": 182.6,
         "median_range_pips": 169.0
       },
       "Trend Day (Down)": {
         "n": 20,
-        "pct": 5.09,
+        "pct": 5.08,
         "mean_range_pips": 194.5,
         "median_range_pips": 187.4
       },
       "Quiet Drift Day (Up)": {
         "n": 11,
-        "pct": 2.8,
+        "pct": 2.79,
         "mean_range_pips": 63.0,
         "median_range_pips": 63.0
       },

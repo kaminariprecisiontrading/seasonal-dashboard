@@ -24,16 +24,16 @@
       "pct": 3.9
     },
     "Trend Week (Up)": {
-      "n": 51,
-      "pct": 3.43
+      "n": 52,
+      "pct": 3.5
     },
     "Quiet Drift Week (Down)": {
       "n": 32,
       "pct": 2.15
     },
     "Quiet Drift Week (Up)": {
-      "n": 25,
-      "pct": 1.68
+      "n": 24,
+      "pct": 1.61
     }
   },
   "extreme_timing_by_profile": {
@@ -67,7 +67,7 @@
     },
     "Trend Week (Up)": {
       "Late_Push": 42,
-      "Late_Resolution": 9
+      "Late_Resolution": 10
     },
     "Quiet Drift Week (Down)": {
       "Late_Push": 18,
@@ -76,7 +76,7 @@
       "Early_Resolution": 2
     },
     "Quiet Drift Week (Up)": {
-      "Late_Resolution": 12,
+      "Late_Resolution": 11,
       "Late_Push": 11,
       "Fade_Risk": 2
     }
@@ -107,7 +107,7 @@
       "Same_Day": 1
     },
     "Trend Week (Up)": {
-      "Spread": 49,
+      "Spread": 50,
       "Adjacent": 2
     },
     "Quiet Drift Week (Down)": {
@@ -117,8 +117,8 @@
     },
     "Quiet Drift Week (Up)": {
       "Spread": 19,
-      "Adjacent": 3,
-      "Same_Day": 3
+      "Same_Day": 3,
+      "Adjacent": 2
     }
   },
   "avg_range_pips_by_profile": {
@@ -135,16 +135,16 @@
       "median": 127.2
     },
     "Quiet Drift Week (Up)": {
-      "mean": 122.2,
-      "median": 105.2
+      "mean": 123.4,
+      "median": 107.7
     },
     "Trend Week (Down)": {
       "mean": 316.1,
       "median": 306.0
     },
     "Trend Week (Up)": {
-      "mean": 314.5,
-      "median": 281.0
+      "mean": 312.5,
+      "median": 279.0
     },
     "Volatile Reversal Week": {
       "mean": 347.6,
@@ -218,12 +218,12 @@
           "pct": 0.47
         },
         "Thursday": {
-          "n": 34,
-          "pct": 2.27
+          "n": 33,
+          "pct": 2.2
         },
         "Friday": {
-          "n": 77,
-          "pct": 5.13
+          "n": 78,
+          "pct": 5.2
         }
       },
       "Thursday": {

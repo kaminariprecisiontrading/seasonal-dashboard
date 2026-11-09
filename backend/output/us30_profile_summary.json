@@ -1,11 +1,11 @@
 {
-  "n_labeled_days": 2913,
+  "n_labeled_days": 2914,
   "n_data_gap_days": 0,
   "n_insufficient_history_days": 59,
   "profile_distribution": {
     "Normal Day": {
       "n": 1719,
-      "pct": 59.01
+      "pct": 58.99
     },
     "Compression Day": {
       "n": 465,
@@ -13,15 +13,15 @@
     },
     "Volatile Day": {
       "n": 295,
-      "pct": 10.13
+      "pct": 10.12
     },
     "Trend Day (Up)": {
       "n": 146,
       "pct": 5.01
     },
     "Volatile Reversal Day": {
-      "n": 112,
-      "pct": 3.84
+      "n": 113,
+      "pct": 3.88
     },
     "Trend Day (Down)": {
       "n": 101,
@@ -65,7 +65,7 @@
     },
     "Volatile Reversal Day": {
       "Insufficient_History": 64,
-      "Late_Push": 22,
+      "Late_Push": 23,
       "Late_Resolution": 14,
       "Fade_Risk": 12
     },
@@ -115,47 +115,47 @@
       "median": 728.0
     },
     "Volatile Reversal Day": {
-      "mean": 741.8,
-      "median": 654.5
+      "mean": 742.9,
+      "median": 659.0
     }
   },
   "nfp": {
-    "n_nfp_days": 132,
+    "n_nfp_days": 133,
     "n_other_fridays": 443,
     "nfp_profile_distribution": {
       "Normal Day": {
         "n": 75,
-        "pct": 56.82,
+        "pct": 56.39,
         "mean_range_pips": 365.4,
         "median_range_pips": 361.0
       },
       "Volatile Day": {
         "n": 20,
-        "pct": 15.15,
+        "pct": 15.04,
         "mean_range_pips": 675.2,
         "median_range_pips": 728.5
       },
       "Compression Day": {
         "n": 16,
-        "pct": 12.12,
+        "pct": 12.03,
         "mean_range_pips": 202.9,
         "median_range_pips": 221.5
       },
       "Volatile Reversal Day": {
-        "n": 9,
-        "pct": 6.82,
-        "mean_range_pips": 746.8,
-        "median_range_pips": 648.0
+        "n": 10,
+        "pct": 7.52,
+        "mean_range_pips": 758.1,
+        "median_range_pips": 754.0
       },
       "Trend Day (Up)": {
         "n": 8,
-        "pct": 6.06,
+        "pct": 6.02,
         "mean_range_pips": 637.4,
         "median_range_pips": 516.5
       },
       "Trend Day (Down)": {
         "n": 4,
-        "pct": 3.03,
+        "pct": 3.01,
         "mean_range_pips": 1212.0,
         "median_range_pips": 935.0
       }

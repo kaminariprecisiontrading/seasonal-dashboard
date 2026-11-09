@@ -4,8 +4,8 @@
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
-      "n": 1002,
-      "pct": 57.85
+      "n": 1001,
+      "pct": 57.79
     },
     "Compression Week": {
       "n": 308,
@@ -16,8 +16,8 @@
       "pct": 9.53
     },
     "Trend Week (Down)": {
-      "n": 74,
-      "pct": 4.27
+      "n": 75,
+      "pct": 4.33
     },
     "Volatile Reversal Week": {
       "n": 66,
@@ -38,7 +38,7 @@
   },
   "extreme_timing_by_profile": {
     "Normal Week": {
-      "Late_Push": 610,
+      "Late_Push": 609,
       "Late_Resolution": 213,
       "Fade_Risk": 134,
       "Early_Resolution": 44,
@@ -58,7 +58,7 @@
       "Insufficient_History": 1
     },
     "Trend Week (Down)": {
-      "Late_Push": 57,
+      "Late_Push": 58,
       "Late_Resolution": 15,
       "Fade_Risk": 2
     },
@@ -86,7 +86,7 @@
   },
   "extreme_spread_by_profile": {
     "Normal Week": {
-      "Spread": 848,
+      "Spread": 847,
       "Adjacent": 139,
       "Same_Day": 14,
       "Insufficient_History": 1
@@ -103,7 +103,7 @@
       "Same_Day": 1
     },
     "Trend Week (Down)": {
-      "Spread": 69,
+      "Spread": 70,
       "Adjacent": 5
     },
     "Volatile Reversal Week": {
@@ -133,7 +133,7 @@
     },
     "Normal Week": {
       "mean": 164.4,
-      "median": 149.8
+      "median": 150.0
     },
     "Quiet Drift Week (Down)": {
       "mean": 108.8,
@@ -144,8 +144,8 @@
       "median": 94.2
     },
     "Trend Week (Down)": {
-      "mean": 274.4,
-      "median": 241.5
+      "mean": 273.1,
+      "median": 241.0
     },
     "Trend Week (Up)": {
       "mean": 279.5,
@@ -233,8 +233,8 @@
       },
       "Thursday": {
         "Monday": {
-          "n": 140,
-          "pct": 8.03
+          "n": 139,
+          "pct": 7.97
         },
         "Tuesday": {
           "n": 69,
@@ -255,8 +255,8 @@
       },
       "Friday": {
         "Monday": {
-          "n": 175,
-          "pct": 10.03
+          "n": 176,
+          "pct": 10.09
         },
         "Tuesday": {
           "n": 114,

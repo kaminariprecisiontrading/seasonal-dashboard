@@ -26,9 +26,9 @@
   },
   "extreme_timing_by_profile": {
     "Normal Year": {
-      "Late_Push": 10,
+      "Late_Push": 11,
       "Early_Resolution": 3,
-      "Fade_Risk": 2,
+      "Fade_Risk": 1,
       "Late_Resolution": 1
     },
     "Compression Year": {

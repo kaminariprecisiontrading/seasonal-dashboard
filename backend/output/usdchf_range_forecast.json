@@ -1,44 +1,44 @@
 {
  "asset": "USDCHF",
- "as_of": "2026-11-05",
+ "as_of": "2026-11-06",
  "model": "google/timesfm-2.5-200m-pytorch",
  "context_days": 1024,
  "calibration_window": 500,
  "trades_weekends": false,
- "adr20": 55.4,
+ "adr20": 58.2,
  "forecast": {
   "h1": {
-   "target_date": "2026-11-06",
-   "mean": 53.5,
-   "q10": 33.1,
-   "q90": 84.3,
-   "q10_raw": 30.7,
-   "q90_raw": 78.9
+   "target_date": "2026-11-09",
+   "mean": 56.6,
+   "q10": 35.2,
+   "q90": 87.8,
+   "q10_raw": 32.7,
+   "q90_raw": 82.3
   },
   "h5": {
-   "mean": 55.4
+   "mean": 57.6
   },
   "h20": {
-   "mean": 55.8
+   "mean": 57.0
   }
  },
  "track_record": {
   "rel_mae_vs_adr20": {
    "h1": 0.937,
    "h5": 0.888,
-   "h20": 0.777
+   "h20": 0.778
   },
   "mae": {
    "h1": {
-    "timesfm": 19.4,
-    "adr20": 20.7
+    "timesfm": 19.3,
+    "adr20": 20.6
    },
    "h5": {
     "timesfm": 11.5,
-    "adr20": 12.9
+    "adr20": 13.0
    },
    "h20": {
-    "timesfm": 8.3,
+    "timesfm": 8.2,
     "adr20": 10.6
    }
   },
@@ -47,21 +47,14 @@
    "h5": 500,
    "h20": 500
   },
-  "from": "2024-11-29",
-  "to": "2026-11-04",
+  "from": "2024-12-02",
+  "to": "2026-11-05",
   "band_n": 500,
-  "band_coverage": 0.826,
-  "above_q90": 0.094,
+  "band_coverage": 0.828,
+  "above_q90": 0.092,
   "below_q10": 0.08
  },
  "recent": [
-  {
-   "date": "2026-08-14",
-   "actual": 40.9,
-   "mean": 50.1,
-   "q10": 29.7,
-   "q90": 80.1
-  },
   {
    "date": "2026-08-17",
    "actual": 60.8,
@@ -477,10 +470,17 @@
   },
   {
    "date": "2026-11-06",
-   "actual": null,
+   "actual": 80.9,
    "mean": 53.5,
    "q10": 33.1,
    "q90": 84.3
+  },
+  {
+   "date": "2026-11-09",
+   "actual": null,
+   "mean": 56.6,
+   "q10": 35.2,
+   "q90": 87.8
   }
  ]
 }

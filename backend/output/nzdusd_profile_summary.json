@@ -1,19 +1,19 @@
 {
-  "n_labeled_days": 6641,
+  "n_labeled_days": 6642,
   "n_data_gap_days": 7,
   "n_insufficient_history_days": 59,
   "profile_distribution": {
     "Normal Day": {
       "n": 3847,
-      "pct": 57.93
+      "pct": 57.92
     },
     "Compression Day": {
       "n": 1232,
       "pct": 18.55
     },
     "Volatile Day": {
-      "n": 636,
-      "pct": 9.58
+      "n": 637,
+      "pct": 9.59
     },
     "Trend Day (Up)": {
       "n": 255,
@@ -50,7 +50,7 @@
       "Late_Resolution": 156
     },
     "Volatile Day": {
-      "Late_Push": 446,
+      "Late_Push": 447,
       "Early_Resolution": 100,
       "Late_Resolution": 55,
       "Fade_Risk": 35
@@ -112,8 +112,8 @@
       "median": 113.5
     },
     "Volatile Day": {
-      "mean": 129.1,
-      "median": 116.2
+      "mean": 129.0,
+      "median": 116.1
     },
     "Volatile Reversal Day": {
       "mean": 124.5,
@@ -121,42 +121,42 @@
     }
   },
   "nfp": {
-    "n_nfp_days": 303,
+    "n_nfp_days": 304,
     "n_other_fridays": 1024,
     "nfp_profile_distribution": {
       "Normal Day": {
         "n": 182,
-        "pct": 60.07,
+        "pct": 59.87,
         "mean_range_pips": 76.6,
         "median_range_pips": 73.0
       },
       "Volatile Day": {
-        "n": 46,
-        "pct": 15.18,
-        "mean_range_pips": 113.3,
-        "median_range_pips": 101.4
+        "n": 47,
+        "pct": 15.46,
+        "mean_range_pips": 112.4,
+        "median_range_pips": 101.0
       },
       "Compression Day": {
         "n": 29,
-        "pct": 9.57,
+        "pct": 9.54,
         "mean_range_pips": 44.8,
         "median_range_pips": 40.7
       },
       "Trend Day (Up)": {
         "n": 18,
-        "pct": 5.94,
+        "pct": 5.92,
         "mean_range_pips": 116.2,
         "median_range_pips": 111.8
       },
       "Trend Day (Down)": {
         "n": 15,
-        "pct": 4.95,
+        "pct": 4.93,
         "mean_range_pips": 136.7,
         "median_range_pips": 137.9
       },
       "Quiet Drift Day (Down)": {
         "n": 6,
-        "pct": 1.98,
+        "pct": 1.97,
         "mean_range_pips": 41.3,
         "median_range_pips": 40.3
       },

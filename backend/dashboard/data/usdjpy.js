@@ -4,15 +4,15 @@ const USDJPY_DATA = {
   "stats": {
     "asset": "USDJPY",
     "unit": "pips",
-    "as_of": "2026-11-05",
-    "n_days": 8785,
+    "as_of": "2026-11-06",
+    "n_days": 8786,
     "n_weeks": 1763,
     "n_months": 407,
     "n_years": 34,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 8785,
+          "n": 8786,
           "mean": 107.9,
           "median": 93.0,
           "std": 68.4,
@@ -45,7 +45,7 @@ const USDJPY_DATA = {
         "5y": {
           "n": 1298,
           "mean": 128.3,
-          "median": 111.5,
+          "median": 111.8,
           "std": 77.6,
           "min": 19.3,
           "max": 691.1,
@@ -64,8 +64,8 @@ const USDJPY_DATA = {
           "p05": 46.1,
           "p10": 55.0,
           "p20": 70.5,
-          "p25": 77.8,
-          "p50": 111.5,
+          "p25": 78.0,
+          "p50": 111.8,
           "p75": 157.0,
           "p80": 171.1,
           "p90": 215.0,
@@ -98,22 +98,22 @@ const USDJPY_DATA = {
           "p25": 61.8,
           "p50": 86.1,
           "p75": 121.9,
-          "p80": 133.8,
+          "p80": 133.7,
           "p90": 183.7,
           "p95": 218.3,
           "compression_threshold_pips": 56.6,
-          "expansion_threshold_pips": 133.8
+          "expansion_threshold_pips": 133.7
         },
         "3mo": {
           "n": 67,
-          "mean": 106.8,
-          "median": 94.9,
-          "std": 55.3,
+          "mean": 107.9,
+          "median": 95.1,
+          "std": 55.0,
           "min": 40.9,
           "max": 366.5,
           "mode_binned": {
-            "bin_low": 49.8,
-            "bin_high": 57.9,
+            "bin_low": 90.2,
+            "bin_high": 98.3,
             "count": 7,
             "pct_of_n": 10.4
           },
@@ -125,24 +125,24 @@ const USDJPY_DATA = {
           },
           "p05": 49.8,
           "p10": 54.7,
-          "p20": 64.7,
-          "p25": 68.3,
-          "p50": 94.9,
-          "p75": 130.4,
+          "p20": 66.0,
+          "p25": 70.8,
+          "p50": 95.1,
+          "p75": 133.8,
           "p80": 138.4,
           "p90": 171.1,
           "p95": 211.5,
-          "compression_threshold_pips": 64.7,
+          "compression_threshold_pips": 66.0,
           "expansion_threshold_pips": 138.4
         }
       },
       "latest_adr": {
-        "ADR_5": 97.2,
-        "ADR_14": 89.0,
-        "ADR_20": 84.6,
+        "ADR_5": 105.3,
+        "ADR_14": 92.5,
+        "ADR_20": 87.9,
         "fixed_multiple_thresholds": {
-          "compression_pips": 59.2,
-          "expansion_pips": 110.0,
+          "compression_pips": 61.5,
+          "expansion_pips": 114.3,
           "based_on": "ADR_20"
         }
       }
@@ -153,7 +153,7 @@ const USDJPY_DATA = {
           "n": 1763,
           "mean": 244.7,
           "median": 213.0,
-          "std": 141.7,
+          "std": 141.6,
           "min": 9.0,
           "max": 2440.0,
           "mode_binned": {
@@ -170,14 +170,14 @@ const USDJPY_DATA = {
           },
           "p05": 95.9,
           "p10": 114.1,
-          "p20": 141.7,
+          "p20": 142.0,
           "p25": 153.0,
           "p50": 213.0,
           "p75": 300.0,
           "p80": 325.0,
           "p90": 411.2,
           "p95": 496.0,
-          "compression_threshold_pips": 141.7,
+          "compression_threshold_pips": 142.0,
           "expansion_threshold_pips": 325.0
         },
         "5y": {
@@ -213,9 +213,9 @@ const USDJPY_DATA = {
         },
         "1y": {
           "n": 53,
-          "mean": 238.2,
+          "mean": 238.5,
           "median": 214.4,
-          "std": 122.5,
+          "std": 122.3,
           "min": 86.6,
           "max": 644.8,
           "mode_binned": {
@@ -232,26 +232,26 @@ const USDJPY_DATA = {
           },
           "p05": 92.7,
           "p10": 105.6,
-          "p20": 142.3,
+          "p20": 148.5,
           "p25": 165.0,
           "p50": 214.4,
           "p75": 282.5,
           "p80": 319.1,
           "p90": 358.1,
           "p95": 515.2,
-          "compression_threshold_pips": 142.3,
+          "compression_threshold_pips": 148.5,
           "expansion_threshold_pips": 319.1
         },
         "3mo": {
           "n": 14,
-          "mean": 247.4,
+          "mean": 248.5,
           "median": 203.3,
-          "std": 123.5,
+          "std": 122.6,
           "min": 107.0,
           "max": 509.8,
           "mode_binned": {
-            "bin_low": 162.7,
-            "bin_high": 180.6,
+            "bin_low": 164.0,
+            "bin_high": 181.8,
             "count": 3,
             "pct_of_n": 21.4
           },
@@ -261,16 +261,16 @@ const USDJPY_DATA = {
             "pct_of_n": 7.1,
             "n_values_tied": 14
           },
-          "p05": 127.0,
-          "p10": 138.4,
-          "p20": 157.7,
+          "p05": 128.4,
+          "p10": 143.6,
+          "p20": 162.7,
           "p25": 170.9,
           "p50": 203.3,
           "p75": 314.1,
           "p80": 336.0,
           "p90": 431.2,
           "p95": 484.7,
-          "compression_threshold_pips": 157.7,
+          "compression_threshold_pips": 162.7,
           "expansion_threshold_pips": 336.0
         }
       }
@@ -310,10 +310,10 @@ const USDJPY_DATA = {
         },
         "5y": {
           "n": 60,
-          "mean": 662.1,
+          "mean": 662.4,
           "median": 669.1,
-          "std": 236.2,
-          "min": 137.7,
+          "std": 235.7,
+          "min": 152.3,
           "max": 1234.3,
           "mode_binned": {
             "bin_low": 441.1,
@@ -322,7 +322,7 @@ const USDJPY_DATA = {
             "pct_of_n": 8.3
           },
           "mode_raw": {
-            "value": 137.7,
+            "value": 152.3,
             "count": 1,
             "pct_of_n": 1.7,
             "n_values_tied": 60
@@ -341,24 +341,24 @@ const USDJPY_DATA = {
         },
         "1y": {
           "n": 13,
-          "mean": 478.3,
+          "mean": 479.5,
           "median": 497.6,
-          "std": 175.1,
-          "min": 137.7,
+          "std": 172.8,
+          "min": 152.3,
           "max": 750.4,
           "mode_binned": {
-            "bin_low": 330.2,
-            "bin_high": 355.9,
+            "bin_low": 334.8,
+            "bin_high": 360.3,
             "count": 2,
             "pct_of_n": 15.4
           },
           "mode_raw": {
-            "value": 137.7,
+            "value": 152.3,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 227.3,
+          "p05": 233.1,
           "p10": 297.0,
           "p20": 338.9,
           "p25": 341.6,
@@ -372,33 +372,33 @@ const USDJPY_DATA = {
         },
         "3mo": {
           "n": 4,
-          "mean": 418.2,
+          "mean": 421.8,
           "median": 392.3,
-          "std": 266.2,
-          "min": 137.7,
+          "std": 261.1,
+          "min": 152.3,
           "max": 750.4,
           "mode_binned": {
-            "bin_low": 270.6,
-            "bin_high": 298.2,
+            "bin_low": 280.5,
+            "bin_high": 307.5,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 137.7,
+            "value": 152.3,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 160.1,
-          "p10": 182.5,
-          "p20": 227.3,
-          "p25": 249.7,
+          "p05": 172.5,
+          "p10": 192.7,
+          "p20": 233.1,
+          "p25": 253.3,
           "p50": 392.3,
           "p75": 560.8,
           "p80": 598.7,
           "p90": 674.6,
           "p95": 712.5,
-          "compression_threshold_pips": 227.3,
+          "compression_threshold_pips": 233.1,
           "expansion_threshold_pips": 598.7
         }
       }
@@ -437,7 +437,7 @@ const USDJPY_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7223,
+          "n": 7224,
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 5.1,
@@ -518,7 +518,7 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "07:00",
               "count": 134,
-              "pct": 1.86
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "07:30",
@@ -582,8 +582,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 213,
-              "pct": 2.95
+              "count": 214,
+              "pct": 2.96
             },
             {
               "bucket_start_utc": "14:00",
@@ -618,7 +618,7 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "17:00",
               "count": 147,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "17:30",
@@ -823,8 +823,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 51,
-              "pct": 3.93
+              "count": 50,
+              "pct": 3.85
             },
             {
               "bucket_start_utc": "13:00",
@@ -833,8 +833,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 46,
-              "pct": 3.54
+              "count": 47,
+              "pct": 3.62
             },
             {
               "bucket_start_utc": "14:00",
@@ -943,9 +943,9 @@ const USDJPY_DATA = {
           "mode_bucket_start_utc": "00:00",
           "mode_bucket_end_utc": "00:30",
           "mode_bucket_pct_of_days": 6.5,
-          "circular_mean_utc": "19:14",
+          "circular_mean_utc": "19:13",
           "circular_median_utc": "19:10",
-          "concentration_R": 0.241,
+          "concentration_R": 0.239,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1084,8 +1084,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "14:00",
@@ -1109,8 +1109,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 9,
-              "pct": 3.46
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "16:30",
@@ -1194,9 +1194,9 @@ const USDJPY_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "18:47",
+          "circular_mean_utc": "18:39",
           "circular_median_utc": "17:45",
-          "concentration_R": 0.207,
+          "concentration_R": 0.223,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1285,8 +1285,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "09:00",
@@ -1335,8 +1335,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:00",
@@ -1447,7 +1447,7 @@ const USDJPY_DATA = {
           "pct": 28.6
         },
         "London_NY_Overlap": {
-          "n": 1557,
+          "n": 1558,
           "pct": 21.6
         },
         "New_York": {
@@ -1471,7 +1471,7 @@ const USDJPY_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7223,
+          "n": 7224,
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 5.5,
@@ -1537,7 +1537,7 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "05:30",
               "count": 134,
-              "pct": 1.86
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "06:00",
@@ -1612,7 +1612,7 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "13:00",
               "count": 225,
-              "pct": 3.12
+              "pct": 3.11
             },
             {
               "bucket_start_utc": "13:30",
@@ -1627,7 +1627,7 @@ const USDJPY_DATA = {
             {
               "bucket_start_utc": "14:30",
               "count": 186,
-              "pct": 2.58
+              "pct": 2.57
             },
             {
               "bucket_start_utc": "15:00",
@@ -1711,8 +1711,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 231,
-              "pct": 3.2
+              "count": 232,
+              "pct": 3.21
             },
             {
               "bucket_start_utc": "23:30",
@@ -1726,7 +1726,7 @@ const USDJPY_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 6.4,
-          "circular_mean_utc": "20:16",
+          "circular_mean_utc": "20:18",
           "circular_median_utc": "21:15",
           "concentration_R": 0.152,
           "histogram": [
@@ -1902,8 +1902,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 23,
-              "pct": 1.77
+              "count": 22,
+              "pct": 1.69
             },
             {
               "bucket_start_utc": "17:30",
@@ -1962,8 +1962,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 30,
-              "pct": 2.31
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "23:30",
@@ -1977,9 +1977,9 @@ const USDJPY_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 8.8,
-          "circular_mean_utc": "22:14",
+          "circular_mean_utc": "22:11",
           "circular_median_utc": "22:00",
-          "concentration_R": 0.117,
+          "concentration_R": 0.118,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1998,8 +1998,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "02:00",
@@ -2213,8 +2213,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "23:30",
@@ -2228,9 +2228,9 @@ const USDJPY_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 10.4,
-          "circular_mean_utc": "00:03",
+          "circular_mean_utc": "23:29",
           "circular_median_utc": "23:05",
-          "concentration_R": 0.079,
+          "concentration_R": 0.084,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2259,8 +2259,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "03:00",
@@ -2464,8 +2464,8 @@ const USDJPY_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "23:30",
@@ -2477,7 +2477,7 @@ const USDJPY_DATA = {
       },
       "session_distribution": {
         "Asian": {
-          "n": 2022,
+          "n": 2023,
           "pct": 28.0
         },
         "London_NY_Overlap": {
@@ -2503,7 +2503,7 @@ const USDJPY_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 7223,
+      "n_days": 7224,
       "same_session_n": 512,
       "same_session_pct": 7.09,
       "pairs": {
@@ -2521,8 +2521,8 @@ const USDJPY_DATA = {
             "pct": 3.72
           },
           "London_NY_Overlap": {
-            "n": 655,
-            "pct": 9.07
+            "n": 656,
+            "pct": 9.08
           },
           "New_York": {
             "n": 640,
@@ -2640,7 +2640,7 @@ const USDJPY_DATA = {
         "Other": {
           "Asian": {
             "n": 160,
-            "pct": 2.22
+            "pct": 2.21
           },
           "Asian_London_Overlap": {
             "n": 53,
@@ -2666,7 +2666,7 @@ const USDJPY_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 7223,
+      "n_days": 7224,
       "same_hour_n": 49,
       "same_hour_pct": 0.68,
       "pairs": {
@@ -4978,8 +4978,8 @@ const USDJPY_DATA = {
             "pct": 0.28
           },
           "13": {
-            "n": 36,
-            "pct": 0.5
+            "n": 37,
+            "pct": 0.51
           },
           "14": {
             "n": 44,
@@ -5026,10 +5026,10 @@ const USDJPY_DATA = {
     },
     "nfp_profile": {
       "nfp_fridays": {
-        "n": 329,
+        "n": 330,
         "mean_range_pips": 116.5,
-        "median_range_pips": 104.0,
-        "extreme_in_release_window_pct": 35.3
+        "median_range_pips": 104.5,
+        "extreme_in_release_window_pct": 35.5
       },
       "other_fridays": {
         "n": 1113,
@@ -5051,10 +5051,10 @@ const USDJPY_DATA = {
     },
     "weekly_low_day": {
       "Monday": 554,
-      "Friday": 427,
+      "Friday": 428,
       "Tuesday": 275,
       "Thursday": 260,
-      "Wednesday": 245,
+      "Wednesday": 244,
       "Sunday": 2
     },
     "monthly_high_week_of_month": {
@@ -5155,12 +5155,12 @@ const USDJPY_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 8726,
+    "n_labeled_days": 8727,
     "n_data_gap_days": 7,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 4978,
+        "n": 4979,
         "pct": 57.05
       },
       "Compression Day": {
@@ -5194,7 +5194,7 @@ const USDJPY_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 2603,
+        "Late_Push": 2604,
         "Insufficient_History": 878,
         "Late_Resolution": 536,
         "Early_Resolution": 504,
@@ -5284,48 +5284,48 @@ const USDJPY_DATA = {
       }
     },
     "nfp": {
-      "n_nfp_days": 393,
+      "n_nfp_days": 394,
       "n_other_fridays": 1344,
       "nfp_profile_distribution": {
         "Normal Day": {
-          "n": 208,
-          "pct": 52.93,
-          "mean_range_pips": 101.6,
-          "median_range_pips": 99.2
+          "n": 209,
+          "pct": 53.05,
+          "mean_range_pips": 101.8,
+          "median_range_pips": 99.7
         },
         "Volatile Day": {
           "n": 60,
-          "pct": 15.27,
+          "pct": 15.23,
           "mean_range_pips": 163.5,
           "median_range_pips": 154.4
         },
         "Compression Day": {
           "n": 42,
-          "pct": 10.69,
+          "pct": 10.66,
           "mean_range_pips": 58.0,
           "median_range_pips": 59.2
         },
         "Trend Day (Up)": {
           "n": 28,
-          "pct": 7.12,
+          "pct": 7.11,
           "mean_range_pips": 194.2,
           "median_range_pips": 180.8
         },
         "Volatile Reversal Day": {
           "n": 21,
-          "pct": 5.34,
+          "pct": 5.33,
           "mean_range_pips": 182.6,
           "median_range_pips": 169.0
         },
         "Trend Day (Down)": {
           "n": 20,
-          "pct": 5.09,
+          "pct": 5.08,
           "mean_range_pips": 194.5,
           "median_range_pips": 187.4
         },
         "Quiet Drift Day (Up)": {
           "n": 11,
-          "pct": 2.8,
+          "pct": 2.79,
           "mean_range_pips": 63.0,
           "median_range_pips": 63.0
         },
@@ -5395,12 +5395,12 @@ const USDJPY_DATA = {
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 999,
-        "pct": 57.15
+        "n": 1000,
+        "pct": 57.21
       },
       "Compression Week": {
-        "n": 329,
-        "pct": 18.82
+        "n": 328,
+        "pct": 18.76
       },
       "Volatile Week": {
         "n": 163,
@@ -5431,12 +5431,12 @@ const USDJPY_DATA = {
       "Normal Week": {
         "Late_Push": 610,
         "Late_Resolution": 184,
-        "Fade_Risk": 144,
+        "Fade_Risk": 145,
         "Early_Resolution": 57,
         "Insufficient_History": 4
       },
       "Compression Week": {
-        "Late_Push": 148,
+        "Late_Push": 147,
         "Fade_Risk": 79,
         "Late_Resolution": 71,
         "Early_Resolution": 31
@@ -5479,14 +5479,14 @@ const USDJPY_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Week": {
-        "Spread": 819,
+        "Spread": 820,
         "Adjacent": 142,
         "Same_Day": 34,
         "Insufficient_History": 4
       },
       "Compression Week": {
         "Spread": 237,
-        "Adjacent": 71,
+        "Adjacent": 70,
         "Same_Day": 21
       },
       "Volatile Week": {
@@ -5523,12 +5523,12 @@ const USDJPY_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Week": {
-        "mean": 131.6,
+        "mean": 131.5,
         "median": 133.0
       },
       "Normal Week": {
         "mean": 226.3,
-        "median": 215.3
+        "median": 215.2
       },
       "Quiet Drift Week (Down)": {
         "mean": 132.5,
@@ -5610,8 +5610,8 @@ const USDJPY_DATA = {
             "pct": 5.07
           },
           "Tuesday": {
-            "n": 32,
-            "pct": 1.82
+            "n": 31,
+            "pct": 1.76
           },
           "Wednesday": {
             "n": 11,
@@ -5654,8 +5654,8 @@ const USDJPY_DATA = {
             "pct": 10.81
           },
           "Tuesday": {
-            "n": 96,
-            "pct": 5.46
+            "n": 97,
+            "pct": 5.52
           },
           "Wednesday": {
             "n": 89,
@@ -5978,9 +5978,9 @@ const USDJPY_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Year": {
-        "Late_Push": 10,
+        "Late_Push": 11,
         "Early_Resolution": 3,
-        "Fade_Risk": 2,
+        "Fade_Risk": 1,
         "Late_Resolution": 1
       },
       "Compression Year": {
@@ -6654,123 +6654,123 @@ const USDJPY_DATA = {
     "hourly": {
       "0": {
         "mean_range_pips": 22.67,
-        "mean_activity_pips": 82.1,
-        "n_days": 7076
+        "mean_activity_pips": 82.12,
+        "n_days": 7077
       },
       "1": {
         "mean_range_pips": 19.45,
-        "mean_activity_pips": 73.3,
-        "n_days": 6980
+        "mean_activity_pips": 73.31,
+        "n_days": 6981
       },
       "2": {
         "mean_range_pips": 16.46,
         "mean_activity_pips": 63.16,
-        "n_days": 6756
+        "n_days": 6757
       },
       "3": {
         "mean_range_pips": 16.13,
         "mean_activity_pips": 61.61,
-        "n_days": 6965
+        "n_days": 6966
       },
       "4": {
         "mean_range_pips": 16.59,
         "mean_activity_pips": 64.04,
-        "n_days": 7086
+        "n_days": 7087
       },
       "5": {
         "mean_range_pips": 19.08,
         "mean_activity_pips": 74.07,
-        "n_days": 7156
+        "n_days": 7157
       },
       "6": {
         "mean_range_pips": 22.16,
         "mean_activity_pips": 85.08,
-        "n_days": 7175
+        "n_days": 7176
       },
       "7": {
         "mean_range_pips": 23.25,
-        "mean_activity_pips": 89.07,
-        "n_days": 7177
+        "mean_activity_pips": 89.08,
+        "n_days": 7178
       },
       "8": {
         "mean_range_pips": 22.1,
-        "mean_activity_pips": 85.44,
-        "n_days": 7172
+        "mean_activity_pips": 85.45,
+        "n_days": 7173
       },
       "9": {
         "mean_range_pips": 20.01,
         "mean_activity_pips": 79.31,
-        "n_days": 7173
+        "n_days": 7174
       },
       "10": {
         "mean_range_pips": 19.08,
-        "mean_activity_pips": 76.4,
-        "n_days": 7175
+        "mean_activity_pips": 76.39,
+        "n_days": 7176
       },
       "11": {
-        "mean_range_pips": 22.68,
+        "mean_range_pips": 22.67,
         "mean_activity_pips": 85.38,
-        "n_days": 7176
+        "n_days": 7177
       },
       "12": {
         "mean_range_pips": 26.94,
-        "mean_activity_pips": 98.5,
-        "n_days": 7180
+        "mean_activity_pips": 98.49,
+        "n_days": 7181
       },
       "13": {
         "mean_range_pips": 28.19,
-        "mean_activity_pips": 105.08,
-        "n_days": 7179
+        "mean_activity_pips": 105.09,
+        "n_days": 7180
       },
       "14": {
-        "mean_range_pips": 27.12,
-        "mean_activity_pips": 102.75,
-        "n_days": 7181
+        "mean_range_pips": 27.11,
+        "mean_activity_pips": 102.76,
+        "n_days": 7182
       },
       "15": {
         "mean_range_pips": 23.08,
         "mean_activity_pips": 88.62,
-        "n_days": 7123
+        "n_days": 7124
       },
       "16": {
         "mean_range_pips": 19.02,
         "mean_activity_pips": 73.78,
-        "n_days": 6989
+        "n_days": 6990
       },
       "17": {
-        "mean_range_pips": 17.96,
-        "mean_activity_pips": 68.57,
-        "n_days": 6864
+        "mean_range_pips": 17.97,
+        "mean_activity_pips": 68.58,
+        "n_days": 6865
       },
       "18": {
-        "mean_range_pips": 16.81,
+        "mean_range_pips": 16.82,
         "mean_activity_pips": 64.43,
-        "n_days": 6659
+        "n_days": 6660
       },
       "19": {
         "mean_range_pips": 14.95,
         "mean_activity_pips": 58.07,
-        "n_days": 6594
+        "n_days": 6595
       },
       "20": {
         "mean_range_pips": 13.57,
-        "mean_activity_pips": 51.86,
-        "n_days": 5784
+        "mean_activity_pips": 51.85,
+        "n_days": 5785
       },
       "21": {
         "mean_range_pips": 13.47,
-        "mean_activity_pips": 48.07,
-        "n_days": 5855
+        "mean_activity_pips": 48.06,
+        "n_days": 5856
       },
       "22": {
         "mean_range_pips": 16.27,
         "mean_activity_pips": 57.09,
-        "n_days": 6805
+        "n_days": 6806
       },
       "23": {
-        "mean_range_pips": 20.49,
-        "mean_activity_pips": 72.73,
-        "n_days": 7114
+        "mean_range_pips": 20.5,
+        "mean_activity_pips": 72.74,
+        "n_days": 7115
       }
     },
     "session_windows": {
@@ -6786,14 +6786,14 @@ const USDJPY_DATA = {
           6
         ],
         "mean_range_pips": 19.13,
-        "mean_activity_pips": 72.01
+        "mean_activity_pips": 72.02
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
         "mean_range_pips": 23.25,
-        "mean_activity_pips": 89.07
+        "mean_activity_pips": 89.08
       },
       "london_only": {
         "hours": [
@@ -6802,7 +6802,7 @@ const USDJPY_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 20.97,
+        "mean_range_pips": 20.96,
         "mean_activity_pips": 81.63
       },
       "london_ny_overlap": {
@@ -6823,7 +6823,7 @@ const USDJPY_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 16.46,
+        "mean_range_pips": 16.47,
         "mean_activity_pips": 63.34
       }
     },
@@ -6831,38 +6831,38 @@ const USDJPY_DATA = {
   },
   "range_forecast": {
     "asset": "USDJPY",
-    "as_of": "2026-11-05",
+    "as_of": "2026-11-06",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 84.6,
+    "adr20": 87.9,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-06",
-        "mean": 97.3,
-        "q10": 51.5,
-        "q90": 155.8,
-        "q10_raw": 50.2,
-        "q90_raw": 148.5
+        "target_date": "2026-11-09",
+        "mean": 106.6,
+        "q10": 58.0,
+        "q90": 168.2,
+        "q10_raw": 56.5,
+        "q90_raw": 160.3
       },
       "h5": {
-        "mean": 98.0
+        "mean": 103.2
       },
       "h20": {
-        "mean": 98.5
+        "mean": 101.7
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
         "h1": 0.936,
-        "h5": 0.921,
-        "h20": 0.91
+        "h5": 0.92,
+        "h20": 0.909
       },
       "mae": {
         "h1": {
-          "timesfm": 41.1,
-          "adr20": 43.9
+          "timesfm": 41.2,
+          "adr20": 44.0
         },
         "h5": {
           "timesfm": 27.0,
@@ -6870,7 +6870,7 @@ const USDJPY_DATA = {
         },
         "h20": {
           "timesfm": 20.5,
-          "adr20": 22.6
+          "adr20": 22.5
         }
       },
       "n": {
@@ -6878,21 +6878,14 @@ const USDJPY_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-11-29",
-      "to": "2026-11-04",
+      "from": "2024-12-02",
+      "to": "2026-11-05",
       "band_n": 500,
       "band_coverage": 0.81,
       "above_q90": 0.094,
       "below_q10": 0.096
     },
     "recent": [
-      {
-        "date": "2026-08-14",
-        "actual": 91.4,
-        "mean": 75.9,
-        "q10": 33.6,
-        "q90": 132.2
-      },
       {
         "date": "2026-08-17",
         "actual": 75.3,
@@ -7308,10 +7301,17 @@ const USDJPY_DATA = {
       },
       {
         "date": "2026-11-06",
-        "actual": null,
+        "actual": 133.8,
         "mean": 97.3,
         "q10": 51.5,
         "q90": 155.8
+      },
+      {
+        "date": "2026-11-09",
+        "actual": null,
+        "mean": 106.6,
+        "q10": 58.0,
+        "q90": 168.2
       }
     ]
   }

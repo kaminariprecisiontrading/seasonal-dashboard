@@ -8,8 +8,8 @@
       "pct": 48.15
     },
     "Compression Year": {
-      "n": 7,
-      "pct": 25.93
+      "n": 6,
+      "pct": 22.22
     },
     "Volatile Reversal Year": {
       "n": 3,
@@ -19,11 +19,11 @@
       "n": 2,
       "pct": 7.41
     },
-    "Trend Year (Up)": {
-      "n": 1,
-      "pct": 3.7
-    },
     "Quiet Drift Year (Down)": {
+      "n": 2,
+      "pct": 7.41
+    },
+    "Trend Year (Up)": {
       "n": 1,
       "pct": 3.7
     }
@@ -35,7 +35,7 @@
       "Fade_Risk": 1
     },
     "Compression Year": {
-      "Late_Push": 5,
+      "Late_Push": 4,
       "Fade_Risk": 1,
       "Late_Resolution": 1
     },
@@ -47,11 +47,12 @@
     "Volatile Year": {
       "Late_Push": 2
     },
-    "Trend Year (Up)": {
+    "Quiet Drift Year (Down)": {
+      "Late_Resolution": 1,
       "Late_Push": 1
     },
-    "Quiet Drift Year (Down)": {
-      "Late_Resolution": 1
+    "Trend Year (Up)": {
+      "Late_Push": 1
     }
   },
   "extreme_spread_by_profile": {
@@ -59,7 +60,7 @@
       "Spread": 13
     },
     "Compression Year": {
-      "Spread": 7
+      "Spread": 6
     },
     "Volatile Reversal Year": {
       "Spread": 3
@@ -67,25 +68,25 @@
     "Volatile Year": {
       "Spread": 2
     },
-    "Trend Year (Up)": {
-      "Spread": 1
-    },
     "Quiet Drift Year (Down)": {
+      "Spread": 2
+    },
+    "Trend Year (Up)": {
       "Spread": 1
     }
   },
   "avg_range_pips_by_profile": {
     "Compression Year": {
-      "mean": 1077.3,
-      "median": 1147.6
+      "mean": 1093.9,
+      "median": 1155.4
     },
     "Normal Year": {
       "mean": 1743.2,
       "median": 1752.5
     },
     "Quiet Drift Year (Down)": {
-      "mean": 881.9,
-      "median": 881.9
+      "mean": 929.9,
+      "median": 929.9
     },
     "Trend Year (Up)": {
       "mean": 2314.0,

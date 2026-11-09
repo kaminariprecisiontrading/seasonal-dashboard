@@ -12,8 +12,8 @@
       "pct": 14.67
     },
     "Volatile Week": {
-      "n": 96,
-      "pct": 12.24
+      "n": 97,
+      "pct": 12.37
     },
     "Trend Week (Up)": {
       "n": 46,
@@ -24,8 +24,8 @@
       "pct": 4.85
     },
     "Trend Week (Down)": {
-      "n": 25,
-      "pct": 3.19
+      "n": 24,
+      "pct": 3.06
     },
     "Quiet Drift Week (Up)": {
       "n": 15,
@@ -52,7 +52,7 @@
     },
     "Volatile Week": {
       "Late_Push": 63,
-      "Late_Resolution": 21,
+      "Late_Resolution": 22,
       "Early_Resolution": 7,
       "Fade_Risk": 4,
       "Insufficient_History": 1
@@ -71,7 +71,7 @@
     },
     "Trend Week (Down)": {
       "Late_Push": 17,
-      "Late_Resolution": 8
+      "Late_Resolution": 7
     },
     "Quiet Drift Week (Up)": {
       "Late_Push": 9,
@@ -96,7 +96,7 @@
       "Same_Day": 8
     },
     "Volatile Week": {
-      "Spread": 82,
+      "Spread": 83,
       "Adjacent": 10,
       "Same_Day": 3,
       "Insufficient_History": 1
@@ -112,7 +112,7 @@
     },
     "Trend Week (Down)": {
       "Spread": 21,
-      "Adjacent": 4
+      "Adjacent": 3
     },
     "Quiet Drift Week (Up)": {
       "Spread": 12,
@@ -141,8 +141,8 @@
       "median": 728.0
     },
     "Trend Week (Down)": {
-      "mean": 9831.0,
-      "median": 9540.0
+      "mean": 9245.9,
+      "median": 9198.0
     },
     "Trend Week (Up)": {
       "mean": 6561.5,
@@ -153,8 +153,8 @@
       "median": 7104.0
     },
     "Volatile Week": {
-      "mean": 6605.1,
-      "median": 5172.5
+      "mean": 6804.3,
+      "median": 5196.0
     }
   },
   "weekday_pair_distribution": {
@@ -238,8 +238,8 @@
           "pct": 3.69
         },
         "Wednesday": {
-          "n": 17,
-          "pct": 2.16
+          "n": 16,
+          "pct": 2.04
         },
         "Thursday": {
           "n": 4,
@@ -260,8 +260,8 @@
           "pct": 6.62
         },
         "Wednesday": {
-          "n": 43,
-          "pct": 5.47
+          "n": 44,
+          "pct": 5.6
         },
         "Thursday": {
           "n": 19,

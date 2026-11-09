@@ -38,8 +38,8 @@
   },
   "extreme_timing_by_profile": {
     "Normal Week": {
-      "Late_Push": 596,
-      "Late_Resolution": 203,
+      "Late_Push": 595,
+      "Late_Resolution": 204,
       "Fade_Risk": 135,
       "Early_Resolution": 31,
       "Insufficient_History": 1
@@ -176,8 +176,8 @@
           "pct": 1.82
         },
         "Wednesday": {
-          "n": 78,
-          "pct": 4.43
+          "n": 77,
+          "pct": 4.38
         },
         "Thursday": {
           "n": 145,
@@ -264,8 +264,8 @@
           "pct": 7.11
         },
         "Wednesday": {
-          "n": 92,
-          "pct": 5.23
+          "n": 93,
+          "pct": 5.29
         },
         "Thursday": {
           "n": 48,
