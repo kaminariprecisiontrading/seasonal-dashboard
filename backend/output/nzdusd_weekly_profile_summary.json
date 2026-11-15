@@ -1,19 +1,19 @@
 {
-  "n_labeled_weeks": 1331,
+  "n_labeled_weeks": 1332,
   "n_short_weeks": 0,
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
-      "n": 758,
-      "pct": 56.95
+      "n": 759,
+      "pct": 56.98
     },
     "Compression Week": {
       "n": 250,
-      "pct": 18.78
+      "pct": 18.77
     },
     "Volatile Week": {
       "n": 127,
-      "pct": 9.54
+      "pct": 9.53
     },
     "Trend Week (Down)": {
       "n": 68,
@@ -38,7 +38,7 @@
   },
   "extreme_timing_by_profile": {
     "Normal Week": {
-      "Late_Push": 458,
+      "Late_Push": 459,
       "Late_Resolution": 166,
       "Fade_Risk": 107,
       "Early_Resolution": 26,
@@ -85,7 +85,7 @@
   },
   "extreme_spread_by_profile": {
     "Normal Week": {
-      "Spread": 632,
+      "Spread": 633,
       "Adjacent": 111,
       "Same_Day": 14,
       "Insufficient_History": 1
@@ -158,7 +158,7 @@
     }
   },
   "weekday_pair_distribution": {
-    "n_weeks": 1342,
+    "n_weeks": 1343,
     "same_day_n": 25,
     "same_day_pct": 1.86,
     "pairs": {
@@ -181,13 +181,13 @@
         },
         "Friday": {
           "n": 180,
-          "pct": 13.41
+          "pct": 13.4
         }
       },
       "Tuesday": {
         "Monday": {
           "n": 30,
-          "pct": 2.24
+          "pct": 2.23
         },
         "Tuesday": {
           "n": 4,
@@ -221,7 +221,7 @@
         },
         "Thursday": {
           "n": 30,
-          "pct": 2.24
+          "pct": 2.23
         },
         "Friday": {
           "n": 87,
@@ -235,7 +235,7 @@
         },
         "Tuesday": {
           "n": 59,
-          "pct": 4.4
+          "pct": 4.39
         },
         "Wednesday": {
           "n": 22,
@@ -256,8 +256,8 @@
           "pct": 11.62
         },
         "Tuesday": {
-          "n": 95,
-          "pct": 7.08
+          "n": 96,
+          "pct": 7.15
         },
         "Wednesday": {
           "n": 62,

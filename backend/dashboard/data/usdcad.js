@@ -4,15 +4,15 @@ const USDCAD_DATA = {
   "stats": {
     "asset": "USDCAD",
     "unit": "pips",
-    "as_of": "2026-11-06",
-    "n_days": 7481,
-    "n_weeks": 1502,
+    "as_of": "2026-11-13",
+    "n_days": 7486,
+    "n_weeks": 1503,
     "n_months": 347,
     "n_years": 29,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 7481,
+          "n": 7486,
           "mean": 94.9,
           "median": 84.0,
           "std": 51.6,
@@ -21,7 +21,7 @@ const USDCAD_DATA = {
           "mode_binned": {
             "bin_low": 68.8,
             "bin_high": 76.2,
-            "count": 644,
+            "count": 645,
             "pct_of_n": 8.6
           },
           "mode_raw": {
@@ -46,14 +46,14 @@ const USDCAD_DATA = {
           "n": 1298,
           "mean": 77.9,
           "median": 69.1,
-          "std": 38.6,
+          "std": 38.5,
           "min": 20.1,
           "max": 404.8,
           "mode_binned": {
-            "bin_low": 52.3,
-            "bin_high": 57.9,
-            "count": 122,
-            "pct_of_n": 9.4
+            "bin_low": 52.4,
+            "bin_high": 58.0,
+            "count": 120,
+            "pct_of_n": 9.2
           },
           "mode_raw": {
             "value": 53.9,
@@ -61,59 +61,59 @@ const USDCAD_DATA = {
             "pct_of_n": 0.5,
             "n_values_tied": 3
           },
-          "p05": 35.6,
-          "p10": 40.9,
+          "p05": 35.7,
+          "p10": 41.0,
           "p20": 48.2,
           "p25": 52.1,
           "p50": 69.1,
           "p75": 93.2,
-          "p80": 100.7,
+          "p80": 100.5,
           "p90": 124.8,
           "p95": 147.2,
           "compression_threshold_pips": 48.2,
-          "expansion_threshold_pips": 100.7
+          "expansion_threshold_pips": 100.5
         },
         "1y": {
           "n": 260,
-          "mean": 60.3,
-          "median": 54.9,
-          "std": 23.6,
+          "mean": 60.5,
+          "median": 55.2,
+          "std": 23.5,
           "min": 22.1,
           "max": 180.6,
           "mode_binned": {
-            "bin_low": 42.7,
-            "bin_high": 46.3,
-            "count": 27,
-            "pct_of_n": 10.4
+            "bin_low": 46.5,
+            "bin_high": 50.2,
+            "count": 28,
+            "pct_of_n": 10.8
           },
           "mode_raw": {
             "value": 47.3,
-            "count": 4,
-            "pct_of_n": 1.5,
+            "count": 5,
+            "pct_of_n": 1.9,
             "n_values_tied": 1
           },
-          "p05": 31.7,
+          "p05": 31.9,
           "p10": 37.2,
-          "p20": 42.8,
-          "p25": 44.5,
-          "p50": 54.9,
-          "p75": 69.9,
+          "p20": 43.0,
+          "p25": 44.9,
+          "p50": 55.2,
+          "p75": 70.3,
           "p80": 76.2,
           "p90": 91.8,
-          "p95": 104.9,
-          "compression_threshold_pips": 42.8,
+          "p95": 105.0,
+          "compression_threshold_pips": 43.0,
           "expansion_threshold_pips": 76.2
         },
         "3mo": {
           "n": 67,
-          "mean": 61.1,
-          "median": 58.5,
-          "std": 21.6,
+          "mean": 62.2,
+          "median": 59.5,
+          "std": 21.0,
           "min": 27.7,
           "max": 132.3,
           "mode_binned": {
-            "bin_low": 42.9,
-            "bin_high": 46.4,
+            "bin_low": 43.6,
+            "bin_high": 47.1,
             "count": 7,
             "pct_of_n": 10.4
           },
@@ -123,26 +123,26 @@ const USDCAD_DATA = {
             "pct_of_n": 3.0,
             "n_values_tied": 5
           },
-          "p05": 32.2,
-          "p10": 37.0,
-          "p20": 43.6,
-          "p25": 45.1,
-          "p50": 58.5,
+          "p05": 32.9,
+          "p10": 38.6,
+          "p20": 45.0,
+          "p25": 45.9,
+          "p50": 59.5,
           "p75": 76.3,
           "p80": 79.5,
           "p90": 87.2,
-          "p95": 103.4,
-          "compression_threshold_pips": 43.6,
+          "p95": 104.2,
+          "compression_threshold_pips": 45.0,
           "expansion_threshold_pips": 79.5
         }
       },
       "latest_adr": {
-        "ADR_5": 80.7,
-        "ADR_14": 64.1,
-        "ADR_20": 66.2,
+        "ADR_5": 66.4,
+        "ADR_14": 68.4,
+        "ADR_20": 64.6,
         "fixed_multiple_thresholds": {
-          "compression_pips": 46.3,
-          "expansion_pips": 86.1,
+          "compression_pips": 45.2,
+          "expansion_pips": 84.0,
           "based_on": "ADR_20"
         }
       }
@@ -150,17 +150,17 @@ const USDCAD_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 1502,
+          "n": 1503,
           "mean": 210.0,
-          "median": 187.9,
-          "std": 108.3,
+          "median": 188.0,
+          "std": 108.2,
           "min": 47.5,
           "max": 1309.0,
           "mode_binned": {
-            "bin_low": 157.2,
-            "bin_high": 172.0,
-            "count": 128,
-            "pct_of_n": 8.5
+            "bin_low": 142.3,
+            "bin_high": 157.1,
+            "count": 125,
+            "pct_of_n": 8.3
           },
           "mode_raw": {
             "value": 155.0,
@@ -172,17 +172,17 @@ const USDCAD_DATA = {
           "p10": 112.0,
           "p20": 131.0,
           "p25": 141.4,
-          "p50": 187.9,
-          "p75": 247.9,
+          "p50": 188.0,
+          "p75": 247.8,
           "p80": 266.8,
-          "p90": 326.3,
-          "p95": 394.9,
+          "p90": 326.2,
+          "p95": 394.8,
           "compression_threshold_pips": 131.0,
           "expansion_threshold_pips": 266.8
         },
         "5y": {
           "n": 261,
-          "mean": 172.9,
+          "mean": 172.8,
           "median": 162.4,
           "std": 68.1,
           "min": 59.5,
@@ -204,7 +204,7 @@ const USDCAD_DATA = {
           "p20": 118.9,
           "p25": 123.8,
           "p50": 162.4,
-          "p75": 216.1,
+          "p75": 215.5,
           "p80": 226.9,
           "p90": 257.7,
           "p95": 287.0,
@@ -213,9 +213,9 @@ const USDCAD_DATA = {
         },
         "1y": {
           "n": 53,
-          "mean": 145.0,
-          "median": 137.1,
-          "std": 46.2,
+          "mean": 146.2,
+          "median": 138.1,
+          "std": 46.7,
           "min": 70.9,
           "max": 257.7,
           "mode_binned": {
@@ -234,24 +234,24 @@ const USDCAD_DATA = {
           "p10": 95.3,
           "p20": 99.7,
           "p25": 103.2,
-          "p50": 137.1,
-          "p75": 174.6,
-          "p80": 183.4,
+          "p50": 138.1,
+          "p75": 175.9,
+          "p80": 186.9,
           "p90": 214.5,
           "p95": 226.6,
           "compression_threshold_pips": 99.7,
-          "expansion_threshold_pips": 183.4
+          "expansion_threshold_pips": 186.9
         },
         "3mo": {
           "n": 14,
-          "mean": 148.7,
-          "median": 156.6,
-          "std": 32.4,
+          "mean": 151.7,
+          "median": 161.2,
+          "std": 34.8,
           "min": 95.3,
           "max": 208.1,
           "mode_binned": {
-            "bin_low": 125.3,
-            "bin_high": 129.8,
+            "bin_low": 123.7,
+            "bin_high": 128.9,
             "count": 3,
             "pct_of_n": 21.4
           },
@@ -265,13 +265,13 @@ const USDCAD_DATA = {
           "p10": 107.0,
           "p20": 125.7,
           "p25": 126.8,
-          "p50": 156.6,
-          "p75": 172.3,
-          "p80": 175.1,
-          "p90": 177.5,
-          "p95": 188.7,
+          "p50": 161.2,
+          "p75": 175.6,
+          "p80": 176.8,
+          "p90": 191.2,
+          "p95": 200.7,
           "compression_threshold_pips": 125.7,
-          "expansion_threshold_pips": 175.1
+          "expansion_threshold_pips": 176.8
         }
       }
     },
@@ -279,14 +279,14 @@ const USDCAD_DATA = {
       "windowed_distribution": {
         "full": {
           "n": 347,
-          "mean": 436.0,
+          "mean": 436.4,
           "median": 398.6,
-          "std": 215.9,
+          "std": 215.6,
           "min": 122.4,
           "max": 2469.0,
           "mode_binned": {
-            "bin_low": 347.1,
-            "bin_high": 375.0,
+            "bin_low": 292.2,
+            "bin_high": 320.0,
             "count": 32,
             "pct_of_n": 9.2
           },
@@ -296,23 +296,23 @@ const USDCAD_DATA = {
             "pct_of_n": 0.9,
             "n_values_tied": 2
           },
-          "p05": 207.4,
-          "p10": 245.3,
-          "p20": 293.2,
-          "p25": 309.0,
+          "p05": 208.5,
+          "p10": 246.4,
+          "p20": 294.1,
+          "p25": 310.1,
           "p50": 398.6,
           "p75": 498.7,
           "p80": 527.7,
           "p90": 640.9,
           "p95": 766.2,
-          "compression_threshold_pips": 293.2,
+          "compression_threshold_pips": 294.1,
           "expansion_threshold_pips": 527.7
         },
         "5y": {
           "n": 60,
-          "mean": 371.8,
+          "mean": 374.1,
           "median": 358.0,
-          "std": 130.5,
+          "std": 128.8,
           "min": 188.9,
           "max": 879.4,
           "mode_binned": {
@@ -328,27 +328,27 @@ const USDCAD_DATA = {
             "n_values_tied": 60
           },
           "p05": 194.1,
-          "p10": 207.6,
-          "p20": 246.6,
-          "p25": 290.1,
+          "p10": 218.9,
+          "p20": 256.2,
+          "p25": 299.9,
           "p50": 358.0,
           "p75": 450.8,
           "p80": 469.1,
           "p90": 485.3,
           "p95": 585.3,
-          "compression_threshold_pips": 246.6,
+          "compression_threshold_pips": 256.2,
           "expansion_threshold_pips": 469.1
         },
         "1y": {
           "n": 13,
-          "mean": 344.3,
+          "mean": 354.8,
           "median": 358.1,
-          "std": 98.9,
+          "std": 90.1,
           "min": 202.2,
           "max": 477.0,
           "mode_binned": {
-            "bin_low": 363.6,
-            "bin_high": 376.8,
+            "bin_low": 341.1,
+            "bin_high": 353.8,
             "count": 2,
             "pct_of_n": 15.4
           },
@@ -358,47 +358,47 @@ const USDCAD_DATA = {
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 205.7,
-          "p10": 210.6,
-          "p20": 231.6,
-          "p25": 247.9,
+          "p05": 213.3,
+          "p10": 226.1,
+          "p20": 276.7,
+          "p25": 319.8,
           "p50": 358.1,
           "p75": 441.2,
           "p80": 444.8,
           "p90": 460.2,
           "p95": 468.8,
-          "compression_threshold_pips": 231.6,
+          "compression_threshold_pips": 276.7,
           "expansion_threshold_pips": 444.8
         },
         "3mo": {
           "n": 4,
-          "mean": 347.8,
+          "mean": 382.0,
           "median": 353.1,
-          "std": 110.0,
-          "min": 208.1,
+          "std": 63.6,
+          "min": 344.6,
           "max": 477.0,
           "mode_binned": {
-            "bin_low": 344.1,
-            "bin_high": 355.6,
+            "bin_low": 345.1,
+            "bin_high": 350.8,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 208.1,
+            "value": 344.6,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 229.1,
-          "p10": 250.1,
-          "p20": 292.1,
-          "p25": 313.1,
+          "p05": 345.1,
+          "p10": 345.7,
+          "p20": 346.7,
+          "p25": 347.2,
           "p50": 353.1,
           "p75": 387.8,
           "p80": 405.7,
           "p90": 441.3,
           "p95": 459.2,
-          "compression_threshold_pips": 292.1,
+          "compression_threshold_pips": 346.7,
           "expansion_threshold_pips": 405.7
         }
       }
@@ -437,7 +437,7 @@ const USDCAD_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7221,
+          "n": 7226,
           "mode_bucket_start_utc": "14:00",
           "mode_bucket_end_utc": "14:30",
           "mode_bucket_pct_of_days": 4.4,
@@ -508,7 +508,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "06:00",
               "count": 121,
-              "pct": 1.68
+              "pct": 1.67
             },
             {
               "bucket_start_utc": "06:30",
@@ -588,7 +588,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "14:00",
               "count": 316,
-              "pct": 4.38
+              "pct": 4.37
             },
             {
               "bucket_start_utc": "14:30",
@@ -597,23 +597,23 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 248,
-              "pct": 3.43
+              "count": 250,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "15:30",
               "count": 230,
-              "pct": 3.19
+              "pct": 3.18
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 161,
-              "pct": 2.23
+              "count": 162,
+              "pct": 2.24
             },
             {
               "bucket_start_utc": "16:30",
               "count": 178,
-              "pct": 2.47
+              "pct": 2.46
             },
             {
               "bucket_start_utc": "17:00",
@@ -638,12 +638,12 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "19:00",
               "count": 173,
-              "pct": 2.4
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "19:30",
               "count": 191,
-              "pct": 2.65
+              "pct": 2.64
             },
             {
               "bucket_start_utc": "20:00",
@@ -662,8 +662,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 160,
-              "pct": 2.22
+              "count": 162,
+              "pct": 2.24
             },
             {
               "bucket_start_utc": "22:00",
@@ -683,7 +683,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "23:30",
               "count": 134,
-              "pct": 1.86
+              "pct": 1.85
             }
           ]
         },
@@ -692,9 +692,9 @@ const USDCAD_DATA = {
           "mode_bucket_start_utc": "14:00",
           "mode_bucket_end_utc": "14:30",
           "mode_bucket_pct_of_days": 4.7,
-          "circular_mean_utc": "16:39",
-          "circular_median_utc": "16:00",
-          "concentration_R": 0.307,
+          "circular_mean_utc": "16:40",
+          "circular_median_utc": "16:05",
+          "concentration_R": 0.309,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -778,8 +778,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 28,
-              "pct": 2.16
+              "count": 27,
+              "pct": 2.08
             },
             {
               "bucket_start_utc": "08:30",
@@ -788,8 +788,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 19,
-              "pct": 1.46
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "09:30",
@@ -848,8 +848,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 46,
-              "pct": 3.54
+              "count": 47,
+              "pct": 3.62
             },
             {
               "bucket_start_utc": "15:30",
@@ -858,8 +858,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 35,
-              "pct": 2.7
+              "count": 36,
+              "pct": 2.77
             },
             {
               "bucket_start_utc": "16:30",
@@ -878,8 +878,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 33,
-              "pct": 2.54
+              "count": 32,
+              "pct": 2.47
             },
             {
               "bucket_start_utc": "18:30",
@@ -913,8 +913,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 24,
-              "pct": 1.85
+              "count": 25,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "22:00",
@@ -940,12 +940,12 @@ const USDCAD_DATA = {
         },
         "1y": {
           "n": 260,
-          "mode_bucket_start_utc": "14:00",
-          "mode_bucket_end_utc": "14:30",
-          "mode_bucket_pct_of_days": 4.2,
+          "mode_bucket_start_utc": "15:00",
+          "mode_bucket_end_utc": "15:30",
+          "mode_bucket_pct_of_days": 4.6,
           "circular_mean_utc": "17:42",
           "circular_median_utc": "17:35",
-          "concentration_R": 0.284,
+          "concentration_R": 0.296,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -979,8 +979,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:30",
@@ -1019,8 +1019,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "07:30",
@@ -1094,13 +1094,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 9,
-              "pct": 3.46
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 10,
-              "pct": 3.85
+              "count": 12,
+              "pct": 4.62
             },
             {
               "bucket_start_utc": "15:30",
@@ -1164,13 +1164,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 10,
-              "pct": 3.85
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "22:30",
@@ -1191,12 +1191,12 @@ const USDCAD_DATA = {
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "22:00",
-          "mode_bucket_end_utc": "22:30",
-          "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "17:50",
-          "circular_median_utc": "17:40",
-          "concentration_R": 0.264,
+          "mode_bucket_start_utc": "15:00",
+          "mode_bucket_end_utc": "15:30",
+          "mode_bucket_pct_of_days": 9.0,
+          "circular_mean_utc": "18:06",
+          "circular_median_utc": "18:40",
+          "concentration_R": 0.328,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1240,8 +1240,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "04:30",
@@ -1280,8 +1280,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "08:30",
@@ -1350,18 +1350,18 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 4,
-              "pct": 5.97
+              "count": 6,
+              "pct": 8.96
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "16:30",
@@ -1375,8 +1375,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "18:00",
@@ -1415,8 +1415,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "22:00",
@@ -1443,23 +1443,23 @@ const USDCAD_DATA = {
       },
       "session_distribution": {
         "London_NY_Overlap": {
-          "n": 2154,
+          "n": 2156,
           "pct": 29.8
         },
         "New_York": {
-          "n": 1693,
+          "n": 1694,
           "pct": 23.4
         },
         "Asian": {
           "n": 1369,
-          "pct": 19.0
+          "pct": 18.9
         },
         "London": {
           "n": 1094,
-          "pct": 15.2
+          "pct": 15.1
         },
         "Other": {
-          "n": 650,
+          "n": 652,
           "pct": 9.0
         },
         "Asian_London_Overlap": {
@@ -1471,7 +1471,7 @@ const USDCAD_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7221,
+          "n": 7226,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 6.0,
@@ -1532,7 +1532,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "05:00",
               "count": 69,
-              "pct": 0.96
+              "pct": 0.95
             },
             {
               "bucket_start_utc": "05:30",
@@ -1547,12 +1547,12 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "06:30",
               "count": 147,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 136,
-              "pct": 1.88
+              "count": 137,
+              "pct": 1.9
             },
             {
               "bucket_start_utc": "07:30",
@@ -1577,12 +1577,12 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "09:30",
               "count": 134,
-              "pct": 1.86
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 144,
-              "pct": 1.99
+              "count": 145,
+              "pct": 2.01
             },
             {
               "bucket_start_utc": "10:30",
@@ -1592,7 +1592,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "11:00",
               "count": 134,
-              "pct": 1.86
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "11:30",
@@ -1616,8 +1616,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 254,
-              "pct": 3.52
+              "count": 255,
+              "pct": 3.53
             },
             {
               "bucket_start_utc": "14:00",
@@ -1626,13 +1626,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 252,
-              "pct": 3.49
+              "count": 253,
+              "pct": 3.5
             },
             {
               "bucket_start_utc": "15:00",
               "count": 225,
-              "pct": 3.12
+              "pct": 3.11
             },
             {
               "bucket_start_utc": "15:30",
@@ -1647,7 +1647,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "16:30",
               "count": 147,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "17:00",
@@ -1672,7 +1672,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "19:00",
               "count": 147,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "19:30",
@@ -1687,7 +1687,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "20:30",
               "count": 230,
-              "pct": 3.19
+              "pct": 3.18
             },
             {
               "bucket_start_utc": "21:00",
@@ -1697,12 +1697,12 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "21:30",
               "count": 173,
-              "pct": 2.4
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 265,
-              "pct": 3.67
+              "count": 266,
+              "pct": 3.68
             },
             {
               "bucket_start_utc": "22:30",
@@ -1717,7 +1717,7 @@ const USDCAD_DATA = {
             {
               "bucket_start_utc": "23:30",
               "count": 95,
-              "pct": 1.32
+              "pct": 1.31
             }
           ]
         },
@@ -1726,9 +1726,9 @@ const USDCAD_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 10.9,
-          "circular_mean_utc": "17:28",
-          "circular_median_utc": "17:10",
-          "concentration_R": 0.309,
+          "circular_mean_utc": "17:27",
+          "circular_median_utc": "17:05",
+          "concentration_R": 0.308,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1802,8 +1802,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 15,
-              "pct": 1.16
+              "count": 16,
+              "pct": 1.23
             },
             {
               "bucket_start_utc": "07:30",
@@ -1827,13 +1827,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 19,
-              "pct": 1.46
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 22,
-              "pct": 1.69
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "10:30",
@@ -1852,8 +1852,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 27,
-              "pct": 2.08
+              "count": 26,
+              "pct": 2.0
             },
             {
               "bucket_start_utc": "12:30",
@@ -1867,8 +1867,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 54,
-              "pct": 4.16
+              "count": 55,
+              "pct": 4.24
             },
             {
               "bucket_start_utc": "14:00",
@@ -1937,8 +1937,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 48,
-              "pct": 3.7
+              "count": 47,
+              "pct": 3.62
             },
             {
               "bucket_start_utc": "21:00",
@@ -1976,10 +1976,10 @@ const USDCAD_DATA = {
           "n": 260,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 14.6,
-          "circular_mean_utc": "17:44",
-          "circular_median_utc": "18:10",
-          "concentration_R": 0.358,
+          "mode_bucket_pct_of_days": 14.2,
+          "circular_mean_utc": "17:40",
+          "circular_median_utc": "16:55",
+          "concentration_R": 0.354,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2053,8 +2053,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "07:30",
@@ -2068,13 +2068,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "09:30",
@@ -2083,8 +2083,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "10:30",
@@ -2118,8 +2118,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 9,
-              "pct": 3.46
+              "count": 10,
+              "pct": 3.85
             },
             {
               "bucket_start_utc": "14:00",
@@ -2128,8 +2128,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 15,
-              "pct": 5.77
+              "count": 16,
+              "pct": 6.15
             },
             {
               "bucket_start_utc": "15:00",
@@ -2163,13 +2163,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "19:00",
@@ -2193,8 +2193,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 38,
-              "pct": 14.62
+              "count": 37,
+              "pct": 14.23
             },
             {
               "bucket_start_utc": "21:30",
@@ -2203,8 +2203,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 17,
-              "pct": 6.54
+              "count": 18,
+              "pct": 6.92
             },
             {
               "bucket_start_utc": "22:30",
@@ -2228,9 +2228,9 @@ const USDCAD_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 22.4,
-          "circular_mean_utc": "17:40",
-          "circular_median_utc": "17:35",
-          "concentration_R": 0.407,
+          "circular_mean_utc": "17:49",
+          "circular_median_utc": "20:05",
+          "concentration_R": 0.36,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2304,8 +2304,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "07:30",
@@ -2334,8 +2334,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "10:30",
@@ -2354,8 +2354,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "12:30",
@@ -2369,23 +2369,23 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 6,
-              "pct": 8.96
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 4,
-              "pct": 5.97
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "15:30",
@@ -2399,13 +2399,13 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "17:30",
@@ -2454,8 +2454,8 @@ const USDCAD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "22:30",
@@ -2477,7 +2477,7 @@ const USDCAD_DATA = {
       },
       "session_distribution": {
         "London_NY_Overlap": {
-          "n": 1943,
+          "n": 1945,
           "pct": 26.9
         },
         "New_York": {
@@ -2489,23 +2489,23 @@ const USDCAD_DATA = {
           "pct": 16.5
         },
         "London": {
-          "n": 1165,
+          "n": 1166,
           "pct": 16.1
         },
         "Other": {
-          "n": 956,
+          "n": 957,
           "pct": 13.2
         },
         "Asian_London_Overlap": {
-          "n": 285,
-          "pct": 3.9
+          "n": 286,
+          "pct": 4.0
         }
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 7221,
-      "same_session_n": 456,
-      "same_session_pct": 6.31,
+      "n_days": 7226,
+      "same_session_n": 458,
+      "same_session_pct": 6.34,
       "pairs": {
         "Asian": {
           "Asian": {
@@ -2522,11 +2522,11 @@ const USDCAD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 535,
-            "pct": 7.41
+            "pct": 7.4
           },
           "New_York": {
             "n": 444,
-            "pct": 6.15
+            "pct": 6.14
           },
           "Other": {
             "n": 39,
@@ -2551,8 +2551,8 @@ const USDCAD_DATA = {
             "pct": 1.8
           },
           "New_York": {
-            "n": 110,
-            "pct": 1.52
+            "n": 111,
+            "pct": 1.54
           },
           "Other": {
             "n": 14,
@@ -2573,8 +2573,8 @@ const USDCAD_DATA = {
             "pct": 0.64
           },
           "London_NY_Overlap": {
-            "n": 394,
-            "pct": 5.46
+            "n": 395,
+            "pct": 5.47
           },
           "New_York": {
             "n": 419,
@@ -2599,22 +2599,22 @@ const USDCAD_DATA = {
             "pct": 4.76
           },
           "London_NY_Overlap": {
-            "n": 289,
-            "pct": 4.0
+            "n": 290,
+            "pct": 4.01
           },
           "New_York": {
             "n": 396,
             "pct": 5.48
           },
           "Other": {
-            "n": 247,
-            "pct": 3.42
+            "n": 248,
+            "pct": 3.43
           }
         },
         "New_York": {
           "Asian": {
             "n": 527,
-            "pct": 7.3
+            "pct": 7.29
           },
           "Asian_London_Overlap": {
             "n": 112,
@@ -2622,7 +2622,7 @@ const USDCAD_DATA = {
           },
           "London": {
             "n": 397,
-            "pct": 5.5
+            "pct": 5.49
           },
           "London_NY_Overlap": {
             "n": 403,
@@ -2634,7 +2634,7 @@ const USDCAD_DATA = {
           },
           "Other": {
             "n": 191,
-            "pct": 2.65
+            "pct": 2.64
           }
         },
         "Other": {
@@ -2659,14 +2659,14 @@ const USDCAD_DATA = {
             "pct": 3.75
           },
           "Other": {
-            "n": 44,
-            "pct": 0.61
+            "n": 45,
+            "pct": 0.62
           }
         }
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 7221,
+      "n_days": 7226,
       "same_hour_n": 34,
       "same_hour_pct": 0.47,
       "pairs": {
@@ -3422,8 +3422,8 @@ const USDCAD_DATA = {
             "pct": 0.47
           },
           "16": {
-            "n": 20,
-            "pct": 0.28
+            "n": 21,
+            "pct": 0.29
           },
           "17": {
             "n": 22,
@@ -3712,8 +3712,8 @@ const USDCAD_DATA = {
             "pct": 0.3
           },
           "15": {
-            "n": 34,
-            "pct": 0.47
+            "n": 35,
+            "pct": 0.48
           },
           "16": {
             "n": 22,
@@ -4006,8 +4006,8 @@ const USDCAD_DATA = {
             "pct": 0.21
           },
           "15": {
-            "n": 25,
-            "pct": 0.35
+            "n": 26,
+            "pct": 0.36
           },
           "16": {
             "n": 19,
@@ -4128,8 +4128,8 @@ const USDCAD_DATA = {
             "pct": 0.22
           },
           "21": {
-            "n": 36,
-            "pct": 0.5
+            "n": 37,
+            "pct": 0.51
           },
           "22": {
             "n": 29,
@@ -4912,8 +4912,8 @@ const USDCAD_DATA = {
             "pct": 0.37
           },
           "21": {
-            "n": 22,
-            "pct": 0.3
+            "n": 23,
+            "pct": 0.32
           },
           "22": {
             "n": 0,
@@ -5032,8 +5032,8 @@ const USDCAD_DATA = {
         "extreme_in_release_window_pct": 34.5
       },
       "other_fridays": {
-        "n": 1113,
-        "mean_range_pips": 96.2,
+        "n": 1114,
+        "mean_range_pips": 96.1,
         "median_range_pips": 86.0,
         "extreme_in_release_window_pct": 31.2
       },
@@ -5042,7 +5042,7 @@ const USDCAD_DATA = {
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Friday": 420,
+      "Friday": 421,
       "Monday": 383,
       "Tuesday": 264,
       "Thursday": 229,
@@ -5050,14 +5050,14 @@ const USDCAD_DATA = {
     },
     "weekly_low_day": {
       "Friday": 432,
-      "Monday": 401,
+      "Monday": 402,
       "Thursday": 244,
       "Tuesday": 226,
       "Wednesday": 199
     },
     "monthly_high_week_of_month": {
-      "1": 118,
-      "2": 38,
+      "1": 117,
+      "2": 39,
       "3": 67,
       "4": 72,
       "5": 52
@@ -5139,21 +5139,21 @@ const USDCAD_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 7422,
+    "n_labeled_days": 7427,
     "n_data_gap_days": 10,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 4296,
-        "pct": 57.88
+        "n": 4300,
+        "pct": 57.9
       },
       "Compression Day": {
         "n": 1371,
-        "pct": 18.47
+        "pct": 18.46
       },
       "Volatile Day": {
-        "n": 675,
-        "pct": 9.09
+        "n": 676,
+        "pct": 9.1
       },
       "Trend Day (Down)": {
         "n": 323,
@@ -5178,8 +5178,8 @@ const USDCAD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 2149,
-        "Late_Resolution": 1431,
+        "Late_Push": 2150,
+        "Late_Resolution": 1434,
         "Fade_Risk": 541,
         "Insufficient_History": 100,
         "Early_Resolution": 75
@@ -5192,7 +5192,7 @@ const USDCAD_DATA = {
         "Insufficient_History": 33
       },
       "Volatile Day": {
-        "Late_Push": 435,
+        "Late_Push": 436,
         "Late_Resolution": 162,
         "Fade_Risk": 35,
         "Insufficient_History": 30,
@@ -5240,7 +5240,7 @@ const USDCAD_DATA = {
       },
       "Normal Day": {
         "mean": 88.8,
-        "median": 84.1
+        "median": 84.0
       },
       "Quiet Drift Day (Down)": {
         "mean": 55.4,
@@ -5269,7 +5269,7 @@ const USDCAD_DATA = {
     },
     "nfp": {
       "n_nfp_days": 338,
-      "n_other_fridays": 1144,
+      "n_other_fridays": 1145,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 185,
@@ -5322,20 +5322,20 @@ const USDCAD_DATA = {
       },
       "other_friday_profile_distribution": {
         "Normal Day": {
-          "n": 678,
-          "pct": 59.27,
-          "mean_range_pips": 89.6,
+          "n": 679,
+          "pct": 59.3,
+          "mean_range_pips": 89.5,
           "median_range_pips": 85.4
         },
         "Compression Day": {
           "n": 188,
-          "pct": 16.43,
+          "pct": 16.42,
           "mean_range_pips": 52.2,
           "median_range_pips": 50.1
         },
         "Volatile Day": {
           "n": 102,
-          "pct": 8.92,
+          "pct": 8.91,
           "mean_range_pips": 158.1,
           "median_range_pips": 140.4
         },
@@ -5347,7 +5347,7 @@ const USDCAD_DATA = {
         },
         "Trend Day (Up)": {
           "n": 48,
-          "pct": 4.2,
+          "pct": 4.19,
           "mean_range_pips": 145.1,
           "median_range_pips": 141.1
         },
@@ -5374,21 +5374,21 @@ const USDCAD_DATA = {
     "asset": "USDCAD"
   },
   "weekly": {
-    "n_labeled_weeks": 1487,
+    "n_labeled_weeks": 1488,
     "n_short_weeks": 1,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
         "n": 867,
-        "pct": 58.31
+        "pct": 58.27
       },
       "Compression Week": {
         "n": 264,
-        "pct": 17.75
+        "pct": 17.74
       },
       "Volatile Week": {
         "n": 129,
-        "pct": 8.68
+        "pct": 8.67
       },
       "Trend Week (Down)": {
         "n": 61,
@@ -5399,8 +5399,8 @@ const USDCAD_DATA = {
         "pct": 3.9
       },
       "Trend Week (Up)": {
-        "n": 52,
-        "pct": 3.5
+        "n": 53,
+        "pct": 3.56
       },
       "Quiet Drift Week (Down)": {
         "n": 32,
@@ -5441,7 +5441,7 @@ const USDCAD_DATA = {
         "Late_Resolution": 3
       },
       "Trend Week (Up)": {
-        "Late_Push": 42,
+        "Late_Push": 43,
         "Late_Resolution": 10
       },
       "Quiet Drift Week (Down)": {
@@ -5482,7 +5482,7 @@ const USDCAD_DATA = {
         "Same_Day": 1
       },
       "Trend Week (Up)": {
-        "Spread": 50,
+        "Spread": 51,
         "Adjacent": 2
       },
       "Quiet Drift Week (Down)": {
@@ -5518,8 +5518,8 @@ const USDCAD_DATA = {
         "median": 306.0
       },
       "Trend Week (Up)": {
-        "mean": 312.5,
-        "median": 279.0
+        "mean": 310.3,
+        "median": 277.0
       },
       "Volatile Reversal Week": {
         "mean": 347.6,
@@ -5531,7 +5531,7 @@ const USDCAD_DATA = {
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 1501,
+      "n_weeks": 1502,
       "same_day_n": 33,
       "same_day_pct": 2.2,
       "pairs": {
@@ -5553,14 +5553,14 @@ const USDCAD_DATA = {
             "pct": 6.26
           },
           "Friday": {
-            "n": 182,
-            "pct": 12.13
+            "n": 183,
+            "pct": 12.18
           }
         },
         "Tuesday": {
           "Monday": {
             "n": 31,
-            "pct": 2.07
+            "pct": 2.06
           },
           "Tuesday": {
             "n": 6,
@@ -5572,17 +5572,17 @@ const USDCAD_DATA = {
           },
           "Thursday": {
             "n": 60,
-            "pct": 4.0
+            "pct": 3.99
           },
           "Friday": {
             "n": 105,
-            "pct": 7.0
+            "pct": 6.99
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 63,
-            "pct": 4.2
+            "pct": 4.19
           },
           "Tuesday": {
             "n": 18,
@@ -5598,13 +5598,13 @@ const USDCAD_DATA = {
           },
           "Friday": {
             "n": 78,
-            "pct": 5.2
+            "pct": 5.19
           }
         },
         "Thursday": {
           "Monday": {
             "n": 105,
-            "pct": 7.0
+            "pct": 6.99
           },
           "Tuesday": {
             "n": 68,
@@ -5612,7 +5612,7 @@ const USDCAD_DATA = {
           },
           "Wednesday": {
             "n": 22,
-            "pct": 1.47
+            "pct": 1.46
           },
           "Thursday": {
             "n": 3,
@@ -5626,7 +5626,7 @@ const USDCAD_DATA = {
         "Friday": {
           "Monday": {
             "n": 175,
-            "pct": 11.66
+            "pct": 11.65
           },
           "Tuesday": {
             "n": 127,
@@ -5652,41 +5652,41 @@ const USDCAD_DATA = {
     "asset": "USDCAD"
   },
   "monthly": {
-    "n_labeled_months": 336,
-    "n_short_months": 2,
+    "n_labeled_months": 337,
+    "n_short_months": 1,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 196,
-        "pct": 58.33
+        "n": 197,
+        "pct": 58.46
       },
       "Compression Month": {
         "n": 53,
-        "pct": 15.77
+        "pct": 15.73
       },
       "Volatile Month": {
         "n": 26,
-        "pct": 7.74
+        "pct": 7.72
       },
       "Trend Month (Down)": {
         "n": 16,
-        "pct": 4.76
+        "pct": 4.75
       },
       "Volatile Reversal Month": {
         "n": 14,
-        "pct": 4.17
+        "pct": 4.15
       },
       "Quiet Drift Month (Down)": {
         "n": 13,
-        "pct": 3.87
+        "pct": 3.86
       },
       "Trend Month (Up)": {
         "n": 13,
-        "pct": 3.87
+        "pct": 3.86
       },
       "Quiet Drift Month (Up)": {
         "n": 5,
-        "pct": 1.49
+        "pct": 1.48
       }
     },
     "extreme_timing_by_profile": {
@@ -5694,7 +5694,7 @@ const USDCAD_DATA = {
         "Late_Push": 131,
         "Fade_Risk": 28,
         "Late_Resolution": 26,
-        "Early_Resolution": 11
+        "Early_Resolution": 12
       },
       "Compression Month": {
         "Late_Push": 26,
@@ -5732,7 +5732,7 @@ const USDCAD_DATA = {
     "extreme_spread_by_profile": {
       "Normal Month": {
         "Spread": 171,
-        "Adjacent": 22,
+        "Adjacent": 23,
         "Same_Week": 3
       },
       "Compression Month": {
@@ -5771,8 +5771,8 @@ const USDCAD_DATA = {
         "median": 271.1
       },
       "Normal Month": {
-        "mean": 410.8,
-        "median": 401.5
+        "mean": 410.5,
+        "median": 401.3
       },
       "Quiet Drift Month (Down)": {
         "mean": 288.8,
@@ -5800,9 +5800,9 @@ const USDCAD_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 345,
+      "n_months": 346,
       "same_week_n": 7,
-      "same_week_pct": 2.03,
+      "same_week_pct": 2.02,
       "pairs": {
         "1": {
           "1": {
@@ -5810,26 +5810,26 @@ const USDCAD_DATA = {
             "pct": 0.87
           },
           "2": {
-            "n": 7,
-            "pct": 2.03
+            "n": 8,
+            "pct": 2.31
           },
           "3": {
             "n": 34,
-            "pct": 9.86
+            "pct": 9.83
           },
           "4": {
             "n": 43,
-            "pct": 12.46
+            "pct": 12.43
           },
           "5": {
             "n": 29,
-            "pct": 8.41
+            "pct": 8.38
           }
         },
         "2": {
           "1": {
             "n": 12,
-            "pct": 3.48
+            "pct": 3.47
           },
           "2": {
             "n": 2,
@@ -5837,21 +5837,21 @@ const USDCAD_DATA = {
           },
           "3": {
             "n": 10,
-            "pct": 2.9
+            "pct": 2.89
           },
           "4": {
             "n": 20,
-            "pct": 5.8
+            "pct": 5.78
           },
           "5": {
             "n": 11,
-            "pct": 3.19
+            "pct": 3.18
           }
         },
         "3": {
           "1": {
             "n": 34,
-            "pct": 9.86
+            "pct": 9.83
           },
           "2": {
             "n": 2,
@@ -5863,21 +5863,21 @@ const USDCAD_DATA = {
           },
           "4": {
             "n": 7,
-            "pct": 2.03
+            "pct": 2.02
           },
           "5": {
             "n": 8,
-            "pct": 2.32
+            "pct": 2.31
           }
         },
         "4": {
           "1": {
             "n": 30,
-            "pct": 8.7
+            "pct": 8.67
           },
           "2": {
             "n": 13,
-            "pct": 3.77
+            "pct": 3.76
           },
           "3": {
             "n": 4,
@@ -5895,15 +5895,15 @@ const USDCAD_DATA = {
         "5": {
           "1": {
             "n": 38,
-            "pct": 11.01
+            "pct": 10.98
           },
           "2": {
             "n": 14,
-            "pct": 4.06
+            "pct": 4.05
           },
           "3": {
             "n": 17,
-            "pct": 4.93
+            "pct": 4.91
           },
           "4": {
             "n": 2,
@@ -5930,8 +5930,8 @@ const USDCAD_DATA = {
         "pct": 54.55
       },
       "Compression Year": {
-        "n": 5,
-        "pct": 22.73
+        "n": 4,
+        "pct": 18.18
       },
       "Volatile Year": {
         "n": 2,
@@ -5944,6 +5944,10 @@ const USDCAD_DATA = {
       "Trend Year (Down)": {
         "n": 1,
         "pct": 4.55
+      },
+      "Quiet Drift Year (Up)": {
+        "n": 1,
+        "pct": 4.55
       }
     },
     "extreme_timing_by_profile": {
@@ -5953,7 +5957,7 @@ const USDCAD_DATA = {
         "Late_Resolution": 1
       },
       "Compression Year": {
-        "Late_Push": 3,
+        "Late_Push": 2,
         "Early_Resolution": 1,
         "Late_Resolution": 1
       },
@@ -5965,6 +5969,9 @@ const USDCAD_DATA = {
       },
       "Trend Year (Down)": {
         "Late_Push": 1
+      },
+      "Quiet Drift Year (Up)": {
+        "Late_Push": 1
       }
     },
     "extreme_spread_by_profile": {
@@ -5972,7 +5979,7 @@ const USDCAD_DATA = {
         "Spread": 12
       },
       "Compression Year": {
-        "Spread": 5
+        "Spread": 4
       },
       "Volatile Year": {
         "Spread": 2
@@ -5982,12 +5989,15 @@ const USDCAD_DATA = {
       },
       "Trend Year (Down)": {
         "Spread": 1
+      },
+      "Quiet Drift Year (Up)": {
+        "Spread": 1
       }
     },
     "avg_range_pips_by_profile": {
       "Compression Year": {
-        "mean": 845.9,
-        "median": 818.2
+        "mean": 852.9,
+        "median": 841.5
       },
       "Normal Year": {
         "mean": 1531.8,
@@ -5996,6 +6006,10 @@ const USDCAD_DATA = {
       "Quiet Drift Year (Down)": {
         "mean": 818.8,
         "median": 818.8
+      },
+      "Quiet Drift Year (Up)": {
+        "mean": 818.2,
+        "median": 818.2
       },
       "Trend Year (Down)": {
         "mean": 2858.0,
@@ -6621,123 +6635,123 @@ const USDCAD_DATA = {
     "hourly": {
       "0": {
         "mean_range_pips": 13.94,
-        "mean_activity_pips": 53.05,
-        "n_days": 5671
+        "mean_activity_pips": 53.03,
+        "n_days": 5676
       },
       "1": {
-        "mean_range_pips": 13.6,
-        "mean_activity_pips": 52.7,
-        "n_days": 5583
+        "mean_range_pips": 13.59,
+        "mean_activity_pips": 52.68,
+        "n_days": 5588
       },
       "2": {
         "mean_range_pips": 11.82,
-        "mean_activity_pips": 46.23,
-        "n_days": 5527
+        "mean_activity_pips": 46.21,
+        "n_days": 5532
       },
       "3": {
         "mean_range_pips": 10.64,
-        "mean_activity_pips": 42.82,
-        "n_days": 5555
+        "mean_activity_pips": 42.81,
+        "n_days": 5560
       },
       "4": {
         "mean_range_pips": 10.79,
-        "mean_activity_pips": 43.34,
-        "n_days": 5649
+        "mean_activity_pips": 43.32,
+        "n_days": 5654
       },
       "5": {
         "mean_range_pips": 14.39,
-        "mean_activity_pips": 55.81,
-        "n_days": 6238
+        "mean_activity_pips": 55.78,
+        "n_days": 6243
       },
       "6": {
         "mean_range_pips": 18.42,
-        "mean_activity_pips": 71.41,
-        "n_days": 6641
+        "mean_activity_pips": 71.38,
+        "n_days": 6646
       },
       "7": {
-        "mean_range_pips": 20.37,
-        "mean_activity_pips": 78.88,
-        "n_days": 6742
+        "mean_range_pips": 20.36,
+        "mean_activity_pips": 78.85,
+        "n_days": 6747
       },
       "8": {
-        "mean_range_pips": 20.28,
-        "mean_activity_pips": 78.27,
-        "n_days": 6712
-      },
-      "9": {
-        "mean_range_pips": 19.4,
-        "mean_activity_pips": 75.29,
+        "mean_range_pips": 20.27,
+        "mean_activity_pips": 78.25,
         "n_days": 6717
       },
+      "9": {
+        "mean_range_pips": 19.39,
+        "mean_activity_pips": 75.26,
+        "n_days": 6722
+      },
       "10": {
-        "mean_range_pips": 20.5,
-        "mean_activity_pips": 78.54,
-        "n_days": 6868
+        "mean_range_pips": 20.49,
+        "mean_activity_pips": 78.51,
+        "n_days": 6873
       },
       "11": {
-        "mean_range_pips": 25.27,
-        "mean_activity_pips": 92.64,
-        "n_days": 7066
+        "mean_range_pips": 25.26,
+        "mean_activity_pips": 92.6,
+        "n_days": 7071
       },
       "12": {
-        "mean_range_pips": 29.52,
-        "mean_activity_pips": 107.39,
-        "n_days": 7136
+        "mean_range_pips": 29.51,
+        "mean_activity_pips": 107.35,
+        "n_days": 7141
       },
       "13": {
         "mean_range_pips": 31.13,
-        "mean_activity_pips": 114.57,
-        "n_days": 7101
+        "mean_activity_pips": 114.55,
+        "n_days": 7106
       },
       "14": {
-        "mean_range_pips": 30.54,
-        "mean_activity_pips": 113.68,
-        "n_days": 7104
+        "mean_range_pips": 30.53,
+        "mean_activity_pips": 113.66,
+        "n_days": 7109
       },
       "15": {
         "mean_range_pips": 26.44,
-        "mean_activity_pips": 100.9,
-        "n_days": 6943
+        "mean_activity_pips": 100.88,
+        "n_days": 6948
       },
       "16": {
         "mean_range_pips": 21.74,
-        "mean_activity_pips": 83.27,
-        "n_days": 6695
+        "mean_activity_pips": 83.25,
+        "n_days": 6700
       },
       "17": {
-        "mean_range_pips": 20.06,
-        "mean_activity_pips": 75.51,
-        "n_days": 6508
+        "mean_range_pips": 20.05,
+        "mean_activity_pips": 75.48,
+        "n_days": 6513
       },
       "18": {
-        "mean_range_pips": 19.34,
-        "mean_activity_pips": 73.17,
-        "n_days": 6327
+        "mean_range_pips": 19.33,
+        "mean_activity_pips": 73.14,
+        "n_days": 6332
       },
       "19": {
-        "mean_range_pips": 17.36,
-        "mean_activity_pips": 66.21,
-        "n_days": 6316
+        "mean_range_pips": 17.35,
+        "mean_activity_pips": 66.19,
+        "n_days": 6321
       },
       "20": {
-        "mean_range_pips": 15.2,
-        "mean_activity_pips": 57.47,
-        "n_days": 5340
+        "mean_range_pips": 15.19,
+        "mean_activity_pips": 57.44,
+        "n_days": 5345
       },
       "21": {
-        "mean_range_pips": 12.35,
-        "mean_activity_pips": 44.57,
-        "n_days": 5036
+        "mean_range_pips": 12.34,
+        "mean_activity_pips": 44.55,
+        "n_days": 5041
       },
       "22": {
         "mean_range_pips": 11.51,
         "mean_activity_pips": 41.15,
-        "n_days": 5486
+        "n_days": 5491
       },
       "23": {
         "mean_range_pips": 12.56,
-        "mean_activity_pips": 45.92,
-        "n_days": 5721
+        "mean_activity_pips": 45.9,
+        "n_days": 5726
       }
     },
     "session_windows": {
@@ -6753,14 +6767,14 @@ const USDCAD_DATA = {
           6
         ],
         "mean_range_pips": 13.27,
-        "mean_activity_pips": 51.41
+        "mean_activity_pips": 51.39
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 20.37,
-        "mean_activity_pips": 78.88
+        "mean_range_pips": 20.36,
+        "mean_activity_pips": 78.85
       },
       "london_only": {
         "hours": [
@@ -6769,8 +6783,8 @@ const USDCAD_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 21.36,
-        "mean_activity_pips": 81.19
+        "mean_range_pips": 21.35,
+        "mean_activity_pips": 81.16
       },
       "london_ny_overlap": {
         "hours": [
@@ -6779,8 +6793,8 @@ const USDCAD_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 29.41,
-        "mean_activity_pips": 109.13
+        "mean_range_pips": 29.4,
+        "mean_activity_pips": 109.11
       },
       "ny_only": {
         "hours": [
@@ -6790,54 +6804,54 @@ const USDCAD_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 18.74,
-        "mean_activity_pips": 71.13
+        "mean_range_pips": 18.73,
+        "mean_activity_pips": 71.1
       }
     },
     "asset": "USDCAD"
   },
   "range_forecast": {
     "asset": "USDCAD",
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-13",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 66.2,
+    "adr20": 64.6,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-09",
-        "mean": 69.9,
-        "q10": 42.6,
-        "q90": 106.1,
-        "q10_raw": 40.5,
-        "q90_raw": 101.0
+        "target_date": "2026-11-16",
+        "mean": 62.7,
+        "q10": 38.8,
+        "q90": 94.7,
+        "q10_raw": 36.6,
+        "q90_raw": 90.2
       },
       "h5": {
-        "mean": 66.8
+        "mean": 62.3
       },
       "h20": {
-        "mean": 64.5
+        "mean": 61.8
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.9,
-        "h5": 0.894,
-        "h20": 1.058
+        "h1": 0.901,
+        "h5": 0.897,
+        "h20": 1.061
       },
       "mae": {
         "h1": {
-          "timesfm": 21.0,
-          "adr20": 23.4
+          "timesfm": 20.9,
+          "adr20": 23.2
         },
         "h5": {
-          "timesfm": 13.8,
-          "adr20": 15.4
+          "timesfm": 13.9,
+          "adr20": 15.5
         },
         "h20": {
-          "timesfm": 10.4,
-          "adr20": 9.9
+          "timesfm": 10.3,
+          "adr20": 9.7
         }
       },
       "n": {
@@ -6845,49 +6859,14 @@ const USDCAD_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-12-02",
-      "to": "2026-11-05",
+      "from": "2024-12-09",
+      "to": "2026-11-12",
       "band_n": 500,
-      "band_coverage": 0.818,
+      "band_coverage": 0.82,
       "above_q90": 0.104,
-      "below_q10": 0.078
+      "below_q10": 0.076
     },
     "recent": [
-      {
-        "date": "2026-08-17",
-        "actual": 33.1,
-        "mean": 55.2,
-        "q10": 33.2,
-        "q90": 85.8
-      },
-      {
-        "date": "2026-08-18",
-        "actual": 49.7,
-        "mean": 53.7,
-        "q10": 32.3,
-        "q90": 83.2
-      },
-      {
-        "date": "2026-08-19",
-        "actual": 104.7,
-        "mean": 54.0,
-        "q10": 32.4,
-        "q90": 84.0
-      },
-      {
-        "date": "2026-08-20",
-        "actual": 56.9,
-        "mean": 57.1,
-        "q10": 34.0,
-        "q90": 89.0
-      },
-      {
-        "date": "2026-08-21",
-        "actual": 54.8,
-        "mean": 56.2,
-        "q10": 33.7,
-        "q90": 87.8
-      },
       {
         "date": "2026-08-24",
         "actual": 77.2,
@@ -7275,10 +7254,45 @@ const USDCAD_DATA = {
       },
       {
         "date": "2026-11-09",
-        "actual": null,
+        "actual": 59.1,
         "mean": 69.9,
         "q10": 42.6,
         "q90": 106.1
+      },
+      {
+        "date": "2026-11-10",
+        "actual": 104.9,
+        "mean": 63.5,
+        "q10": 38.6,
+        "q90": 96.9
+      },
+      {
+        "date": "2026-11-11",
+        "actual": 74.7,
+        "mean": 69.9,
+        "q10": 43.0,
+        "q90": 106.6
+      },
+      {
+        "date": "2026-11-12",
+        "actual": 47.3,
+        "mean": 69.6,
+        "q10": 43.8,
+        "q90": 105.5
+      },
+      {
+        "date": "2026-11-13",
+        "actual": 45.8,
+        "mean": 64.6,
+        "q10": 41.0,
+        "q90": 97.1
+      },
+      {
+        "date": "2026-11-16",
+        "actual": null,
+        "mean": 62.7,
+        "q10": 38.8,
+        "q90": 94.7
       }
     ]
   }

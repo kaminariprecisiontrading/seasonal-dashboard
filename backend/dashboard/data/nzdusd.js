@@ -4,15 +4,15 @@ const NZDUSD_DATA = {
   "stats": {
     "asset": "NZDUSD",
     "unit": "pips",
-    "as_of": "2026-11-06",
-    "n_days": 6701,
-    "n_weeks": 1345,
+    "as_of": "2026-11-13",
+    "n_days": 6706,
+    "n_weeks": 1346,
     "n_months": 311,
     "n_years": 26,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 6701,
+          "n": 6706,
           "mean": 77.4,
           "median": 68.0,
           "std": 41.6,
@@ -38,22 +38,22 @@ const NZDUSD_DATA = {
           "p75": 94.0,
           "p80": 101.0,
           "p90": 126.2,
-          "p95": 152.9,
+          "p95": 152.8,
           "compression_threshold_pips": 46.3,
           "expansion_threshold_pips": 101.0
         },
         "5y": {
           "n": 1298,
-          "mean": 61.3,
-          "median": 55.4,
+          "mean": 61.2,
+          "median": 55.3,
           "std": 27.5,
           "min": 17.6,
           "max": 245.6,
           "mode_binned": {
-            "bin_low": 45.6,
-            "bin_high": 49.6,
-            "count": 107,
-            "pct_of_n": 8.2
+            "bin_low": 45.4,
+            "bin_high": 49.5,
+            "count": 105,
+            "pct_of_n": 8.1
           },
           "mode_raw": {
             "value": 42.4,
@@ -61,30 +61,30 @@ const NZDUSD_DATA = {
             "pct_of_n": 0.5,
             "n_values_tied": 4
           },
-          "p05": 29.2,
-          "p10": 32.7,
-          "p20": 39.8,
+          "p05": 29.0,
+          "p10": 32.6,
+          "p20": 39.7,
           "p25": 42.4,
-          "p50": 55.4,
+          "p50": 55.3,
           "p75": 73.9,
-          "p80": 79.4,
+          "p80": 79.6,
           "p90": 96.1,
           "p95": 111.1,
-          "compression_threshold_pips": 39.8,
-          "expansion_threshold_pips": 79.4
+          "compression_threshold_pips": 39.7,
+          "expansion_threshold_pips": 79.6
         },
         "1y": {
           "n": 260,
-          "mean": 50.7,
-          "median": 45.9,
-          "std": 21.3,
+          "mean": 51.1,
+          "median": 46.6,
+          "std": 21.4,
           "min": 19.4,
           "max": 150.9,
           "mode_binned": {
             "bin_low": 35.8,
             "bin_high": 39.2,
-            "count": 25,
-            "pct_of_n": 9.6
+            "count": 24,
+            "pct_of_n": 9.2
           },
           "mode_raw": {
             "value": 36.1,
@@ -93,29 +93,29 @@ const NZDUSD_DATA = {
             "n_values_tied": 6
           },
           "p05": 25.5,
-          "p10": 28.8,
+          "p10": 28.1,
           "p20": 33.8,
-          "p25": 36.2,
-          "p50": 45.9,
-          "p75": 61.8,
-          "p80": 64.2,
-          "p90": 77.8,
+          "p25": 36.4,
+          "p50": 46.6,
+          "p75": 62.5,
+          "p80": 64.4,
+          "p90": 78.2,
           "p95": 94.1,
           "compression_threshold_pips": 33.8,
-          "expansion_threshold_pips": 64.2
+          "expansion_threshold_pips": 64.4
         },
         "3mo": {
           "n": 67,
-          "mean": 45.1,
-          "median": 41.5,
-          "std": 17.2,
+          "mean": 46.7,
+          "median": 42.1,
+          "std": 17.6,
           "min": 20.7,
           "max": 112.9,
           "mode_binned": {
-            "bin_low": 34.0,
-            "bin_high": 36.4,
-            "count": 7,
-            "pct_of_n": 10.4
+            "bin_low": 35.8,
+            "bin_high": 38.3,
+            "count": 6,
+            "pct_of_n": 9.0
           },
           "mode_raw": {
             "value": 36.1,
@@ -123,26 +123,26 @@ const NZDUSD_DATA = {
             "pct_of_n": 4.5,
             "n_values_tied": 1
           },
-          "p05": 24.8,
-          "p10": 27.3,
-          "p20": 31.6,
-          "p25": 33.5,
-          "p50": 41.5,
-          "p75": 55.0,
-          "p80": 59.9,
-          "p90": 64.9,
-          "p95": 71.1,
-          "compression_threshold_pips": 31.6,
-          "expansion_threshold_pips": 59.9
+          "p05": 25.8,
+          "p10": 28.6,
+          "p20": 32.0,
+          "p25": 34.5,
+          "p50": 42.1,
+          "p75": 56.3,
+          "p80": 62.5,
+          "p90": 66.3,
+          "p95": 75.8,
+          "compression_threshold_pips": 32.0,
+          "expansion_threshold_pips": 62.5
         }
       },
       "latest_adr": {
-        "ADR_5": 58.1,
-        "ADR_14": 49.2,
-        "ADR_20": 48.6,
+        "ADR_5": 52.1,
+        "ADR_14": 54.6,
+        "ADR_20": 48.8,
         "fixed_multiple_thresholds": {
-          "compression_pips": 34.0,
-          "expansion_pips": 63.2,
+          "compression_pips": 34.2,
+          "expansion_pips": 63.4,
           "based_on": "ADR_20"
         }
       }
@@ -150,10 +150,10 @@ const NZDUSD_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 1345,
+          "n": 1346,
           "mean": 173.6,
-          "median": 154.7,
-          "std": 86.7,
+          "median": 154.5,
+          "std": 86.6,
           "min": 43.5,
           "max": 832.0,
           "mode_binned": {
@@ -172,19 +172,19 @@ const NZDUSD_DATA = {
           "p10": 90.5,
           "p20": 110.0,
           "p25": 116.9,
-          "p50": 154.7,
+          "p50": 154.5,
           "p75": 204.7,
           "p80": 225.0,
-          "p90": 277.6,
+          "p90": 277.5,
           "p95": 326.8,
           "compression_threshold_pips": 110.0,
           "expansion_threshold_pips": 225.0
         },
         "5y": {
           "n": 261,
-          "mean": 134.0,
+          "mean": 133.8,
           "median": 126.0,
-          "std": 49.2,
+          "std": 49.1,
           "min": 47.3,
           "max": 354.4,
           "mode_binned": {
@@ -204,16 +204,16 @@ const NZDUSD_DATA = {
           "p20": 93.7,
           "p25": 100.8,
           "p50": 126.0,
-          "p75": 156.0,
-          "p80": 174.0,
+          "p75": 154.9,
+          "p80": 171.4,
           "p90": 198.2,
           "p95": 216.6,
           "compression_threshold_pips": 93.7,
-          "expansion_threshold_pips": 174.0
+          "expansion_threshold_pips": 171.4
         },
         "1y": {
           "n": 53,
-          "mean": 114.1,
+          "mean": 114.2,
           "median": 114.3,
           "std": 37.8,
           "min": 47.9,
@@ -244,14 +244,14 @@ const NZDUSD_DATA = {
         },
         "3mo": {
           "n": 14,
-          "mean": 97.4,
-          "median": 100.0,
-          "std": 29.2,
+          "mean": 102.7,
+          "median": 105.5,
+          "std": 27.4,
           "min": 47.9,
           "max": 135.4,
           "mode_binned": {
-            "bin_low": 75.9,
-            "bin_high": 79.9,
+            "bin_low": 76.3,
+            "bin_high": 80.0,
             "count": 2,
             "pct_of_n": 14.3
           },
@@ -261,17 +261,17 @@ const NZDUSD_DATA = {
             "pct_of_n": 7.1,
             "n_values_tied": 14
           },
-          "p05": 51.7,
-          "p10": 56.5,
-          "p20": 71.8,
-          "p25": 77.8,
-          "p50": 100.0,
-          "p75": 124.0,
-          "p80": 127.1,
-          "p90": 129.6,
+          "p05": 57.6,
+          "p10": 67.3,
+          "p20": 78.0,
+          "p25": 83.0,
+          "p50": 105.5,
+          "p75": 127.4,
+          "p80": 128.0,
+          "p90": 130.0,
           "p95": 132.2,
-          "compression_threshold_pips": 71.8,
-          "expansion_threshold_pips": 127.1
+          "compression_threshold_pips": 78.0,
+          "expansion_threshold_pips": 128.0
         }
       }
     },
@@ -281,7 +281,7 @@ const NZDUSD_DATA = {
           "n": 311,
           "mean": 363.9,
           "median": 330.4,
-          "std": 173.7,
+          "std": 173.6,
           "min": 94.0,
           "max": 1439.0,
           "mode_binned": {
@@ -310,10 +310,10 @@ const NZDUSD_DATA = {
         },
         "5y": {
           "n": 60,
-          "mean": 287.7,
+          "mean": 287.9,
           "median": 268.1,
-          "std": 110.4,
-          "min": 130.5,
+          "std": 110.3,
+          "min": 137.2,
           "max": 596.1,
           "mode_binned": {
             "bin_low": 247.0,
@@ -322,7 +322,7 @@ const NZDUSD_DATA = {
             "pct_of_n": 11.7
           },
           "mode_raw": {
-            "value": 130.5,
+            "value": 137.2,
             "count": 1,
             "pct_of_n": 1.7,
             "n_values_tied": 60
@@ -341,24 +341,24 @@ const NZDUSD_DATA = {
         },
         "1y": {
           "n": 13,
-          "mean": 223.5,
+          "mean": 224.0,
           "median": 179.2,
-          "std": 87.2,
-          "min": 130.5,
+          "std": 86.6,
+          "min": 137.2,
           "max": 381.5,
           "mode_binned": {
-            "bin_low": 137.6,
-            "bin_high": 149.1,
+            "bin_low": 140.3,
+            "bin_high": 151.6,
             "count": 3,
             "pct_of_n": 23.1
           },
           "mode_raw": {
-            "value": 130.5,
+            "value": 137.2,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 137.6,
+          "p05": 140.3,
           "p10": 142.8,
           "p20": 146.1,
           "p25": 147.8,
@@ -372,33 +372,33 @@ const NZDUSD_DATA = {
         },
         "3mo": {
           "n": 4,
-          "mean": 186.2,
+          "mean": 187.9,
           "median": 155.8,
-          "std": 79.2,
-          "min": 130.5,
+          "std": 77.7,
+          "min": 137.2,
           "max": 303.0,
           "mode_binned": {
-            "bin_low": 140.2,
-            "bin_high": 147.6,
+            "bin_low": 138.4,
+            "bin_high": 145.6,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 130.5,
+            "value": 137.2,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 132.7,
-          "p10": 134.8,
-          "p20": 139.1,
-          "p25": 141.3,
+          "p05": 138.4,
+          "p10": 139.5,
+          "p20": 141.8,
+          "p25": 143.0,
           "p50": 155.8,
           "p75": 200.7,
           "p80": 221.2,
           "p90": 262.1,
           "p95": 282.5,
-          "compression_threshold_pips": 139.1,
+          "compression_threshold_pips": 141.8,
           "expansion_threshold_pips": 221.2
         }
       }
@@ -406,10 +406,10 @@ const NZDUSD_DATA = {
     "yearly_range": {
       "distribution": {
         "n": 26,
-        "mean": 1241.8,
+        "mean": 1242.1,
         "median": 1139.5,
-        "std": 607.5,
-        "min": 565.1,
+        "std": 607.2,
+        "min": 571.8,
         "max": 3028.0,
         "mode_binned": {
           "bin_low": 705.9,
@@ -418,7 +418,7 @@ const NZDUSD_DATA = {
           "pct_of_n": 23.1
         },
         "mode_raw": {
-          "value": 565.1,
+          "value": 571.8,
           "count": 1,
           "pct_of_n": 3.8,
           "n_values_tied": 26
@@ -437,7 +437,7 @@ const NZDUSD_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 6701,
+          "n": 6706,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 10.4,
@@ -473,12 +473,12 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "02:30",
               "count": 62,
-              "pct": 0.93
+              "pct": 0.92
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 76,
-              "pct": 1.13
+              "count": 77,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "03:30",
@@ -532,8 +532,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 100,
-              "pct": 1.49
+              "count": 101,
+              "pct": 1.51
             },
             {
               "bucket_start_utc": "09:00",
@@ -593,7 +593,7 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "14:30",
               "count": 178,
-              "pct": 2.66
+              "pct": 2.65
             },
             {
               "bucket_start_utc": "15:00",
@@ -608,7 +608,7 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "16:00",
               "count": 117,
-              "pct": 1.75
+              "pct": 1.74
             },
             {
               "bucket_start_utc": "16:30",
@@ -647,8 +647,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 150,
-              "pct": 2.24
+              "count": 151,
+              "pct": 2.25
             },
             {
               "bucket_start_utc": "20:30",
@@ -658,7 +658,7 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "21:00",
               "count": 697,
-              "pct": 10.4
+              "pct": 10.39
             },
             {
               "bucket_start_utc": "21:30",
@@ -667,8 +667,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 506,
-              "pct": 7.55
+              "count": 508,
+              "pct": 7.58
             },
             {
               "bucket_start_utc": "22:30",
@@ -689,22 +689,22 @@ const NZDUSD_DATA = {
         },
         "5y": {
           "n": 1298,
-          "mode_bucket_start_utc": "00:00",
-          "mode_bucket_end_utc": "00:30",
+          "mode_bucket_start_utc": "22:00",
+          "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 4.5,
           "circular_mean_utc": "19:52",
-          "circular_median_utc": "20:20",
+          "circular_median_utc": "20:30",
           "concentration_R": 0.151,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 58,
-              "pct": 4.47
+              "count": 57,
+              "pct": 4.39
             },
             {
               "bucket_start_utc": "00:30",
-              "count": 32,
-              "pct": 2.47
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "01:00",
@@ -728,8 +728,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 21,
-              "pct": 1.62
+              "count": 22,
+              "pct": 1.69
             },
             {
               "bucket_start_utc": "03:30",
@@ -758,8 +758,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "06:00",
-              "count": 24,
-              "pct": 1.85
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "06:30",
@@ -783,8 +783,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 23,
-              "pct": 1.77
+              "count": 24,
+              "pct": 1.85
             },
             {
               "bucket_start_utc": "09:00",
@@ -848,8 +848,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 36,
-              "pct": 2.77
+              "count": 35,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "15:30",
@@ -918,8 +918,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 56,
-              "pct": 4.31
+              "count": 58,
+              "pct": 4.47
             },
             {
               "bucket_start_utc": "22:30",
@@ -943,9 +943,9 @@ const NZDUSD_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 6.5,
-          "circular_mean_utc": "20:08",
-          "circular_median_utc": "21:30",
-          "concentration_R": 0.148,
+          "circular_mean_utc": "20:31",
+          "circular_median_utc": "21:35",
+          "concentration_R": 0.151,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -979,8 +979,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "03:30",
@@ -1034,8 +1034,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "09:00",
@@ -1044,8 +1044,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "10:00",
@@ -1084,8 +1084,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "14:00",
@@ -1094,8 +1094,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 10,
-              "pct": 3.85
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "15:00",
@@ -1134,8 +1134,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 4,
-              "pct": 1.54
+              "count": 3,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "19:00",
@@ -1149,8 +1149,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "20:30",
@@ -1169,8 +1169,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "22:30",
@@ -1179,8 +1179,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 10,
-              "pct": 3.85
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "23:30",
@@ -1194,9 +1194,9 @@ const NZDUSD_DATA = {
           "mode_bucket_start_utc": "00:00",
           "mode_bucket_end_utc": "00:30",
           "mode_bucket_pct_of_days": 6.0,
-          "circular_mean_utc": "03:31",
-          "circular_median_utc": "01:30",
-          "concentration_R": 0.075,
+          "circular_mean_utc": "01:05",
+          "circular_median_utc": "01:05",
+          "concentration_R": 0.112,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1220,8 +1220,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "02:30",
@@ -1230,8 +1230,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "03:30",
@@ -1255,8 +1255,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "06:00",
@@ -1285,13 +1285,13 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "09:30",
@@ -1325,13 +1325,13 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "13:30",
@@ -1400,8 +1400,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "20:30",
@@ -1420,8 +1420,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "22:30",
@@ -1443,11 +1443,11 @@ const NZDUSD_DATA = {
       },
       "session_distribution": {
         "Asian": {
-          "n": 1600,
+          "n": 1601,
           "pct": 23.9
         },
         "Other": {
-          "n": 1558,
+          "n": 1560,
           "pct": 23.3
         },
         "London_NY_Overlap": {
@@ -1455,11 +1455,11 @@ const NZDUSD_DATA = {
           "pct": 19.6
         },
         "New_York": {
-          "n": 1282,
+          "n": 1283,
           "pct": 19.1
         },
         "London": {
-          "n": 733,
+          "n": 734,
           "pct": 10.9
         },
         "Asian_London_Overlap": {
@@ -1471,7 +1471,7 @@ const NZDUSD_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 6701,
+          "n": 6706,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 13.9,
@@ -1497,7 +1497,7 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "01:30",
               "count": 119,
-              "pct": 1.78
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "02:00",
@@ -1532,7 +1532,7 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "05:00",
               "count": 60,
-              "pct": 0.9
+              "pct": 0.89
             },
             {
               "bucket_start_utc": "05:30",
@@ -1577,7 +1577,7 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "09:30",
               "count": 62,
-              "pct": 0.93
+              "pct": 0.92
             },
             {
               "bucket_start_utc": "10:00",
@@ -1641,8 +1641,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 119,
-              "pct": 1.78
+              "count": 120,
+              "pct": 1.79
             },
             {
               "bucket_start_utc": "16:30",
@@ -1651,8 +1651,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 104,
-              "pct": 1.55
+              "count": 105,
+              "pct": 1.57
             },
             {
               "bucket_start_utc": "17:30",
@@ -1671,8 +1671,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 148,
-              "pct": 2.21
+              "count": 149,
+              "pct": 2.22
             },
             {
               "bucket_start_utc": "19:30",
@@ -1692,17 +1692,17 @@ const NZDUSD_DATA = {
             {
               "bucket_start_utc": "21:00",
               "count": 931,
-              "pct": 13.89
+              "pct": 13.88
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 269,
-              "pct": 4.01
+              "count": 270,
+              "pct": 4.03
             },
             {
               "bucket_start_utc": "22:00",
               "count": 680,
-              "pct": 10.15
+              "pct": 10.14
             },
             {
               "bucket_start_utc": "22:30",
@@ -1711,13 +1711,13 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 139,
-              "pct": 2.07
+              "count": 140,
+              "pct": 2.09
             },
             {
               "bucket_start_utc": "23:30",
               "count": 125,
-              "pct": 1.87
+              "pct": 1.86
             }
           ]
         },
@@ -1725,10 +1725,10 @@ const NZDUSD_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 12.6,
+          "mode_bucket_pct_of_days": 12.5,
           "circular_mean_utc": "19:09",
           "circular_median_utc": "20:50",
-          "concentration_R": 0.323,
+          "concentration_R": 0.324,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1752,8 +1752,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 21,
-              "pct": 1.62
+              "count": 20,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "02:30",
@@ -1887,13 +1887,13 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 35,
-              "pct": 2.7
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 30,
-              "pct": 2.31
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "16:30",
@@ -1902,8 +1902,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 22,
-              "pct": 1.69
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "17:30",
@@ -1912,8 +1912,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 27,
-              "pct": 2.08
+              "count": 26,
+              "pct": 2.0
             },
             {
               "bucket_start_utc": "18:30",
@@ -1922,8 +1922,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 40,
-              "pct": 3.08
+              "count": 41,
+              "pct": 3.16
             },
             {
               "bucket_start_utc": "19:30",
@@ -1942,18 +1942,18 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 163,
-              "pct": 12.56
+              "count": 162,
+              "pct": 12.48
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 50,
-              "pct": 3.85
+              "count": 51,
+              "pct": 3.93
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 96,
-              "pct": 7.4
+              "count": 95,
+              "pct": 7.32
             },
             {
               "bucket_start_utc": "22:30",
@@ -1962,8 +1962,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 8,
-              "pct": 0.62
+              "count": 9,
+              "pct": 0.69
             },
             {
               "bucket_start_utc": "23:30",
@@ -1977,9 +1977,9 @@ const NZDUSD_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 12.7,
-          "circular_mean_utc": "20:17",
+          "circular_mean_utc": "20:12",
           "circular_median_utc": "21:05",
-          "concentration_R": 0.361,
+          "concentration_R": 0.374,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2048,8 +2048,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "06:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "07:00",
@@ -2058,8 +2058,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 1,
+              "pct": 0.38
             },
             {
               "bucket_start_utc": "08:00",
@@ -2143,8 +2143,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "16:30",
@@ -2173,8 +2173,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "19:30",
@@ -2198,23 +2198,23 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 18,
-              "pct": 6.92
+              "count": 19,
+              "pct": 7.31
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 23,
-              "pct": 8.85
+              "count": 22,
+              "pct": 8.46
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 1,
-              "pct": 0.38
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "23:30",
@@ -2228,9 +2228,9 @@ const NZDUSD_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 14.9,
-          "circular_mean_utc": "19:32",
+          "circular_mean_utc": "19:33",
           "circular_median_utc": "21:05",
-          "concentration_R": 0.33,
+          "concentration_R": 0.355,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2314,8 +2314,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "08:30",
@@ -2404,8 +2404,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "17:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "17:30",
@@ -2414,8 +2414,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "18:30",
@@ -2424,8 +2424,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "19:30",
@@ -2449,8 +2449,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 9,
-              "pct": 13.43
+              "count": 8,
+              "pct": 11.94
             },
             {
               "bucket_start_utc": "22:00",
@@ -2464,8 +2464,8 @@ const NZDUSD_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "23:30",
@@ -2477,16 +2477,16 @@ const NZDUSD_DATA = {
       },
       "session_distribution": {
         "Other": {
-          "n": 2022,
+          "n": 2023,
           "pct": 30.2
         },
         "Asian": {
-          "n": 1472,
+          "n": 1473,
           "pct": 22.0
         },
         "New_York": {
-          "n": 1228,
-          "pct": 18.3
+          "n": 1231,
+          "pct": 18.4
         },
         "London_NY_Overlap": {
           "n": 1189,
@@ -2503,9 +2503,9 @@ const NZDUSD_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 6701,
-      "same_session_n": 884,
-      "same_session_pct": 13.19,
+      "n_days": 6706,
+      "same_session_n": 885,
+      "same_session_pct": 13.2,
       "pairs": {
         "Asian": {
           "Asian": {
@@ -2522,15 +2522,15 @@ const NZDUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 461,
-            "pct": 6.88
+            "pct": 6.87
           },
           "New_York": {
-            "n": 484,
-            "pct": 7.22
+            "n": 485,
+            "pct": 7.23
           },
           "Other": {
             "n": 180,
-            "pct": 2.69
+            "pct": 2.68
           }
         },
         "Asian_London_Overlap": {
@@ -2562,7 +2562,7 @@ const NZDUSD_DATA = {
         "London": {
           "Asian": {
             "n": 178,
-            "pct": 2.66
+            "pct": 2.65
           },
           "Asian_London_Overlap": {
             "n": 9,
@@ -2588,7 +2588,7 @@ const NZDUSD_DATA = {
         "London_NY_Overlap": {
           "Asian": {
             "n": 516,
-            "pct": 7.7
+            "pct": 7.69
           },
           "Asian_London_Overlap": {
             "n": 55,
@@ -2596,7 +2596,7 @@ const NZDUSD_DATA = {
           },
           "London": {
             "n": 117,
-            "pct": 1.75
+            "pct": 1.74
           },
           "London_NY_Overlap": {
             "n": 99,
@@ -2604,7 +2604,7 @@ const NZDUSD_DATA = {
           },
           "New_York": {
             "n": 117,
-            "pct": 1.75
+            "pct": 1.74
           },
           "Other": {
             "n": 285,
@@ -2613,16 +2613,16 @@ const NZDUSD_DATA = {
         },
         "New_York": {
           "Asian": {
-            "n": 539,
-            "pct": 8.04
+            "n": 540,
+            "pct": 8.05
           },
           "Asian_London_Overlap": {
             "n": 57,
             "pct": 0.85
           },
           "London": {
-            "n": 150,
-            "pct": 2.24
+            "n": 151,
+            "pct": 2.25
           },
           "London_NY_Overlap": {
             "n": 148,
@@ -2633,8 +2633,8 @@ const NZDUSD_DATA = {
             "pct": 0.69
           },
           "Other": {
-            "n": 288,
-            "pct": 4.3
+            "n": 289,
+            "pct": 4.31
           }
         },
         "Other": {
@@ -2652,21 +2652,21 @@ const NZDUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 452,
-            "pct": 6.75
+            "pct": 6.74
           },
           "New_York": {
             "n": 417,
             "pct": 6.22
           },
           "Other": {
-            "n": 620,
-            "pct": 9.25
+            "n": 621,
+            "pct": 9.26
           }
         }
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 6701,
+      "n_days": 6706,
       "same_hour_n": 535,
       "same_hour_pct": 7.98,
       "pairs": {
@@ -4272,8 +4272,8 @@ const NZDUSD_DATA = {
             "pct": 0.16
           },
           "8": {
-            "n": 8,
-            "pct": 0.12
+            "n": 9,
+            "pct": 0.13
           },
           "9": {
             "n": 6,
@@ -4350,8 +4350,8 @@ const NZDUSD_DATA = {
             "pct": 0.13
           },
           "3": {
-            "n": 6,
-            "pct": 0.09
+            "n": 7,
+            "pct": 0.1
           },
           "4": {
             "n": 7,
@@ -4622,8 +4622,8 @@ const NZDUSD_DATA = {
             "pct": 0.52
           },
           "22": {
-            "n": 39,
-            "pct": 0.58
+            "n": 40,
+            "pct": 0.6
           },
           "23": {
             "n": 32,
@@ -4811,15 +4811,15 @@ const NZDUSD_DATA = {
           },
           "20": {
             "n": 58,
-            "pct": 0.87
+            "pct": 0.86
           },
           "21": {
             "n": 322,
-            "pct": 4.81
+            "pct": 4.8
           },
           "22": {
-            "n": 41,
-            "pct": 0.61
+            "n": 42,
+            "pct": 0.63
           },
           "23": {
             "n": 23,
@@ -4913,7 +4913,7 @@ const NZDUSD_DATA = {
           },
           "21": {
             "n": 64,
-            "pct": 0.96
+            "pct": 0.95
           },
           "22": {
             "n": 193,
@@ -5006,8 +5006,8 @@ const NZDUSD_DATA = {
             "pct": 0.25
           },
           "20": {
-            "n": 17,
-            "pct": 0.25
+            "n": 18,
+            "pct": 0.27
           },
           "21": {
             "n": 17,
@@ -5032,7 +5032,7 @@ const NZDUSD_DATA = {
         "extreme_in_release_window_pct": 31.6
       },
       "other_fridays": {
-        "n": 1032,
+        "n": 1033,
         "mean_range_pips": 73.6,
         "median_range_pips": 65.8,
         "extreme_in_release_window_pct": 19.1
@@ -5045,13 +5045,13 @@ const NZDUSD_DATA = {
       "Friday": 395,
       "Monday": 342,
       "Thursday": 225,
-      "Tuesday": 204,
+      "Tuesday": 205,
       "Wednesday": 178,
       "Sunday": 1
     },
     "weekly_low_day": {
       "Monday": 383,
-      "Friday": 349,
+      "Friday": 350,
       "Thursday": 205,
       "Wednesday": 203,
       "Tuesday": 203,
@@ -5065,8 +5065,8 @@ const NZDUSD_DATA = {
       "5": 54
     },
     "monthly_low_week_of_month": {
-      "1": 109,
-      "2": 51,
+      "1": 108,
+      "2": 52,
       "3": 40,
       "4": 60,
       "5": 51
@@ -5136,32 +5136,31 @@ const NZDUSD_DATA = {
       "40": 1,
       "41": 2,
       "43": 1,
-      "45": 1,
-      "46": 1,
+      "46": 2,
       "47": 1,
       "50": 2
     }
   },
   "profiles": {
-    "n_labeled_days": 6642,
+    "n_labeled_days": 6647,
     "n_data_gap_days": 7,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 3847,
-        "pct": 57.92
+        "n": 3849,
+        "pct": 57.91
       },
       "Compression Day": {
-        "n": 1232,
+        "n": 1233,
         "pct": 18.55
       },
       "Volatile Day": {
         "n": 637,
-        "pct": 9.59
+        "pct": 9.58
       },
       "Trend Day (Up)": {
-        "n": 255,
-        "pct": 3.84
+        "n": 256,
+        "pct": 3.85
       },
       "Trend Day (Down)": {
         "n": 254,
@@ -5169,11 +5168,11 @@ const NZDUSD_DATA = {
       },
       "Volatile Reversal Day": {
         "n": 203,
-        "pct": 3.06
+        "pct": 3.05
       },
       "Quiet Drift Day (Down)": {
-        "n": 127,
-        "pct": 1.91
+        "n": 128,
+        "pct": 1.93
       },
       "Quiet Drift Day (Up)": {
         "n": 87,
@@ -5182,13 +5181,13 @@ const NZDUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 2224,
+        "Late_Push": 2226,
         "Early_Resolution": 701,
         "Fade_Risk": 465,
         "Late_Resolution": 457
       },
       "Compression Day": {
-        "Late_Push": 501,
+        "Late_Push": 502,
         "Early_Resolution": 328,
         "Fade_Risk": 247,
         "Late_Resolution": 156
@@ -5200,7 +5199,7 @@ const NZDUSD_DATA = {
         "Fade_Risk": 35
       },
       "Trend Day (Up)": {
-        "Late_Push": 196,
+        "Late_Push": 197,
         "Early_Resolution": 31,
         "Late_Resolution": 25,
         "Fade_Risk": 3
@@ -5218,7 +5217,7 @@ const NZDUSD_DATA = {
         "Late_Resolution": 8
       },
       "Quiet Drift Day (Down)": {
-        "Late_Push": 67,
+        "Late_Push": 68,
         "Late_Resolution": 32,
         "Early_Resolution": 18,
         "Fade_Risk": 10
@@ -5240,8 +5239,8 @@ const NZDUSD_DATA = {
         "median": 68.0
       },
       "Quiet Drift Day (Down)": {
-        "mean": 42.0,
-        "median": 40.0
+        "mean": 41.9,
+        "median": 39.9
       },
       "Quiet Drift Day (Up)": {
         "mean": 46.9,
@@ -5252,8 +5251,8 @@ const NZDUSD_DATA = {
         "median": 123.6
       },
       "Trend Day (Up)": {
-        "mean": 127.2,
-        "median": 113.5
+        "mean": 127.1,
+        "median": 113.2
       },
       "Volatile Day": {
         "mean": 129.0,
@@ -5266,7 +5265,7 @@ const NZDUSD_DATA = {
     },
     "nfp": {
       "n_nfp_days": 304,
-      "n_other_fridays": 1024,
+      "n_other_fridays": 1025,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 182,
@@ -5320,13 +5319,13 @@ const NZDUSD_DATA = {
       "other_friday_profile_distribution": {
         "Normal Day": {
           "n": 596,
-          "pct": 58.2,
+          "pct": 58.15,
           "mean_range_pips": 72.6,
           "median_range_pips": 69.0
         },
         "Compression Day": {
           "n": 213,
-          "pct": 20.8,
+          "pct": 20.78,
           "mean_range_pips": 41.4,
           "median_range_pips": 39.0
         },
@@ -5344,15 +5343,15 @@ const NZDUSD_DATA = {
         },
         "Trend Day (Up)": {
           "n": 44,
-          "pct": 4.3,
+          "pct": 4.29,
           "mean_range_pips": 127.5,
           "median_range_pips": 116.5
         },
         "Quiet Drift Day (Down)": {
-          "n": 24,
-          "pct": 2.34,
-          "mean_range_pips": 45.6,
-          "median_range_pips": 45.4
+          "n": 25,
+          "pct": 2.44,
+          "mean_range_pips": 44.9,
+          "median_range_pips": 44.9
         },
         "Volatile Reversal Day": {
           "n": 22,
@@ -5371,21 +5370,21 @@ const NZDUSD_DATA = {
     "asset": "NZDUSD"
   },
   "weekly": {
-    "n_labeled_weeks": 1331,
+    "n_labeled_weeks": 1332,
     "n_short_weeks": 0,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 758,
-        "pct": 56.95
+        "n": 759,
+        "pct": 56.98
       },
       "Compression Week": {
         "n": 250,
-        "pct": 18.78
+        "pct": 18.77
       },
       "Volatile Week": {
         "n": 127,
-        "pct": 9.54
+        "pct": 9.53
       },
       "Trend Week (Down)": {
         "n": 68,
@@ -5410,7 +5409,7 @@ const NZDUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Week": {
-        "Late_Push": 458,
+        "Late_Push": 459,
         "Late_Resolution": 166,
         "Fade_Risk": 107,
         "Early_Resolution": 26,
@@ -5457,7 +5456,7 @@ const NZDUSD_DATA = {
     },
     "extreme_spread_by_profile": {
       "Normal Week": {
-        "Spread": 632,
+        "Spread": 633,
         "Adjacent": 111,
         "Same_Day": 14,
         "Insufficient_History": 1
@@ -5530,7 +5529,7 @@ const NZDUSD_DATA = {
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 1342,
+      "n_weeks": 1343,
       "same_day_n": 25,
       "same_day_pct": 1.86,
       "pairs": {
@@ -5553,13 +5552,13 @@ const NZDUSD_DATA = {
           },
           "Friday": {
             "n": 180,
-            "pct": 13.41
+            "pct": 13.4
           }
         },
         "Tuesday": {
           "Monday": {
             "n": 30,
-            "pct": 2.24
+            "pct": 2.23
           },
           "Tuesday": {
             "n": 4,
@@ -5593,7 +5592,7 @@ const NZDUSD_DATA = {
           },
           "Thursday": {
             "n": 30,
-            "pct": 2.24
+            "pct": 2.23
           },
           "Friday": {
             "n": 87,
@@ -5607,7 +5606,7 @@ const NZDUSD_DATA = {
           },
           "Tuesday": {
             "n": 59,
-            "pct": 4.4
+            "pct": 4.39
           },
           "Wednesday": {
             "n": 22,
@@ -5628,8 +5627,8 @@ const NZDUSD_DATA = {
             "pct": 11.62
           },
           "Tuesday": {
-            "n": 95,
-            "pct": 7.08
+            "n": 96,
+            "pct": 7.15
           },
           "Wednesday": {
             "n": 62,
@@ -5651,41 +5650,41 @@ const NZDUSD_DATA = {
     "asset": "NZDUSD"
   },
   "monthly": {
-    "n_labeled_months": 300,
-    "n_short_months": 2,
+    "n_labeled_months": 301,
+    "n_short_months": 1,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
         "n": 175,
-        "pct": 58.33
+        "pct": 58.14
       },
       "Compression Month": {
         "n": 54,
-        "pct": 18.0
+        "pct": 17.94
       },
       "Volatile Month": {
         "n": 32,
-        "pct": 10.67
+        "pct": 10.63
       },
       "Trend Month (Down)": {
         "n": 12,
-        "pct": 4.0
+        "pct": 3.99
       },
       "Volatile Reversal Month": {
         "n": 11,
-        "pct": 3.67
+        "pct": 3.65
       },
       "Trend Month (Up)": {
         "n": 9,
-        "pct": 3.0
+        "pct": 2.99
       },
       "Quiet Drift Month (Up)": {
         "n": 6,
-        "pct": 2.0
+        "pct": 1.99
       },
       "Quiet Drift Month (Down)": {
-        "n": 1,
-        "pct": 0.33
+        "n": 2,
+        "pct": 0.66
       }
     },
     "extreme_timing_by_profile": {
@@ -5726,7 +5725,8 @@ const NZDUSD_DATA = {
         "Late_Resolution": 2
       },
       "Quiet Drift Month (Down)": {
-        "Late_Resolution": 1
+        "Late_Resolution": 1,
+        "Early_Resolution": 1
       }
     },
     "extreme_spread_by_profile": {
@@ -5759,7 +5759,7 @@ const NZDUSD_DATA = {
         "Adjacent": 2
       },
       "Quiet Drift Month (Down)": {
-        "Adjacent": 1
+        "Adjacent": 2
       }
     },
     "avg_range_pips_by_profile": {
@@ -5772,8 +5772,8 @@ const NZDUSD_DATA = {
         "median": 329.0
       },
       "Quiet Drift Month (Down)": {
-        "mean": 204.6,
-        "median": 204.6
+        "mean": 170.9,
+        "median": 170.9
       },
       "Quiet Drift Month (Up)": {
         "mean": 210.1,
@@ -5797,7 +5797,7 @@ const NZDUSD_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 309,
+      "n_months": 310,
       "same_week_n": 1,
       "same_week_pct": 0.32,
       "pairs": {
@@ -5808,25 +5808,25 @@ const NZDUSD_DATA = {
           },
           "2": {
             "n": 9,
-            "pct": 2.91
+            "pct": 2.9
           },
           "3": {
             "n": 29,
-            "pct": 9.39
+            "pct": 9.35
           },
           "4": {
             "n": 36,
-            "pct": 11.65
+            "pct": 11.61
           },
           "5": {
             "n": 33,
-            "pct": 10.68
+            "pct": 10.65
           }
         },
         "2": {
           "1": {
-            "n": 19,
-            "pct": 6.15
+            "n": 20,
+            "pct": 6.45
           },
           "2": {
             "n": 0,
@@ -5838,21 +5838,21 @@ const NZDUSD_DATA = {
           },
           "4": {
             "n": 21,
-            "pct": 6.8
+            "pct": 6.77
           },
           "5": {
             "n": 8,
-            "pct": 2.59
+            "pct": 2.58
           }
         },
         "3": {
           "1": {
             "n": 20,
-            "pct": 6.47
+            "pct": 6.45
           },
           "2": {
             "n": 8,
-            "pct": 2.59
+            "pct": 2.58
           },
           "3": {
             "n": 0,
@@ -5864,21 +5864,21 @@ const NZDUSD_DATA = {
           },
           "5": {
             "n": 10,
-            "pct": 3.24
+            "pct": 3.23
           }
         },
         "4": {
           "1": {
             "n": 29,
-            "pct": 9.39
+            "pct": 9.35
           },
           "2": {
             "n": 17,
-            "pct": 5.5
+            "pct": 5.48
           },
           "3": {
             "n": 11,
-            "pct": 3.56
+            "pct": 3.55
           },
           "4": {
             "n": 0,
@@ -5892,11 +5892,11 @@ const NZDUSD_DATA = {
         "5": {
           "1": {
             "n": 27,
-            "pct": 8.74
+            "pct": 8.71
           },
           "2": {
             "n": 14,
-            "pct": 4.53
+            "pct": 4.52
           },
           "3": {
             "n": 6,
@@ -6003,8 +6003,8 @@ const NZDUSD_DATA = {
         "median": 1079.1
       },
       "Quiet Drift Year (Down)": {
-        "mean": 565.1,
-        "median": 565.1
+        "mean": 571.8,
+        "median": 571.8
       },
       "Trend Year (Up)": {
         "mean": 1772.7,
@@ -6633,124 +6633,124 @@ const NZDUSD_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 16.47,
-        "mean_activity_pips": 59.72,
-        "n_days": 5769
+        "mean_range_pips": 16.46,
+        "mean_activity_pips": 59.69,
+        "n_days": 5774
       },
       "1": {
         "mean_range_pips": 15.82,
-        "mean_activity_pips": 58.48,
-        "n_days": 5612
+        "mean_activity_pips": 58.46,
+        "n_days": 5617
       },
       "2": {
-        "mean_range_pips": 14.04,
-        "mean_activity_pips": 52.32,
-        "n_days": 5548
+        "mean_range_pips": 14.03,
+        "mean_activity_pips": 52.3,
+        "n_days": 5553
       },
       "3": {
         "mean_range_pips": 12.65,
-        "mean_activity_pips": 48.31,
-        "n_days": 5553
+        "mean_activity_pips": 48.29,
+        "n_days": 5558
       },
       "4": {
         "mean_range_pips": 12.13,
-        "mean_activity_pips": 46.99,
-        "n_days": 5638
+        "mean_activity_pips": 46.97,
+        "n_days": 5643
       },
       "5": {
         "mean_range_pips": 14.52,
-        "mean_activity_pips": 55.5,
-        "n_days": 6102
+        "mean_activity_pips": 55.47,
+        "n_days": 6107
       },
       "6": {
-        "mean_range_pips": 17.14,
-        "mean_activity_pips": 65.82,
-        "n_days": 6377
+        "mean_range_pips": 17.13,
+        "mean_activity_pips": 65.79,
+        "n_days": 6382
       },
       "7": {
-        "mean_range_pips": 17.88,
-        "mean_activity_pips": 69.3,
-        "n_days": 6442
+        "mean_range_pips": 17.87,
+        "mean_activity_pips": 69.28,
+        "n_days": 6447
       },
       "8": {
-        "mean_range_pips": 17.18,
-        "mean_activity_pips": 66.74,
-        "n_days": 6366
+        "mean_range_pips": 17.17,
+        "mean_activity_pips": 66.71,
+        "n_days": 6371
       },
       "9": {
         "mean_range_pips": 15.72,
-        "mean_activity_pips": 62.3,
-        "n_days": 6301
+        "mean_activity_pips": 62.28,
+        "n_days": 6306
       },
       "10": {
-        "mean_range_pips": 15.21,
-        "mean_activity_pips": 60.44,
-        "n_days": 6273
+        "mean_range_pips": 15.2,
+        "mean_activity_pips": 60.41,
+        "n_days": 6278
       },
       "11": {
-        "mean_range_pips": 17.34,
-        "mean_activity_pips": 66.83,
-        "n_days": 6380
+        "mean_range_pips": 17.33,
+        "mean_activity_pips": 66.8,
+        "n_days": 6385
       },
       "12": {
-        "mean_range_pips": 20.22,
-        "mean_activity_pips": 76.69,
-        "n_days": 6455
+        "mean_range_pips": 20.21,
+        "mean_activity_pips": 76.65,
+        "n_days": 6460
       },
       "13": {
-        "mean_range_pips": 21.64,
-        "mean_activity_pips": 82.81,
-        "n_days": 6407
+        "mean_range_pips": 21.63,
+        "mean_activity_pips": 82.78,
+        "n_days": 6412
       },
       "14": {
         "mean_range_pips": 21.14,
-        "mean_activity_pips": 81.21,
-        "n_days": 6385
+        "mean_activity_pips": 81.18,
+        "n_days": 6390
       },
       "15": {
-        "mean_range_pips": 18.28,
-        "mean_activity_pips": 71.21,
-        "n_days": 6088
+        "mean_range_pips": 18.27,
+        "mean_activity_pips": 71.18,
+        "n_days": 6093
       },
       "16": {
         "mean_range_pips": 14.96,
-        "mean_activity_pips": 58.6,
-        "n_days": 5724
+        "mean_activity_pips": 58.58,
+        "n_days": 5729
       },
       "17": {
-        "mean_range_pips": 14.31,
-        "mean_activity_pips": 54.26,
-        "n_days": 5595
+        "mean_range_pips": 14.3,
+        "mean_activity_pips": 54.24,
+        "n_days": 5600
       },
       "18": {
-        "mean_range_pips": 14.65,
-        "mean_activity_pips": 53.43,
-        "n_days": 5562
+        "mean_range_pips": 14.64,
+        "mean_activity_pips": 53.4,
+        "n_days": 5567
       },
       "19": {
-        "mean_range_pips": 13.5,
-        "mean_activity_pips": 48.95,
-        "n_days": 5422
+        "mean_range_pips": 13.49,
+        "mean_activity_pips": 48.92,
+        "n_days": 5427
       },
       "20": {
-        "mean_range_pips": 13.06,
-        "mean_activity_pips": 45.09,
-        "n_days": 4814
+        "mean_range_pips": 13.05,
+        "mean_activity_pips": 45.06,
+        "n_days": 4819
       },
       "21": {
-        "mean_range_pips": 19.04,
-        "mean_activity_pips": 49.99,
-        "n_days": 4990
+        "mean_range_pips": 19.02,
+        "mean_activity_pips": 49.96,
+        "n_days": 4995
       },
       "22": {
         "mean_range_pips": 17.78,
         "mean_activity_pips": 48.21,
-        "n_days": 5512
+        "n_days": 5517
       },
       "23": {
-        "mean_range_pips": 14.56,
-        "mean_activity_pips": 51.89,
-        "n_days": 5790
+        "mean_range_pips": 14.55,
+        "mean_activity_pips": 51.87,
+        "n_days": 5795
       }
     },
     "session_windows": {
@@ -6765,15 +6765,15 @@ const NZDUSD_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 14.67,
-        "mean_activity_pips": 54.88
+        "mean_range_pips": 14.66,
+        "mean_activity_pips": 54.86
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 17.88,
-        "mean_activity_pips": 69.3
+        "mean_range_pips": 17.87,
+        "mean_activity_pips": 69.28
       },
       "london_only": {
         "hours": [
@@ -6783,7 +6783,7 @@ const NZDUSD_DATA = {
           11
         ],
         "mean_range_pips": 16.36,
-        "mean_activity_pips": 64.08
+        "mean_activity_pips": 64.05
       },
       "london_ny_overlap": {
         "hours": [
@@ -6792,8 +6792,8 @@ const NZDUSD_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 20.32,
-        "mean_activity_pips": 77.98
+        "mean_range_pips": 20.31,
+        "mean_activity_pips": 77.95
       },
       "ny_only": {
         "hours": [
@@ -6803,41 +6803,41 @@ const NZDUSD_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 14.1,
-        "mean_activity_pips": 52.07
+        "mean_range_pips": 14.09,
+        "mean_activity_pips": 52.04
       }
     },
     "asset": "NZDUSD"
   },
   "range_forecast": {
     "asset": "NZDUSD",
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-13",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 48.6,
+    "adr20": 48.8,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-09",
-        "mean": 49.2,
-        "q10": 29.5,
-        "q90": 74.2,
-        "q10_raw": 28.4,
-        "q90_raw": 71.2
+        "target_date": "2026-11-16",
+        "mean": 46.0,
+        "q10": 27.5,
+        "q90": 69.3,
+        "q10_raw": 26.5,
+        "q90_raw": 66.5
       },
       "h5": {
-        "mean": 48.5
+        "mean": 46.6
       },
       "h20": {
-        "mean": 47.7
+        "mean": 46.5
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
         "h1": 0.933,
-        "h5": 0.912,
-        "h20": 0.856
+        "h5": 0.914,
+        "h20": 0.855
       },
       "mae": {
         "h1": {
@@ -6845,11 +6845,11 @@ const NZDUSD_DATA = {
           "adr20": 17.1
         },
         "h5": {
-          "timesfm": 9.3,
-          "adr20": 10.2
+          "timesfm": 9.4,
+          "adr20": 10.3
         },
         "h20": {
-          "timesfm": 6.2,
+          "timesfm": 6.3,
           "adr20": 7.3
         }
       },
@@ -6858,49 +6858,14 @@ const NZDUSD_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-12-02",
-      "to": "2026-11-05",
+      "from": "2024-12-09",
+      "to": "2026-11-12",
       "band_n": 500,
-      "band_coverage": 0.778,
+      "band_coverage": 0.776,
       "above_q90": 0.12,
-      "below_q10": 0.102
+      "below_q10": 0.104
     },
     "recent": [
-      {
-        "date": "2026-08-17",
-        "actual": 48.1,
-        "mean": 44.5,
-        "q10": 26.3,
-        "q90": 69.8
-      },
-      {
-        "date": "2026-08-18",
-        "actual": 38.6,
-        "mean": 45.2,
-        "q10": 26.7,
-        "q90": 70.7
-      },
-      {
-        "date": "2026-08-19",
-        "actual": 77.8,
-        "mean": 44.2,
-        "q10": 26.1,
-        "q90": 69.6
-      },
-      {
-        "date": "2026-08-20",
-        "actual": 42.1,
-        "mean": 47.7,
-        "q10": 28.5,
-        "q90": 74.4
-      },
-      {
-        "date": "2026-08-21",
-        "actual": 54.2,
-        "mean": 45.8,
-        "q10": 27.0,
-        "q90": 71.9
-      },
       {
         "date": "2026-08-24",
         "actual": 31.6,
@@ -7288,10 +7253,45 @@ const NZDUSD_DATA = {
       },
       {
         "date": "2026-11-09",
-        "actual": null,
+        "actual": 84.7,
         "mean": 49.2,
         "q10": 29.5,
         "q90": 74.2
+      },
+      {
+        "date": "2026-11-10",
+        "actual": 63.1,
+        "mean": 53.5,
+        "q10": 32.0,
+        "q90": 81.0
+      },
+      {
+        "date": "2026-11-11",
+        "actual": 52.8,
+        "mean": 52.1,
+        "q10": 32.0,
+        "q90": 78.4
+      },
+      {
+        "date": "2026-11-12",
+        "actual": 31.9,
+        "mean": 50.7,
+        "q10": 30.8,
+        "q90": 76.8
+      },
+      {
+        "date": "2026-11-13",
+        "actual": 28.1,
+        "mean": 47.2,
+        "q10": 28.1,
+        "q90": 72.1
+      },
+      {
+        "date": "2026-11-16",
+        "actual": null,
+        "mean": 46.0,
+        "q10": 27.5,
+        "q90": 69.3
       }
     ]
   }

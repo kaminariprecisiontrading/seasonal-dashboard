@@ -1,23 +1,23 @@
 {
-  "n_labeled_weeks": 1730,
+  "n_labeled_weeks": 1731,
   "n_short_weeks": 0,
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
       "n": 981,
-      "pct": 56.71
+      "pct": 56.67
     },
     "Compression Week": {
       "n": 318,
-      "pct": 18.38
+      "pct": 18.37
     },
     "Volatile Week": {
       "n": 169,
-      "pct": 9.77
+      "pct": 9.76
     },
     "Trend Week (Down)": {
-      "n": 71,
-      "pct": 4.1
+      "n": 72,
+      "pct": 4.16
     },
     "Trend Week (Up)": {
       "n": 69,
@@ -58,7 +58,7 @@
       "Insufficient_History": 1
     },
     "Trend Week (Down)": {
-      "Late_Push": 56,
+      "Late_Push": 57,
       "Late_Resolution": 14,
       "Fade_Risk": 1
     },
@@ -104,7 +104,7 @@
       "Insufficient_History": 1
     },
     "Trend Week (Down)": {
-      "Spread": 69,
+      "Spread": 70,
       "Adjacent": 2
     },
     "Trend Week (Up)": {
@@ -144,8 +144,8 @@
       "median": 159.5
     },
     "Trend Week (Down)": {
-      "mean": 437.9,
-      "median": 405.0
+      "mean": 435.4,
+      "median": 400.8
     },
     "Trend Week (Up)": {
       "mean": 457.6,
@@ -161,7 +161,7 @@
     }
   },
   "weekday_pair_distribution": {
-    "n_weeks": 1742,
+    "n_weeks": 1743,
     "same_day_n": 49,
     "same_day_pct": 2.81,
     "pairs": {
@@ -180,11 +180,11 @@
         },
         "Thursday": {
           "n": 125,
-          "pct": 7.18
+          "pct": 7.17
         },
         "Friday": {
           "n": 237,
-          "pct": 13.61
+          "pct": 13.6
         }
       },
       "Tuesday": {
@@ -206,13 +206,13 @@
         },
         "Friday": {
           "n": 136,
-          "pct": 7.81
+          "pct": 7.8
         }
       },
       "Wednesday": {
         "Monday": {
           "n": 71,
-          "pct": 4.08
+          "pct": 4.07
         },
         "Tuesday": {
           "n": 27,
@@ -256,11 +256,11 @@
       "Friday": {
         "Monday": {
           "n": 233,
-          "pct": 13.38
+          "pct": 13.37
         },
         "Tuesday": {
-          "n": 118,
-          "pct": 6.77
+          "n": 119,
+          "pct": 6.83
         },
         "Wednesday": {
           "n": 99,

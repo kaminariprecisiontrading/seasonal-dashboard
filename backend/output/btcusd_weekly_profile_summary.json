@@ -1,35 +1,35 @@
 {
-  "n_labeled_weeks": 455,
+  "n_labeled_weeks": 456,
   "n_short_weeks": 0,
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
       "n": 240,
-      "pct": 52.75
+      "pct": 52.63
     },
     "Compression Week": {
       "n": 89,
-      "pct": 19.56
+      "pct": 19.52
     },
     "Volatile Week": {
       "n": 45,
-      "pct": 9.89
+      "pct": 9.87
     },
     "Trend Week (Up)": {
       "n": 32,
-      "pct": 7.03
+      "pct": 7.02
     },
     "Volatile Reversal Week": {
       "n": 20,
-      "pct": 4.4
+      "pct": 4.39
     },
     "Quiet Drift Week (Up)": {
       "n": 12,
-      "pct": 2.64
+      "pct": 2.63
     },
     "Trend Week (Down)": {
-      "n": 11,
-      "pct": 2.42
+      "n": 12,
+      "pct": 2.63
     },
     "Quiet Drift Week (Down)": {
       "n": 6,
@@ -80,7 +80,7 @@
       "Early_Resolution": 1
     },
     "Trend Week (Down)": {
-      "Insufficient_History": 7,
+      "Insufficient_History": 8,
       "Late_Push": 3,
       "Early_Resolution": 1
     },
@@ -126,7 +126,7 @@
       "Adjacent": 1
     },
     "Trend Week (Down)": {
-      "Insufficient_History": 7,
+      "Insufficient_History": 8,
       "Spread": 3,
       "Adjacent": 1
     },
@@ -153,8 +153,8 @@
       "median": 92914.5
     },
     "Trend Week (Down)": {
-      "mean": 1052251.2,
-      "median": 1302490.0
+      "mean": 1063059.3,
+      "median": 1242219.5
     },
     "Trend Week (Up)": {
       "mean": 763368.8,

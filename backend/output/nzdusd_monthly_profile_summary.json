@@ -1,39 +1,39 @@
 {
-  "n_labeled_months": 300,
-  "n_short_months": 2,
+  "n_labeled_months": 301,
+  "n_short_months": 1,
   "n_insufficient_history_months": 9,
   "profile_distribution": {
     "Normal Month": {
       "n": 175,
-      "pct": 58.33
+      "pct": 58.14
     },
     "Compression Month": {
       "n": 54,
-      "pct": 18.0
+      "pct": 17.94
     },
     "Volatile Month": {
       "n": 32,
-      "pct": 10.67
+      "pct": 10.63
     },
     "Trend Month (Down)": {
       "n": 12,
-      "pct": 4.0
+      "pct": 3.99
     },
     "Volatile Reversal Month": {
       "n": 11,
-      "pct": 3.67
+      "pct": 3.65
     },
     "Trend Month (Up)": {
       "n": 9,
-      "pct": 3.0
+      "pct": 2.99
     },
     "Quiet Drift Month (Up)": {
       "n": 6,
-      "pct": 2.0
+      "pct": 1.99
     },
     "Quiet Drift Month (Down)": {
-      "n": 1,
-      "pct": 0.33
+      "n": 2,
+      "pct": 0.66
     }
   },
   "extreme_timing_by_profile": {
@@ -74,7 +74,8 @@
       "Late_Resolution": 2
     },
     "Quiet Drift Month (Down)": {
-      "Late_Resolution": 1
+      "Late_Resolution": 1,
+      "Early_Resolution": 1
     }
   },
   "extreme_spread_by_profile": {
@@ -107,7 +108,7 @@
       "Adjacent": 2
     },
     "Quiet Drift Month (Down)": {
-      "Adjacent": 1
+      "Adjacent": 2
     }
   },
   "avg_range_pips_by_profile": {
@@ -120,8 +121,8 @@
       "median": 329.0
     },
     "Quiet Drift Month (Down)": {
-      "mean": 204.6,
-      "median": 204.6
+      "mean": 170.9,
+      "median": 170.9
     },
     "Quiet Drift Month (Up)": {
       "mean": 210.1,
@@ -145,7 +146,7 @@
     }
   },
   "week_of_month_pair_distribution": {
-    "n_months": 309,
+    "n_months": 310,
     "same_week_n": 1,
     "same_week_pct": 0.32,
     "pairs": {
@@ -156,25 +157,25 @@
         },
         "2": {
           "n": 9,
-          "pct": 2.91
+          "pct": 2.9
         },
         "3": {
           "n": 29,
-          "pct": 9.39
+          "pct": 9.35
         },
         "4": {
           "n": 36,
-          "pct": 11.65
+          "pct": 11.61
         },
         "5": {
           "n": 33,
-          "pct": 10.68
+          "pct": 10.65
         }
       },
       "2": {
         "1": {
-          "n": 19,
-          "pct": 6.15
+          "n": 20,
+          "pct": 6.45
         },
         "2": {
           "n": 0,
@@ -186,21 +187,21 @@
         },
         "4": {
           "n": 21,
-          "pct": 6.8
+          "pct": 6.77
         },
         "5": {
           "n": 8,
-          "pct": 2.59
+          "pct": 2.58
         }
       },
       "3": {
         "1": {
           "n": 20,
-          "pct": 6.47
+          "pct": 6.45
         },
         "2": {
           "n": 8,
-          "pct": 2.59
+          "pct": 2.58
         },
         "3": {
           "n": 0,
@@ -212,21 +213,21 @@
         },
         "5": {
           "n": 10,
-          "pct": 3.24
+          "pct": 3.23
         }
       },
       "4": {
         "1": {
           "n": 29,
-          "pct": 9.39
+          "pct": 9.35
         },
         "2": {
           "n": 17,
-          "pct": 5.5
+          "pct": 5.48
         },
         "3": {
           "n": 11,
-          "pct": 3.56
+          "pct": 3.55
         },
         "4": {
           "n": 0,
@@ -240,11 +241,11 @@
       "5": {
         "1": {
           "n": 27,
-          "pct": 8.74
+          "pct": 8.71
         },
         "2": {
           "n": 14,
-          "pct": 4.53
+          "pct": 4.52
         },
         "3": {
           "n": 6,

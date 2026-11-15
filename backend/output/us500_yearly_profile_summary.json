@@ -4,8 +4,8 @@
   "n_insufficient_history_years": 7,
   "profile_distribution": {
     "Volatile Year": {
-      "n": 5,
-      "pct": 55.56
+      "n": 6,
+      "pct": 66.67
     },
     "Trend Year (Up)": {
       "n": 2,
@@ -14,15 +14,11 @@
     "Normal Year": {
       "n": 1,
       "pct": 11.11
-    },
-    "Volatile Reversal Year": {
-      "n": 1,
-      "pct": 11.11
     }
   },
   "extreme_timing_by_profile": {
     "Volatile Year": {
-      "Late_Push": 4,
+      "Late_Push": 5,
       "Late_Resolution": 1
     },
     "Trend Year (Up)": {
@@ -30,22 +26,16 @@
     },
     "Normal Year": {
       "Late_Push": 1
-    },
-    "Volatile Reversal Year": {
-      "Late_Push": 1
     }
   },
   "extreme_spread_by_profile": {
     "Volatile Year": {
-      "Spread": 5
+      "Spread": 6
     },
     "Trend Year (Up)": {
       "Spread": 2
     },
     "Normal Year": {
-      "Spread": 1
-    },
-    "Volatile Reversal Year": {
       "Spread": 1
     }
   },
@@ -58,13 +48,9 @@
       "mean": 11990.0,
       "median": 11990.0
     },
-    "Volatile Reversal Year": {
-      "mean": 15323.0,
-      "median": 15323.0
-    },
     "Volatile Year": {
-      "mean": 13301.8,
-      "median": 13275.0
+      "mean": 13638.7,
+      "median": 13821.5
     }
   },
   "month_pair_distribution": {

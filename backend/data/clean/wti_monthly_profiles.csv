@@ -194,4 +194,4 @@ month_start,is_short_month,month_end,open,high,low,close,range_pips,high_week_of
 2026-08-03,False,2026-08-31,79.57,88.31,74.41,86.68,1390.0,3.0,1.0,0.8827338129496407,0.7654676258992814,Up,70.83333333333334,75.0,Normal,Directional,3.0,1.0,Late_Push,Spread,21.0,Normal Month
 2026-09-01,False,2026-09-30,86.56,106.74,86.5,92.86,2024.0,3.0,1.0,0.3142292490118578,0.37154150197628444,Down,83.33333333333334,29.166666666666668,Expansion,Mixed,1.0,3.0,Fade_Risk,Spread,22.0,Volatile Month
 2026-10-01,False,2026-10-30,92.73,105.59,88.38,103.6,1721.0,5.0,1.0,0.8843695525857055,0.768739105171411,Up,75.0,75.0,Normal,Directional,5.0,1.0,Late_Push,Spread,22.0,Normal Month
-2026-11-02,True,,,,,,,,,,,,,,,,,,,,,Short_Month
+2026-11-02,False,2026-11-13,103.06,103.22,84.1,89.05,1912.0,1.0,2.0,0.2588912133891214,0.4822175732217572,Down,75.0,37.5,Normal,Mixed,2.0,1.0,Early_Resolution,Adjacent,10.0,Normal Month

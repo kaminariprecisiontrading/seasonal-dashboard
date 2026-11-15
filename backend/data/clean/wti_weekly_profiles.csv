@@ -842,3 +842,4 @@ week_start,is_short_week,week_end,open,high,low,close,range_pips,high_weekday,lo
 2026-10-19,False,2026-10-23,99.76,104.76,96.22,104.3,854.0,Friday,Tuesday,0.9461358313817322,0.8922716627634644,Up,55.769230769230774,88.46153846153845,Normal,Directional,Friday,Tuesday,Late_Push,Spread,5.0,Normal Week
 2026-10-26,False,2026-10-30,102.83,105.59,100.17,103.6,542.0,Friday,Tuesday,0.6328413284132826,0.2656826568265651,Up,34.61538461538461,23.076923076923077,Normal,Balanced,Friday,Tuesday,Late_Push,Spread,5.0,Normal Week
 2026-11-02,False,2026-11-06,103.06,103.22,87.05,90.75,1617.0,Monday,Thursday,0.22881880024737183,0.5423623995052563,Down,86.53846153846155,42.30769230769231,Expansion,Mixed,Thursday,Monday,Late_Push,Spread,5.0,Volatile Week
+2026-11-09,False,2026-11-13,90.87,91.67,84.1,89.05,757.0,Monday,Tuesday,0.6538969616908848,0.3077939233817697,Up,44.230769230769226,26.923076923076923,Normal,Mixed,Monday,Tuesday,Early_Resolution,Adjacent,5.0,Normal Week

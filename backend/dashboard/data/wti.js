@@ -4,24 +4,24 @@ const WTI_DATA = {
   "stats": {
     "asset": "WTI",
     "unit": "points",
-    "as_of": "2026-11-06",
-    "n_days": 4253,
-    "n_weeks": 843,
+    "as_of": "2026-11-13",
+    "n_days": 4258,
+    "n_weeks": 844,
     "n_months": 196,
     "n_years": 17,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 4253,
-          "mean": 219.5,
-          "median": 180.0,
+          "n": 4258,
+          "mean": 219.7,
+          "median": 181.0,
           "std": 162.1,
           "min": 8.0,
           "max": 3823.0,
           "mode_binned": {
-            "bin_low": 118.0,
-            "bin_high": 138.3,
-            "count": 450,
+            "bin_low": 138.9,
+            "bin_high": 159.3,
+            "count": 451,
             "pct_of_n": 10.6
           },
           "mode_raw": {
@@ -30,23 +30,23 @@ const WTI_DATA = {
             "pct_of_n": 0.9,
             "n_values_tied": 1
           },
-          "p05": 77.6,
+          "p05": 77.9,
           "p10": 96.0,
           "p20": 120.0,
           "p25": 130.0,
-          "p50": 180.0,
+          "p50": 181.0,
           "p75": 258.0,
-          "p80": 284.6,
+          "p80": 285.0,
           "p90": 373.0,
-          "p95": 482.0,
+          "p95": 485.0,
           "compression_threshold_pips": 120.0,
-          "expansion_threshold_pips": 284.6
+          "expansion_threshold_pips": 285.0
         },
         "5y": {
           "n": 1290,
-          "mean": 302.5,
-          "median": 238.5,
-          "std": 231.6,
+          "mean": 302.9,
+          "median": 239.5,
+          "std": 231.7,
           "min": 61.0,
           "max": 3823.0,
           "mode_binned": {
@@ -57,34 +57,34 @@ const WTI_DATA = {
           },
           "mode_raw": {
             "value": 136.0,
-            "count": 10,
-            "pct_of_n": 0.8,
-            "n_values_tied": 1
+            "count": 9,
+            "pct_of_n": 0.7,
+            "n_values_tied": 6
           },
           "p05": 112.0,
           "p10": 130.0,
           "p20": 155.0,
           "p25": 167.0,
-          "p50": 238.5,
+          "p50": 239.5,
           "p75": 363.0,
           "p80": 405.4,
-          "p90": 545.1,
+          "p90": 546.1,
           "p95": 696.8,
           "compression_threshold_pips": 155.0,
           "expansion_threshold_pips": 405.4
         },
         "1y": {
           "n": 259,
-          "mean": 411.5,
-          "median": 331.0,
-          "std": 352.8,
+          "mean": 415.3,
+          "median": 335.0,
+          "std": 351.8,
           "min": 62.0,
           "max": 3823.0,
           "mode_binned": {
-            "bin_low": 110.0,
-            "bin_high": 147.5,
-            "count": 27,
-            "pct_of_n": 10.4
+            "bin_low": 110.9,
+            "bin_high": 148.3,
+            "count": 25,
+            "pct_of_n": 9.7
           },
           "mode_raw": {
             "value": 336.0,
@@ -92,57 +92,57 @@ const WTI_DATA = {
             "pct_of_n": 1.5,
             "n_values_tied": 1
           },
-          "p05": 110.0,
-          "p10": 132.8,
-          "p20": 169.6,
-          "p25": 196.5,
-          "p50": 331.0,
-          "p75": 523.5,
-          "p80": 582.4,
+          "p05": 110.9,
+          "p10": 135.6,
+          "p20": 180.6,
+          "p25": 201.5,
+          "p50": 335.0,
+          "p75": 525.5,
+          "p80": 588.0,
           "p90": 724.2,
           "p95": 859.5,
-          "compression_threshold_pips": 169.6,
-          "expansion_threshold_pips": 582.4
+          "compression_threshold_pips": 180.6,
+          "expansion_threshold_pips": 588.0
         },
         "3mo": {
           "n": 67,
-          "mean": 390.2,
+          "mean": 393.4,
           "median": 342.0,
-          "std": 159.9,
+          "std": 162.0,
           "min": 125.0,
           "max": 999.0,
           "mode_binned": {
-            "bin_low": 319.5,
-            "bin_high": 340.0,
-            "count": 9,
-            "pct_of_n": 13.4
+            "bin_low": 300.3,
+            "bin_high": 322.3,
+            "count": 10,
+            "pct_of_n": 14.9
           },
           "mode_raw": {
-            "value": 219.0,
+            "value": 336.0,
             "count": 2,
             "pct_of_n": 3.0,
-            "n_values_tied": 4
+            "n_values_tied": 3
           },
-          "p05": 196.5,
-          "p10": 219.0,
-          "p20": 268.6,
+          "p05": 190.2,
+          "p10": 223.2,
+          "p20": 280.8,
           "p25": 299.0,
           "p50": 342.0,
-          "p75": 477.0,
-          "p80": 510.0,
-          "p90": 568.0,
-          "p95": 606.5,
-          "compression_threshold_pips": 268.6,
-          "expansion_threshold_pips": 510.0
+          "p75": 483.5,
+          "p80": 511.0,
+          "p90": 585.6,
+          "p95": 630.6,
+          "compression_threshold_pips": 280.8,
+          "expansion_threshold_pips": 511.0
         }
       },
       "latest_adr": {
-        "ADR_5": 613.8,
-        "ADR_14": 456.4,
-        "ADR_20": 427.1,
+        "ADR_5": 361.8,
+        "ADR_14": 439.9,
+        "ADR_20": 424.8,
         "fixed_multiple_thresholds": {
-          "compression_pips": 299.0,
-          "expansion_pips": 555.2,
+          "compression_pips": 297.4,
+          "expansion_pips": 552.2,
           "based_on": "ADR_20"
         }
       }
@@ -150,17 +150,17 @@ const WTI_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 843,
-          "mean": 508.7,
-          "median": 425.0,
-          "std": 335.7,
+          "n": 844,
+          "mean": 509.0,
+          "median": 425.5,
+          "std": 335.6,
           "min": 27.0,
           "max": 4267.0,
           "mode_binned": {
             "bin_low": 300.5,
-            "bin_high": 346.2,
+            "bin_high": 346.1,
             "count": 94,
-            "pct_of_n": 11.2
+            "pct_of_n": 11.1
           },
           "mode_raw": {
             "value": 417.0,
@@ -168,23 +168,23 @@ const WTI_DATA = {
             "pct_of_n": 0.8,
             "n_values_tied": 1
           },
-          "p05": 209.2,
+          "p05": 209.3,
           "p10": 243.0,
           "p20": 292.0,
           "p25": 316.0,
-          "p50": 425.0,
-          "p75": 586.5,
-          "p80": 636.2,
-          "p90": 853.8,
-          "p95": 1122.3,
+          "p50": 425.5,
+          "p75": 587.0,
+          "p80": 639.0,
+          "p90": 853.7,
+          "p95": 1121.4,
           "compression_threshold_pips": 292.0,
-          "expansion_threshold_pips": 636.2
+          "expansion_threshold_pips": 639.0
         },
         "5y": {
           "n": 261,
-          "mean": 688.4,
-          "median": 538.0,
-          "std": 477.5,
+          "mean": 689.3,
+          "median": 542.0,
+          "std": 477.4,
           "min": 189.0,
           "max": 4267.0,
           "mode_binned": {
@@ -203,7 +203,7 @@ const WTI_DATA = {
           "p10": 294.0,
           "p20": 366.0,
           "p25": 400.0,
-          "p50": 538.0,
+          "p50": 542.0,
           "p75": 848.0,
           "p80": 923.0,
           "p90": 1238.0,
@@ -213,9 +213,9 @@ const WTI_DATA = {
         },
         "1y": {
           "n": 53,
-          "mean": 948.9,
+          "mean": 958.1,
           "median": 820.0,
-          "std": 742.5,
+          "std": 737.0,
           "min": 194.0,
           "max": 4267.0,
           "mode_binned": {
@@ -231,22 +231,22 @@ const WTI_DATA = {
             "n_values_tied": 53
           },
           "p05": 239.4,
-          "p10": 280.2,
-          "p20": 377.0,
-          "p25": 420.0,
+          "p10": 288.6,
+          "p20": 393.8,
+          "p25": 440.0,
           "p50": 820.0,
           "p75": 1095.0,
           "p80": 1320.2,
           "p90": 1736.6,
           "p95": 2345.8,
-          "compression_threshold_pips": 377.0,
+          "compression_threshold_pips": 393.8,
           "expansion_threshold_pips": 1320.2
         },
         "3mo": {
           "n": 14,
-          "mean": 875.3,
-          "median": 832.5,
-          "std": 293.6,
+          "mean": 871.4,
+          "median": 805.5,
+          "std": 294.9,
           "min": 542.0,
           "max": 1617.0,
           "mode_binned": {
@@ -265,7 +265,7 @@ const WTI_DATA = {
           "p10": 622.3,
           "p20": 679.6,
           "p25": 684.2,
-          "p50": 832.5,
+          "p50": 805.5,
           "p75": 899.0,
           "p80": 954.2,
           "p90": 1254.5,
@@ -279,9 +279,9 @@ const WTI_DATA = {
       "windowed_distribution": {
         "full": {
           "n": 196,
-          "mean": 1052.7,
+          "mean": 1054.2,
           "median": 841.0,
-          "std": 631.7,
+          "std": 633.4,
           "min": 279.0,
           "max": 5019.0,
           "mode_binned": {
@@ -303,16 +303,16 @@ const WTI_DATA = {
           "p50": 841.0,
           "p75": 1222.2,
           "p80": 1341.0,
-          "p90": 1835.0,
+          "p90": 1930.5,
           "p95": 2081.2,
           "compression_threshold_pips": 613.0,
           "expansion_threshold_pips": 1341.0
         },
         "5y": {
           "n": 60,
-          "mean": 1351.2,
+          "mean": 1356.2,
           "median": 1122.0,
-          "std": 854.0,
+          "std": 856.4,
           "min": 451.0,
           "max": 5019.0,
           "mode_binned": {
@@ -332,18 +332,18 @@ const WTI_DATA = {
           "p20": 698.4,
           "p25": 793.2,
           "p50": 1122.0,
-          "p75": 1630.8,
-          "p80": 1720.2,
+          "p75": 1674.5,
+          "p80": 1759.2,
           "p90": 2162.3,
           "p95": 2994.8,
           "compression_threshold_pips": 698.4,
-          "expansion_threshold_pips": 1720.2
+          "expansion_threshold_pips": 1759.2
         },
         "1y": {
           "n": 13,
-          "mean": 1980.4,
-          "median": 1721.0,
-          "std": 1311.8,
+          "mean": 2003.1,
+          "median": 1912.0,
+          "std": 1307.5,
           "min": 451.0,
           "max": 5019.0,
           "mode_binned": {
@@ -362,7 +362,7 @@ const WTI_DATA = {
           "p10": 579.2,
           "p20": 836.0,
           "p25": 1076.0,
-          "p50": 1721.0,
+          "p50": 1912.0,
           "p75": 2650.0,
           "p80": 2838.4,
           "p90": 3456.8,
@@ -372,14 +372,14 @@ const WTI_DATA = {
         },
         "3mo": {
           "n": 4,
-          "mean": 1688.0,
-          "median": 1669.0,
-          "std": 263.2,
+          "mean": 1761.8,
+          "median": 1816.5,
+          "std": 277.6,
           "min": 1390.0,
           "max": 2024.0,
           "mode_binned": {
-            "bin_low": 1590.4,
-            "bin_high": 1618.1,
+            "bin_low": 1695.0,
+            "bin_high": 1723.4,
             "count": 1,
             "pct_of_n": 25.0
           },
@@ -389,17 +389,17 @@ const WTI_DATA = {
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 1424.0,
-          "p10": 1458.1,
-          "p20": 1526.2,
-          "p25": 1560.2,
-          "p50": 1669.0,
-          "p75": 1796.8,
-          "p80": 1842.2,
-          "p90": 1933.1,
-          "p95": 1978.5,
-          "compression_threshold_pips": 1526.2,
-          "expansion_threshold_pips": 1842.2
+          "p05": 1439.7,
+          "p10": 1489.3,
+          "p20": 1588.6,
+          "p25": 1638.2,
+          "p50": 1816.5,
+          "p75": 1940.0,
+          "p80": 1956.8,
+          "p90": 1990.4,
+          "p95": 2007.2,
+          "compression_threshold_pips": 1588.6,
+          "expansion_threshold_pips": 1956.8
         }
       }
     },
@@ -437,11 +437,11 @@ const WTI_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2675,
+          "n": 2680,
           "mode_bucket_start_utc": "15:00",
           "mode_bucket_end_utc": "15:30",
-          "mode_bucket_pct_of_days": 5.5,
-          "circular_mean_utc": "16:31",
+          "mode_bucket_pct_of_days": 5.6,
+          "circular_mean_utc": "16:32",
           "circular_median_utc": "16:15",
           "concentration_R": 0.323,
           "histogram": [
@@ -457,8 +457,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 71,
-              "pct": 2.65
+              "count": 72,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "01:30",
@@ -468,7 +468,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "02:00",
               "count": 28,
-              "pct": 1.05
+              "pct": 1.04
             },
             {
               "bucket_start_utc": "02:30",
@@ -477,8 +477,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 23,
-              "pct": 0.86
+              "count": 24,
+              "pct": 0.9
             },
             {
               "bucket_start_utc": "03:30",
@@ -533,17 +533,17 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "08:30",
               "count": 59,
-              "pct": 2.21
+              "pct": 2.2
             },
             {
               "bucket_start_utc": "09:00",
               "count": 54,
-              "pct": 2.02
+              "pct": 2.01
             },
             {
               "bucket_start_utc": "09:30",
               "count": 36,
-              "pct": 1.35
+              "pct": 1.34
             },
             {
               "bucket_start_utc": "10:00",
@@ -578,27 +578,27 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "13:00",
               "count": 95,
-              "pct": 3.55
+              "pct": 3.54
             },
             {
               "bucket_start_utc": "13:30",
               "count": 99,
-              "pct": 3.7
+              "pct": 3.69
             },
             {
               "bucket_start_utc": "14:00",
               "count": 126,
-              "pct": 4.71
+              "pct": 4.7
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 97,
-              "pct": 3.63
+              "count": 98,
+              "pct": 3.66
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 148,
-              "pct": 5.53
+              "count": 149,
+              "pct": 5.56
             },
             {
               "bucket_start_utc": "15:30",
@@ -608,12 +608,12 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "16:00",
               "count": 99,
-              "pct": 3.7
+              "pct": 3.69
             },
             {
               "bucket_start_utc": "16:30",
               "count": 77,
-              "pct": 2.88
+              "pct": 2.87
             },
             {
               "bucket_start_utc": "17:00",
@@ -623,12 +623,12 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "17:30",
               "count": 89,
-              "pct": 3.33
+              "pct": 3.32
             },
             {
               "bucket_start_utc": "18:00",
               "count": 138,
-              "pct": 5.16
+              "pct": 5.15
             },
             {
               "bucket_start_utc": "18:30",
@@ -647,13 +647,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 59,
-              "pct": 2.21
+              "count": 60,
+              "pct": 2.24
             },
             {
               "bucket_start_utc": "20:30",
               "count": 97,
-              "pct": 3.63
+              "pct": 3.62
             },
             {
               "bucket_start_utc": "21:00",
@@ -668,12 +668,12 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "22:00",
               "count": 124,
-              "pct": 4.64
+              "pct": 4.63
             },
             {
               "bucket_start_utc": "22:30",
               "count": 17,
-              "pct": 0.64
+              "pct": 0.63
             },
             {
               "bucket_start_utc": "23:00",
@@ -694,7 +694,7 @@ const WTI_DATA = {
           "mode_bucket_pct_of_days": 5.5,
           "circular_mean_utc": "16:43",
           "circular_median_utc": "16:35",
-          "concentration_R": 0.328,
+          "concentration_R": 0.326,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -708,8 +708,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 38,
-              "pct": 2.95
+              "count": 39,
+              "pct": 3.02
             },
             {
               "bucket_start_utc": "01:30",
@@ -728,8 +728,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 10,
-              "pct": 0.78
+              "count": 11,
+              "pct": 0.85
             },
             {
               "bucket_start_utc": "03:30",
@@ -818,8 +818,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 24,
-              "pct": 1.86
+              "count": 23,
+              "pct": 1.78
             },
             {
               "bucket_start_utc": "12:30",
@@ -843,8 +843,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 46,
-              "pct": 3.57
+              "count": 47,
+              "pct": 3.64
             },
             {
               "bucket_start_utc": "15:00",
@@ -863,8 +863,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 52,
-              "pct": 4.03
+              "count": 51,
+              "pct": 3.95
             },
             {
               "bucket_start_utc": "17:00",
@@ -898,8 +898,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 23,
-              "pct": 1.78
+              "count": 24,
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "20:30",
@@ -913,8 +913,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 17,
-              "pct": 1.32
+              "count": 16,
+              "pct": 1.24
             },
             {
               "bucket_start_utc": "22:00",
@@ -928,8 +928,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 32,
-              "pct": 2.48
+              "count": 31,
+              "pct": 2.4
             },
             {
               "bucket_start_utc": "23:30",
@@ -943,9 +943,9 @@ const WTI_DATA = {
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 8.1,
-          "circular_mean_utc": "18:18",
-          "circular_median_utc": "17:55",
-          "concentration_R": 0.229,
+          "circular_mean_utc": "18:27",
+          "circular_median_utc": "18:05",
+          "concentration_R": 0.237,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -959,8 +959,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 3,
-              "pct": 1.16
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "01:30",
@@ -979,8 +979,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "03:30",
@@ -1044,13 +1044,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 5,
-              "pct": 1.93
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "10:00",
-              "count": 7,
-              "pct": 2.7
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "10:30",
@@ -1094,13 +1094,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 6,
-              "pct": 2.32
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 9,
-              "pct": 3.47
+              "count": 10,
+              "pct": 3.86
             },
             {
               "bucket_start_utc": "15:30",
@@ -1109,8 +1109,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 7,
-              "pct": 2.7
+              "count": 6,
+              "pct": 2.32
             },
             {
               "bucket_start_utc": "16:30",
@@ -1149,8 +1149,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 10,
-              "pct": 3.86
+              "count": 11,
+              "pct": 4.25
             },
             {
               "bucket_start_utc": "20:30",
@@ -1184,8 +1184,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "23:30",
-              "count": 7,
-              "pct": 2.7
+              "count": 6,
+              "pct": 2.32
             }
           ]
         },
@@ -1194,9 +1194,9 @@ const WTI_DATA = {
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 10.4,
-          "circular_mean_utc": "18:41",
-          "circular_median_utc": "18:00",
-          "concentration_R": 0.24,
+          "circular_mean_utc": "18:29",
+          "circular_median_utc": "17:55",
+          "concentration_R": 0.271,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1210,8 +1210,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "01:30",
@@ -1230,13 +1230,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "04:00",
@@ -1245,8 +1245,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "05:00",
@@ -1290,8 +1290,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "09:30",
@@ -1345,13 +1345,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "15:30",
@@ -1400,13 +1400,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 4,
-              "pct": 5.97
+              "count": 5,
+              "pct": 7.46
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 5,
-              "pct": 7.46
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "21:00",
@@ -1443,20 +1443,20 @@ const WTI_DATA = {
       },
       "session_distribution": {
         "New_York": {
-          "n": 831,
-          "pct": 31.1
+          "n": 832,
+          "pct": 31.0
         },
         "London_NY_Overlap": {
-          "n": 737,
+          "n": 739,
           "pct": 27.6
         },
         "Asian": {
-          "n": 482,
-          "pct": 18.0
+          "n": 484,
+          "pct": 18.1
         },
         "London": {
           "n": 352,
-          "pct": 13.2
+          "pct": 13.1
         },
         "Other": {
           "n": 190,
@@ -1471,13 +1471,13 @@ const WTI_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2675,
+          "n": 2680,
           "mode_bucket_start_utc": "14:00",
           "mode_bucket_end_utc": "14:30",
           "mode_bucket_pct_of_days": 5.1,
-          "circular_mean_utc": "15:50",
+          "circular_mean_utc": "15:49",
           "circular_median_utc": "15:40",
-          "concentration_R": 0.296,
+          "concentration_R": 0.295,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1487,7 +1487,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "00:30",
               "count": 28,
-              "pct": 1.05
+              "pct": 1.04
             },
             {
               "bucket_start_utc": "01:00",
@@ -1512,7 +1512,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "03:00",
               "count": 21,
-              "pct": 0.79
+              "pct": 0.78
             },
             {
               "bucket_start_utc": "03:30",
@@ -1526,8 +1526,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 8,
-              "pct": 0.3
+              "count": 9,
+              "pct": 0.34
             },
             {
               "bucket_start_utc": "05:00",
@@ -1552,32 +1552,32 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "07:00",
               "count": 51,
-              "pct": 1.91
+              "pct": 1.9
             },
             {
               "bucket_start_utc": "07:30",
               "count": 47,
-              "pct": 1.76
+              "pct": 1.75
             },
             {
               "bucket_start_utc": "08:00",
               "count": 85,
-              "pct": 3.18
+              "pct": 3.17
             },
             {
               "bucket_start_utc": "08:30",
               "count": 58,
-              "pct": 2.17
+              "pct": 2.16
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 70,
-              "pct": 2.62
+              "count": 71,
+              "pct": 2.65
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 41,
-              "pct": 1.53
+              "count": 42,
+              "pct": 1.57
             },
             {
               "bucket_start_utc": "10:00",
@@ -1586,8 +1586,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 38,
-              "pct": 1.42
+              "count": 39,
+              "pct": 1.46
             },
             {
               "bucket_start_utc": "11:00",
@@ -1597,7 +1597,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "11:30",
               "count": 32,
-              "pct": 1.2
+              "pct": 1.19
             },
             {
               "bucket_start_utc": "12:00",
@@ -1612,7 +1612,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "13:00",
               "count": 108,
-              "pct": 4.04
+              "pct": 4.03
             },
             {
               "bucket_start_utc": "13:30",
@@ -1622,32 +1622,32 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "14:00",
               "count": 137,
-              "pct": 5.12
+              "pct": 5.11
             },
             {
               "bucket_start_utc": "14:30",
               "count": 118,
-              "pct": 4.41
+              "pct": 4.4
             },
             {
               "bucket_start_utc": "15:00",
               "count": 108,
-              "pct": 4.04
+              "pct": 4.03
             },
             {
               "bucket_start_utc": "15:30",
               "count": 111,
-              "pct": 4.15
+              "pct": 4.14
             },
             {
               "bucket_start_utc": "16:00",
               "count": 100,
-              "pct": 3.74
+              "pct": 3.73
             },
             {
               "bucket_start_utc": "16:30",
               "count": 70,
-              "pct": 2.62
+              "pct": 2.61
             },
             {
               "bucket_start_utc": "17:00",
@@ -1662,12 +1662,12 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "18:00",
               "count": 135,
-              "pct": 5.05
+              "pct": 5.04
             },
             {
               "bucket_start_utc": "18:30",
               "count": 59,
-              "pct": 2.21
+              "pct": 2.2
             },
             {
               "bucket_start_utc": "19:00",
@@ -1676,8 +1676,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 48,
-              "pct": 1.79
+              "count": 49,
+              "pct": 1.83
             },
             {
               "bucket_start_utc": "20:00",
@@ -1697,7 +1697,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "21:30",
               "count": 21,
-              "pct": 0.79
+              "pct": 0.78
             },
             {
               "bucket_start_utc": "22:00",
@@ -1712,7 +1712,7 @@ const WTI_DATA = {
             {
               "bucket_start_utc": "23:00",
               "count": 115,
-              "pct": 4.3
+              "pct": 4.29
             },
             {
               "bucket_start_utc": "23:30",
@@ -1726,9 +1726,9 @@ const WTI_DATA = {
           "mode_bucket_start_utc": "18:00",
           "mode_bucket_end_utc": "18:30",
           "mode_bucket_pct_of_days": 5.1,
-          "circular_mean_utc": "15:34",
+          "circular_mean_utc": "15:33",
           "circular_median_utc": "15:40",
-          "concentration_R": 0.279,
+          "concentration_R": 0.277,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1762,8 +1762,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 6,
-              "pct": 0.47
+              "count": 5,
+              "pct": 0.39
             },
             {
               "bucket_start_utc": "03:30",
@@ -1777,8 +1777,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 6,
-              "pct": 0.47
+              "count": 7,
+              "pct": 0.54
             },
             {
               "bucket_start_utc": "05:00",
@@ -1822,13 +1822,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 40,
-              "pct": 3.1
+              "count": 41,
+              "pct": 3.18
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 26,
-              "pct": 2.02
+              "count": 27,
+              "pct": 2.09
             },
             {
               "bucket_start_utc": "10:00",
@@ -1837,8 +1837,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 16,
-              "pct": 1.24
+              "count": 17,
+              "pct": 1.32
             },
             {
               "bucket_start_utc": "11:00",
@@ -1847,8 +1847,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "11:30",
-              "count": 21,
-              "pct": 1.63
+              "count": 20,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "12:00",
@@ -1857,8 +1857,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 25,
-              "pct": 1.94
+              "count": 24,
+              "pct": 1.86
             },
             {
               "bucket_start_utc": "13:00",
@@ -1877,8 +1877,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 57,
-              "pct": 4.42
+              "count": 56,
+              "pct": 4.34
             },
             {
               "bucket_start_utc": "15:00",
@@ -1977,9 +1977,9 @@ const WTI_DATA = {
           "mode_bucket_start_utc": "13:30",
           "mode_bucket_end_utc": "14:00",
           "mode_bucket_pct_of_days": 5.4,
-          "circular_mean_utc": "15:51",
-          "circular_median_utc": "15:40",
-          "concentration_R": 0.202,
+          "circular_mean_utc": "15:37",
+          "circular_median_utc": "15:35",
+          "concentration_R": 0.188,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2028,8 +2028,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 2,
-              "pct": 0.77
+              "count": 3,
+              "pct": 1.16
             },
             {
               "bucket_start_utc": "05:00",
@@ -2058,8 +2058,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "07:30",
-              "count": 6,
-              "pct": 2.32
+              "count": 5,
+              "pct": 1.93
             },
             {
               "bucket_start_utc": "08:00",
@@ -2073,13 +2073,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 10,
-              "pct": 3.86
+              "count": 11,
+              "pct": 4.25
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 6,
-              "pct": 2.32
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "10:00",
@@ -2088,8 +2088,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 0.39
             },
             {
               "bucket_start_utc": "11:00",
@@ -2138,8 +2138,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "15:30",
-              "count": 14,
-              "pct": 5.41
+              "count": 13,
+              "pct": 5.02
             },
             {
               "bucket_start_utc": "16:00",
@@ -2148,8 +2148,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 8,
-              "pct": 3.09
+              "count": 7,
+              "pct": 2.7
             },
             {
               "bucket_start_utc": "17:00",
@@ -2158,8 +2158,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "17:30",
-              "count": 9,
-              "pct": 3.47
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "18:00",
@@ -2168,8 +2168,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 5,
-              "pct": 1.93
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "19:00",
@@ -2178,8 +2178,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 7,
-              "pct": 2.7
+              "count": 8,
+              "pct": 3.09
             },
             {
               "bucket_start_utc": "20:00",
@@ -2225,12 +2225,12 @@ const WTI_DATA = {
         },
         "3mo": {
           "n": 67,
-          "mode_bucket_start_utc": "13:30",
-          "mode_bucket_end_utc": "14:00",
-          "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "13:33",
+          "mode_bucket_start_utc": "08:00",
+          "mode_bucket_end_utc": "08:30",
+          "mode_bucket_pct_of_days": 6.0,
+          "circular_mean_utc": "13:22",
           "circular_median_utc": "14:10",
-          "concentration_R": 0.196,
+          "concentration_R": 0.18,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2279,8 +2279,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "05:00",
@@ -2289,8 +2289,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "06:00",
@@ -2324,13 +2324,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "09:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "10:00",
@@ -2339,8 +2339,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "10:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "11:00",
@@ -2364,13 +2364,13 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 5,
-              "pct": 7.46
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "14:00",
@@ -2379,8 +2379,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 4,
-              "pct": 5.97
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "15:00",
@@ -2429,8 +2429,8 @@ const WTI_DATA = {
             },
             {
               "bucket_start_utc": "19:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "20:00",
@@ -2478,19 +2478,19 @@ const WTI_DATA = {
       "session_distribution": {
         "London_NY_Overlap": {
           "n": 762,
-          "pct": 28.5
+          "pct": 28.4
         },
         "New_York": {
-          "n": 726,
+          "n": 727,
           "pct": 27.1
         },
         "Asian": {
-          "n": 509,
+          "n": 510,
           "pct": 19.0
         },
         "London": {
-          "n": 420,
-          "pct": 15.7
+          "n": 423,
+          "pct": 15.8
         },
         "Other": {
           "n": 160,
@@ -2503,9 +2503,9 @@ const WTI_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 2675,
+      "n_days": 2680,
       "same_session_n": 165,
-      "same_session_pct": 6.17,
+      "same_session_pct": 6.16,
       "pairs": {
         "Asian": {
           "Asian": {
@@ -2522,11 +2522,11 @@ const WTI_DATA = {
           },
           "London_NY_Overlap": {
             "n": 192,
-            "pct": 7.18
+            "pct": 7.16
           },
           "New_York": {
-            "n": 250,
-            "pct": 9.35
+            "n": 251,
+            "pct": 9.37
           },
           "Other": {
             "n": 22,
@@ -2552,7 +2552,7 @@ const WTI_DATA = {
           },
           "New_York": {
             "n": 51,
-            "pct": 1.91
+            "pct": 1.9
           },
           "Other": {
             "n": 5,
@@ -2561,8 +2561,8 @@ const WTI_DATA = {
         },
         "London": {
           "Asian": {
-            "n": 40,
-            "pct": 1.5
+            "n": 41,
+            "pct": 1.53
           },
           "Asian_London_Overlap": {
             "n": 6,
@@ -2573,12 +2573,12 @@ const WTI_DATA = {
             "pct": 0.37
           },
           "London_NY_Overlap": {
-            "n": 117,
-            "pct": 4.37
+            "n": 119,
+            "pct": 4.44
           },
           "New_York": {
             "n": 212,
-            "pct": 7.93
+            "pct": 7.91
           },
           "Other": {
             "n": 35,
@@ -2588,7 +2588,7 @@ const WTI_DATA = {
         "London_NY_Overlap": {
           "Asian": {
             "n": 198,
-            "pct": 7.4
+            "pct": 7.39
           },
           "Asian_London_Overlap": {
             "n": 33,
@@ -2596,25 +2596,25 @@ const WTI_DATA = {
           },
           "London": {
             "n": 118,
-            "pct": 4.41
+            "pct": 4.4
           },
           "London_NY_Overlap": {
             "n": 116,
-            "pct": 4.34
+            "pct": 4.33
           },
           "New_York": {
             "n": 223,
-            "pct": 8.34
+            "pct": 8.32
           },
           "Other": {
             "n": 74,
-            "pct": 2.77
+            "pct": 2.76
           }
         },
         "New_York": {
           "Asian": {
-            "n": 214,
-            "pct": 8.0
+            "n": 215,
+            "pct": 8.02
           },
           "Asian_London_Overlap": {
             "n": 41,
@@ -2622,11 +2622,11 @@ const WTI_DATA = {
           },
           "London": {
             "n": 172,
-            "pct": 6.43
+            "pct": 6.42
           },
           "London_NY_Overlap": {
             "n": 222,
-            "pct": 8.3
+            "pct": 8.28
           },
           "New_York": {
             "n": 24,
@@ -2652,7 +2652,7 @@ const WTI_DATA = {
           },
           "London_NY_Overlap": {
             "n": 55,
-            "pct": 2.06
+            "pct": 2.05
           },
           "New_York": {
             "n": 71,
@@ -2666,7 +2666,7 @@ const WTI_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 2675,
+      "n_days": 2680,
       "same_hour_n": 14,
       "same_hour_pct": 0.52,
       "pairs": {
@@ -3144,8 +3144,8 @@ const WTI_DATA = {
             "pct": 0.07
           },
           "20": {
-            "n": 1,
-            "pct": 0.04
+            "n": 2,
+            "pct": 0.07
           },
           "21": {
             "n": 1,
@@ -3513,7 +3513,7 @@ const WTI_DATA = {
           },
           "14": {
             "n": 21,
-            "pct": 0.79
+            "pct": 0.78
           },
           "15": {
             "n": 19,
@@ -3529,7 +3529,7 @@ const WTI_DATA = {
           },
           "18": {
             "n": 21,
-            "pct": 0.79
+            "pct": 0.78
           },
           "19": {
             "n": 10,
@@ -3558,8 +3558,8 @@ const WTI_DATA = {
             "pct": 0.07
           },
           "1": {
-            "n": 2,
-            "pct": 0.07
+            "n": 3,
+            "pct": 0.11
           },
           "2": {
             "n": 0,
@@ -3614,8 +3614,8 @@ const WTI_DATA = {
             "pct": 0.15
           },
           "15": {
-            "n": 12,
-            "pct": 0.45
+            "n": 13,
+            "pct": 0.49
           },
           "16": {
             "n": 10,
@@ -3623,7 +3623,7 @@ const WTI_DATA = {
           },
           "17": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "18": {
             "n": 19,
@@ -3708,8 +3708,8 @@ const WTI_DATA = {
             "pct": 0.15
           },
           "14": {
-            "n": 5,
-            "pct": 0.19
+            "n": 6,
+            "pct": 0.22
           },
           "15": {
             "n": 18,
@@ -4019,7 +4019,7 @@ const WTI_DATA = {
           },
           "18": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "19": {
             "n": 13,
@@ -4525,7 +4525,7 @@ const WTI_DATA = {
           },
           "22": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "23": {
             "n": 13,
@@ -4546,8 +4546,8 @@ const WTI_DATA = {
             "pct": 0.19
           },
           "3": {
-            "n": 1,
-            "pct": 0.04
+            "n": 2,
+            "pct": 0.07
           },
           "4": {
             "n": 1,
@@ -5007,7 +5007,7 @@ const WTI_DATA = {
           },
           "20": {
             "n": 17,
-            "pct": 0.64
+            "pct": 0.63
           },
           "21": {
             "n": 9,
@@ -5032,17 +5032,17 @@ const WTI_DATA = {
         "extreme_in_release_window_pct": 30.6
       },
       "other_fridays": {
-        "n": 406,
-        "mean_range_pips": 211.0,
-        "median_range_pips": 172.0,
-        "extreme_in_release_window_pct": 27.6
+        "n": 407,
+        "mean_range_pips": 210.9,
+        "median_range_pips": 173.0,
+        "extreme_in_release_window_pct": 27.8
       },
-      "all_days_mean_range_pips": 232.4,
+      "all_days_mean_range_pips": 232.6,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Monday": 241,
+      "Monday": 242,
       "Friday": 212,
       "Thursday": 133,
       "Wednesday": 121,
@@ -5053,7 +5053,7 @@ const WTI_DATA = {
       "Monday": 272,
       "Friday": 186,
       "Thursday": 137,
-      "Tuesday": 127,
+      "Tuesday": 128,
       "Wednesday": 116,
       "Sunday": 5
     },
@@ -5065,8 +5065,8 @@ const WTI_DATA = {
       "5": 31
     },
     "monthly_low_week_of_month": {
-      "1": 85,
-      "2": 27,
+      "1": 84,
+      "2": 28,
       "3": 27,
       "4": 37,
       "5": 20
@@ -5128,29 +5128,29 @@ const WTI_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 4194,
+    "n_labeled_days": 4199,
     "n_data_gap_days": 0,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 2412,
+        "n": 2415,
         "pct": 57.51
       },
       "Compression Day": {
-        "n": 737,
-        "pct": 17.57
+        "n": 738,
+        "pct": 17.58
       },
       "Volatile Day": {
-        "n": 437,
-        "pct": 10.42
+        "n": 438,
+        "pct": 10.43
       },
       "Trend Day (Down)": {
         "n": 169,
-        "pct": 4.03
+        "pct": 4.02
       },
       "Trend Day (Up)": {
         "n": 161,
-        "pct": 3.84
+        "pct": 3.83
       },
       "Volatile Reversal Day": {
         "n": 141,
@@ -5168,20 +5168,20 @@ const WTI_DATA = {
     "extreme_timing_by_profile": {
       "Normal Day": {
         "Insufficient_History": 905,
-        "Late_Push": 743,
+        "Late_Push": 744,
         "Late_Resolution": 503,
-        "Fade_Risk": 226,
-        "Early_Resolution": 35
+        "Fade_Risk": 227,
+        "Early_Resolution": 36
       },
       "Compression Day": {
         "Insufficient_History": 253,
-        "Late_Resolution": 205,
+        "Late_Resolution": 206,
         "Late_Push": 179,
         "Fade_Risk": 90,
         "Early_Resolution": 10
       },
       "Volatile Day": {
-        "Late_Push": 202,
+        "Late_Push": 203,
         "Insufficient_History": 148,
         "Late_Resolution": 65,
         "Early_Resolution": 12,
@@ -5221,11 +5221,11 @@ const WTI_DATA = {
     },
     "avg_range_pips_by_profile": {
       "Compression Day": {
-        "mean": 105.7,
+        "mean": 105.8,
         "median": 101.0
       },
       "Normal Day": {
-        "mean": 196.5,
+        "mean": 196.7,
         "median": 177.0
       },
       "Quiet Drift Day (Down)": {
@@ -5245,8 +5245,8 @@ const WTI_DATA = {
         "median": 332.0
       },
       "Volatile Day": {
-        "mean": 399.3,
-        "median": 321.0
+        "mean": 399.8,
+        "median": 321.5
       },
       "Volatile Reversal Day": {
         "mean": 386.4,
@@ -5255,7 +5255,7 @@ const WTI_DATA = {
     },
     "nfp": {
       "n_nfp_days": 185,
-      "n_other_fridays": 623,
+      "n_other_fridays": 624,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 108,
@@ -5309,19 +5309,19 @@ const WTI_DATA = {
       "other_friday_profile_distribution": {
         "Normal Day": {
           "n": 365,
-          "pct": 58.59,
+          "pct": 58.49,
           "mean_range_pips": 193.9,
           "median_range_pips": 173.0
         },
         "Compression Day": {
-          "n": 121,
-          "pct": 19.42,
-          "mean_range_pips": 106.3,
-          "median_range_pips": 100.0
+          "n": 122,
+          "pct": 19.55,
+          "mean_range_pips": 106.9,
+          "median_range_pips": 101.0
         },
         "Volatile Day": {
           "n": 52,
-          "pct": 8.35,
+          "pct": 8.33,
           "mean_range_pips": 360.2,
           "median_range_pips": 300.0
         },
@@ -5345,7 +5345,7 @@ const WTI_DATA = {
         },
         "Quiet Drift Day (Up)": {
           "n": 18,
-          "pct": 2.89,
+          "pct": 2.88,
           "mean_range_pips": 133.2,
           "median_range_pips": 107.0
         },
@@ -5360,25 +5360,25 @@ const WTI_DATA = {
     "asset": "WTI"
   },
   "weekly": {
-    "n_labeled_weeks": 828,
+    "n_labeled_weeks": 829,
     "n_short_weeks": 1,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
-        "n": 464,
-        "pct": 56.04
+        "n": 465,
+        "pct": 56.09
       },
       "Compression Week": {
         "n": 150,
-        "pct": 18.12
+        "pct": 18.09
       },
       "Volatile Week": {
         "n": 88,
-        "pct": 10.63
+        "pct": 10.62
       },
       "Trend Week (Up)": {
         "n": 34,
-        "pct": 4.11
+        "pct": 4.1
       },
       "Trend Week (Down)": {
         "n": 32,
@@ -5402,7 +5402,7 @@ const WTI_DATA = {
         "Late_Push": 295,
         "Late_Resolution": 76,
         "Fade_Risk": 57,
-        "Early_Resolution": 30,
+        "Early_Resolution": 31,
         "Insufficient_History": 6
       },
       "Compression Week": {
@@ -5450,7 +5450,7 @@ const WTI_DATA = {
     "extreme_spread_by_profile": {
       "Normal Week": {
         "Spread": 377,
-        "Adjacent": 70,
+        "Adjacent": 71,
         "Same_Day": 11,
         "Insufficient_History": 6
       },
@@ -5497,7 +5497,7 @@ const WTI_DATA = {
         "median": 254.5
       },
       "Normal Week": {
-        "mean": 462.6,
+        "mean": 463.2,
         "median": 426.0
       },
       "Quiet Drift Week (Down)": {
@@ -5526,7 +5526,7 @@ const WTI_DATA = {
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 821,
+      "n_weeks": 822,
       "same_day_n": 22,
       "same_day_pct": 2.68,
       "pairs": {
@@ -5541,25 +5541,25 @@ const WTI_DATA = {
           },
           "Wednesday": {
             "n": 51,
-            "pct": 6.21
+            "pct": 6.2
           },
           "Thursday": {
             "n": 72,
-            "pct": 8.77
+            "pct": 8.76
           },
           "Friday": {
             "n": 115,
-            "pct": 14.01
+            "pct": 13.99
           }
         },
         "Tuesday": {
           "Monday": {
-            "n": 25,
-            "pct": 3.05
+            "n": 26,
+            "pct": 3.16
           },
           "Tuesday": {
             "n": 3,
-            "pct": 0.37
+            "pct": 0.36
           },
           "Wednesday": {
             "n": 13,
@@ -5567,21 +5567,21 @@ const WTI_DATA = {
           },
           "Thursday": {
             "n": 31,
-            "pct": 3.78
+            "pct": 3.77
           },
           "Friday": {
             "n": 48,
-            "pct": 5.85
+            "pct": 5.84
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 55,
-            "pct": 6.7
+            "pct": 6.69
           },
           "Tuesday": {
             "n": 15,
-            "pct": 1.83
+            "pct": 1.82
           },
           "Wednesday": {
             "n": 5,
@@ -5589,25 +5589,25 @@ const WTI_DATA = {
           },
           "Thursday": {
             "n": 9,
-            "pct": 1.1
+            "pct": 1.09
           },
           "Friday": {
             "n": 31,
-            "pct": 3.78
+            "pct": 3.77
           }
         },
         "Thursday": {
           "Monday": {
             "n": 61,
-            "pct": 7.43
+            "pct": 7.42
           },
           "Tuesday": {
             "n": 39,
-            "pct": 4.75
+            "pct": 4.74
           },
           "Wednesday": {
             "n": 15,
-            "pct": 1.83
+            "pct": 1.82
           },
           "Thursday": {
             "n": 2,
@@ -5621,7 +5621,7 @@ const WTI_DATA = {
         "Friday": {
           "Monday": {
             "n": 87,
-            "pct": 10.6
+            "pct": 10.58
           },
           "Tuesday": {
             "n": 41,
@@ -5629,7 +5629,7 @@ const WTI_DATA = {
           },
           "Wednesday": {
             "n": 37,
-            "pct": 4.51
+            "pct": 4.5
           },
           "Thursday": {
             "n": 18,
@@ -5647,48 +5647,48 @@ const WTI_DATA = {
     "asset": "WTI"
   },
   "monthly": {
-    "n_labeled_months": 184,
-    "n_short_months": 3,
+    "n_labeled_months": 185,
+    "n_short_months": 2,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 107,
-        "pct": 58.15
+        "n": 108,
+        "pct": 58.38
       },
       "Compression Month": {
         "n": 28,
-        "pct": 15.22
+        "pct": 15.14
       },
       "Volatile Month": {
         "n": 13,
-        "pct": 7.07
+        "pct": 7.03
       },
       "Trend Month (Down)": {
         "n": 13,
-        "pct": 7.07
+        "pct": 7.03
       },
       "Quiet Drift Month (Up)": {
         "n": 7,
-        "pct": 3.8
+        "pct": 3.78
       },
       "Trend Month (Up)": {
         "n": 7,
-        "pct": 3.8
+        "pct": 3.78
       },
       "Volatile Reversal Month": {
         "n": 6,
-        "pct": 3.26
+        "pct": 3.24
       },
       "Quiet Drift Month (Down)": {
         "n": 3,
-        "pct": 1.63
+        "pct": 1.62
       }
     },
     "extreme_timing_by_profile": {
       "Normal Month": {
         "Late_Push": 72,
         "Fade_Risk": 16,
-        "Early_Resolution": 12,
+        "Early_Resolution": 13,
         "Late_Resolution": 7
       },
       "Compression Month": {
@@ -5726,7 +5726,7 @@ const WTI_DATA = {
     "extreme_spread_by_profile": {
       "Normal Month": {
         "Spread": 89,
-        "Adjacent": 14,
+        "Adjacent": 15,
         "Same_Week": 4
       },
       "Compression Month": {
@@ -5762,8 +5762,8 @@ const WTI_DATA = {
         "median": 556.5
       },
       "Normal Month": {
-        "mean": 918.0,
-        "median": 832.0
+        "mean": 927.2,
+        "median": 834.0
       },
       "Quiet Drift Month (Down)": {
         "mean": 579.3,
@@ -5791,36 +5791,36 @@ const WTI_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 193,
+      "n_months": 194,
       "same_week_n": 7,
-      "same_week_pct": 3.63,
+      "same_week_pct": 3.61,
       "pairs": {
         "1": {
           "1": {
             "n": 6,
-            "pct": 3.11
+            "pct": 3.09
           },
           "2": {
             "n": 9,
-            "pct": 4.66
+            "pct": 4.64
           },
           "3": {
             "n": 15,
-            "pct": 7.77
+            "pct": 7.73
           },
           "4": {
             "n": 34,
-            "pct": 17.62
+            "pct": 17.53
           },
           "5": {
             "n": 20,
-            "pct": 10.36
+            "pct": 10.31
           }
         },
         "2": {
           "1": {
-            "n": 12,
-            "pct": 6.22
+            "n": 13,
+            "pct": 6.7
           },
           "2": {
             "n": 0,
@@ -5828,25 +5828,25 @@ const WTI_DATA = {
           },
           "3": {
             "n": 4,
-            "pct": 2.07
+            "pct": 2.06
           },
           "4": {
             "n": 5,
-            "pct": 2.59
+            "pct": 2.58
           },
           "5": {
             "n": 6,
-            "pct": 3.11
+            "pct": 3.09
           }
         },
         "3": {
           "1": {
             "n": 18,
-            "pct": 9.33
+            "pct": 9.28
           },
           "2": {
             "n": 2,
-            "pct": 1.04
+            "pct": 1.03
           },
           "3": {
             "n": 0,
@@ -5858,21 +5858,21 @@ const WTI_DATA = {
           },
           "5": {
             "n": 4,
-            "pct": 2.07
+            "pct": 2.06
           }
         },
         "4": {
           "1": {
             "n": 22,
-            "pct": 11.4
+            "pct": 11.34
           },
           "2": {
             "n": 9,
-            "pct": 4.66
+            "pct": 4.64
           },
           "3": {
             "n": 2,
-            "pct": 1.04
+            "pct": 1.03
           },
           "4": {
             "n": 1,
@@ -5886,11 +5886,11 @@ const WTI_DATA = {
         "5": {
           "1": {
             "n": 15,
-            "pct": 7.77
+            "pct": 7.73
           },
           "2": {
             "n": 2,
-            "pct": 1.04
+            "pct": 1.03
           },
           "3": {
             "n": 3,
@@ -6583,114 +6583,114 @@ const WTI_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 32.26,
-        "mean_activity_pips": 109.23,
-        "n_days": 2245
+        "mean_range_pips": 32.29,
+        "mean_activity_pips": 109.3,
+        "n_days": 2250
       },
       "1": {
-        "mean_range_pips": 41.52,
-        "mean_activity_pips": 145.04,
-        "n_days": 2300
-      },
-      "2": {
-        "mean_range_pips": 31.02,
-        "mean_activity_pips": 108.72,
-        "n_days": 2245
-      },
-      "3": {
-        "mean_range_pips": 24.96,
-        "mean_activity_pips": 88.35,
-        "n_days": 2162
-      },
-      "4": {
-        "mean_range_pips": 20.83,
-        "mean_activity_pips": 71.16,
-        "n_days": 2004
-      },
-      "5": {
-        "mean_range_pips": 29.92,
-        "mean_activity_pips": 100.29,
-        "n_days": 2188
-      },
-      "6": {
-        "mean_range_pips": 34.11,
-        "mean_activity_pips": 123.82,
-        "n_days": 2342
-      },
-      "7": {
-        "mean_range_pips": 43.69,
-        "mean_activity_pips": 159.36,
-        "n_days": 2405
-      },
-      "8": {
-        "mean_range_pips": 52.74,
-        "mean_activity_pips": 194.47,
-        "n_days": 2415
-      },
-      "9": {
-        "mean_range_pips": 50.55,
-        "mean_activity_pips": 177.84,
-        "n_days": 2415
-      },
-      "10": {
-        "mean_range_pips": 45.61,
-        "mean_activity_pips": 163.12,
-        "n_days": 2415
-      },
-      "11": {
-        "mean_range_pips": 46.32,
-        "mean_activity_pips": 162.47,
-        "n_days": 2416
-      },
-      "12": {
-        "mean_range_pips": 53.73,
-        "mean_activity_pips": 192.63,
-        "n_days": 2415
-      },
-      "13": {
-        "mean_range_pips": 75.6,
-        "mean_activity_pips": 270.65,
-        "n_days": 2419
-      },
-      "14": {
-        "mean_range_pips": 80.75,
-        "mean_activity_pips": 291.33,
-        "n_days": 2419
-      },
-      "15": {
-        "mean_range_pips": 74.7,
-        "mean_activity_pips": 271.37,
-        "n_days": 2418
-      },
-      "16": {
-        "mean_range_pips": 61.65,
-        "mean_activity_pips": 226.11,
-        "n_days": 2406
-      },
-      "17": {
-        "mean_range_pips": 55.7,
-        "mean_activity_pips": 200.34,
-        "n_days": 2374
-      },
-      "18": {
-        "mean_range_pips": 55.69,
-        "mean_activity_pips": 197.91,
-        "n_days": 2352
-      },
-      "19": {
-        "mean_range_pips": 39.33,
-        "mean_activity_pips": 138.33,
+        "mean_range_pips": 41.58,
+        "mean_activity_pips": 145.29,
         "n_days": 2305
       },
+      "2": {
+        "mean_range_pips": 31.08,
+        "mean_activity_pips": 108.93,
+        "n_days": 2250
+      },
+      "3": {
+        "mean_range_pips": 24.98,
+        "mean_activity_pips": 88.5,
+        "n_days": 2167
+      },
+      "4": {
+        "mean_range_pips": 20.85,
+        "mean_activity_pips": 71.29,
+        "n_days": 2009
+      },
+      "5": {
+        "mean_range_pips": 30.0,
+        "mean_activity_pips": 100.53,
+        "n_days": 2193
+      },
+      "6": {
+        "mean_range_pips": 34.21,
+        "mean_activity_pips": 124.09,
+        "n_days": 2347
+      },
+      "7": {
+        "mean_range_pips": 43.74,
+        "mean_activity_pips": 159.64,
+        "n_days": 2410
+      },
+      "8": {
+        "mean_range_pips": 52.81,
+        "mean_activity_pips": 194.8,
+        "n_days": 2420
+      },
+      "9": {
+        "mean_range_pips": 50.67,
+        "mean_activity_pips": 178.26,
+        "n_days": 2420
+      },
+      "10": {
+        "mean_range_pips": 45.7,
+        "mean_activity_pips": 163.39,
+        "n_days": 2420
+      },
+      "11": {
+        "mean_range_pips": 46.4,
+        "mean_activity_pips": 162.72,
+        "n_days": 2421
+      },
+      "12": {
+        "mean_range_pips": 53.77,
+        "mean_activity_pips": 192.84,
+        "n_days": 2420
+      },
+      "13": {
+        "mean_range_pips": 75.73,
+        "mean_activity_pips": 270.98,
+        "n_days": 2424
+      },
+      "14": {
+        "mean_range_pips": 80.79,
+        "mean_activity_pips": 291.49,
+        "n_days": 2424
+      },
+      "15": {
+        "mean_range_pips": 74.77,
+        "mean_activity_pips": 271.55,
+        "n_days": 2423
+      },
+      "16": {
+        "mean_range_pips": 61.72,
+        "mean_activity_pips": 226.35,
+        "n_days": 2411
+      },
+      "17": {
+        "mean_range_pips": 55.77,
+        "mean_activity_pips": 200.54,
+        "n_days": 2379
+      },
+      "18": {
+        "mean_range_pips": 55.68,
+        "mean_activity_pips": 197.97,
+        "n_days": 2357
+      },
+      "19": {
+        "mean_range_pips": 39.5,
+        "mean_activity_pips": 138.76,
+        "n_days": 2310
+      },
       "20": {
-        "mean_range_pips": 31.16,
-        "mean_activity_pips": 105.02,
-        "n_days": 1977
+        "mean_range_pips": 31.2,
+        "mean_activity_pips": 105.2,
+        "n_days": 1982
       },
       "21": {
-        "mean_range_pips": 25.69,
-        "mean_activity_pips": 83.06,
-        "n_days": 577
+        "mean_range_pips": 25.86,
+        "mean_activity_pips": 83.76,
+        "n_days": 582
       },
       "22": {
         "mean_range_pips": 37.51,
@@ -6698,9 +6698,9 @@ const WTI_DATA = {
         "n_days": 1278
       },
       "23": {
-        "mean_range_pips": 28.16,
-        "mean_activity_pips": 89.66,
-        "n_days": 2023
+        "mean_range_pips": 28.2,
+        "mean_activity_pips": 89.85,
+        "n_days": 2028
       }
     },
     "session_windows": {
@@ -6715,15 +6715,15 @@ const WTI_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 30.35,
-        "mean_activity_pips": 104.53
+        "mean_range_pips": 30.4,
+        "mean_activity_pips": 104.72
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 43.69,
-        "mean_activity_pips": 159.36
+        "mean_range_pips": 43.74,
+        "mean_activity_pips": 159.64
       },
       "london_only": {
         "hours": [
@@ -6732,8 +6732,8 @@ const WTI_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 48.8,
-        "mean_activity_pips": 174.48
+        "mean_range_pips": 48.9,
+        "mean_activity_pips": 174.79
       },
       "london_ny_overlap": {
         "hours": [
@@ -6742,8 +6742,8 @@ const WTI_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 71.19,
-        "mean_activity_pips": 256.5
+        "mean_range_pips": 71.27,
+        "mean_activity_pips": 256.72
       },
       "ny_only": {
         "hours": [
@@ -6753,54 +6753,54 @@ const WTI_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 48.71,
-        "mean_activity_pips": 173.54
+        "mean_range_pips": 48.77,
+        "mean_activity_pips": 173.76
       }
     },
     "asset": "WTI"
   },
   "range_forecast": {
     "asset": "WTI",
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-13",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 427.1,
+    "adr20": 424.8,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-09",
-        "mean": 415.1,
-        "q10": 250.1,
-        "q90": 691.3,
-        "q10_raw": 236.6,
-        "q90_raw": 616.4
+        "target_date": "2026-11-16",
+        "mean": 316.2,
+        "q10": 176.5,
+        "q90": 535.8,
+        "q10_raw": 169.2,
+        "q90_raw": 477.7
       },
       "h5": {
-        "mean": 422.7
+        "mean": 334.5
       },
       "h20": {
-        "mean": 404.4
+        "mean": 334.6
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.887,
-        "h5": 0.911,
-        "h20": 0.886
+        "h1": 0.888,
+        "h5": 0.914,
+        "h20": 0.892
       },
       "mae": {
         "h1": {
-          "timesfm": 101.6,
-          "adr20": 114.5
+          "timesfm": 102.6,
+          "adr20": 115.6
         },
         "h5": {
-          "timesfm": 77.8,
-          "adr20": 85.4
+          "timesfm": 78.6,
+          "adr20": 86.0
         },
         "h20": {
-          "timesfm": 80.5,
-          "adr20": 91.0
+          "timesfm": 81.0,
+          "adr20": 90.8
         }
       },
       "n": {
@@ -6808,49 +6808,14 @@ const WTI_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-11-28",
-      "to": "2026-11-05",
+      "from": "2024-12-05",
+      "to": "2026-11-12",
       "band_n": 500,
-      "band_coverage": 0.766,
+      "band_coverage": 0.762,
       "above_q90": 0.132,
-      "below_q10": 0.102
+      "below_q10": 0.106
     },
     "recent": [
-      {
-        "date": "2026-08-17",
-        "actual": 335.0,
-        "mean": 302.8,
-        "q10": 181.7,
-        "q90": 488.6
-      },
-      {
-        "date": "2026-08-18",
-        "actual": 125.0,
-        "mean": 308.9,
-        "q10": 194.5,
-        "q90": 498.7
-      },
-      {
-        "date": "2026-08-19",
-        "actual": 239.0,
-        "mean": 267.4,
-        "q10": 146.4,
-        "q90": 445.2
-      },
-      {
-        "date": "2026-08-20",
-        "actual": 343.0,
-        "mean": 256.8,
-        "q10": 143.4,
-        "q90": 425.9
-      },
-      {
-        "date": "2026-08-21",
-        "actual": 169.0,
-        "mean": 278.4,
-        "q10": 158.3,
-        "q90": 459.4
-      },
       {
         "date": "2026-08-24",
         "actual": 219.0,
@@ -7238,10 +7203,45 @@ const WTI_DATA = {
       },
       {
         "date": "2026-11-09",
-        "actual": null,
+        "actual": 639.0,
         "mean": 415.1,
         "q10": 250.1,
         "q90": 691.3
+      },
+      {
+        "date": "2026-11-10",
+        "actual": 306.0,
+        "mean": 495.1,
+        "q10": 309.9,
+        "q90": 809.6
+      },
+      {
+        "date": "2026-11-11",
+        "actual": 288.0,
+        "mean": 419.9,
+        "q10": 249.8,
+        "q90": 693.7
+      },
+      {
+        "date": "2026-11-12",
+        "actual": 393.0,
+        "mean": 391.4,
+        "q10": 235.4,
+        "q90": 645.3
+      },
+      {
+        "date": "2026-11-13",
+        "actual": 183.0,
+        "mean": 386.7,
+        "q10": 237.2,
+        "q90": 631.0
+      },
+      {
+        "date": "2026-11-16",
+        "actual": null,
+        "mean": 316.2,
+        "q10": 176.5,
+        "q90": 535.8
       }
     ]
   }

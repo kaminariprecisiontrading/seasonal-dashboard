@@ -8,12 +8,8 @@
       "pct": 50.0
     },
     "Volatile Year": {
-      "n": 1,
-      "pct": 25.0
-    },
-    "Volatile Reversal Year": {
-      "n": 1,
-      "pct": 25.0
+      "n": 2,
+      "pct": 50.0
     }
   },
   "extreme_timing_by_profile": {
@@ -21,10 +17,7 @@
       "Late_Push": 2
     },
     "Volatile Year": {
-      "Late_Push": 1
-    },
-    "Volatile Reversal Year": {
-      "Late_Push": 1
+      "Late_Push": 2
     }
   },
   "extreme_spread_by_profile": {
@@ -32,10 +25,7 @@
       "Spread": 2
     },
     "Volatile Year": {
-      "Spread": 1
-    },
-    "Volatile Reversal Year": {
-      "Spread": 1
+      "Spread": 2
     }
   },
   "avg_range_pips_by_profile": {
@@ -43,13 +33,9 @@
       "mean": 7159.0,
       "median": 7159.0
     },
-    "Volatile Reversal Year": {
-      "mean": 9930.0,
-      "median": 9930.0
-    },
     "Volatile Year": {
-      "mean": 12380.0,
-      "median": 12380.0
+      "mean": 11155.0,
+      "median": 11155.0
     }
   },
   "month_pair_distribution": {

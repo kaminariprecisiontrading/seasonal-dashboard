@@ -1,23 +1,23 @@
 {
-  "n_labeled_weeks": 1748,
+  "n_labeled_weeks": 1749,
   "n_short_weeks": 0,
   "n_insufficient_history_weeks": 14,
   "profile_distribution": {
     "Normal Week": {
       "n": 966,
-      "pct": 55.26
+      "pct": 55.23
     },
     "Compression Week": {
       "n": 342,
-      "pct": 19.57
+      "pct": 19.55
     },
     "Volatile Week": {
       "n": 153,
       "pct": 8.75
     },
     "Trend Week (Down)": {
-      "n": 84,
-      "pct": 4.81
+      "n": 85,
+      "pct": 4.86
     },
     "Trend Week (Up)": {
       "n": 68,
@@ -58,7 +58,7 @@
       "Insufficient_History": 1
     },
     "Trend Week (Down)": {
-      "Late_Push": 67,
+      "Late_Push": 68,
       "Late_Resolution": 14,
       "Early_Resolution": 3
     },
@@ -103,7 +103,7 @@
       "Insufficient_History": 1
     },
     "Trend Week (Down)": {
-      "Spread": 76,
+      "Spread": 77,
       "Adjacent": 7,
       "Same_Day": 1
     },
@@ -145,8 +145,8 @@
       "median": 123.6
     },
     "Trend Week (Down)": {
-      "mean": 377.1,
-      "median": 341.5
+      "mean": 375.4,
+      "median": 340.0
     },
     "Trend Week (Up)": {
       "mean": 359.2,
@@ -162,7 +162,7 @@
     }
   },
   "weekday_pair_distribution": {
-    "n_weeks": 1759,
+    "n_weeks": 1760,
     "same_day_n": 50,
     "same_day_pct": 2.84,
     "pairs": {
@@ -185,7 +185,7 @@
         },
         "Friday": {
           "n": 230,
-          "pct": 13.08
+          "pct": 13.07
         }
       },
       "Tuesday": {
@@ -229,7 +229,7 @@
         },
         "Friday": {
           "n": 87,
-          "pct": 4.95
+          "pct": 4.94
         }
       },
       "Thursday": {
@@ -257,15 +257,15 @@
       "Friday": {
         "Monday": {
           "n": 261,
-          "pct": 14.84
+          "pct": 14.83
         },
         "Tuesday": {
-          "n": 125,
-          "pct": 7.11
+          "n": 126,
+          "pct": 7.16
         },
         "Wednesday": {
           "n": 93,
-          "pct": 5.29
+          "pct": 5.28
         },
         "Thursday": {
           "n": 48,

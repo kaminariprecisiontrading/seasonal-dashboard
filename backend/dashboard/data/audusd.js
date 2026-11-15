@@ -4,15 +4,15 @@ const AUDUSD_DATA = {
   "stats": {
     "asset": "AUDUSD",
     "unit": "pips",
-    "as_of": "2026-11-06",
-    "n_days": 8701,
-    "n_weeks": 1746,
+    "as_of": "2026-11-13",
+    "n_days": 8706,
+    "n_weeks": 1747,
     "n_months": 404,
     "n_years": 34,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 8701,
+          "n": 8706,
           "mean": 79.0,
           "median": 68.0,
           "std": 46.9,
@@ -21,7 +21,7 @@ const AUDUSD_DATA = {
           "mode_binned": {
             "bin_low": 52.1,
             "bin_high": 58.5,
-            "count": 797,
+            "count": 798,
             "pct_of_n": 9.2
           },
           "mode_raw": {
@@ -36,17 +36,17 @@ const AUDUSD_DATA = {
           "p25": 50.0,
           "p50": 68.0,
           "p75": 95.0,
-          "p80": 103.2,
+          "p80": 103.1,
           "p90": 130.6,
-          "p95": 160.3,
+          "p95": 160.2,
           "compression_threshold_pips": 46.3,
-          "expansion_threshold_pips": 103.2
+          "expansion_threshold_pips": 103.1
         },
         "5y": {
           "n": 1298,
           "mean": 66.0,
           "median": 59.5,
-          "std": 31.1,
+          "std": 31.2,
           "min": 18.9,
           "max": 345.3,
           "mode_binned": {
@@ -64,85 +64,85 @@ const AUDUSD_DATA = {
           "p05": 30.5,
           "p10": 34.4,
           "p20": 41.5,
-          "p25": 44.8,
+          "p25": 44.7,
           "p50": 59.5,
-          "p75": 78.4,
-          "p80": 85.7,
+          "p75": 78.5,
+          "p80": 85.8,
           "p90": 107.1,
           "p95": 123.8,
           "compression_threshold_pips": 41.5,
-          "expansion_threshold_pips": 85.7
+          "expansion_threshold_pips": 85.8
         },
         "1y": {
           "n": 260,
-          "mean": 55.7,
-          "median": 49.5,
+          "mean": 56.1,
+          "median": 49.6,
           "std": 25.5,
           "min": 20.2,
           "max": 178.4,
           "mode_binned": {
             "bin_low": 38.6,
-            "bin_high": 42.7,
-            "count": 32,
-            "pct_of_n": 12.3
+            "bin_high": 42.8,
+            "count": 33,
+            "pct_of_n": 12.7
           },
           "mode_raw": {
-            "value": 55.4,
-            "count": 4,
-            "pct_of_n": 1.5,
-            "n_values_tied": 1
+            "value": 30.0,
+            "count": 3,
+            "pct_of_n": 1.2,
+            "n_values_tied": 7
           },
-          "p05": 26.1,
+          "p05": 26.2,
           "p10": 30.0,
-          "p20": 36.1,
-          "p25": 38.1,
-          "p50": 49.5,
-          "p75": 66.5,
-          "p80": 72.1,
+          "p20": 36.4,
+          "p25": 38.7,
+          "p50": 49.6,
+          "p75": 67.8,
+          "p80": 72.8,
           "p90": 90.7,
           "p95": 109.2,
-          "compression_threshold_pips": 36.1,
-          "expansion_threshold_pips": 72.1
+          "compression_threshold_pips": 36.4,
+          "expansion_threshold_pips": 72.8
         },
         "3mo": {
           "n": 67,
-          "mean": 45.7,
-          "median": 41.2,
-          "std": 16.9,
+          "mean": 47.5,
+          "median": 41.9,
+          "std": 17.6,
           "min": 20.7,
           "max": 100.3,
           "mode_binned": {
-            "bin_low": 39.4,
-            "bin_high": 42.3,
-            "count": 10,
-            "pct_of_n": 14.9
+            "bin_low": 38.4,
+            "bin_high": 41.4,
+            "count": 9,
+            "pct_of_n": 13.4
           },
           "mode_raw": {
-            "value": 24.2,
+            "value": 40.3,
             "count": 2,
             "pct_of_n": 3.0,
             "n_values_tied": 3
           },
-          "p05": 24.8,
-          "p10": 28.7,
-          "p20": 32.6,
-          "p25": 33.8,
-          "p50": 41.2,
-          "p75": 53.9,
-          "p80": 56.8,
-          "p90": 65.6,
-          "p95": 83.3,
-          "compression_threshold_pips": 32.6,
-          "expansion_threshold_pips": 56.8
+          "p05": 26.4,
+          "p10": 29.7,
+          "p20": 33.5,
+          "p25": 35.6,
+          "p50": 41.9,
+          "p75": 55.0,
+          "p80": 61.5,
+          "p90": 71.5,
+          "p95": 86.4,
+          "compression_threshold_pips": 33.5,
+          "expansion_threshold_pips": 61.5
         }
       },
       "latest_adr": {
-        "ADR_5": 67.7,
-        "ADR_14": 49.5,
-        "ADR_20": 51.2,
+        "ADR_5": 61.2,
+        "ADR_14": 57.4,
+        "ADR_20": 52.2,
         "fixed_multiple_thresholds": {
-          "compression_pips": 35.8,
-          "expansion_pips": 66.6,
+          "compression_pips": 36.5,
+          "expansion_pips": 67.9,
           "based_on": "ADR_20"
         }
       }
@@ -150,7 +150,7 @@ const AUDUSD_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 1746,
+          "n": 1747,
           "mean": 175.0,
           "median": 152.8,
           "std": 98.9,
@@ -175,7 +175,7 @@ const AUDUSD_DATA = {
           "p50": 152.8,
           "p75": 203.0,
           "p80": 220.3,
-          "p90": 280.5,
+          "p90": 280.4,
           "p95": 350.2,
           "compression_threshold_pips": 107.0,
           "expansion_threshold_pips": 220.3
@@ -213,9 +213,9 @@ const AUDUSD_DATA = {
         },
         "1y": {
           "n": 53,
-          "mean": 118.9,
-          "median": 113.2,
-          "std": 46.9,
+          "mean": 120.0,
+          "median": 113.4,
+          "std": 47.2,
           "min": 56.5,
           "max": 236.4,
           "mode_binned": {
@@ -234,26 +234,26 @@ const AUDUSD_DATA = {
           "p10": 67.7,
           "p20": 79.1,
           "p25": 88.0,
-          "p50": 113.2,
-          "p75": 138.9,
-          "p80": 143.0,
+          "p50": 113.4,
+          "p75": 141.3,
+          "p80": 149.3,
           "p90": 190.2,
           "p95": 224.3,
           "compression_threshold_pips": 79.1,
-          "expansion_threshold_pips": 143.0
+          "expansion_threshold_pips": 149.3
         },
         "3mo": {
           "n": 14,
-          "mean": 98.8,
+          "mean": 103.7,
           "median": 92.2,
-          "std": 35.3,
+          "std": 39.0,
           "min": 56.5,
           "max": 180.1,
           "mode_binned": {
-            "bin_low": 90.3,
-            "bin_high": 95.0,
-            "count": 4,
-            "pct_of_n": 28.6
+            "bin_low": 57.2,
+            "bin_high": 62.8,
+            "count": 2,
+            "pct_of_n": 14.3
           },
           "mode_raw": {
             "value": 56.5,
@@ -266,12 +266,12 @@ const AUDUSD_DATA = {
           "p20": 65.5,
           "p25": 74.7,
           "p50": 92.2,
-          "p75": 117.5,
-          "p80": 125.6,
-          "p90": 136.2,
-          "p95": 151.7,
+          "p75": 131.4,
+          "p80": 135.9,
+          "p90": 153.9,
+          "p95": 167.9,
           "compression_threshold_pips": 65.5,
-          "expansion_threshold_pips": 125.6
+          "expansion_threshold_pips": 135.9
         }
       }
     },
@@ -279,16 +279,16 @@ const AUDUSD_DATA = {
       "windowed_distribution": {
         "full": {
           "n": 404,
-          "mean": 367.8,
+          "mean": 368.0,
           "median": 319.6,
-          "std": 201.6,
+          "std": 201.5,
           "min": 114.3,
           "max": 2010.0,
           "mode_binned": {
             "bin_low": 256.0,
             "bin_high": 285.2,
-            "count": 46,
-            "pct_of_n": 11.4
+            "count": 47,
+            "pct_of_n": 11.6
           },
           "mode_raw": {
             "value": 260.0,
@@ -297,22 +297,22 @@ const AUDUSD_DATA = {
             "n_values_tied": 3
           },
           "p05": 168.5,
-          "p10": 191.0,
-          "p20": 227.1,
-          "p25": 245.6,
+          "p10": 191.5,
+          "p20": 227.6,
+          "p25": 248.2,
           "p50": 319.6,
           "p75": 431.4,
           "p80": 467.9,
           "p90": 592.7,
           "p95": 751.9,
-          "compression_threshold_pips": 227.1,
+          "compression_threshold_pips": 227.6,
           "expansion_threshold_pips": 467.9
         },
         "5y": {
           "n": 60,
-          "mean": 302.2,
+          "mean": 303.7,
           "median": 295.6,
-          "std": 113.3,
+          "std": 112.3,
           "min": 128.6,
           "max": 606.1,
           "mode_binned": {
@@ -329,28 +329,28 @@ const AUDUSD_DATA = {
           },
           "p05": 162.7,
           "p10": 174.9,
-          "p20": 192.1,
-          "p25": 200.8,
+          "p20": 196.8,
+          "p25": 203.2,
           "p50": 295.6,
           "p75": 360.4,
           "p80": 381.6,
           "p90": 455.1,
           "p95": 529.1,
-          "compression_threshold_pips": 192.1,
+          "compression_threshold_pips": 196.8,
           "expansion_threshold_pips": 381.6
         },
         "1y": {
           "n": 13,
-          "mean": 254.4,
-          "median": 224.1,
-          "std": 89.8,
+          "mean": 260.9,
+          "median": 250.1,
+          "std": 87.0,
           "min": 158.8,
           "max": 431.0,
           "mode_binned": {
-            "bin_low": 172.7,
-            "bin_high": 184.1,
-            "count": 2,
-            "pct_of_n": 15.4
+            "bin_low": 161.3,
+            "bin_high": 172.7,
+            "count": 1,
+            "pct_of_n": 7.7
           },
           "mode_raw": {
             "value": 158.8,
@@ -360,26 +360,26 @@ const AUDUSD_DATA = {
           },
           "p05": 161.3,
           "p10": 165.1,
-          "p20": 176.3,
-          "p25": 180.1,
-          "p50": 224.1,
+          "p20": 181.2,
+          "p25": 192.5,
+          "p50": 250.1,
           "p75": 325.0,
           "p80": 342.5,
           "p90": 360.4,
           "p95": 389.6,
-          "compression_threshold_pips": 176.3,
+          "compression_threshold_pips": 181.2,
           "expansion_threshold_pips": 342.5
         },
         "3mo": {
           "n": 4,
-          "mean": 218.3,
-          "median": 202.1,
-          "std": 56.0,
+          "mean": 239.5,
+          "median": 244.5,
+          "std": 52.7,
           "min": 173.7,
           "max": 295.3,
           "mode_binned": {
-            "bin_low": 174.7,
-            "bin_high": 180.2,
+            "bin_low": 219.6,
+            "bin_high": 225.1,
             "count": 1,
             "pct_of_n": 25.0
           },
@@ -389,17 +389,17 @@ const AUDUSD_DATA = {
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 174.7,
-          "p10": 175.6,
-          "p20": 177.5,
-          "p25": 178.5,
-          "p50": 202.1,
-          "p75": 241.9,
-          "p80": 252.6,
-          "p90": 273.9,
-          "p95": 284.6,
-          "compression_threshold_pips": 177.5,
-          "expansion_threshold_pips": 252.6
+          "p05": 181.3,
+          "p10": 188.8,
+          "p20": 203.9,
+          "p25": 211.5,
+          "p50": 244.5,
+          "p75": 272.5,
+          "p80": 277.1,
+          "p90": 286.2,
+          "p95": 290.7,
+          "compression_threshold_pips": 203.9,
+          "expansion_threshold_pips": 277.1
         }
       }
     },
@@ -437,9 +437,9 @@ const AUDUSD_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7222,
-          "mode_bucket_start_utc": "21:00",
-          "mode_bucket_end_utc": "21:30",
+          "n": 7227,
+          "mode_bucket_start_utc": "22:00",
+          "mode_bucket_end_utc": "22:30",
           "mode_bucket_pct_of_days": 4.0,
           "circular_mean_utc": "18:55",
           "circular_median_utc": "19:55",
@@ -462,13 +462,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 156,
-              "pct": 2.16
+              "count": 157,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 111,
-              "pct": 1.54
+              "count": 112,
+              "pct": 1.55
             },
             {
               "bucket_start_utc": "02:30",
@@ -483,7 +483,7 @@ const AUDUSD_DATA = {
             {
               "bucket_start_utc": "03:30",
               "count": 56,
-              "pct": 0.78
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "04:00",
@@ -532,8 +532,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 127,
-              "pct": 1.76
+              "count": 128,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "09:00",
@@ -543,7 +543,7 @@ const AUDUSD_DATA = {
             {
               "bucket_start_utc": "09:30",
               "count": 82,
-              "pct": 1.14
+              "pct": 1.13
             },
             {
               "bucket_start_utc": "10:00",
@@ -588,7 +588,7 @@ const AUDUSD_DATA = {
             {
               "bucket_start_utc": "14:00",
               "count": 220,
-              "pct": 3.05
+              "pct": 3.04
             },
             {
               "bucket_start_utc": "14:30",
@@ -623,7 +623,7 @@ const AUDUSD_DATA = {
             {
               "bucket_start_utc": "17:30",
               "count": 147,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "18:00",
@@ -633,7 +633,7 @@ const AUDUSD_DATA = {
             {
               "bucket_start_utc": "18:30",
               "count": 155,
-              "pct": 2.15
+              "pct": 2.14
             },
             {
               "bucket_start_utc": "19:00",
@@ -647,8 +647,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 165,
-              "pct": 2.28
+              "count": 166,
+              "pct": 2.3
             },
             {
               "bucket_start_utc": "20:30",
@@ -667,8 +667,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 291,
-              "pct": 4.03
+              "count": 292,
+              "pct": 4.04
             },
             {
               "bucket_start_utc": "22:30",
@@ -691,15 +691,15 @@ const AUDUSD_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "00:00",
           "mode_bucket_end_utc": "00:30",
-          "mode_bucket_pct_of_days": 4.2,
-          "circular_mean_utc": "19:02",
+          "mode_bucket_pct_of_days": 4.1,
+          "circular_mean_utc": "19:06",
           "circular_median_utc": "18:55",
-          "concentration_R": 0.129,
+          "concentration_R": 0.128,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 54,
-              "pct": 4.16
+              "count": 53,
+              "pct": 4.08
             },
             {
               "bucket_start_utc": "00:30",
@@ -713,13 +713,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 43,
-              "pct": 3.31
+              "count": 44,
+              "pct": 3.39
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 33,
-              "pct": 2.54
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "02:30",
@@ -783,8 +783,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 22,
-              "pct": 1.69
+              "count": 23,
+              "pct": 1.77
             },
             {
               "bucket_start_utc": "09:00",
@@ -793,8 +793,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 6,
-              "pct": 0.46
+              "count": 5,
+              "pct": 0.39
             },
             {
               "bucket_start_utc": "10:00",
@@ -843,8 +843,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 49,
-              "pct": 3.78
+              "count": 48,
+              "pct": 3.7
             },
             {
               "bucket_start_utc": "15:00",
@@ -863,8 +863,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 19,
-              "pct": 1.46
+              "count": 18,
+              "pct": 1.39
             },
             {
               "bucket_start_utc": "17:00",
@@ -898,13 +898,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 32,
-              "pct": 2.47
+              "count": 33,
+              "pct": 2.54
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 32,
-              "pct": 2.47
+              "count": 31,
+              "pct": 2.39
             },
             {
               "bucket_start_utc": "21:00",
@@ -918,8 +918,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 33,
-              "pct": 2.54
+              "count": 34,
+              "pct": 2.62
             },
             {
               "bucket_start_utc": "22:30",
@@ -943,9 +943,9 @@ const AUDUSD_DATA = {
           "mode_bucket_start_utc": "01:00",
           "mode_bucket_end_utc": "01:30",
           "mode_bucket_pct_of_days": 4.6,
-          "circular_mean_utc": "17:46",
-          "circular_median_utc": "16:20",
-          "concentration_R": 0.169,
+          "circular_mean_utc": "18:02",
+          "circular_median_utc": "17:40",
+          "concentration_R": 0.154,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -964,13 +964,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 7,
+              "pct": 2.69
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 4,
-              "pct": 1.54
+              "count": 5,
+              "pct": 1.92
             },
             {
               "bucket_start_utc": "02:30",
@@ -1034,8 +1034,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 3,
-              "pct": 1.15
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "09:00",
@@ -1084,8 +1084,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 11,
-              "pct": 4.23
+              "count": 9,
+              "pct": 3.46
             },
             {
               "bucket_start_utc": "14:00",
@@ -1134,8 +1134,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 6,
-              "pct": 2.31
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "19:00",
@@ -1149,8 +1149,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "20:30",
@@ -1159,8 +1159,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "21:30",
@@ -1169,8 +1169,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "22:30",
@@ -1194,9 +1194,9 @@ const AUDUSD_DATA = {
           "mode_bucket_start_utc": "14:30",
           "mode_bucket_end_utc": "15:00",
           "mode_bucket_pct_of_days": 7.5,
-          "circular_mean_utc": "14:52",
-          "circular_median_utc": "14:45",
-          "concentration_R": 0.156,
+          "circular_mean_utc": "16:41",
+          "circular_median_utc": "15:30",
+          "concentration_R": 0.115,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1215,8 +1215,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "02:00",
@@ -1280,13 +1280,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "08:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "09:00",
@@ -1325,18 +1325,18 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "13:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "13:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "14:00",
@@ -1400,8 +1400,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 3,
-              "pct": 4.48
+              "count": 4,
+              "pct": 5.97
             },
             {
               "bucket_start_utc": "20:30",
@@ -1420,8 +1420,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "22:30",
@@ -1443,23 +1443,23 @@ const AUDUSD_DATA = {
       },
       "session_distribution": {
         "Asian": {
-          "n": 2010,
+          "n": 2012,
           "pct": 27.8
         },
         "New_York": {
-          "n": 1568,
+          "n": 1569,
           "pct": 21.7
         },
         "London_NY_Overlap": {
           "n": 1550,
-          "pct": 21.5
+          "pct": 21.4
         },
         "Other": {
-          "n": 959,
+          "n": 960,
           "pct": 13.3
         },
         "London": {
-          "n": 866,
+          "n": 867,
           "pct": 12.0
         },
         "Asian_London_Overlap": {
@@ -1471,13 +1471,13 @@ const AUDUSD_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 7222,
+          "n": 7227,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 6.7,
           "circular_mean_utc": "20:09",
           "circular_median_utc": "21:00",
-          "concentration_R": 0.202,
+          "concentration_R": 0.203,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1626,13 +1626,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 197,
-              "pct": 2.73
+              "count": 198,
+              "pct": 2.74
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 185,
-              "pct": 2.56
+              "count": 186,
+              "pct": 2.57
             },
             {
               "bucket_start_utc": "15:30",
@@ -1641,8 +1641,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 137,
-              "pct": 1.9
+              "count": 138,
+              "pct": 1.91
             },
             {
               "bucket_start_utc": "16:30",
@@ -1696,8 +1696,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 263,
-              "pct": 3.64
+              "count": 264,
+              "pct": 3.65
             },
             {
               "bucket_start_utc": "22:00",
@@ -1706,8 +1706,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 207,
-              "pct": 2.87
+              "count": 208,
+              "pct": 2.88
             },
             {
               "bucket_start_utc": "23:00",
@@ -1725,10 +1725,10 @@ const AUDUSD_DATA = {
           "n": 1298,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 11.2,
-          "circular_mean_utc": "19:15",
+          "mode_bucket_pct_of_days": 11.1,
+          "circular_mean_utc": "19:14",
           "circular_median_utc": "20:35",
-          "concentration_R": 0.27,
+          "concentration_R": 0.273,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1762,8 +1762,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 14,
-              "pct": 1.08
+              "count": 13,
+              "pct": 1.0
             },
             {
               "bucket_start_utc": "03:30",
@@ -1812,8 +1812,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 19,
-              "pct": 1.46
+              "count": 17,
+              "pct": 1.31
             },
             {
               "bucket_start_utc": "08:30",
@@ -1877,13 +1877,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 45,
-              "pct": 3.47
+              "count": 46,
+              "pct": 3.54
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 41,
-              "pct": 3.16
+              "count": 42,
+              "pct": 3.24
             },
             {
               "bucket_start_utc": "15:30",
@@ -1892,13 +1892,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 32,
-              "pct": 2.47
+              "count": 33,
+              "pct": 2.54
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 30,
-              "pct": 2.31
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "17:00",
@@ -1942,13 +1942,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 145,
-              "pct": 11.17
+              "count": 144,
+              "pct": 11.09
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 28,
-              "pct": 2.16
+              "count": 29,
+              "pct": 2.23
             },
             {
               "bucket_start_utc": "22:00",
@@ -1957,8 +1957,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 19,
-              "pct": 1.46
+              "count": 20,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "23:00",
@@ -1977,9 +1977,9 @@ const AUDUSD_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 14.2,
-          "circular_mean_utc": "20:12",
+          "circular_mean_utc": "20:03",
           "circular_median_utc": "21:05",
-          "concentration_R": 0.297,
+          "concentration_R": 0.305,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2023,8 +2023,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "04:30",
@@ -2053,8 +2053,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 5,
-              "pct": 1.92
+              "count": 4,
+              "pct": 1.54
             },
             {
               "bucket_start_utc": "07:30",
@@ -2128,13 +2128,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 5,
-              "pct": 1.92
+              "count": 6,
+              "pct": 2.31
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 7,
-              "pct": 2.69
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "15:30",
@@ -2198,23 +2198,23 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 12,
-              "pct": 4.62
+              "count": 13,
+              "pct": 5.0
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 17,
-              "pct": 6.54
+              "count": 16,
+              "pct": 6.15
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 7,
-              "pct": 2.69
+              "count": 8,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 3,
-              "pct": 1.15
+              "count": 2,
+              "pct": 0.77
             },
             {
               "bucket_start_utc": "23:30",
@@ -2227,10 +2227,10 @@ const AUDUSD_DATA = {
           "n": 67,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 26.9,
-          "circular_mean_utc": "19:31",
+          "mode_bucket_pct_of_days": 25.4,
+          "circular_mean_utc": "19:00",
           "circular_median_utc": "21:00",
-          "concentration_R": 0.296,
+          "concentration_R": 0.32,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2259,8 +2259,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 1,
-              "pct": 1.49
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "03:00",
@@ -2279,8 +2279,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "04:30",
-              "count": 3,
-              "pct": 4.48
+              "count": 2,
+              "pct": 2.99
             },
             {
               "bucket_start_utc": "05:00",
@@ -2379,13 +2379,13 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "15:30",
@@ -2439,18 +2439,18 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 18,
-              "pct": 26.87
+              "count": 17,
+              "pct": 25.37
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 2,
-              "pct": 2.99
+              "count": 3,
+              "pct": 4.48
             },
             {
               "bucket_start_utc": "22:00",
@@ -2459,8 +2459,8 @@ const AUDUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.49
             },
             {
               "bucket_start_utc": "23:00",
@@ -2481,15 +2481,15 @@ const AUDUSD_DATA = {
           "pct": 28.1
         },
         "London_NY_Overlap": {
-          "n": 1471,
+          "n": 1473,
           "pct": 20.4
         },
         "New_York": {
-          "n": 1378,
+          "n": 1379,
           "pct": 19.1
         },
         "Other": {
-          "n": 1342,
+          "n": 1344,
           "pct": 18.6
         },
         "London": {
@@ -2503,7 +2503,7 @@ const AUDUSD_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 7222,
+      "n_days": 7227,
       "same_session_n": 375,
       "same_session_pct": 5.19,
       "pairs": {
@@ -2522,11 +2522,11 @@ const AUDUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 676,
-            "pct": 9.36
+            "pct": 9.35
           },
           "New_York": {
             "n": 686,
-            "pct": 9.5
+            "pct": 9.49
           },
           "Other": {
             "n": 165,
@@ -2562,7 +2562,7 @@ const AUDUSD_DATA = {
         "London": {
           "Asian": {
             "n": 264,
-            "pct": 3.66
+            "pct": 3.65
           },
           "Asian_London_Overlap": {
             "n": 14,
@@ -2587,8 +2587,8 @@ const AUDUSD_DATA = {
         },
         "London_NY_Overlap": {
           "Asian": {
-            "n": 686,
-            "pct": 9.5
+            "n": 687,
+            "pct": 9.51
           },
           "Asian_London_Overlap": {
             "n": 94,
@@ -2607,22 +2607,22 @@ const AUDUSD_DATA = {
             "pct": 2.05
           },
           "Other": {
-            "n": 299,
-            "pct": 4.14
+            "n": 300,
+            "pct": 4.15
           }
         },
         "New_York": {
           "Asian": {
             "n": 649,
-            "pct": 8.99
+            "pct": 8.98
           },
           "Asian_London_Overlap": {
             "n": 72,
             "pct": 1.0
           },
           "London": {
-            "n": 204,
-            "pct": 2.82
+            "n": 205,
+            "pct": 2.84
           },
           "London_NY_Overlap": {
             "n": 167,
@@ -2634,13 +2634,13 @@ const AUDUSD_DATA = {
           },
           "Other": {
             "n": 246,
-            "pct": 3.41
+            "pct": 3.4
           }
         },
         "Other": {
           "Asian": {
-            "n": 206,
-            "pct": 2.85
+            "n": 207,
+            "pct": 2.86
           },
           "Asian_London_Overlap": {
             "n": 42,
@@ -2652,11 +2652,11 @@ const AUDUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 428,
-            "pct": 5.93
+            "pct": 5.92
           },
           "New_York": {
-            "n": 402,
-            "pct": 5.57
+            "n": 403,
+            "pct": 5.58
           },
           "Other": {
             "n": 66,
@@ -2666,7 +2666,7 @@ const AUDUSD_DATA = {
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 7222,
+      "n_days": 7227,
       "same_hour_n": 34,
       "same_hour_pct": 0.47,
       "pairs": {
@@ -4052,8 +4052,8 @@ const AUDUSD_DATA = {
             "pct": 0.48
           },
           "2": {
-            "n": 19,
-            "pct": 0.26
+            "n": 20,
+            "pct": 0.28
           },
           "3": {
             "n": 13,
@@ -4230,8 +4230,8 @@ const AUDUSD_DATA = {
             "pct": 0.47
           },
           "22": {
-            "n": 41,
-            "pct": 0.57
+            "n": 42,
+            "pct": 0.58
           },
           "23": {
             "n": 32,
@@ -4272,8 +4272,8 @@ const AUDUSD_DATA = {
             "pct": 0.22
           },
           "8": {
-            "n": 17,
-            "pct": 0.24
+            "n": 18,
+            "pct": 0.25
           },
           "9": {
             "n": 12,
@@ -4734,8 +4734,8 @@ const AUDUSD_DATA = {
             "pct": 0.18
           },
           "1": {
-            "n": 12,
-            "pct": 0.17
+            "n": 13,
+            "pct": 0.18
           },
           "2": {
             "n": 17,
@@ -4803,7 +4803,7 @@ const AUDUSD_DATA = {
           },
           "18": {
             "n": 43,
-            "pct": 0.6
+            "pct": 0.59
           },
           "19": {
             "n": 45,
@@ -4908,8 +4908,8 @@ const AUDUSD_DATA = {
             "pct": 0.65
           },
           "20": {
-            "n": 35,
-            "pct": 0.48
+            "n": 36,
+            "pct": 0.5
           },
           "21": {
             "n": 26,
@@ -5032,8 +5032,8 @@ const AUDUSD_DATA = {
         "extreme_in_release_window_pct": 33.6
       },
       "other_fridays": {
-        "n": 1113,
-        "mean_range_pips": 78.0,
+        "n": 1114,
+        "mean_range_pips": 77.9,
         "median_range_pips": 67.5,
         "extreme_in_release_window_pct": 21.9
       },
@@ -5043,7 +5043,7 @@ const AUDUSD_DATA = {
     },
     "weekly_high_day": {
       "Friday": 472,
-      "Monday": 436,
+      "Monday": 437,
       "Thursday": 323,
       "Tuesday": 259,
       "Wednesday": 255,
@@ -5051,7 +5051,7 @@ const AUDUSD_DATA = {
     },
     "weekly_low_day": {
       "Monday": 495,
-      "Friday": 430,
+      "Friday": 431,
       "Thursday": 292,
       "Tuesday": 285,
       "Wednesday": 243,
@@ -5065,8 +5065,8 @@ const AUDUSD_DATA = {
       "5": 67
     },
     "monthly_low_week_of_month": {
-      "1": 158,
-      "2": 47,
+      "1": 157,
+      "2": 48,
       "3": 61,
       "4": 76,
       "5": 62
@@ -5153,25 +5153,25 @@ const AUDUSD_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 8642,
+    "n_labeled_days": 8647,
     "n_data_gap_days": 7,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 4988,
+        "n": 4991,
         "pct": 57.72
       },
       "Compression Day": {
         "n": 1577,
-        "pct": 18.25
+        "pct": 18.24
       },
       "Volatile Day": {
-        "n": 822,
-        "pct": 9.51
+        "n": 823,
+        "pct": 9.52
       },
       "Trend Day (Up)": {
-        "n": 365,
-        "pct": 4.22
+        "n": 366,
+        "pct": 4.23
       },
       "Trend Day (Down)": {
         "n": 343,
@@ -5192,7 +5192,7 @@ const AUDUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 2662,
+        "Late_Push": 2665,
         "Insufficient_History": 840,
         "Late_Resolution": 527,
         "Fade_Risk": 489,
@@ -5206,14 +5206,14 @@ const AUDUSD_DATA = {
         "Late_Resolution": 182
       },
       "Volatile Day": {
-        "Late_Push": 530,
+        "Late_Push": 531,
         "Insufficient_History": 153,
         "Late_Resolution": 69,
         "Early_Resolution": 51,
         "Fade_Risk": 19
       },
       "Trend Day (Up)": {
-        "Late_Push": 253,
+        "Late_Push": 254,
         "Insufficient_History": 72,
         "Late_Resolution": 34,
         "Early_Resolution": 4,
@@ -5269,12 +5269,12 @@ const AUDUSD_DATA = {
         "median": 117.6
       },
       "Trend Day (Up)": {
-        "mean": 132.5,
-        "median": 115.0
+        "mean": 132.3,
+        "median": 114.8
       },
       "Volatile Day": {
         "mean": 130.8,
-        "median": 111.7
+        "median": 111.4
       },
       "Volatile Reversal Day": {
         "mean": 131.8,
@@ -5283,7 +5283,7 @@ const AUDUSD_DATA = {
     },
     "nfp": {
       "n_nfp_days": 391,
-      "n_other_fridays": 1331,
+      "n_other_fridays": 1332,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 242,
@@ -5336,14 +5336,14 @@ const AUDUSD_DATA = {
       },
       "other_friday_profile_distribution": {
         "Normal Day": {
-          "n": 783,
-          "pct": 58.83,
+          "n": 784,
+          "pct": 58.86,
           "mean_range_pips": 72.5,
           "median_range_pips": 67.0
         },
         "Compression Day": {
           "n": 263,
-          "pct": 19.76,
+          "pct": 19.74,
           "mean_range_pips": 42.4,
           "median_range_pips": 39.2
         },
@@ -5355,13 +5355,13 @@ const AUDUSD_DATA = {
         },
         "Trend Day (Up)": {
           "n": 56,
-          "pct": 4.21,
+          "pct": 4.2,
           "mean_range_pips": 131.8,
           "median_range_pips": 112.4
         },
         "Trend Day (Down)": {
           "n": 40,
-          "pct": 3.01,
+          "pct": 3.0,
           "mean_range_pips": 136.1,
           "median_range_pips": 122.8
         },
@@ -5388,25 +5388,25 @@ const AUDUSD_DATA = {
     "asset": "AUDUSD"
   },
   "weekly": {
-    "n_labeled_weeks": 1732,
+    "n_labeled_weeks": 1733,
     "n_short_weeks": 0,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
         "n": 1001,
-        "pct": 57.79
+        "pct": 57.76
       },
       "Compression Week": {
         "n": 308,
-        "pct": 17.78
+        "pct": 17.77
       },
       "Volatile Week": {
         "n": 165,
-        "pct": 9.53
+        "pct": 9.52
       },
       "Trend Week (Down)": {
-        "n": 75,
-        "pct": 4.33
+        "n": 76,
+        "pct": 4.39
       },
       "Volatile Reversal Week": {
         "n": 66,
@@ -5422,7 +5422,7 @@ const AUDUSD_DATA = {
       },
       "Quiet Drift Week (Down)": {
         "n": 24,
-        "pct": 1.39
+        "pct": 1.38
       }
     },
     "extreme_timing_by_profile": {
@@ -5447,7 +5447,7 @@ const AUDUSD_DATA = {
         "Insufficient_History": 1
       },
       "Trend Week (Down)": {
-        "Late_Push": 58,
+        "Late_Push": 59,
         "Late_Resolution": 15,
         "Fade_Risk": 2
       },
@@ -5492,7 +5492,7 @@ const AUDUSD_DATA = {
         "Same_Day": 1
       },
       "Trend Week (Down)": {
-        "Spread": 70,
+        "Spread": 71,
         "Adjacent": 5
       },
       "Volatile Reversal Week": {
@@ -5533,8 +5533,8 @@ const AUDUSD_DATA = {
         "median": 94.2
       },
       "Trend Week (Down)": {
-        "mean": 273.1,
-        "median": 241.0
+        "mean": 271.6,
+        "median": 240.5
       },
       "Trend Week (Up)": {
         "mean": 279.5,
@@ -5550,9 +5550,9 @@ const AUDUSD_DATA = {
       }
     },
     "weekday_pair_distribution": {
-      "n_weeks": 1744,
+      "n_weeks": 1745,
       "same_day_n": 43,
-      "same_day_pct": 2.47,
+      "same_day_pct": 2.46,
       "pairs": {
         "Monday": {
           "Monday": {
@@ -5569,11 +5569,11 @@ const AUDUSD_DATA = {
           },
           "Thursday": {
             "n": 158,
-            "pct": 9.06
+            "pct": 9.05
           },
           "Friday": {
             "n": 214,
-            "pct": 12.27
+            "pct": 12.26
           }
         },
         "Tuesday": {
@@ -5595,13 +5595,13 @@ const AUDUSD_DATA = {
           },
           "Friday": {
             "n": 125,
-            "pct": 7.17
+            "pct": 7.16
           }
         },
         "Wednesday": {
           "Monday": {
             "n": 77,
-            "pct": 4.42
+            "pct": 4.41
           },
           "Tuesday": {
             "n": 31,
@@ -5627,7 +5627,7 @@ const AUDUSD_DATA = {
           },
           "Tuesday": {
             "n": 69,
-            "pct": 3.96
+            "pct": 3.95
           },
           "Wednesday": {
             "n": 49,
@@ -5644,12 +5644,12 @@ const AUDUSD_DATA = {
         },
         "Friday": {
           "Monday": {
-            "n": 176,
-            "pct": 10.09
+            "n": 177,
+            "pct": 10.14
           },
           "Tuesday": {
             "n": 114,
-            "pct": 6.54
+            "pct": 6.53
           },
           "Wednesday": {
             "n": 90,
@@ -5671,33 +5671,33 @@ const AUDUSD_DATA = {
     "asset": "AUDUSD"
   },
   "monthly": {
-    "n_labeled_months": 392,
-    "n_short_months": 3,
+    "n_labeled_months": 393,
+    "n_short_months": 2,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 230,
-        "pct": 58.67
+        "n": 231,
+        "pct": 58.78
       },
       "Compression Month": {
         "n": 67,
-        "pct": 17.09
+        "pct": 17.05
       },
       "Volatile Month": {
         "n": 39,
-        "pct": 9.95
+        "pct": 9.92
       },
       "Trend Month (Up)": {
         "n": 18,
-        "pct": 4.59
+        "pct": 4.58
       },
       "Trend Month (Down)": {
         "n": 16,
-        "pct": 4.08
+        "pct": 4.07
       },
       "Volatile Reversal Month": {
         "n": 9,
-        "pct": 2.3
+        "pct": 2.29
       },
       "Quiet Drift Month (Up)": {
         "n": 8,
@@ -5705,7 +5705,7 @@ const AUDUSD_DATA = {
       },
       "Quiet Drift Month (Down)": {
         "n": 5,
-        "pct": 1.28
+        "pct": 1.27
       }
     },
     "extreme_timing_by_profile": {
@@ -5713,7 +5713,7 @@ const AUDUSD_DATA = {
         "Late_Push": 152,
         "Fade_Risk": 38,
         "Late_Resolution": 22,
-        "Early_Resolution": 18
+        "Early_Resolution": 19
       },
       "Compression Month": {
         "Late_Push": 27,
@@ -5752,7 +5752,7 @@ const AUDUSD_DATA = {
     "extreme_spread_by_profile": {
       "Normal Month": {
         "Spread": 192,
-        "Adjacent": 36,
+        "Adjacent": 37,
         "Same_Week": 2
       },
       "Compression Month": {
@@ -5790,8 +5790,8 @@ const AUDUSD_DATA = {
         "median": 201.8
       },
       "Normal Month": {
-        "mean": 351.3,
-        "median": 318.6
+        "mean": 350.9,
+        "median": 318.0
       },
       "Quiet Drift Month (Down)": {
         "mean": 206.6,
@@ -5819,9 +5819,9 @@ const AUDUSD_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 401,
+      "n_months": 402,
       "same_week_n": 6,
-      "same_week_pct": 1.5,
+      "same_week_pct": 1.49,
       "pairs": {
         "1": {
           "1": {
@@ -5830,25 +5830,25 @@ const AUDUSD_DATA = {
           },
           "2": {
             "n": 23,
-            "pct": 5.74
+            "pct": 5.72
           },
           "3": {
             "n": 38,
-            "pct": 9.48
+            "pct": 9.45
           },
           "4": {
             "n": 43,
-            "pct": 10.72
+            "pct": 10.7
           },
           "5": {
             "n": 50,
-            "pct": 12.47
+            "pct": 12.44
           }
         },
         "2": {
           "1": {
-            "n": 14,
-            "pct": 3.49
+            "n": 15,
+            "pct": 3.73
           },
           "2": {
             "n": 2,
@@ -5856,11 +5856,11 @@ const AUDUSD_DATA = {
           },
           "3": {
             "n": 5,
-            "pct": 1.25
+            "pct": 1.24
           },
           "4": {
             "n": 14,
-            "pct": 3.49
+            "pct": 3.48
           },
           "5": {
             "n": 12,
@@ -5870,11 +5870,11 @@ const AUDUSD_DATA = {
         "3": {
           "1": {
             "n": 38,
-            "pct": 9.48
+            "pct": 9.45
           },
           "2": {
             "n": 14,
-            "pct": 3.49
+            "pct": 3.48
           },
           "3": {
             "n": 1,
@@ -5882,7 +5882,7 @@ const AUDUSD_DATA = {
           },
           "4": {
             "n": 5,
-            "pct": 1.25
+            "pct": 1.24
           },
           "5": {
             "n": 3,
@@ -5892,11 +5892,11 @@ const AUDUSD_DATA = {
         "4": {
           "1": {
             "n": 39,
-            "pct": 9.73
+            "pct": 9.7
           },
           "2": {
             "n": 26,
-            "pct": 6.48
+            "pct": 6.47
           },
           "3": {
             "n": 9,
@@ -5914,11 +5914,11 @@ const AUDUSD_DATA = {
         "5": {
           "1": {
             "n": 31,
-            "pct": 7.73
+            "pct": 7.71
           },
           "2": {
             "n": 14,
-            "pct": 3.49
+            "pct": 3.48
           },
           "3": {
             "n": 11,
@@ -6668,123 +6668,123 @@ const AUDUSD_DATA = {
     "hourly": {
       "0": {
         "mean_range_pips": 18.44,
-        "mean_activity_pips": 65.69,
-        "n_days": 6528
+        "mean_activity_pips": 65.66,
+        "n_days": 6533
       },
       "1": {
-        "mean_range_pips": 17.11,
-        "mean_activity_pips": 63.23,
-        "n_days": 6345
+        "mean_range_pips": 17.1,
+        "mean_activity_pips": 63.22,
+        "n_days": 6350
       },
       "2": {
         "mean_range_pips": 15.0,
-        "mean_activity_pips": 56.42,
-        "n_days": 6187
+        "mean_activity_pips": 56.4,
+        "n_days": 6192
       },
       "3": {
         "mean_range_pips": 13.71,
-        "mean_activity_pips": 52.49,
-        "n_days": 6249
+        "mean_activity_pips": 52.46,
+        "n_days": 6254
       },
       "4": {
         "mean_range_pips": 13.78,
-        "mean_activity_pips": 52.46,
-        "n_days": 6463
+        "mean_activity_pips": 52.44,
+        "n_days": 6468
       },
       "5": {
-        "mean_range_pips": 16.11,
-        "mean_activity_pips": 62.99,
-        "n_days": 6866
+        "mean_range_pips": 16.1,
+        "mean_activity_pips": 62.96,
+        "n_days": 6871
       },
       "6": {
         "mean_range_pips": 18.32,
-        "mean_activity_pips": 72.43,
-        "n_days": 7000
+        "mean_activity_pips": 72.4,
+        "n_days": 7005
       },
       "7": {
-        "mean_range_pips": 18.9,
-        "mean_activity_pips": 74.94,
-        "n_days": 7002
+        "mean_range_pips": 18.89,
+        "mean_activity_pips": 74.91,
+        "n_days": 7007
       },
       "8": {
         "mean_range_pips": 18.01,
-        "mean_activity_pips": 71.64,
-        "n_days": 6924
+        "mean_activity_pips": 71.62,
+        "n_days": 6929
       },
       "9": {
-        "mean_range_pips": 16.81,
-        "mean_activity_pips": 67.2,
-        "n_days": 6862
+        "mean_range_pips": 16.8,
+        "mean_activity_pips": 67.18,
+        "n_days": 6867
       },
       "10": {
         "mean_range_pips": 16.11,
-        "mean_activity_pips": 65.49,
-        "n_days": 6912
+        "mean_activity_pips": 65.46,
+        "n_days": 6917
       },
       "11": {
-        "mean_range_pips": 18.52,
-        "mean_activity_pips": 72.92,
-        "n_days": 7036
+        "mean_range_pips": 18.51,
+        "mean_activity_pips": 72.89,
+        "n_days": 7041
       },
       "12": {
-        "mean_range_pips": 21.29,
-        "mean_activity_pips": 82.48,
-        "n_days": 7081
+        "mean_range_pips": 21.28,
+        "mean_activity_pips": 82.45,
+        "n_days": 7086
       },
       "13": {
         "mean_range_pips": 22.9,
-        "mean_activity_pips": 88.42,
-        "n_days": 7002
+        "mean_activity_pips": 88.4,
+        "n_days": 7007
       },
       "14": {
-        "mean_range_pips": 22.42,
-        "mean_activity_pips": 86.86,
-        "n_days": 6966
+        "mean_range_pips": 22.41,
+        "mean_activity_pips": 86.84,
+        "n_days": 6971
       },
       "15": {
-        "mean_range_pips": 19.64,
-        "mean_activity_pips": 76.2,
-        "n_days": 6700
+        "mean_range_pips": 19.63,
+        "mean_activity_pips": 76.18,
+        "n_days": 6705
       },
       "16": {
         "mean_range_pips": 16.3,
-        "mean_activity_pips": 63.59,
-        "n_days": 6304
+        "mean_activity_pips": 63.57,
+        "n_days": 6309
       },
       "17": {
-        "mean_range_pips": 15.7,
-        "mean_activity_pips": 59.93,
-        "n_days": 6078
+        "mean_range_pips": 15.69,
+        "mean_activity_pips": 59.91,
+        "n_days": 6083
       },
       "18": {
         "mean_range_pips": 15.47,
-        "mean_activity_pips": 58.26,
-        "n_days": 5954
+        "mean_activity_pips": 58.23,
+        "n_days": 5959
       },
       "19": {
-        "mean_range_pips": 13.31,
-        "mean_activity_pips": 50.56,
-        "n_days": 5884
+        "mean_range_pips": 13.3,
+        "mean_activity_pips": 50.54,
+        "n_days": 5889
       },
       "20": {
-        "mean_range_pips": 11.83,
-        "mean_activity_pips": 43.58,
-        "n_days": 5262
+        "mean_range_pips": 11.82,
+        "mean_activity_pips": 43.56,
+        "n_days": 5267
       },
       "21": {
-        "mean_range_pips": 12.66,
-        "mean_activity_pips": 43.15,
-        "n_days": 5446
+        "mean_range_pips": 12.65,
+        "mean_activity_pips": 43.13,
+        "n_days": 5451
       },
       "22": {
         "mean_range_pips": 13.46,
         "mean_activity_pips": 46.7,
-        "n_days": 6159
+        "n_days": 6164
       },
       "23": {
-        "mean_range_pips": 15.83,
-        "mean_activity_pips": 56.62,
-        "n_days": 6555
+        "mean_range_pips": 15.82,
+        "mean_activity_pips": 56.6,
+        "n_days": 6560
       }
     },
     "session_windows": {
@@ -6799,15 +6799,15 @@ const AUDUSD_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 16.04,
-        "mean_activity_pips": 60.29
+        "mean_range_pips": 16.03,
+        "mean_activity_pips": 60.27
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 18.9,
-        "mean_activity_pips": 74.94
+        "mean_range_pips": 18.89,
+        "mean_activity_pips": 74.91
       },
       "london_only": {
         "hours": [
@@ -6817,7 +6817,7 @@ const AUDUSD_DATA = {
           11
         ],
         "mean_range_pips": 17.36,
-        "mean_activity_pips": 69.31
+        "mean_activity_pips": 69.29
       },
       "london_ny_overlap": {
         "hours": [
@@ -6826,8 +6826,8 @@ const AUDUSD_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 21.56,
-        "mean_activity_pips": 83.49
+        "mean_range_pips": 21.55,
+        "mean_activity_pips": 83.47
       },
       "ny_only": {
         "hours": [
@@ -6838,52 +6838,52 @@ const AUDUSD_DATA = {
           20
         ],
         "mean_range_pips": 14.52,
-        "mean_activity_pips": 55.18
+        "mean_activity_pips": 55.16
       }
     },
     "asset": "AUDUSD"
   },
   "range_forecast": {
     "asset": "AUDUSD",
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-13",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": false,
-    "adr20": 51.2,
+    "adr20": 52.2,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-09",
-        "mean": 54.4,
-        "q10": 32.0,
-        "q90": 83.0,
-        "q10_raw": 31.0,
-        "q90_raw": 78.8
+        "target_date": "2026-11-16",
+        "mean": 50.4,
+        "q10": 30.7,
+        "q90": 76.6,
+        "q10_raw": 29.6,
+        "q90_raw": 73.1
       },
       "h5": {
-        "mean": 52.3
+        "mean": 50.1
       },
       "h20": {
-        "mean": 50.2
+        "mean": 49.4
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
         "h1": 0.909,
-        "h5": 0.872,
-        "h20": 0.867
+        "h5": 0.874,
+        "h20": 0.868
       },
       "mae": {
         "h1": {
-          "timesfm": 16.9,
-          "adr20": 18.6
+          "timesfm": 16.8,
+          "adr20": 18.5
         },
         "h5": {
-          "timesfm": 10.7,
-          "adr20": 12.3
+          "timesfm": 10.9,
+          "adr20": 12.5
         },
         "h20": {
-          "timesfm": 8.3,
+          "timesfm": 8.4,
           "adr20": 9.6
         }
       },
@@ -6892,49 +6892,14 @@ const AUDUSD_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2024-12-02",
-      "to": "2026-11-05",
+      "from": "2024-12-09",
+      "to": "2026-11-12",
       "band_n": 500,
-      "band_coverage": 0.792,
-      "above_q90": 0.11,
-      "below_q10": 0.098
+      "band_coverage": 0.8,
+      "above_q90": 0.104,
+      "below_q10": 0.096
     },
     "recent": [
-      {
-        "date": "2026-08-17",
-        "actual": 55.0,
-        "mean": 44.4,
-        "q10": 25.4,
-        "q90": 68.3
-      },
-      {
-        "date": "2026-08-18",
-        "actual": 37.4,
-        "mean": 46.0,
-        "q10": 26.6,
-        "q90": 70.7
-      },
-      {
-        "date": "2026-08-19",
-        "actual": 62.2,
-        "mean": 44.2,
-        "q10": 25.2,
-        "q90": 68.6
-      },
-      {
-        "date": "2026-08-20",
-        "actual": 30.0,
-        "mean": 45.5,
-        "q10": 26.2,
-        "q90": 70.2
-      },
-      {
-        "date": "2026-08-21",
-        "actual": 76.7,
-        "mean": 44.0,
-        "q10": 25.2,
-        "q90": 67.7
-      },
       {
         "date": "2026-08-24",
         "actual": 36.4,
@@ -7322,10 +7287,45 @@ const AUDUSD_DATA = {
       },
       {
         "date": "2026-11-09",
-        "actual": null,
+        "actual": 77.1,
         "mean": 54.4,
         "q10": 32.0,
         "q90": 83.0
+      },
+      {
+        "date": "2026-11-10",
+        "actual": 86.5,
+        "mean": 58.2,
+        "q10": 35.3,
+        "q90": 88.1
+      },
+      {
+        "date": "2026-11-11",
+        "actual": 41.9,
+        "mean": 64.9,
+        "q10": 39.7,
+        "q90": 97.5
+      },
+      {
+        "date": "2026-11-12",
+        "actual": 55.1,
+        "mean": 53.9,
+        "q10": 32.7,
+        "q90": 82.2
+      },
+      {
+        "date": "2026-11-13",
+        "actual": 45.4,
+        "mean": 54.2,
+        "q10": 33.3,
+        "q90": 82.1
+      },
+      {
+        "date": "2026-11-16",
+        "actual": null,
+        "mean": 50.4,
+        "q10": 30.7,
+        "q90": 76.6
       }
     ]
   }

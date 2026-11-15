@@ -4,25 +4,25 @@ const BTCUSD_DATA = {
   "stats": {
     "asset": "BTCUSD",
     "unit": "points",
-    "as_of": "2026-11-08",
-    "n_days": 2947,
-    "n_weeks": 469,
+    "as_of": "2026-11-14",
+    "n_days": 2953,
+    "n_weeks": 470,
     "n_months": 110,
     "n_years": 10,
     "daily_range": {
       "windowed_distribution": {
         "full": {
-          "n": 2947,
-          "mean": 183073.8,
-          "median": 135318.0,
-          "std": 167376.7,
+          "n": 2953,
+          "mean": 183318.6,
+          "median": 136196.0,
+          "std": 167362.8,
           "min": 5029.0,
           "max": 1335134.0,
           "mode_binned": {
-            "bin_low": 18363.0,
-            "bin_high": 42492.0,
-            "count": 413,
-            "pct_of_n": 14.0
+            "bin_low": 18366.0,
+            "bin_high": 42462.7,
+            "count": 411,
+            "pct_of_n": 13.9
           },
           "mode_raw": {
             "value": 28300.0,
@@ -30,59 +30,59 @@ const BTCUSD_DATA = {
             "pct_of_n": 0.1,
             "n_values_tied": 2
           },
-          "p05": 18363.0,
-          "p10": 26941.6,
-          "p20": 44350.2,
-          "p25": 54427.5,
-          "p50": 135318.0,
-          "p75": 261101.5,
-          "p80": 292957.2,
-          "p90": 398829.6,
-          "p95": 500944.0,
-          "compression_threshold_pips": 44350.2,
-          "expansion_threshold_pips": 292957.2
+          "p05": 18366.0,
+          "p10": 26983.4,
+          "p20": 44415.4,
+          "p25": 54485.0,
+          "p50": 136196.0,
+          "p75": 261400.0,
+          "p80": 293093.0,
+          "p90": 399570.6,
+          "p95": 500299.0,
+          "compression_threshold_pips": 44415.4,
+          "expansion_threshold_pips": 293093.0
         },
         "5y": {
           "n": 1825,
-          "mean": 218858.1,
-          "median": 178715.0,
-          "std": 167400.0,
+          "mean": 218829.8,
+          "median": 178719.0,
+          "std": 167264.3,
           "min": 7360.0,
           "max": 1335134.0,
           "mode_binned": {
-            "bin_low": 62036.9,
-            "bin_high": 86709.8,
-            "count": 168,
+            "bin_low": 61802.6,
+            "bin_high": 86241.2,
+            "count": 167,
             "pct_of_n": 9.2
           },
           "mode_raw": {
             "value": 10990.0,
             "count": 2,
             "pct_of_n": 0.1,
-            "n_values_tied": 14
+            "n_values_tied": 13
           },
           "p05": 37364.0,
           "p10": 55072.2,
           "p20": 83117.4,
           "p25": 96700.0,
-          "p50": 178715.0,
+          "p50": 178719.0,
           "p75": 290910.0,
-          "p80": 326733.4,
+          "p80": 327627.6,
           "p90": 431823.0,
-          "p95": 530822.0,
+          "p95": 526136.4,
           "compression_threshold_pips": 83117.4,
-          "expansion_threshold_pips": 326733.4
+          "expansion_threshold_pips": 327627.6
         },
         "1y": {
           "n": 366,
-          "mean": 255209.2,
-          "median": 226948.5,
-          "std": 157514.0,
+          "mean": 253465.4,
+          "median": 225747.5,
+          "std": 156117.0,
           "min": 37887.0,
           "max": 1160204.0,
           "mode_binned": {
-            "bin_low": 117096.4,
-            "bin_high": 139318.2,
+            "bin_low": 117014.3,
+            "bin_high": 139195.0,
             "count": 29,
             "pct_of_n": 7.9
           },
@@ -96,53 +96,53 @@ const BTCUSD_DATA = {
           "p10": 93678.5,
           "p20": 125718.0,
           "p25": 138690.5,
-          "p50": 226948.5,
-          "p75": 320252.5,
-          "p80": 356815.0,
-          "p90": 447389.0,
-          "p95": 517087.5,
+          "p50": 225747.5,
+          "p75": 318984.2,
+          "p80": 352973.0,
+          "p90": 438096.5,
+          "p95": 516266.0,
           "compression_threshold_pips": 125718.0,
-          "expansion_threshold_pips": 356815.0
+          "expansion_threshold_pips": 352973.0
         },
         "3mo": {
           "n": 93,
-          "mean": 223492.8,
-          "median": 189960.0,
-          "std": 142297.7,
-          "min": 37887.0,
+          "mean": 236376.5,
+          "median": 205125.0,
+          "std": 142041.3,
+          "min": 39649.0,
           "max": 707118.0,
           "mode_binned": {
-            "bin_low": 153310.9,
-            "bin_high": 176622.5,
-            "count": 9,
-            "pct_of_n": 9.7
+            "bin_low": 204653.9,
+            "bin_high": 227628.4,
+            "count": 12,
+            "pct_of_n": 12.9
           },
           "mode_raw": {
-            "value": 37887.0,
+            "value": 39649.0,
             "count": 1,
             "pct_of_n": 1.1,
             "n_values_tied": 93
           },
-          "p05": 60064.2,
-          "p10": 73901.8,
-          "p20": 111727.2,
-          "p25": 118420.0,
-          "p50": 189960.0,
-          "p75": 287245.0,
-          "p80": 319467.2,
-          "p90": 411030.0,
+          "p05": 66806.6,
+          "p10": 85147.2,
+          "p20": 114980.8,
+          "p25": 142300.0,
+          "p50": 205125.0,
+          "p75": 314701.0,
+          "p80": 336673.4,
+          "p90": 417253.2,
           "p95": 526297.6,
-          "compression_threshold_pips": 111727.2,
-          "expansion_threshold_pips": 319467.2
+          "compression_threshold_pips": 114980.8,
+          "expansion_threshold_pips": 336673.4
         }
       },
       "latest_adr": {
-        "ADR_5": 317020.2,
-        "ADR_14": 237265.0,
-        "ADR_20": 229406.9,
+        "ADR_5": 324452.0,
+        "ADR_14": 276924.1,
+        "ADR_20": 257162.2,
         "fixed_multiple_thresholds": {
-          "compression_pips": 160584.8,
-          "expansion_pips": 298229.0,
+          "compression_pips": 180013.5,
+          "expansion_pips": 334310.9,
           "based_on": "ADR_20"
         }
       }
@@ -150,41 +150,41 @@ const BTCUSD_DATA = {
     "weekly_range": {
       "windowed_distribution": {
         "full": {
-          "n": 469,
-          "mean": 461603.8,
-          "median": 362753.0,
-          "std": 403098.1,
+          "n": 470,
+          "mean": 463136.4,
+          "median": 363897.5,
+          "std": 404036.7,
           "min": 16459.0,
           "max": 2448423.0,
           "mode_binned": {
-            "bin_low": 49042.8,
-            "bin_high": 111401.9,
+            "bin_low": 49066.9,
+            "bin_high": 111385.6,
             "count": 80,
-            "pct_of_n": 17.1
+            "pct_of_n": 17.0
           },
           "mode_raw": {
             "value": 16459.0,
             "count": 1,
             "pct_of_n": 0.2,
-            "n_values_tied": 469
+            "n_values_tied": 470
           },
-          "p05": 49042.8,
-          "p10": 66093.2,
-          "p20": 102535.8,
-          "p25": 127930.0,
-          "p50": 362753.0,
-          "p75": 673220.0,
-          "p80": 756140.8,
-          "p90": 999269.2,
-          "p95": 1296224.0,
-          "compression_threshold_pips": 102535.8,
-          "expansion_threshold_pips": 756140.8
+          "p05": 49066.9,
+          "p10": 66340.1,
+          "p20": 102552.4,
+          "p25": 128012.5,
+          "p50": 363897.5,
+          "p75": 679055.0,
+          "p80": 758784.2,
+          "p90": 1001087.3,
+          "p95": 1295440.7,
+          "compression_threshold_pips": 102552.4,
+          "expansion_threshold_pips": 758784.2
         },
         "5y": {
           "n": 261,
-          "mean": 601981.4,
+          "mean": 603946.3,
           "median": 549332.0,
-          "std": 392439.9,
+          "std": 394057.8,
           "min": 48850.0,
           "max": 2448423.0,
           "mode_binned": {
@@ -204,18 +204,18 @@ const BTCUSD_DATA = {
           "p20": 270290.0,
           "p25": 319620.0,
           "p50": 549332.0,
-          "p75": 757480.0,
-          "p80": 802990.0,
-          "p90": 1128880.0,
+          "p75": 764001.0,
+          "p80": 810902.0,
+          "p90": 1155469.0,
           "p95": 1384298.0,
           "compression_threshold_pips": 270290.0,
-          "expansion_threshold_pips": 802990.0
+          "expansion_threshold_pips": 810902.0
         },
         "1y": {
           "n": 53,
-          "mean": 709104.1,
+          "mean": 709099.2,
           "median": 593352.0,
-          "std": 375532.5,
+          "std": 375526.2,
           "min": 296424.0,
           "max": 1945126.0,
           "mode_binned": {
@@ -237,23 +237,23 @@ const BTCUSD_DATA = {
           "p50": 593352.0,
           "p75": 783306.0,
           "p80": 815346.4,
-          "p90": 1371169.8,
+          "p90": 1371117.8,
           "p95": 1522111.6,
           "compression_threshold_pips": 451466.4,
           "expansion_threshold_pips": 815346.4
         },
         "3mo": {
           "n": 14,
-          "mean": 622616.4,
-          "median": 568064.5,
-          "std": 336535.5,
+          "mean": 684970.7,
+          "median": 588017.0,
+          "std": 354356.1,
           "min": 296424.0,
           "max": 1684870.0,
           "mode_binned": {
-            "bin_low": 422662.8,
-            "bin_high": 462019.9,
-            "count": 2,
-            "pct_of_n": 14.3
+            "bin_low": 445894.4,
+            "bin_high": 493898.4,
+            "count": 4,
+            "pct_of_n": 28.6
           },
           "mode_raw": {
             "value": 296424.0,
@@ -261,17 +261,17 @@ const BTCUSD_DATA = {
             "pct_of_n": 7.1,
             "n_values_tied": 14
           },
-          "p05": 304591.2,
-          "p10": 352050.1,
-          "p20": 455968.8,
-          "p25": 461958.5,
-          "p50": 568064.5,
-          "p75": 678725.0,
-          "p80": 691036.2,
-          "p90": 751016.5,
-          "p95": 1091734.6,
-          "compression_threshold_pips": 455968.8,
-          "expansion_threshold_pips": 691036.2
+          "p05": 397890.3,
+          "p10": 454247.4,
+          "p20": 467130.8,
+          "p25": 474439.5,
+          "p50": 588017.0,
+          "p75": 696982.0,
+          "p80": 729679.0,
+          "p90": 1059070.5,
+          "p95": 1357971.3,
+          "compression_threshold_pips": 467130.8,
+          "expansion_threshold_pips": 729679.0
         }
       }
     },
@@ -279,9 +279,9 @@ const BTCUSD_DATA = {
       "windowed_distribution": {
         "full": {
           "n": 110,
-          "mean": 995858.8,
-          "median": 911112.5,
-          "std": 760525.7,
+          "mean": 1004563.0,
+          "median": 940404.5,
+          "std": 763417.8,
           "min": 50231.0,
           "max": 3284920.0,
           "mode_binned": {
@@ -300,19 +300,19 @@ const BTCUSD_DATA = {
           "p10": 183849.9,
           "p20": 269350.2,
           "p25": 308357.5,
-          "p50": 911112.5,
-          "p75": 1474628.0,
-          "p80": 1674863.6,
+          "p50": 940404.5,
+          "p75": 1496800.0,
+          "p80": 1677899.2,
           "p90": 1968552.6,
           "p95": 2412907.6,
           "compression_threshold_pips": 269350.2,
-          "expansion_threshold_pips": 1674863.6
+          "expansion_threshold_pips": 1677899.2
         },
         "5y": {
           "n": 61,
-          "mean": 1291945.7,
-          "median": 1251870.0,
-          "std": 683422.8,
+          "mean": 1307641.8,
+          "median": 1341914.0,
+          "std": 682284.5,
           "min": 217700.0,
           "max": 3284920.0,
           "mode_binned": {
@@ -331,8 +331,8 @@ const BTCUSD_DATA = {
           "p10": 413520.0,
           "p20": 602683.0,
           "p25": 750088.0,
-          "p50": 1251870.0,
-          "p75": 1725456.0,
+          "p50": 1341914.0,
+          "p75": 1729817.0,
           "p80": 1824370.0,
           "p90": 2128920.0,
           "p95": 2448423.0,
@@ -341,65 +341,65 @@ const BTCUSD_DATA = {
         },
         "1y": {
           "n": 13,
-          "mean": 1492615.2,
-          "median": 1246585.0,
-          "std": 647932.2,
-          "min": 772354.0,
+          "mean": 1566266.2,
+          "median": 1376855.0,
+          "std": 612696.5,
+          "min": 915109.0,
           "max": 3060118.0,
           "mode_binned": {
-            "bin_low": 1028760.5,
-            "bin_high": 1114137.2,
-            "count": 4,
-            "pct_of_n": 30.8
+            "bin_low": 1064631.8,
+            "bin_high": 1143627.1,
+            "count": 3,
+            "pct_of_n": 23.1
           },
           "mode_raw": {
-            "value": 772354.0,
+            "value": 915109.0,
             "count": 1,
             "pct_of_n": 7.7,
             "n_values_tied": 13
           },
-          "p05": 858007.0,
-          "p10": 938618.2,
-          "p20": 1050222.6,
-          "p25": 1076574.0,
-          "p50": 1246585.0,
+          "p05": 985636.6,
+          "p10": 1041438.8,
+          "p20": 1084660.4,
+          "p25": 1096790.0,
+          "p50": 1376855.0,
           "p75": 1920315.0,
           "p80": 1940600.4,
           "p90": 2179484.0,
           "p95": 2565541.6,
-          "compression_threshold_pips": 1050222.6,
+          "compression_threshold_pips": 1084660.4,
           "expansion_threshold_pips": 1940600.4
         },
         "3mo": {
           "n": 4,
-          "mean": 1259011.0,
-          "median": 1171687.5,
-          "std": 483262.5,
-          "min": 772354.0,
+          "mean": 1498376.8,
+          "median": 1488201.0,
+          "std": 389986.1,
+          "min": 1096790.0,
           "max": 1920315.0,
           "mode_binned": {
-            "bin_low": 1070578.4,
-            "bin_high": 1120490.2,
+            "bin_low": 1235131.4,
+            "bin_high": 1273755.5,
             "count": 1,
             "pct_of_n": 25.0
           },
           "mode_raw": {
-            "value": 772354.0,
+            "value": 1096790.0,
             "count": 1,
             "pct_of_n": 25.0,
             "n_values_tied": 4
           },
-          "p05": 821019.4,
-          "p10": 869684.8,
-          "p20": 967015.6,
-          "p25": 1015681.0,
-          "p50": 1171687.5,
-          "p75": 1415017.5,
-          "p80": 1516077.0,
-          "p90": 1718196.0,
-          "p95": 1819255.5,
-          "compression_threshold_pips": 967015.6,
-          "expansion_threshold_pips": 1516077.0
+          "p05": 1119259.2,
+          "p10": 1141728.5,
+          "p20": 1186667.0,
+          "p25": 1209136.2,
+          "p50": 1488201.0,
+          "p75": 1777441.5,
+          "p80": 1806016.2,
+          "p90": 1863165.6,
+          "p95": 1891740.3,
+          "compression_threshold_pips": 1186667.0,
+          "expansion_threshold_pips": 1806016.2
         }
       }
     },
@@ -437,28 +437,28 @@ const BTCUSD_DATA = {
     "daily_high_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2947,
+          "n": 2953,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 6.7,
-          "circular_mean_utc": "20:04",
-          "circular_median_utc": "20:50",
+          "circular_mean_utc": "20:05",
+          "circular_median_utc": "20:55",
           "concentration_R": 0.324,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 90,
-              "pct": 3.05
+              "count": 91,
+              "pct": 3.08
             },
             {
               "bucket_start_utc": "00:30",
               "count": 83,
-              "pct": 2.82
+              "pct": 2.81
             },
             {
               "bucket_start_utc": "01:00",
               "count": 68,
-              "pct": 2.31
+              "pct": 2.3
             },
             {
               "bucket_start_utc": "01:30",
@@ -498,7 +498,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "05:00",
               "count": 32,
-              "pct": 1.09
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "05:30",
@@ -533,7 +533,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "08:30",
               "count": 37,
-              "pct": 1.26
+              "pct": 1.25
             },
             {
               "bucket_start_utc": "09:00",
@@ -568,7 +568,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "12:00",
               "count": 60,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "12:30",
@@ -603,17 +603,17 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "15:30",
               "count": 65,
-              "pct": 2.21
+              "pct": 2.2
             },
             {
               "bucket_start_utc": "16:00",
               "count": 101,
-              "pct": 3.43
+              "pct": 3.42
             },
             {
               "bucket_start_utc": "16:30",
               "count": 71,
-              "pct": 2.41
+              "pct": 2.4
             },
             {
               "bucket_start_utc": "17:00",
@@ -633,12 +633,12 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "18:30",
               "count": 50,
-              "pct": 1.7
+              "pct": 1.69
             },
             {
               "bucket_start_utc": "19:00",
               "count": 76,
-              "pct": 2.58
+              "pct": 2.57
             },
             {
               "bucket_start_utc": "19:30",
@@ -653,32 +653,32 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "20:30",
               "count": 122,
-              "pct": 4.14
+              "pct": 4.13
             },
             {
               "bucket_start_utc": "21:00",
               "count": 197,
-              "pct": 6.68
+              "pct": 6.67
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 152,
-              "pct": 5.16
+              "count": 153,
+              "pct": 5.18
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 168,
-              "pct": 5.7
+              "count": 170,
+              "pct": 5.76
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 81,
-              "pct": 2.75
+              "count": 82,
+              "pct": 2.78
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 71,
-              "pct": 2.41
+              "count": 72,
+              "pct": 2.44
             },
             {
               "bucket_start_utc": "23:30",
@@ -692,14 +692,14 @@ const BTCUSD_DATA = {
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 7.2,
-          "circular_mean_utc": "19:36",
+          "circular_mean_utc": "19:38",
           "circular_median_utc": "20:20",
-          "concentration_R": 0.328,
+          "concentration_R": 0.33,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 36,
-              "pct": 1.97
+              "count": 37,
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "00:30",
@@ -718,8 +718,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:00",
-              "count": 30,
-              "pct": 1.64
+              "count": 29,
+              "pct": 1.59
             },
             {
               "bucket_start_utc": "02:30",
@@ -733,8 +733,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "03:30",
-              "count": 10,
-              "pct": 0.55
+              "count": 9,
+              "pct": 0.49
             },
             {
               "bucket_start_utc": "04:00",
@@ -793,8 +793,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 21,
-              "pct": 1.15
+              "count": 20,
+              "pct": 1.1
             },
             {
               "bucket_start_utc": "10:00",
@@ -838,8 +838,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 48,
-              "pct": 2.63
+              "count": 47,
+              "pct": 2.58
             },
             {
               "bucket_start_utc": "14:30",
@@ -858,8 +858,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:00",
-              "count": 57,
-              "pct": 3.12
+              "count": 55,
+              "pct": 3.01
             },
             {
               "bucket_start_utc": "16:30",
@@ -913,23 +913,23 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 81,
-              "pct": 4.44
+              "count": 82,
+              "pct": 4.49
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 91,
-              "pct": 4.99
+              "count": 93,
+              "pct": 5.1
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 50,
-              "pct": 2.74
+              "count": 51,
+              "pct": 2.79
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 39,
-              "pct": 2.14
+              "count": 40,
+              "pct": 2.19
             },
             {
               "bucket_start_utc": "23:30",
@@ -942,15 +942,15 @@ const BTCUSD_DATA = {
           "n": 366,
           "mode_bucket_start_utc": "22:00",
           "mode_bucket_end_utc": "22:30",
-          "mode_bucket_pct_of_days": 7.1,
-          "circular_mean_utc": "18:57",
-          "circular_median_utc": "18:45",
-          "concentration_R": 0.259,
+          "mode_bucket_pct_of_days": 7.4,
+          "circular_mean_utc": "19:04",
+          "circular_median_utc": "19:05",
+          "concentration_R": 0.267,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 6,
-              "pct": 1.64
+              "count": 7,
+              "pct": 1.91
             },
             {
               "bucket_start_utc": "00:30",
@@ -959,8 +959,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "01:00",
-              "count": 12,
-              "pct": 3.28
+              "count": 10,
+              "pct": 2.73
             },
             {
               "bucket_start_utc": "01:30",
@@ -1019,8 +1019,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "07:00",
-              "count": 6,
-              "pct": 1.64
+              "count": 5,
+              "pct": 1.37
             },
             {
               "bucket_start_utc": "07:30",
@@ -1069,8 +1069,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 4,
-              "pct": 1.09
+              "count": 3,
+              "pct": 0.82
             },
             {
               "bucket_start_utc": "12:30",
@@ -1149,8 +1149,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 11,
-              "pct": 3.01
+              "count": 10,
+              "pct": 2.73
             },
             {
               "bucket_start_utc": "20:30",
@@ -1164,23 +1164,23 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 17,
-              "pct": 4.64
+              "count": 18,
+              "pct": 4.92
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 26,
-              "pct": 7.1
+              "count": 27,
+              "pct": 7.38
             },
             {
               "bucket_start_utc": "22:30",
-              "count": 8,
-              "pct": 2.19
+              "count": 9,
+              "pct": 2.46
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 6,
-              "pct": 1.64
+              "count": 7,
+              "pct": 1.91
             },
             {
               "bucket_start_utc": "23:30",
@@ -1191,17 +1191,17 @@ const BTCUSD_DATA = {
         },
         "3mo": {
           "n": 93,
-          "mode_bucket_start_utc": "14:30",
-          "mode_bucket_end_utc": "15:00",
+          "mode_bucket_start_utc": "16:30",
+          "mode_bucket_end_utc": "17:00",
           "mode_bucket_pct_of_days": 5.4,
-          "circular_mean_utc": "17:03",
-          "circular_median_utc": "16:55",
-          "concentration_R": 0.224,
+          "circular_mean_utc": "18:30",
+          "circular_median_utc": "17:45",
+          "concentration_R": 0.23,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 1,
-              "pct": 1.08
+              "count": 2,
+              "pct": 2.15
             },
             {
               "bucket_start_utc": "00:30",
@@ -1250,8 +1250,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:00",
-              "count": 1,
-              "pct": 1.08
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "05:30",
@@ -1320,13 +1320,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "12:00",
-              "count": 1,
-              "pct": 1.08
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "12:30",
-              "count": 3,
-              "pct": 3.23
+              "count": 2,
+              "pct": 2.15
             },
             {
               "bucket_start_utc": "13:00",
@@ -1345,8 +1345,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:30",
-              "count": 5,
-              "pct": 5.38
+              "count": 3,
+              "pct": 3.23
             },
             {
               "bucket_start_utc": "15:00",
@@ -1415,23 +1415,23 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 3,
-              "pct": 3.23
+              "count": 4,
+              "pct": 4.3
             },
             {
               "bucket_start_utc": "22:00",
+              "count": 4,
+              "pct": 4.3
+            },
+            {
+              "bucket_start_utc": "22:30",
               "count": 3,
               "pct": 3.23
             },
             {
-              "bucket_start_utc": "22:30",
-              "count": 2,
-              "pct": 2.15
-            },
-            {
               "bucket_start_utc": "23:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "23:30",
@@ -1447,12 +1447,12 @@ const BTCUSD_DATA = {
           "pct": 26.9
         },
         "Asian": {
-          "n": 721,
+          "n": 723,
           "pct": 24.5
         },
         "Other": {
-          "n": 598,
-          "pct": 20.3
+          "n": 602,
+          "pct": 20.4
         },
         "London_NY_Overlap": {
           "n": 516,
@@ -1471,13 +1471,13 @@ const BTCUSD_DATA = {
     "daily_low_time": {
       "windowed_circular_stats": {
         "full": {
-          "n": 2947,
+          "n": 2953,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
           "mode_bucket_pct_of_days": 8.4,
           "circular_mean_utc": "20:12",
           "circular_median_utc": "21:00",
-          "concentration_R": 0.315,
+          "concentration_R": 0.314,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1487,17 +1487,17 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "00:30",
               "count": 76,
-              "pct": 2.58
+              "pct": 2.57
             },
             {
               "bucket_start_utc": "01:00",
               "count": 71,
-              "pct": 2.41
+              "pct": 2.4
             },
             {
               "bucket_start_utc": "01:30",
               "count": 45,
-              "pct": 1.53
+              "pct": 1.52
             },
             {
               "bucket_start_utc": "02:00",
@@ -1506,13 +1506,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 37,
-              "pct": 1.26
+              "count": 38,
+              "pct": 1.29
             },
             {
               "bucket_start_utc": "03:00",
               "count": 40,
-              "pct": 1.36
+              "pct": 1.35
             },
             {
               "bucket_start_utc": "03:30",
@@ -1527,7 +1527,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "04:30",
               "count": 27,
-              "pct": 0.92
+              "pct": 0.91
             },
             {
               "bucket_start_utc": "05:00",
@@ -1536,13 +1536,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 30,
-              "pct": 1.02
+              "count": 31,
+              "pct": 1.05
             },
             {
               "bucket_start_utc": "06:00",
               "count": 37,
-              "pct": 1.26
+              "pct": 1.25
             },
             {
               "bucket_start_utc": "06:30",
@@ -1561,8 +1561,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 37,
-              "pct": 1.26
+              "count": 38,
+              "pct": 1.29
             },
             {
               "bucket_start_utc": "08:30",
@@ -1572,7 +1572,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "09:00",
               "count": 37,
-              "pct": 1.26
+              "pct": 1.25
             },
             {
               "bucket_start_utc": "09:30",
@@ -1582,7 +1582,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "10:00",
               "count": 45,
-              "pct": 1.53
+              "pct": 1.52
             },
             {
               "bucket_start_utc": "10:30",
@@ -1592,7 +1592,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "11:00",
               "count": 32,
-              "pct": 1.09
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "11:30",
@@ -1607,7 +1607,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "12:30",
               "count": 42,
-              "pct": 1.43
+              "pct": 1.42
             },
             {
               "bucket_start_utc": "13:00",
@@ -1627,12 +1627,12 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "14:30",
               "count": 88,
-              "pct": 2.99
+              "pct": 2.98
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 63,
-              "pct": 2.14
+              "count": 64,
+              "pct": 2.17
             },
             {
               "bucket_start_utc": "15:30",
@@ -1646,13 +1646,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 73,
-              "pct": 2.48
+              "count": 74,
+              "pct": 2.51
             },
             {
               "bucket_start_utc": "17:00",
               "count": 65,
-              "pct": 2.21
+              "pct": 2.2
             },
             {
               "bucket_start_utc": "17:30",
@@ -1662,17 +1662,17 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "18:00",
               "count": 73,
-              "pct": 2.48
+              "pct": 2.47
             },
             {
               "bucket_start_utc": "18:30",
               "count": 60,
-              "pct": 2.04
+              "pct": 2.03
             },
             {
               "bucket_start_utc": "19:00",
               "count": 63,
-              "pct": 2.14
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "19:30",
@@ -1682,27 +1682,27 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "20:00",
               "count": 101,
-              "pct": 3.43
+              "pct": 3.42
             },
             {
               "bucket_start_utc": "20:30",
               "count": 112,
-              "pct": 3.8
+              "pct": 3.79
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 248,
-              "pct": 8.42
+              "count": 249,
+              "pct": 8.43
             },
             {
               "bucket_start_utc": "21:30",
               "count": 119,
-              "pct": 4.04
+              "pct": 4.03
             },
             {
               "bucket_start_utc": "22:00",
               "count": 201,
-              "pct": 6.82
+              "pct": 6.81
             },
             {
               "bucket_start_utc": "22:30",
@@ -1712,7 +1712,7 @@ const BTCUSD_DATA = {
             {
               "bucket_start_utc": "23:00",
               "count": 63,
-              "pct": 2.14
+              "pct": 2.13
             },
             {
               "bucket_start_utc": "23:30",
@@ -1728,7 +1728,7 @@ const BTCUSD_DATA = {
           "mode_bucket_pct_of_days": 8.3,
           "circular_mean_utc": "19:58",
           "circular_median_utc": "20:45",
-          "concentration_R": 0.363,
+          "concentration_R": 0.361,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -1757,8 +1757,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 26,
-              "pct": 1.42
+              "count": 27,
+              "pct": 1.48
             },
             {
               "bucket_start_utc": "03:00",
@@ -1787,8 +1787,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 14,
-              "pct": 0.77
+              "count": 15,
+              "pct": 0.82
             },
             {
               "bucket_start_utc": "06:00",
@@ -1812,8 +1812,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 20,
-              "pct": 1.1
+              "count": 21,
+              "pct": 1.15
             },
             {
               "bucket_start_utc": "08:30",
@@ -1827,8 +1827,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "09:30",
-              "count": 20,
-              "pct": 1.1
+              "count": 19,
+              "pct": 1.04
             },
             {
               "bucket_start_utc": "10:00",
@@ -1882,8 +1882,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 43,
-              "pct": 2.36
+              "count": 44,
+              "pct": 2.41
             },
             {
               "bucket_start_utc": "15:30",
@@ -1952,8 +1952,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 104,
-              "pct": 5.7
+              "count": 102,
+              "pct": 5.59
             },
             {
               "bucket_start_utc": "22:30",
@@ -1962,8 +1962,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "23:00",
-              "count": 41,
-              "pct": 2.25
+              "count": 40,
+              "pct": 2.19
             },
             {
               "bucket_start_utc": "23:30",
@@ -1976,10 +1976,10 @@ const BTCUSD_DATA = {
           "n": 366,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 6.6,
-          "circular_mean_utc": "19:26",
-          "circular_median_utc": "20:00",
-          "concentration_R": 0.307,
+          "mode_bucket_pct_of_days": 6.8,
+          "circular_mean_utc": "19:23",
+          "circular_median_utc": "19:55",
+          "concentration_R": 0.298,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
@@ -2008,13 +2008,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 5,
-              "pct": 1.37
+              "count": 6,
+              "pct": 1.64
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 10,
-              "pct": 2.73
+              "count": 9,
+              "pct": 2.46
             },
             {
               "bucket_start_utc": "03:30",
@@ -2038,8 +2038,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 2,
-              "pct": 0.55
+              "count": 3,
+              "pct": 0.82
             },
             {
               "bucket_start_utc": "06:00",
@@ -2063,8 +2063,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 2,
-              "pct": 0.55
+              "count": 3,
+              "pct": 0.82
             },
             {
               "bucket_start_utc": "08:30",
@@ -2123,8 +2123,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "14:00",
-              "count": 12,
-              "pct": 3.28
+              "count": 11,
+              "pct": 3.01
             },
             {
               "bucket_start_utc": "14:30",
@@ -2133,8 +2133,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 9,
-              "pct": 2.46
+              "count": 10,
+              "pct": 2.73
             },
             {
               "bucket_start_utc": "15:30",
@@ -2148,8 +2148,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "16:30",
-              "count": 10,
-              "pct": 2.73
+              "count": 11,
+              "pct": 3.01
             },
             {
               "bucket_start_utc": "17:00",
@@ -2173,8 +2173,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 11,
-              "pct": 3.01
+              "count": 10,
+              "pct": 2.73
             },
             {
               "bucket_start_utc": "19:30",
@@ -2183,8 +2183,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "20:00",
-              "count": 11,
-              "pct": 3.01
+              "count": 10,
+              "pct": 2.73
             },
             {
               "bucket_start_utc": "20:30",
@@ -2193,18 +2193,18 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 24,
-              "pct": 6.56
+              "count": 25,
+              "pct": 6.83
             },
             {
               "bucket_start_utc": "21:30",
-              "count": 10,
-              "pct": 2.73
+              "count": 9,
+              "pct": 2.46
             },
             {
               "bucket_start_utc": "22:00",
-              "count": 19,
-              "pct": 5.19
+              "count": 18,
+              "pct": 4.92
             },
             {
               "bucket_start_utc": "22:30",
@@ -2227,15 +2227,15 @@ const BTCUSD_DATA = {
           "n": 93,
           "mode_bucket_start_utc": "21:00",
           "mode_bucket_end_utc": "21:30",
-          "mode_bucket_pct_of_days": 8.6,
-          "circular_mean_utc": "19:26",
-          "circular_median_utc": "20:15",
-          "concentration_R": 0.266,
+          "mode_bucket_pct_of_days": 9.7,
+          "circular_mean_utc": "19:16",
+          "circular_median_utc": "21:00",
+          "concentration_R": 0.226,
           "histogram": [
             {
               "bucket_start_utc": "00:00",
-              "count": 3,
-              "pct": 3.23
+              "count": 2,
+              "pct": 2.15
             },
             {
               "bucket_start_utc": "00:30",
@@ -2259,13 +2259,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "02:30",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "03:00",
-              "count": 4,
-              "pct": 4.3
+              "count": 3,
+              "pct": 3.23
             },
             {
               "bucket_start_utc": "03:30",
@@ -2289,8 +2289,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "05:30",
-              "count": 2,
-              "pct": 2.15
+              "count": 3,
+              "pct": 3.23
             },
             {
               "bucket_start_utc": "06:00",
@@ -2314,8 +2314,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "08:00",
-              "count": 0,
-              "pct": 0.0
+              "count": 1,
+              "pct": 1.08
             },
             {
               "bucket_start_utc": "08:30",
@@ -2384,8 +2384,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "15:00",
-              "count": 3,
-              "pct": 3.23
+              "count": 4,
+              "pct": 4.3
             },
             {
               "bucket_start_utc": "15:30",
@@ -2419,13 +2419,13 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "18:30",
-              "count": 7,
-              "pct": 7.53
+              "count": 6,
+              "pct": 6.45
             },
             {
               "bucket_start_utc": "19:00",
-              "count": 2,
-              "pct": 2.15
+              "count": 0,
+              "pct": 0.0
             },
             {
               "bucket_start_utc": "19:30",
@@ -2444,8 +2444,8 @@ const BTCUSD_DATA = {
             },
             {
               "bucket_start_utc": "21:00",
-              "count": 8,
-              "pct": 8.6
+              "count": 9,
+              "pct": 9.68
             },
             {
               "bucket_start_utc": "21:30",
@@ -2477,23 +2477,23 @@ const BTCUSD_DATA = {
       },
       "session_distribution": {
         "New_York": {
-          "n": 750,
+          "n": 751,
           "pct": 25.4
         },
         "Asian": {
-          "n": 714,
+          "n": 716,
           "pct": 24.2
         },
         "Other": {
-          "n": 648,
+          "n": 649,
           "pct": 22.0
         },
         "London_NY_Overlap": {
-          "n": 501,
+          "n": 502,
           "pct": 17.0
         },
         "London": {
-          "n": 274,
+          "n": 275,
           "pct": 9.3
         },
         "Asian_London_Overlap": {
@@ -2503,14 +2503,14 @@ const BTCUSD_DATA = {
       }
     },
     "daily_session_pair_distribution": {
-      "n_days": 2947,
-      "same_session_n": 204,
-      "same_session_pct": 6.92,
+      "n_days": 2953,
+      "same_session_n": 205,
+      "same_session_pct": 6.94,
       "pairs": {
         "Asian": {
           "Asian": {
             "n": 58,
-            "pct": 1.97
+            "pct": 1.96
           },
           "Asian_London_Overlap": {
             "n": 8,
@@ -2518,19 +2518,19 @@ const BTCUSD_DATA = {
           },
           "London": {
             "n": 63,
-            "pct": 2.14
+            "pct": 2.13
           },
           "London_NY_Overlap": {
             "n": 178,
-            "pct": 6.04
+            "pct": 6.03
           },
           "New_York": {
             "n": 314,
-            "pct": 10.65
+            "pct": 10.63
           },
           "Other": {
-            "n": 93,
-            "pct": 3.16
+            "n": 95,
+            "pct": 3.22
           }
         },
         "Asian_London_Overlap": {
@@ -2561,8 +2561,8 @@ const BTCUSD_DATA = {
         },
         "London": {
           "Asian": {
-            "n": 82,
-            "pct": 2.78
+            "n": 83,
+            "pct": 2.81
           },
           "Asian_London_Overlap": {
             "n": 6,
@@ -2574,21 +2574,21 @@ const BTCUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 27,
-            "pct": 0.92
+            "pct": 0.91
           },
           "New_York": {
             "n": 78,
-            "pct": 2.65
+            "pct": 2.64
           },
           "Other": {
             "n": 76,
-            "pct": 2.58
+            "pct": 2.57
           }
         },
         "London_NY_Overlap": {
           "Asian": {
             "n": 199,
-            "pct": 6.75
+            "pct": 6.74
           },
           "Asian_London_Overlap": {
             "n": 15,
@@ -2600,21 +2600,21 @@ const BTCUSD_DATA = {
           },
           "London_NY_Overlap": {
             "n": 32,
-            "pct": 1.09
+            "pct": 1.08
           },
           "New_York": {
             "n": 82,
             "pct": 2.78
           },
           "Other": {
-            "n": 135,
-            "pct": 4.58
+            "n": 136,
+            "pct": 4.61
           }
         },
         "New_York": {
           "Asian": {
-            "n": 265,
-            "pct": 8.99
+            "n": 266,
+            "pct": 9.01
           },
           "Asian_London_Overlap": {
             "n": 25,
@@ -2622,7 +2622,7 @@ const BTCUSD_DATA = {
           },
           "London": {
             "n": 83,
-            "pct": 2.82
+            "pct": 2.81
           },
           "London_NY_Overlap": {
             "n": 113,
@@ -2634,13 +2634,13 @@ const BTCUSD_DATA = {
           },
           "Other": {
             "n": 217,
-            "pct": 7.36
+            "pct": 7.35
           }
         },
         "Other": {
           "Asian": {
             "n": 106,
-            "pct": 3.6
+            "pct": 3.59
           },
           "Asian_London_Overlap": {
             "n": 10,
@@ -2648,25 +2648,25 @@ const BTCUSD_DATA = {
           },
           "London": {
             "n": 63,
-            "pct": 2.14
+            "pct": 2.13
           },
           "London_NY_Overlap": {
             "n": 153,
-            "pct": 5.19
+            "pct": 5.18
           },
           "New_York": {
             "n": 254,
-            "pct": 8.62
+            "pct": 8.6
           },
           "Other": {
-            "n": 62,
-            "pct": 2.1
+            "n": 63,
+            "pct": 2.13
           }
         }
       }
     },
     "daily_hour_pair_distribution": {
-      "n_days": 2947,
+      "n_days": 2953,
       "same_hour_n": 35,
       "same_hour_pct": 1.19,
       "pairs": {
@@ -2733,7 +2733,7 @@ const BTCUSD_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "16": {
             "n": 15,
@@ -2749,7 +2749,7 @@ const BTCUSD_DATA = {
           },
           "19": {
             "n": 14,
-            "pct": 0.48
+            "pct": 0.47
           },
           "20": {
             "n": 19,
@@ -2827,7 +2827,7 @@ const BTCUSD_DATA = {
           },
           "14": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "15": {
             "n": 13,
@@ -2855,7 +2855,7 @@ const BTCUSD_DATA = {
           },
           "21": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "22": {
             "n": 3,
@@ -2952,8 +2952,8 @@ const BTCUSD_DATA = {
             "pct": 0.41
           },
           "21": {
-            "n": 10,
-            "pct": 0.34
+            "n": 11,
+            "pct": 0.37
           },
           "22": {
             "n": 3,
@@ -3250,8 +3250,8 @@ const BTCUSD_DATA = {
             "pct": 0.2
           },
           "22": {
-            "n": 4,
-            "pct": 0.14
+            "n": 5,
+            "pct": 0.17
           },
           "23": {
             "n": 4,
@@ -3341,7 +3341,7 @@ const BTCUSD_DATA = {
           },
           "20": {
             "n": 14,
-            "pct": 0.48
+            "pct": 0.47
           },
           "21": {
             "n": 5,
@@ -3443,7 +3443,7 @@ const BTCUSD_DATA = {
           },
           "21": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "22": {
             "n": 6,
@@ -3548,8 +3548,8 @@ const BTCUSD_DATA = {
             "pct": 0.2
           },
           "23": {
-            "n": 1,
-            "pct": 0.03
+            "n": 2,
+            "pct": 0.07
           }
         },
         "9": {
@@ -3741,7 +3741,7 @@ const BTCUSD_DATA = {
           },
           "22": {
             "n": 14,
-            "pct": 0.48
+            "pct": 0.47
           },
           "23": {
             "n": 3,
@@ -3751,7 +3751,7 @@ const BTCUSD_DATA = {
         "11": {
           "0": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "1": {
             "n": 5,
@@ -3951,7 +3951,7 @@ const BTCUSD_DATA = {
           },
           "1": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "2": {
             "n": 8,
@@ -4230,8 +4230,8 @@ const BTCUSD_DATA = {
             "pct": 0.88
           },
           "22": {
-            "n": 19,
-            "pct": 0.64
+            "n": 20,
+            "pct": 0.68
           },
           "23": {
             "n": 11,
@@ -4240,8 +4240,8 @@ const BTCUSD_DATA = {
         },
         "16": {
           "0": {
-            "n": 14,
-            "pct": 0.48
+            "n": 15,
+            "pct": 0.51
           },
           "1": {
             "n": 12,
@@ -4387,7 +4387,7 @@ const BTCUSD_DATA = {
           },
           "12": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "13": {
             "n": 6,
@@ -4395,7 +4395,7 @@ const BTCUSD_DATA = {
           },
           "14": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "15": {
             "n": 1,
@@ -4427,7 +4427,7 @@ const BTCUSD_DATA = {
           },
           "22": {
             "n": 14,
-            "pct": 0.48
+            "pct": 0.47
           },
           "23": {
             "n": 2,
@@ -4539,7 +4539,7 @@ const BTCUSD_DATA = {
           },
           "1": {
             "n": 14,
-            "pct": 0.48
+            "pct": 0.47
           },
           "2": {
             "n": 7,
@@ -4641,7 +4641,7 @@ const BTCUSD_DATA = {
           },
           "2": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "3": {
             "n": 1,
@@ -4767,7 +4767,7 @@ const BTCUSD_DATA = {
           },
           "9": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "10": {
             "n": 6,
@@ -4818,8 +4818,8 @@ const BTCUSD_DATA = {
             "pct": 0.27
           },
           "22": {
-            "n": 18,
-            "pct": 0.61
+            "n": 19,
+            "pct": 0.64
           },
           "23": {
             "n": 15,
@@ -4841,7 +4841,7 @@ const BTCUSD_DATA = {
           },
           "3": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "4": {
             "n": 3,
@@ -4877,7 +4877,7 @@ const BTCUSD_DATA = {
           },
           "12": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "13": {
             "n": 18,
@@ -4987,11 +4987,11 @@ const BTCUSD_DATA = {
           },
           "15": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "16": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "17": {
             "n": 5,
@@ -5011,7 +5011,7 @@ const BTCUSD_DATA = {
           },
           "21": {
             "n": 9,
-            "pct": 0.31
+            "pct": 0.3
           },
           "22": {
             "n": 2,
@@ -5032,17 +5032,17 @@ const BTCUSD_DATA = {
         "extreme_in_release_window_pct": 17.8
       },
       "other_fridays": {
-        "n": 359,
-        "mean_range_pips": 189568.8,
-        "median_range_pips": 141150.0,
+        "n": 360,
+        "mean_range_pips": 190167.3,
+        "median_range_pips": 141220.5,
         "extreme_in_release_window_pct": 18.1
       },
-      "all_days_mean_range_pips": 183073.8,
+      "all_days_mean_range_pips": 183318.6,
       "release_window_minutes_before": 15,
       "release_window_minutes_after": 90
     },
     "weekly_high_day": {
-      "Monday": 146,
+      "Monday": 147,
       "Friday": 81,
       "Wednesday": 65,
       "Tuesday": 64,
@@ -5057,7 +5057,7 @@ const BTCUSD_DATA = {
       "Wednesday": 53,
       "Tuesday": 53,
       "Sunday": 26,
-      "Saturday": 24
+      "Saturday": 25
     },
     "monthly_high_week_of_month": {
       "1": 33,
@@ -5116,33 +5116,33 @@ const BTCUSD_DATA = {
     }
   },
   "profiles": {
-    "n_labeled_days": 2888,
+    "n_labeled_days": 2894,
     "n_data_gap_days": 0,
     "n_insufficient_history_days": 59,
     "profile_distribution": {
       "Normal Day": {
-        "n": 1560,
-        "pct": 54.02
+        "n": 1563,
+        "pct": 54.01
       },
       "Compression Day": {
         "n": 587,
-        "pct": 20.33
+        "pct": 20.28
       },
       "Volatile Day": {
-        "n": 289,
-        "pct": 10.01
+        "n": 290,
+        "pct": 10.02
       },
       "Trend Day (Up)": {
         "n": 148,
-        "pct": 5.12
+        "pct": 5.11
       },
       "Volatile Reversal Day": {
         "n": 119,
-        "pct": 4.12
+        "pct": 4.11
       },
       "Trend Day (Down)": {
-        "n": 95,
-        "pct": 3.29
+        "n": 97,
+        "pct": 3.35
       },
       "Quiet Drift Day (Up)": {
         "n": 55,
@@ -5155,10 +5155,10 @@ const BTCUSD_DATA = {
     },
     "extreme_timing_by_profile": {
       "Normal Day": {
-        "Late_Push": 975,
+        "Late_Push": 977,
         "Late_Resolution": 246,
         "Fade_Risk": 185,
-        "Early_Resolution": 154
+        "Early_Resolution": 155
       },
       "Compression Day": {
         "Late_Push": 290,
@@ -5168,8 +5168,8 @@ const BTCUSD_DATA = {
       },
       "Volatile Day": {
         "Late_Push": 199,
+        "Early_Resolution": 36,
         "Late_Resolution": 36,
-        "Early_Resolution": 35,
         "Fade_Risk": 19
       },
       "Trend Day (Up)": {
@@ -5185,7 +5185,7 @@ const BTCUSD_DATA = {
         "Late_Resolution": 14
       },
       "Trend Day (Down)": {
-        "Late_Push": 60,
+        "Late_Push": 62,
         "Late_Resolution": 31,
         "Fade_Risk": 3,
         "Early_Resolution": 1
@@ -5209,8 +5209,8 @@ const BTCUSD_DATA = {
         "median": 64237.0
       },
       "Normal Day": {
-        "mean": 166069.0,
-        "median": 162233.0
+        "mean": 166152.9,
+        "median": 162234.0
       },
       "Quiet Drift Day (Down)": {
         "mean": 72426.2,
@@ -5221,7 +5221,7 @@ const BTCUSD_DATA = {
         "median": 36690.0
       },
       "Trend Day (Down)": {
-        "mean": 373577.2,
+        "mean": 373990.9,
         "median": 376440.0
       },
       "Trend Day (Up)": {
@@ -5229,8 +5229,8 @@ const BTCUSD_DATA = {
         "median": 292169.5
       },
       "Volatile Day": {
-        "mean": 335744.4,
-        "median": 322995.0
+        "mean": 335983.3,
+        "median": 324985.5
       },
       "Volatile Reversal Day": {
         "mean": 356712.2,
@@ -5239,7 +5239,7 @@ const BTCUSD_DATA = {
     },
     "nfp": {
       "n_nfp_days": 104,
-      "n_other_fridays": 350,
+      "n_other_fridays": 351,
       "nfp_profile_distribution": {
         "Normal Day": {
           "n": 47,
@@ -5287,43 +5287,43 @@ const BTCUSD_DATA = {
       "other_friday_profile_distribution": {
         "Normal Day": {
           "n": 193,
-          "pct": 55.14,
+          "pct": 54.99,
           "mean_range_pips": 163766.8,
           "median_range_pips": 153441.0
         },
         "Compression Day": {
           "n": 63,
-          "pct": 18.0,
+          "pct": 17.95,
           "mean_range_pips": 60708.6,
           "median_range_pips": 32831.0
         },
         "Volatile Day": {
-          "n": 29,
-          "pct": 8.29,
-          "mean_range_pips": 381952.7,
-          "median_range_pips": 404330.0
+          "n": 30,
+          "pct": 8.55,
+          "mean_range_pips": 382721.2,
+          "median_range_pips": 404669.0
         },
         "Trend Day (Up)": {
           "n": 23,
-          "pct": 6.57,
+          "pct": 6.55,
           "mean_range_pips": 330964.3,
           "median_range_pips": 352195.0
         },
         "Volatile Reversal Day": {
           "n": 18,
-          "pct": 5.14,
+          "pct": 5.13,
           "mean_range_pips": 294235.2,
           "median_range_pips": 217615.5
         },
         "Trend Day (Down)": {
           "n": 15,
-          "pct": 4.29,
+          "pct": 4.27,
           "mean_range_pips": 453329.1,
           "median_range_pips": 458413.0
         },
         "Quiet Drift Day (Up)": {
           "n": 7,
-          "pct": 2.0,
+          "pct": 1.99,
           "mean_range_pips": 52765.1,
           "median_range_pips": 22544.0
         },
@@ -5338,37 +5338,37 @@ const BTCUSD_DATA = {
     "asset": "BTCUSD"
   },
   "weekly": {
-    "n_labeled_weeks": 455,
+    "n_labeled_weeks": 456,
     "n_short_weeks": 0,
     "n_insufficient_history_weeks": 14,
     "profile_distribution": {
       "Normal Week": {
         "n": 240,
-        "pct": 52.75
+        "pct": 52.63
       },
       "Compression Week": {
         "n": 89,
-        "pct": 19.56
+        "pct": 19.52
       },
       "Volatile Week": {
         "n": 45,
-        "pct": 9.89
+        "pct": 9.87
       },
       "Trend Week (Up)": {
         "n": 32,
-        "pct": 7.03
+        "pct": 7.02
       },
       "Volatile Reversal Week": {
         "n": 20,
-        "pct": 4.4
+        "pct": 4.39
       },
       "Quiet Drift Week (Up)": {
         "n": 12,
-        "pct": 2.64
+        "pct": 2.63
       },
       "Trend Week (Down)": {
-        "n": 11,
-        "pct": 2.42
+        "n": 12,
+        "pct": 2.63
       },
       "Quiet Drift Week (Down)": {
         "n": 6,
@@ -5419,7 +5419,7 @@ const BTCUSD_DATA = {
         "Early_Resolution": 1
       },
       "Trend Week (Down)": {
-        "Insufficient_History": 7,
+        "Insufficient_History": 8,
         "Late_Push": 3,
         "Early_Resolution": 1
       },
@@ -5465,7 +5465,7 @@ const BTCUSD_DATA = {
         "Adjacent": 1
       },
       "Trend Week (Down)": {
-        "Insufficient_History": 7,
+        "Insufficient_History": 8,
         "Spread": 3,
         "Adjacent": 1
       },
@@ -5492,8 +5492,8 @@ const BTCUSD_DATA = {
         "median": 92914.5
       },
       "Trend Week (Down)": {
-        "mean": 1052251.2,
-        "median": 1302490.0
+        "mean": 1063059.3,
+        "median": 1242219.5
       },
       "Trend Week (Up)": {
         "mean": 763368.8,
@@ -5630,47 +5630,47 @@ const BTCUSD_DATA = {
     "asset": "BTCUSD"
   },
   "monthly": {
-    "n_labeled_months": 99,
-    "n_short_months": 2,
+    "n_labeled_months": 100,
+    "n_short_months": 1,
     "n_insufficient_history_months": 9,
     "profile_distribution": {
       "Normal Month": {
-        "n": 48,
-        "pct": 48.48
+        "n": 49,
+        "pct": 49.0
       },
       "Compression Month": {
         "n": 14,
-        "pct": 14.14
+        "pct": 14.0
       },
       "Volatile Month": {
         "n": 14,
-        "pct": 14.14
+        "pct": 14.0
       },
       "Volatile Reversal Month": {
         "n": 9,
-        "pct": 9.09
+        "pct": 9.0
       },
       "Trend Month (Up)": {
         "n": 6,
-        "pct": 6.06
+        "pct": 6.0
       },
       "Quiet Drift Month (Down)": {
         "n": 5,
-        "pct": 5.05
+        "pct": 5.0
       },
       "Quiet Drift Month (Up)": {
         "n": 2,
-        "pct": 2.02
+        "pct": 2.0
       },
       "Trend Month (Down)": {
         "n": 1,
-        "pct": 1.01
+        "pct": 1.0
       }
     },
     "extreme_timing_by_profile": {
       "Normal Month": {
         "Late_Push": 33,
-        "Early_Resolution": 6,
+        "Early_Resolution": 7,
         "Late_Resolution": 5,
         "Fade_Risk": 4
       },
@@ -5707,7 +5707,7 @@ const BTCUSD_DATA = {
     "extreme_spread_by_profile": {
       "Normal Month": {
         "Spread": 36,
-        "Adjacent": 8,
+        "Adjacent": 9,
         "Same_Week": 4
       },
       "Compression Month": {
@@ -5744,8 +5744,8 @@ const BTCUSD_DATA = {
         "median": 357555.0
       },
       "Normal Month": {
-        "mean": 926325.6,
-        "median": 971645.0
+        "mean": 942723.4,
+        "median": 977590.0
       },
       "Quiet Drift Month (Down)": {
         "mean": 439461.6,
@@ -5773,92 +5773,92 @@ const BTCUSD_DATA = {
       }
     },
     "week_of_month_pair_distribution": {
-      "n_months": 108,
+      "n_months": 109,
       "same_week_n": 6,
-      "same_week_pct": 5.56,
+      "same_week_pct": 5.5,
       "pairs": {
         "1": {
           "1": {
             "n": 3,
-            "pct": 2.78
+            "pct": 2.75
           },
           "2": {
             "n": 6,
-            "pct": 5.56
+            "pct": 5.5
           },
           "3": {
             "n": 10,
-            "pct": 9.26
+            "pct": 9.17
           },
           "4": {
             "n": 13,
-            "pct": 12.04
+            "pct": 11.93
           },
           "5": {
             "n": 10,
-            "pct": 9.26
+            "pct": 9.17
           }
         },
         "2": {
           "1": {
-            "n": 7,
-            "pct": 6.48
+            "n": 8,
+            "pct": 7.34
           },
           "2": {
             "n": 1,
-            "pct": 0.93
+            "pct": 0.92
           },
           "3": {
             "n": 4,
-            "pct": 3.7
+            "pct": 3.67
           },
           "4": {
             "n": 3,
-            "pct": 2.78
+            "pct": 2.75
           },
           "5": {
             "n": 5,
-            "pct": 4.63
+            "pct": 4.59
           }
         },
         "3": {
           "1": {
             "n": 6,
-            "pct": 5.56
+            "pct": 5.5
           },
           "2": {
             "n": 4,
-            "pct": 3.7
+            "pct": 3.67
           },
           "3": {
             "n": 1,
-            "pct": 0.93
+            "pct": 0.92
           },
           "4": {
             "n": 1,
-            "pct": 0.93
+            "pct": 0.92
           },
           "5": {
             "n": 2,
-            "pct": 1.85
+            "pct": 1.83
           }
         },
         "4": {
           "1": {
             "n": 8,
-            "pct": 7.41
+            "pct": 7.34
           },
           "2": {
             "n": 9,
-            "pct": 8.33
+            "pct": 8.26
           },
           "3": {
             "n": 1,
-            "pct": 0.93
+            "pct": 0.92
           },
           "4": {
             "n": 1,
-            "pct": 0.93
+            "pct": 0.92
           },
           "5": {
             "n": 0,
@@ -5868,15 +5868,15 @@ const BTCUSD_DATA = {
         "5": {
           "1": {
             "n": 8,
-            "pct": 7.41
+            "pct": 7.34
           },
           "2": {
             "n": 3,
-            "pct": 2.78
+            "pct": 2.75
           },
           "3": {
             "n": 2,
-            "pct": 1.85
+            "pct": 1.83
           },
           "4": {
             "n": 0,
@@ -6547,124 +6547,124 @@ const BTCUSD_DATA = {
   "hourly_activity": {
     "hourly": {
       "0": {
-        "mean_range_pips": 37561.0,
-        "mean_activity_pips": 128715.33,
-        "n_days": 2857
+        "mean_range_pips": 37590.92,
+        "mean_activity_pips": 128885.11,
+        "n_days": 2863
       },
       "1": {
-        "mean_range_pips": 35669.34,
-        "mean_activity_pips": 121722.33,
-        "n_days": 2841
-      },
-      "2": {
-        "mean_range_pips": 32442.84,
-        "mean_activity_pips": 110459.46,
-        "n_days": 2852
-      },
-      "3": {
-        "mean_range_pips": 29113.44,
-        "mean_activity_pips": 100513.43,
-        "n_days": 2841
-      },
-      "4": {
-        "mean_range_pips": 27747.83,
-        "mean_activity_pips": 94416.87,
-        "n_days": 2848
-      },
-      "5": {
-        "mean_range_pips": 27109.59,
-        "mean_activity_pips": 93675.69,
+        "mean_range_pips": 35699.59,
+        "mean_activity_pips": 121916.72,
         "n_days": 2847
       },
-      "6": {
-        "mean_range_pips": 27946.17,
-        "mean_activity_pips": 94525.69,
-        "n_days": 2850
-      },
-      "7": {
-        "mean_range_pips": 29247.94,
-        "mean_activity_pips": 97696.08,
-        "n_days": 2857
-      },
-      "8": {
-        "mean_range_pips": 31348.48,
-        "mean_activity_pips": 104947.1,
-        "n_days": 2862
-      },
-      "9": {
-        "mean_range_pips": 29939.26,
-        "mean_activity_pips": 102015.93,
-        "n_days": 2848
-      },
-      "10": {
-        "mean_range_pips": 28662.18,
-        "mean_activity_pips": 99063.89,
-        "n_days": 2857
-      },
-      "11": {
-        "mean_range_pips": 29090.29,
-        "mean_activity_pips": 100688.67,
-        "n_days": 2862
-      },
-      "12": {
-        "mean_range_pips": 35700.44,
-        "mean_activity_pips": 119702.61,
-        "n_days": 2879
-      },
-      "13": {
-        "mean_range_pips": 42496.62,
-        "mean_activity_pips": 144064.17,
-        "n_days": 2883
-      },
-      "14": {
-        "mean_range_pips": 49691.14,
-        "mean_activity_pips": 169209.95,
-        "n_days": 2887
-      },
-      "15": {
-        "mean_range_pips": 45584.55,
-        "mean_activity_pips": 159216.85,
-        "n_days": 2885
-      },
-      "16": {
-        "mean_range_pips": 41444.23,
-        "mean_activity_pips": 148092.98,
-        "n_days": 2876
-      },
-      "17": {
-        "mean_range_pips": 38336.39,
-        "mean_activity_pips": 135697.38,
-        "n_days": 2862
-      },
-      "18": {
-        "mean_range_pips": 36838.57,
-        "mean_activity_pips": 130599.11,
+      "2": {
+        "mean_range_pips": 32529.13,
+        "mean_activity_pips": 110704.47,
         "n_days": 2858
       },
-      "19": {
-        "mean_range_pips": 36181.67,
-        "mean_activity_pips": 127429.27,
+      "3": {
+        "mean_range_pips": 29207.31,
+        "mean_activity_pips": 100788.37,
+        "n_days": 2847
+      },
+      "4": {
+        "mean_range_pips": 27782.46,
+        "mean_activity_pips": 94623.26,
+        "n_days": 2854
+      },
+      "5": {
+        "mean_range_pips": 27160.88,
+        "mean_activity_pips": 93866.22,
         "n_days": 2853
       },
+      "6": {
+        "mean_range_pips": 27997.18,
+        "mean_activity_pips": 94711.0,
+        "n_days": 2856
+      },
+      "7": {
+        "mean_range_pips": 29293.35,
+        "mean_activity_pips": 97888.7,
+        "n_days": 2863
+      },
+      "8": {
+        "mean_range_pips": 31376.82,
+        "mean_activity_pips": 105046.52,
+        "n_days": 2868
+      },
+      "9": {
+        "mean_range_pips": 29976.56,
+        "mean_activity_pips": 102188.56,
+        "n_days": 2854
+      },
+      "10": {
+        "mean_range_pips": 28677.86,
+        "mean_activity_pips": 99148.18,
+        "n_days": 2863
+      },
+      "11": {
+        "mean_range_pips": 29121.54,
+        "mean_activity_pips": 100821.21,
+        "n_days": 2868
+      },
+      "12": {
+        "mean_range_pips": 35711.45,
+        "mean_activity_pips": 119810.63,
+        "n_days": 2885
+      },
+      "13": {
+        "mean_range_pips": 42554.97,
+        "mean_activity_pips": 144280.36,
+        "n_days": 2889
+      },
+      "14": {
+        "mean_range_pips": 49765.43,
+        "mean_activity_pips": 169556.54,
+        "n_days": 2893
+      },
+      "15": {
+        "mean_range_pips": 45715.26,
+        "mean_activity_pips": 159690.87,
+        "n_days": 2891
+      },
+      "16": {
+        "mean_range_pips": 41499.74,
+        "mean_activity_pips": 148384.81,
+        "n_days": 2882
+      },
+      "17": {
+        "mean_range_pips": 38388.68,
+        "mean_activity_pips": 135941.15,
+        "n_days": 2868
+      },
+      "18": {
+        "mean_range_pips": 36853.9,
+        "mean_activity_pips": 130705.75,
+        "n_days": 2864
+      },
+      "19": {
+        "mean_range_pips": 36187.46,
+        "mean_activity_pips": 127523.73,
+        "n_days": 2859
+      },
       "20": {
-        "mean_range_pips": 37867.02,
-        "mean_activity_pips": 129498.1,
-        "n_days": 2759
+        "mean_range_pips": 37902.94,
+        "mean_activity_pips": 129617.52,
+        "n_days": 2765
       },
       "21": {
-        "mean_range_pips": 36181.13,
-        "mean_activity_pips": 120715.13,
-        "n_days": 2757
+        "mean_range_pips": 36215.22,
+        "mean_activity_pips": 120913.72,
+        "n_days": 2763
       },
       "22": {
-        "mean_range_pips": 35513.0,
-        "mean_activity_pips": 118930.1,
-        "n_days": 2844
+        "mean_range_pips": 35541.21,
+        "mean_activity_pips": 119111.04,
+        "n_days": 2850
       },
       "23": {
-        "mean_range_pips": 31307.43,
-        "mean_activity_pips": 110263.29,
-        "n_days": 2851
+        "mean_range_pips": 31362.13,
+        "mean_activity_pips": 110505.22,
+        "n_days": 2857
       }
     },
     "session_windows": {
@@ -6679,15 +6679,15 @@ const BTCUSD_DATA = {
           5,
           6
         ],
-        "mean_range_pips": 31112.2,
-        "mean_activity_pips": 106786.51
+        "mean_range_pips": 31166.2,
+        "mean_activity_pips": 107000.05
       },
       "asian_london_overlap": {
         "hours": [
           7
         ],
-        "mean_range_pips": 29247.94,
-        "mean_activity_pips": 97696.08
+        "mean_range_pips": 29293.35,
+        "mean_activity_pips": 97888.7
       },
       "london_only": {
         "hours": [
@@ -6696,8 +6696,8 @@ const BTCUSD_DATA = {
           10,
           11
         ],
-        "mean_range_pips": 29760.05,
-        "mean_activity_pips": 101678.9
+        "mean_range_pips": 29788.19,
+        "mean_activity_pips": 101801.12
       },
       "london_ny_overlap": {
         "hours": [
@@ -6706,8 +6706,8 @@ const BTCUSD_DATA = {
           14,
           15
         ],
-        "mean_range_pips": 43368.19,
-        "mean_activity_pips": 148048.4
+        "mean_range_pips": 43436.78,
+        "mean_activity_pips": 148334.6
       },
       "ny_only": {
         "hours": [
@@ -6717,54 +6717,54 @@ const BTCUSD_DATA = {
           19,
           20
         ],
-        "mean_range_pips": 38133.58,
-        "mean_activity_pips": 134263.37
+        "mean_range_pips": 38166.54,
+        "mean_activity_pips": 134434.59
       }
     },
     "asset": "BTCUSD"
   },
   "range_forecast": {
     "asset": "BTCUSD",
-    "as_of": "2026-11-08",
+    "as_of": "2026-11-14",
     "model": "google/timesfm-2.5-200m-pytorch",
     "context_days": 1024,
     "calibration_window": 500,
     "trades_weekends": true,
-    "adr20": 229406.9,
+    "adr20": 257162.2,
     "forecast": {
       "h1": {
-        "target_date": "2026-11-09",
-        "mean": 295276.3,
-        "q10": 175781.6,
-        "q90": 447620.4,
-        "q10_raw": 165588.0,
-        "q90_raw": 428394.4
+        "target_date": "2026-11-15",
+        "mean": 231562.6,
+        "q10": 105519.7,
+        "q90": 388202.9,
+        "q10_raw": 99008.6,
+        "q90_raw": 371282.5
       },
       "h5": {
-        "mean": 296347.4
+        "mean": 313904.8
       },
       "h20": {
-        "mean": 255210.4
+        "mean": 281501.3
       }
     },
     "track_record": {
       "rel_mae_vs_adr20": {
-        "h1": 0.813,
-        "h5": 0.851,
-        "h20": 0.909
+        "h1": 0.819,
+        "h5": 0.849,
+        "h20": 0.908
       },
       "mae": {
         "h1": {
-          "timesfm": 93600.1,
-          "adr20": 115098.0
+          "timesfm": 93991.1,
+          "adr20": 114785.4
         },
         "h5": {
-          "timesfm": 61728.8,
-          "adr20": 72498.0
+          "timesfm": 60830.8,
+          "adr20": 71623.2
         },
         "h20": {
-          "timesfm": 56632.7,
-          "adr20": 62286.5
+          "timesfm": 56649.7,
+          "adr20": 62402.2
         }
       },
       "n": {
@@ -6772,56 +6772,14 @@ const BTCUSD_DATA = {
         "h5": 500,
         "h20": 500
       },
-      "from": "2025-06-26",
-      "to": "2026-11-07",
+      "from": "2025-07-02",
+      "to": "2026-11-13",
       "band_n": 500,
-      "band_coverage": 0.83,
-      "above_q90": 0.084,
-      "below_q10": 0.086
+      "band_coverage": 0.828,
+      "above_q90": 0.088,
+      "below_q10": 0.084
     },
     "recent": [
-      {
-        "date": "2026-09-10",
-        "actual": 189960.0,
-        "mean": 222084.1,
-        "q10": 116421.2,
-        "q90": 357175.7
-      },
-      {
-        "date": "2026-09-11",
-        "actual": 385484.0,
-        "mean": 216576.5,
-        "q10": 132709.8,
-        "q90": 329331.9
-      },
-      {
-        "date": "2026-09-12",
-        "actual": 53482.0,
-        "mean": 158563.0,
-        "q10": 78719.4,
-        "q90": 275175.5
-      },
-      {
-        "date": "2026-09-13",
-        "actual": 92190.0,
-        "mean": 113656.4,
-        "q10": 41132.1,
-        "q90": 216130.0
-      },
-      {
-        "date": "2026-09-14",
-        "actual": 321824.0,
-        "mean": 208685.6,
-        "q10": 119054.4,
-        "q90": 326827.6
-      },
-      {
-        "date": "2026-09-15",
-        "actual": 417589.0,
-        "mean": 242217.2,
-        "q10": 122914.8,
-        "q90": 398667.5
-      },
       {
         "date": "2026-09-16",
         "actual": 151169.0,
@@ -7202,10 +7160,52 @@ const BTCUSD_DATA = {
       },
       {
         "date": "2026-11-09",
-        "actual": null,
+        "actual": 199275.0,
         "mean": 295276.3,
         "q10": 175781.6,
         "q90": 447620.4
+      },
+      {
+        "date": "2026-11-10",
+        "actual": 271978.0,
+        "mean": 270736.4,
+        "q10": 139665.4,
+        "q90": 430953.3
+      },
+      {
+        "date": "2026-11-11",
+        "actual": 157994.0,
+        "mean": 300220.7,
+        "q10": 161293.0,
+        "q90": 475371.5
+      },
+      {
+        "date": "2026-11-12",
+        "actual": 331180.0,
+        "mean": 265487.8,
+        "q10": 140914.9,
+        "q90": 411647.8
+      },
+      {
+        "date": "2026-11-13",
+        "actual": 405008.0,
+        "mean": 264226.9,
+        "q10": 162169.3,
+        "q90": 389804.5
+      },
+      {
+        "date": "2026-11-14",
+        "actual": 456100.0,
+        "mean": 168513.5,
+        "q10": 77926.2,
+        "q90": 290370.6
+      },
+      {
+        "date": "2026-11-15",
+        "actual": null,
+        "mean": 231562.6,
+        "q10": 105519.7,
+        "q90": 388202.9
       }
     ]
   }
